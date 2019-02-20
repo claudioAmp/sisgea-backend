@@ -17,7 +17,8 @@ buildNumber.properties
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**/workspace.xml
+# Intellij
+.idea/
 .idea/**/tasks.xml
 .idea/**/dictionaries
 .idea/**/shelf
@@ -28,12 +29,10 @@ buildNumber.properties
 .idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
 # Gradle
 .idea/**/gradle.xml
-.idea/**/libraries
 
 # CMake
 cmake-build-debug/
@@ -47,6 +46,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
+*.iml
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -120,3 +120,14 @@ local.properties
 .scala_dependencies
 .worksheet
 
+### Java Template
+# Log File
+*.log
+
+# Package File
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
