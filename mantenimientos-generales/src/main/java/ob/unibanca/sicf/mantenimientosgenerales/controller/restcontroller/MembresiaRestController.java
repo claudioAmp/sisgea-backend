@@ -10,9 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/mantenimiento/general/")
 public class MembresiaRestController {
-
-    @GetMapping("membresias")
-    public List<Membresia> buscarTodosMembresias() {
-        return List.of(Membresia.builder().idMembresia("V").descripcionMembresia("VISA").build());
-    }
+	
+	@GetMapping("membresias")
+	public List<Membresia> buscarTodosMembresias() {
+		return List.of(Membresia.builder().idMembresia("V").descripcionMembresia("VISA").build());
+	}
 }

@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Membresia {
-
-    private String idMembresia;
-
-    private String descripcionMembresia;
+	
+	private String idMembresia;
+	
+	private String descripcionMembresia;
 }

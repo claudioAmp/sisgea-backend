@@ -20,13 +20,10 @@ buildNumber.properties
 # Intellij
 .idea/
 .idea/**/tasks.xml
-.idea/**/dictionaries
 .idea/**/shelf
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
 .idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/dbnavigator.xml
@@ -128,6 +125,5 @@ local.properties
 *.jar
 *.war
 *.ear
-*.zip
 *.tar.gz
 *.rar

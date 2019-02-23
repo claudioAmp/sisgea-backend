@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IInstitucionMapper">
+
+
+    <select id="buscarTodos" resultType="Institucion"
+            statementType="PREPARED">
+        SELECT id_institucion       AS idinstitucion
+             , descripcion          AS descripcion
+             , descripcion_corta    AS descripcioncorta
+             , razon_social         AS razonsocial
+             , ruc                  AS ruc
+             , direccion            AS direccion
+             , banco_administrador  AS bancoadministrador
+             , tipo_institucion     AS tipoinstitucion
+             , procesador           AS procesador
+             , cta_cte_mon_base     AS cuentacontablemonedabase
+             , cta_cte_mon_alterna  AS cuentacontablemonedaalterna
+             , operador_institucion AS idinstitucionoperador
+            FROM mae_institucion
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL pkg_man_generales.PRC_MAN_INSTITUCION(
+                #{modo, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idInstitucion, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN },
+                #{objetoMantenido.descripcionCorta,  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.razonSocial, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.ruc,  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.direccion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.bancoAdministrador, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.tipoInstitucion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.procesador, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.cuentaContableMonedaBase, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.cuentaContableMonedaAlterna, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idInstitucionOperador, jdbcType=NUMERIC, mode=IN},
+                #{usuario, jdbcType=VARCHAR, mode=IN}
+            )
+            }
+    </select>
+</mapper>

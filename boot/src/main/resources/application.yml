@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /sicf
+spring:
+  datasource:
+    username: SICF_UBA
+    password: root
+    url: jdbc:oracle:thin:@localhost:1522:ORCL11G
+    driver-class-name: oracle.jdbc.OracleDriver

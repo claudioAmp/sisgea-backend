@@ -14,8 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class})
 public class SicfBoot {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SicfBoot.class, args);
-    }
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SicfBoot.class, args);
+	}
 }

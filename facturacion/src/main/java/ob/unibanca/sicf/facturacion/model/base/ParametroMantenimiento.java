@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.facturacion.model;
+package ob.unibanca.sicf.facturacion.model.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Portafolio {
+public class ParametroMantenimiento {
 	
-	private int idPortafolio;
-	private String descripcion;
+	private String modo;
+	private Object objetoMantenido;
+	private String usuario;
 }
