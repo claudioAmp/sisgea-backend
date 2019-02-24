@@ -20,6 +20,6 @@ public class PortafolioRestController {
 	
 	@GetMapping("portafolios")
 	public List<Portafolio> buscarTodosPortafolios() {
-		return this.portafolioService.buscarTodos();
+		return this.portafolioService.buscarTodosPortafolios();
 	}
 }

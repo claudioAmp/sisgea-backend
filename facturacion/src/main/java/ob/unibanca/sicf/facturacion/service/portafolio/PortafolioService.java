@@ -1,12 +1,14 @@
 package ob.unibanca.sicf.facturacion.service.portafolio;
 
-import ob.unibanca.sicf.facturacion.mapper.base.IMantenibleMapper;
+import ob.commons.mantenimiento.mapper.IMantenibleMapper;
+import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.facturacion.model.Portafolio;
-import ob.unibanca.sicf.facturacion.service.base.MantenibleService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class PortafolioService extends MantenibleService<Portafolio> implements IPortafolioService {
@@ -16,20 +18,26 @@ public class PortafolioService extends MantenibleService<Portafolio> implements 
 	}
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Portafolio> buscarTodosPortafolios() {
+		return this.buscarTodos();
+	}
+	
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void registrarFacturacion(Portafolio portafolio) {
+	public void registrarPortafolio(Portafolio portafolio) {
 		this.registrar(portafolio);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void actualizarFacturacion(Portafolio portafolio) {
+	public void actualizarPortafolio(Portafolio portafolio) {
 		this.actualizar(portafolio);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void eliminarFacturacion(int idPortafolio) {
-		Portafolio portafolio = Portafolio.builder().idPortafolio(idPortafolio).build(); this.eliminar(portafolio);
+	public void eliminarPortafolio(Portafolio portafolio) {
+		this.eliminar(portafolio);
 	}
 }

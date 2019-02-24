@@ -20,6 +20,6 @@ public class InstitucionRestController {
 	
 	@GetMapping("instituciones")
 	public List<Institucion> buscarTodosInstituciones() {
-		return this.institucionService.buscarTodos();
+		return this.institucionService.buscarTodosInstituciones();
 	}
 }

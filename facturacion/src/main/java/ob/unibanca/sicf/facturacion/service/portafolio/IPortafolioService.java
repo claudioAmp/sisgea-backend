@@ -1,13 +1,17 @@
 package ob.unibanca.sicf.facturacion.service.portafolio;
 
+import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.facturacion.model.Portafolio;
-import ob.unibanca.sicf.facturacion.service.base.IMantenibleService;
+
+import java.util.List;
 
 public interface IPortafolioService extends IMantenibleService<Portafolio> {
 	
-	void registrarFacturacion(Portafolio portafolio);
+	List<Portafolio> buscarTodosPortafolios();
 	
-	void actualizarFacturacion(Portafolio portafolio);
+	void registrarPortafolio(Portafolio portafolio);
 	
-	void eliminarFacturacion(int idPortafolio);
+	void actualizarPortafolio(Portafolio portafolio);
+	
+	void eliminarPortafolio(Portafolio portafolio);
 }

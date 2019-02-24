@@ -1,3 +1,0 @@
-mybatis:
-  type-aliases-package: ob.unibanca.sicf.mantenimientosgenerales.model
-  mapper-locations: classpath*:**/mapper/oracle/**/*Mapper.xml

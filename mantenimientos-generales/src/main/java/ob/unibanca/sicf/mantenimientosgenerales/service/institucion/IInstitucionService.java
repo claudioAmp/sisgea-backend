@@ -1,13 +1,17 @@
 package ob.unibanca.sicf.mantenimientosgenerales.service.institucion;
 
+import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Institucion;
-import ob.unibanca.sicf.mantenimientosgenerales.service.base.IMantenibleService;
+
+import java.util.List;
 
 public interface IInstitucionService extends IMantenibleService<Institucion> {
+	
+	List<Institucion> buscarTodosInstituciones();
 	
 	void registrarInstitucion(Institucion institucion);
 	
 	void actualizarInstitucion(Institucion institucion);
 	
-	void eliminarInstitucion(int idInstitucion);
+	void eliminarInstitucion(Institucion institucion);
 }

@@ -68,6 +68,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Librería utilitaria ODYBANK para mantenimientos -->
+        <dependency>
+            <groupId>ob.commons</groupId>
+            <artifactId>commons-mantenimiento</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
