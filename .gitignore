@@ -127,3 +127,6 @@ local.properties
 *.ear
 *.tar.gz
 *.rar
+
+#GIT
+README.md
