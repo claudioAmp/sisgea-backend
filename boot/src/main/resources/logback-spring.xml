@@ -25,16 +25,34 @@
             <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg %n</Pattern>
         </encoder>
     </appender>
-    <logger name="org.springframework" level="debug" additivity="false">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="file"/>
-    </logger>
-    <logger name="ob.unibanca.sicf" level="debug" additivity="false">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="file"/>
-    </logger>
-    <root level="debug">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="file"/>
-    </root>
+    <!-- Declaración de logger específicos para el profiles dev (include: dev) -->
+    <springProfile name="dev">
+        <logger name="org.springframework" level="debug" additivity="false">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </logger>
+        <logger name="ob.unibanca.sicf" level="debug" additivity="false">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </logger>
+        <root level="debug">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+    <!-- Declaración de logger específicos para el profiles prod (include: prod) -->
+    <springProfile name="prod">
+        <logger name="org.springframework" level="error" additivity="false">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </logger>
+        <logger name="ob.unibanca.sicf" level="error" additivity="false">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </logger>
+        <root level="error">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
 </configuration>

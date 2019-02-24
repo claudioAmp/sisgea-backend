@@ -1,19 +1,20 @@
 logging:
   config: "classpath:logback-spring.xml"
-  path: C:\Desarrollo\Logs\spring-boot
-  file: sicf
-server:
-  servlet:
-    context-path: /sicf
-spring:
-  datasource:
-    username: SICF_UBA
-    password: root
-    url: jdbc:oracle:thin:@localhost:1522:ORCL11G
-    driver-class-name: oracle.jdbc.OracleDriver
 #El paquete ob.commons.mantenimiento.model contiene el objeto ParametroGeneralMantenimiento
 mybatis:
   type-aliases-package: ob.unibanca.sicf.facturacion.model,
     ob.unibanca.sicf.mantenimientosgenerales.model,
     ob.commons.mantenimiento.model
   mapper-locations: classpath*:**/mapper/oracle/**/*Mapper.xml
+server:
+  servlet:
+    context-path: /sicf
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+  jackson:
+    time-zone: EST
+    date-format: dd/MM/yyyy
+  profiles:
+    active: dev-hllcc
+    include: dev
