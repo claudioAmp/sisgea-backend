@@ -11,7 +11,7 @@ public interface IInstitucionService extends IMantenibleService<Institucion> {
 	
 	void registrarInstitucion(Institucion institucion);
 	
-	void actualizarInstitucion(Institucion institucion);
+	void actualizarInstitucion(int idInstitucion, Institucion institucion);
 	
-	void eliminarInstitucion(Institucion institucion);
+	void eliminarInstitucion(int idInstitucion);
 }

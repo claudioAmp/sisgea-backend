@@ -31,13 +31,15 @@ public class InstitucionService extends MantenibleService<Institucion> implement
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void actualizarInstitucion(Institucion institucion) {
+	public void actualizarInstitucion(int idInstitucion, Institucion institucion) {
+		institucion.setIdInstitucion(idInstitucion);
 		this.actualizar(institucion);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void eliminarInstitucion(Institucion institucion) {
+	public void eliminarInstitucion(int idInstitucion) {
+		Institucion institucion = Institucion.builder().idInstitucion(idInstitucion).build();
 		this.eliminar(institucion);
 	}
 }

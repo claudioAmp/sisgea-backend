@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class Membresia {
 	
 	private String idMembresia;
-	
 	private String descripcionMembresia;
 }
