@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.unibanca.sicf.mantenimientosgenerales.validation.Descripcion;
+import ob.unibanca.sicf.mantenimientosgenerales.validation.IdNumerico;
 
 @Data
 @Builder
@@ -11,8 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Institucion {
 	
+	@IdNumerico(maxRange = 99999)
 	private int idInstitucion;
+	@Descripcion(minLength = 1, maxLength = 80)
 	private String descripcion;
+	@Descripcion(minLength = 1, maxLength = 20)
 	private String descripcionCorta;
 	private String razonSocial;
 	private String ruc;
@@ -22,5 +27,6 @@ public class Institucion {
 	private boolean procesador;
 	private String cuentaContableMonedaBase;
 	private String cuentaContableMonedaAlterna;
+	@IdNumerico(maxRange = 99999)
 	private int idInstitucionOperador;
 }
