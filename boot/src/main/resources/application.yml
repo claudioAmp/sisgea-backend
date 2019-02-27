@@ -18,3 +18,5 @@ spring:
   profiles:
     active: dev-hllcc
     include: dev
+  messages:
+    encoding: UTF-8

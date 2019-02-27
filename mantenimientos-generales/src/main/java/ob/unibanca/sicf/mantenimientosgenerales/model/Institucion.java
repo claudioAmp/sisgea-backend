@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.mantenimientosgenerales.validation.Descripcion;
-import ob.unibanca.sicf.mantenimientosgenerales.validation.IdNumerico;
+import ob.commons.validation.validation.Descripcion;
+import ob.commons.validation.validation.IdNumerico;
+import ob.commons.validation.validation.group.IRegistro;
 
 @Data
 @Builder
@@ -13,7 +14,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.validation.IdNumerico;
 @AllArgsConstructor
 public class Institucion {
 	
-	@IdNumerico(maxRange = 99999)
+	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private int idInstitucion;
 	@Descripcion(minLength = 1, maxLength = 80)
 	private String descripcion;

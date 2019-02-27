@@ -10,7 +10,7 @@
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_FACTURACION.PRC_MAN_PORTAFOLIO(
+            CALL pkg_man_generales.PRC_MAN_PORTAFOLIO(
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idPortafolio, jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN},
