@@ -130,8 +130,6 @@ local.properties
 *.rar
 
 #IDE
-.project
-.classpath
 /project/
 
 #GIT
