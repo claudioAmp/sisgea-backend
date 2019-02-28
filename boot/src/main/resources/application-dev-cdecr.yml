@@ -1,0 +1,9 @@
+# Configuración del proyecto para el entorno de desarrollo individual
+logging:
+  path: C:\Desarrollo\Logs\spring-boot
+  file: sicf
+spring:
+  datasource:
+    username: SICF_UBA
+    password: root
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
