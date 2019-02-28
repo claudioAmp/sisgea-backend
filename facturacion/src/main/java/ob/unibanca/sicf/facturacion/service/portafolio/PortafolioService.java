@@ -25,19 +25,20 @@ public class PortafolioService extends MantenibleService<Portafolio> implements 
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void registrarPortafolio(Portafolio portafolio) {
-		this.registrar(portafolio);
+	public Portafolio registrarPortafolio(Portafolio portafolio) {
+		this.registrar(portafolio); return portafolio;
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void actualizarPortafolio(Portafolio portafolio) {
-		this.actualizar(portafolio);
+	public Portafolio actualizarPortafolio(int idPortafolio, Portafolio portafolio) {
+		portafolio.setIdPortafolio(idPortafolio); this.actualizar(portafolio); return portafolio;
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void eliminarPortafolio(Portafolio portafolio) {
+	public void eliminarPortafolio(int idPortafolio) {
+		Portafolio portafolio = Portafolio.builder().idPortafolio(idPortafolio).build();
 		this.eliminar(portafolio);
 	}
 }

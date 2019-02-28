@@ -9,9 +9,9 @@ public interface IInstitucionService extends IMantenibleService<Institucion> {
 	
 	List<Institucion> buscarTodosInstituciones();
 	
-	void registrarInstitucion(Institucion institucion);
+	Institucion registrarInstitucion(Institucion institucion);
 	
-	void actualizarInstitucion(int idInstitucion, Institucion institucion);
+	Institucion actualizarInstitucion(int idInstitucion, Institucion institucion);
 	
 	void eliminarInstitucion(int idInstitucion);
 }

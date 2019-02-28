@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.mantenimientosgenerales.controller.restcontroller;
+package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
 import ob.unibanca.sicf.mantenimientosgenerales.model.Membresia;
 import org.springframework.web.bind.annotation.GetMapping;
