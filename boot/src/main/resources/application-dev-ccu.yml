@@ -1,4 +1,6 @@
 # Configuración del proyecto para el entorno de desarrollo individual
+server:
+  port: 8085
 logging:
   path: C:\Logs\spring-boot
   file: sicf
