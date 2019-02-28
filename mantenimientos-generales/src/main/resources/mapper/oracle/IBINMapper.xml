@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IBINMapper">
+
+    <select id="buscarTodos" resultType="BIN" statementType="PREPARED">
+        SELECT bin.id_bin                 AS idbin
+             , bin.descripcion            AS descripcion
+             , bin.internacional          AS esinternacional
+             , bin.valor_oif              AS valoroif
+             , bin.longitud_pan           AS longitudpan
+             , bin.id_institucion         AS idinstitucion
+             , institucion.descripcion    AS descripcioninstitucion
+             , bin.id_membresia           AS idmembresia
+             , membresia.descripcion      AS descripcionmembresia
+             , bin.id_servicio            AS idservicio
+             , servicio.descripcion       AS descripcionservicio
+             , bin.id_moneda_base         AS idmonedabase
+             , moneda_base.descripcion    AS descripcionmonedabase
+             , bin.id_moneda_alterna      AS idmonedaalterna
+             , moneda_alterna.descripcion AS descripcionmonedaalterna
+            FROM mae_bin bin
+                INNER JOIN mae_institucion institucion ON (bin.id_institucion = institucion.id_institucion)
+                INNER JOIN mae_moneda moneda_alterna ON (bin.id_moneda_alterna = moneda_alterna.id_moneda)
+                INNER JOIN mae_moneda moneda_base ON (bin.id_moneda_base = moneda_base.id_moneda)
+                INNER JOIN mae_servicio servicio
+                           ON (bin.id_membresia = servicio.id_membresia AND bin.id_servicio = servicio.id_servicio)
+                INNER JOIN mae_membresia membresia ON (servicio.id_membresia = membresia.id_membresia)
+    </select>
+
+    <select id="buscarUno" resultType="BIN">
+        SELECT bin.id_bin                 AS idbin
+             , bin.descripcion            AS descripcion
+             , bin.internacional          AS esinternacional
+             , bin.valor_oif              AS valoroif
+             , bin.longitud_pan           AS longitudpan
+             , bin.id_institucion         AS idinstitucion
+             , institucion.descripcion    AS descripcioninstitucion
+             , bin.id_membresia           AS idmembresia
+             , membresia.descripcion      AS descripcionmembresia
+             , bin.id_servicio            AS idservicio
+             , servicio.descripcion       AS descripcionservicio
+             , bin.id_moneda_base         AS idmonedabase
+             , moneda_base.descripcion    AS descripcionmonedabase
+             , bin.id_moneda_alterna      AS idmonedaalterna
+             , moneda_alterna.descripcion AS descripcionmonedaalterna
+            FROM mae_bin bin
+                INNER JOIN mae_institucion institucion ON (bin.id_institucion = institucion.id_institucion)
+                INNER JOIN mae_moneda moneda_alterna ON (bin.id_moneda_alterna = moneda_alterna.id_moneda)
+                INNER JOIN mae_moneda moneda_base ON (bin.id_moneda_base = moneda_base.id_moneda)
+                INNER JOIN mae_servicio servicio
+                           ON (bin.id_membresia = servicio.id_membresia AND bin.id_servicio = servicio.id_servicio)
+                INNER JOIN mae_membresia membresia ON (servicio.id_membresia = membresia.id_membresia)
+            WHERE bin.id_bin = #{idBIN}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_BIN(
+                #{modo, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idBIN, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.esInternacional, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.valorOIF, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.longitudPAN, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idInstitucion, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMembresia, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idServicio, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMonedaBase, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMonedaAlterna, jdbcType=NUMERIC, mode=IN},
+                #{usuario, jdbcType=VARCHAR, mode=IN}
+            )
+            }
+    </select>
+</mapper>

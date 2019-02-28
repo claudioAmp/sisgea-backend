@@ -9,6 +9,7 @@ mybatis:
 server:
   servlet:
     context-path: /sicf/api
+  port: 8080
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver

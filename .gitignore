@@ -63,9 +63,10 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 ### Eclipse template
-
+.classpath
+.project
+boot.eml
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -127,6 +128,11 @@ local.properties
 *.ear
 *.tar.gz
 *.rar
+
+#IDE
+.project
+.classpath
+/project/
 
 #GIT
 README.md

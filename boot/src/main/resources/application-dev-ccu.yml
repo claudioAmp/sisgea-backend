@@ -1,0 +1,11 @@
+# Configuración del proyecto para el entorno de desarrollo individual
+server:
+  port: 8085
+logging:
+  path: C:\Logs\spring-boot
+  file: sicf
+spring:
+  datasource:
+    username: SICF_UBA
+    password: root
+    url: jdbc:oracle:thin:@localhost:1521:XE
