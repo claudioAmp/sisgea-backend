@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.commons.validation.validation.Descripcion;
+import ob.commons.validation.validation.IdCadena;
+import ob.commons.validation.validation.group.IRegistro;
 
 @Data
 @Builder
@@ -11,6 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Membresia {
 	
+	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
-	private String descripcionMembresia;
+	@Descripcion(minLength = 1, maxLength = 30)
+	private String descripcion;
 }
