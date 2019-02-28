@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IClaseTransaccionMapper">
+
+	<select id="buscarTodos" resultType="Institucion"
+            statementType="PREPARED">
+        SELECT id_clase_transaccion    AS clase_transaccion
+		     , descripcion             AS descripcion
+		     , tipo_transaccion        AS tipo_transaccion
+		FROM MAE_CLASE_TRANSACCION
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL pkg_man_generales.PRC_MAN_CLASE_TRANSACCION(
+                #{modo, 								jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcion, 			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoTransaccion,  	jdbcType=VARCHAR, mode=IN},
+                #{usuario, 								jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>
