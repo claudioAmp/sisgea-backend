@@ -11,9 +11,9 @@
              , razon_social         AS razonsocial
              , ruc                  AS ruc
              , direccion            AS direccion
-             , banco_administrador  AS bancoadministrador
+             , banco_administrador  AS esbancoadministrador
              , tipo_institucion     AS tipoinstitucion
-             , procesador           AS procesador
+             , procesador           AS esprocesador
              , cta_cte_mon_base     AS cuentacontablemonedabase
              , cta_cte_mon_alterna  AS cuentacontablemonedaalterna
              , operador_institucion AS idinstitucionoperador

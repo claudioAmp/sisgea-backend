@@ -23,9 +23,9 @@ public class Institucion {
 	private String razonSocial;
 	private String ruc;
 	private String direccion;
-	private boolean bancoAdministrador;
+	private boolean esBancoAdministrador;
 	private String tipoInstitucion;
-	private boolean procesador;
+	private boolean esProcesador;
 	private String cuentaContableMonedaBase;
 	private String cuentaContableMonedaAlterna;
 	@IdNumerico(maxRange = 99999)
