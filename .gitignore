@@ -128,5 +128,10 @@ local.properties
 *.tar.gz
 *.rar
 
+#IDE
+.project
+.classpath
+/project/
+
 #GIT
 README.md
