@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdCadena;
 import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.NumeroRequerido;
+import ob.commons.validation.validation.NumeroNoRequerido;
 import ob.commons.validation.validation.group.IRegistro;
 
 @Data
@@ -22,7 +22,7 @@ public class BIN {
 	private String descripcion;
 	private boolean esInternacional;
 	private double valorOIF;
-	@NumeroRequerido(maxRange = 99)
+	@NumeroNoRequerido(maxRange = 99)
 	private int longitudPAN;
 	@IdNumerico(maxRange = 99999)
 	private int idInstitucion;
