@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdCadena;
 import ob.commons.validation.validation.IdNumerico;
+import ob.commons.validation.validation.NumeroRequerido;
 import ob.commons.validation.validation.group.IRegistro;
-import org.hibernate.validator.constraints.Range;
 
 @Data
 @Builder
@@ -22,7 +22,7 @@ public class BIN {
 	private String descripcion;
 	private boolean esInternacional;
 	private double valorOIF;
-	@Range(min = 1, max = 99, message = "La longitud del PAN debe estar entre {min} y {max}")
+	@NumeroRequerido(maxRange = 99)
 	private int longitudPAN;
 	@IdNumerico(maxRange = 99999)
 	private int idInstitucion;
