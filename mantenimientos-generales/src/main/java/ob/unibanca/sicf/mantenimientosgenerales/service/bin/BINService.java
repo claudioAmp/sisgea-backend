@@ -17,7 +17,30 @@ public class BINService extends MantenibleService<BIN> implements IBINService {
 	private final IBINMapper binMapper;
 	
 	public BINService(@Qualifier("IBINMapper") IMantenibleMapper<BIN> mantenibleMapper) {
-		super(mantenibleMapper); this.binMapper = (IBINMapper) mantenibleMapper;
+		super(mantenibleMapper);
+		this.binMapper = (IBINMapper) mantenibleMapper;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public BIN registrarBIN(BIN bin) {
+		this.registrar(bin);
+		return this.buscarBIN(bin.getIdBIN());
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public BIN actualizarBIN(String idBIN, BIN bin) {
+		bin.setIdBIN(idBIN);
+		this.actualizar(bin);
+		return this.buscarBIN(bin.getIdBIN());
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarBIN(String idBIN) {
+		BIN bin = BIN.builder().idBIN(idBIN).build();
+		this.eliminar(bin);
 	}
 	
 	@Override
@@ -27,20 +50,8 @@ public class BINService extends MantenibleService<BIN> implements IBINService {
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public BIN registrarBIN(BIN bin) {
-		this.registrar(bin); return this.binMapper.buscarUno(bin.getIdBIN()).orElseThrow();
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public BIN actualizarBIN(String idBIN, BIN bin) {
-		bin.setIdBIN(idBIN); this.actualizar(bin); return this.binMapper.buscarUno(idBIN).orElseThrow();
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void eliminarBIN(String idBIN) {
-		BIN bin = BIN.builder().idBIN(idBIN).build(); this.eliminar(bin);
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public BIN buscarBIN(String idBIN) {
+		return this.binMapper.buscarUno(idBIN).orElseThrow();
 	}
 }

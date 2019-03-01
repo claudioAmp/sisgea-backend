@@ -20,5 +20,4 @@ public class ClaseTransaccion {
 	private String descripcion;
 	@Descripcion(minLength = 1, maxLength = 2)
 	private String tipoTransaccion;
-	
 }

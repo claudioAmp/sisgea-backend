@@ -9,6 +9,8 @@ public interface IBINService extends IMantenibleService<BIN> {
 	
 	List<BIN> buscarTodosBINs();
 	
+	BIN buscarBIN(String idBIN);
+	
 	BIN registrarBIN(BIN bin);
 	
 	BIN actualizarBIN(String idBIN, BIN bin);
