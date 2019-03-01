@@ -16,8 +16,8 @@ public class ClaseTransaccion {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private Integer idClaseTransaccion;
-	@CaracterRequerido(minLength = 1, maxLength = 50, nombreCampo = "La descripción")
+	@CaracterRequerido(minLength = 1, maxLength = 50)
 	private String descripcion;
-	@CaracterRequerido(minLength = 1, maxLength = 2, nombreCampo = "El tipo de transacción")
+	@CaracterRequerido(minLength = 1, maxLength = 2)
 	private String tipoTransaccion;
 }

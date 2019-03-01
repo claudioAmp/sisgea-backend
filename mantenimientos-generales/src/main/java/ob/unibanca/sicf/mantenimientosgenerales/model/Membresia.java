@@ -16,6 +16,6 @@ public class Membresia {
 	
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
-	@CaracterRequerido(minLength = 1, maxLength = 30, nombreCampo = "La descripción")
+	@CaracterRequerido(minLength = 1, maxLength = 30)
 	private String descripcion;
 }
