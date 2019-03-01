@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.facturacion.controller.advice;
 
 import ob.commons.validation.enumeration.BaseDatos;
+import ob.commons.validation.exception.RecursoNoEncontradoException;
 import ob.commons.validation.model.ErrorResponse;
 import ob.commons.validation.util.BaseDatosExcepcionUtil;
 import ob.commons.validation.util.ErrorResponseUtil;
@@ -39,5 +40,12 @@ public class AdviceFacturacionRestController {
 	public ErrorResponse onSqlException(SQLException e) {
 		logger.error(e.getMessage(), e);
 		return BaseDatosExcepcionUtil.traducirExcepcionBaseDatos(e, BaseDatos.ORACLE);
+	}
+	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ExceptionHandler(RecursoNoEncontradoException.class)
+	public ErrorResponse onRecursoNoEncontradoException(RecursoNoEncontradoException e) {
+		logger.error(e.getMessage(), e);
+		return ErrorResponseUtil.convertirErrorResponse(e);
 	}
 }
