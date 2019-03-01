@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.validation.validation.Descripcion;
+import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 
@@ -16,9 +16,9 @@ public class Institucion {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private int idInstitucion;
-	@Descripcion(minLength = 1, maxLength = 80)
+	@CaracterRequerido(minLength = 1, maxLength = 80, nombreCampo = "La descripción")
 	private String descripcion;
-	@Descripcion(minLength = 1, maxLength = 20)
+	@CaracterRequerido(minLength = 1, maxLength = 20, nombreCampo = "La descripción corta")
 	private String descripcionCorta;
 	private String razonSocial;
 	private String ruc;

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.validation.validation.Descripcion;
+import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 
@@ -13,11 +13,11 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClaseTransaccion {
-
+	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private Integer idClaseTransaccion;
-	@Descripcion(minLength = 1, maxLength = 50)
+	@CaracterRequerido(minLength = 1, maxLength = 50, nombreCampo = "La descripción")
 	private String descripcion;
-	@Descripcion(minLength = 1, maxLength = 2)
+	@CaracterRequerido(minLength = 1, maxLength = 2, nombreCampo = "El tipo de transacción")
 	private String tipoTransaccion;
 }
