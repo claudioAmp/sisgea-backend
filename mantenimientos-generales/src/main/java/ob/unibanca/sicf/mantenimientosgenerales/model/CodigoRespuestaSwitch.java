@@ -14,7 +14,7 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class CodigoRespuestaSwitch {
 
-    @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[a-zA-Z]+", groups = IRegistro.class)
+    @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+", groups = IRegistro.class)
     private String idCodigoRespuestaSwitch;
     @CaracterRequerido(minLength = 1, maxLength = 40)
     private String descripcion;

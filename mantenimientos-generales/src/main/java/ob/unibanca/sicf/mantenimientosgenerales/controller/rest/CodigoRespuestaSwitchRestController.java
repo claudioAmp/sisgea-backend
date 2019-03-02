@@ -36,7 +36,7 @@ public class CodigoRespuestaSwitchRestController {
 
     @PutMapping(value = "/codigoRespuestaSwitches/{idCodigoRespuestaSwitch}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CodigoRespuestaSwitch actualizarCodigoRespuestaSwitch(
-            @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[a-zA-Z]+") @PathVariable String idCodigoRespuestaSwitch,
+            @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+") @PathVariable String idCodigoRespuestaSwitch,
             @Validated @RequestBody CodigoRespuestaSwitch codigoRespuestaSwitch) {
         return this.codigoRespuestaSwitchService.actualizarCodigoRespuestaSwitch(idCodigoRespuestaSwitch, codigoRespuestaSwitch);
     }
@@ -44,7 +44,7 @@ public class CodigoRespuestaSwitchRestController {
     @DeleteMapping("/codigoRespuestaSwitches/{idCodigoRespuestaSwitch}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void eliminarCodigoRespuestaSwitch(
-            @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[a-zA-Z]+") @PathVariable String idCodigoRespuestaSwitch) {
+            @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+") @PathVariable String idCodigoRespuestaSwitch) {
         this.codigoRespuestaSwitchService.eliminarCodigoRespuestaSwitch(idCodigoRespuestaSwitch);
     }
 
