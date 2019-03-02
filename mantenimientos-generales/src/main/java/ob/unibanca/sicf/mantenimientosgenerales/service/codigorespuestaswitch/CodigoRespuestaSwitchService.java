@@ -27,7 +27,7 @@ public class CodigoRespuestaSwitchService extends MantenibleService<CodigoRespue
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public CodigoRespuestaSwitch registrarCodigoRespuestaSwitch(CodigoRespuestaSwitch codigoRespuestaSwitch) {
-        super.actualizar(codigoRespuestaSwitch);
+        super.registrar(codigoRespuestaSwitch);
         return codigoRespuestaSwitch;
     }
 
