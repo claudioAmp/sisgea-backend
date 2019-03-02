@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.ICodigoTransaccionMapper">
+
+    <select id="buscarTodos" resultType="CodigoTransaccion"
+            statementType="PREPARED">
+        SELECT id_clase_transaccion     AS idclasetransaccion
+             , id_codigo_transaccion    AS codigotransaccion
+             , descripcion              AS descripcion
+             , descripcion_corta        AS descripcioncorta
+             , id_codigo_facturacion    AS idcodigofacturacion
+             , aplica_compensacion      AS aplicacompensacion
+             , compensa_fondos          AS compensafondos
+             , compensa_comisiones      AS compensacomisiones
+        FROM MAE_CODIGO_TRANSACCION
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL pkg_man_generales.PRC_MAN_CODIGO_TRANSACCION(
+                #{modo, 								jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCodigoTransaccion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcion, 			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionCorta, 	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCodigoFacturacion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.aplicaCompensacion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.compensaFondos, 	    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.compensaComisiones, 	jdbcType=NUMERIC, mode=IN},
+                #{usuario, 								jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>
