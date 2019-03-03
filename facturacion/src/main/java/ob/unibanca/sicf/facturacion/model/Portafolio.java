@@ -16,6 +16,6 @@ public class Portafolio {
 	
 	@IdNumerico(maxRange = 999, groups = IRegistro.class)
 	private int idPortafolio;
-	@CaracterRequerido(minLength = 1, maxLength = 40)
-	private String descripcion;
+	@CaracterRequerido(maxLength = 40)
+	private String descripcionPortafolio;
 }
