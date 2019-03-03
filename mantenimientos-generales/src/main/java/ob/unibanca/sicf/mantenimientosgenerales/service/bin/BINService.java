@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class BINService extends MantenibleService<BIN> implements IBINService {
 	
-	private static final String BIN_NO_ENCONTRADO = "El bin %s no fue encontrado";
+	private static final String BIN_NO_ENCONTRADO = "El BIN %s no fue encontrado";
 	private final IBINMapper binMapper;
 	
 	public BINService(@Qualifier("IBINMapper") IMantenibleMapper<BIN> mantenibleMapper) {

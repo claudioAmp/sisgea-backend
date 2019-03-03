@@ -11,39 +11,42 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CodigoTransaccionService extends MantenibleService<CodigoTransaccion> implements ICodigoTransaccionService {
-
-    public CodigoTransaccionService(
-            @Qualifier("ICodigoTransaccionMapper") IMantenibleMapper<CodigoTransaccion> mantenibleMapper) {
-        super(mantenibleMapper);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public List<CodigoTransaccion> buscarTodosCodigoTransacciones() { return super.buscarTodos(); }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public CodigoTransaccion registrarCodigoTransaccion(CodigoTransaccion codigoTransaccion) {
-        super.registrar(codigoTransaccion);
-        return codigoTransaccion;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public CodigoTransaccion actualizarCodigoTransaccion(
-            int idClaseTransaccion, int idCodigoTransaccion, CodigoTransaccion codigoTransaccion) {
-        codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
-        codigoTransaccion.setIdCodigoTransaccion(idCodigoTransaccion);
-        super.actualizar(codigoTransaccion);
-        return codigoTransaccion;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion) {
-        CodigoTransaccion codigoTransaccion =
-                CodigoTransaccion.builder().idClaseTransaccion(idClaseTransaccion).idCodigoTransaccion(idCodigoTransaccion).build();
-        super.eliminar(codigoTransaccion);
-    }
+public class CodigoTransaccionService extends MantenibleService<CodigoTransaccion>
+		implements ICodigoTransaccionService {
+	
+	public CodigoTransaccionService(
+			@Qualifier("ICodigoTransaccionMapper") IMantenibleMapper<CodigoTransaccion> mantenibleMapper) {
+		super(mantenibleMapper);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<CodigoTransaccion> buscarTodosCodigoTransacciones() {
+		return super.buscarTodos();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CodigoTransaccion registrarCodigoTransaccion(CodigoTransaccion codigoTransaccion) {
+		super.registrar(codigoTransaccion);
+		return codigoTransaccion;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CodigoTransaccion actualizarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion,
+	                                                     CodigoTransaccion codigoTransaccion) {
+		codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
+		codigoTransaccion.setIdCodigoTransaccion(idCodigoTransaccion);
+		super.actualizar(codigoTransaccion);
+		return codigoTransaccion;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion) {
+		CodigoTransaccion codigoTransaccion = CodigoTransaccion.builder().idClaseTransaccion(idClaseTransaccion)
+		                                                       .idCodigoTransaccion(idCodigoTransaccion).build();
+		super.eliminar(codigoTransaccion);
+	}
 }

@@ -5,18 +5,18 @@
 
     <select id="buscarTodos" resultType="Institucion"
             statementType="PREPARED">
-        SELECT id_institucion       AS idinstitucion
-             , descripcion          AS descripcion
-             , descripcion_corta    AS descripcioncorta
-             , razon_social         AS razonsocial
-             , ruc                  AS ruc
-             , direccion            AS direccion
-             , banco_administrador  AS esbancoadministrador
-             , tipo_institucion     AS tipoinstitucion
-             , procesador           AS esprocesador
-             , cta_cte_mon_base     AS cuentacontablemonedabase
-             , cta_cte_mon_alterna  AS cuentacontablemonedaalterna
-             , operador_institucion AS idinstitucionoperador
+        SELECT id_institucion
+             , descripcion          AS descripcion_institucion
+             , descripcion_corta
+             , razon_social
+             , ruc
+             , direccion
+             , banco_administrador  AS es_banco_administrador
+             , tipo_institucion
+             , procesador           AS es_procesador
+             , cta_cte_mon_base     AS cuenta_contable_moneda_base
+             , cta_cte_mon_alterna  AS cuenta_contable_moneda_alterna
+             , operador_institucion AS id_institucion_operador
             FROM mae_institucion
     </select>
 
@@ -26,7 +26,7 @@
             CALL pkg_man_generales.PRC_MAN_INSTITUCION(
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idInstitucion, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN },
+                #{objetoMantenido.descripcionInstitucion, jdbcType=VARCHAR, mode=IN },
                 #{objetoMantenido.descripcionCorta,  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.razonSocial, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.ruc,  jdbcType=VARCHAR, mode=IN},
@@ -39,6 +39,6 @@
                 #{objetoMantenido.idInstitucionOperador, jdbcType=NUMERIC, mode=IN},
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
-            }
+        }
     </select>
 </mapper>

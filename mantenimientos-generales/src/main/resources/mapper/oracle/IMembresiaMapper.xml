@@ -3,8 +3,8 @@
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IMembresiaMapper">
 
     <select id="buscarTodos" resultType="Membresia" statementType="PREPARED">
-        SELECT id_membresia AS idmembresia
-             , descripcion  AS descripcion
+        SELECT id_membresia
+             , descripcion AS descripcion_membresia
             FROM mae_membresia
     </select>
 
@@ -14,9 +14,9 @@
             CALL PKG_MAN_GENERALES.PRC_MAN_MEMBRESIA(
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idMembresia, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionMembresia, jdbcType=VARCHAR, mode=IN},
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
-            }
+        }
     </select>
 </mapper>
