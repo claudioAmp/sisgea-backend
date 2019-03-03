@@ -5,7 +5,7 @@
     <select id="buscarTodos" resultType="CodigoProcesoSwitch"
             statementType="PREPARED">
         SELECT id_codigo_proceso_switch    AS idcodigoprocesoswitch
-             , descripcion                 AS descripcion
+             , descripcion                 AS descripcioncodigoprocesoswitch
              , abreviatura                 AS abreviatura
              , id_clase_transaccion        AS idclasetransaccion
              , id_codigo_transaccion       AS idcodigotransaccion

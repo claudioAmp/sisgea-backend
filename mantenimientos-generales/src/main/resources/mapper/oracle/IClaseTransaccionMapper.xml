@@ -5,7 +5,7 @@
 	<select id="buscarTodos" resultType="ClaseTransaccion"
             statementType="PREPARED">
         SELECT id_clase_transaccion    AS idclasetransaccion
-		     , descripcion             AS descripcion
+		     , descripcion             AS descripcionclasetransaccion
 		     , tipo_transaccion        AS tipotransaccion
 		FROM MAE_CLASE_TRANSACCION
     </select>
