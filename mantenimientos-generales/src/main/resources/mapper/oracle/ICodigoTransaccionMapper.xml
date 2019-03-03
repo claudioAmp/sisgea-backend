@@ -6,13 +6,32 @@
             statementType="PREPARED">
         SELECT id_clase_transaccion
              , id_codigo_transaccion
-             , descripcion              AS descripcion_codigo_transaccion
+             , descripcion_codigo_transaccion
              , descripcion_corta
              , id_codigo_facturacion
              , aplica_compensacion
              , compensa_fondos
              , compensa_comisiones
-        FROM MAE_CODIGO_TRANSACCION
+             , descripcion_clase_transaccion
+             , descripcion_codigo_facturacion
+        FROM VIE_MAN_CODIGO_TRANSACCION
+    </select>
+
+    <select id="buscarUno" resultType="CodigoTransaccion">
+        SELECT id_clase_transaccion
+             , id_codigo_transaccion
+             , descripcion_codigo_transaccion
+             , descripcion_corta
+             , id_codigo_facturacion
+             , aplica_compensacion
+             , compensa_fondos
+             , compensa_comisiones
+             , descripcion_clase_transaccion
+             , descripcion_codigo_facturacion
+        FROM VIE_MAN_CODIGO_TRANSACCION
+        WHERE
+                id_clase_transaccion  = #{idClaseTransaccion}
+            AND id_codigo_transaccion = #{idCodigoTransaccion}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
