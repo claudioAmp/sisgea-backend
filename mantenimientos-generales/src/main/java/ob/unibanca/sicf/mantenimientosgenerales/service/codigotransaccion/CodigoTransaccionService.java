@@ -31,7 +31,9 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public CodigoTransaccion actualizarCodigoTransaccion(int idCodigoTransaccion, CodigoTransaccion codigoTransaccion) {
+    public CodigoTransaccion actualizarCodigoTransaccion(
+            int idClaseTransaccion, int idCodigoTransaccion, CodigoTransaccion codigoTransaccion) {
+        codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
         codigoTransaccion.setIdCodigoTransaccion(idCodigoTransaccion);
         super.actualizar(codigoTransaccion);
         return codigoTransaccion;
@@ -39,8 +41,9 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void eliminarCodigoTransaccion(int idCodigoTransaccion) {
-        CodigoTransaccion codigoTransaccion = CodigoTransaccion.builder().idCodigoTransaccion(idCodigoTransaccion).build();
+    public void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion) {
+        CodigoTransaccion codigoTransaccion =
+                CodigoTransaccion.builder().idClaseTransaccion(idClaseTransaccion).idCodigoTransaccion(idCodigoTransaccion).build();
         super.eliminar(codigoTransaccion);
     }
 }

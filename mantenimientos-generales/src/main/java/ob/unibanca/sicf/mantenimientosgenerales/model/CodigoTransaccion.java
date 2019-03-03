@@ -14,9 +14,9 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class CodigoTransaccion {
 
-    @IdNumerico(maxRange = 99999, groups = IRegistro.class)
+    @IdNumerico(maxRange = 9999, groups = IRegistro.class)
     private Integer idClaseTransaccion;
-    @IdNumerico(maxRange = 99999)
+    @IdNumerico(maxRange = 9999, groups = IRegistro.class)
     private Integer idCodigoTransaccion;
     @CaracterRequerido(minLength = 1, maxLength = 100)
     private String descripcion;
