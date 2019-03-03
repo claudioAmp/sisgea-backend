@@ -19,7 +19,7 @@ public class CodigoTransaccion {
     @IdNumerico(maxRange = 9999, groups = IRegistro.class)
     private Integer idCodigoTransaccion;
     @CaracterRequerido(maxLength = 100)
-    private String descripcion;
+    private String descripcionCodigoTransaccion;
     @CaracterRequerido(maxLength = 20)
     private String descripcionCorta;
     @IdNumerico(maxRange = 99999, groups = IRegistro.class)

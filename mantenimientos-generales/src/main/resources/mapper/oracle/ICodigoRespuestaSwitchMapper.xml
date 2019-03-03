@@ -13,10 +13,10 @@
             statementType="CALLABLE">
         {
             CALL pkg_man_generales.PRC_MAN_CODIGO_RPTA_SWITCH(
-                #{modo, 								    jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idCodigoRespuestaSwitch, 	jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcion, 			    jdbcType=VARCHAR, mode=IN},
-                #{usuario, 								    jdbcType=VARCHAR, mode=IN}
+                #{modo, 								              jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCodigoRespuestaSwitch, 	          jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionCodigoRespuestaSwitch,   jdbcType=VARCHAR, mode=IN},
+                #{usuario, 								              jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

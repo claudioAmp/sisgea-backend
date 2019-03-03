@@ -17,7 +17,7 @@ public class ClaseTransaccion {
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private Integer idClaseTransaccion;
 	@CaracterRequerido(maxLength = 50)
-	private String descripcion;
+	private String descripcionClaseTransaccion;
 	@CaracterRequerido(maxLength = 2)
 	private String tipoTransaccion;
 }

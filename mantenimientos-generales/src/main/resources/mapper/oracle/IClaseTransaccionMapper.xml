@@ -14,11 +14,11 @@
             statementType="CALLABLE">
         {
             CALL pkg_man_generales.PRC_MAN_CLASE_TRANSACCION(
-                #{modo, 								jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idClaseTransaccion, 	jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcion, 			jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.tipoTransaccion,  	jdbcType=VARCHAR, mode=IN},
-                #{usuario, 								jdbcType=VARCHAR, mode=IN}
+                #{modo, 								        jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion, 	        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionClaseTransaccion,  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoTransaccion,  	        jdbcType=VARCHAR, mode=IN},
+                #{usuario, 								        jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>
