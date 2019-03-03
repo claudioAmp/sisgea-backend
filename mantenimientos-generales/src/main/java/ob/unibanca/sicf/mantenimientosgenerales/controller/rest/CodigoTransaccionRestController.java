@@ -34,7 +34,7 @@ public class CodigoTransaccionRestController {
         return this.codigoTransaccionService.registrarCodigoTransaccion(codigoTransaccion);
     }
 
-    @PutMapping(value = "/codigoTransacciones/{idClaseTransaccion}/{idCodigoTransaccion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(value = "/claseTransacciones/{idClaseTransaccion}/codigoTransacciones/{idCodigoTransaccion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CodigoTransaccion actualizarCodigoTransaccion(
             @IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion,
             @IdNumerico(maxRange = 9999) @PathVariable int idCodigoTransaccion,
@@ -42,7 +42,7 @@ public class CodigoTransaccionRestController {
         return this.codigoTransaccionService.actualizarCodigoTransaccion(idClaseTransaccion, idCodigoTransaccion, codigoTransaccion);
     }
 
-    @DeleteMapping(value = "/instituciones/{idClaseTransaccion}/{idCodigoTransaccion}")
+    @DeleteMapping(value = "/claseTransacciones/{idClaseTransaccion}/codigoTransacciones/{idCodigoTransaccion}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void eliminarCodigoTransaccion(
             @IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion,
