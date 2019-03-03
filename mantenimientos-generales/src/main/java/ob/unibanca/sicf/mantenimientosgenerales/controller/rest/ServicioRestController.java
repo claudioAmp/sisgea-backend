@@ -34,13 +34,15 @@ public class ServicioRestController {
 		return this.servicioService.buscarTodosServicios();
 	}
 	
-	@PostMapping(value = "/servicios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/membresias/{idMembresia}/servicios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Servicio registrarServicio(@Validated({IRegistro.class, Default.class}) @RequestBody Servicio servicio) {
-		return this.servicioService.registrarServicio(servicio);
+	public Servicio registrarServicio(
+		@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
+		@Validated({IRegistro.class, Default.class}) @RequestBody Servicio servicio) {
+		return this.servicioService.registrarServicio(idMembresia, servicio);
 	}
 	
-	@PutMapping(value = "/servicios/{idMembresia}/{idServicio}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/membresias/{idMembresia}/servicios/{idServicio}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Servicio actualizarServicio(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idServicio,
@@ -48,7 +50,7 @@ public class ServicioRestController {
 		return this.servicioService.actualizarServicio(idMembresia, idServicio, servicio);
 	}
 	
-	@DeleteMapping("/servicios/{idMembresia}/{idServicio}")
+	@DeleteMapping("/membresias/{idMembresia}/servicios/{idServicio}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarServicio(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
