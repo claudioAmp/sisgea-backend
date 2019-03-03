@@ -18,17 +18,14 @@ public class CodigoTransaccion {
     private Integer idClaseTransaccion;
     @IdNumerico(maxRange = 9999, groups = IRegistro.class)
     private Integer idCodigoTransaccion;
-    @CaracterRequerido(minLength = 1, maxLength = 100)
+    @CaracterRequerido(maxLength = 100)
     private String descripcion;
-    @CaracterRequerido(minLength = 1, maxLength = 20)
+    @CaracterRequerido(maxLength = 20)
     private String descripcionCorta;
-    @IdNumerico(maxRange = 99999)
-    private Integer idCodigoFacturacion;
-    @IdNumerico(maxRange = 99999)
-    private Integer aplicaCompensacion;
-    @IdNumerico(maxRange = 99999)
-    private Integer compensaFondos;
-    @IdNumerico(maxRange = 99999)
-    private Integer compensaComisiones;
+    @IdNumerico(maxRange = 99999, groups = IRegistro.class)
+    private boolean idCodigoFacturacion;
+    private boolean aplicaCompensacion;
+    private boolean compensaFondos;
+    private boolean compensaComisiones;
 
 }

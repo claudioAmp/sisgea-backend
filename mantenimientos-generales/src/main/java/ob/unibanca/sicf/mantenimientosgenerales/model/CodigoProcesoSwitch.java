@@ -17,9 +17,9 @@ public class CodigoProcesoSwitch {
 
     @IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+", groups = IRegistro.class)
     private String idCodigoProcesoSwitch;
-    @CaracterRequerido(minLength = 1, maxLength = 40)
+    @CaracterRequerido(maxLength = 40)
     private String descripcion;
-    @CaracterRequerido(minLength = 1, maxLength = 4)
+    @CaracterRequerido(maxLength = 4)
     private String abreviatura;
     @IdNumerico(maxRange = 9999)
     private Integer idClaseTransaccion;
