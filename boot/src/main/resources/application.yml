@@ -19,7 +19,7 @@ spring:
     time-zone: EST
     date-format: dd/MM/yyyy
   profiles:
-    active: dev-hllcc
+    active: dev-cdecr
     include: dev
   messages:
     encoding: UTF-8
