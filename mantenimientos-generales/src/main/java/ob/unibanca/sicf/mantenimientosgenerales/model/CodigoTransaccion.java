@@ -15,8 +15,10 @@ import ob.commons.validation.validation.group.IRegistro;
 public class CodigoTransaccion {
 	
 	private int idClaseTransaccion;
+	private String descripcionClaseTransaccion;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
 	private int idCodigoTransaccion;
+	private String descripcionCodigofacturacion;
 	@CaracterRequerido(maxLength = 100)
 	private String descripcionCodigoTransaccion;
 	@CaracterRequerido(maxLength = 20)
@@ -26,8 +28,4 @@ public class CodigoTransaccion {
 	private boolean aplicaCompensacion;
 	private boolean compensaFondos;
 	private boolean compensaComisiones;
-	
-	private String descripcionClaseTransaccion;
-	private String descripcionCodigofacturacion;
-	
 }

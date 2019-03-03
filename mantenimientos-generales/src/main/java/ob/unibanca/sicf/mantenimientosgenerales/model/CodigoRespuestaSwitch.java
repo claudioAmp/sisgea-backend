@@ -17,6 +17,5 @@ public class CodigoRespuestaSwitch {
     @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+", groups = IRegistro.class)
     private String idCodigoRespuestaSwitch;
     @CaracterRequerido(maxLength = 40)
-    private String descripcionCodigoRptaSwitch;
-
+    private String descripcionCodigoRespuestaSwitch;
 }
