@@ -18,7 +18,7 @@ public class BIN {
 	
 	@IdCadena(minLength = 6, maxLength = 15, regexpPattern = "[0-9]+", groups = IRegistro.class)
 	private String idBIN;
-	@CaracterRequerido(minLength = 1, maxLength = 20)
+	@CaracterRequerido(maxLength = 20)
 	private String descripcion;
 	private boolean esInternacional;
 	private double valorOIF;

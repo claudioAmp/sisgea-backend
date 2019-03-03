@@ -13,11 +13,12 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Servicio {
+	
+	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
+	private String idServicio;
+	@CaracterRequerido(maxLength = 20)
+	private String descripcion;
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
 	private String descripcionMembresia;
-	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
-	private String idServicio;
-	@CaracterRequerido(minLength = 1, maxLength = 20)
-	private String descripcion;
 }

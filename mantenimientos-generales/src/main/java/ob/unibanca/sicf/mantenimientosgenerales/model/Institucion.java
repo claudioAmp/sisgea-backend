@@ -17,9 +17,9 @@ public class Institucion {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private int idInstitucion;
-	@CaracterRequerido(minLength = 1, maxLength = 80)
+	@CaracterRequerido(maxLength = 80)
 	private String descripcion;
-	@CaracterRequerido(minLength = 1, maxLength = 20)
+	@CaracterRequerido(maxLength = 20)
 	private String descripcionCorta;
 	@CaracterNoRequerido(minLength = 1, maxLength = 40)
 	private String razonSocial;
