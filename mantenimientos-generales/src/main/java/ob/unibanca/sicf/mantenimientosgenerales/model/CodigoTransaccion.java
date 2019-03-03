@@ -13,22 +13,21 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CodigoTransaccion {
-
-    @IdNumerico(maxRange = 9999, groups = IRegistro.class)
-    private int idClaseTransaccion;
-    @IdNumerico(maxRange = 9999, groups = IRegistro.class)
-    private int idCodigoTransaccion;
-    @CaracterRequerido(maxLength = 100)
-    private String descripcionCodigoTransaccion;
-    @CaracterRequerido(maxLength = 20)
-    private String descripcionCorta;
-    @IdNumerico(maxRange = 99999, groups = IRegistro.class)
-    private boolean idCodigoFacturacion;
-    private boolean aplicaCompensacion;
-    private boolean compensaFondos;
-    private boolean compensaComisiones;
-
-    private String descripcionClaseTransaccion;
-    private String descripcionCodigofacturacion;
-
+	
+	private int idClaseTransaccion;
+	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
+	private int idCodigoTransaccion;
+	@CaracterRequerido(maxLength = 100)
+	private String descripcionCodigoTransaccion;
+	@CaracterRequerido(maxLength = 20)
+	private String descripcionCorta;
+	@IdNumerico(maxRange = 99999)
+	private boolean idCodigoFacturacion;
+	private boolean aplicaCompensacion;
+	private boolean compensaFondos;
+	private boolean compensaComisiones;
+	
+	private String descripcionClaseTransaccion;
+	private String descripcionCodigofacturacion;
+	
 }

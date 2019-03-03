@@ -13,5 +13,4 @@ public interface ICodigoTransaccionMapper extends IMantenibleMapper<CodigoTransa
     Optional<CodigoTransaccion> buscarUno(int idClaseTransaccion, int idCodigoTransaccion);
 
     List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
-
 }

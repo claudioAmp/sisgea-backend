@@ -26,7 +26,6 @@
         WHERE
                 id_clase_transaccion  = #{idClaseTransaccion}
             AND id_codigo_transaccion = #{idCodigoTransaccion}
-
     </select>
 
     <select id="buscarCodigosTransaccionClaseTransaccion" resultType="CodigoTransaccion">

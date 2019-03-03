@@ -6,17 +6,17 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoTransaccion;
 import java.util.List;
 
 public interface ICodigoTransaccionService extends IMantenibleService<CodigoTransaccion> {
-
-    List<CodigoTransaccion> buscarTodosCodigoTransacciones();
-
-    CodigoTransaccion buscarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
-
-    List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
-
-    CodigoTransaccion registrarCodigoTransaccion(CodigoTransaccion codigoTransaccion);
-
-    CodigoTransaccion actualizarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion, CodigoTransaccion codigoTransaccion);
-
-    void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
-
+	
+	List<CodigoTransaccion> buscarTodosCodigoTransacciones();
+	
+	CodigoTransaccion buscarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
+	
+	List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
+	
+	CodigoTransaccion registrarCodigoTransaccion(int idClaseTransaccion, CodigoTransaccion codigoTransaccion);
+	
+	CodigoTransaccion actualizarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion,
+	                                              CodigoTransaccion codigoTransaccion);
+	
+	void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
 }

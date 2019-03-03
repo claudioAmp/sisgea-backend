@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class ServicioService extends MantenibleService<Servicio> implements IServicioService {
 
-	private static final String SERVICIO_NO_ENCONTRADO = "El servicio %s-%s no fue encontrado";
+	private static final String SERVICIO_NO_ENCONTRADO = "El servicio %s asociado a la membresía %s no fue encontrado";
 	private final IServicioMapper servicioMapper;
 
 	public ServicioService(@Qualifier("IServicioMapper") IMantenibleMapper<Servicio> mantenibleMapper) {
@@ -64,5 +64,4 @@ public class ServicioService extends MantenibleService<Servicio> implements ISer
 	public List<Servicio> buscarServiciosMembresia(String idMembresia){
 		return this.servicioMapper.buscarServiciosMembresia(idMembresia);
 	}
-	
 }
