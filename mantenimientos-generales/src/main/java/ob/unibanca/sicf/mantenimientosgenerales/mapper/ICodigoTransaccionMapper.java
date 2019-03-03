@@ -4,11 +4,14 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoTransaccion;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
 public interface ICodigoTransaccionMapper extends IMantenibleMapper<CodigoTransaccion> {
 
     Optional<CodigoTransaccion> buscarUno(int idClaseTransaccion, int idCodigoTransaccion);
+
+    List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
 
 }

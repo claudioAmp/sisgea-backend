@@ -29,26 +29,26 @@ public class ClaseTransaccionRestController {
 		this.claseTransaccionService = claseTransaccionService;
 	}
 
-	@GetMapping(value = "/claseTransacciones")
+	@GetMapping(value = "/clase-transacciones")
 	public List<ClaseTransaccion> buscarTodosClaseTransacciones() {
 		return this.claseTransaccionService.buscarTodosClaseTransacciones();
 	}
 
-	@PostMapping(value = "/claseTransacciones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/clase-transacciones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ClaseTransaccion registrarClaseTransaccion(
 			@Validated({ IRegistro.class, Default.class }) @RequestBody ClaseTransaccion claseTransaccion) {
 		return this.claseTransaccionService.registrarClaseTransaccion(claseTransaccion);
 	}
 
-	@PutMapping(value = "/claseTransacciones/{idClaseTransaccion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/clase-transacciones/{idClaseTransaccion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ClaseTransaccion actualizarClaseTransaccion(
 			@IdNumerico(maxRange = 99999) @PathVariable int idClaseTransaccion,
 			@Validated @RequestBody ClaseTransaccion claseTransaccion) {
 		return this.claseTransaccionService.actualizarClaseTransaccion(idClaseTransaccion, claseTransaccion);
 	}
 
-	@DeleteMapping(value = "/claseTransacciones/{idClaseTransaccion}")
+	@DeleteMapping(value = "/clase-transacciones/{idClaseTransaccion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarClaseTransaccion(@IdNumerico(maxRange = 99999) @PathVariable int idClaseTransaccion) {
 		this.claseTransaccionService.eliminarClaseTransaccion(idClaseTransaccion);

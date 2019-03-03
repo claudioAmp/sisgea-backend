@@ -9,6 +9,8 @@ public interface ICodigoProcesoSwitchService extends IMantenibleService<CodigoPr
 
     List<CodigoProcesoSwitch> buscarTodosCodigoProcesoSwitches();
 
+    CodigoProcesoSwitch buscarCodigoProcesoSwitch(String idCodigoProcesoSwitch);
+
     CodigoProcesoSwitch registrarCodigoProcesoSwitch(CodigoProcesoSwitch codigoProcesoSwitch);
 
     CodigoProcesoSwitch actualizarCodigoProcesoSwitch(String idCodigoProcesoSwitch, CodigoProcesoSwitch codigoProcesoSwitch);

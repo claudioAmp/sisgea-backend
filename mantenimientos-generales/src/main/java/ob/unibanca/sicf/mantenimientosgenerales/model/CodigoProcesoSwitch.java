@@ -28,4 +28,6 @@ public class CodigoProcesoSwitch {
     private boolean transaccionMonetaria;
     private boolean aplicaInteres;
 
+    private String descripcionCodigoTransaccion;
+
 }

@@ -11,6 +11,8 @@ public interface ICodigoTransaccionService extends IMantenibleService<CodigoTran
 
     CodigoTransaccion buscarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
 
+    List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
+
     CodigoTransaccion registrarCodigoTransaccion(CodigoTransaccion codigoTransaccion);
 
     CodigoTransaccion actualizarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion, CodigoTransaccion codigoTransaccion);

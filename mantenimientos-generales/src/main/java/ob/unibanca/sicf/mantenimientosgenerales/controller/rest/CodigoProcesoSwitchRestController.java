@@ -22,26 +22,26 @@ public class CodigoProcesoSwitchRestController {
         this.codigoProcesoSwitchService = codigoProcesoSwitchService;
     }
 
-    @GetMapping(value = "/codigoProcesoSwitches")
+    @GetMapping(value = "/codigo-proceso-switches")
     public List<CodigoProcesoSwitch> buscarTodosCodigoProcesoSwitches() {
         return this.codigoProcesoSwitchService.buscarTodosCodigoProcesoSwitches();
     }
 
-    @PostMapping(value = "/codigoProcesoSwitches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/codigo-proceso-switches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public CodigoProcesoSwitch registrarCodigoProcesoSwitch(
             @Validated({IRegistro.class, Default.class}) @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
         return this.codigoProcesoSwitchService.registrarCodigoProcesoSwitch(codigoProcesoSwitch);
     }
 
-    @PutMapping(value = "/codigoProcesoSwitches/{idCodigoProcesoSwitch}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(value = "/codigo-proceso-switches/{idCodigoProcesoSwitch}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CodigoProcesoSwitch actualizarCodigoProcesoSwitch(
             @IdCadena(minLength = 6, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCodigoProcesoSwitch,
             @Validated @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
         return this.codigoProcesoSwitchService.actualizarCodigoProcesoSwitch(idCodigoProcesoSwitch, codigoProcesoSwitch);
     }
 
-    @DeleteMapping("/codigoProcesoSwitches/{idCodigoProcesoSwitch}")
+    @DeleteMapping("/codigo-proceso-switches/{idCodigoProcesoSwitch}")
     public void eliminarCodigoProcesoSwitch(
             @IdCadena(minLength = 6, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCodigoProcesoSwitch) {
         this.codigoProcesoSwitchService.eliminarCodigoProcesoSwitch(idCodigoProcesoSwitch);

@@ -22,26 +22,26 @@ public class CodigoRespuestaSwitchRestController {
         this.codigoRespuestaSwitchService = codigoRespuestaSwitchService;
     }
 
-    @GetMapping("/codigoRespuestaSwitches")
+    @GetMapping("/codigo-respuesta-switches")
     public List<CodigoRespuestaSwitch> buscarTodosCodigoRespuestaSwitches(){
         return this.codigoRespuestaSwitchService.buscarTodosCodigoRespuetaSwitches();
     }
 
-    @PostMapping(value = "/codigoRespuestaSwitches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/codigo-respuesta-switches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public CodigoRespuestaSwitch registrarCodigoRespuestaSwitch(
             @Validated({IRegistro.class, Default.class}) @RequestBody CodigoRespuestaSwitch codigoRespuestaSwitch) {
         return this.codigoRespuestaSwitchService.registrarCodigoRespuestaSwitch(codigoRespuestaSwitch);
     }
 
-    @PutMapping(value = "/codigoRespuestaSwitches/{idCodigoRespuestaSwitch}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(value = "/codigo-respuesta-switches/{idCodigoRespuestaSwitch}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CodigoRespuestaSwitch actualizarCodigoRespuestaSwitch(
             @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+") @PathVariable String idCodigoRespuestaSwitch,
             @Validated @RequestBody CodigoRespuestaSwitch codigoRespuestaSwitch) {
         return this.codigoRespuestaSwitchService.actualizarCodigoRespuestaSwitch(idCodigoRespuestaSwitch, codigoRespuestaSwitch);
     }
 
-    @DeleteMapping("/codigoRespuestaSwitches/{idCodigoRespuestaSwitch}")
+    @DeleteMapping("/codigo-respuesta-switches/{idCodigoRespuestaSwitch}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void eliminarCodigoRespuestaSwitch(
             @IdCadena(minLength = 1, maxLength = 4, regexpPattern = "[0-9]+") @PathVariable String idCodigoRespuestaSwitch) {

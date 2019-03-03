@@ -41,6 +41,12 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion) {
+        return this.codigoTransaccionMapper.buscarCodigosTransaccionClaseTransaccion(idClaseTransaccion);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public CodigoTransaccion registrarCodigoTransaccion(CodigoTransaccion codigoTransaccion) {
         super.registrar(codigoTransaccion);
@@ -55,7 +61,8 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
         codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
         codigoTransaccion.setIdCodigoTransaccion(idCodigoTransaccion);
         super.actualizar(codigoTransaccion);
-        return this.buscarCodigoTransaccion(idClaseTransaccion, idCodigoTransaccion);
+        return this.buscarCodigoTransaccion(
+                codigoTransaccion.getIdClaseTransaccion(), codigoTransaccion.getIdCodigoTransaccion());
     }
 
     @Override
