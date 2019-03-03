@@ -59,4 +59,10 @@ public class ServicioService extends MantenibleService<Servicio> implements ISer
 				.orElseThrow(() -> new RecursoNoEncontradoException(SERVICIO_NO_ENCONTRADO, idMembresia, idServicio));
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Servicio> buscarServiciosMembresia(String idMembresia){
+		return this.servicioMapper.buscarServiciosMembresia(idMembresia);
+	}
+	
 }

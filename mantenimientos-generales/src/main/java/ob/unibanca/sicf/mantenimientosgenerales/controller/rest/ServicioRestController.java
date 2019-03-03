@@ -34,6 +34,12 @@ public class ServicioRestController {
 		return this.servicioService.buscarTodosServicios();
 	}
 	
+	@GetMapping("/membresias/{idMembresia}/servicios")
+	public List<Servicio> buscarServiciosMembresia(
+		@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
+		return this.servicioService.buscarServiciosMembresia(idMembresia);
+	}
+
 	@PostMapping(value = "/membresias/{idMembresia}/servicios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Servicio registrarServicio(
