@@ -9,6 +9,8 @@ public interface IServicioService extends IMantenibleService<Servicio> {
 	
 	List<Servicio> buscarTodosServicios();
 	
+	List<Servicio> buscarServiciosMembresia(String idMembresia);
+	
 	Servicio buscarServicio(String idMembresia, String idServicio);
 	
 	Servicio registrarServicio(String idMembresia, Servicio servicio);
