@@ -4,14 +4,14 @@
 
     <select id="buscarTodos" resultType="CodigoTransaccion"
             statementType="PREPARED">
-        SELECT id_clase_transaccion     AS idclasetransaccion
-             , id_codigo_transaccion    AS codigotransaccion
-             , descripcion              AS descripcioncodigotransaccion
-             , descripcion_corta        AS descripcioncorta
-             , id_codigo_facturacion    AS idcodigofacturacion
-             , aplica_compensacion      AS aplicacompensacion
-             , compensa_fondos          AS compensafondos
-             , compensa_comisiones      AS compensacomisiones
+        SELECT id_clase_transaccion
+             , id_codigo_transaccion
+             , descripcion              AS descripcion_codigo_transaccion
+             , descripcion_corta
+             , id_codigo_facturacion
+             , aplica_compensacion
+             , compensa_fondos
+             , compensa_comisiones
         FROM MAE_CODIGO_TRANSACCION
     </select>
 
