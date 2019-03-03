@@ -3,21 +3,20 @@
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IServicioMapper">
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">
-        SELECT  id_membresia                AS id_membresia
-             , id_servicio                  AS id_servicio
-             , descripcion_servicio         AS descripcionServicio
-             , descripcion_membresia        AS descripcionMembresia
-            FROM VIE_MAN_SERVICIO
+        SELECT id_membresia
+             , id_servicio
+             , descripcion_servicio
+             , descripcion_membresia
+            FROM vie_man_servicio
     </select>
 
     <select id="buscarUno" resultType="Servicio">
-        SELECT  id_membresia                AS idMembresia
-             , id_servicio                  AS idServicio
-             , descripcion_servicio         AS descripcionServicio
-             , descripcion_membresia        AS descripcionMembresia
-            FROM VIE_MAN_SERVICIO
-            WHERE id_membresia = #{idMembresia} and
-                  id_servicio = #{idServicio}
+        SELECT id_membresia
+             , id_servicio
+             , descripcion_servicio
+             , descripcion_membresia
+            FROM vie_man_servicio
+            WHERE id_membresia = #{idMembresia} AND id_servicio = #{idServicio}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
