@@ -3,8 +3,8 @@
 <mapper namespace="ob.unibanca.sicf.facturacion.mapper.IPortafolioMapper">
 
     <select id="buscarTodos" resultType="Portafolio" statementType="PREPARED">
-        SELECT id_portafolio AS idportafolio
-             , descripcion   AS descripcion
+        SELECT id_portafolio
+             , descripcion   AS descripcion_portafolio
             FROM mae_portafolio
     </select>
 
@@ -16,6 +16,6 @@
                 #{objetoMantenido.descripcion, jdbcType=VARCHAR, mode=IN},
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
-            }
+        }
     </select>
 </mapper>
