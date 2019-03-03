@@ -5,7 +5,7 @@
     <select id="buscarTodos" resultType="CodigoRespuestaSwitch"
             statementType="PREPARED">
         SELECT id_codigo_rpta_switch       AS idcodigorespuestaswitch
-             , descripcion                 AS descripcion
+             , descripcion                 AS descripcioncodigorespuestaswitch
         FROM MAE_CODIGO_RPTA_SWITCH
     </select>
 

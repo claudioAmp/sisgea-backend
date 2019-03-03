@@ -6,7 +6,7 @@
             statementType="PREPARED">
         SELECT id_clase_transaccion     AS idclasetransaccion
              , id_codigo_transaccion    AS codigotransaccion
-             , descripcion              AS descripcion
+             , descripcion              AS descripcioncodigotransaccion
              , descripcion_corta        AS descripcioncorta
              , id_codigo_facturacion    AS idcodigofacturacion
              , aplica_compensacion      AS aplicacompensacion
