@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class ServicioService extends MantenibleService<Servicio> implements IServicioService {
 
-	private static final String Servicio_NO_ENCONTRADO = "El servicio %s-%s no fue encontrado";
+	private static final String SERVICIO_NO_ENCONTRADO = "El servicio %s-%s no fue encontrado";
 	private final IServicioMapper servicioMapper;
 
 	public ServicioService(@Qualifier("IServicioMapper") IMantenibleMapper<Servicio> mantenibleMapper) {
@@ -24,7 +24,8 @@ public class ServicioService extends MantenibleService<Servicio> implements ISer
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Servicio registrarServicio(Servicio servicio) {
+	public Servicio registrarServicio(String idMembresia, Servicio servicio) {
+		servicio.setIdMembresia(idMembresia);
 		this.registrar(servicio);
 		return this.buscarServicio(servicio.getIdMembresia(), servicio.getIdServicio());
 	}
@@ -55,7 +56,7 @@ public class ServicioService extends MantenibleService<Servicio> implements ISer
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Servicio buscarServicio(String idMembresia, String idServicio) {
 		return this.servicioMapper.buscarUno(idMembresia, idServicio)
-				.orElseThrow(() -> new RecursoNoEncontradoException(Servicio_NO_ENCONTRADO, idMembresia, idServicio));
+				.orElseThrow(() -> new RecursoNoEncontradoException(SERVICIO_NO_ENCONTRADO, idMembresia, idServicio));
 	}
 
 }

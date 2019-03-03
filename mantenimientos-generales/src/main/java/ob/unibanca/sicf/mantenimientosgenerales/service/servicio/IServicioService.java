@@ -11,7 +11,7 @@ public interface IServicioService extends IMantenibleService<Servicio> {
 	
 	Servicio buscarServicio(String idMembresia, String idServicio);
 	
-	Servicio registrarServicio(Servicio servicio);
+	Servicio registrarServicio(String idMembresia, Servicio servicio);
 	
 	Servicio actualizarServicio(String idMembresia, String idServicio, Servicio bin);
 	
