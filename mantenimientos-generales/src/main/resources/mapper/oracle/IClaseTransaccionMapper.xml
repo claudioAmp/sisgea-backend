@@ -13,7 +13,7 @@
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL pkg_man_generales.PRC_MAN_CLASE_TRANSACCION(
+            CALL PKG_MAN_GENERALES.PRC_MAN_CLASE_TRANSACCION(
                 #{modo, 								        jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idClaseTransaccion, 	        jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcionClaseTransaccion,  jdbcType=VARCHAR, mode=IN},

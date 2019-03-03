@@ -12,7 +12,7 @@
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL pkg_man_generales.PRC_MAN_CODIGO_RPTA_SWITCH(
+            CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_RPTA_SWITCH(
                 #{modo, 								              jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idCodigoRespuestaSwitch, 	          jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descripcionCodigoRespuestaSwitch,   jdbcType=VARCHAR, mode=IN},
