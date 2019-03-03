@@ -29,18 +29,18 @@ public class CodigoTransaccionRestController {
 		this.codigoTransaccionService = codigoTransaccionService;
 	}
 	
-	@GetMapping(value = "/codigo-transacciones")
+	@GetMapping(value = "/codigos-transacciones")
 	public List<CodigoTransaccion> buscarTodosCodigoTransacciones() {
 		return this.codigoTransaccionService.buscarTodosCodigoTransacciones();
 	}
 	
-	@GetMapping(value = "/clase-transacciones/{idClaseTransaccion}/codigo-transacciones")
+	@GetMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones")
 	public List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(
 			@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion) {
 		return this.codigoTransaccionService.buscarCodigosTransaccionClaseTransaccion(idClaseTransaccion);
 	}
 	
-	@PostMapping(value = "/clase-transacciones/{idClaseTransaccion}/codigo-transacciones",
+	@PostMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones",
 	             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CodigoTransaccion registrarCodigoTransaccion(
@@ -49,7 +49,7 @@ public class CodigoTransaccionRestController {
 		return this.codigoTransaccionService.registrarCodigoTransaccion(idClaseTransaccion, codigoTransaccion);
 	}
 	
-	@PutMapping(value = "/clase-transacciones/{idClaseTransaccion}/codigo-transacciones/{idCodigoTransaccion}",
+	@PutMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones/{idCodigoTransaccion}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoTransaccion actualizarCodigoTransaccion(
 			@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion,
@@ -59,7 +59,7 @@ public class CodigoTransaccionRestController {
 		                                                                 codigoTransaccion);
 	}
 	
-	@DeleteMapping(value = "/clase-transacciones/{idClaseTransaccion}/codigo-transacciones/{idCodigoTransaccion}")
+	@DeleteMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones/{idCodigoTransaccion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCodigoTransaccion(@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion,
 	                                      @IdNumerico(maxRange = 9999) @PathVariable int idCodigoTransaccion) {
