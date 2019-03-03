@@ -6,6 +6,8 @@ mybatis:
     ob.unibanca.sicf.mantenimientosgenerales.model,
     ob.commons.mantenimiento.model
   mapper-locations: classpath*:**/mapper/oracle/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
 server:
   servlet:
     context-path: /sicf/api
@@ -17,7 +19,7 @@ spring:
     time-zone: EST
     date-format: dd/MM/yyyy
   profiles:
-    active: dev-cdecr
+    active: dev-hllcc
     include: dev
   messages:
     encoding: UTF-8
