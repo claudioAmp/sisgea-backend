@@ -3,23 +3,21 @@
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IServicioMapper">
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">
-        SELECT  servicio.id_membresia                AS idMembresia
-             , servicio.id_servicio                 AS idServicio
-             , servicio.descripcion            AS descripcion
-             , membresia.descripcion      AS descripcionMembresia
-            FROM mae_servicio servicio
-                INNER JOIN mae_membresia membresia ON (servicio.id_membresia = membresia.id_membresia)
+        SELECT  id_membresia                AS idMembresia
+             , id_servicio                  AS idServicio
+             , descripcion_servicio         AS descripcionServicio
+             , descripcion_membresia        AS descripcionMembresia
+            FROM VIE_MAN_SERVICIO
     </select>
 
     <select id="buscarUno" resultType="Servicio">
-        SELECT  servicio.id_membresia                AS idMembresia
-             , servicio.id_servicio                 AS idServicio
-             , servicio.descripcion            AS descripcion
-             , membresia.descripcion      AS descripcionMembresia
-            FROM mae_servicio servicio
-                INNER JOIN mae_membresia membresia ON (servicio.id_membresia = membresia.id_membresia)
-            WHERE servicio.id_membresia = #{idMembresia} and
-                servicio.id_servicio = #{idServicio}
+        SELECT  id_membresia                AS idMembresia
+             , id_servicio                  AS idServicio
+             , descripcion_servicio         AS descripcionServicio
+             , descripcion_membresia        AS descripcionMembresia
+            FROM VIE_MAN_SERVICIO
+            WHERE id_membresia = #{idMembresia} and
+                  id_servicio = #{idServicio}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
@@ -29,7 +27,7 @@
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idMembresia, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idServicio, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcion, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionServicio, jdbcType=NUMERIC, mode=IN},
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
         }

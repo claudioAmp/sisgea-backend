@@ -19,5 +19,5 @@ public class Servicio {
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idServicio;
 	@CaracterRequerido(minLength = 1, maxLength = 20)
-	private String descripcion;
+	private String descripcionServicio;
 }
