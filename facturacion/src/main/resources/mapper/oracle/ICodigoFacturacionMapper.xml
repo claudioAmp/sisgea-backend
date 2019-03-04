@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.facturacion.mapper.ICodigoFacturacionMapper">
+
+    <select id="buscarTodos" resultType="CodigoFacturacion" statementType="PREPARED">
+        SELECT id_codigo_facturacion
+             , descripcion   AS descripcion_codigo_facturacion
+        FROM MAE_CODIGO_FACTURACION
+    </select>
+
+    <select id="buscarUno" resultType="CodigoFacturacion" statementType="PREPARED">
+        SELECT id_codigo_facturacion
+             , descripcion   AS descripcion_codigo_facturacion
+        FROM MAE_CODIGO_FACTURACION
+        WHERE id_codigo_facturacion = #{idCodigoFacturacion}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_FACTURACION(
+                #{modo, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCodigoFacturacion, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionCodigoFacturacion, jdbcType=VARCHAR, mode=IN},
+                #{usuario, jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+</mapper>
