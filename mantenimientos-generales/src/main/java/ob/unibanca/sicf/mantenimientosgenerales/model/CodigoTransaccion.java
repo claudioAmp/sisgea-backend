@@ -23,7 +23,7 @@ public class CodigoTransaccion {
 	@CaracterRequerido(maxLength = 20)
 	private String descripcionCorta;
 	@IdNumerico(maxRange = 99999)
-	private boolean idCodigoFacturacion;
+	private int idCodigoFacturacion;
 	private String descripcionCodigofacturacion;
 	private boolean aplicaCompensacion;
 	private boolean compensaFondos;
