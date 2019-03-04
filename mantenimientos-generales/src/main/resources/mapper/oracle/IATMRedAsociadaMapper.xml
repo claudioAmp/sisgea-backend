@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IATMRedAsociadaMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_atm
+             , id_institucion
+             , nombre
+             , direccion
+             , descripcion_institucion
+        FROM VIE_MAN_ATM_RED_ASOCIADA
+    </sql>
+
+    <select id="buscarTodos" resultType="ATMRedAsociada" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="buscarUno" resultType="ATMRedAsociada">
+        <include refid="consultaVistaMant"/>
+        WHERE
+                  id_atm          = #{idATM}
+            AND   id_institucion  = #{idInstitucion}
+    </select>
+
+    <select id="buscarATMsRedAsociadaInstitucion" resultType="ATMRedAsociada">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_institucion  = #{idInstitucion}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_ATM(
+                #{modo,                           jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipo,           jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idATM,          jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idInstitucion,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.nombre,         jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.direccion,      jdbcType=NUMERIC, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>
