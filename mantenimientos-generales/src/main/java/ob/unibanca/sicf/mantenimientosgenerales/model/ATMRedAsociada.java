@@ -13,17 +13,17 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ATMRedAsociada {
-
-    @IdNumerico(maxRange = 99999, groups = IRegistro.class)
-    private int idATM;
-    @IdNumerico(maxRange = 99999, groups = IRegistro.class)
-    private int idInstitucion;
-    @CaracterRequerido(maxLength = 40)
-    private String nombre;
-    @CaracterRequerido(maxLength = 60)
-    private String direccion;
-    private String descripcionInstitucion;
-
-    private int tipo;   // 1 RED UNICARD - 2 RED ASOCIADA
-
+	
+	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
+	private int idATM;
+	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
+	private int idInstitucion;
+	@CaracterRequerido(maxLength = 40)
+	private String nombre;
+	@CaracterRequerido(maxLength = 60)
+	private String direccion;
+	private String descripcionInstitucion;
+	
+	private int tipo;   // 1 RED UNICARD - 2 RED ASOCIADA
+	
 }

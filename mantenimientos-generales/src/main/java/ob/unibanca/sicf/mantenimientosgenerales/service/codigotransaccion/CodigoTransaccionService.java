@@ -16,8 +16,8 @@ import java.util.List;
 public class CodigoTransaccionService extends MantenibleService<CodigoTransaccion>
 		implements ICodigoTransaccionService {
 	
-	private static final String CODIGO_TRANSACCION_NO_ENCONTRADO = "El Código transacción %d asociado a la Clase " +
-	                                                               "transacción %d no fue encontrado";
+	private static final String CODIGO_TRANSACCION_NO_ENCONTRADO =
+			"El Código transacción %d asociado a la Clase " + "transacción %d no fue encontrado";
 	
 	private final ICodigoTransaccionMapper codigoTransaccionMapper;
 	
