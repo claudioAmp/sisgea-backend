@@ -11,6 +11,7 @@
              , transaccion_monetaria
              , aplica_interes
              , descripcion_codigo_transaccion
+             , descripcion_clase_transaccion
         FROM VIE_MAN_CODIGO_PROCESO_SWITCH
     </sql>
 
