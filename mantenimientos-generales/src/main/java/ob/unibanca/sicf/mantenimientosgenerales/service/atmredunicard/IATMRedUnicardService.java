@@ -8,6 +8,8 @@ import java.util.List;
 public interface IATMRedUnicardService extends IMantenibleService<ATMRedUnicard> {
 
     List<ATMRedUnicard> buscarTodosATMsRedUnicard();
+    
+    ATMRedUnicard buscarATMRedUnicard(int idATM);
 
     ATMRedUnicard registrarATMRedUnicard(ATMRedUnicard atmRedUnicard);
 

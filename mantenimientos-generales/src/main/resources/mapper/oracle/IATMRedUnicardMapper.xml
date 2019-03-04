@@ -2,12 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IATMRedUnicardMapper">
 
-    <select id="buscarTodos" resultType="ATMRedUnicard" statementType="PREPARED">
+    <sql id="consultaVistaMant">
         SELECT id_atm
              , id_institucion
              , nombre
              , direccion
-        FROM MAE_ATM_RED_UNICARD
+             , descripcion_institucion
+        FROM VIE_MAN_ATM_RED_UNICARD
+    </sql>
+
+    <select id="buscarTodos" resultType="ATMRedUnicard" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="buscarUno" resultType="ATMRedUnicard" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_atm  = #{idATM}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">

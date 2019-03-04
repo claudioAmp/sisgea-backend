@@ -2,6 +2,8 @@ package ob.unibanca.sicf.mantenimientosgenerales.service.atmredunicard;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.commons.validation.exception.RecursoNoEncontradoException;
+import ob.unibanca.sicf.mantenimientosgenerales.mapper.IATMRedUnicardMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedUnicard;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,9 +16,13 @@ import java.util.List;
 public class ATMRedUnicardService extends MantenibleService<ATMRedUnicard> implements IATMRedUnicardService {
 	
 	private static final int TIPO_UNICARD = 1;
+	private static final String ATM_RED_UNICARD_NO_ENCONTRADO = "El ATM red UNICARD %d no fue encontrado";
+	
+	private final IATMRedUnicardMapper atmRedUnicardMapper;
 	
 	public ATMRedUnicardService(@Qualifier("IATMRedUnicardMapper") IMantenibleMapper<ATMRedUnicard> mantenibleMapper) {
 		super(mantenibleMapper);
+		this.atmRedUnicardMapper = (IATMRedUnicardMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -26,11 +32,18 @@ public class ATMRedUnicardService extends MantenibleService<ATMRedUnicard> imple
 	}
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public ATMRedUnicard buscarATMRedUnicard(int idATM) {
+		return this.atmRedUnicardMapper.buscarUno(idATM).orElseThrow(
+				() -> new RecursoNoEncontradoException(ATM_RED_UNICARD_NO_ENCONTRADO, idATM));
+	}
+	
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ATMRedUnicard registrarATMRedUnicard(ATMRedUnicard atmRedUnicard) {
 		atmRedUnicard.setTipo(TIPO_UNICARD);
 		super.registrar(atmRedUnicard);
-		return atmRedUnicard;
+		return this.buscarATMRedUnicard(atmRedUnicard.getIdATM());
 	}
 	
 	@Override
@@ -39,7 +52,7 @@ public class ATMRedUnicardService extends MantenibleService<ATMRedUnicard> imple
 		atmRedUnicard.setTipo(TIPO_UNICARD);
 		atmRedUnicard.setIdATM(idATM);
 		super.actualizar(atmRedUnicard);
-		return atmRedUnicard;
+		return this.buscarATMRedUnicard(atmRedUnicard.getIdATM());
 	}
 	
 	@Override

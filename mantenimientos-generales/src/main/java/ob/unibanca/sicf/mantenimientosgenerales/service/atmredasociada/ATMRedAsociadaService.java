@@ -17,7 +17,7 @@ public class ATMRedAsociadaService extends MantenibleService<ATMRedAsociada> imp
 	
 	private static final int TIPO_ASOCIADA = 2;
 	private static final String ATM_RED_ASOCIADA_NO_ENCONTRADO =
-			"El ATM red asociada %d asociado a la " + "institución %d no fue encontrado";
+			"El ATM red asociada %d asociado a la " + "Institución %d no fue encontrado";
 	
 	private final IATMRedAsociadaMapper atmRedAsociadaMapper;
 	
