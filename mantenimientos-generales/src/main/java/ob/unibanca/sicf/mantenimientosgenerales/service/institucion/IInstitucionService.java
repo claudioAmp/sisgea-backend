@@ -8,6 +8,8 @@ import java.util.List;
 public interface IInstitucionService extends IMantenibleService<Institucion> {
 	
 	List<Institucion> buscarTodosInstituciones();
+
+	Institucion buscarInstitucion(int idInstitucion);
 	
 	Institucion registrarInstitucion(Institucion institucion);
 	

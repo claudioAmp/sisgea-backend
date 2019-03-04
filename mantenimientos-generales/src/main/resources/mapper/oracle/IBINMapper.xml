@@ -18,7 +18,7 @@
              , descripcion_moneda_base
              , id_moneda_alterna
              , descripcion_moneda_alterna
-            FROM vie_man_bin
+            FROM VIE_MAN_BIN
     </select>
 
     <select id="buscarUno" resultType="BIN">
@@ -37,7 +37,7 @@
              , descripcion_moneda_base
              , id_moneda_alterna
              , descripcion_moneda_alterna
-            FROM vie_man_bin
+            FROM VIE_MAN_BIN
             WHERE id_bin = #{idBIN}
     </select>
 
@@ -45,18 +45,18 @@
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_BIN(
-                #{modo, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idBIN, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcionBIN, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.esInternacional, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.valorOIF, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.longitudPAN, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idInstitucion, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idMembresia, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idServicio, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMonedaBase, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idMonedaAlterna, jdbcType=NUMERIC, mode=IN},
-                #{usuario, jdbcType=VARCHAR, mode=IN}
+                #{modo,                             jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idBIN,            jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionBIN,   jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.esInternacional,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.valorOIF,         jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.longitudPAN,      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idInstitucion,    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMembresia,      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idServicio,       jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMonedaBase,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMonedaAlterna,  jdbcType=NUMERIC, mode=IN},
+                #{usuario,                          jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

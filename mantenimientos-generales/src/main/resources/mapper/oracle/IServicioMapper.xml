@@ -7,7 +7,7 @@
              , id_servicio
              , descripcion_servicio
              , descripcion_membresia
-        FROM vie_man_servicio
+        FROM VIE_MAN_SERVICIO
     </sql>
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">

@@ -2,6 +2,8 @@ package ob.unibanca.sicf.mantenimientosgenerales.service.institucion;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.commons.validation.exception.RecursoNoEncontradoException;
+import ob.unibanca.sicf.mantenimientosgenerales.mapper.IInstitucionMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Institucion;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,12 @@ import java.util.List;
 @Service
 public class InstitucionService extends MantenibleService<Institucion> implements IInstitucionService {
 	
+	private static final String INSTITUCION_NO_ENCONTRADO = "La institución %s no fue encontrada";
+	private final IInstitucionMapper institucionMapper;
+
 	public InstitucionService(@Qualifier("IInstitucionMapper") IMantenibleMapper<Institucion> mantenibleMapper) {
 		super(mantenibleMapper);
+		this.institucionMapper = (IInstitucionMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -22,7 +28,14 @@ public class InstitucionService extends MantenibleService<Institucion> implement
 	public List<Institucion> buscarTodosInstituciones() {
 		return this.buscarTodos();
 	}
-	
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Institucion buscarInstitucion(int idInstitucion) {
+		return this.institucionMapper.buscarUno(idInstitucion).orElseThrow(
+				() -> new RecursoNoEncontradoException(INSTITUCION_NO_ENCONTRADO, idInstitucion));
+	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Institucion registrarInstitucion(Institucion institucion) {

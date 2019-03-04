@@ -9,6 +9,8 @@ public interface IPortafolioService extends IMantenibleService<Portafolio> {
 	
 	List<Portafolio> buscarTodosPortafolios();
 	
+	Portafolio buscarPortafolio(int idPortafolio);
+	
 	Portafolio registrarPortafolio(Portafolio portafolio);
 	
 	Portafolio actualizarPortafolio(int idPortafolio, Portafolio portafolio);

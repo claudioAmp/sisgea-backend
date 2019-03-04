@@ -5,17 +5,17 @@
     <select id="buscarTodos" resultType="Membresia" statementType="PREPARED">
         SELECT id_membresia
              , descripcion AS descripcion_membresia
-            FROM mae_membresia
+            FROM MAE_MEMBRESIA
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_MEMBRESIA(
-                #{modo, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMembresia, jdbcType=VARCHAR, mode=IN},
+                #{modo,                                 jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia,          jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descripcionMembresia, jdbcType=VARCHAR, mode=IN},
-                #{usuario, jdbcType=VARCHAR, mode=IN}
+                #{usuario,                              jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>
