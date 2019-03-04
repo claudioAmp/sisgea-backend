@@ -18,13 +18,13 @@ public class CodigoTransaccion {
 	private String descripcionClaseTransaccion;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
 	private int idCodigoTransaccion;
-	private String descripcionCodigofacturacion;
 	@CaracterRequerido(maxLength = 100)
 	private String descripcionCodigoTransaccion;
 	@CaracterRequerido(maxLength = 20)
 	private String descripcionCorta;
 	@IdNumerico(maxRange = 99999)
 	private boolean idCodigoFacturacion;
+	private String descripcionCodigofacturacion;
 	private boolean aplicaCompensacion;
 	private boolean compensaFondos;
 	private boolean compensaComisiones;

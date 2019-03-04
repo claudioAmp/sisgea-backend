@@ -23,12 +23,11 @@ public class CodigoProcesoSwitch {
     private String abreviatura;
     @IdNumerico(maxRange = 9999)
     private Integer idClaseTransaccion;
+    private String descripcionClaseTransaccion;
     @IdNumerico(maxRange = 9999)
     private Integer idCodigoTransaccion;
+    private String descripcionCodigoTransaccion;
     private boolean transaccionMonetaria;
     private boolean aplicaInteres;
     
-    private String descripcionCodigoTransaccion;
-    private String descripcionClaseTransaccion;
-
 }
