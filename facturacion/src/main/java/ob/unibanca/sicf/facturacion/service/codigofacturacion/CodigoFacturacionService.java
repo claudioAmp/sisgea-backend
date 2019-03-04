@@ -27,14 +27,15 @@ public class CodigoFacturacionService extends MantenibleService<CodigoFacturacio
 	@Transactional(propagation = Propagation.REQUIRED)
 	public CodigoFacturacion registrarCodigoFacturacion(CodigoFacturacion codigoFacturacion) {
 		this.registrar(codigoFacturacion);
-		return codigoFacturacion;
+		return this.buscarCodigoFacturacion(codigoFacturacion.getIdCodigoFacturacion());
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public CodigoFacturacion actualizarCodigoFacturacion(int idCodigoFacturacion, CodigoFacturacion codigoFacturacion) {
-		codigoFacturacion.setIdCodigoFacturacion(idCodigoFacturacion); this.actualizar(codigoFacturacion);
-		return codigoFacturacion;
+		codigoFacturacion.setIdCodigoFacturacion(idCodigoFacturacion); 
+		this.actualizar(codigoFacturacion);
+		return this.buscarCodigoFacturacion(codigoFacturacion.getIdCodigoFacturacion());
 	}
 	
 	@Override
@@ -51,7 +52,8 @@ public class CodigoFacturacionService extends MantenibleService<CodigoFacturacio
 	}
 
 	@Override
-	public CodigoFacturacion buscarCodigoFacturacion(String idCodigoFacturacion) {
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public CodigoFacturacion buscarCodigoFacturacion(int idCodigoFacturacion) {
 		return this.codigoFacturacionMapper.buscarUno(idCodigoFacturacion).orElseThrow(
 				() -> new RecursoNoEncontradoException(CODIGO_FACTURACION_NO_ENCONTRADO, idCodigoFacturacion));
 	}

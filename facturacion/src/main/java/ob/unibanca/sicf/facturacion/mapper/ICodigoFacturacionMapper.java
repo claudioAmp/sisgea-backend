@@ -8,6 +8,6 @@ import java.util.Optional;
 @Mapper
 public interface ICodigoFacturacionMapper extends IMantenibleMapper<CodigoFacturacion> {
 
-	Optional<CodigoFacturacion> buscarUno(String idCodigoFacturacion);
+	Optional<CodigoFacturacion> buscarUno(int idCodigoFacturacion);
 
 }

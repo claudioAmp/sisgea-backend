@@ -9,7 +9,7 @@ public interface ICodigoFacturacionService extends IMantenibleService<CodigoFact
 	
 	List<CodigoFacturacion> buscarTodosCodigosFacturaciones();
 	
-	CodigoFacturacion buscarCodigoFacturacion(String idCodigoFacturacion);
+	CodigoFacturacion buscarCodigoFacturacion(int idCodigoFacturacion);
 	
 	CodigoFacturacion registrarCodigoFacturacion(CodigoFacturacion codigoFacturacion);
 	
