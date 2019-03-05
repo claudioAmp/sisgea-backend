@@ -128,6 +128,7 @@ local.properties
 *.ear
 *.tar.gz
 *.rar
+*.class
 
 #IDE
 /project/
