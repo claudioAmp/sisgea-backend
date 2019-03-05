@@ -36,4 +36,5 @@ public class Institucion {
 	private String cuentaContableMonedaAlterna;
 	@IdNumerico(maxRange = 99999)
 	private int idInstitucionOperador;
+	private String descripcionInstitucionOpe;
 }
