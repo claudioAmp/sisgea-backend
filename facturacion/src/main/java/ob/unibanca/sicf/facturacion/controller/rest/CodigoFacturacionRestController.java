@@ -36,22 +36,22 @@ public class CodigoFacturacionRestController {
 	
 	@PostMapping(value = "/codigos-facturaciones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public CodigoFacturacion registrarCodigoFacturacion(@Validated({IRegistro.class, Default.class}) @RequestBody CodigoFacturacion codigoFacturacion) {
+	public CodigoFacturacion registrarCodigoFacturacion(
+			@Validated({IRegistro.class, Default.class}) @RequestBody CodigoFacturacion codigoFacturacion) {
 		return this.codigoFacturacionService.registrarCodigoFacturacion(codigoFacturacion);
 	}
 	
-	@PutMapping(value = "/codigos-facturaciones/{idCodigoFacturacion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/codigos-facturaciones/{idCodigoFacturacion}",
+	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoFacturacion actualizarCodigoFacturacion(
-		@IdNumerico(maxRange = 99999, groups = IRegistro.class) @PathVariable int idCodigoFacturacion,
+			@IdNumerico(maxRange = 99999) @PathVariable int idCodigoFacturacion,
 			@Validated @RequestBody CodigoFacturacion codigoFacturacion) {
 		return this.codigoFacturacionService.actualizarCodigoFacturacion(idCodigoFacturacion, codigoFacturacion);
 	}
 	
 	@DeleteMapping("/codigos-facturaciones/{idCodigoFacturacion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCodigoFacturacion(
-		@IdNumerico(maxRange = 99999, groups = IRegistro.class) @PathVariable int idCodigoFacturacion) {
+	public void eliminarCodigoFacturacion(@IdNumerico(maxRange = 99999) @PathVariable int idCodigoFacturacion) {
 		this.codigoFacturacionService.eliminarCodigoFacturacion(idCodigoFacturacion);
 	}
-	
 }

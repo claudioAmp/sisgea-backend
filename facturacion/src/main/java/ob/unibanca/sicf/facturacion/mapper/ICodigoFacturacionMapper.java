@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface ICodigoFacturacionMapper extends IMantenibleMapper<CodigoFacturacion> {
 
 	Optional<CodigoFacturacion> buscarUno(int idCodigoFacturacion);
-
 }

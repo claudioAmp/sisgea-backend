@@ -2,45 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IInstitucionMapper">
 
-    <select id="buscarTodos" resultType="Institucion"
-            statementType="PREPARED">
+    <sql id="consultaVistaMant">
         SELECT id_institucion
-             , descripcion          AS descripcion_institucion
+             , descripcion_institucion
              , descripcion_corta
              , razon_social
              , ruc
              , direccion
-             , banco_administrador  AS es_banco_administrador
+             , es_banco_administrador
              , tipo_institucion
-             , procesador           AS es_procesador
-             , cta_cte_mon_base     AS cuenta_contable_moneda_base
-             , cta_cte_mon_alterna  AS cuenta_contable_moneda_alterna
-             , operador_institucion AS id_institucion_operador
-        FROM MAE_INSTITUCION
+             , es_procesador
+             , cuenta_contable_moneda_base
+             , cuenta_contable_moneda_alterna
+             , id_institucion_operador
+             , descripcion_institucion_ope
+            FROM vie_man_institucion
+    </sql>
+
+    <select id="buscarTodos" resultType="Institucion"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
     </select>
 
     <select id="buscarUno" resultType="Institucion"
             statementType="PREPARED">
-        SELECT id_institucion
-             , descripcion          AS descripcion_institucion
-             , descripcion_corta
-             , razon_social
-             , ruc
-             , direccion
-             , banco_administrador  AS es_banco_administrador
-             , tipo_institucion
-             , procesador           AS es_procesador
-             , cta_cte_mon_base     AS cuenta_contable_moneda_base
-             , cta_cte_mon_alterna  AS cuenta_contable_moneda_alterna
-             , operador_institucion AS id_institucion_operador
-        FROM MAE_INSTITUCION
+        <include refid="consultaVistaMant"/>
         WHERE id_institucion = #{idInstitucion}
     </select>
-    
+
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PRC_MAN_INSTITUCION(
+            CALL pkg_man_generales.PRC_MAN_INSTITUCION(
                 #{modo,                                         jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idInstitucion,                jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcionInstitucion,       jdbcType=VARCHAR, mode=IN },
@@ -56,6 +49,6 @@
                 #{objetoMantenido.idInstitucionOperador,        jdbcType=NUMERIC, mode=IN},
                 #{usuario,                                      jdbcType=VARCHAR, mode=IN}
             )
-        }
+            }
     </select>
 </mapper>
