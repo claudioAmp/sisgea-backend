@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IParametroSistemaMapper">
 
-    <select id="buscarTodos" resultType="ParametroSistema" statementType="PREPARED">
-        SELECT fecha_proceso
+	<sql id="consultaVistaMant">
+		SELECT fecha_proceso
         	 , id_institucion
         	 , descripcion_institucion
         	 , id_moneda_procesador
@@ -14,6 +14,10 @@
         	 , limite_detraccion
         	 , cuenta_detraccion 	        	
         FROM VIE_MAN_PARAMETRO_SISTEMA
+	</sql>
+	
+    <select id="buscarTodos" resultType="ParametroSistema" statementType="PREPARED">
+        <include refid="consultaVistaMant"></include>
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
@@ -23,12 +27,12 @@
                 #{modo,                                 jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.fechaProceso,         jdbcType=DATE, 	  mode=IN},
                 #{objetoMantenido.idInstitucion, 		jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idMonedaProcesador,		jdbcType=NUMERIC, mode = IN},
-                #{objetoMantenido.porcentajeIGV,		jdbcType=NUMERIC, mode = IN},
-                #{objetoMantenido.porcentajeRenta,		jdbcType=NUMERIC, mode = IN},
-                #{objetoMantenido.porcentajeDetraccion,	jdbcType=NUMERIC, mode = IN},
-                #{objetoMantenido.limiteDetraccion, 	jdbcType=NUMERIC, mode = IN},
-                #{objetoMantenido.cuentaDetraccion,		jdbcType=VARCHAR, mode = IN},
+                #{objetoMantenido.idMonedaProcesador,	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.porcentajeIGV,		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.porcentajeRenta,		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.porcentajeDetraccion,	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.limiteDetraccion, 	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.cuentaDetraccion,		jdbcType=VARCHAR, mode=IN},
                 #{usuario,                              jdbcType=VARCHAR, mode=IN}
             )
         }
