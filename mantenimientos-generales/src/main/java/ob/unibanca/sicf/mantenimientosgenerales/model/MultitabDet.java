@@ -17,7 +17,7 @@ public class MultitabDet {
 	
 	@IdNumerico(maxRange = 999, groups = IRegistro.class)
 	private int idMultitabCab;
-	@IdCadena(maxLength = 4, regexpPattern = "[0-9]+", groups = IRegistro.class)
+	@IdCadena(maxLength = 4, regexpPattern = "[a-zA-Z0-9]+", groups = IRegistro.class)
 	private String idMultitabDet;
 	@CaracterRequerido(maxLength = 50)
 	private String descripcionItem;

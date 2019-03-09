@@ -50,7 +50,7 @@ public class MultitabDetRestController {
 	@PutMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets/{idMultitabDet}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public MultitabDet actualizarMultitabDet(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab,
-	                                         @IdCadena(maxLength = 4, regexpPattern = "[0-9]+") @PathVariable
+	                                         @IdCadena(maxLength = 4, regexpPattern = "[a-zA-Z0-9]+") @PathVariable
 			                                         String idMultitabDet,
 	                                         @Validated @RequestBody MultitabDet multitabDet) {
 		return this.multitabDetService.actualizarMultitabDet(idMultitabCab, idMultitabDet, multitabDet);
@@ -59,7 +59,7 @@ public class MultitabDetRestController {
 	@DeleteMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets/{idMultitabDet}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarMultitabDet(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab,
-	                                @IdCadena(maxLength = 4, regexpPattern = "[0-9]+") @PathVariable
+	                                @IdCadena(maxLength = 4, regexpPattern = "[a-zA-Z0-9]+") @PathVariable
 			                                String idMultitabDet) {
 		this.multitabDetService.eliminarMultitabDet(idMultitabCab, idMultitabDet);
 	}
