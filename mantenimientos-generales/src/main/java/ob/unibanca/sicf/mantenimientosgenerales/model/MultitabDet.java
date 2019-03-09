@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.commons.validation.validation.CaracterNoRequerido;
 import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdCadena;
 import ob.commons.validation.validation.IdNumerico;
@@ -21,7 +22,7 @@ public class MultitabDet {
 	private String idMultitabDet;
 	@CaracterRequerido(maxLength = 50)
 	private String descripcionItem;
-	@CaracterRequerido(maxLength = 10)
+	@CaracterNoRequerido(maxLength = 10)
 	private String abreviatura;
 	private String descripcionMultitabCab;
 
