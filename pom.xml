@@ -92,6 +92,11 @@
             <artifactId>commons-validation</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>ob.commons</groupId>
+            <artifactId>commons-excel</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
