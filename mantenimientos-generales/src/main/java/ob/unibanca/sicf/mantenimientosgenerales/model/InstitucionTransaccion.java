@@ -13,7 +13,6 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class InstitucionTransaccion {
 	
-	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private int idInstitucion;
 	private String descripcionInstitucion;
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
