@@ -13,5 +13,4 @@ public interface IMultitabDetMapper extends IMantenibleMapper<MultitabDet> {
 	Optional<MultitabDet> buscarUno(int idMultitabCab, String idMultitabDet);
 	
 	List<MultitabDet> buscarMultitabsDetMultitabCab(int idMultitabCab);
-	
 }

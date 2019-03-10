@@ -22,5 +22,4 @@ public class MonedaRestController {
 	public List<Moneda> buscarTodosMonedas() {
 		return this.monedaService.buscarTodosMonedas();
 	}
-	
 }
