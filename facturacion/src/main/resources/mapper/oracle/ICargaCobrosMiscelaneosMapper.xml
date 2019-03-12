@@ -9,9 +9,7 @@
 				#{salida, jdbcType = VARCHAR, mode = OUT},
 				<foreach collection="params" index="key" item="value" open="" separator="," close="">
 						#{value, jdbcType = VARCHAR, mode = IN}
-				</foreach>,
-				#{filename, jdbcType = VARCHAR, mode = OUT},
-				#{reproceso, jdbcType = VARCHAR, mode = OUT}
+				</foreach>
 			)
 		}
 	</select>

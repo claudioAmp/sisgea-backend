@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos;
 
-import java.io.File;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import ob.unibanca.sicf.facturacion.mapper.ICargaCobrosMiscelaneosMapper;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 import ob.commons.excel.CargaArchivoExcel;
 import ob.commons.excel.exception.ReadingExcelFileException;
 import ob.commons.validation.exception.RecursoNoEncontradoException;
@@ -35,14 +38,16 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
    @Override
    @Transactional(propagation = Propagation.REQUIRED)
    public void cargarRegistro(Map<String, Object> registro) {
-      Map<String, Object> general = new HashMap<String, Object>();
+      Map<String, Object> general = new HashMap<>();
+      // Añadiendo parametros
+      registro.put("filename", filename);
+      registro.put("reproceso", procedure.isEsReproceso());
+
+      // Cargando registro
       general.put("procedureName", procedure.getNombreProcedure());
       general.put("salida", "");
       general.put("params", registro);
-      general.put("filename", filename);
-      general.put("reproceso", procedure.isEsReproceso());
       cargaCobrosMiscMapper.cargarRegistro(general);
-      System.out.println(general.get("salida"));
    }
 
    @Override
@@ -59,17 +64,19 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 
    @Override
    @Transactional(propagation = Propagation.REQUIRED)
-   public String cargarArchivos(File file) {
-      filename = file.getName();
+   public String cargarArchivos(MultipartFile multipartfile) {
+      filename = multipartfile.getOriginalFilename();
       procedure = procesoProcedureMapper.getMetadataProcedureProceso(PROCESO_NAME, filename)
             .orElseThrow(() -> new RecursoNoEncontradoException(PROCESO_NO_ENCONTRADO, PROCESO_NAME));
-      try {
-         CargaArchivoExcel.readExcelFile(file,
+      
+      try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())){
+         CargaArchivoExcel.readExcelFile(filename, bis,
                procesoProcedureMapper.getParametrosProcedure(procedure.getIdProcedure()), this, true, 0, procedure.getPatronFechaArchivo());
-      } catch (ReadingExcelFileException e) {
+      
+      } catch (ReadingExcelFileException | IOException e) {
          throw new RecursoNoEncontradoException("ERROR: ", e.getMessage());
       }
-      return "ARCHIVO CARGADO! " + procedure.isEsReproceso();
+      return "ARCHIVO CARGADO. " + (procedure.isEsReproceso()?"Hubo reproceso":"No hubo reproceso");
    }
 
 }

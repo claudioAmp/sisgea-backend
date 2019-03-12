@@ -49,6 +49,6 @@
                 #{objetoMantenido.idInstitucionOperador,        jdbcType=NUMERIC, mode=IN},
                 #{usuario,                                      jdbcType=VARCHAR, mode=IN}
             )
-            }
+        }
     </select>
 </mapper>
