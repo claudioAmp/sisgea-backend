@@ -20,16 +20,16 @@ import ob.commons.excel.exception.ReadingExcelFileException;
 import ob.commons.validation.exception.RecursoNoEncontradoException;
 
 @Service
-public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneosVisaService {
+public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosMCService {
 
    private static final String PROCESO_NO_ENCONTRADO = "El proceso de carga %s no fue encontrado";
-   private static final String PROCESO_NAME = "CARG_MIS_V";
+   private static final String PROCESO_NAME = "CARG_MIS_MC";
    private final ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper;
    private final IProcesoProcedureMapper procesoProcedureMapper;
    private MetadataProcedure procedure;
    private String filename;
 
-   public CargaCobrosMiscelaneosVisaService(
+   public CargaCobrosMiscelaneosMCService(
          @Qualifier("ICargaCobrosMiscelaneosMapper") ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper,
          @Qualifier("IProcesoProcedureMapper") IProcesoProcedureMapper procesoProcedureMapper) {
       this.cargaCobrosMiscMapper = (ICargaCobrosMiscelaneosMapper) cargaCobrosMiscMapper;

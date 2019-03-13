@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public interface ICargaCobrosMiscelaneosVisaService extends ICargaService {
+public interface ICargaCobrosMiscelaneosMCService extends ICargaService {
 
    public void cargarArchivos(List<MultipartFile> file);
 
