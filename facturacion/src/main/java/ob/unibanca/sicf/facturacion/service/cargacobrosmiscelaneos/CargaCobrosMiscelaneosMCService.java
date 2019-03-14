@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import ob.commons.excel.CargaArchivoExcel;
-import ob.commons.excel.exception.ReadingExcelFileException;
 import ob.commons.validation.exception.RecursoNoEncontradoException;
 
 @Service
@@ -76,7 +75,7 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
                   procesoProcedureMapper.getParametrosProcedure(procedure.getIdProcedure()), this, true, 0,
                   procedure.getPatronFechaArchivo());
 
-         } catch (ReadingExcelFileException | IOException e) {
+         } catch (IOException e) {
             throw new RecursoNoEncontradoException("ERROR: ", e.getMessage());
          }
       }
