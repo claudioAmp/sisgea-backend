@@ -26,7 +26,6 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
    private final ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper;
    private final IProcesoProcedureMapper procesoProcedureMapper;
    private MetadataProcedure procedure;
-   private String filename;
 
    public CargaCobrosMiscelaneosMCService(
          @Qualifier("ICargaCobrosMiscelaneosMapper") ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper,
@@ -36,12 +35,9 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
    }
 
    @Override
-   @Transactional(propagation = Propagation.REQUIRED)
+   @Transactional(propagation = Propagation.REQUIRES_NEW)
    public void cargarRegistro(Map<String, Object> registro) {
       Map<String, Object> general = new HashMap<>();
-      // Añadiendo parametros
-      registro.put("filename", filename);
-      registro.put("reproceso", procedure.isEsReproceso());
 
       // Cargando registro
       general.put("procedureName", procedure.getNombreProcedure());
@@ -66,14 +62,18 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
    @Transactional(propagation = Propagation.REQUIRED)
    public void cargarArchivos(List<MultipartFile> multipartfiles) {
       for (MultipartFile multipartfile : multipartfiles) {
-         filename = multipartfile.getOriginalFilename();
+         String filename = multipartfile.getOriginalFilename();
          procedure = procesoProcedureMapper.getMetadataProcedureProceso(PROCESO_NAME, filename)
                .orElseThrow(() -> new RecursoNoEncontradoException(PROCESO_NO_ENCONTRADO, PROCESO_NAME));
+         HashMap<String, Object> parametrosAdicionales = new HashMap<>();
+         
+         parametrosAdicionales.put("filename", filename);
+         parametrosAdicionales.put("reproceso", procedure.isEsReproceso());
 
          try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
             CargaArchivoExcel.readExcelFile(filename, bis,
                   procesoProcedureMapper.getParametrosProcedure(procedure.getIdProcedure()), this, true, 0,
-                  procedure.getPatronFechaArchivo());
+                  procedure.getPatronFechaArchivo(), parametrosAdicionales);
 
          } catch (IOException e) {
             throw new RecursoNoEncontradoException("ERROR: ", e.getMessage());
