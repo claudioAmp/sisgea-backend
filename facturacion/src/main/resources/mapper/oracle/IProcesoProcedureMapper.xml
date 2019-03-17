@@ -7,10 +7,9 @@
                   descripcion_proceso,
                   id_procedure,
                   nombre_procedure, 
-                  patron_fecha_archivo,
-                  FUN_REPROCESO_ARCHIVO(#{filename}) AS es_reproceso
-         FROM VIE_CARGA_PROCEDIMIENTO
-         WHERE id_proceso = #{idProceso}
+                  patron_fecha_archivo
+            FROM VIE_CARGA_PROCEDIMIENTO
+            WHERE id_proceso = #{idProceso}
     </select>
 
     <select id="getParametrosProcedure" resultType="ob.commons.excel.usermodel.Campo" statementType="PREPARED">
@@ -18,8 +17,14 @@
                   nombre_parametro_archivo  AS  nombre_campo_archivo,
                   tipo_dato,
                   posicion_archivo          AS posicion
-         FROM MAE_PROCEDURE_PARAMETRO
-         WHERE ID_PROCEDURE = #{idProcedure}
+            FROM MAE_PROCEDURE_PARAMETRO
+            WHERE ID_PROCEDURE = #{idProcedure}
+    </select>
+
+    
+    <select id="isReproceso" resultType="boolean" statementType="PREPARED">
+        SELECT    FUN_REPROCESO_ARCHIVO(#{filename})
+            FROM DUAL
     </select>
 
 </mapper>

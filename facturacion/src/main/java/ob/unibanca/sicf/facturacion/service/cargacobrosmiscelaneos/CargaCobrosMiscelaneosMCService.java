@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 import ob.unibanca.sicf.facturacion.mapper.ICargaCobrosMiscelaneosMapper;
 import ob.unibanca.sicf.facturacion.mapper.IProcesoProcedureMapper;
 import ob.unibanca.sicf.facturacion.model.MetadataProcedure;
@@ -18,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import ob.commons.excel.CargaArchivoExcel;
 import ob.commons.validation.exception.RecursoNoEncontradoException;
 
+import ob.commons.validation.model.ErrorResponse;
+
 @Service
 public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosMCService {
 
@@ -25,17 +29,21 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
    private static final String PROCESO_NAME = "CARG_MIS_MC";
    private final ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper;
    private final IProcesoProcedureMapper procesoProcedureMapper;
-   private MetadataProcedure procedure;
+   private final MetadataProcedure procedure;
 
    public CargaCobrosMiscelaneosMCService(
          @Qualifier("ICargaCobrosMiscelaneosMapper") ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper,
          @Qualifier("IProcesoProcedureMapper") IProcesoProcedureMapper procesoProcedureMapper) {
       this.cargaCobrosMiscMapper = (ICargaCobrosMiscelaneosMapper) cargaCobrosMiscMapper;
       this.procesoProcedureMapper = (IProcesoProcedureMapper) procesoProcedureMapper;
+      this.procedure = procesoProcedureMapper.getMetadataProcedureProceso(PROCESO_NAME)
+            .orElseThrow(() -> new RecursoNoEncontradoException(PROCESO_NO_ENCONTRADO, PROCESO_NAME));
+      this.procedure.setParametrosProcedure(
+         procesoProcedureMapper.getParametrosProcedure(procedure.getIdProcedure()));
    }
 
    @Override
-   @Transactional(propagation = Propagation.REQUIRES_NEW)
+   @Transactional(propagation = Propagation.REQUIRED)
    public void cargarRegistro(Map<String, Object> registro) {
       Map<String, Object> general = new HashMap<>();
 
@@ -48,37 +56,30 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 
    @Override
    @Transactional(propagation = Propagation.REQUIRED)
-   public void reportarErrorEnFila(int fila, Exception e) {
-      // Por implementar
-   }
-
-   @Override
-   @Transactional(propagation = Propagation.REQUIRED)
-   public void reportarErrorEnCelda(int fila, int columna, Exception e) {
-      // Por implementar
-   }
-
-   @Override
-   @Transactional(propagation = Propagation.REQUIRED)
-   public void cargarArchivos(List<MultipartFile> multipartfiles) {
+   public List<ErrorResponse> cargarArchivos(List<MultipartFile> multipartfiles) {
+      List<ErrorResponse> listaExcepciones = new ArrayList<>();
       for (MultipartFile multipartfile : multipartfiles) {
+         List<ErrorResponse> aux;
          String filename = multipartfile.getOriginalFilename();
-         procedure = procesoProcedureMapper.getMetadataProcedureProceso(PROCESO_NAME, filename)
-               .orElseThrow(() -> new RecursoNoEncontradoException(PROCESO_NO_ENCONTRADO, PROCESO_NAME));
+         boolean esReproceso = procesoProcedureMapper.isReproceso(filename);
          HashMap<String, Object> parametrosAdicionales = new HashMap<>();
-         
          parametrosAdicionales.put("filename", filename);
-         parametrosAdicionales.put("reproceso", procedure.isEsReproceso());
-
+         parametrosAdicionales.put("reproceso", esReproceso);
+      
          try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
-            CargaArchivoExcel.readExcelFile(filename, bis,
-                  procesoProcedureMapper.getParametrosProcedure(procedure.getIdProcedure()), this, true, 0,
-                  procedure.getPatronFechaArchivo(), parametrosAdicionales);
-
+            aux = CargaArchivoExcel.readExcelFile(filename, bis,
+                  this.procedure.getParametrosProcedure(), this, true, 0,
+                  this.procedure.getPatronFechaArchivo(), esReproceso, parametrosAdicionales);
+            if(aux!=null){
+               aux.stream()
+                  .filter(Objects::nonNull)
+                  .forEachOrdered(listaExcepciones::add);
+            }
          } catch (IOException e) {
-            throw new RecursoNoEncontradoException("ERROR: ", e.getMessage());
+            throw new RecursoNoEncontradoException(e.getMessage());
          }
       }
+      return listaExcepciones;
    }
 
 }

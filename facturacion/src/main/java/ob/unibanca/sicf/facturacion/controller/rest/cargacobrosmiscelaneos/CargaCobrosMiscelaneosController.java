@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
+import ob.commons.validation.model.ErrorResponse;
 
 import ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos.ICargaCobrosMiscelaneosVisaService;
 import ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos.ICargaCobrosMiscelaneosMCService;
@@ -25,13 +26,13 @@ public class CargaCobrosMiscelaneosController {
     }
 
     @PostMapping(value = "/visa/cobros-miscelaneos")
-    public void cargarArchivoVisa(@RequestParam("files") List<MultipartFile> multipartfiles, ModelMap modelMap) {
-        cargaCobrosMiscelaneosVisaService.cargarArchivos(multipartfiles);
+    public List<ErrorResponse> cargarArchivoVisa(@RequestParam("files") List<MultipartFile> multipartfiles, ModelMap modelMap) {
+        return cargaCobrosMiscelaneosVisaService.cargarArchivos(multipartfiles);
     }
 
     @PostMapping(value = "/mc/cobros-miscelaneos")
-    public void cargarArchivoMC(@RequestParam("files") List<MultipartFile> multipartfiles, ModelMap modelMap) {
-        cargaCobrosMiscelaneosMCService.cargarArchivos(multipartfiles);
+    public List<ErrorResponse> cargarArchivoMC(@RequestParam("files") List<MultipartFile> multipartfiles, ModelMap modelMap) {
+        return cargaCobrosMiscelaneosMCService.cargarArchivos(multipartfiles);
     }
 
 }

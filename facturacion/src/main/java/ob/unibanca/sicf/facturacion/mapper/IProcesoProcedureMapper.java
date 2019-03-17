@@ -13,8 +13,10 @@ import java.util.Optional;
 @Mapper
 public interface IProcesoProcedureMapper {
 
-	public Optional<MetadataProcedure> getMetadataProcedureProceso(String idProceso, String filename);
+	public Optional<MetadataProcedure> getMetadataProcedureProceso(String idProceso);
 	
 	public List<Campo> getParametrosProcedure(String idProcedure);
+
+	public boolean isReproceso(String filename);
 
 }
