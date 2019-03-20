@@ -24,7 +24,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>sicf-backend</name>
-    <description>Subsistema sicf-backend</description>
+    <description>Subsistema sicf-backend del sistema SICF de UNIBANCA</description>
 
     <properties>
         <java.version>11</java.version>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
+            <version>1.3.3</version>
         </dependency>
 
         <!--Libreria para conexion con ORACLE compatible con JAVA 11-->
@@ -99,5 +99,24 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--Plugin de OWASP para detectar vulnerabilidades en las líbrerias utilizados-->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>5.0.0-M2</version>
+                <executions>
+                    <!--La ejecución es en la fase mvn:verify-->
+                    <execution>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
