@@ -17,7 +17,7 @@
 	</sql>
 	
     <select id="buscarTodos" resultType="ParametroSistema" statementType="PREPARED">
-        <include refid="consultaVistaMant"></include>
+        <include refid="consultaVistaMant" />
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"

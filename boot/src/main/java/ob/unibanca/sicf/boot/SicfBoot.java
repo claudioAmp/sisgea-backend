@@ -50,7 +50,7 @@ public class SicfBoot {
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-		multipartResolver.setMaxUploadSize(3 * 1024 * 1024);	// 3MB
+		multipartResolver.setMaxUploadSize(3L * 1024L * 1024L);	// 3MB
 		return multipartResolver;
 	}
 }

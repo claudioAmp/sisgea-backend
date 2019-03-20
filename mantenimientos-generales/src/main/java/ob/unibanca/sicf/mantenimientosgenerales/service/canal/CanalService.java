@@ -12,18 +12,23 @@ import java.util.List;
 
 @Service
 public class CanalService extends MantenibleService<Canal> implements ICanalService {
-
-	public CanalService(@Qualifier("ICanalMapper")IMantenibleMapper<Canal> mantenibleMapper) {
+	
+	public CanalService(@Qualifier("ICanalMapper") IMantenibleMapper<Canal> mantenibleMapper) {
 		super(mantenibleMapper);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<Canal> buscarTodosCanales() { return super.buscarTodos(); }
+	public List<Canal> buscarTodosCanales() {
+		return super.buscarTodos();
+	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Canal registrarCanal(Canal canal) { super.registrar(canal); return canal; }
+	public Canal registrarCanal(Canal canal) {
+		super.registrar(canal);
+		return canal;
+	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

@@ -11,9 +11,9 @@ public interface IOrigenService extends IMantenibleService<Origen> {
 	
 	Origen buscarOrigen(int idOrigen);
 	
-	Origen registrarOrigen(Origen Origen);
+	Origen registrarOrigen(Origen origen);
 	
-	Origen actualizarOrigen(int idOrigen, Origen Origen);
+	Origen actualizarOrigen(int idOrigen, Origen origen);
 	
 	void eliminarOrigen(int idOrigen);
 }

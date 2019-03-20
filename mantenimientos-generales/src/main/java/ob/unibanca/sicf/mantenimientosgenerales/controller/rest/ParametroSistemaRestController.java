@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
-import java.util.List;
-
+import ob.unibanca.sicf.mantenimientosgenerales.model.ParametroSistema;
+import ob.unibanca.sicf.mantenimientosgenerales.service.parametrosistema.IParametroSistemaService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ob.unibanca.sicf.mantenimientosgenerales.model.ParametroSistema;
-import ob.unibanca.sicf.mantenimientosgenerales.service.parametroSistema.IParametroSistemaService;
+import java.util.List;
 
 @Validated
 @RestController
