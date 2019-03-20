@@ -28,8 +28,9 @@
 
     <properties>
         <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--  Compatibilidad CON VSCode (si no lo necesitan, comentenlo) -->
-            <m2e.apt.activation>disabled</m2e.apt.activation>
+        <m2e.apt.activation>disabled</m2e.apt.activation>
         <!--  FIN  -->
     </properties>
 
