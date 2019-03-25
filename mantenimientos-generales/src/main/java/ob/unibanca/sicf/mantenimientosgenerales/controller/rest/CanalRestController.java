@@ -51,5 +51,4 @@ public class CanalRestController {
 	public void eliminarCanal(@IdNumerico(maxRange = 99) @PathVariable int idCanal) {
 		this.canalService.eliminarCanal(idCanal);
 	}
-	
 }

@@ -20,13 +20,13 @@ public class CanalService extends MantenibleService<Canal> implements ICanalServ
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Canal> buscarTodosCanales() {
-		return super.buscarTodos();
+		return this.buscarTodos();
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Canal registrarCanal(Canal canal) {
-		super.registrar(canal);
+		this.registrar(canal);
 		return canal;
 	}
 	
@@ -34,7 +34,7 @@ public class CanalService extends MantenibleService<Canal> implements ICanalServ
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Canal actualizarCanal(int idCanal, Canal canal) {
 		canal.setIdCanal(idCanal);
-		super.actualizar(canal);
+		this.actualizar(canal);
 		return canal;
 	}
 	
@@ -42,6 +42,6 @@ public class CanalService extends MantenibleService<Canal> implements ICanalServ
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarCanal(int idCanal) {
 		Canal canal = Canal.builder().idCanal(idCanal).build();
-		super.eliminar(canal);
+		this.eliminar(canal);
 	}
 }

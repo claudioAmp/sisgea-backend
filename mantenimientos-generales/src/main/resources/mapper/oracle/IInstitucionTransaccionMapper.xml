@@ -17,7 +17,7 @@
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarUno" resultType="InstitucionTransaccion"
+    <select id="buscarInstitucionTransaccion" resultType="InstitucionTransaccion"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         WHERE id_institucion = #{idInstitucion}

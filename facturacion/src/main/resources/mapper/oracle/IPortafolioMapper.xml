@@ -8,13 +8,6 @@
         FROM MAE_PORTAFOLIO
     </select>
 
-    <select id="buscarUno" resultType="Portafolio" statementType="PREPARED">
-        SELECT id_portafolio
-             , descripcion   AS descripcion_portafolio
-        FROM MAE_PORTAFOLIO
-        WHERE id_portafolio = #{idPortafolio}
-    </select>
-
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_PORTAFOLIO(

@@ -52,5 +52,4 @@ public class MultitabCabRestController {
 	public void eliminarMultitabCab(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab) {
 		this.multitabCabService.eliminarMultitabCab(idMultitabCab);
 	}
-	
 }

@@ -11,12 +11,11 @@ public interface IMultitabDetService extends IMantenibleService<MultitabDet> {
 	
 	MultitabDet buscarMultitabDet(int idMultitabCab, String idMultitabDet);
 	
-	List<MultitabDet> buscarMultitabsDetMultitabCab(int idMultitabCab);
+	List<MultitabDet> buscarMultitabsDetPorMultitabCab(int idMultitabCab);
 	
 	MultitabDet registrarMultitabDet(int idMultitabCab, MultitabDet multitabDet);
 	
 	MultitabDet actualizarMultitabDet(int idMultitabCab, String idMultitabDet, MultitabDet multitabDet);
 	
 	void eliminarMultitabDet(int idMultitabCab, String idMultitabDet);
-	
 }

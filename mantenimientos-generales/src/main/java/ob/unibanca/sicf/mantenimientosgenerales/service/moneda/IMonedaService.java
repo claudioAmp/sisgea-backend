@@ -8,5 +8,4 @@ import java.util.List;
 public interface IMonedaService extends IMantenibleService<Moneda> {
 	
 	List<Moneda> buscarTodosMonedas();
-	
 }

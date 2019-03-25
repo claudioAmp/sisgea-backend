@@ -9,5 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface IBINMapper extends IMantenibleMapper<BIN> {
 	
-	Optional<BIN> buscarUno(String idBIN);
+	Optional<BIN> buscarBIN(String idBIN);
 }

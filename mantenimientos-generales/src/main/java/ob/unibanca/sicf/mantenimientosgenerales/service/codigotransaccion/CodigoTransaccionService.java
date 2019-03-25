@@ -17,8 +17,7 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 		implements ICodigoTransaccionService {
 	
 	private static final String CODIGO_TRANSACCION_NO_ENCONTRADO =
-			"El Código transacción %d asociado a la Clase " + "transacción %d no fue encontrado";
-	
+			"No existe la asociación entre el código de transacción %d y la clase de transacción %d";
 	private final ICodigoTransaccionMapper codigoTransaccionMapper;
 	
 	public CodigoTransaccionService(
@@ -28,16 +27,10 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion) {
-		return this.codigoTransaccionMapper.buscarCodigosTransaccionClaseTransaccion(idClaseTransaccion);
-	}
-	
-	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public CodigoTransaccion registrarCodigoTransaccion(int idClaseTransaccion, CodigoTransaccion codigoTransaccion) {
 		codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
-		super.registrar(codigoTransaccion);
+		this.registrar(codigoTransaccion);
 		return this.buscarCodigoTransaccion(codigoTransaccion.getIdClaseTransaccion(),
 		                                    codigoTransaccion.getIdCodigoTransaccion());
 	}
@@ -48,7 +41,7 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 	                                                     CodigoTransaccion codigoTransaccion) {
 		codigoTransaccion.setIdClaseTransaccion(idClaseTransaccion);
 		codigoTransaccion.setIdCodigoTransaccion(idCodigoTransaccion);
-		super.actualizar(codigoTransaccion);
+		this.actualizar(codigoTransaccion);
 		return this.buscarCodigoTransaccion(codigoTransaccion.getIdClaseTransaccion(),
 		                                    codigoTransaccion.getIdCodigoTransaccion());
 	}
@@ -58,19 +51,25 @@ public class CodigoTransaccionService extends MantenibleService<CodigoTransaccio
 	public void eliminarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion) {
 		CodigoTransaccion codigoTransaccion = CodigoTransaccion.builder().idClaseTransaccion(idClaseTransaccion)
 		                                                       .idCodigoTransaccion(idCodigoTransaccion).build();
-		super.eliminar(codigoTransaccion);
+		this.eliminar(codigoTransaccion);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<CodigoTransaccion> buscarTodosCodigoTransacciones() {
-		return super.buscarTodos();
+		return this.buscarTodos();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<CodigoTransaccion> buscarCodigosTransaccionPorClaseTransaccion(int idClaseTransaccion) {
+		return this.codigoTransaccionMapper.buscarCodigosTransaccionPorClaseTransaccion(idClaseTransaccion);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public CodigoTransaccion buscarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion) {
-		return this.codigoTransaccionMapper.buscarUno(idClaseTransaccion, idCodigoTransaccion).orElseThrow(
+		return this.codigoTransaccionMapper.buscarCodigoTransaccion(idClaseTransaccion, idCodigoTransaccion).orElseThrow(
 				() -> new RecursoNoEncontradoException(CODIGO_TRANSACCION_NO_ENCONTRADO, idClaseTransaccion,
 				                                       idCodigoTransaccion));
 	}

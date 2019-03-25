@@ -16,8 +16,7 @@ import java.util.List;
 public class MultitabDetService extends MantenibleService<MultitabDet> implements IMultitabDetService {
 	
 	private static final String MULTITAB_DET_NO_ENCONTRADO =
-			"La Multitab Det %s asociado a la Multitab Cab %d no fue encontrado";
-	
+			"No existe la asociación entre la Multitab Det %s y la Multitab Cab %d";
 	private final IMultitabDetMapper multitabDetMapper;
 	
 	public MultitabDetService(@Qualifier("IMultitabDetMapper") IMantenibleMapper<MultitabDet> mantenibleMapper) {
@@ -25,31 +24,11 @@ public class MultitabDetService extends MantenibleService<MultitabDet> implement
 		this.multitabDetMapper = (IMultitabDetMapper) mantenibleMapper;
 	}
 	
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<MultitabDet> buscarTodosMultitabsDet() {
-		return super.buscarTodos();
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public MultitabDet buscarMultitabDet(int idMultitabCab, String idMultitabDet) {
-		return this.multitabDetMapper.buscarUno(idMultitabCab, idMultitabDet).orElseThrow(
-				() -> new RecursoNoEncontradoException(MULTITAB_DET_NO_ENCONTRADO, idMultitabDet, idMultitabCab));
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<MultitabDet> buscarMultitabsDetMultitabCab(int idMultitabCab) {
-		return this.multitabDetMapper.buscarMultitabsDetMultitabCab(idMultitabCab);
-	}
-	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public MultitabDet registrarMultitabDet(int idMultitabCab, MultitabDet multitabDet) {
 		multitabDet.setIdMultitabCab(idMultitabCab);
-		super.registrar(multitabDet);
+		this.registrar(multitabDet);
 		return this.buscarMultitabDet(multitabDet.getIdMultitabCab(), multitabDet.getIdMultitabDet());
 	}
 	
@@ -58,7 +37,7 @@ public class MultitabDetService extends MantenibleService<MultitabDet> implement
 	public MultitabDet actualizarMultitabDet(int idMultitabCab, String idMultitabDet, MultitabDet multitabDet) {
 		multitabDet.setIdMultitabCab(idMultitabCab);
 		multitabDet.setIdMultitabDet(idMultitabDet);
-		super.actualizar(multitabDet);
+		this.actualizar(multitabDet);
 		return this.buscarMultitabDet(multitabDet.getIdMultitabCab(), multitabDet.getIdMultitabDet());
 	}
 	
@@ -67,6 +46,25 @@ public class MultitabDetService extends MantenibleService<MultitabDet> implement
 	public void eliminarMultitabDet(int idMultitabCab, String idMultitabDet) {
 		MultitabDet multitabDet = MultitabDet.builder().idMultitabCab(idMultitabCab).idMultitabDet(idMultitabDet)
 		                                     .build();
-		super.eliminar(multitabDet);
+		this.eliminar(multitabDet);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<MultitabDet> buscarTodosMultitabsDet() {
+		return this.buscarTodos();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public MultitabDet buscarMultitabDet(int idMultitabCab, String idMultitabDet) {
+		return this.multitabDetMapper.buscarMultiTabDet(idMultitabCab, idMultitabDet).orElseThrow(
+				() -> new RecursoNoEncontradoException(MULTITAB_DET_NO_ENCONTRADO, idMultitabDet, idMultitabCab));
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<MultitabDet> buscarMultitabsDetPorMultitabCab(int idMultitabCab) {
+		return this.multitabDetMapper.buscarMultitabsDetPorMultitabCab(idMultitabCab);
 	}
 }

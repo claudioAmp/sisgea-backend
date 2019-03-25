@@ -11,12 +11,11 @@ public interface IATMRedAsociadaService extends IMantenibleService<ATMRedAsociad
 
     ATMRedAsociada buscarATMRedAsociada(int idATM, int idInstitucion);
 
-    List<ATMRedAsociada> buscarATMsRedAsociadaInstitucion(int idInstitucion);
+    List<ATMRedAsociada> buscarATMsRedAsociadaPorInstitucion(int idInstitucion);
 
     ATMRedAsociada registrarATMRedAsociada(int idInstitucion, ATMRedAsociada atmRedAsociada);
 
     ATMRedAsociada actualizarATMRedAsociada(int idATM, int idInstitucion, ATMRedAsociada atmRedAsociada);
 
     void eliminarATMRedAsociada(int idATM, int idInstitucion);
-    
 }

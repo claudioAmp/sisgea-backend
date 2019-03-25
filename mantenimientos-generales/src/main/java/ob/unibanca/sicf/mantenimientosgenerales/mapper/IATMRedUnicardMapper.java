@@ -9,6 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface IATMRedUnicardMapper extends IMantenibleMapper<ATMRedUnicard> {
 	
-	Optional<ATMRedUnicard> buscarUno(int idATM);
-
+	Optional<ATMRedUnicard> buscarATMRedUnicard(int idATM);
 }

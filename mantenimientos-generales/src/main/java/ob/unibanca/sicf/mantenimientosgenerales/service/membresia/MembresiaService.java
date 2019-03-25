@@ -26,18 +26,22 @@ public class MembresiaService extends MantenibleService<Membresia> implements IM
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Membresia registrarMembresia(Membresia membresia) {
-		this.registrar(membresia); return membresia;
+		this.registrar(membresia);
+		return membresia;
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Membresia actualizarMembresia(String idMembresia, Membresia membresia) {
-		membresia.setIdMembresia(idMembresia); this.actualizar(membresia); return membresia;
+		membresia.setIdMembresia(idMembresia);
+		this.actualizar(membresia);
+		return membresia;
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarMembresia(String idMembresia) {
-		Membresia membresia = Membresia.builder().idMembresia(idMembresia).build(); this.eliminar(membresia);
+		Membresia membresia = Membresia.builder().idMembresia(idMembresia).build();
+		this.eliminar(membresia);
 	}
 }

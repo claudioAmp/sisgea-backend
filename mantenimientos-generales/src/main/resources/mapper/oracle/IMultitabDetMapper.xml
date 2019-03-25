@@ -15,14 +15,14 @@
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarUno" resultType="MultitabDet">
+    <select id="buscarMultiTabDet" resultType="MultitabDet">
         <include refid="consultaVistaMant"/>
         WHERE
                 id_multitab_cab = #{idMultitabCab}
             AND id_multitab_det = #{idMultitabDet}
     </select>
 
-    <select id="buscarMultitabsDetMultitabCab" resultType="MultitabDet">
+    <select id="buscarMultitabsDetPorMultitabCab" resultType="MultitabDet">
         <include refid="consultaVistaMant"/>
         WHERE
             id_multitab_cab = #{idMultitabCab}

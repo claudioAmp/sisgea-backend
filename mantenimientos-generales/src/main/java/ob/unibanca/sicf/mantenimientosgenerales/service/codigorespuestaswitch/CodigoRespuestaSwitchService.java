@@ -22,13 +22,13 @@ public class CodigoRespuestaSwitchService extends MantenibleService<CodigoRespue
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<CodigoRespuestaSwitch> buscarTodosCodigoRespuetaSwitches() {
-		return super.buscarTodos();
+		return this.buscarTodos();
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public CodigoRespuestaSwitch registrarCodigoRespuestaSwitch(CodigoRespuestaSwitch codigoRespuestaSwitch) {
-		super.registrar(codigoRespuestaSwitch);
+		this.registrar(codigoRespuestaSwitch);
 		return codigoRespuestaSwitch;
 	}
 	
@@ -37,7 +37,7 @@ public class CodigoRespuestaSwitchService extends MantenibleService<CodigoRespue
 	public CodigoRespuestaSwitch actualizarCodigoRespuestaSwitch(String idCodigoRespuestaSwitch,
 	                                                             CodigoRespuestaSwitch codigoRespuestaSwitch) {
 		codigoRespuestaSwitch.setIdCodigoRespuestaSwitch(idCodigoRespuestaSwitch);
-		super.actualizar(codigoRespuestaSwitch);
+		this.actualizar(codigoRespuestaSwitch);
 		return codigoRespuestaSwitch;
 	}
 	
@@ -46,6 +46,6 @@ public class CodigoRespuestaSwitchService extends MantenibleService<CodigoRespue
 	public void eliminarCodigoRespuestaSwitch(String idCodigoRespuestaSwitch) {
 		CodigoRespuestaSwitch codigoRespuestaSwitch = CodigoRespuestaSwitch.builder().idCodigoRespuestaSwitch(
 				idCodigoRespuestaSwitch).build();
-		super.eliminar(codigoRespuestaSwitch);
+		this.eliminar(codigoRespuestaSwitch);
 	}
 }

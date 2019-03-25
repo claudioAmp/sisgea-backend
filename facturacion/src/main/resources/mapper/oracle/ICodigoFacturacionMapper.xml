@@ -8,13 +8,6 @@
         FROM MAE_CODIGO_FACTURACION
     </select>
 
-    <select id="buscarUno" resultType="CodigoFacturacion" statementType="PREPARED">
-        SELECT id_codigo_facturacion
-             , descripcion   AS descripcion_codigo_facturacion
-        FROM MAE_CODIGO_FACTURACION
-        WHERE id_codigo_facturacion = #{idCodigoFacturacion}
-    </select>
-
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_FACTURACION(

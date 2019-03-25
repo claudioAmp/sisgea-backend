@@ -10,8 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface IATMRedAsociadaMapper extends IMantenibleMapper<ATMRedAsociada> {
 	
-	Optional<ATMRedAsociada> buscarUno(int idATM, int idInstitucion);
+	Optional<ATMRedAsociada> buscarATMRedAsociada(int idATM, int idInstitucion);
 	
-	List<ATMRedAsociada> buscarATMsRedAsociadaInstitucion(int idInstitucion);
-	
+	List<ATMRedAsociada> buscarATMsRedAsociadaPorInstitucion(int idInstitucion);
 }

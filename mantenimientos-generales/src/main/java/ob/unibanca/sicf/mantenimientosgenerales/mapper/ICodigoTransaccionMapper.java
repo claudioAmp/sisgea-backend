@@ -10,7 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface ICodigoTransaccionMapper extends IMantenibleMapper<CodigoTransaccion> {
 
-    Optional<CodigoTransaccion> buscarUno(int idClaseTransaccion, int idCodigoTransaccion);
+    Optional<CodigoTransaccion> buscarCodigoTransaccion(int idClaseTransaccion, int idCodigoTransaccion);
 
-    List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(int idClaseTransaccion);
+    List<CodigoTransaccion> buscarCodigosTransaccionPorClaseTransaccion(int idClaseTransaccion);
 }

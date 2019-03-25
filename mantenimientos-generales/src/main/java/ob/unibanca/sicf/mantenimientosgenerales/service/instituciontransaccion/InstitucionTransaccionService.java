@@ -17,29 +17,14 @@ public class InstitucionTransaccionService extends MantenibleService<Institucion
 		implements IInstitucionTransaccionService {
 	
 	private static final String INSTITUCION_TRANSACCION_NO_ENCONTRADO =
-			"La institución %s no está asociado a la clase %s y código de transacción %s";
+			"No existe la asociación entre la institución %s, la clase de transaccion %s y el código de transacción " +
+			"%s";
 	private final IInstitucionTransaccionMapper institucionesTransaccionMapper;
 	
 	public InstitucionTransaccionService(
 			@Qualifier("IInstitucionTransaccionMapper") IMantenibleMapper<InstitucionTransaccion> mantenibleMapper) {
 		super(mantenibleMapper);
 		this.institucionesTransaccionMapper = (IInstitucionTransaccionMapper) mantenibleMapper;
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<InstitucionTransaccion> buscarTodosInstitucionesTransacciones() {
-		return this.buscarTodos();
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public InstitucionTransaccion buscarInstitucionTransaccion(int idInstitucion, int idClaseTransaccion,
-	                                                           int idCodigoTransaccion) {
-		return this.institucionesTransaccionMapper.buscarUno(idInstitucion, idClaseTransaccion, idCodigoTransaccion)
-		                                          .orElseThrow(() -> new RecursoNoEncontradoException(
-				                                          INSTITUCION_TRANSACCION_NO_ENCONTRADO, idInstitucion,
-				                                          idClaseTransaccion, idCodigoTransaccion));
 	}
 	
 	@Override
@@ -61,5 +46,21 @@ public class InstitucionTransaccionService extends MantenibleService<Institucion
 		                                                                      .idCodigoTransaccion(idCodigoTransaccion)
 		                                                                      .build();
 		this.eliminar(institucionTransaccion);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<InstitucionTransaccion> buscarTodosInstitucionesTransacciones() {
+		return this.buscarTodos();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public InstitucionTransaccion buscarInstitucionTransaccion(int idInstitucion, int idClaseTransaccion,
+	                                                           int idCodigoTransaccion) {
+		return this.institucionesTransaccionMapper.buscarInstitucionTransaccion(idInstitucion, idClaseTransaccion,
+		                                                                        idCodigoTransaccion).orElseThrow(
+				() -> new RecursoNoEncontradoException(INSTITUCION_TRANSACCION_NO_ENCONTRADO, idInstitucion,
+				                                       idClaseTransaccion, idCodigoTransaccion));
 	}
 }

@@ -9,8 +9,6 @@ public interface IOrigenService extends IMantenibleService<Origen> {
 	
 	List<Origen> buscarTodosOrigenes();
 	
-	Origen buscarOrigen(int idOrigen);
-	
 	Origen registrarOrigen(Origen origen);
 	
 	Origen actualizarOrigen(int idOrigen, Origen origen);

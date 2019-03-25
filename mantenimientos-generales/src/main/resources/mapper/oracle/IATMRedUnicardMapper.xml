@@ -15,7 +15,7 @@
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarUno" resultType="ATMRedUnicard" statementType="PREPARED">
+    <select id="buscarATMRedUnicard" resultType="ATMRedUnicard" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         WHERE
             id_atm  = #{idATM}

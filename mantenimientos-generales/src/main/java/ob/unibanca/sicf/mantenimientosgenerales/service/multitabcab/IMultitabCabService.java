@@ -14,5 +14,4 @@ public interface IMultitabCabService extends IMantenibleService<MultitabCab> {
 	MultitabCab actualizarMultitabCab(int idMultitabCab, MultitabCab multitabCab);
 	
 	void eliminarMultitabCab(int idMultitabCab);
-
 }

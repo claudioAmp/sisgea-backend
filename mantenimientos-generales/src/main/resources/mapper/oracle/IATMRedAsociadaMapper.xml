@@ -15,14 +15,14 @@
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarUno" resultType="ATMRedAsociada">
+    <select id="buscarATMRedAsociada" resultType="ATMRedAsociada">
         <include refid="consultaVistaMant"/>
         WHERE
                   id_atm          = #{idATM}
             AND   id_institucion  = #{idInstitucion}
     </select>
 
-    <select id="buscarATMsRedAsociadaInstitucion" resultType="ATMRedAsociada">
+    <select id="buscarATMsRedAsociadaPorInstitucion" resultType="ATMRedAsociada">
         <include refid="consultaVistaMant"/>
         WHERE
             id_institucion  = #{idInstitucion}

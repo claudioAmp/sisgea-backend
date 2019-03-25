@@ -27,7 +27,7 @@ public class ClaseTransaccionService extends MantenibleService<ClaseTransaccion>
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ClaseTransaccion registrarClaseTransaccion(ClaseTransaccion claseTransaccion) {
-		super.registrar(claseTransaccion);
+		this.registrar(claseTransaccion);
 		return claseTransaccion;
 	}
 	
@@ -35,7 +35,7 @@ public class ClaseTransaccionService extends MantenibleService<ClaseTransaccion>
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ClaseTransaccion actualizarClaseTransaccion(int idClaseTransaccion, ClaseTransaccion claseTransaccion) {
 		claseTransaccion.setIdClaseTransaccion(idClaseTransaccion);
-		super.actualizar(claseTransaccion);
+		this.actualizar(claseTransaccion);
 		return claseTransaccion;
 	}
 	
@@ -43,7 +43,6 @@ public class ClaseTransaccionService extends MantenibleService<ClaseTransaccion>
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarClaseTransaccion(int idClaseTransaccion) {
 		ClaseTransaccion claseTransaccion = ClaseTransaccion.builder().idClaseTransaccion(idClaseTransaccion).build();
-		super.eliminar(claseTransaccion);
+		this.eliminar(claseTransaccion);
 	}
-	
 }

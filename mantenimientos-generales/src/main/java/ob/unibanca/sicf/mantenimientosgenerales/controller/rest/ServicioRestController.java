@@ -35,20 +35,21 @@ public class ServicioRestController {
 	}
 	
 	@GetMapping("/membresias/{idMembresia}/servicios")
-	public List<Servicio> buscarServiciosMembresia(
-		@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
-		return this.servicioService.buscarServiciosMembresia(idMembresia);
+	public List<Servicio> buscarServiciosPorMembresia(
+			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
+		return this.servicioService.buscarServiciosPorMembresia(idMembresia);
 	}
-
+	
 	@PostMapping(value = "/membresias/{idMembresia}/servicios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Servicio registrarServicio(
-		@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-		@Validated({IRegistro.class, Default.class}) @RequestBody Servicio servicio) {
+			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
+			@Validated({IRegistro.class, Default.class}) @RequestBody Servicio servicio) {
 		return this.servicioService.registrarServicio(idMembresia, servicio);
 	}
 	
-	@PutMapping(value = "/membresias/{idMembresia}/servicios/{idServicio}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/membresias/{idMembresia}/servicios/{idServicio}",
+	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Servicio actualizarServicio(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idServicio,

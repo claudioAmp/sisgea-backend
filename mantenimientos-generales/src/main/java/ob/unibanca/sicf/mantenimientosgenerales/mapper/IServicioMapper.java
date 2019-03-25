@@ -10,8 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface IServicioMapper extends IMantenibleMapper<Servicio> {
 	
-	Optional<Servicio> buscarUno(String idMembresia, String idServicio);
+	Optional<Servicio> buscarServicio(String idMembresia, String idServicio);
 
-	List<Servicio> buscarServiciosMembresia(String idMembresia);
-	
+	List<Servicio> buscarServiciosPorMembresia(String idMembresia);
 }

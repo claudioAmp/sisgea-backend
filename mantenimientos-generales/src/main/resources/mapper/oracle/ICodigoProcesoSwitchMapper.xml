@@ -20,7 +20,7 @@
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarUno" resultType="CodigoProcesoSwitch">
+    <select id="buscarCodigoProcesoSwitch" resultType="CodigoProcesoSwitch">
         <include refid="consultaVistaMant"/>
         WHERE
             id_codigo_proceso_switch  = #{idCodigoProcesoSwitch}
@@ -32,9 +32,9 @@
             CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_PROCESO_SWITCH(
                 #{modo, 								            jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idCodigoProcesoSwitch, 	        jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcionCodigoProcesoSwitch,   jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.abreviatura, 			            jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idClaseTransaccion,  	            jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionCodigoProcesoSwitch, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.abreviatura, 			        jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion,  	        jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idCodigoTransaccion,  	        jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.transaccionMonetaria,  	        jdbcType=BOOLEAN, mode=IN},
                 #{objetoMantenido.aplicaInteres,  	                jdbcType=BOOLEAN, mode=IN},

@@ -9,6 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface IInstitucionMapper extends IMantenibleMapper<Institucion> {
 
-	Optional<Institucion> buscarUno(int idInstitucion);
-
+	Optional<Institucion> buscarInstitucion(int idInstitucion);
 }

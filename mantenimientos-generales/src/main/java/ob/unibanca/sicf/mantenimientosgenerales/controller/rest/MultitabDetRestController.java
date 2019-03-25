@@ -34,9 +34,9 @@ public class MultitabDetRestController {
 	}
 	
 	@GetMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets")
-	public List<MultitabDet> buscarMultitabsDetMultitabCab(
+	public List<MultitabDet> buscarMultitabsDetPorMultitabCab(
 			@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab) {
-		return this.multitabDetService.buscarMultitabsDetMultitabCab(idMultitabCab);
+		return this.multitabDetService.buscarMultitabsDetPorMultitabCab(idMultitabCab);
 	}
 	
 	@PostMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets",
@@ -63,5 +63,4 @@ public class MultitabDetRestController {
 			                                String idMultitabDet) {
 		this.multitabDetService.eliminarMultitabDet(idMultitabCab, idMultitabDet);
 	}
-	
 }

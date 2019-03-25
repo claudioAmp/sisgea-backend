@@ -9,14 +9,6 @@
         FROM MAE_ORIGEN
     </select>
 
-    <select id="buscarUno" resultType="Origen"
-            statementType="PREPARED">
-        SELECT id_origen
-             , descripcion AS descripcion_origen
-        FROM MAE_ORIGEN
-        WHERE id_origen = #{idOrigen}
-    </select>
-
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {

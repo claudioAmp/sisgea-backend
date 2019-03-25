@@ -9,7 +9,7 @@ public interface IServicioService extends IMantenibleService<Servicio> {
 	
 	List<Servicio> buscarTodosServicios();
 	
-	List<Servicio> buscarServiciosMembresia(String idMembresia);
+	List<Servicio> buscarServiciosPorMembresia(String idMembresia);
 	
 	Servicio buscarServicio(String idMembresia, String idServicio);
 	
@@ -18,5 +18,4 @@ public interface IServicioService extends IMantenibleService<Servicio> {
 	Servicio actualizarServicio(String idMembresia, String idServicio, Servicio bin);
 	
 	void eliminarServicio(String idMembresia, String idServicio);
-	
 }

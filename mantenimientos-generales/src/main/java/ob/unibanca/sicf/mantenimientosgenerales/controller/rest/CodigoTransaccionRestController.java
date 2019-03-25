@@ -35,9 +35,9 @@ public class CodigoTransaccionRestController {
 	}
 	
 	@GetMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones")
-	public List<CodigoTransaccion> buscarCodigosTransaccionClaseTransaccion(
+	public List<CodigoTransaccion> buscarCodigosTransaccionPorClaseTransaccion(
 			@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion) {
-		return this.codigoTransaccionService.buscarCodigosTransaccionClaseTransaccion(idClaseTransaccion);
+		return this.codigoTransaccionService.buscarCodigosTransaccionPorClaseTransaccion(idClaseTransaccion);
 	}
 	
 	@PostMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones",

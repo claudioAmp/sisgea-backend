@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class BINService extends MantenibleService<BIN> implements IBINService {
 	
-	private static final String BIN_NO_ENCONTRADO = "El BIN %s no fue encontrado";
+	private static final String BIN_NO_ENCONTRADO = "El BIN %s no existe";
 	private final IBINMapper binMapper;
 	
 	public BINService(@Qualifier("IBINMapper") IMantenibleMapper<BIN> mantenibleMapper) {
@@ -54,7 +54,7 @@ public class BINService extends MantenibleService<BIN> implements IBINService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public BIN buscarBIN(String idBIN) {
-		return this.binMapper.buscarUno(idBIN).orElseThrow(
+		return this.binMapper.buscarBIN(idBIN).orElseThrow(
 				() -> new RecursoNoEncontradoException(BIN_NO_ENCONTRADO, idBIN));
 	}
 }

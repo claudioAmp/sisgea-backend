@@ -17,7 +17,6 @@ public class MultitabCabService extends MantenibleService<MultitabCab> implement
 		super(mantenibleMapper);
 	}
 	
-	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<MultitabCab> buscarTodosMultitabsCab() {
@@ -27,7 +26,7 @@ public class MultitabCabService extends MantenibleService<MultitabCab> implement
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public MultitabCab registrarMultitabCab(MultitabCab multitabCab) {
-		super.registrar(multitabCab);
+		this.registrar(multitabCab);
 		return multitabCab;
 	}
 	
@@ -35,7 +34,7 @@ public class MultitabCabService extends MantenibleService<MultitabCab> implement
 	@Transactional(propagation = Propagation.REQUIRED)
 	public MultitabCab actualizarMultitabCab(int idMultitabCab, MultitabCab multitabCab) {
 		multitabCab.setIdMultitabCab(idMultitabCab);
-		super.actualizar(multitabCab);
+		this.actualizar(multitabCab);
 		return multitabCab;
 	}
 	
@@ -43,7 +42,6 @@ public class MultitabCabService extends MantenibleService<MultitabCab> implement
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarMultitabCab(int idMultitabCab) {
 		MultitabCab multitabCab = MultitabCab.builder().idMultitabCab(idMultitabCab).build();
-		super.eliminar(multitabCab);
+		this.eliminar(multitabCab);
 	}
-	
 }

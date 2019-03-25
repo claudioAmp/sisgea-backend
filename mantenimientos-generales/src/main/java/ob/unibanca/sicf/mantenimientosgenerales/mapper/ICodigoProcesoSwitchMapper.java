@@ -9,6 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface ICodigoProcesoSwitchMapper extends IMantenibleMapper<CodigoProcesoSwitch> {
 
-    Optional<CodigoProcesoSwitch> buscarUno(String idCodigoProcesoSwitch);
-
+    Optional<CodigoProcesoSwitch> buscarCodigoProcesoSwitch(String idCodigoProcesoSwitch);
 }

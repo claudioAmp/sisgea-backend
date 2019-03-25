@@ -14,7 +14,7 @@ import java.util.List;
 @Validated
 @RestController
 public class ParametroSistemaRestController {
-
+	
 	private final IParametroSistemaService parametroSistemaService;
 	
 	public ParametroSistemaRestController(IParametroSistemaService parametroSistemaService) {
@@ -22,7 +22,7 @@ public class ParametroSistemaRestController {
 	}
 	
 	@GetMapping("/parametros-sistema")
-	public List<ParametroSistema> buscarTodosParametrosSistema(){
+	public List<ParametroSistema> buscarTodosParametrosSistema() {
 		return this.parametroSistemaService.buscarTodosParametrosSistema();
 	}
 	

@@ -10,7 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface IMultitabDetMapper extends IMantenibleMapper<MultitabDet> {
 
-	Optional<MultitabDet> buscarUno(int idMultitabCab, String idMultitabDet);
+	Optional<MultitabDet> buscarMultiTabDet(int idMultitabCab, String idMultitabDet);
 	
-	List<MultitabDet> buscarMultitabsDetMultitabCab(int idMultitabCab);
+	List<MultitabDet> buscarMultitabsDetPorMultitabCab(int idMultitabCab);
 }

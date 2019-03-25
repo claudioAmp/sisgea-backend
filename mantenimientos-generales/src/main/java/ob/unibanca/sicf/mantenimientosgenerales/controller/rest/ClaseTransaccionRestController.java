@@ -53,5 +53,4 @@ public class ClaseTransaccionRestController {
 	public void eliminarClaseTransaccion(@IdNumerico(maxRange = 99999) @PathVariable int idClaseTransaccion) {
 		this.claseTransaccionService.eliminarClaseTransaccion(idClaseTransaccion);
 	}
-	
 }
