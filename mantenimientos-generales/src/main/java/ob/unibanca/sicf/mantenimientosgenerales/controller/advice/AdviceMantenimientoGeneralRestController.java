@@ -1,9 +1,9 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.advice;
 
-import ob.commons.validation.enumeration.BaseDatos;
-import ob.commons.validation.exception.RecursoNoEncontradoException;
-import ob.commons.validation.model.ErrorResponse;
-import ob.commons.validation.util.BaseDatosExcepcionUtil;
+import ob.commons.error.enumeration.BaseDatos;
+import ob.commons.error.exception.RecursoNoEncontradoException;
+import ob.commons.error.model.ErrorResponse;
+import ob.commons.error.util.BaseDatosExcepcionUtil;
 import ob.commons.validation.util.ErrorResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

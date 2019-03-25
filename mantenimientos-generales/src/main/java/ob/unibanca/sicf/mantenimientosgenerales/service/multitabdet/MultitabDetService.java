@@ -1,8 +1,8 @@
 package ob.unibanca.sicf.mantenimientosgenerales.service.multitabdet;
 
+import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
-import ob.commons.validation.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IMultitabDetMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.MultitabDet;
 import org.springframework.beans.factory.annotation.Qualifier;

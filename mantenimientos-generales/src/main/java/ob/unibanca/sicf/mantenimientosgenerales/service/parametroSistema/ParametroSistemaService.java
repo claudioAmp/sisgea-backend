@@ -1,8 +1,8 @@
 package ob.unibanca.sicf.mantenimientosgenerales.service.parametrosistema;
 
+import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
-import ob.commons.validation.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ParametroSistema;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ParametroSistemaService extends MantenibleService<ParametroSistema> implements IParametroSistemaService {
 	
-	private static final String PARAMETRO_SISTEMA_NO_ENCONTRADO = "Parámetros Sistema no encontrados.";
+	private static final String PARAMETRO_SISTEMA_NO_ENCONTRADO = "Los parámetros sistema no existen.";
 	
 	public ParametroSistemaService(
 			@Qualifier("IParametroSistemaMapper") IMantenibleMapper<ParametroSistema> mantenibleMapper) {

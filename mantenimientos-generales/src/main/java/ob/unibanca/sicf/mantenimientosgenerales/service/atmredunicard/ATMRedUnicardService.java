@@ -1,8 +1,8 @@
 package ob.unibanca.sicf.mantenimientosgenerales.service.atmredunicard;
 
+import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
-import ob.commons.validation.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IATMRedUnicardMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedUnicard;
 import org.springframework.beans.factory.annotation.Qualifier;

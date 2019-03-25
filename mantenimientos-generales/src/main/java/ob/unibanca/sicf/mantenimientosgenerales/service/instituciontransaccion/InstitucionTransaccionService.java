@@ -1,8 +1,8 @@
 package ob.unibanca.sicf.mantenimientosgenerales.service.instituciontransaccion;
 
+import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
-import ob.commons.validation.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IInstitucionTransaccionMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.InstitucionTransaccion;
 import org.springframework.beans.factory.annotation.Qualifier;
