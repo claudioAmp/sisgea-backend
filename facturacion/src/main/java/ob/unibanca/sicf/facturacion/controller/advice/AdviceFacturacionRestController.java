@@ -4,9 +4,10 @@ import ob.commons.error.enumeration.BaseDatos;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.error.model.ErrorResponse;
 import ob.commons.error.util.BaseDatosExcepcionUtil;
+import ob.commons.error.util.ErrorResponseUtil;
 import ob.commons.excel.exception.ReadingExcelFileException;
 import ob.commons.excel.util.ReadingExcelFileExceptionUtil;
-import ob.commons.validation.util.ErrorResponseUtil;
+import ob.commons.validation.util.ValidationErrorResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,14 +28,14 @@ public class AdviceFacturacionRestController {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		logger.error(e.getMessage(), e);
-		return ErrorResponseUtil.convertirErrorResponse(e.getBindingResult());
+		return ValidationErrorResponseUtil.convertirErrorResponse(e.getBindingResult());
 	}
 	
 	@ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ErrorResponse onConstraintViolationException(ConstraintViolationException e) {
 		logger.error(e.getMessage(), e);
-		return ErrorResponseUtil.convertirErrorResponse(e);
+		return ValidationErrorResponseUtil.convertirErrorResponse(e);
 	}
 	
 	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
