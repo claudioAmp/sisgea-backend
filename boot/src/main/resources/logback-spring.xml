@@ -13,11 +13,11 @@
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOG_PATH}/${LOG_FILE}.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/simp/${LOG_FILE}.%d{yyyy-MM-dd}.%i.log
+            <FileNamePattern>${LOG_PATH}/sicf-backend/${LOG_FILE}.%d{yyyy-MM-dd}.%i.log
             </FileNamePattern>
             <maxFileSize>64MB</maxFileSize>
             <!-- Los archivos serán borrados si tienen 30 días de antiguedad
-                 o todos los archivos superan el tamaño de 500MB -->
+                 o todos los archivos superan el tamaño de 512MB -->
             <maxHistory>30</maxHistory>
             <totalSizeCap>512MB</totalSizeCap>
         </rollingPolicy>
@@ -31,7 +31,7 @@
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
         </logger>
-        <logger name="ob.unibanca.sicf" level="debug" additivity="false">
+        <logger name="ob.unibanca.sicf" level="info" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
         </logger>
