@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.Institucion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.institucion.IInstitucionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class InstitucionRestController {
 		this.institucionService = institucionService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTIT', '2')")
 	@GetMapping(value = "/instituciones")
 	public List<Institucion> buscarTodosInstituciones() {
 		return this.institucionService.buscarTodosInstituciones();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTIT', '1')")
 	@PostMapping(value = "/instituciones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Institucion registrarInstitucion(
@@ -41,12 +44,14 @@ public class InstitucionRestController {
 		return this.institucionService.registrarInstitucion(institucion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTIT', '3')")
 	@PutMapping(value = "/instituciones/{idInstitucion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Institucion actualizarInstitucion(@IdNumerico(maxRange = 99999) @PathVariable int idInstitucion,
 	                                         @Validated @RequestBody Institucion institucion) {
 		return this.institucionService.actualizarInstitucion(idInstitucion, institucion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTIT', '4')")
 	@DeleteMapping(value = "/instituciones/{idInstitucion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarInstitucion(@IdNumerico(maxRange = 99999) @PathVariable int idInstitucion) {
