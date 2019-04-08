@@ -14,11 +14,13 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Esta clase se encarga de arrancar los módulos declarados en el pom.xml
+ * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.
  * <p>
  * Para realizar el arranque de los módulos, es necesario que en la anotación
- * {@code @SpringBootApplication} se declaren las clases Main de dichos módulos
+ * {@code @SpringBootApplication} se declaren las clases Main de dichos módulos.
  * </p>
+ *
+ * @author Hanz Llanto
  */
 @SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class})
 public class SicfBoot {
@@ -46,11 +48,11 @@ public class SicfBoot {
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}
-
+	
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-		multipartResolver.setMaxUploadSize(3L * 1024L * 1024L);	// 3MB
+		multipartResolver.setMaxUploadSize(3L * 1024L * 1024L);    // 3MB
 		return multipartResolver;
 	}
 }
