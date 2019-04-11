@@ -1,7 +1,8 @@
 package ob.unibanca.sicf.boot;
 
-import ob.unibanca.sicf.facturacion.FacturacionBoot;
-import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +11,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import java.util.Arrays;
-import java.util.Collections;
+import ob.unibanca.sicf.facturacion.FacturacionBoot;
+import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
+import ob.unibanca.sicf.tarifario.TarifariosBoot;
 
 /**
  * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.
@@ -22,7 +24,7 @@ import java.util.Collections;
  *
  * @author Hanz Llanto
  */
-@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class})
+@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, TarifariosBoot.class})
 public class SicfBoot {
 	
 	public static void main(String[] args) {
