@@ -8,6 +8,7 @@
         <module>mantenimientos-generales</module>
         <module>facturacion</module>
         <module>boot</module>
+        <module>tarifarios</module>
     </modules>
 
     <!-- Modulo padre Spring Boot -->
