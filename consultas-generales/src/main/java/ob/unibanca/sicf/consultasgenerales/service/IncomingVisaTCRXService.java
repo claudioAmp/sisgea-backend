@@ -9,7 +9,7 @@ import ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTCRXMapper;
 import ob.unibanca.sicf.consultasgenerales.model.IncomingVisaTCR0;
 
 
-public class IncomingVisaTCRXService {
+public class IncomingVisaTCRXService implements IIncomingVisaTCRXService{
 	
 	IIncomingVisaTCRXMapper incomingVisaTCR0;
 	

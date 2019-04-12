@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.controller;
+package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
 import java.util.List;
 
@@ -20,7 +20,8 @@ public class IncomingVisaTCRXController {
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcrxs")
-	public List<IncomingVisaTCR0> buscarTodosCodigoProcesoSwitches() {
+	public List<IncomingVisaTCR0> buscarTodosIncomingVisaTCR0() {
+		System.out.println("llegue");
 		return this.incomingVisaTCRXService.buscarTodosIncomingVisaTCR0();
 	}
 }
