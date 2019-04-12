@@ -19,7 +19,7 @@ public class IncomingVisaTCRXController {
 		this.incomingVisaTCRXService = incomingVisaTCRXService;
 	}
 	
-	@GetMapping(value = "/incomings-visa-tcrxs")
+	@GetMapping(value = "/incomings-visa-tcr0s")
 	public List<IncomingVisaTCR0> buscarTodosIncomingVisaTCR0() {
 		System.out.println("llegue");
 		return this.incomingVisaTCRXService.buscarTodosIncomingVisaTCR0();

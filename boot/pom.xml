@@ -28,6 +28,11 @@
             <artifactId>tarifarios</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>ob.unibanca.sicf</groupId>
+            <artifactId>consultas-generales</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

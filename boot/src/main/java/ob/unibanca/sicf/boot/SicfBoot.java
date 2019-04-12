@@ -11,6 +11,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import ob.unibanca.sicf.consultasgenerales.ConsultasGeneralesBoot;
 import ob.unibanca.sicf.facturacion.FacturacionBoot;
 import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
 import ob.unibanca.sicf.tarifario.TarifariosBoot;
@@ -24,7 +25,7 @@ import ob.unibanca.sicf.tarifario.TarifariosBoot;
  *
  * @author Hanz Llanto
  */
-@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, TarifariosBoot.class})
+@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, TarifariosBoot.class,ConsultasGeneralesBoot.class})
 public class SicfBoot {
 	
 	public static void main(String[] args) {
