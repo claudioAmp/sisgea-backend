@@ -4,14 +4,17 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.ItemPagina;
 
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomingVisaTCR0 {
+@EqualsAndHashCode(callSuper = false)
+public class IncomingVisaTCR0 extends ItemPagina{
 
 		private int idSecuenciaIncoming;
 		private String transactionCode;
@@ -45,8 +48,10 @@ public class IncomingVisaTCR0 {
 		private String cardholderIdMethod;
 		private String collectionOnlyFlag;
 		private String entryMode;
-		private Date CentralProcessingDate;
-		private String ReimbursementAttribute;
-		private Date FechaProceso;
+		private Date centralProcessingDate;
+		private String reimbursementAttribute;
+		private Date fechaProceso;
+		
+		private Integer totalFilas;//agregado
 
 }

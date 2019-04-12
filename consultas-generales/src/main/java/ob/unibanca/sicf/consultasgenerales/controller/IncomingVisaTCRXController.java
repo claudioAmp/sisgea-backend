@@ -1,0 +1,26 @@
+package ob.unibanca.sicf.consultasgenerales.controller;
+
+import java.util.List;
+
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ob.unibanca.sicf.consultasgenerales.model.IncomingVisaTCR0;
+import ob.unibanca.sicf.consultasgenerales.service.IIncomingVisaTCRXService;
+
+
+@Validated
+@RestController
+public class IncomingVisaTCRXController {
+	private final IIncomingVisaTCRXService incomingVisaTCRXService;
+	
+	public IncomingVisaTCRXController(IIncomingVisaTCRXService incomingVisaTCRXService) {
+		this.incomingVisaTCRXService = incomingVisaTCRXService;
+	}
+	
+	@GetMapping(value = "/incomings-visa-tcrxs")
+	public List<IncomingVisaTCR0> buscarTodosCodigoProcesoSwitches() {
+		return this.incomingVisaTCRXService.buscarTodosIncomingVisaTCR0();
+	}
+}
