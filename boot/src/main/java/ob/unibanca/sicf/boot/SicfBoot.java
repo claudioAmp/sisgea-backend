@@ -25,7 +25,8 @@ import ob.unibanca.sicf.tarifario.TarifariosBoot;
  *
  * @author Hanz Llanto
  */
-@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, TarifariosBoot.class,ConsultasGeneralesBoot.class})
+@SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, 
+		TarifariosBoot.class,ConsultasGeneralesBoot.class})
 public class SicfBoot {
 	
 	public static void main(String[] args) {

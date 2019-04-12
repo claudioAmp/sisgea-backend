@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ob.unibanca.sicf.consultasgenerales.model.IncomingVisaTCR0;
-import ob.unibanca.sicf.consultasgenerales.service.IIncomingVisaTCRXService;
+import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.IIncomingVisaTCRXService;
 
 
 @Validated
