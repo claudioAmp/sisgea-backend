@@ -14,6 +14,10 @@ public class IncomingVisaTCRXService implements IIncomingVisaTCRXService{
 	
 	IIncomingVisaTCRXMapper incomingVisaTCR0;
 	
+	public IncomingVisaTCRXService(IIncomingVisaTCRXMapper incomingVisaTCR0) {
+		this.incomingVisaTCR0 = incomingVisaTCR0;
+	}
+	
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<IncomingVisaTCR0> buscarTodosIncomingVisaTCR0() {
 		return incomingVisaTCR0.buscarTodosTCR0();
