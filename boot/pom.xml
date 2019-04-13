@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>boot</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -23,9 +23,20 @@
             <artifactId>facturacion</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>ob.unibanca.sicf</groupId>
+            <artifactId>tarifarios</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ob.unibanca.sicf</groupId>
+            <artifactId>consultas-generales</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>sicf#api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
