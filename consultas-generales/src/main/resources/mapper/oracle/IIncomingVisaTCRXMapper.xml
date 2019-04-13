@@ -3,7 +3,7 @@
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTCRXMapper">
 	<select id = "buscarTodosTCR0" statementType="CALLABLE" 
 		parameterType="CriterioPaginacion">		
-			{call PKG_CON_MOV.USP_CON_LOG_CONTABLE_TIPO_DOC
+			{call PKG_CON_REPORTES.PCR_CON_INCOMING_VISA_TCR0
 			(
 				#{criterioBusqueda.idSecuenciaIncoming, jdbcType=INTEGER, mode = IN},
 				#{criterioBusqueda.transactionCode, jdbcType=VARCHAR, mode = IN},
