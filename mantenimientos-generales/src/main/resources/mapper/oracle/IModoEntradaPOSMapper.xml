@@ -5,7 +5,8 @@
     <sql id="consultaVistaMant">
         SELECT id_membresia
              , id_modo_entrada_pos
-             , descripcion
+             , descripcion_modo_entrada_pos
+             , descripcion_membresia
         FROM VIE_MAN_MODO_ENTRADA_POS
     </sql>
 
@@ -27,11 +28,11 @@
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_MODO_ENTRADA_POS(
-                #{modo,                                 jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMembresia,          jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idModoEntradaPOS,     jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcion,  		jdbcType=VARCHAR, mode=IN},
-                #{usuario,                              jdbcType=VARCHAR, mode=IN}
+                #{modo,                                 		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia,          		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idModoEntradaPOS,     		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionModoEntradaPOS,  	jdbcType=VARCHAR, mode=IN},
+                #{usuario,                              		jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

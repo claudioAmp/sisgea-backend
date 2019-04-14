@@ -14,11 +14,11 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class ModoEntradaPOS{
 	
-	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
+	private String descripcionMembresia;
 	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+", groups = IRegistro.class)
 	private String idModoEntradaPOS;
 	@CaracterRequerido(maxLength = 80)
-	private String descripcion;
+	private String descripcionModoEntradaPOS;
 
 }

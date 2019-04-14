@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ICapacidadTerminalPOSService extends IMantenibleService<CapacidadTerminalPOS> {
 	
-	List<CapacidadTerminalPOS> buscarTodosCapacidadTerminalPOS();
+	List<CapacidadTerminalPOS> buscarTodosCapacidadesTerminalesPOS();
 	
-	List<CapacidadTerminalPOS> buscarCapacidadTerminalPOSPorMembresia(String idMembresia);
+	List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(String idMembresia);
 	
 	CapacidadTerminalPOS buscarCapacidadTerminalPOS(String idMembresia, String idTerminalPOS);
 	
