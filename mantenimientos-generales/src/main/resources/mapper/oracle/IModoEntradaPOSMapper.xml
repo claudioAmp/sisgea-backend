@@ -6,7 +6,7 @@
         SELECT id_membresia
              , id_modo_entrada_pos
              , descripcion
-        FROM VIE_MAN_SERVICIO
+        FROM VIE_MAN_MODO_ENTRADA_POS
     </sql>
 
     <select id="buscarTodos" resultType="ModoEntradaPOS" statementType="PREPARED">
