@@ -49,7 +49,7 @@ public class ModoEntradaPOSService extends MantenibleService<ModoEntradaPOS> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<ModoEntradaPOS> buscarTodosModoEntradaPOS() {
+	public List<ModoEntradaPOS> buscarTodosModosEntradasPOS() {
 		return this.buscarTodos();
 	}
 	
@@ -62,7 +62,7 @@ public class ModoEntradaPOSService extends MantenibleService<ModoEntradaPOS> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<ModoEntradaPOS> buscarModoEntradaPOSPorMembresia(String idMembresia) {
-		return this.modoEntradaPOSMapper.buscarModoEntradaPOSPorMembresia(idMembresia);
+	public List<ModoEntradaPOS> buscarModosEntradasPOSPorMembresia(String idMembresia) {
+		return this.modoEntradaPOSMapper.buscarModosEntradasPOSPorMembresia(idMembresia);
 	}
 }

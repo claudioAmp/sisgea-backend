@@ -12,6 +12,6 @@ public interface IModoEntradaPOSMapper extends IMantenibleMapper<ModoEntradaPOS>
 	
 	Optional<ModoEntradaPOS> buscarModoEntradaPOS(String idMembresia, String idModoEntradaPOS);
 
-    List<ModoEntradaPOS> buscarModoEntradaPOSPorMembresia(String idMembresia);
+    List<ModoEntradaPOS> buscarModosEntradasPOSPorMembresia(String idMembresia);
     
 }

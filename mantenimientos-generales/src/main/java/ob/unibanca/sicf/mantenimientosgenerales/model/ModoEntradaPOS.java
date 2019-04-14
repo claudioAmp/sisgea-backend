@@ -16,7 +16,7 @@ public class ModoEntradaPOS{
 	
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
-	@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
+	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+", groups = IRegistro.class)
 	private String idModoEntradaPOS;
 	@CaracterRequerido(maxLength = 80)
 	private String descripcion;

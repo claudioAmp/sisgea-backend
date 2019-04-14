@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IModoEntradaPOSService extends IMantenibleService<ModoEntradaPOS> {
 	
-	List<ModoEntradaPOS> buscarTodosModoEntradaPOS();
+	List<ModoEntradaPOS> buscarTodosModosEntradasPOS();
 	
-	List<ModoEntradaPOS> buscarModoEntradaPOSPorMembresia(String idMembresia);
+	List<ModoEntradaPOS> buscarModosEntradasPOSPorMembresia(String idMembresia);
 	
 	ModoEntradaPOS buscarModoEntradaPOS(String idMembresia, String idModoEntradaPOS);
 	

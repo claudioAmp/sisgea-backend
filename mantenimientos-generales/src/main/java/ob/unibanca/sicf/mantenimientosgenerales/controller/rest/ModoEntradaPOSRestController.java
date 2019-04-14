@@ -29,18 +29,18 @@ public class ModoEntradaPOSRestController {
 		this.modoEntradaPOSService = modoEntradaPOSService;
 	}
 	
-	@GetMapping("/modoEntradaPOS")
+	@GetMapping("/modos-entradas-pos")
 	public List<ModoEntradaPOS> buscarTodosModoEntradaPOS() {
-		return this.modoEntradaPOSService.buscarTodosModoEntradaPOS();
+		return this.modoEntradaPOSService.buscarTodosModosEntradasPOS();
 	}
 	
-	@GetMapping("/membresias/{idMembresia}/modoEntradaPOS")
-	public List<ModoEntradaPOS> buscarModoEntradaPOSPorMembresia(
+	@GetMapping("/membresias/{idMembresia}/modos-entradas-pos")
+	public List<ModoEntradaPOS> buscarModosEntradasPOSPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
-		return this.modoEntradaPOSService.buscarModoEntradaPOSPorMembresia(idMembresia);
+		return this.modoEntradaPOSService.buscarModosEntradasPOSPorMembresia(idMembresia);
 	}
 	
-	@PostMapping(value = "/membresias/{idMembresia}/modoEntradaPOS", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/membresias/{idMembresia}/modos-entradas-pos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ModoEntradaPOS registrarModoEntradaPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
@@ -48,20 +48,20 @@ public class ModoEntradaPOSRestController {
 		return this.modoEntradaPOSService.registrarModoEntradaPOS(idMembresia, modoEntradaPOS);
 	}
 	
-	@PutMapping(value = "/membresias/{idMembresia}/modoEntradaPOS/{idModoEntradaPOS}",
+	@PutMapping(value = "/membresias/{idMembresia}/modos-entradas-pos/{idModoEntradaPOS}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ModoEntradaPOS actualizarModoEntradaPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idModoEntradaPOS,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idModoEntradaPOS,
 			@Validated @RequestBody ModoEntradaPOS modoEntradaPOS) {
 		return this.modoEntradaPOSService.actualizarModoEntradaPOS(idMembresia, idModoEntradaPOS, modoEntradaPOS);
 	}
 	
-	@DeleteMapping("/membresias/{idMembresia}/modoEntradaPOS/{idModoEntradaPOS}")
+	@DeleteMapping("/membresias/{idMembresia}/modos-entradas-pos/{idModoEntradaPOS}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarModoEntradaPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idModoEntradaPOS) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idModoEntradaPOS) {
 		this.modoEntradaPOSService.eliminarModoEntradaPOS(idMembresia, idModoEntradaPOS);
 	}
 }
