@@ -29,18 +29,18 @@ public class CorreoTelefonoRestController {
 		this.correoTelefonoService = correoTelefonoService;
 	}
 	
-	@GetMapping("/correoTelefono")
-	public List<CorreoTelefono> buscarTodosCorreoTelefono() {
-		return this.correoTelefonoService.buscarTodosCorreoTelefono();
+	@GetMapping("/correos-telefonos")
+	public List<CorreoTelefono> buscarTodosCorreosTelefonos() {
+		return this.correoTelefonoService.buscarTodosCorreosTelefonos();
 	}
 	
-	@GetMapping("/membresias/{idMembresia}/correoTelefono")
-	public List<CorreoTelefono> buscarCorreoTelefonoPorMembresia(
+	@GetMapping("/membresias/{idMembresia}/correos-telefonos")
+	public List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
-		return this.correoTelefonoService.buscarCorreoTelefonoPorMembresia(idMembresia);
+		return this.correoTelefonoService.buscarCorreosTelefonosPorMembresia(idMembresia);
 	}
 	
-	@PostMapping(value = "/membresias/{idMembresia}/correoTelefono", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/membresias/{idMembresia}/correos-telefonos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CorreoTelefono registrarCorreoTelefono(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
@@ -48,20 +48,20 @@ public class CorreoTelefonoRestController {
 		return this.correoTelefonoService.registrarCorreoTelefono(idMembresia, correoTelefono);
 	}
 	
-	@PutMapping(value = "/membresias/{idMembresia}/correoTelefono/{idCorreoTelefono}",
+	@PutMapping(value = "/membresias/{idMembresia}/correos-telefonos/{idCorreoTelefono}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CorreoTelefono actualizarCorreoTelefono(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idCorreoTelefono,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCorreoTelefono,
 			@Validated @RequestBody CorreoTelefono correoTelefono) {
 		return this.correoTelefonoService.actualizarCorreoTelefono(idMembresia, idCorreoTelefono, correoTelefono);
 	}
 	
-	@DeleteMapping("/membresias/{idMembresia}/correoTelefono/{idCorreoTelefono}")
+	@DeleteMapping("/membresias/{idMembresia}/correos-telefonos/{idCorreoTelefono}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCorreoTelefono(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idCorreoTelefono) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCorreoTelefono) {
 		this.correoTelefonoService.eliminarCorreoTelefono(idMembresia, idCorreoTelefono);
 	}
 }

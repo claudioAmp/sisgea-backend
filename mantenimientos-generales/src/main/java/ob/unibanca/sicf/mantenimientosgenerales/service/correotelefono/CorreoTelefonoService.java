@@ -49,7 +49,7 @@ public class CorreoTelefonoService extends MantenibleService<CorreoTelefono> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CorreoTelefono> buscarTodosCorreoTelefono() {
+	public List<CorreoTelefono> buscarTodosCorreosTelefonos() {
 		return this.buscarTodos();
 	}
 	
@@ -62,7 +62,7 @@ public class CorreoTelefonoService extends MantenibleService<CorreoTelefono> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CorreoTelefono> buscarCorreoTelefonoPorMembresia(String idMembresia) {
-		return this.correoTelefonoMapper.buscarCorreoTelefonoPorMembresia(idMembresia);
+	public List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(String idMembresia) {
+		return this.correoTelefonoMapper.buscarCorreosTelefonosPorMembresia(idMembresia);
 	}
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ICorreoTelefonoService extends IMantenibleService<CorreoTelefono> {
 	
-	List<CorreoTelefono> buscarTodosCorreoTelefono();
+	List<CorreoTelefono> buscarTodosCorreosTelefonos();
 	
-	List<CorreoTelefono> buscarCorreoTelefonoPorMembresia(String idCorreoTelefono);
+	List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(String idCorreoTelefono);
 	
 	CorreoTelefono buscarCorreoTelefono(String idMembresia, String idCorreoTelefono);
 	

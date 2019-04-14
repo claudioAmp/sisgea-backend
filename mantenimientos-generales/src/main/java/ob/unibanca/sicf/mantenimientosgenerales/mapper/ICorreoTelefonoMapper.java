@@ -12,6 +12,6 @@ public interface ICorreoTelefonoMapper extends IMantenibleMapper<CorreoTelefono>
 	
 	Optional<CorreoTelefono> buscarCorreoTelefono(String idMembresia, String idCorreoTelefono);
 
-    List<CorreoTelefono> buscarCorreoTelefonoPorMembresia(String idMembresia);
+    List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(String idMembresia);
     
 }
