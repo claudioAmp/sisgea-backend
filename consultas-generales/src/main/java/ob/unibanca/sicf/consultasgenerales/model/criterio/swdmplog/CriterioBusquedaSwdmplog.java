@@ -8,14 +8,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion2;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioBusquedaSwdmplog {
-	// formato temporal , falta validar si queda para peticiones GET
+@EqualsAndHashCode(callSuper = false)
+public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaInicioProceso;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
