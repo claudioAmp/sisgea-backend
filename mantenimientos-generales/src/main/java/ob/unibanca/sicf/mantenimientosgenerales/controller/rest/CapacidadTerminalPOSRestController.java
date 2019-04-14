@@ -64,4 +64,5 @@ public class CapacidadTerminalPOSRestController {
 			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idTerminalPOS) {
 		this.capacidadTerminalPOSService.eliminarCapacidadTerminalPOS(idMembresia, idTerminalPOS);
 	}
+	
 }

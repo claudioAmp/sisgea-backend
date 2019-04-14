@@ -59,7 +59,7 @@ public class SicfBoot {
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}
-		
+	
     /**
      * Permite establecer la lista de {@link ViewResolver} que serán utilizados.
      * 

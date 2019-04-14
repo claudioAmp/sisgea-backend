@@ -13,5 +13,4 @@ public interface ICapacidadTerminalPOSMapper extends IMantenibleMapper<Capacidad
 	Optional<CapacidadTerminalPOS> buscarCapacidadTerminalPOS(String idMembresia, String idTerminalPOS);
 
     List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(String idMembresia);
-    
 }

@@ -16,4 +16,5 @@ public interface ITipoTarifaService extends IMantenibleService<TipoTarifa> {
 	TipoTarifa actualizarTipoTarifa(int idTarifa, TipoTarifa tipoTarifa);
 
     void eliminarTipoTarifa(int idTarifa);
+    
 }

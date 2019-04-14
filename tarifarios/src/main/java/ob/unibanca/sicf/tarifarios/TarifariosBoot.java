@@ -9,4 +9,5 @@ public class TarifariosBoot {
 	public static void main(String[] args) {
 		SpringApplication.run(TarifariosBoot.class, args);
 	}
+	
 }

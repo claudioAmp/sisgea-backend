@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ITipoTarifaMapper extends IMantenibleMapper<TipoTarifa> {
 	
 	Optional<TipoTarifa> buscarTipoTarifa(int idTarifa);
-	
+
 }

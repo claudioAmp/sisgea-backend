@@ -18,4 +18,5 @@ public interface ICapacidadTerminalPOSService extends IMantenibleService<Capacid
 	CapacidadTerminalPOS actualizarCapacidadTerminalPOS(String idMembresia, String idTerminalPOS, CapacidadTerminalPOS capacidadTerminalPOS);
 	
 	void eliminarCapacidadTerminalPOS(String idMembresia, String idTerminalPOS);
+	
 }

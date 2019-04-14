@@ -65,4 +65,5 @@ public class CapacidadTerminalPOSService extends MantenibleService<CapacidadTerm
 	public List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(String idMembresia) {
 		return this.capacidadTerminalPOSMapper.buscarCapacidadesTerminalesPOSPorMembresia(idMembresia);
 	}
+	
 }

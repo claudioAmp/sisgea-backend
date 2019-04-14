@@ -20,5 +20,5 @@ public class CapacidadTerminalPOS{
 	private String idTerminalPOS;
 	@CaracterRequerido(maxLength = 60)
 	private String descripcionTerminalPOS;
-
+	
 }

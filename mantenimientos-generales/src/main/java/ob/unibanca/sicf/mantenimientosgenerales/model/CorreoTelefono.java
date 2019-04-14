@@ -20,5 +20,5 @@ public class CorreoTelefono{
 	private String idCorreoTelefono;
 	@CaracterRequerido(maxLength = 80)
 	private String descripcionIndCorreoTel;
-
+	
 }

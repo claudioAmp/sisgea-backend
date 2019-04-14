@@ -18,4 +18,5 @@ public interface ICorreoTelefonoService extends IMantenibleService<CorreoTelefon
 	CorreoTelefono actualizarCorreoTelefono(String idMembresia, String idCorreoTelefono, CorreoTelefono correoTelefono);
 	
 	void eliminarCorreoTelefono(String idMembresia, String idCorreoTelefono);
+	
 }

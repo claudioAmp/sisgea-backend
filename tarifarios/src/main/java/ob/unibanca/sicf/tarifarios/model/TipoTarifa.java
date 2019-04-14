@@ -24,5 +24,5 @@ public class TipoTarifa {
 	private int aplicaDifTxn;
 	
 	private int idEsquema;
-	
+
 }

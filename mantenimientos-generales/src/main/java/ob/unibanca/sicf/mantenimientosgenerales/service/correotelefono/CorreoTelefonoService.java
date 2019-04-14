@@ -65,4 +65,5 @@ public class CorreoTelefonoService extends MantenibleService<CorreoTelefono> imp
 	public List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(String idMembresia) {
 		return this.correoTelefonoMapper.buscarCorreosTelefonosPorMembresia(idMembresia);
 	}
+	
 }

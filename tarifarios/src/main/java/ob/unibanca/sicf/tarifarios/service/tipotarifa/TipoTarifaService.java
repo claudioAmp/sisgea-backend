@@ -57,5 +57,5 @@ public class TipoTarifaService extends MantenibleService<TipoTarifa> implements 
 		return this.tipoTarifaMapper.buscarTipoTarifa(idTarifa).orElseThrow(
 				() -> new RecursoNoEncontradoException(TIPO_TARIFA_NO_ENCONTRADO, idTarifa));
 	}
-	
+
 }
