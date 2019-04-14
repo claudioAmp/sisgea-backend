@@ -49,7 +49,7 @@ public class CapacidadTerminalPOSService extends MantenibleService<CapacidadTerm
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CapacidadTerminalPOS> buscarTodosCapacidadTerminalPOS() {
+	public List<CapacidadTerminalPOS> buscarTodosCapacidadesTerminalesPOS() {
 		return this.buscarTodos();
 	}
 	
@@ -62,7 +62,7 @@ public class CapacidadTerminalPOSService extends MantenibleService<CapacidadTerm
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CapacidadTerminalPOS> buscarCapacidadTerminalPOSPorMembresia(String idMembresia) {
-		return this.capacidadTerminalPOSMapper.buscarCapacidadTerminalPOSPorMembresia(idMembresia);
+	public List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(String idMembresia) {
+		return this.capacidadTerminalPOSMapper.buscarCapacidadesTerminalesPOSPorMembresia(idMembresia);
 	}
 }

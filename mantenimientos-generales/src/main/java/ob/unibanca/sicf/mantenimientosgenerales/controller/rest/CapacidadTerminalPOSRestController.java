@@ -29,18 +29,18 @@ public class CapacidadTerminalPOSRestController {
 		this.capacidadTerminalPOSService = capacidadTerminalPOSService;
 	}
 	
-	@GetMapping("/capacidadTerminalPOS")
-	public List<CapacidadTerminalPOS> buscarTodosCapacidadTerminalPOS() {
-		return this.capacidadTerminalPOSService.buscarTodosCapacidadTerminalPOS();
+	@GetMapping("/capacidades-terminales-pos")
+	public List<CapacidadTerminalPOS> buscarTodosCapacidadesTerminalesPOS() {
+		return this.capacidadTerminalPOSService.buscarTodosCapacidadesTerminalesPOS();
 	}
 	
-	@GetMapping("/membresias/{idMembresia}/capacidadTerminalPOS")
-	public List<CapacidadTerminalPOS> buscarCapacidadTerminalPOSPorMembresia(
+	@GetMapping("/membresias/{idMembresia}/capacidades-terminales-pos")
+	public List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
-		return this.capacidadTerminalPOSService.buscarCapacidadTerminalPOSPorMembresia(idMembresia);
+		return this.capacidadTerminalPOSService.buscarCapacidadesTerminalesPOSPorMembresia(idMembresia);
 	}
 	
-	@PostMapping(value = "/membresias/{idMembresia}/capacidadTerminalPOS", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/membresias/{idMembresia}/capacidades-terminales-pos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CapacidadTerminalPOS registrarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
@@ -48,20 +48,20 @@ public class CapacidadTerminalPOSRestController {
 		return this.capacidadTerminalPOSService.registrarCapacidadTerminalPOS(idMembresia, capacidadTerminalPOS);
 	}
 	
-	@PutMapping(value = "/membresias/{idMembresia}/capacidadTerminalPOS/{idTerminalPOS}",
+	@PutMapping(value = "/membresias/{idMembresia}/capacidades-terminales-pos/{idTerminalPOS}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CapacidadTerminalPOS actualizarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idTerminalPOS,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idTerminalPOS,
 			@Validated @RequestBody CapacidadTerminalPOS capacidadTerminalPOS) {
 		return this.capacidadTerminalPOSService.actualizarCapacidadTerminalPOS(idMembresia, idTerminalPOS, capacidadTerminalPOS);
 	}
 	
-	@DeleteMapping("/membresias/{idMembresia}/capacidadTerminalPOS/{idTerminalPOS}")
+	@DeleteMapping("/membresias/{idMembresia}/capacidades-terminales-pos/{idTerminalPOS}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "[a-zA-Z]") @PathVariable String idTerminalPOS) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idTerminalPOS) {
 		this.capacidadTerminalPOSService.eliminarCapacidadTerminalPOS(idMembresia, idTerminalPOS);
 	}
 }
