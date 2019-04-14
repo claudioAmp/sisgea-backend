@@ -21,7 +21,7 @@ import java.util.List;
 import ob.unibanca.sicf.consultasgenerales.ConsultasGeneralesBoot;
 import ob.unibanca.sicf.facturacion.FacturacionBoot;
 import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
-import ob.unibanca.sicf.tarifario.TarifariosBoot;
+import ob.unibanca.sicf.tarifarios.TarifariosBoot;
 
 /**
  * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.
