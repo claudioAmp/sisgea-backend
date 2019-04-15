@@ -36,7 +36,6 @@ public class ATMRedAsociadaRestController {
 	
 	@GetMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseStatus(code = HttpStatus.CREATED)
 	public List<ATMRedAsociada> buscarATMsRedAsociadaPorInstitucion(
 			@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion) {
 		return this.atmRedAsociadaService.buscarATMsRedAsociadaPorInstitucion(idInstitucion);
