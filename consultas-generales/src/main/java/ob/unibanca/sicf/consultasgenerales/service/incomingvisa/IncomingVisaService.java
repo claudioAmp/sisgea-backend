@@ -36,8 +36,8 @@ public class IncomingVisaService implements IIncomingVisaService{
 	public Page<IncomingVisaTCR0> buscaPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
 		CriterioPaginacion<CriterioBusquedaIncomingVisaTCR0> criterioPaginacion= new CriterioPaginacion<>();
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		criterioPaginacion.setPageNo(50);
-		criterioPaginacion.setPageSize(10);
+		criterioPaginacion.setPageNo(1);
+		criterioPaginacion.setPageSize(15);
 		
 		PageHelper.startPage(criterioPaginacion.getPageNo(), criterioPaginacion.getPageSize()); 
 
