@@ -52,5 +52,4 @@ public class TipoTarifaRestController {
 	public void eliminarTipoTarifa(@IdNumerico(maxRange = 99) @PathVariable int idTarifa) {
 		this.tipoTarifaService.eliminarTipoTarifa(idTarifa);
 	}
-
 }
