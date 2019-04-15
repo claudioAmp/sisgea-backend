@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.model;
+package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 
 import java.util.Date;
 

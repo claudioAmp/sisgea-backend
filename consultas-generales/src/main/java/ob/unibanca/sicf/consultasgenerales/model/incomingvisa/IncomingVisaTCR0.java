@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.model;
+package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.ItemPagina;
 
 
 @Data
@@ -14,7 +13,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.ItemPagina;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class IncomingVisaTCR0 extends ItemPagina{
+public class IncomingVisaTCR0 {
 
 		private int idSecuenciaIncoming;
 		private String transactionCode;
