@@ -31,11 +31,7 @@ public class IncomingVisaService implements IIncomingVisaService{
 		criterioPaginacion.setPageSize(10);
 		
 		PageHelper.startPage(criterioPaginacion.getPageNo(), criterioPaginacion.getPageSize()); 
-		
-		System.out.println("entrandoo Service");
-		System.out.println(criterioBusqueda.getPurchaseDate().getClass());
-		System.out.println(incomingVisaTCR0.buscarPorCriterios(criterioBusqueda));
-		System.out.println("Salio Mapper");
+
        return incomingVisaTCR0.buscarPorCriterios(criterioBusqueda); 
     }
 
