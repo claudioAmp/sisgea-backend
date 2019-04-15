@@ -4,35 +4,35 @@
 	
 	<sql id="consultaVistaMant">
         SELECT id_tarifa
-             , descripcion
+             , descripcion_tipo_tarifa
              , aplica_grupo_bin
              , aplica_dif_txn
              , id_esquema
-            FROM MAE_TIPO_TARIFA
+             , descripcion_esquema
+        FROM VIEW_MAN_TIPO_TARIFA
     </sql>
 
     <select id="buscarTodos" resultType="TipoTarifa" statementType="PREPARED">
        <include refid="consultaVistaMant" />
     </select>
 
-    <select id="buscarBIN" resultType="TipoTarifa">
+    <select id="buscarTipoTarifa" resultType="TipoTarifa">
         <include refid="consultaVistaMant" />
-            WHERE id_bin = #{idTarifa}
+            WHERE id_tarifa = #{idTarifa}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TIPO_TARIFA(
-                #{modo,                             jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idTarifa,         jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcion,   	jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.aplicaGrupoBIN,	jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.aplicaDifTxn,		jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idEsquema,		jdbcType=NUMERIC, mode=IN},
-                #{usuario,                          jdbcType=VARCHAR, mode=IN}
+                #{modo,                             		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idTarifa,         		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionTipoTarifa,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaGrupoBIN,			jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.aplicaDifTxn,				jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idEsquema,				jdbcType=NUMERIC, mode=IN},
+                #{usuario,                          		jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>
-
 </mapper>
