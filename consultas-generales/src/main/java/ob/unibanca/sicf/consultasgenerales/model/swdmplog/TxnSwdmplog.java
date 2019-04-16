@@ -40,4 +40,5 @@ public class TxnSwdmplog {
 	private double settAmountTxnFee;
 	private int cardAcceptorTermId;
 	private String referenceNumber;
+	private String posEntryMode;
 }

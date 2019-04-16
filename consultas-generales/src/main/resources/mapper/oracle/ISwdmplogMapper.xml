@@ -6,11 +6,14 @@
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG consulta
 		<where>
-			<if test="criterioBusqueda.fechaInicioProceso != null">
+			<!-- <if test="criterioBusqueda.fechaInicioProceso != null">
 				consulta.fecha_proceso &gt;= #{criterioBusqueda.fechaInicioProceso}
 			</if>
 			<if test="criterioBusqueda.fechaFinProceso != null">
 				AND consulta.fecha_proceso &lt;= #{criterioBusqueda.fechaFinProceso}
+			</if> -->
+			<if test="criterioBusqueda.fechaProceso != null">
+				AND consulta.fecha_proceso = #{criterioBusqueda.fechaProceso}
 			</if>
 			<if test="criterioBusqueda.fechaInicioTransaccion != null">
 				consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
