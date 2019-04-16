@@ -4,7 +4,7 @@
 
     <sql id="consultaVistaMant">
         SELECT id_codigo_proceso_switch
-             , descripcion
+             , descripcion_cod_proceso_switch
              , abreviatura
              , id_clase_transaccion
              , id_codigo_transaccion

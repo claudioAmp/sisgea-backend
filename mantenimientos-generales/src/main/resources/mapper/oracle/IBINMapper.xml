@@ -10,6 +10,7 @@
              , longitud_pan
              , id_institucion
              , descripcion_institucion
+             , descripcion_corta_institucion 
              , id_membresia
              , descripcion_membresia
              , id_servicio

@@ -27,6 +27,7 @@ public class BIN {
 	@IdNumerico(maxRange = 99999)
 	private int idInstitucion;
 	private String descripcionInstitucion;
+	private String descripcionCortaInstitucion;
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]")
 	private String idMembresia;
 	private String descripcionMembresia;
