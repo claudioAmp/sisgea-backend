@@ -13,7 +13,10 @@ public class CriterioBusquedaIncomingVisaTCR0 {
 	
 	private Integer idSecuenciaIncoming;
 	private String acquirerRefNumber;
-	private String purchaseDate;
+	private String fechaProcesoInicio;
+	private String fechaProcesoFin;
+	private String purchaseDateInicio;
+	private String purchaseDateFin;
 	private Integer destinationAmount;
 	private String merchantName;
 	private String merchantCountryCode;

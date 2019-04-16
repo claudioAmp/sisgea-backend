@@ -2,90 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaMapper">
 		
-	<resultMap type="IncomingVisaTCR0" id="mapIncomingVisaTCR0">
-		<result property="idSecuenciaIncoming" column="id_secuencia_incoming"></result>
-		<result property="transactionCode" column="transaction_code"></result>
-		<result property="transCodeQualifier" column="trans_code_qualifier"></result>
-		<result property="accountNumber" column="account_number"></result>
-		<result property="floorLimitIndicator" column="floor_limit_indicator"></result>
-		<result property="crbExceptionFileInd" column="crb_exception_file_ind"></result>
-		<result property="pcasIndicator" column="pcas_indicator"></result>
-		<result property="acquirerRefNumber" column="acquirer_ref_number"></result>
-		<result property="acquirerBusinessId" column="acquirer_business_id"></result>		
-		<result property="purchaseDate" column="purchase_date"></result>
-		<result property="destinationAmount" column="destination_amount"></result>
-		<result property="destCurrencyCode" column="dest_currency_code"></result>
-		<result property="sourceAmount" column="source_amount"></result>
-		<result property="sourceCurrencyCode" column="source_currency_code"></result>
-		<result property="merchantName" column="merchant_name"></result>
-		<result property="merchantCity" column="merchant_city"></result>
-		<result property="merchantCountryCode" column="merchant_country_code"></result>
-		<result property="merchantCategoryCode" column="merchant_category_code"></result>
-		<result property="merchantZipCode" column="merchant_zip_code"></result>
-		<result property="merchantStateCode" column="merchant_state_code"></result>
-		<result property="requestPaymentServ" column="request_payment_serv"></result>
-		<result property="numberPaymentForms" column="number_payment_forms"></result>
-		<result property="reasonCode" column="reason_code"></result>
-		<result property="usageCode" column="usage_code"></result>
-		<result property="settlementFlag" column="settlement_flag"></result>
-		<result property="authorizationIndicator" column="authorization_indicator"></result>
-		<result property="authorizationCode" column="authorization_code"></result>
-		<result property="posTerminalCapability" column="pos_terminal_capability"></result>
-		<result property="cardholderIdMethod" column="cardholder_id_method"></result>
-		<result property="collectionOnlyFlag" column="collection_only_flag"></result>
-		<result property="entryMode" column="entry_mode"></result>
-		<result property="centralProcessingDate" column="central_processing_date"></result>
-		<result property="reimbursementAttribute" column="reimbursement_attribute"></result>
-		<result property="fechaProceso" column="fecha_proceso"></result>
-		<result property="totalFilas" column="total"></result>
-	</resultMap>
+	
 	
 	<sql id="consultaPorCriteriosTCR0" >
 	
-		SELECT 
-			a.ID_SECUENCIA_INCOMING   AS ID_SECUENCIA_INCOMING,
-	        a.TRANSACTION_CODE        AS TRANSACTION_CODE,
-	        a.TRANS_CODE_QUALIFIER    AS TRANS_CODE_QUALIFIER,
-	        a.ACCOUNT_NUMBER          AS ACCOUNT_NUMBER,
-	        a.ACCOUNT_NUMBER_EXT      AS ACCOUNT_NUMBER_EXT,
-	        a.FLOOR_LIMIT_INDICATOR   AS FLOOR_LIMIT_INDICATOR,
-	        a.CRB_EXCEPTION_FILE_IND  AS CRB_EXCEPTION_FILE_IND,
-	        a.PCAS_INDICATOR          AS PCAS_INDICATOR,
-	        a.ACQUIRER_REF_NUMBER     AS ACQUIRER_REF_NUMBER,
-	        a.ACQUIRER_BUSINESS_ID    AS ACQUIRER_BUSINESS_ID,
-	        a.PURCHASE_DATE           AS PURCHASE_DATE,
-	        a.DESTINATION_AMOUNT      AS DESTINATION_AMOUNT,
-	        a.DEST_CURRENCY_CODE      AS DEST_CURRENCY_CODE,
-	        a.SOURCE_AMOUNT           AS SOURCE_AMOUNT,
-	        a.SOURCE_CURRENCY_CODE    AS SOURCE_CURRENCY_CODE,
-	        a.MERCHANT_NAME           AS MERCHANT_NAME,
-	        a.MERCHANT_CITY           AS MERCHANT_CITY ,
-	        a.MERCHANT_COUNTRY_CODE   AS MERCHANT_COUNTRY_CODE,
-	        a.MERCHANT_CATEGORY_CODE  AS MERCHANT_CATEGORY_CODE,
-	        a.MERCHANT_ZIP_CODE       AS MERCHANT_ZIP_CODE,
-	        a.MERCHANT_STATE_CODE     AS MERCHANT_STATE_CODE,
-	        a.REQUEST_PAYMENT_SERV    AS REQUEST_PAYMENT_SERV,
-	        a.NUMBER_PAYMENT_FORMS    AS NUMBER_PAYMENT_FORMS,
-	        a.REASON_CODE             AS REASON_CODE,
-	        a.USAGE_CODE              AS USAGE_CODE,
-	        a.SETTLEMENT_FLAG         AS SETTLEMENT_FLAG,
-	        a.AUTHORIZATION_INDICATOR AS AUTHORIZATION_INDICATOR,
-	        a.AUTHORIZATION_CODE      AS AUTHORIZATION_CODE,
-	        a.POS_TERMINAL_CAPABILITY AS POS_TERMINAL_CAPABILITY,
-	        a.CARDHOLDER_ID_METHOD    AS CARDHOLDER_ID_METHOD,
-	        a.COLLECTION_ONLY_FLAG    AS COLLECTION_ONLY_FLAG,
-	        a.ENTRY_MODE              AS ENTRY_MODE,
-	        a.CENTRAL_PROCESSING_DATE AS CENTRAL_PROCESSING_DATE,
-	        a.REIMBURSEMENT_ATTRIBUTE AS REIMBURSEMENT_ATTRIBUTE,
-	        a.FECHA_PROCESO           AS FECHA_PROCESO
+		SELECT *
 		
-		FROM MOV_INCOMING_VISA_TCR0 a
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
 			
 	</sql>
-	
+	pucharseDateInicio
 	<sql id = "fragmentoWhereGet" >
-		<if  test="purchaseDate != null ">
-			 a.PURCHASE_DATE = #{purchaseDate}  
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoInicio}
+				
+		</if>
+		<if  test="purchaseDateInicio != null and purchaseDateFin != null">
+			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
 				
 		</if>
 		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != ' ' and idSecuenciaIncoming != -1">
@@ -152,7 +85,7 @@
 	</sql>
 	
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTCR0"  resultMap="mapIncomingVisaTCR0" statementType="PREPARED">
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTCR0"  resultType="IncomingVisaTCR0" statementType="PREPARED">
 				
 		<include refid="consultaPorCriteriosTCR0" />
 			WHERE
@@ -165,104 +98,35 @@
    	<sql id="framentoSelectTCR1" >
 	
 		SELECT 
-			a.ID_SECUENCIA_INCOMING 		AS ID_SECUENCIA_INCOMING,
-			a.CHARGEBACK_REF_NUMBER 		AS CHARGEBACK_REF_NUMBER,
-			a.DOCUMENTATION_INDICATOR 		AS DOCUMENTATION_INDICATOR,
-			a.MEMBER_MESSAGE_TEXT 			AS MEMBER_MESSAGE_TEXT,
-			a.SPECIAL_CONDITION_IND 		AS SPECIAL_CONDITION_IND,
-			a.FEE_PROGRAM_INDICATOR 		AS FEE_PROGRAM_INDICATOR,
-			a.ISSUER_CHARGE 				AS ISSUER_CHARGE,
-			a.CARD_ACCEPTOR_ID 				AS CARD_ACCEPTOR_ID,
-			a.TERMINAL_ID 					AS TERMINAL_ID,
-			a.NATIONAL_REIMBURSEMENT_FEE 	AS NATIONAL_REIMBURSEMENT_FEE,
-			a.MAIL_PHONE_ECOMMERCE_IND 		AS MAIL_PHONE_ECOMMERCE_IND,
-			a.SPECIAL_CHARGEBACK_IND 		AS SPECIAL_CHARGEBACK_IND,
-			a.INTERFACE_TRACE_NUMBER 		AS INTERFACE_TRACE_NUMBER,
-			a.ACCEPTANCE_TERMINAL_IND 		AS ACCEPTANCE_TERMINAL_IND,
-			a.PREPAID_CARD_IND 				AS PREPAID_CARD_IND,
-			a.SERVICE_DEVELOPMENT_FIELD 	AS SERVICE_DEVELOPMENT_FIELD,
-			a.AVS_RESPONSE_CODE 			AS AVS_RESPONSE_CODE,
-			a.AUTHORIZATION_SOURCE_CODE 	AS AUTHORIZATION_SOURCE_CODE,
-			a.PURCHASE_IDENTIFIER_FORMAT 	AS PURCHASE_IDENTIFIER_FORMAT,
-			a.ACCOUNT_SELECTION 			AS ACCOUNT_SELECTION,
-			a.INSTALLMENT_PAYMENT_COUNT 	AS INSTALLMENT_PAYMENT_COUNT,
-			a.PURCHASE_IDENTIFIER 			AS PURCHASE_IDENTIFIER,
-			a.CASHBACK 						AS CASHBACK,
-			a.CHIP_CONDITION_CODE 			AS CHIP_CONDITION_CODE,
-			a.POS_ENVIRONMENT 				AS POS_ENVIRONMENT,
-			a.FECHA_PROCESO 				AS FECHA_PROCESO,
-			a.NUMERO_CUOTA 					AS NUMERO_CUOTA
+			*
 		
-		FROM MOV_INCOMING_VISA_TCR1 a
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR1 a
 			
 	</sql>
 	
 	 <sql id="framentoSelectTCR3" >
 	
 		SELECT 
-			a.ID_SECUENCIA_INCOMING AS ID_SECUENCIA_INCOMING,
-			a.BUSINESS_FORMAT_CODE 	AS BUSINESS_FORMAT_CODE,
-			a.DATA_CONTENT 			AS DATA_CONTENT,
-			a.FECHA_PROCESO 		AS FECHA_PROCESO
+			*
 		
-		FROM MOV_INCOMING_VISA_TCR3 a
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR3 a
 			
 	 </sql>
 	 <sql id="framentoSelectTCR4" >
 	
 		SELECT 
-			a.ID_SECUENCIA_INCOMING 		AS ID_SECUENCIA_INCOMING,
-			a.BUSINESS_FORMAT_CODE 			AS BUSINESS_FORMAT_CODE,
-			a.NETWORK_ID_CODE 				AS NETWORK_ID_CODE,
-			a.CONTACT_INFORMATION 			AS CONTACT_INFORMATION,
-			a.ADJUSTMENT_PROCESSING_IND 	AS ADJUSTMENT_PROCESSING_IND,
-			a.MESSAGE_REASON_CODE 			AS MESSAGE_REASON_CODE,
-			a.SURCHARGE_AMOUNT 				AS SURCHARGE_AMOUNT,
-			a.SURCHARGE_CRE_DEB_IND 		AS SURCHARGE_CRE_DEB_IND,
-			a.SURCHARGE_AMOUNT_CBC 			AS SURCHARGE_AMOUNT_CBC,
-			a.MONEY_TRANSFER_FOREING_FEE 	AS MONEY_TRANSFER_FOREING_FEE,
-			a.FECHA_PROCESO 				AS FECHA_PROCESO
+			*
 		
-		FROM MOV_INCOMING_VISA_TCR4 a
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR4 a
 			
 	 </sql>
 	 
 	 	 <sql id="framentoSelectTCR5" >
 	
 		SELECT 
-			a.ID_SECUENCIA_INCOMING 		AS ID_SECUENCIA_INCOMING,
-			a.TRANSACTION_IDENTIFIER 		AS TRANSACTION_IDENTIFIER,
-			a.AUTHORIZED_AMOUNT 			AS AUTHORIZED_AMOUNT,
-			a.AUTHORIZ_CURRENCY_CODE 		AS AUTHORIZ_CURRENCY_CODE,
-			a.AUTHORIZ_RESPONSE_CODE 		AS AUTHORIZ_RESPONSE_CODE,
-			a.VALIDATION_CODE 				AS VALIDATION_CODE,
-			a.EXCLUDED_TRANS_ID_REASON 		AS EXCLUDED_TRANS_ID_REASON,
-			a.CRS_PROCESSING_CODE 			AS CRS_PROCESSING_CODE,
-			a.CHARGEBACK_RIGHTS_IND 		AS CHARGEBACK_RIGHTS_IND,
-			a.MULTIPLE_CLEARING_SEQ_NUMB 	AS MULTIPLE_CLEARING_SEQ_NUMB,
-			a.MULTIPLE_CLEARING_SEQ_COUNT 	AS MULTIPLE_CLEARING_SEQ_COUNT,
-			a.MARKET_AUTHORIZ_DATA_IND 		AS MARKET_AUTHORIZ_DATA_IND,
-			a.TOTAL_AUTHORIZED_AMOUNT 		AS TOTAL_AUTHORIZED_AMOUNT,
-			a.INFORMATION_INDICATOR 		AS INFORMATION_INDICATOR,
-			a.MERCHANT_TELEPHONE_NUM 		AS MERCHANT_TELEPHONE_NUM,
-			a.MERCHANT_VOLUME_IND 			AS MERCHANT_VOLUME_IND,
-			a.ELECTRONIC_COMMERCE_GOODS 	AS ELECTRONIC_COMMERCE_GOODS,
-			a.MERCHANT_VERIFICATION_VALUE 	AS MERCHANT_VERIFICATION_VALUE,
-			a.INTERCHANGE_FEE_AMOUNT 		AS INTERCHANGE_FEE_AMOUNT,
-			a.INTERCHANGE_FEE_SIGN 			AS INTERCHANGE_FEE_SIGN,
-			a.SOURCE_CURRENCY_RATE 			AS SOURCE_CURRENCY_RATE,
-			a.BASE_CURRENCY_RATE 			AS BASE_CURRENCY_RATE,
-			a.OPTIONAL_ISSUER_ISA_AMOUNT 	AS OPTIONAL_ISSUER_ISA_AMOUNT,
-			a.PRODUCT_ID 					AS PRODUCT_ID,
-			a.PROGRAM_ID 					AS PROGRAM_ID,
-			a.DCC_INDICATOR 				AS DCC_INDICATOR,
-			a.ACCOUNT_TYPE_ID 				AS ACCOUNT_TYPE_ID,
-			a.SPEND_QUALIFIED_IND 			AS SPEND_QUALIFIED_IND,
-			a.PAN_TOKEN 					AS PAN_TOKEN,
-			a.CVV2_RESULT_CODE 				AS PAN_TOKEN,
-			a.FECHA_PROCESO 				AS FECHA_PROCESO
+			*
 		
-		FROM MOV_INCOMING_VISA_TCR5 a
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR5 a
 			
 	 </sql>
 	 
