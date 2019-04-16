@@ -39,4 +39,5 @@ public class TxnSwdmplog {
 	private Date captureDate;
 	private double settAmountTxnFee;
 	private int cardAcceptorTermId;
+	private String referenceNumber;
 }

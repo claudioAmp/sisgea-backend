@@ -2,66 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ISwdmplogMapper">
 
-	<select id="buscarPorCriterios" resultType="TxnSwdmplog">
+	<select id="buscarPorCriterios" resultType="TxnSwdmplog" >
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG consulta
 		<where>
-			<if test="fechaInicioProceso != null">
-				consulta.fecha_proceso &gt;= #{fechaInicioProceso}
+			<if test="criterioBusqueda.fechaInicioProceso != null">
+				consulta.fecha_proceso &gt;= #{criterioBusqueda.fechaInicioProceso}
 			</if>
-			<if test="fechaFinProceso != null">
-				AND consulta.fecha_proceso &lt;= #{fechaFinProceso}
+			<if test="criterioBusqueda.fechaFinProceso != null">
+				AND consulta.fecha_proceso &lt;= #{criterioBusqueda.fechaFinProceso}
 			</if>
-			<if test="fechaInicioTransaccion != null">
-				consulta.transmission_date &gt;= #{fechaInicioTransaccion}
+			<if test="criterioBusqueda.fechaInicioTransaccion != null">
+				consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
 			</if>
-			<if test="fechaFinTransaccion != null">
-				AND consulta.transmission_date &lt;= #{fechaFinTransaccion}
+			<if test="criterioBusqueda.fechaFinTransaccion != null">
+				AND consulta.transmission_date &lt;= #{criterioBusqueda.fechaFinTransaccion}
 			</if>
-			<if test="trace != null and trace != ''">
-				AND consulta.trace_number = #{trace}
+			<if test="criterioBusqueda.trace != null and criterioBusqueda.trace != ''">
+				AND consulta.trace_number = #{criterioBusqueda.trace}
 			</if>
-			<if test="numeroTarjeta != null and numeroTarjeta != ''">
-				AND consulta.pan = #{numeroTarjeta}
+			<if test="criterioBusqueda.numeroTarjeta != null and criterioBusqueda.numeroTarjeta != ''">
+				AND consulta.pan = #{criterioBusqueda.numeroTarjeta}
 			</if>
-			<if test="idsProcesoSwitch != null">
+			<if test="criterioBusqueda.idsProcesoSwitch != null">
 				AND TO_NUMBER(SUBSTR(consulta.processing_code,1,2)) IN 
-					<foreach collection="idsProcesoSwitch" item="idProceso" index="index"
+					<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
 						open="(" separator="," close=")">
 						#{idProceso}
 					</foreach>
 			</if>
-			<if test="idsRespuestaSwitch != null">
+			<if test="criterioBusqueda.idsRespuestaSwitch != null">
 				AND consulta.response_code IN 
-					<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index"
+					<foreach collection="criterioBusqueda.idsRespuestaSwitch" item="idRespuesta" index="index"
 						open="(" separator="," close=")">
 						#{idRespuesta}
 					</foreach>
 			</if>
-			<if test="idsGiroNegocio != null">
+			<if test="criterioBusqueda.idsGiroNegocio != null">
 				AND consulta.merchant_type IN
-					<foreach collection="idsGiroNegocio" item="idGiroNegocio" index="index"
+					<foreach collection="criterioBusqueda.idsGiroNegocio" item="idGiroNegocio" index="index"
 						open="(" separator="," close=")">
 						#{idGiroNegocio}
 					</foreach>
 			</if>
-			<if test="idsInstitucionEmisor != null">
+			<if test="criterioBusqueda.idsInstitucionEmisor != null">
 				AND consulta.requesting_institution IN
-					<foreach collection="idsInstitucionEmisor" item="idInstitucion" index="index"
+					<foreach collection="criterioBusqueda.idsInstitucionEmisor" item="idInstitucion" index="index"
 						open="(" separator="," close=")">
 						#{idInstitucion}	
 					</foreach>
 			</if>
-			<if test="idsInstitucionAdquirente != null">
+			<if test="criterioBusqueda.idsInstitucionAdquirente != null">
 				AND consulta.acquiring_institution IN
-					<foreach collection="idsInstitucionAdquirente" item="idInstitucion" index="index"
+					<foreach collection="criterioBusqueda.idsInstitucionAdquirente" item="idInstitucion" index="index"
 						open="(" separator="," close=")">
 						#{idInstitucion}
 					</foreach>
 			</if>
 		</where>
-		ORDER BY	
-			trace_number asc
 	</select>
 	
    
