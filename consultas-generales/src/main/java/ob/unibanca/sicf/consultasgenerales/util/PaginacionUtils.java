@@ -44,16 +44,14 @@ public class PaginacionUtils {
 		return columns;
 	}
 	
-	public static String getOrderExpression(List<Columna> columns) {
-		String orderExpression = "";
+	public static String getOrderExpression(List<Columna> columns, String defaultExpression) {
 		if(columns.isEmpty()) {
-			orderExpression = "id_mov_txn_swdmplog desc";
+			return defaultExpression;
 		} else {
 			List<String> parts = new ArrayList<>();
 			columns.forEach(column -> parts.add(column.getName().concat(" ").concat(column.getOrder())));
-			orderExpression = StringUtils.join(parts);
+			return StringUtils.join(parts);
 		}
-		return orderExpression;
 	}
 	
 	public static Map<String, Object> fromToStringToMap(String fullToString) {

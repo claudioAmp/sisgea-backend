@@ -29,7 +29,7 @@ public class SwdmplogService implements ISwdmplogService {
 		List<Columna> filtros = PaginacionUtils.getFiltros(criterioBusqueda.getFiltros(), TxnSwdmplog.class);
 		System.out.println(filtros);
 		PageHelper.startPage(criterioBusqueda.getPageNum(), criterioBusqueda.getPageSize());
-		PageHelper.orderBy(PaginacionUtils.getOrderExpression(filtros));
+		PageHelper.orderBy(PaginacionUtils.getOrderExpression(filtros, "id_mov_txn_swdmplog DESC"));
 		return this.swdmplogMapper.buscarPorCriterios(criterioBusqueda);
 	}
 }
