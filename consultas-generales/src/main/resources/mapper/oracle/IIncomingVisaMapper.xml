@@ -11,7 +11,7 @@
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
 			
 	</sql>
-	pucharseDateInicio
+	
 	<sql id = "fragmentoWhereGet" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoInicio}
