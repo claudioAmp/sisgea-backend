@@ -23,7 +23,7 @@ public class ATMRedUnicardExportacionController {
 		this.atmRedUnicardService = atmRedUnicardService;
 	}
 	
-	@GetMapping(value = "/atms-redes-unicards", params ="accion=exportar")
+	@GetMapping(value = "/atms-redes-unicards.xlsx")
 	public ModelAndView exportarATMRedUnicard(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<ATMRedUnicard> lista = atmRedUnicardService.buscarTodosATMsRedUnicard();

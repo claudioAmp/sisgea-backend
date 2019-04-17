@@ -23,7 +23,7 @@ public class TransaccionMarcaIntExportacionController {
 		this.transaccionMarcaIntService = transaccionMarcaIntService;
 	}
 	
-	@GetMapping(value = "/transacciones-marcas-internacionales", params ="accion=exportar")
+	@GetMapping(value = "/transacciones-marcas-internacionales.xlsx")
 	public ModelAndView exportarTransaccionMarcaInt(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<TransaccionMarcaInt> lista = transaccionMarcaIntService.buscarTodasTransaccionesMarcaInt();

@@ -23,7 +23,7 @@ public class CanalExportacionController {
 		this.canalService = canalService;
 	}
 	
-	@GetMapping(value = "/canales", params ="accion=exportar")
+	@GetMapping(value = "/canales.xlsx")
 	public ModelAndView exportarCanal(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Canal> lista = canalService.buscarTodosCanales();

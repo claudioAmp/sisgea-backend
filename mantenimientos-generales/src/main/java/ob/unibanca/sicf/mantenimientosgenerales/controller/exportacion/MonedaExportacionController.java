@@ -23,7 +23,7 @@ public class MonedaExportacionController {
 		this.monedaService = monedaService;
 	}
 	
-	@GetMapping(value = "/monedas", params ="accion=exportar")
+	@GetMapping(value = "/monedas.xlsx")
 	public ModelAndView exportarMoneda(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Moneda> lista = monedaService.buscarTodosMonedas();

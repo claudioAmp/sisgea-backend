@@ -23,7 +23,7 @@ public class CodigoRespuestaSwitchExportacionController {
 		this.codigoRespuestaSwitchService = codigoRespuestaSwitchService;
 	}
 	
-	@GetMapping(value = "/codigos-respuestas-switches", params ="accion=exportar")
+	@GetMapping(value = "/codigos-respuestas-switches.xlsx")
 	public ModelAndView exportarCodigoRespuestaSwitch(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoRespuestaSwitch> lista = codigoRespuestaSwitchService.buscarTodosCodigoRespuetaSwitches();

@@ -23,7 +23,7 @@ public class MembresiaExportacionController {
 		this.membresiaService = membresiaService;
 	}
 	
-	@GetMapping(value = "/membresias", params ="accion=exportar")
+	@GetMapping(value = "/membresias.xlsx")
 	public ModelAndView exportarMembresia(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Membresia> lista = membresiaService.buscarTodosMembresias();

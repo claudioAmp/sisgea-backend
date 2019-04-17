@@ -23,7 +23,7 @@ public class OrigenExportacionController {
 		this.origenService = origenService;
 	}
 	
-	@GetMapping(value = "/origenes", params ="accion=exportar")
+	@GetMapping(value = "/origenes.xlsx")
 	public ModelAndView exportarOrigen(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Origen> lista = origenService.buscarTodosOrigenes();

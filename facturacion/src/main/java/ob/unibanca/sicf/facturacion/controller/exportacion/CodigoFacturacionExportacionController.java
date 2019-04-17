@@ -23,7 +23,7 @@ public class CodigoFacturacionExportacionController {
 		this.codigoFacturacionService = codigoFacturacionService;
 	}
 	
-	@GetMapping(value = "/codigos-facturaciones", params ="accion=exportar")
+	@GetMapping(value = "/codigos-facturaciones.xlsx")
 	public ModelAndView exportarCodigoFacturacion(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoFacturacion> lista = codigoFacturacionService.buscarTodosCodigosFacturaciones();

@@ -23,7 +23,7 @@ public class PortafolioExportacionController {
 		this.portafolioService = portafolioService;
 	}
 	
-	@GetMapping(value = "/portafolios", params ="accion=exportar")
+	@GetMapping(value = "/portafolios.xlsx")
 	public ModelAndView exportarPortafolio(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Portafolio> lista = portafolioService.buscarTodosPortafolios();

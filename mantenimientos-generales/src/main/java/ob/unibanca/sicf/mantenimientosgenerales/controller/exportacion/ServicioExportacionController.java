@@ -23,7 +23,7 @@ public class ServicioExportacionController {
 		this.servicioService = servicioService;
 	}
 	
-	@GetMapping(value = "/servicios", params ="accion=exportar")
+	@GetMapping(value = "/servicios.xlsx")
 	public ModelAndView exportarServicio(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Servicio> lista = servicioService.buscarTodosServicios();

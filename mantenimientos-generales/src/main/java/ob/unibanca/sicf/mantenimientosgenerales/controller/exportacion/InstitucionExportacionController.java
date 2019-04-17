@@ -23,12 +23,12 @@ public class InstitucionExportacionController {
 		this.institucionService = institucionService;
 	}
 	
-	@GetMapping(value = "/instituciones", params ="accion=exportar")
+	@GetMapping(value = "/instituciones.xlsx")
 	public ModelAndView exportarInstitucion(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Institucion> lista = institucionService.buscarTodosInstituciones();
       params.put("mantenimiento", lista);
-      model.addAttribute("template", "mantenimientos/institucion");
+      model.addAttribute("template", "mantenimientosgenerales/institucion");
       model.addAttribute("name", "Reporte Institución");
       model.addAttribute("params", params);
       return new ModelAndView("jxlsView", model);
