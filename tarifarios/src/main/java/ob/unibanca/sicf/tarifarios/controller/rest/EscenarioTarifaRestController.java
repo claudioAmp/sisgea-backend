@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.tarifarios.controller;
+package ob.unibanca.sicf.tarifarios.controller.rest;
 
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
