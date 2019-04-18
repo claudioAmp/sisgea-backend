@@ -17,7 +17,7 @@
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoInicio}
 				
 		</if>
-		<if  test="purchaseDateInicio != null and purchaseDateFin != null">
+		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">
 			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
 				
 		</if>
@@ -42,10 +42,18 @@
 			AND a.MERCHANT_COUNTRY_CODE = #{merchantCountryCode}  
 				
 		</if>
+		<if  test="merchantCategoryCode != null and merchantCategoryCode != '' and merchantCategoryCode != '-1'">
+			AND a.MERCHANT_CATEGORY_CODE = #{merchantCategoryCode}  
+				
+		</if>
 		<if  test="authorizationCode != null and authorizationCode !='' and authorizationCode !='-1'">
 			AND a.AUTHORIZATION_CODE = #{authorizationCode}  
 				
 		</if>
+		<if  test="posTerminalCapability != null and posTerminalCapability !='' and posTerminalCapability !='-1'">
+			AND a.POS_TERMINAL_CAPABILITY = #{posTerminalCapability}  
+				
+		</if> 
 		
 	
 	</sql>
