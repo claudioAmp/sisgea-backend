@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplog {
+	
 	private int idMovTxnSwdmplog;
 	private String messageType;
 	private Date fechaProceso;
@@ -41,4 +42,5 @@ public class TxnSwdmplog {
 	private int cardAcceptorTermId;
 	private String referenceNumber;
 	private String posEntryMode;
+	
 }
