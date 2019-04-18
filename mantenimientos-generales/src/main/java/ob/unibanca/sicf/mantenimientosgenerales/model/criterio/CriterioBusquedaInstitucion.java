@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaInstitucion {
 	private Integer idInstitucionOperador;
+	private String operador; // 'LIKE' = igual , 'NOT LIKE' = no igual
 }
