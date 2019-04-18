@@ -13,7 +13,7 @@
 				AND consulta.fecha_proceso &lt;= #{criterioBusqueda.fechaFinProceso}
 			</if> -->
 			<if test="criterioBusqueda.fechaProceso != null">
-				AND consulta.fecha_proceso = #{criterioBusqueda.fechaProceso}
+				consulta.fecha_proceso = #{criterioBusqueda.fechaProceso}
 			</if>
 			<if test="criterioBusqueda.fechaInicioTransaccion != null">
 				consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
@@ -64,6 +64,101 @@
 			</if>
 		</where>
 	</select>
-	
+
+	<select id="buscarDetallePorCriterios" resultType="TxnSwdmplogDetalle" >
+		SELECT *
+		FROM VIE_CON_MOV_SWDMPLOG_DET A
+		<where>
+			<if test="idMovTxnSwdmplog != -1">
+				A.ID_MOV_TXN_SWDMPLOG = #{idMovTxnSwdmplog}
+			</if>
+			<if test="fechaProceso != null">
+				AND A.FECHA_PROCESO = #{fechaProceso}
+			</if>
+		</where>
+		<!--SELECT *
+		FROM (
+			SELECT
+				SUBQUERY.*,
+				ROWNUM 		RN
+			FROM (
+				SELECT
+					A.*
+				FROM VIE_CON_MOV_SWDMPLOG_DET
+				<where>
+					<if test="criterioBusqueda.fechaInicioProceso != null">
+						A.FECHA_PROCESO &gt;= #{criterioBusqueda.fechaInicioProceso}
+					</if>
+					<if test="criterioBusqueda.fechaFinProceso != null">
+						AND A.FECHA_PROCESO &lt;= #{criterioBusqueda.fechaFinProceso}
+					</if>
+					<if test="criterioBusqueda.fechaInicioTransaccion != null">
+						AND A.TRANSMISSION_DATE &gt;= #{criterioBusqueda.fechaInicioTransaccion}
+					</if>
+					<if test="criterioBusqueda.fechaFinTransaccion != null">
+						AND A.TRANSMISSION_DATE &lt;= #{criterioBusqueda.fechaFinTransaccion}
+					</if>
+					<if test="criterioBusqueda.trace != null and criterioBusqueda.trace != ''">
+						AND A.TRACE_NUMBER = #{criterioBusqueda.trace}
+					</if>
+					<if test="criterioBusqueda.numeroTarjeta != null and criterioBusqueda.numeroTarjeta != ''">
+						AND A.PAN = #{criterioBusqueda.numeroTarjeta}
+					</if>
+					<if test="criterioBusqueda.idsProcesoSwitch != null">
+						AND TO_NUMBER(SUBSTR(A.PROCESSING_CODE,1,2)) IN
+						<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
+								 open="(" separator="," close=")">
+							#{idProceso}
+						</foreach>
+					</if>
+					<if test="criterioBusqueda.idsRespuestaSwitch != null">
+						AND A.RESPONSE_CODE IN
+						<foreach collection="criterioBusqueda.idsRespuestaSwitch" item="idRespuesta" index="index"
+								 open="(" separator="," close=")">
+							#{idRespuesta}
+						</foreach>
+					</if>
+					<if test="criterioBusqueda.idsGiroNegocio != null">
+						AND consulta.MERCHANT_TYPE IN
+						<foreach collection="criterioBusqueda.idsGiroNegocio" item="idGiroNegocio" index="index"
+								 open="(" separator="," close=")">
+							#{idGiroNegocio}
+						</foreach>
+					</if>
+					<if test="criterioBusqueda.idsInstitucionEmisor != null">
+						AND A.REQUESTING_INSTITUTION IN
+						<foreach collection="criterioBusqueda.idsInstitucionEmisor" item="idInstitucion" index="index"
+								 open="(" separator="," close=")">
+							#{idInstitucion}
+						</foreach>
+					</if>
+					<if test="criterioBusqueda.idsInstitucionAdquirente != null">
+						AND A.ACQUIRING_INSTITUTION IN
+						<foreach collection="criterioBusqueda.idsInstitucionAdquirente" item="idInstitucion" index="index"
+								 open="(" separator="," close=")">
+							#{idInstitucion}
+						</foreach>
+					</if>
+					<if test="criterioBusqueda.codigoAutorizacion != null and criterioBusqueda.codigoAutorizacion != ''">
+						AND A.AUTHORIZATION_CODE= #{criterioBusqueda.codigoAutorizacion}
+					</if>
+					<if test="criterioBusqueda.numeroReferencia != null and criterioBusqueda.numeroReferencia != ''">
+						AND A.REFERENCE_NUMBER= #{criterioBusqueda.numeroReferencia}
+					</if>
+
+				</where>
+				ORDER BY
+					A.FECHA_PROCESO
+			)
+			WHERE
+				<if test="criterioBusqueda.pageSize != -1">
+					ROWNUM &lt;= #{criterioBusqueda.pageSize}
+				</if>
+		)
+		WHERE
+		<if test="criterioBusqueda.pageNum != -1">
+			ROWNUM &gt;= #{criterioBusqueda.pageSize}
+		</if>-->
+	</select>
    
 </mapper>
