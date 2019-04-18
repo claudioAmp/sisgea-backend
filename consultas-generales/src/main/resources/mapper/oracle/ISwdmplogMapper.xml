@@ -62,6 +62,19 @@
 						#{idInstitucion}
 					</foreach>
 			</if>
+			<if test="criterioBusqueda.codigoAutorizacion != null and criterioBusqueda.codigoAutorizacion != ''">
+				AND consulta.authorization_code = #{criterioBusqueda.codigoAutorizacion}
+			</if>
+			<if test="criterioBusqueda.numeroReferencia != null and criterioBusqueda.numeroReferencia != ''">
+				AND consulta.reference_number = #{criterioBusqueda.numeroReferencia} 
+			</if>
+			<if test="criterioBusqueda.idsModoEntradaPos">
+				AND consulta.pos_entry_mode IN
+					<foreach collection="criterioBusqueda.idsMosoEntradaPos" item="idModoEntradaPos" index="index"
+						open="(" separator="," close=")">
+						#{idModoEntradaPos}
+					</foreach>
+			</if>
 		</where>
 	</select>
 
