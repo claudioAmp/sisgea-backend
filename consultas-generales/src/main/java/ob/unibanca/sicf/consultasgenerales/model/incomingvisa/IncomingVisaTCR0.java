@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,16 +18,14 @@ public class IncomingVisaTCR0 {
 
 		private int idSecuenciaIncoming;
 		private String transactionCode;
-		private String descripcionTransactionCode;
+		private String descTransactionCode;
 		private String transCodeQualifier;
-		private String descripcionTransCodeQualifier;
+		private String descTransCodeQualifier;
 		private String bin;
-		private String descripcionBin;
-		private String institucion;
+		private String descBin;
 		private String accountNumber;
-		private String accountNumberExt;
 		private String floorLimitIndicator;
-		private String descripcionFloorLimitIndicator;
+		private String descFloorLimitIndicator;
 		private String crbExceptionFileInd;
 		private String pcasIndicator;
 		private String acquirerRefNumber;
@@ -34,33 +33,43 @@ public class IncomingVisaTCR0 {
 		private Date purchaseDate;
 		private Integer destinationAmount;
 		private Integer destCurrencyCode;
-		private String descripcionDestCurrencyCode;
+		private String descDestCurrencyCode;
 		private Integer sourceAmount;
 		private Integer sourceCurrencyCode;
-		private String descripcionSourceCurrencyCode;
+		private String descSourceCurrencyCode;
 		private String merchantName;
 		private String merchantCity;
 		private String merchantCountryCode;
+		private String descMerchantCountryCode;
 		private String merchantCategoryCode;
+		private String descMerchantCategoryCode;
 		private String merchantZipCode;
 		private String merchantStateCode;
 		private String requestPaymentServ;
 		private String numberPaymentForms;
 		private String reasonCode;
 		private String usageCode;
-		private String descripcionUsageCode;
+		private String descUsageCode;
 		private String settlementFlag;
 		private String authorizationIndicator;
 		private String authorizationCode;
 		private String posTerminalCapability;
-		private String descripcionPosTerminalCapability;
+		private String descPosTerminalCapability;
 		private String cardholderIdMethod;
-		private String descripcionCardholderIdMethod;
+		private String descCardholderIdMethod;
 		private String collectionOnlyFlag;
 		private String entryMode;
 		private Date centralProcessingDate;
 		private String reimbursementAttribute;
 		private Date fechaProceso;
+		private Integer institucionEmisora;
+		private Integer institucionReceptora;
+		private String descInstitucionEmisora;
+		private String descInstitucionReceptora;
+		private Integer idOrigen;
+		private String descIdOrigen;
+		private Integer idProducto;
+		private String descidProducto;
 		
 		private Integer totalFilas;//agregado
 
