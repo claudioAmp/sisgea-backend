@@ -23,6 +23,12 @@
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
+    
+    <select id="buscarPorCriterios" resultType="Institucion" parameterType="CriterioBusquedaInstitucion"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        WHERE id_institucion_operador = #{idInstitucionOperador}
+    </select>
 
     <select id="buscarInstitucion" resultType="Institucion"
             statementType="PREPARED">

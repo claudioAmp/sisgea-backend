@@ -5,6 +5,8 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IInstitucionMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Institucion;
+import ob.unibanca.sicf.mantenimientosgenerales.model.criterio.CriterioBusquedaInstitucion;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,5 +58,11 @@ public class InstitucionService extends MantenibleService<Institucion> implement
 	public Institucion buscarInstitucion(int idInstitucion) {
 		return this.institucionMapper.buscarInstitucion(idInstitucion).orElseThrow(
 				() -> new RecursoNoEncontradoException(INSTITUCION_NO_ENCONTRADO, idInstitucion));
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Institucion> buscarPorCriterios(CriterioBusquedaInstitucion criterio) {
+		return this.institucionMapper.buscarPorCriterios(criterio);
 	}
 }

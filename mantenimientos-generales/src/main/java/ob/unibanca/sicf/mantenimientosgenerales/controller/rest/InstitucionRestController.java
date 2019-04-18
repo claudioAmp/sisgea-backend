@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Institucion;
+import ob.unibanca.sicf.mantenimientosgenerales.model.criterio.CriterioBusquedaInstitucion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.institucion.IInstitucionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,6 +35,12 @@ public class InstitucionRestController {
 	@GetMapping(value = "/instituciones")
 	public List<Institucion> buscarTodosInstituciones() {
 		return this.institucionService.buscarTodosInstituciones();
+	}
+	
+	@PreAuthorize("hasPermission('MANT_INSTIT', '2')")
+	@GetMapping(value = "/instituciones/buscarPorCriterios")
+	public List<Institucion> buscarPorCriterio(CriterioBusquedaInstitucion criterio) {
+		return this.institucionService.buscarPorCriterios(criterio);
 	}
 	
 	@PreAuthorize("hasPermission('MANT_INSTIT', '1')")
