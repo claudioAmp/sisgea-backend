@@ -38,7 +38,7 @@ public class InstitucionRestController {
 	}
 	
 	@PreAuthorize("hasPermission('MANT_INSTIT', '2')")
-	@GetMapping(value = "/instituciones/buscarPorCriterios")
+	@GetMapping(value = "/instituciones/buscar")
 	public List<Institucion> buscarPorCriterio(CriterioBusquedaInstitucion criterio) {
 		return this.institucionService.buscarPorCriterios(criterio);
 	}
