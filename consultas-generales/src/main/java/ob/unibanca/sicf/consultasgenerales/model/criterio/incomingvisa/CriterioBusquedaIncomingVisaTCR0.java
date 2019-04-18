@@ -23,10 +23,10 @@ public class CriterioBusquedaIncomingVisaTCR0 {
 	private String merchantCategoryCode;
 	private String authorizationCode;
 	private String posTerminalCapability;
-	private List<Integer> institucionEmisora;
-	private List<Integer> institucionReceptora;
-	private List<String> idBin;
-	private List<Integer> idOrigen;
+	private List<Integer> institucionesEmisoras;
+	private List<Integer> institucionesReceptoras;
+	private List<String> idsBines;
+	private List<Integer> idsOrigenes;
 	private List<String> entriesMode;
 	private List<String> floorsLimitIndication;
 	private List<String> transactionsCode;

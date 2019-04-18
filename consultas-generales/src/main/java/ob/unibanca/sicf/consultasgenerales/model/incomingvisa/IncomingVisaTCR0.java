@@ -21,8 +21,9 @@ public class IncomingVisaTCR0 {
 		private String descTransactionCode;
 		private String transCodeQualifier;
 		private String descTransCodeQualifier;
-		private String bin;
-		private String descBin;
+		private String idBin;
+		private String descIdBin;
+		private String binReceptor;
 		private String accountNumber;
 		private String floorLimitIndicator;
 		private String descFloorLimitIndicator;
