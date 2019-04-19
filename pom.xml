@@ -147,23 +147,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <!--Plugin de OWASP para detectar vulnerabilidades en las líbrerias utilizados-->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>5.0.0-M2</version>
-                <executions>
-                    <!--La ejecución es en la fase mvn:verify-->
-                    <execution>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
