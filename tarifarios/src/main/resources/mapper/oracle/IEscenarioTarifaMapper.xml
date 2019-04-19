@@ -17,7 +17,7 @@
              , id_codigo_transaccion
              , descripcion_codigo_transaccion
              , id_tarifa
-             , descripcion_tarifa
+             , descripcion_tipo_tarifa
         FROM VIE_MAN_ESCENARIO_TARIFA
     </sql>
 

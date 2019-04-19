@@ -22,7 +22,7 @@ public class TipoTarifa {
 	private int aplicaGrupoBIN;
 	@IdNumerico(maxRange = 9, groups = IRegistro.class)
 	private int aplicaDifTxn;
-	
 	private int idEsquema;
+	private String descripcionEsquema;
 
 }
