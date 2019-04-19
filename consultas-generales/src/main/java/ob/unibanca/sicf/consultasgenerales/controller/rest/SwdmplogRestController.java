@@ -27,7 +27,6 @@ public class SwdmplogRestController {
 	
 	@GetMapping("/txns-swdmplog")
 	public List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterio){
-		System.out.println(criterio.getFiltros());
 		return this.swdmplogService.buscarPorCriterios(criterio);
 	}
 	

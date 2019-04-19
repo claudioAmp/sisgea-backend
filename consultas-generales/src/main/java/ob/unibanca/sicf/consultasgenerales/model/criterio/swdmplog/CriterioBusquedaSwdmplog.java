@@ -25,7 +25,7 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private Date fechaInicioTransaccion;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaFinTransaccion;
-	private String numeroTarjeta;
+	private String numeroTarjeta;//pan
 	private List<Integer> idsProcesoSwitch;
 	private String trace;
 	private List<Integer> idsRespuestaSwitch;
@@ -36,5 +36,16 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private String codigoAutorizacion;
 	private String numeroReferencia;
 	private List<String> idsModoEntradaPos;
+	
+	private String tipoMensaje;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaInicioSwitch;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaFinSwitch;
+	private List<String> idsMembresia;
+	private List<String> idsServicio;
+	private List<Integer> idsCanal;
+	private List<String> idsProceso;
+	private List<Integer> idsRolTransaccion;
 	
 }

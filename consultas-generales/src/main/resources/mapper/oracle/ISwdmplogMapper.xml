@@ -16,7 +16,7 @@
 				consulta.fecha_proceso = #{criterioBusqueda.fechaProceso}
 			</if>
 			<if test="criterioBusqueda.fechaInicioTransaccion != null">
-				consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
+				AND consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
 			</if>
 			<if test="criterioBusqueda.fechaFinTransaccion != null">
 				AND consulta.transmission_date &lt;= #{criterioBusqueda.fechaFinTransaccion}
@@ -74,6 +74,47 @@
 						open="(" separator="," close=")">
 						#{idModoEntradaPos}
 					</foreach>
+			</if>
+			<if test="criterioBusqueda.tipoMensaje != null and criterioBusqueda.tipoMensaje != ''">
+				AND consulta.MESSAGE_TYPE = #{criterioBusqueda.tipoMensaje}
+			</if>
+			<if test="criterioBusqueda.fechaInicioSwitch != null and criterioBusqueda.fechaFinSwitch != null">
+				AND consulta.CAPTURE_DATE BETWEEN #{criterioBusqueda.fechaInicioSwitch} AND #{criterioBusqueda.fechaFinSwitch}
+			</if>
+			<if test="criterioBusqueda.idsMembresia != null">
+				AND consulta.ID_MEMBRESIA IN
+				<foreach collection="criterioBusqueda.idsMembresia" item="idMembresia" index="index"
+						 open="(" separator="," close=")">
+					#{idMembresia}
+				</foreach>
+			</if>
+			<if test="criterioBusqueda.idsServicio != null">
+				AND consulta.ID_SERVICIO IN
+				<foreach collection="criterioBusqueda.idsServicio" item="idServicio" index="index"
+						 open="(" separator="," close=")">
+					#{idServicio}
+				</foreach>
+			</if>
+			<if test="criterioBusqueda.idsCanal != null">
+				AND consulta.ID_CANAL IN
+				<foreach collection="criterioBusqueda.idsCanal" item="idCanal" index="index"
+						 open="(" separator="," close=")">
+					#{idCanal}
+				</foreach>
+			</if>
+			<if test="criterioBusqueda.idsProceso != null">
+				AND consulta.ID_PROCESO IN
+				<foreach collection="criterioBusqueda.idsProceso" item="idProceso" index="index"
+						 open="(" separator="," close=")">
+					#{idProceso}
+				</foreach>
+			</if>
+			<if test="criterioBusqueda.idsRolTransaccion != null">
+				AND consulta.ID_ROL IN
+				<foreach collection="criterioBusqueda.idsRolTransaccion" item="idRolTransaccion" index="index"
+						 open="(" separator="," close=")">
+					#{idRolTransaccion}
+				</foreach>
 			</if>
 		</where>
 	</select>
