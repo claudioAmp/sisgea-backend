@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.tarifarios.mapper.IGrupoBINTarifaMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_grupo_bin
+             , id_bin
+             , descripcion_bin
+        FROM VIE_MAN_GRUPO_BIN_TARIFA
+    </sql>
+
+    <select id="buscarTodos" resultType="GrupoBINTarifa" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="buscarGrupoBINTarifa" resultType="GrupoBINTarifa">
+        <include refid="consultaVistaMant"/>
+        WHERE
+                  id_grupo_bin      = #{idGrupoBIN}
+            AND   id_bin  			= #{idBIN}
+    </select>
+    
+    <select id="buscarGrupoBINTarifaPorBIN" resultType="GrupoBINTarifa">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_bin  	= #{idBIN}
+    </select>
+    
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_GRUPO_BIN_TARIFA(
+                #{modo,                           jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idGrupoBIN,     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idBIN,  		  jdbcType=VARCHAR, mode=IN},
+                #{usuario,      			      jdbcType=NUMERIC, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>
