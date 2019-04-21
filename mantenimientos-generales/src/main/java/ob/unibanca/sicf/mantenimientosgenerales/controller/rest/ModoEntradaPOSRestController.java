@@ -30,7 +30,7 @@ public class ModoEntradaPOSRestController {
 	}
 	
 	@GetMapping("/modos-entradas-pos")
-	public List<ModoEntradaPOS> buscarTodosModoEntradaPOS() {
+	public List<ModoEntradaPOS> buscarTodosModosEntradasPOS() {
 		return this.modoEntradaPOSService.buscarTodosModosEntradasPOS();
 	}
 	
