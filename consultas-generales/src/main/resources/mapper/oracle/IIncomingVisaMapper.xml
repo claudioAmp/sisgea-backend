@@ -38,14 +38,7 @@
 			AND a.MERCHANT_NAME = #{merchantName}  
 				
 		</if>
-		<if  test="merchantCountryCode != null and merchantCountryCode != '' and merchantCountryCode != '-1'">
-			AND a.MERCHANT_COUNTRY_CODE = #{merchantCountryCode}  
 				
-		</if>
-		<if  test="merchantCategoryCode != null and merchantCategoryCode != '' and merchantCategoryCode != '-1'">
-			AND a.MERCHANT_CATEGORY_CODE = #{merchantCategoryCode}  
-				
-		</if>
 		<if  test="authorizationCode != null and authorizationCode !='' and authorizationCode !='-1'">
 			AND a.AUTHORIZATION_CODE = #{authorizationCode}  
 				
@@ -114,7 +107,19 @@
 					#{item}
 				</foreach>
 		</if>
-	
+		<if  test="merchantsCategoryCode != null and merchantsCategoryCode.size()>0" >
+			AND a.MERCHANT_CATEGORY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchanstCountryCode != null and merchantsCountryCode.size()>0" >
+			AND a.MERCHANT_COUNTRY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		
 	</sql>
 	
 	

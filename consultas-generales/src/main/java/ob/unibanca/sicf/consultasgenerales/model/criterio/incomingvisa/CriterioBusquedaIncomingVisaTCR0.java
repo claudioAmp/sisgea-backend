@@ -19,10 +19,10 @@ public class CriterioBusquedaIncomingVisaTCR0 {
 	private String purchaseDateFin;
 	private Integer destinationAmount;
 	private String merchantName;
-	private String merchantCountryCode;
-	private String merchantCategoryCode;
 	private String authorizationCode;
 	private String posTerminalCapability;
+	private List<String> merchantsCountryCode;
+	private List<String> merchantsCategoryCode;
 	private List<Integer> institucionesEmisoras;
 	private List<Integer> institucionesReceptoras;
 	private List<String> idsBines;
