@@ -9,6 +9,7 @@
         <module>boot</module>
         <module>tarifarios</module>
     	<module>consultas-generales</module>
+    	<module>reportes</module>
   </modules>
 
     <!-- Modulo padre Spring Boot -->
