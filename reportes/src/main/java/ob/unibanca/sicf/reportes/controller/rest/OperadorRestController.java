@@ -18,7 +18,7 @@ public class OperadorRestController {
 		this.operadorService = operadorService;
 	}
 	
-	@GetMapping("/operador/{tipoDato}")
+	@GetMapping("/operadores/{tipoDato}")
 	public List<Operador> buscarPorTipoDato(@PathVariable("tipoDato") String tipoDato){
 		return this.operadorService.buscarOperadorPorTipoDato(tipoDato);
 	}
