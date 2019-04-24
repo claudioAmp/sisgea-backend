@@ -20,23 +20,23 @@
              , descripcion_cuenta_cargo
              , id_cuenta_abono
              , descripcion_cuenta_abono
-        FROM VIE_MAN_DISTRIBUCION_COMISION
+        FROM VIE_MAN_DISTRIBUCION_COMISION 
     </sql>
 
     <select id="buscarTodos" resultType="DistribucionComision" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarDistribucionFondo" resultType="DistribucionFondo">
+    <select id="buscarDistribucionComision" resultType="DistribucionComision">
         <include refid="consultaVistaMant"/>
-        WHERE id_distribucion_fondo = #{idDistribucionFondo}
+        WHERE id_distribucion_comision = #{idDistribucionComision}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_DISTRIBUCION_COMISION(
                 #{modo,                           				jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idDistribucionComision,       jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idDistribucionComision,       jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idMembresia,          		jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idServicio,  					jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idOrigen,         			jdbcType=NUMERIC, mode=IN},
