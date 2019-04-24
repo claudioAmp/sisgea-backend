@@ -34,7 +34,7 @@
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_DISTRIBUCION_FONDO(
                 #{modo,                           				jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idDistribucionFondo,          jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idDistribucionFondo,          jdbcType=NUMERIC, mode=IN OUT},
                 #{objetoMantenido.idMembresia,          		jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idServicio,  					jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idOrigen,         			jdbcType=NUMERIC, mode=IN},
