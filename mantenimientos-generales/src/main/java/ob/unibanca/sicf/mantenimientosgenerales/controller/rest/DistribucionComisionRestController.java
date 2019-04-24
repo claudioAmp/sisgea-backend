@@ -31,25 +31,25 @@ public class DistribucionComisionRestController {
 		this.distribucionComisionService = distribucionComisionService;
 	}
 	
-	@GetMapping("/distribucion-comision")
+	@GetMapping("/distribuciones-comisiones")
 	public List<DistribucionComision> buscarTodosDistComision(){
 		return this.distribucionComisionService.buscarTodosDistComision();
 	}
 	
-	@PostMapping(value = "/distribucion-comision", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/distribuciones-comisiones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public DistribucionComision registrarDistribucionComision(
 			@Validated({IRegistro.class, Default.class}) @RequestBody DistribucionComision distribucionComision) {
 		return this.distribucionComisionService.registrarDistribucionComision(distribucionComision);
 	}
 	
-	@PutMapping(value = "/distribucion-comision/{idDistribucionComision}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/distribuciones-comisiones/{idDistribucionComision}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public DistribucionComision actualizarDistribucionComision(@IdNumerico(maxRange = 9999) @PathVariable int idDistribucionComision,
 													@Validated @RequestBody DistribucionComision distribucionComision) {
 		return this.distribucionComisionService.actualizarDistribucionComision(idDistribucionComision, distribucionComision);
 	}
 	
-	@DeleteMapping("/distribucion-comision/{idDistribucionComision}")
+	@DeleteMapping("/distribuciones-comisiones/{idDistribucionComision}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarDistribucionComision(@IdNumerico(maxRange = 9999) @PathVariable int idDistribucionComision) {
 		this.distribucionComisionService.eliminarDistribucionComision(idDistribucionComision);
