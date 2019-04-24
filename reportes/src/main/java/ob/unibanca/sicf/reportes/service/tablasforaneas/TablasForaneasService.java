@@ -9,14 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.unibanca.sicf.reportes.mapper.ITablasForaneasMapper;
 import ob.unibanca.sicf.reportes.model.TablasForaneas;
 import ob.unibanca.sicf.reportes.model.criterio.CriterioBusquedaTablasForaneas;
 
 @Service
 public class TablasForaneasService extends MantenibleService<TablasForaneas> implements ITablasForaneasService {
 	
+	private final ITablasForaneasMapper tablasForaneasMapper;
+	
 	public TablasForaneasService(@Qualifier("ITablasForaneasMapper") IMantenibleMapper<TablasForaneas> mantenibleMapper) {
 		super(mantenibleMapper);
+		this.tablasForaneasMapper = (ITablasForaneasMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -27,7 +31,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<TablasForaneas> buscarPorCriterios(CriterioBusquedaTablasForaneas criterio) {
-		return this.buscarPorCriterios(criterio);
+	public List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio) {
+		return this.tablasForaneasMapper.buscarPorCriterios(criterio);
 	}
 }

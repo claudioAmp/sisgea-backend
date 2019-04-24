@@ -27,7 +27,7 @@ public class TablasForaneasRestController {
 	
 	@GetMapping(value = "/tablas-foraneas/buscar")
 	public List<TablasForaneas> buscarTodosCanales(CriterioBusquedaTablasForaneas criterio) {
-		return this.tablasForaneasService.buscarPorCriterios(criterio);
+		return this.tablasForaneasService.buscarPorCriteriosTablasForaneas(criterio);
 	}
 	
 	/*@PostMapping(value = "/tablas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

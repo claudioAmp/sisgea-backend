@@ -10,5 +10,5 @@ public interface ITablasForaneasService extends IMantenibleService<TablasForanea
 	
 	List<TablasForaneas> buscarTodosTablasForaneas();
 	
-	List<TablasForaneas> buscarPorCriterios(CriterioBusquedaTablasForaneas criterio);
+	List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio);
 }
