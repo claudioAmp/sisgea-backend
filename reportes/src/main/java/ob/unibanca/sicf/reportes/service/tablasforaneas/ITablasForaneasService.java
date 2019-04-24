@@ -8,7 +8,7 @@ import ob.unibanca.sicf.reportes.model.criterio.CriterioBusquedaTablasForaneas;
 
 public interface ITablasForaneasService extends IMantenibleService<TablasForaneas> {
 	
-	List<TablasForaneas> buscarTodos();
+	List<TablasForaneas> buscarTodosTablasForaneas();
 	
 	List<TablasForaneas> buscarPorCriterios(CriterioBusquedaTablasForaneas criterio);
 }

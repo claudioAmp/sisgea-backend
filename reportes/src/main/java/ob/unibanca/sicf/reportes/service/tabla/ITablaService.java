@@ -6,5 +6,5 @@ import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.reportes.model.Tabla;
 
 public interface ITablaService extends IMantenibleService<Tabla> {
-	List<Tabla> buscarTodos();
+	List<Tabla> buscarTodosTablas();
 }

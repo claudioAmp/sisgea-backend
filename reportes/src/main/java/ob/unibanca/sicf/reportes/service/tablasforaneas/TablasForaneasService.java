@@ -21,7 +21,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<TablasForaneas> buscarTodos() {
+	public List<TablasForaneas> buscarTodosTablasForaneas() {
 		return this.buscarTodos();
 	}
 	

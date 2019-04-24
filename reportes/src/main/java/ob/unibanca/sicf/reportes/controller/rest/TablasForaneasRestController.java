@@ -22,7 +22,7 @@ public class TablasForaneasRestController {
 	
 	@GetMapping(value = "/tablas-foraneas")
 	public List<TablasForaneas> buscarTodosCanales() {
-		return this.tablasForaneasService.buscarTodos();
+		return this.tablasForaneasService.buscarTodosTablasForaneas();
 	}
 	
 	@GetMapping(value = "/tablas-foraneas/buscar")

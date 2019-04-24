@@ -20,7 +20,7 @@ public class TablaService extends MantenibleService<Tabla> implements ITablaServ
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<Tabla> buscarTodos() {
+	public List<Tabla> buscarTodosTablas() {
 		return this.buscarTodos();
 	}
 	

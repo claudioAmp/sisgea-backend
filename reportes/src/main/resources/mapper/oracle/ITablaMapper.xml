@@ -11,7 +11,7 @@
 		  DESC_CORTA    AS DESC_CORTA,
 		  ALIAS         AS ALIAS,
 		  ID_TIPO_TABLA AS ID_TIPO_TABLA
-		FROM VIE_MAN_TABLA;
+		FROM VIE_MAN_TABLA
     </sql>
 
      <select id="buscarTodos" resultType="Tabla"

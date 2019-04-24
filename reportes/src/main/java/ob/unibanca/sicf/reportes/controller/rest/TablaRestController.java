@@ -32,7 +32,7 @@ public class TablaRestController {
 	
 	@GetMapping(value = "/tablas")
 	public List<Tabla> buscarTodosCanales() {
-		return this.tablaService.buscarTodos();
+		return this.tablaService.buscarTodosTablas();
 	}
 	
 	/*@PostMapping(value = "/tablas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
