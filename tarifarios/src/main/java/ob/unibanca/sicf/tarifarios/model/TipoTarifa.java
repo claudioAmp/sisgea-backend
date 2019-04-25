@@ -18,10 +18,8 @@ public class TipoTarifa {
 	private int idTarifa;
 	@CaracterRequerido(maxLength = 60)
 	private String descripcionTipoTarifa;
-	@IdNumerico(maxRange = 9, groups = IRegistro.class)
-	private int aplicaGrupoBIN;
-	@IdNumerico(maxRange = 9, groups = IRegistro.class)
-	private int aplicaDifTxn;
+	private boolean aplicaGrupoBIN;
+	private boolean aplicaDifTxn;
 	private int idEsquema;
 	private String descripcionEsquema;
 
