@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TablasForaneas {
+	int idTabla;
 	String tabla;
+	int idTablaForanea;
 	String tablaForanea;
+	int idCampoFk;
+	String campoFk;
 }

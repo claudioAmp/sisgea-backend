@@ -3,9 +3,13 @@
 <mapper namespace="ob.unibanca.sicf.reportes.mapper.ITablasForaneasMapper">
 
     <sql id="consultaVistaMant">
-       SELECT 
+       SELECT
+       	  ID_TABLA				AS ID_TABLA, 
 		  TABLA      			AS TABLA,
-		  TABLA_FORANEA        	AS TABLA_FORANEA
+		  ID_TABLA_FORANEA		AS ID_TABLA_FORANEA,
+		  TABLA_FORANEA        	AS TABLA_FORANEA,
+		  ID_CAMPO_FK			AS ID_CAMPO_FK,
+		  CAMPO_FK				AS CAMPO_FK
 		FROM VIE_REP_TABLAS_FORANEAS
     </sql>
 
