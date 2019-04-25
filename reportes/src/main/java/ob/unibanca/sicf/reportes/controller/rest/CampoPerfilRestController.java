@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ob.unibanca.sicf.reportes.model.CampoPerfil;
 import ob.unibanca.sicf.reportes.model.criterio.CriterioBusquedaCampoPerfil;
-import ob.unibanca.sicf.reportes.service.CampoPerfil.ICampoPerfilService;
+import ob.unibanca.sicf.reportes.service.campoperfil.ICampoPerfilService;
 
 @Validated
 @RestController
