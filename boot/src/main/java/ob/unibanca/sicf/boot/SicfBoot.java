@@ -14,13 +14,16 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.ResourceBundleViewResolver;
-import java.util.ArrayList;
-import java.util.List;
+
 import ob.unibanca.sicf.consultasgenerales.ConsultasGeneralesBoot;
 import ob.unibanca.sicf.facturacion.FacturacionBoot;
 import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
-import ob.unibanca.sicf.tarifarios.TarifariosBoot;
 import ob.unibanca.sicf.reportes.ReportesBoot;
+import ob.unibanca.sicf.tarifarios.TarifariosBoot;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.

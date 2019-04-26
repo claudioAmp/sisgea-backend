@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaCampoPerfil{
-	String descripcionPerfil;
+	String perfil;
+	String tabla;
 }
