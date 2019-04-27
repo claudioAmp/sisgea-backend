@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ob.commons.validation.validation.IdNumerico;
+import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.reportes.model.Perfil;
 import ob.unibanca.sicf.reportes.service.perfil.IPerfilService;
 
@@ -36,22 +38,21 @@ public class PerfilRestController {
 		return this.PerfilService.buscarTodosPerfiles();
 	}
 	
-	/*@PostMapping(value = "/Perfils", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/perfiles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Canal registrarCanal(@Validated({IRegistro.class, Default.class}) @RequestBody Canal canal) {
-		return this.canalService.registrarCanal(canal);
+	public Perfil registrarPerfil(@Validated({IRegistro.class, Default.class}) @RequestBody Perfil Perfil) {
+		return this.PerfilService.registrarPerfil(Perfil);
 	}
 	
-	@PutMapping(value = "/canales/{idCanal}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Canal actualizarCanal(@IdNumerico(maxRange = 99) @PathVariable int idCanal,
-	                             @Validated @RequestBody Canal canal) {
-		return this.canalService.actualizarCanal(idCanal, canal);
+	@PutMapping(value = "/perfiles/{idPerfil}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Perfil actualizarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil,
+	                             @Validated @RequestBody Perfil Perfil) {
+		return this.PerfilService.actualizarPerfil(idPerfil, Perfil);
 	}
 	
-	@DeleteMapping(value = "/canales/{idCanal}")
+	@DeleteMapping(value = "/perfiles/{idPerfil}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCanal(@IdNumerico(maxRange = 99) @PathVariable int idCanal) {
-		this.canalService.eliminarCanal(idCanal);
-	}*/
-	
+	public void eliminarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil) {
+		this.PerfilService.eliminarPerfil(idPerfil);
+	}
 }
