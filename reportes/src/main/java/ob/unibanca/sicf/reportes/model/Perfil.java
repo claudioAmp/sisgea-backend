@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Perfil {
-	private int idPerfilRep;
-	private String descripcionPerfilRep;
-	private boolean activo;
+	private int idPerfil;
+	private String descripcion;
+	private int activo;
 }
