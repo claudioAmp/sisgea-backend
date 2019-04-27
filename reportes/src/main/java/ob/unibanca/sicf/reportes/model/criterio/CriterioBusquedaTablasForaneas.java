@@ -13,4 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaTablasForaneas {
 	String tabla;
+	String tablaForanea;
+	int distinct;
 }

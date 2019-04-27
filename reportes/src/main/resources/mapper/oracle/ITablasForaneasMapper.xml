@@ -4,12 +4,17 @@
 
     <sql id="consultaVistaMant">
        SELECT
-       	  ID_TABLA				AS ID_TABLA, 
-		  TABLA      			AS TABLA,
-		  ID_TABLA_FORANEA		AS ID_TABLA_FORANEA,
-		  TABLA_FORANEA        	AS TABLA_FORANEA,
-		  ID_CAMPO_FK			AS ID_CAMPO_FK,
-		  CAMPO_FK				AS CAMPO_FK
+       	 <if  test="distinct != null and distinct == 1">
+        	DISTINCT
+        </if>
+       	  ID_TABLA				AS ID_TABLA 
+		 ,TABLA      			AS TABLA
+		 ,ID_TABLA_FORANEA		AS ID_TABLA_FORANEA
+		 ,TABLA_FORANEA        	AS TABLA_FORANEA
+		  <if  test="distinct == null or distinct == 0">
+		 ,ID_CAMPO_FK			AS ID_CAMPO_FK
+		 ,CAMPO_FK				AS CAMPO_FK
+		  </if>
 		FROM VIE_REP_TABLAS_FORANEAS
     </sql>
 
@@ -21,9 +26,12 @@
     <select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test="tabla != null and tabla != '' ">
+        <if  test="(tabla != null and tabla != '' ) or ( tablaForanea!=null and tablaForanea!='')">
         	WHERE
        			TABLA = #{tabla}
+       		<if  test=" tablaForanea!=null and tablaForanea!=''">
+       			AND TABLA_FORANEA =#{tablaForanea}
+        	</if>
         </if>
     </select>
 
