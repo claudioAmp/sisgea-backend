@@ -52,5 +52,7 @@ public class TxnSwdmplog {
 	private String descripcionProceso;
 	private int idRol;
 	private String descripcionRolTransaccion;
+	private String idBin;
+	private String descripcionBin;
 	
 }

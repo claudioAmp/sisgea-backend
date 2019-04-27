@@ -25,7 +25,7 @@
 				AND consulta.pan = #{criterioBusqueda.numeroTarjeta}
 			</if>
 			<if test="criterioBusqueda.idsProcesoSwitch != null">
-				AND TO_NUMBER(SUBSTR(consulta.processing_code,1,2)) IN 
+				AND consulta.id_proceso IN 
 					<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
 						open="(" separator="," close=")">
 						#{idProceso}
