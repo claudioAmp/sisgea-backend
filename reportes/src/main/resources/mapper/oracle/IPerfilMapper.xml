@@ -3,17 +3,24 @@
 <mapper namespace="ob.unibanca.sicf.reportes.mapper.IPerfilMapper">
 
 
-    <sql id="consultaVistaMant">
-       SELECT 
+    <select id="buscarTodos" resultType="Perfil" statementType="PREPARED">
+         SELECT 
 		  ID_PERFIL_REP     AS ID_PERFIL,
 		  DESCRIPCION   	AS DESCRIPCION,
 		  ACTIVO  		 	AS ACTIVO
 		FROM MAE_PERFIL_REP
-    </sql>
-
-     <select id="buscarTodos" resultType="Perfil"
-            statementType="PREPARED">
-        <include refid="consultaVistaMant"/>
+    </select>
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_perfil(
+                #{modo, 							  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idPerfil, 	      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcion,   	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.activo, 	          jdbcType=NUMERIC, mode=IN},
+                #{usuario, 						      jdbcType=VARCHAR, mode=IN}
+            )
+        }
     </select>
     
 </mapper>

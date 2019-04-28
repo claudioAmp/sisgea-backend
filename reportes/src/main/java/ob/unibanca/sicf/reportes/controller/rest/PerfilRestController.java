@@ -33,24 +33,24 @@ public class PerfilRestController {
 		this.PerfilService = PerfilService;
 	}
 	
-	@GetMapping(value = "/perfiles")
+	@GetMapping(value = "/perfiles-reporteador")
 	public List<Perfil> buscarTodosPerfiles() {
 		return this.PerfilService.buscarTodosPerfiles();
 	}
 	
-	@PostMapping(value = "/perfiles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/perfiles-reporteador", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Perfil registrarPerfil(@Validated({IRegistro.class, Default.class}) @RequestBody Perfil Perfil) {
 		return this.PerfilService.registrarPerfil(Perfil);
 	}
 	
-	@PutMapping(value = "/perfiles/{idPerfil}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/perfiles-reporteador/{idPerfil}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Perfil actualizarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil,
 	                             @Validated @RequestBody Perfil Perfil) {
 		return this.PerfilService.actualizarPerfil(idPerfil, Perfil);
 	}
 	
-	@DeleteMapping(value = "/perfiles/{idPerfil}")
+	@DeleteMapping(value = "/perfiles-reporteador/{idPerfil}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil) {
 		this.PerfilService.eliminarPerfil(idPerfil);
