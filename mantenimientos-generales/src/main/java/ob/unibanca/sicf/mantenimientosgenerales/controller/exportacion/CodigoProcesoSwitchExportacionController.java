@@ -28,7 +28,7 @@ public class CodigoProcesoSwitchExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoProcesoSwitch> lista = codigoProcesoSwitchService.buscarTodosCodigoProcesoSwitches();
       params.put("mantenimiento", lista);
-      model.addAttribute("template", "mantenimientosgenerales/codigoProcesowitch");
+      model.addAttribute("template", "mantenimientosgenerales/codigoProcesoSwitch");
       model.addAttribute("name", "Reporte Código Proceso Switch");
       model.addAttribute("params", params);
       return new ModelAndView("jxlsView", model);

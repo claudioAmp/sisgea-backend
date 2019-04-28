@@ -17,7 +17,7 @@
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoInicio}
 				
 		</if>
-		<if  test="purchaseDateInicio != null and purchaseDateFin != null">
+		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">
 			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
 				
 		</if>
@@ -38,14 +38,16 @@
 			AND a.MERCHANT_NAME = #{merchantName}  
 				
 		</if>
-		<if  test="merchantCountryCode != null and merchantCountryCode != '' and merchantCountryCode != '-1'">
-			AND a.MERCHANT_COUNTRY_CODE = #{merchantCountryCode}  
 				
-		</if>
 		<if  test="authorizationCode != null and authorizationCode !='' and authorizationCode !='-1'">
 			AND a.AUTHORIZATION_CODE = #{authorizationCode}  
 				
 		</if>
+		<if  test="posTerminalCapability != null and posTerminalCapability !='' and posTerminalCapability !='-1'">
+			AND a.POS_TERMINAL_CAPABILITY = #{posTerminalCapability}  
+				
+		</if> 
+		
 	
 	</sql>
 	
@@ -81,7 +83,43 @@
 					#{item}
 				</foreach>
 		</if>
-	
+		<if  test="idsOrigenes != null and idsOrigenes.size()>0" >
+			AND a.ID_ORIGEN IN 
+				<foreach item="item" index="index" collection="idsOrigenes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="institucionesEmisoras != null and institucionesEmisoras.size()>0" >
+			AND a.ID_INSTITUCION IN 
+				<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="institucionesReceptoras != null and institucionesReceptoras.size()>0" >
+			AND a.ID_INSTITUCION IN 
+				<foreach item="item" index="index" collection="institucionesReceptoras" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="idsBines != null and idsBines.size()>0" >
+			AND a.ID_BIN IN 
+				<foreach item="item" index="index" collection="idsBines" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchantsCategoryCode != null and merchantsCategoryCode.size()>0" >
+			AND a.MERCHANT_CATEGORY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchanstCountryCode != null and merchantsCountryCode.size()>0" >
+			AND a.MERCHANT_COUNTRY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		
 	</sql>
 	
 	

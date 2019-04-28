@@ -4,12 +4,12 @@
 	
 	<sql id="consultaVistaMant">
         SELECT id_tarifa
-             , descripcion_tipo_tarifa
+             , descripcion
              , aplica_grupo_bin
              , aplica_dif_txn
              , id_esquema
              , descripcion_esquema
-        FROM VIEW_MAN_TIPO_TARIFA
+        FROM VIE_MAN_TIPO_TARIFA
     </sql>
 
     <select id="buscarTodos" resultType="TipoTarifa" statementType="PREPARED">

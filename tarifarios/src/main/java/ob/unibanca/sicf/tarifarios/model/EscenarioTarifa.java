@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EscenarioTarifa {
 	
+	private int idEscenarioTarifa;
 	private int idInstitucion;
 	private String descripcionInstitucion;
 	private String idMembresia;
@@ -25,7 +26,5 @@ public class EscenarioTarifa {
 	private String descripcionCodigoTransaccion;
 	private int idTarifa;
 	private String descripcionTarifa;
-	
-	private int idEscenarioTarifa;
 
 }

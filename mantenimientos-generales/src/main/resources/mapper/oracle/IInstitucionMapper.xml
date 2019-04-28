@@ -23,6 +23,20 @@
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
+    
+    <select id="buscarPorCriterios" resultType="Institucion" parameterType="CriterioBusquedaInstitucion"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <if  test="idInstitucionOperador != null and idInstitucionOperador != null">
+       		WHERE
+       		<if  test="operador=='LIKE'">
+       			id_institucion_operador = #{idInstitucionOperador}
+       		</if>
+       		<if  test="operador=='NOT LIKE'">
+       			id_institucion_operador != #{idInstitucionOperador}
+       		</if>
+       	</if>
+    </select>
 
     <select id="buscarInstitucion" resultType="Institucion"
             statementType="PREPARED">

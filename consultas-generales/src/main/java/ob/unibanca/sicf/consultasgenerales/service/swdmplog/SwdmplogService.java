@@ -2,8 +2,10 @@ package ob.unibanca.sicf.consultasgenerales.service.swdmplog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -32,4 +34,11 @@ public class SwdmplogService implements ISwdmplogService {
 		//PageHelper.orderBy(PaginacionUtils.getOrderExpression(filtros, "id_mov_txn_swdmplog DESC"));
 		return this.swdmplogMapper.buscarPorCriterios(criterioBusqueda);
 	}
+	
+	@Override
+	public TxnSwdmplogDetalle buscarDetallePorCriterios(int idMovTxnSwdmplog, Date fechaProceso) {
+		return this.swdmplogMapper.buscarDetallePorCriterios(idMovTxnSwdmplog, fechaProceso);
+	}
+	
+	
 }

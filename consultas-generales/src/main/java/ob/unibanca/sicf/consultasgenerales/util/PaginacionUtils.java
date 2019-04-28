@@ -34,7 +34,7 @@ public class PaginacionUtils {
 				System.out.println(column);
 				name = column.getName();
 				clazz.getDeclaredField(name);				
-				column.setName(StringsUtils.convertirCamelCaseToUnderscore(name));
+				//column.setName(StringsUtils.convertirCamelCaseToUnderscore(name));
 				System.out.println(column);
 				columns.add(column);
 			} catch (NoSuchFieldException | SecurityException e) {

@@ -12,33 +12,45 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplog {
+	
 	private int idMovTxnSwdmplog;
 	private String messageType;
-	private Date fechaProceso;
-	private Date transmissionDate;
-	private String transmissionTime;
-	private String authorizationCode;
-	private String traceNumber;
-	private int responseCode;
-	private String descripcionResponseCode;
-	private int transactionCurrency;
-	private double transactionAmount;
-	private String cardAcceptorLocation;
-	private String merchantType;
-	private String acquiringInstitucion;
-	private String requestingInstitucion;
 	private String stfwdIndicator;
 	private String pan;
 	private String processingCode;
-	private double settlementAmount;
-	private double cardIssuerAmount;
-	private double convRateSettlement;
-	private double convRateBilling;
+	private String descripcionCodProcSw;
+	private Date transmissionDate;
+	private String transmissionTime;
+	private String traceNumber;
 	private Date localTransactionDate;
 	private String localTransactionTime;
 	private Date captureDate;
-	private double settAmountTxnFee;
-	private int cardAcceptorTermId;
-	private String referenceNumber;
+	private String merchantType;
+	private String descripcionGiroNegocio;
 	private String posEntryMode;
+	private String posConditionCode;
+	private double settAmountTxnFee;
+	private String authorizationCode;
+	private int responseCode;
+	private String descripcionCodigoRptaSw;
+	private String cardAcceptorLocation;
+	private int transactionCurrency;
+	private String descripcionMonedaDescripcion;
+	private Date fechaProceso;
+	
+	private String idMembresia;
+	private String descripcionMembresia;
+	private String idServicio;
+	private String descripcionServicio;
+	private int idCanal;
+	private String descripcionIdCanal;
+	private int idInstitucionEmisora;
+	private String descripcionInstEmisora;
+	private int idInstitucionReceptora;
+	private String descripcionInstReceptora;
+	private String idProceso;
+	private String descripcionProceso;
+	private int idRol;
+	private String descripcionRolTransaccion;
+	
 }

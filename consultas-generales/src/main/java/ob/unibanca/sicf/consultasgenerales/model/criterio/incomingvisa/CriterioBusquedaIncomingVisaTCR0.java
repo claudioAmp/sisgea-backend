@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTCR0 {
 	
-	private Integer idSecuenciaIncoming;
+	private Integer idSecuenciaIncoming; 
 	private String acquirerRefNumber;
 	private String fechaProcesoInicio;
 	private String fechaProcesoFin;
@@ -19,12 +19,19 @@ public class CriterioBusquedaIncomingVisaTCR0 {
 	private String purchaseDateFin;
 	private Integer destinationAmount;
 	private String merchantName;
-	private String merchantCountryCode;
 	private String authorizationCode;
-	
+	private String posTerminalCapability;
+	private List<String> merchantsCountryCode;
+	private List<String> merchantsCategoryCode;
+	private List<Integer> institucionesEmisoras;
+	private List<Integer> institucionesReceptoras;
+	private List<String> idsBines;
+	private List<Integer> idsOrigenes;
 	private List<String> entriesMode;
 	private List<String> floorsLimitIndication;
 	private List<String> transactionsCode;
 	private List<String> accountsNumber;
+	private List<String> accountsNumberExt;
+	private List<String> destCurrencyCode;
 	private List<String> cardholdersIdMethod;
 }

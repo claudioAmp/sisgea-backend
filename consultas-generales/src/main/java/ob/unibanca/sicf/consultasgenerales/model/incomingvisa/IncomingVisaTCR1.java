@@ -27,7 +27,9 @@ public class IncomingVisaTCR1 {
 	private String interfaceTraceNumber;
 	private String acceptanceTerminalInd;
 	private String prepaidCardInd;
+	private String descPrepaidCardInd;
 	private String serviceDevelopmentField;
+	private String descServiceDevelopment;
 	private String avsResponseCode;
 	private String authorizationSourceCode;
 	private String purchaseIdentifierFormat;
@@ -37,6 +39,7 @@ public class IncomingVisaTCR1 {
 	private Integer cashback;
 	private String  chipConditionCode;
 	private String  posEnvironment;
+	private String  descPosEnvironment;
 	private Date fechaProceso;
 	private Integer numeroCuota;
 }

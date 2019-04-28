@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.http.HttpHeaders;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractView;
@@ -66,7 +67,8 @@ public abstract class AbstractJxlsView extends AbstractView
                 XLSTransformer xLSTransformer = new XLSTransformer();
                 Workbook workbook = xLSTransformer.transformXLS(stream, reporteParametros);
                 String nombreReporte = (String) model.get(PARAM_REPORT_NAME);
-                response.setHeader("Content-Disposition", 
+                response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
+                response.setHeader(HttpHeaders.CONTENT_DISPOSITION, 
                         "attachment;filename=" + nombreReporte + EXTENSION_XLSX);
         response.setContentType(getContentType());
         renderReport(workbook, response);

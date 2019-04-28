@@ -23,7 +23,7 @@ public class BINExportacionController {
 		this.binService = binService;
 	}
 	
-	@GetMapping(value = "/bines.xlsx")
+	@GetMapping(value = "/bins.xlsx")
 	public ModelAndView exportarBIN(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<BIN> lista = binService.buscarTodosBINs();
