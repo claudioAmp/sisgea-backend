@@ -6,14 +6,11 @@
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG consulta
 		<where>
-			<!-- <if test="criterioBusqueda.fechaInicioProceso != null">
+			<if test="criterioBusqueda.fechaInicioProceso != null">
 				consulta.fecha_proceso &gt;= #{criterioBusqueda.fechaInicioProceso}
 			</if>
 			<if test="criterioBusqueda.fechaFinProceso != null">
 				AND consulta.fecha_proceso &lt;= #{criterioBusqueda.fechaFinProceso}
-			</if> -->
-			<if test="criterioBusqueda.fechaProceso != null">
-				consulta.fecha_proceso = #{criterioBusqueda.fechaProceso}
 			</if>
 			<if test="criterioBusqueda.fechaInicioTransaccion != null">
 				AND consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
@@ -28,7 +25,7 @@
 				AND consulta.pan = #{criterioBusqueda.numeroTarjeta}
 			</if>
 			<if test="criterioBusqueda.idsProcesoSwitch != null">
-				AND TO_NUMBER(SUBSTR(consulta.processing_code,1,2)) IN 
+				AND consulta.id_proceso IN 
 					<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
 						open="(" separator="," close=")">
 						#{idProceso}

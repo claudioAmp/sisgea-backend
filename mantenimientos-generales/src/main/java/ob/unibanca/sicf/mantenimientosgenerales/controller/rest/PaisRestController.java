@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import ob.unibanca.sicf.mantenimientosgenerales.model.Pais;
 import ob.unibanca.sicf.mantenimientosgenerales.service.pais.IPaisService;
-@Controller
+
+@RestController
 public class PaisRestController {
-private final IPaisService paisService;
+	
+	private final IPaisService paisService;
 	
 	public PaisRestController(IPaisService paisService) {
 		this.paisService = paisService;

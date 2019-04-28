@@ -4,7 +4,7 @@
 	
 	<sql id="consultaVistaMant">
         SELECT id_tarifa
-             , descripcion
+             , descripcion AS descripcion_tipo_tarifa
              , aplica_grupo_bin
              , aplica_dif_txn
              , id_esquema

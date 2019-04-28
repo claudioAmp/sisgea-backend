@@ -35,7 +35,7 @@ public class TxnSwdmplog {
 	private String descripcionCodigoRptaSw;
 	private String cardAcceptorLocation;
 	private int transactionCurrency;
-	private String descripcionMonedaDescripcion;
+	private String descripcionMoneda;
 	private Date fechaProceso;
 	
 	private String idMembresia;
@@ -52,5 +52,7 @@ public class TxnSwdmplog {
 	private String descripcionProceso;
 	private int idRol;
 	private String descripcionRolTransaccion;
+	private String idBin;
+	private String descripcionBin;
 	
 }

@@ -113,7 +113,7 @@
 					#{item}
 				</foreach>
 		</if>
-		<if  test="merchanstCountryCode != null and merchantsCountryCode.size()>0" >
+		<if  test="merchantsCountryCode != null and merchantsCountryCode.size()>0" >
 			AND a.MERCHANT_COUNTRY_CODE IN 
 				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
 					#{item}

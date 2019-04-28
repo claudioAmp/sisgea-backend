@@ -31,25 +31,25 @@ public class DistribucionFondoRestController {
 		this.distribucionFondoService = distribucionFondoService;
 	}
 	
-	@GetMapping("/distribucion-fondo")
+	@GetMapping("/distribuciones-fondos")
 	public List<DistribucionFondo> buscarTodosDistFondo(){
 		return this.distribucionFondoService.buscarTodosDistFondo();
 	}
 	
-	@PostMapping(value = "/distribucion-fondo", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/distribuciones-fondos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public DistribucionFondo registrarDistribucionFondo(
 			@Validated({IRegistro.class, Default.class}) @RequestBody DistribucionFondo distribucionFondo) {
 		return this.distribucionFondoService.registrarDistribucionComision(distribucionFondo);
 	}
 	
-	@PutMapping(value = "/distribucion-fondo/{idDistribucionFondo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/distribuciones-fondos/{idDistribucionFondo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public DistribucionFondo actualizarDistribucionFondo(@IdNumerico(maxRange = 9999) @PathVariable int idDistribucionFondo,
 												 @Validated @RequestBody DistribucionFondo distribucionFondo) {
 		return this.distribucionFondoService.actualizarDistribucionFondo(idDistribucionFondo, distribucionFondo);
 	}
 	
-	@DeleteMapping("/distribucion-fondo/{idDistribucionFondo}")
+	@DeleteMapping("/distribuciones-fondos/{idDistribucionFondo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	
 	public void eliminarDistribucionFondo(@IdNumerico(maxRange = 9999) @PathVariable int idDistribucionFondo) {

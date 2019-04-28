@@ -20,7 +20,9 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPag
 public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaProceso;
+	private Date fechaInicioProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaFinProceso;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaInicioTransaccion;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

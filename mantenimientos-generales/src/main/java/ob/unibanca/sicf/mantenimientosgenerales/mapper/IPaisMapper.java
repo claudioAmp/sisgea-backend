@@ -9,5 +9,5 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.Pais;
 
 @Mapper
 public interface IPaisMapper extends IMantenibleMapper<Pais>{
-	 List<Pais> buscarPaises();
+	 List<Pais> buscarTodos();
 }
