@@ -17,5 +17,5 @@ public class Perfil {
 	private int idPerfil;
 	@CaracterRequerido(maxLength = 30)
 	private String descripcion;
-	private int activo;
+	private boolean activo;
 }
