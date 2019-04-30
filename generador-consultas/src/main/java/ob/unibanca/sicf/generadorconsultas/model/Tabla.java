@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.reportes.model;
+package ob.unibanca.sicf.generadorconsultas.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

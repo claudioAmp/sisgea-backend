@@ -1,4 +1,5 @@
-package ob.unibanca.sicf.reportes.model;
+package ob.unibanca.sicf.generadorconsultas.model.criterio;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tabla {
-	int idTabla;
-	String nombre;
-	String descripcion;
-	String desCorta;
-	String alias;
-	String idTipoTabla;
+public class CriterioBusquedaTablasForaneas {
+	String tabla;
+	String tablaForanea;
+	int distinct;
 }

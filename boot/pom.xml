@@ -38,6 +38,12 @@
             <artifactId>reportes</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>ob.unibanca.sicf</groupId>
+            <artifactId>generador-consultas</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
     </dependencies>
 
     <build>

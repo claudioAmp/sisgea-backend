@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.reportes.model;
+package ob.unibanca.sicf.generadorconsultas.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tabla {
+public class TablasForaneas {
 	int idTabla;
-	String nombre;
-	String descripcion;
-	String desCorta;
-	String alias;
-	String idTipoTabla;
+	String tabla;
+	int idTablaForanea;
+	String tablaForanea;
+	int idCampoFk;
+	String campoFk;
 }

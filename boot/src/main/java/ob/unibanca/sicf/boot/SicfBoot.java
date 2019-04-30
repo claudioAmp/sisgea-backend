@@ -17,10 +17,10 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 import ob.unibanca.sicf.consultasgenerales.ConsultasGeneralesBoot;
 import ob.unibanca.sicf.facturacion.FacturacionBoot;
+import ob.unibanca.sicf.generadorconsultas.GeneradorConsultasBoot;
 import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
 import ob.unibanca.sicf.reportes.ReportesBoot;
 import ob.unibanca.sicf.tarifarios.TarifariosBoot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +35,7 @@ import java.util.List;
  * @author Hanz Llanto
  */
 @SpringBootApplication(scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, 
-		TarifariosBoot.class,ConsultasGeneralesBoot.class, ReportesBoot.class})
+		TarifariosBoot.class,ConsultasGeneralesBoot.class, ReportesBoot.class,GeneradorConsultasBoot.class})
 public class SicfBoot {
 	
 	public static void main(String[] args) {
