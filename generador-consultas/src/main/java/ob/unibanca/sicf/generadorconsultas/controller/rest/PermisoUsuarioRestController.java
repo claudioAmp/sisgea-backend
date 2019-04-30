@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermisoUsuario;
 import ob.unibanca.sicf.generadorconsultas.service.permisousuario.IPermisoUsuarioService;
 
 
@@ -38,7 +39,10 @@ public class PermisoUsuarioRestController {
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
 		return this.permisoUsuarioService.buscarTodosPermisosUsuario();
 	}
-	
+	@GetMapping(value = "/tablas-foraneas/buscar")
+	public List<PermisoUsuario> buscarTodosPermisosUsuario(CriterioBusquedaPermisoUsuario criterio) {
+		return this.permisoUsuarioService.buscarPorCriteriosPermisoUsuario(criterio);
+	}
 	@PostMapping(value = "/permisos-usuario", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PermisoUsuario registrarPermisoUsuario(@Validated({IRegistro.class, Default.class}) @RequestBody PermisoUsuario permisoUsuario) {

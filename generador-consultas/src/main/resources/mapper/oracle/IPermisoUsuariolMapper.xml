@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.generadorconsultas.mapper.IPermisoUsuarioMapper">
 
-
-    <select id="buscarTodos" resultType="PermisoUsuario" statementType="PREPARED">
-         SELECT 
+	<sql id="consultaVistaMant">
+       SELECT 
 		  ID_PERMISO_USUARIO    AS ID_PERMISO_USUARIO,
 		  ID_PERFIL_REP_CAMPO   AS ID_PERFIL_REP_CAMPO,
 		  ID_PERFIL_REP_USUARIO AS ID_PERFIL_REP_USUARIO,
@@ -18,7 +17,22 @@
           CAMPO                 AS CAMPO,
           VER_TRUNCADO          AS VER_TRUNCADO
 		FROM VIE_MAN_REP_PERMISO_USUARIO
+    </sql>
+
+     <select id="buscarTodos" resultType="PermisoUsuario" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
     </select>
+	<select id="buscarPorCriterios" resultType="PermisoUsuario" parameterType="CriterioBusquedaPermisoUsuario" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <if  test="(tabla != null and tabla != '' ) or ( usuario!=null and usuario!='')">
+        	WHERE
+       			TABLA = #{tabla}
+       		<if  test=" usuario!=null and usuario!=''">
+       			AND USUARIO =#{usuario}
+        	</if>
+        </if>
+    </select>
+   
     
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {

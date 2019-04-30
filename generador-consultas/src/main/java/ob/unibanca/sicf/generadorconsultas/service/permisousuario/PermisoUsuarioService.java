@@ -8,14 +8,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.unibanca.sicf.generadorconsultas.mapper.IPermisoUsuarioMapper;
+import ob.unibanca.sicf.generadorconsultas.mapper.ITablasForaneasMapper;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermisoUsuario;
 
 
 @Service
 public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> implements IPermisoUsuarioService {
 	
+	private final IPermisoUsuarioMapper permisoUsuarioMapper;
 	public PermisoUsuarioService(@Qualifier("IPermisoUsuarioMapper") IMantenibleMapper<PermisoUsuario> mantenibleMapper) {
 		super(mantenibleMapper);
+		this.permisoUsuarioMapper = (IPermisoUsuarioMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -23,7 +28,11 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
 		return this.buscarTodos();
 	}
-	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<PermisoUsuario> buscarPorCriteriosPermisoUsuario(CriterioBusquedaPermisoUsuario criterio) {
+		return this.permisoUsuarioMapper.buscarPorCriterios(criterio);
+	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public PermisoUsuario registrarPermisoUsuario(PermisoUsuario permisoUsuario) {
