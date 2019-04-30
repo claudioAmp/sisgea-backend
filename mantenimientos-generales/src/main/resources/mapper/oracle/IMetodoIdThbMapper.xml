@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IMetodoIdThbMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_membresia
+             , id_metodo_id_thb
+             , descripcion_metodo_id_thb
+             , descripcion_membresia
+        FROM VIE_MAN_METODO_ID_THB
+    </sql>
+
+    <select id="buscarTodos" resultType="MetodoIdThb" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="buscarMetodoIdThb" resultType="MetodoIdThb">
+        <include refid="consultaVistaMant"/>
+        WHERE id_membresia = #{idMembresia} AND id_metodo_id_thb = #{metodoIdThb}
+    </select>
+
+    <select id="buscarMetodoIdThbPorMembresia" resultType="MetodoIdThb">
+        <include refid="consultaVistaMant"/>
+        WHERE id_membresia = #{idMembresia}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_METODO_ID_THB(
+                #{modo,                                 		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia,          		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMetodoIdThb,     		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionMetodoIdThb,  	jdbcType=VARCHAR, mode=IN},
+                #{usuario,                              		jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+</mapper>
