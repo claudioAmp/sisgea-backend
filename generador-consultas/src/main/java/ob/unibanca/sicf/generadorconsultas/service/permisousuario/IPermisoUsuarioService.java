@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.generadorconsultas.service.permisoUsuario;
+package ob.unibanca.sicf.generadorconsultas.service.permisousuario;
 
 import java.util.List;
 

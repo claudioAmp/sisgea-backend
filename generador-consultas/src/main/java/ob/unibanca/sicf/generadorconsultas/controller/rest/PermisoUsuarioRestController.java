@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
-import ob.unibanca.sicf.generadorconsultas.service.permisoUsuario.IPermisoUsuarioService;
+import ob.unibanca.sicf.generadorconsultas.service.permisousuario.IPermisoUsuarioService;
 
 
 
@@ -36,7 +36,7 @@ public class PermisoUsuarioRestController {
 	
 	@GetMapping(value = "/permisos-usuario")
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
-		return this.permisoUsuarioService.buscarTodosPermisoUsuario();
+		return this.permisoUsuarioService.buscarTodosPermisosUsuario();
 	}
 	
 	@PostMapping(value = "/permisos-usuario", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
