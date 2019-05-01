@@ -39,7 +39,7 @@ public class PermisoUsuarioRestController {
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
 		return this.permisoUsuarioService.buscarTodosPermisosUsuario();
 	}
-	@GetMapping(value = "/tablas-foraneas/buscar")
+	@GetMapping(value = "/permisos-usuario/buscar")
 	public List<PermisoUsuario> buscarTodosPermisosUsuario(CriterioBusquedaPermisoUsuario criterio) {
 		return this.permisoUsuarioService.buscarPorCriteriosPermisoUsuario(criterio);
 	}

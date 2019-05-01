@@ -26,7 +26,7 @@
         </encoder>
     </appender>
     <!-- Declaración de logger específicos para el profiles dev (include: dev) -->
-    <springProfile name="dev-ccu">
+    <springProfile name="dev-vgamo">
         <logger name="org.springframework" level="debug" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
