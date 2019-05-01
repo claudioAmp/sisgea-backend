@@ -4,14 +4,14 @@
 
 	<sql id="consultaVistaMant">
        SELECT 
-		  MOV_CAMPO_QUERY.ID_QUERY              AS ID_QUERY,
+          MOV_CAMPO_QUERY.ID_QUERY              AS ID_QUERY,
           MOV_QUERY.NOMBRE                      AS QUERY,
-		  MOV_CAMPO_QUERY.ID_TABLA              AS ID_TABLA,
-          MAE_TABLA.TABLA                       AS TABLA,
-		  MOV_CAMPO_QUERY.ID_INSTANCIA          AS ID_INSTANCIA,
-          MOV_TABLA_QUERY.INSTANCIA             AS INSTANCIA,
+          MOV_CAMPO_QUERY.ID_TABLA              AS ID_TABLA,
+          MAE_TABLA.NOMBRE                       AS TABLA,
+          MOV_CAMPO_QUERY.ID_INSTANCIA          AS ID_INSTANCIA,
+          MOV_TABLA_QUERY.ID_INSTANCIA             AS INSTANCIA,
           MOV_CAMPO_QUERY.ID_CAMPO              AS ID_CAMPO,
-          MOV_CAMPO_QUERY.CAMPO                 AS CAMPO,
+          MAE_CAMPO.NOMBRE                 		AS CAMPO,
           MOV_CAMPO_QUERY.ID_TABLA_FROM         AS ID_TABLA_FROM,
           MOV_CAMPO_QUERY.ID_CAMPO_FROM         AS ID_CAMPO_FROM,
           MOV_CAMPO_QUERY.ALIAS_CAMPO           AS ALIAS_CAMPO,
@@ -33,7 +33,9 @@
             MOV_QUERY       ON MOV_TABLA_QUERY.ID_QUERY     = MOV_QUERY.ID_QUERY
         INNER JOIN
             MAE_TABLA       ON MOV_TABLA_QUERY.ID_TABLA     = MAE_TABLA.ID_TABLA
-
+        INNER JOIN
+        	MAE_CAMPO		ON MAE_CAMPO.ID_CAMPO			= MOV_CAMPO_QUERY.ID_CAMPO
+	</sql>
      <select id="buscarTodos" resultType="CampoQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
