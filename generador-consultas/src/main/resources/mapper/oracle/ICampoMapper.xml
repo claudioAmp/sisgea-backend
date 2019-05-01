@@ -5,10 +5,15 @@
 
     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
          SELECT 
-          ID_TABLA	   AS ID_TABLA,
-          TABLA		   AS TABLA,
-		  ID_CAMPO     AS ID_CAMPO,
-		  CAMPO   	   AS CAMPO
+          ID_TABLA	   		AS ID_TABLA,
+          TABLA		   		AS TABLA,
+		  ID_CAMPO     		AS ID_CAMPO,
+		  CAMPO   	   		AS CAMPO,
+		  ALIAS		   		AS ALIAS,
+		  ID_TIPO_DATO		AS ID_TIPO_DATO,
+		  ID_TABLA_FK		AS ID_TABLA_FK,
+		  TRUNCABLE			AS TRUNCABLE,
+		  LLAVE_ASOCIADA	AS LLAVE_ASOCIADA
 		FROM VIE_MAN_REP_CAMPO
     </select>
     

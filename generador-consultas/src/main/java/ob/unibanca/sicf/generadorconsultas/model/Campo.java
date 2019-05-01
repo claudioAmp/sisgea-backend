@@ -14,4 +14,9 @@ public class Campo {
     private String tabla;
 	private int idCampo;
 	private String campo;
+	private String alias;
+	private String idTipoDato;
+	private int idTablaFk;
+	private int truncable;
+	private String llaveAsociada;
 }
