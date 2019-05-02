@@ -10,13 +10,45 @@
 		  DESCRIPCION   AS DESCRIPCION,
 		  DESC_CORTA    AS DESC_CORTA,
 		  ALIAS         AS ALIAS,
-		  ID_TIPO_TABLA AS ID_TIPO_TABLA
-		FROM VIE_MAN_TABLA
+		  ID_TIPO_TABLA AS ID_TIPO_TABLA,
+		  TIPO_TABLA	AS TIPO_TABLA
+		FROM VIE_MAN_REP_TABLA
     </sql>
 
      <select id="buscarTodos" resultType="Tabla"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+    </select>
+    
+     <select id="buscarTodos" resultType="Tabla" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+	<select id="buscarPorCriterios" resultType="Tabla" parameterType="CriterioBusquedaTabla" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <if  test="nombre != null and nombre != ''">
+        	WHERE
+       			NOMBRE = #{nombre}
+        </if>
+        <if  test="idTipoTabla!= null and idTipoTabla != ''">
+        	WHERE
+       			NOMBRE = #{idTipoTabla}
+        </if>
+    </select>
+   
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_permiso_usuario(
+                #{modo, 							      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.id_tabla,       jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.nombre,  	 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.desc_corta, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.id_tipo_tabla , jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.alias , 	      jdbcType=VARCHAR, mode=IN},
+                #{usuario, 						  jdbcType=VARCHAR, mode=IN}
+            )
+        }
     </select>
     
 </mapper>
