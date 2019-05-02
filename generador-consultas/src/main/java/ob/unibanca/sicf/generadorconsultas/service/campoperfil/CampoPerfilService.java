@@ -35,4 +35,12 @@ public class CampoPerfilService extends MantenibleService<CampoPerfil> implement
 	public List<CampoPerfil> buscarPorCriteriosCampoPerfil(CriterioBusquedaCampoPerfil criterio) {
 		return this.campoPerfilMapper.buscarPorCriterios(criterio);
 	}
+	
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CampoPerfil registrarCampoPerfil(CampoPerfil campoPerfil) {
+		this.registrar(campoPerfil);
+		return campoPerfil;
+	}
 }

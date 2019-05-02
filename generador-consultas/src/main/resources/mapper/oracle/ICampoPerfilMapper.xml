@@ -36,5 +36,17 @@
        		AND ID_TABLA    = #{idTabla}
         </if>
     </select>
+    
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+        	CALL PKG_MAN_REP.prc_man_rep_perfil_campo 	(
+      			#{modo, 							  			jdbcType=VARCHAR, mode=IN},
+      			#{objetoMantenido.id_perfil_rep_campo, 	      	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.id_tabla,   	  				jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.id_campo, 	          		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.id_perfil_rep, 	          	jdbcType=NUMERIC, mode=IN},
+                #{usuario, 						      			jdbcType=VARCHAR, mode=IN}
+        }
+    </select>
 
 </mapper>
