@@ -14,11 +14,6 @@
 		  TIPO_TABLA	AS TIPO_TABLA
 		FROM VIE_MAN_REP_TABLA
     </sql>
-
-     <select id="buscarTodos" resultType="Tabla"
-            statementType="PREPARED">
-        <include refid="consultaVistaMant"/>
-    </select>
     
      <select id="buscarTodos" resultType="Tabla" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
