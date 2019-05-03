@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Campo;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
 
 
 @Mapper
 public interface ICampoMapper extends IMantenibleMapper<Campo>{
 	List<Campo> buscarTodos();
+	List<Campo> buscarPorCriterios(CriterioBusquedaCampo criterio);
 }

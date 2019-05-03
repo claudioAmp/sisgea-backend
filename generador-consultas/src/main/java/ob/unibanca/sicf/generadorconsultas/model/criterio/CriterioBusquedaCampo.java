@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioBusquedaPermisoUsuario{
-	
-	String perfil;
-	String username;
+public class CriterioBusquedaCampo{
+	int idTabla;
+	private int idCampo;
 	String campo;
 	String tabla;
+	int truncable;
 }

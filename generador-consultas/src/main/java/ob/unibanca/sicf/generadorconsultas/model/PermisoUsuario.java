@@ -13,8 +13,7 @@ public class PermisoUsuario{
 	private int idPermisoUsuario;
 	private int idPerfilRepCampo;
 	private int idPerfilRepUsuario;
-	private int idUsuario;
-	private String usuario;
+	private String username;
 	private int idPerfil;
 	private String perfil;
 	private int idTabla;
