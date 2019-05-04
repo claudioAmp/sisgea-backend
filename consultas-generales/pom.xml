@@ -13,10 +13,21 @@
 	 <packaging>jar</packaging>
 	<dependencies>
 		<dependency>
-	    <groupId>com.github.pagehelper</groupId>
-	    <artifactId>pagehelper-spring-boot-starter</artifactId>
-	    <version>1.2.3</version>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jxls</groupId>
+		    <artifactId>jxls</artifactId>
+		    <version>2.4.6</version>
+		</dependency>		
+		<dependency>
+		    <groupId>org.jxls</groupId>
+		    <artifactId>jxls-poi</artifactId>
+		    <version>1.0.15</version>
 		</dependency>
 	</dependencies>
+	
 	
 </project>

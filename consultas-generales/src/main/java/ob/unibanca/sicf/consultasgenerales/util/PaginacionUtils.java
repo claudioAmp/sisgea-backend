@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import ob.commons.util.StringsUtils;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Columna;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion;
 
 public class PaginacionUtils {
 	
@@ -64,4 +65,13 @@ public class PaginacionUtils {
 		}		
 		return props;
 	}
+	
+	/*public static <T> CriterioPaginacion<T> getCriterioPaginacionParaReporteXLSX(T criterioBusqueda, int inicio, int tamanio){
+		CriterioPaginacion<T> criterioPaginacion = 
+    			new CriterioPaginacion<>();
+    	criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+    	criterioPaginacion.setStart(inicio);
+    	criterioPaginacion.setLength(tamanio); 
+    	return criterioPaginacion;
+	}*/
 }
