@@ -14,7 +14,7 @@
 	
 	<sql id = "fragmentoWhereGet" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoInicio}
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 				
 		</if>
 		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">

@@ -27,7 +27,8 @@ public class IncomingVisaRestController {
 	
 	@GetMapping(value = "/incomings-visa-tcr0s")
 	public List<IncomingVisaTCR0> buscaPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criteriosBusqueda) {
-				
+		System.out.println("AAAAAAAAAA IMPIRMIENDO INCOMING");
+		System.out.println(criteriosBusqueda);
 		return incomingVisaService.buscaPorCriteriosTCR0(criteriosBusqueda);
 	}
 	
