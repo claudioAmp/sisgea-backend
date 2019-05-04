@@ -6,7 +6,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.github.pagehelper.Page;
+
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR1;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR3;
@@ -24,12 +28,21 @@ public class IncomingVisaRestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 
-	
 	@GetMapping(value = "/incomings-visa-tcr0s")
-	public List<IncomingVisaTCR0> buscaPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criteriosBusqueda) {
-		System.out.println("AAAAAAAAAA IMPIRMIENDO INCOMING");
-		System.out.println(criteriosBusqueda);
+	public List<IncomingVisaTCR0> buscarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criteriosBusqueda) {
+				
 		return incomingVisaService.buscaPorCriteriosTCR0(criteriosBusqueda);
+	}
+
+	@GetMapping(value = "/incomings-visa-tcr0s3")
+	public Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> buscarPorCriteriosTCR02( Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> criterioPaginacion,CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
+		
+	
+		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		Page<IncomingVisaTCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPagina(criterioPaginacion.getCriterioBusqueda() ,criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
+		
+		Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(),lista);
+		return pagina;
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr1s")
@@ -60,3 +73,4 @@ public class IncomingVisaRestController {
 	return incomingVisaService.buscarPorIdSecuenciaTCR5(idSecuenciaIncoming);
 }
 }
+
