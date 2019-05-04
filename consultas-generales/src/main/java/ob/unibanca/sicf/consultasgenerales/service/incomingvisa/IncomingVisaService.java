@@ -44,6 +44,14 @@ public class IncomingVisaService implements IIncomingVisaService{
        return incomingVisaMapper.buscarPorCriteriosTCR0(criterioBusqueda); 
     }
 	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Page<IncomingVisaTCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda,
+			int pageNo, int pageSize) {
+		PageHelper.startPage(pageNo, pageSize);
+		
+		return incomingVisaMapper.buscarPorCriteriosTCR0(criterioBusqueda);
+	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(int idSecuenciaIncoming){
@@ -71,5 +79,8 @@ public class IncomingVisaService implements IIncomingVisaService{
 		return this.incomingVisaMapper.buscarPorIdSecuenciaTCR5(idSecuenciaIncoming).orElseThrow(
 				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"5" ,idSecuenciaIncoming));
 	}
+
+
+	
 	
 }
