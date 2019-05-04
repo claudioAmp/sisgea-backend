@@ -55,8 +55,8 @@
 		
 		<if  test="entriesMode !=null and entriesMode.size()>0">
 			AND a.ENTRY_MODE IN 
-				<foreach item="item" index="index" collection="entriesMode" open ="(" separator="," >
-				
+				<foreach item="item" index="index" collection="entriesMode" open ="(" separator="," close=")">
+					#{item}
 				</foreach>
 		</if>
 		<if  test="floorsLimitIndication != null and floorsLimitIndication.size()>0"  >
@@ -128,7 +128,7 @@
 		<include refid="consultaPorCriteriosTCR0" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
-		<include refid="fragmentoWhereGetMultiples" /> 
+		<include refid="fragmentoWhereGetMultiples" />
 	   
    	</select>
    	
