@@ -5,6 +5,8 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IBINMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.BIN;
+import ob.unibanca.sicf.mantenimientosgenerales.model.criterio.CriterioBusquedaInstitucion;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,5 +58,11 @@ public class BINService extends MantenibleService<BIN> implements IBINService {
 	public BIN buscarBIN(String idBIN) {
 		return this.binMapper.buscarBIN(idBIN).orElseThrow(
 				() -> new RecursoNoEncontradoException(BIN_NO_ENCONTRADO, idBIN));
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<BIN> buscarPorInstituciones(CriterioBusquedaInstitucion criterio) {
+		return this.binMapper.buscarPorInstituciones(criterio);
 	}
 }

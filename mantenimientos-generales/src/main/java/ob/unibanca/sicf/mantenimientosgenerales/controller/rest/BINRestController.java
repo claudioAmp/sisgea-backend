@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 import ob.commons.validation.validation.IdCadena;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.BIN;
+import ob.unibanca.sicf.mantenimientosgenerales.model.criterio.CriterioBusquedaInstitucion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.bin.IBINService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,6 +33,11 @@ public class BINRestController {
 	@GetMapping("/bins")
 	public List<BIN> buscarTodosBINs() {
 		return this.binService.buscarTodosBINs();
+	}
+	
+	@GetMapping("/bins/buscar")
+	public List<BIN> buscarPorInstituciones(CriterioBusquedaInstitucion criterio) {
+		return this.binService.buscarPorInstituciones(criterio);
 	}
 	
 	@PostMapping(value = "/bins", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -25,6 +25,16 @@
     <select id="buscarTodos" resultType="BIN" statementType="PREPARED">
        <include refid="consultaVistaMant" />
     </select>
+    
+    <select id="buscarPorInstituciones" resultType="BIN" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+       <if  test="idsInstitucion !=null and idsInstitucion.size()>0">
+			WHERE id_institucion IN 
+			<foreach item="item" index="index" collection="idsInstitucion" open ="(" separator=","  close=")" >
+				#{item}
+			</foreach>
+		</if>
+    </select>
 
     <select id="buscarBIN" resultType="BIN">
         <include refid="consultaVistaMant" />
