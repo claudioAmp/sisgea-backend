@@ -1,14 +1,13 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
 
-import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 
+import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
@@ -27,12 +26,6 @@ public class IncomingVisaRestController {
 	public IncomingVisaRestController(IIncomingVisaService incomingVisaService) {
 		this.incomingVisaService = incomingVisaService;
 	}
-
-	/*@GetMapping(value = "/incomings-visa-tcr0s")
-	public List<IncomingVisaTCR0> buscarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criteriosBusqueda) {
-				
-		return incomingVisaService.buscaPorCriteriosTCR0(criteriosBusqueda);
-	}*/
 	
 	/*Paginacion*/
 
@@ -47,38 +40,33 @@ public class IncomingVisaRestController {
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr0s")
-	public IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(
-			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+	public IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		
-		return incomingVisaService.buscarPorIdSecuenciaTCR0(idSecuenciaIncoming);
+		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio.getIdSecuenciaIncoming());
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr1s")
-	public IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(
-			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+	public IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio) {
 		
-		return incomingVisaService.buscarPorIdSecuenciaTCR1(idSecuenciaIncoming);
+		return incomingVisaService.buscarPorIdSecuenciaTCR1(criterio.getIdSecuenciaIncoming());
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr3s")
-	public IncomingVisaTCR3 buscarPorIdSecuenciaTCR3(
-			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+	public IncomingVisaTCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
 		
-		return incomingVisaService.buscarPorIdSecuenciaTCR3(idSecuenciaIncoming);
+		return incomingVisaService.buscarPorIdSecuenciaTCR3(criterio.getIdSecuenciaIncoming());
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr4s")
-	public IncomingVisaTCR4 buscarPorIdSecuenciaTCR4(
-			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+	public IncomingVisaTCR4 buscarPorIdSecuenciaTCR4(CriterioBusquedaIncomingVisa criterio) {
 	
-	return incomingVisaService.buscarPorIdSecuenciaTCR4(idSecuenciaIncoming);
+	return incomingVisaService.buscarPorIdSecuenciaTCR4(criterio.getIdSecuenciaIncoming());
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr5s")
-	public IncomingVisaTCR5 buscarPorIdSecuenciaTCR5(
-			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+	public IncomingVisaTCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio) {
 	
-	return incomingVisaService.buscarPorIdSecuenciaTCR5(idSecuenciaIncoming);
+	return incomingVisaService.buscarPorIdSecuenciaTCR5(criterio.getIdSecuenciaIncoming());
 }
 }
 
