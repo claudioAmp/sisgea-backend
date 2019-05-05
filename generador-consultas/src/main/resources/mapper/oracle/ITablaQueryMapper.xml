@@ -26,6 +26,12 @@
        			WHERE
        			ID_TABLA =#{idTabla}
         </if>
+        
+        <if  test="(idTabla!= null and idTabla != '') and (idReporte!= null and idReporte != '')">
+        	WHERE
+        	    ID_REPORTE =#{idReporte}
+       			AND ID_TABLA =#{idTabla}
+        </if>
     </select>
    
     

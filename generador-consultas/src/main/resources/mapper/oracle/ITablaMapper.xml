@@ -28,6 +28,7 @@
         	WHERE
        			ID_TIPO_TABLA = #{idTipoTabla}
         </if>
+        
     </select>
    
     

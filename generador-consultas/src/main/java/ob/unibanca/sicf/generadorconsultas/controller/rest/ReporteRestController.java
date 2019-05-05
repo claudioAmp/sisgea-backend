@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
+import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.*;
 
@@ -33,19 +36,27 @@ public class ReporteRestController {
 	
 	private final IReporteService ReporteService;
 	private final ITablaQueryService tablaQueryService;
+	private final ICampoQueryService campoQueryService;
 	
-	public ReporteRestController(IReporteService ReporteService,ITablaQueryService TablaQueryService ) {
+	public ReporteRestController(IReporteService ReporteService,ITablaQueryService TablaQueryService,ICampoQueryService campoQueryService ) {
 		this.ReporteService = ReporteService;
 		this.tablaQueryService = TablaQueryService;
+		this.campoQueryService = campoQueryService;
 	}
 	
 	@GetMapping(value = "/reportes")
 	public List<Reporte> buscarTodosReportes() {
 		List<Reporte> reportes = this.ReporteService.buscarTodosReportes();
-		CriterioBusquedaTablaQuery criterio = new CriterioBusquedaTablaQuery() ;
+		CriterioBusquedaTablaQuery criterioTablas = new CriterioBusquedaTablaQuery() ;
+		CriterioBusquedaCampoQuery criterioCampos = new CriterioBusquedaCampoQuery() ;
 		for (Reporte r : reportes) {
-			criterio.setIdReporte(r.getIdReporte());
-			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterio));
+			criterioTablas.setIdReporte(r.getIdReporte());
+			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTablas));
+			for(TablaQuery t : r.getTablas()) {
+				criterioCampos.setIdReporte(t.getIdReporte());
+				criterioCampos.setIdTabla(t.getIdTabla());
+				t.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampos));
+			}
 		}
 		return reportes;
 		

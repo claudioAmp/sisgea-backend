@@ -10,20 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampoQuery {
-    int idQuery;
+    int idReporte;
     int idTabla;
-    String idInstancia;
+    String tabla;
+    String idInstanciaTabla;
     int idCampo;
+    String campo;
     int idTablaFrom;
     int idCampoFrom;
-    String aliasCampo;
     String orderBy;
-    int enSelect;
-    int enGroupBy;
+    boolean enSelect;
+    boolean enGroupBy;
     String funcionGrupo;
-    /*private String ususarioAdicion;
-    private String usuarioModificacion;
-    private Date fechaAdicion;
-    private Date fechaModificacion;*/
 
 }

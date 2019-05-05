@@ -10,20 +10,48 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ICampoQueryMapper;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 
 @Service
 public class CampoQueryService extends MantenibleService<CampoQuery> implements ICampoQueryService {
 
-    private final ICampoQueryMapper campoQueryMapper;
-
-    public CampoQueryService(@Qualifier("ICampoQueryMapper") IMantenibleMapper<CampoQuery> mantenibleMapper) {
+	private final ICampoQueryMapper CampoQueryMapper;
+	public CampoQueryService(@Qualifier("ICampoQueryMapper") IMantenibleMapper<CampoQuery> mantenibleMapper) {
 		super(mantenibleMapper);
-		this.campoQueryMapper = (ICampoQueryMapper) mantenibleMapper;
+		this.CampoQueryMapper = (ICampoQueryMapper) mantenibleMapper;
 	}
-
-    @Override
+	
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<CampoQuery> buscarTodosCampoQuery() {
+	public List<CampoQuery> buscarTodosCamposQuery() {
 		return this.buscarTodos();
 	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<CampoQuery> buscarPorCriteriosCamposQuery(CriterioBusquedaCampoQuery criterio) {
+		return this.CampoQueryMapper.buscarPorCriterios(criterio);
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CampoQuery registrarCampoQuery(CampoQuery CampoQuery) {
+		this.registrar(CampoQuery);
+		return CampoQuery;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CampoQuery actualizarCampoQuery(int idCampoQuery, CampoQuery campoQuery) {
+		campoQuery.setIdCampo(idCampoQuery);
+		this.actualizar(campoQuery);
+		return campoQuery;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarCampoQuery(int idCampoQuery) {
+		CampoQuery campoQuery = CampoQuery.builder().idCampo(idCampoQuery).build();
+		this.eliminar(campoQuery);
+	}
+
+	
 }
