@@ -111,6 +111,11 @@
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
    	
+   	<sql id="framentoSelectTCR0" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
+	</sql>
    	
    	<sql id="framentoSelectTCR1" >
 		SELECT 
