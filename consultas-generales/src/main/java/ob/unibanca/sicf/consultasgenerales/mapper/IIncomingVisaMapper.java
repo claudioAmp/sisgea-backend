@@ -18,6 +18,8 @@ public interface IIncomingVisaMapper {
 	public Page<IncomingVisaTCR0> buscarPorCriteriosTCR0(
 			CriterioBusquedaIncomingVisaTCR0 criterioPaginacion);
 	
+	Optional<IncomingVisaTCR0> buscarPorIdSecuenciaTCR0(int idSecuenciaIncoming);
+	
 	Optional<IncomingVisaTCR1> buscarPorIdSecuenciaTCR1(int idSecuenciaIncoming);
 	
 	Optional<IncomingVisaTCR3> buscarPorIdSecuenciaTCR3(int idSecuenciaIncoming);

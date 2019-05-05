@@ -28,21 +28,29 @@ public class IncomingVisaRestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 
-	@GetMapping(value = "/incomings-visa-tcr0s")
+	/*@GetMapping(value = "/incomings-visa-tcr0s")
 	public List<IncomingVisaTCR0> buscarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criteriosBusqueda) {
 				
 		return incomingVisaService.buscaPorCriteriosTCR0(criteriosBusqueda);
-	}
+	}*/
+	
+	/*Paginacion*/
 
-	@GetMapping(value = "/incomings-visa-tcr0s3")
+	@GetMapping(value = "/incomings-visa-tcr0s")
 	public Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> buscarPorCriteriosTCR02( Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> criterioPaginacion,CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
 		
-	
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<IncomingVisaTCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPagina(criterioPaginacion.getCriterioBusqueda() ,criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		
 		Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(),lista);
 		return pagina;
+	}
+	
+	@GetMapping(value = "/incomings-visa-tcr0s")
+	public IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(
+			@RequestParam ("idSecuenciaIncoming")int idSecuenciaIncoming) {
+		
+		return incomingVisaService.buscarPorIdSecuenciaTCR0(idSecuenciaIncoming);
 	}
 	
 	@GetMapping(value = "/incomings-visa-tcr1s")
