@@ -141,7 +141,7 @@
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR5 a
 	 </sql>
 	 
-	 <select id="buscarPorIdSecuenciaTCR0" resultType="IncomingVisaTCR0" parameterType="Int" statementType="PREPARED">		
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR0" statementType="PREPARED">		
 		<include refid="framentoSelectTCR0" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
@@ -149,7 +149,7 @@
 		</if>
    	</select>
 	
-	 <select id="buscarPorIdSecuenciaTCR1" resultType="IncomingVisaTCR1" parameterType="Int" statementType="PREPARED">			
+	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR1" statementType="PREPARED">			
 		<include refid="framentoSelectTCR1" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
@@ -157,7 +157,7 @@
 		</if>
    	</select>
    	
-   	 <select id="buscarPorIdSecuenciaTCR3" resultType="IncomingVisaTCR3" parameterType="Int" statementType="PREPARED">	
+   	 <select id="buscarPorIdSecuenciaTCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR3" statementType="PREPARED">	
 		<include refid="framentoSelectTCR3" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
@@ -165,7 +165,7 @@
 		</if>
    	</select>
    	
-   	 <select id="buscarPorIdSecuenciaTCR4" resultType="IncomingVisaTCR4" parameterType="Int" statementType="PREPARED">		
+   	 <select id="buscarPorIdSecuenciaTCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR4" statementType="PREPARED">		
 		<include refid="framentoSelectTCR4" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
@@ -173,7 +173,7 @@
 		</if>		
    	</select>
    	
-   	 <select id="buscarPorIdSecuenciaTCR5" resultType="IncomingVisaTCR5" parameterType="Int" statementType="PREPARED">		
+   	 <select id="buscarPorIdSecuenciaTCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR5" statementType="PREPARED">		
 		<include refid="framentoSelectTCR5" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
