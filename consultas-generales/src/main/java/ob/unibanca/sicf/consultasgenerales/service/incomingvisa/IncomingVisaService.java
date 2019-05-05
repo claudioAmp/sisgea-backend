@@ -54,6 +54,13 @@ public class IncomingVisaService implements IIncomingVisaService{
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(int idSecuenciaIncoming){
+		return this.incomingVisaMapper.buscarPorIdSecuenciaTCR0(idSecuenciaIncoming).orElseThrow(
+				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"0" ,idSecuenciaIncoming));
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(int idSecuenciaIncoming){
 		return this.incomingVisaMapper.buscarPorIdSecuenciaTCR1(idSecuenciaIncoming).orElseThrow(
 				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"1" ,idSecuenciaIncoming));

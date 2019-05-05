@@ -12,11 +12,11 @@ import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR5;
 
 public interface IIncomingVisaService {
 	
-	Page<IncomingVisaTCR0> buscaPorCriteriosTCR0(
-			CriterioBusquedaIncomingVisaTCR0 criterioPaginacion);
+	Page<IncomingVisaTCR0> buscaPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criterioPaginacion); // ya no se usara
 		
-	Page<IncomingVisaTCR0> buscaPorCriteriosTCR0PorPagina(
-			CriterioBusquedaIncomingVisaTCR0 criterioBusqueda,int pageNo, int pageSize);
+	Page<IncomingVisaTCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda, int pageNo, int pageSize);
+	
+	IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(int idSecuenciaIncoming);
 	
 	IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(int idSecuenciaIncoming);
 	
