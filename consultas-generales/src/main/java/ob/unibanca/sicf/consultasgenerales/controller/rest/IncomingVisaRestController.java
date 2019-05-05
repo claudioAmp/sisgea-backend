@@ -36,7 +36,7 @@ public class IncomingVisaRestController {
 	
 	/*Paginacion*/
 
-	@GetMapping(value = "/incomings-visa-tcr0s")
+	@GetMapping(value = "/incomings-visa-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> buscarPorCriteriosTCR02( Pagina<CriterioBusquedaIncomingVisaTCR0,IncomingVisaTCR0> criterioPaginacion,CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
 		
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
