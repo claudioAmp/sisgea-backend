@@ -43,4 +43,19 @@ public class CampoPerfilService extends MantenibleService<CampoPerfil> implement
 		this.registrar(campoPerfil);
 		return campoPerfil;
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public CampoPerfil actualizarCampoPerfil(int idPerfilRepCampo, CampoPerfil campoPerfil) {
+		campoPerfil.setIdPerfilRepCampo(idPerfilRepCampo);
+		this.actualizar(campoPerfil);
+		return campoPerfil;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarCampoPerfil(int idCampoPerfil) {
+		CampoPerfil campoPerfil = CampoPerfil.builder().idPerfilRepCampo(idCampoPerfil).build();
+		this.eliminar(campoPerfil);
+	}
 }
