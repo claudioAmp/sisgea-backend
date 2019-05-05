@@ -36,11 +36,11 @@ public class CampoRestController {
 	}
 	
 	@GetMapping(value = "/campos")
-	public List<Campo> buscarTodosPermisosUsuario() {
+	public List<Campo> buscarTodosCampos() {
 		return this.campoService.buscarTodosCampos();
 	}
 	@GetMapping(value = "/campos/buscar")
-	public List<Campo> buscarTodosPermisosUsuario(CriterioBusquedaCampo criterio) {
+	public List<Campo> buscarTodosCampos(CriterioBusquedaCampo criterio) {
 		return this.campoService.buscarPorCriteriosCampo(criterio);
 	}
 	@PostMapping(value = "/campos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
