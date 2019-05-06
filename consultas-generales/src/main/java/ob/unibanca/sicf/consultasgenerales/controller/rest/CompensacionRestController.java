@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.service.compensacion.ICompensacionService;
@@ -27,6 +28,10 @@ public class CompensacionRestController {
 		Pagina<CriterioCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
-	
+
+	@GetMapping("/compensacion")
+	public CompensacionDetalle buscarPorIdSecuenciaTCR0(CriterioCompensacion criterio) {
+		return compensacionService.buscarPorSecuencia(criterio);
+	}
 	
 }

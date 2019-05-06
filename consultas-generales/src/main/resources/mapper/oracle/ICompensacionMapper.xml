@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ICompensacionMapper">
-
+	
+	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA LA GRILLA -->
+	
 	<sql id="consultaCompensacion" >
 		SELECT *
 		FROM VIE_CON_COMPENSACION a
@@ -102,6 +104,31 @@
 			WHERE
 		<include refid="fragmentoWhere"/> 
 		<include refid="fragmentoWhereMultiples"/>
+   	</select>
+   	
+   	
+   	
+   	
+   	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA EL DETALLE -->
+     	
+   	<sql id="consultaCompensacionDetalle" >
+		SELECT *
+		FROM VIE_CON_COMPENSACION_DETALLE a
+	</sql>
+	
+	<sql id = "fragmentoWhereDetalle">
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="idSecuencia != null">
+			 AND a.ID_SECUENCIA = #{idSecuencia}
+		</if>
+	</sql>
+	
+	<select id="buscarPorSecuencia" parameterType="CriterioCompensacion"  resultType="CompensacionDetalle" statementType="PREPARED">	
+		<include refid="consultaCompensacionDetalle" />
+			WHERE
+		<include refid="fragmentoWhereDetalle"/>
    	</select>
 
 </mapper>
