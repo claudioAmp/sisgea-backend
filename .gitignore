@@ -135,3 +135,7 @@ local.properties
 
 #GIT
 README.md
+/bin/
+
+#STS
+.sts4-cache/

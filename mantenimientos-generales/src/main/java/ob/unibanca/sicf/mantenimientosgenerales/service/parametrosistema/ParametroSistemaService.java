@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ParametroSistemaService extends MantenibleService<ParametroSistema> implements IParametroSistemaService {
 	
-	private static final String PARAMETRO_SISTEMA_NO_ENCONTRADO = "Los parámetros sistema no existen.";
+	private static final String PARAMETRO_SISTEMA_NO_ENCONTRADO = "Los parámetros de sistema no existen.";
 	
 	public ParametroSistemaService(
 			@Qualifier("IParametroSistemaMapper") IMantenibleMapper<ParametroSistema> mantenibleMapper) {
