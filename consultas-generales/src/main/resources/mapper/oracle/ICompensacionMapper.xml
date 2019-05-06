@@ -20,7 +20,7 @@
 		<if  test="monedaCompensacion != null">
 			 AND a.ID_MONEDA_COMPENSACION = #{monedaCompensacion}
 		</if>
-		<if  test="valorCompensacion != null">
+		<if  test="valorCompensacion != null and valorCompensacion != 0">
 			 AND a.VALOR_COMPENSACION = #{valorCompensacion}
 		</if>
 		<if  test="numeroTrace != null">
