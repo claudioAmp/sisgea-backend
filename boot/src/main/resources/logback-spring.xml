@@ -25,8 +25,14 @@
             <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg %n</Pattern>
         </encoder>
     </appender>
+    <!-- Declaración para desactivar el logging del payload de las peticiones, esto evita el registro de información -->
+    <!-- sensible -->
+    <logger name="org.springframework.web.servlet.mvc.method.annotation" level="off">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="file"/>
+    </logger>
     <!-- Declaración de logger específicos para el profiles dev (include: dev) -->
-    <springProfile name="dev-vgamo">
+    <springProfile name="dev">
         <logger name="org.springframework" level="debug" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
