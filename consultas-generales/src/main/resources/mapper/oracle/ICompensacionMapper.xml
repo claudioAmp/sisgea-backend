@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ICompensacionMapper">
+
+	<sql id="consultaCompensacion" >
+		SELECT *
+		FROM VIE_CON_COMPENSACION a
+	</sql>
+	
+	<sql id = "fragmentoWhere">
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="idSecuencia != null">
+			 AND a.ID_SECUENCIA = #{idSecuencia}
+		</if>
+		<if  test="numeroTarjeta != null">
+			 AND a.NUMERO_TARJETA LIKE #{numeroTarjeta}
+		</if>
+		<if  test="monedaCompensacion != null">
+			 AND a.ID_MONEDA_COMPENSACION = #{monedaCompensacion}
+		</if>
+		<if  test="valorCompensacion != null">
+			 AND a.VALOR_COMPENSACION = #{valorCompensacion}
+		</if>
+		<if  test="numeroTrace != null">
+			 AND a.NUMERO_TRACE = #{numeroTrace}
+		</if>
+	</sql>
+	
+	<sql id ="fragmentoWhereMultiples">
+		<if test="membresias !=null and membresias.size()>0">
+			AND a.ID_MEMBRESIA IN 
+			<foreach item="item" index="index" collection="membresias" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="servicios !=null and servicios.size()>0">
+			AND a.ID_SERVICIO IN 
+			<foreach item="item" index="index" collection="servicios" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="origenes !=null and origenes.size()>0">
+			AND a.ID_ORIGEN IN 
+			<foreach item="item" index="index" collection="origenes" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="clasesTransaccion !=null and clasesTransaccion.size()>0">
+			AND a.ID_CLASE_TRANSACCION IN 
+			<foreach item="item" index="index" collection="clasesTransaccion" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="codigosTransaccion !=null and codigosTransaccion.size()>0">
+			AND a.ID_CODIGO_TRANSACCION IN 
+			<foreach item="item" index="index" collection="codigosTransaccion" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="roles !=null and roles.size()>0">
+			AND a.ID_ROL IN 
+			<foreach item="item" index="index" collection="roles" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="canales !=null and canales.size()>0">
+			AND a.ID_CANAL IN 
+			<foreach item="item" index="index" collection="canales" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="institucionesEmisoras !=null and institucionesEmisoras.size()>0">
+			AND a.ID_INSTITUCION_EMISORA IN 
+			<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="institucionesReceptoras !=null and institucionesReceptoras.size()>0">
+			AND a.ID_INSTITUCION_RECEPTORA IN 
+			<foreach item="item" index="index" collection="institucionesReceptoras" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="bines !=null and bines.size()>0">
+			AND a.BIN IN 
+			<foreach item="item" index="index" collection="bines" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="codigosRespuesta !=null and codigosRespuesta.size()>0">
+			AND a.CODIGO_RESPUESTA IN 
+			<foreach item="item" index="index" collection="codigosRespuesta" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+	
+	<select id="buscarPorCriterios" parameterType="CriterioCompensacion"  resultType="Compensacion" statementType="PREPARED">	
+		<include refid="consultaCompensacion" />
+			WHERE
+		<include refid="fragmentoWhere"/> 
+		<include refid="fragmentoWhereMultiples"/>
+   	</select>
+
+</mapper>

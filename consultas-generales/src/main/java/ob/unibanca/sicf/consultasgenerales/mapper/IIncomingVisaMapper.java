@@ -19,8 +19,7 @@ import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR5;
 @Mapper
 public interface IIncomingVisaMapper {
 	
-	public Page<IncomingVisaTCR0> buscarPorCriteriosTCR0(
-			CriterioBusquedaIncomingVisaTCR0 criterioPaginacion);
+	Page<IncomingVisaTCR0> buscarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criterioPaginacion);
 	
 	Optional<IncomingVisaTCR0> buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio);
 	
