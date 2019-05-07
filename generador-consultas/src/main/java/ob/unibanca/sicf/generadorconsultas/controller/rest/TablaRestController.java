@@ -35,27 +35,27 @@ public class TablaRestController {
 		this.tablaService = tablaService;
 	}
 	
-	@GetMapping(value = "/tabla")
+	@GetMapping(value = "/tablas")
 	public List<Tabla> buscarTodosPermisosUsuario() {
 		return this.tablaService.buscarTodosTabla();
 	}
-	@GetMapping(value = "/tabla/buscar")
+	@GetMapping(value = "/tablas/buscar")
 	public List<Tabla> buscarTodosPermisosUsuario(CriterioBusquedaTabla criterio) {
 		return this.tablaService.buscarPorCriteriosTabla(criterio);
 	}
-	@PostMapping(value = "/tabla", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/tablas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Tabla registrarTabla(@Validated({IRegistro.class, Default.class}) @RequestBody Tabla tabla) {
 		return this.tablaService.registrarTabla(tabla);
 	}
 	
-	@PutMapping(value = "/tabla/{idTabla}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/tablas/{idTabla}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Tabla actualizarTabla(@IdNumerico(maxRange = 99) @PathVariable int idTabla,
 	                             @Validated @RequestBody Tabla tabla) {
 		return this.tablaService.actualizarTabla(idTabla, tabla);
 	}
 	
-	@DeleteMapping(value = "/tabla/{idTabla}")
+	@DeleteMapping(value = "/tablas/{idTabla}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarTabla(@IdNumerico(maxRange = 99) @PathVariable int idTabla) {
 		this.tablaService.eliminarTabla(idTabla);
