@@ -27,7 +27,7 @@
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PRC_METODO_ID_THB(
+            CALL PKG_MAN_GENERALES.PRC_MAN_METODO_ID_THB(
                 #{modo,                                 	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idMembresia,          	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idMetodoIdThb,     		jdbcType=VARCHAR, mode=IN},
