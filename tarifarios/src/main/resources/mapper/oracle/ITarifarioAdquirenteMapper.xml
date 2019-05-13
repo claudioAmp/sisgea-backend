@@ -33,7 +33,7 @@
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_ADQUIRENTE (
                 #{modo,                             		jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idTarifarioAdquirente,	jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idTarifarioAdquirente,	jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idInstitucion,        	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idTarifa,         		jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nivel,					jdbcType=NUMERIC, mode=IN},
