@@ -35,7 +35,7 @@
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_EMISOR (
                 #{modo,                             	jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idTarifarioEmisor,	jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idTarifarioEmisor,	jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idInstitucion,        jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idTarifa,         	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nivel,				jdbcType=NUMERIC, mode=IN},
