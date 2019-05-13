@@ -32,7 +32,7 @@
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_SURCHARGE (
                 #{modo,                             		jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idTarifarioSurcharge,		jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idTarifarioSurcharge,		jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idInstitucion,        	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.tipoTarifa,         		jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nivel,					jdbcType=NUMERIC, mode=IN},
