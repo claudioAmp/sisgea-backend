@@ -8,7 +8,7 @@ import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioCompensacion;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.service.compensacion.ICompensacionService;
 
@@ -22,15 +22,15 @@ public class CompensacionRestController {
 	}
 	
 	@GetMapping(value = "/compensaciones/pagination")
-	public Pagina<CriterioCompensacion, Compensacion> buscarPorPaginas(Pagina<CriterioCompensacion, Compensacion> criterioPaginacion, CriterioCompensacion criterioBusqueda) {
+	public Pagina<CriterioBusquedaCompensacion, Compensacion> buscarPorPaginas(Pagina<CriterioBusquedaCompensacion, Compensacion> criterioPaginacion, CriterioBusquedaCompensacion criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<Compensacion> lista = compensacionService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
-		Pagina<CriterioCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
+		Pagina<CriterioBusquedaCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
 
 	@GetMapping("/compensaciones")
-	public CompensacionDetalle buscarPorIdSecuenciaTCR0(CriterioCompensacion criterio) {
+	public CompensacionDetalle buscarPorIdSecuenciaTCR0(CriterioBusquedaCompensacion criterio) {
 		return compensacionService.buscarPorSecuencia(criterio);
 	}
 	

@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioCompensacion;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
 
 @Mapper
 public interface ICompensacionMapper {
 		
-	public Page<Compensacion> buscarPorCriterios(CriterioCompensacion criterioPaginacion);
+	public Page<Compensacion> buscarPorCriterios(CriterioBusquedaCompensacion criterioPaginacion);
 	
-	Optional<CompensacionDetalle> buscarPorSecuencia(CriterioCompensacion criterio);
+	Optional<CompensacionDetalle> buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
 }

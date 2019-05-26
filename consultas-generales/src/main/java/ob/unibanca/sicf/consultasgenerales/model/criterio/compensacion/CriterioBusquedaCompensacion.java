@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioCompensacion {
+public class CriterioBusquedaCompensacion {
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
 	Integer idSecuencia;
