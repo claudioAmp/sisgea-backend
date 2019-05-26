@@ -99,7 +99,7 @@
 		</if>
 	</sql>
 	
-	<select id="buscarPorCriterios" parameterType="CriterioCompensacion"  resultType="Compensacion" statementType="PREPARED">	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaCompensacion"  resultType="Compensacion" statementType="PREPARED">	
 		<include refid="consultaCompensacion" />
 			WHERE
 		<include refid="fragmentoWhere"/> 
@@ -125,7 +125,7 @@
 		</if>
 	</sql>
 	
-	<select id="buscarPorSecuencia" parameterType="CriterioCompensacion"  resultType="CompensacionDetalle" statementType="PREPARED">	
+	<select id="buscarPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="CompensacionDetalle" statementType="PREPARED">	
 		<include refid="consultaCompensacionDetalle" />
 			WHERE
 		<include refid="fragmentoWhereDetalle"/>
