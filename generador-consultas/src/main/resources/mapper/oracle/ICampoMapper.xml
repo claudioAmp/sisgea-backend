@@ -20,15 +20,15 @@
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_REP.prc_man_rep_campo(
-            #{pi_modo                   IN VARCHAR2
-    		#{objetoMantenido.id_tabla               jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.id_campo               jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.nombre                 jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.alias             	 jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.id_tipo_dato           jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.id_tabla_fk            jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.truncable              jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.usuario				 jdbcType=VARCHAR, mode=IN},
+            #{modo, 							      jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTabla,               jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.idCampo ,              jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.campo,                 jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.alias  ,           	 jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTipoDato  ,         jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTablaFk ,           jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.truncable,              jdbcType=NUMERIC, mode=IN},
+    		#{usuario,				                 jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

@@ -50,7 +50,7 @@ public class CampoRestController {
 	}
 	
 	@PutMapping(value = "/campos/{idCampo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Campo actualizarCampo(@IdNumerico(maxRange = 99) @PathVariable int idCampo,
+	public Campo actualizarCampo(@IdNumerico(minRange=0, maxRange = 99999) @PathVariable int idCampo,
 	                             @Validated @RequestBody Campo Campo) {
 		return this.campoService.actualizarCampo(idCampo, Campo);
 	}

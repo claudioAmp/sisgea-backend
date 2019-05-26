@@ -29,11 +29,11 @@
     
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_MAN_REP.prc_man_rep_parametros(
+            CALL PKG_MAN_REP.prc_man_rep_parametro(
                 #{modo, 							      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_parametro,     	  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idParametro,     	  jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcion,  		  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.tipo_dato_valor, 	  	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoDatoValor, 	  	  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.valor , 	     		  jdbcType=VARCHAR, mode=IN},
                 #{usuario, 						          jdbcType=VARCHAR, mode=IN}
             )
