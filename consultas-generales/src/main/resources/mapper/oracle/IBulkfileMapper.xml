@@ -20,10 +20,10 @@
 			 AND a.TRACE_NUMBER = #{traceNumber}
 		</if>
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
 		<if  test="messageTypeInd != null">
-			 a.MESSAGE_TYPE_IND = #{messageTypeInd}
+			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
 		<if  test="traceNumber != null">
 			 AND a.TRACE_NUMBER = #{traceNumber}
@@ -32,7 +32,7 @@
 	
 	<sql id ="fragmentoWhereMultiples">
 		<if test="responsesCode !=null and responsesCode.size()>0">
-			AND a.RESPONSE_CODEIN 
+			AND a.RESPONSE_CODE IN 
 			<foreach item="item" index="index" collection="responsesCode" open ="(" separator="," close=")">
 				#{item}
 			</foreach>
