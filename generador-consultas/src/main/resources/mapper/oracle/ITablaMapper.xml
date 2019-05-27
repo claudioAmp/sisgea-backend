@@ -34,14 +34,14 @@
     
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_MAN_REP.prc_man_rep_permiso_usuario(
+            CALL PKG_MAN_REP.prc_man_rep_tabla(
                 #{modo, 							      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_tabla,       jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idTabla,       jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nombre,  	 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.desc_corta, 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_tipo_tabla , jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.alias , 	      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.desCorta, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idTipoTabla , jdbcType=VARCHAR, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )
         }

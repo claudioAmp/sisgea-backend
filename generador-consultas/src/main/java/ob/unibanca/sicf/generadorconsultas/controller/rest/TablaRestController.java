@@ -50,7 +50,7 @@ public class TablaRestController {
 	}
 	
 	@PutMapping(value = "/tablas/{idTabla}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Tabla actualizarTabla(@IdNumerico(maxRange = 99) @PathVariable int idTabla,
+	public Tabla actualizarTabla(@IdNumerico(minRange=0, maxRange = 99) @PathVariable int idTabla,
 	                             @Validated @RequestBody Tabla tabla) {
 		return this.tablaService.actualizarTabla(idTabla, tabla);
 	}
