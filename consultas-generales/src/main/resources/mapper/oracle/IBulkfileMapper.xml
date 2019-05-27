@@ -25,8 +25,8 @@
 		<if  test="messageTypeInd != null">
 			 a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
-		<if  test="traceNumbe != null">
-			 AND a.TRACE_NUMBER = #{traceNumbe}
+		<if  test="traceNumber != null">
+			 AND a.TRACE_NUMBER = #{traceNumber}
 		</if>
 	</sql>
 	
@@ -63,8 +63,8 @@
 		<if  test="accountNumber != null">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}
 		</if>
-		<if  test="traceNumbe != null">
-			 AND a.TRACE_NUMBER = #{traceNumbe}
+		<if  test="traceNumber != null">
+			 AND a.TRACE_NUMBER = #{traceNumber}
 		</if>
 	</sql>
 	
