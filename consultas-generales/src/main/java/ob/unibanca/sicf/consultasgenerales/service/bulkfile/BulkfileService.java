@@ -11,7 +11,7 @@ import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.IBulkfileMapper;
 import ob.unibanca.sicf.consultasgenerales.model.bulkfile.Bulkfile;
 import ob.unibanca.sicf.consultasgenerales.model.bulkfile.BulkfileDetalle;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfilemc.CriterioBusquedaBulkfile;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfile.CriterioBusquedaBulkfile;
 
 @Service
 public class BulkfileService implements  IBulkfileService{

@@ -8,7 +8,7 @@ import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.bulkfile.Bulkfile;
 import ob.unibanca.sicf.consultasgenerales.model.bulkfile.BulkfileDetalle;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfilemc.CriterioBusquedaBulkfile;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfile.CriterioBusquedaBulkfile;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.service.bulkfile.IBulkfileService;
 

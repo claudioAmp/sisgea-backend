@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfilemc;
+package ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfile;
 
 import java.util.List;
 
