@@ -22,7 +22,7 @@ public class CompensacionRestController {
 	}
 	
 	@GetMapping(value = "/compensaciones/pagination")
-	public Pagina<CriterioBusquedaCompensacion, Compensacion> buscarPorPaginas(Pagina<CriterioBusquedaCompensacion, Compensacion> criterioPaginacion, CriterioBusquedaCompensacion criterioBusqueda) {
+	public Pagina<CriterioBusquedaCompensacion, Compensacion> buscarCriterioPorPaginas(Pagina<CriterioBusquedaCompensacion, Compensacion> criterioPaginacion, CriterioBusquedaCompensacion criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<Compensacion> lista = compensacionService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		Pagina<CriterioBusquedaCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
@@ -30,7 +30,7 @@ public class CompensacionRestController {
 	}
 
 	@GetMapping("/compensaciones")
-	public CompensacionDetalle buscarPorIdSecuenciaTCR0(CriterioBusquedaCompensacion criterio) {
+	public CompensacionDetalle buscarDetalle(CriterioBusquedaCompensacion criterio) {
 		return compensacionService.buscarPorSecuencia(criterio);
 	}
 	
