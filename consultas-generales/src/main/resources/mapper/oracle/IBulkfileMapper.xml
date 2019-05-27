@@ -25,13 +25,13 @@
 		<if  test="messageTypeInd != null">
 			 a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
-		<if  test="traceNumbe != null">
-			 AND a.TRACE_NUMBER = #{traceNumbe}
+		<if  test="traceNumber != null">
+			 AND a.TRACE_NUMBER = #{traceNumber}
 		</if>
 	</sql>
 	
 	<sql id ="fragmentoWhereMultiples">
-		<if test="responsesCode !=null andresponsesCode.size()>0">
+		<if test="responsesCode !=null and responsesCode.size()>0">
 			AND a.RESPONSE_CODEIN 
 			<foreach item="item" index="index" collection="responsesCode" open ="(" separator="," close=")">
 				#{item}
@@ -63,8 +63,8 @@
 		<if  test="accountNumber != null">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}
 		</if>
-		<if  test="traceNumbe != null">
-			 AND a.TRACE_NUMBER = #{traceNumbe}
+		<if  test="traceNumber != null">
+			 AND a.TRACE_NUMBER = #{traceNumber}
 		</if>
 	</sql>
 	
