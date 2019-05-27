@@ -25,6 +25,7 @@ public class BulkfileRestController {
 	@GetMapping(value = "/bulkfiles/pagination")
 	public Pagina<CriterioBusquedaBulkfile, Bulkfile> buscarPorPaginas(Pagina<CriterioBusquedaBulkfile, Bulkfile> criterioPaginacion, CriterioBusquedaBulkfile criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		System.out.println(criterioBusqueda);
 		Page<Bulkfile> lista = bulkfileService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		Pagina<CriterioBusquedaBulkfile, Bulkfile> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;

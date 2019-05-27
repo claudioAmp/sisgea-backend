@@ -25,9 +25,6 @@
 		<if  test="messageTypeInd != null">
 			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
-		<if  test="traceNumber != null">
-			 AND a.TRACE_NUMBER = #{traceNumber}
-		</if>
 	</sql>
 	
 	<sql id ="fragmentoWhereMultiples">
