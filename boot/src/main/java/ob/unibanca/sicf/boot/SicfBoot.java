@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.
  * <p>
