@@ -24,6 +24,8 @@ public class CompensacionRestController {
 	@GetMapping(value = "/compensaciones/pagination")
 	public Pagina<CriterioBusquedaCompensacion, Compensacion> buscarCriterioPorPaginas(Pagina<CriterioBusquedaCompensacion, Compensacion> criterioPaginacion, CriterioBusquedaCompensacion criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		System.out.println("llegue aqui**********************************************************************************");
+		
 		Page<Compensacion> lista = compensacionService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		Pagina<CriterioBusquedaCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;

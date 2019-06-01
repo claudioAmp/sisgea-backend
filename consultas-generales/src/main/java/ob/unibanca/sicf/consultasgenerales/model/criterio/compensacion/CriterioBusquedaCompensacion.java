@@ -16,7 +16,7 @@ public class CriterioBusquedaCompensacion {
 	String fechaProcesoFin;
 	Integer idSecuencia;
 	String numeroTarjeta;
-	Integer monedaCompensacion;
+	List<Integer> monedasCompensacion;
 	double valorCompensacion;
 	String numeroTrace;
 	List<String> membresias;
@@ -26,7 +26,7 @@ public class CriterioBusquedaCompensacion {
 	List<Integer> codigosTransaccion;
 	List<Integer> roles;
 	List<Integer> canales;
-	List<Integer> institucionesEmisoras;
+	List<Integer> instituciones;
 	List<Integer> institucionesReceptoras;
 	List<String> bines;
 	List<String> codigosRespuesta;

@@ -19,9 +19,7 @@
 		<if  test="numeroTarjeta != null">
 			 AND a.NUMERO_TARJETA LIKE #{numeroTarjeta}
 		</if>
-		<if  test="monedaCompensacion != null">
-			 AND a.ID_MONEDA_COMPENSACION = #{monedaCompensacion}
-		</if>
+		
 		<if  test="valorCompensacion != null and valorCompensacion != 0">
 			 AND a.VALOR_COMPENSACION = #{valorCompensacion}
 		</if>
@@ -73,9 +71,9 @@
 				#{item}
 			</foreach>
 		</if>
-		<if test="institucionesEmisoras !=null and institucionesEmisoras.size()>0">
+		<if test="instituciones !=null and instituciones.size()>0">
 			AND a.ID_INSTITUCION_EMISORA IN 
-			<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator="," close=")">
+			<foreach item="item" index="index" collection="instituciones" open ="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
@@ -94,6 +92,12 @@
 		<if test="codigosRespuesta !=null and codigosRespuesta.size()>0">
 			AND a.CODIGO_RESPUESTA IN 
 			<foreach item="item" index="index" collection="codigosRespuesta" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="monedasCompensacion !=null and monedasCompensacion.size()>0">
+			AND a.ID_MONEDA_COMPENSACION IN 
+			<foreach item="item" index="index" collection="monedasCompensacion" open ="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
