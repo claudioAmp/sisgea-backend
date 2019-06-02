@@ -3,6 +3,7 @@ package ob.unibanca.sicf.consultasgenerales.service.compensacion;
 
 import com.github.pagehelper.Page;
 
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
@@ -13,5 +14,5 @@ public interface ICompensacionService {
 	
 	CompensacionDetalle buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
-	CompensacionDetalle buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
+	ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
 }

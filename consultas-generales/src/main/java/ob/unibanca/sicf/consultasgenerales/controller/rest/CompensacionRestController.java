@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
@@ -37,7 +38,7 @@ public class CompensacionRestController {
 	}
 	
 	@GetMapping("/compensaciones/comisiones")
-	public CompensacionDetalle buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
+	public ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
 	
 		return compensacionService.buscarComisionesPorSecuencia(criterio);
 	}

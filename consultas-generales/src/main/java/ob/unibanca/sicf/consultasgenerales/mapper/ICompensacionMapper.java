@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
+
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
@@ -15,6 +17,6 @@ public interface ICompensacionMapper {
 	
 	Optional<CompensacionDetalle> buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
-	Optional<CompensacionDetalle> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
+	Optional<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
 }
