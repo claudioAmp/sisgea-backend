@@ -13,17 +13,17 @@
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="idSecuencia != null">
+		<if  test="idSecuencia != null and idSecuencia != '' and idSecuencia != -1">
 			 AND a.ID_SECUENCIA = #{idSecuencia}
 		</if>
-		<if  test="numeroTarjeta != null">
+		<if  test="numeroTarjeta != null and numeroTarjeta !=''">
 			 AND a.NUMERO_TARJETA LIKE #{numeroTarjeta}
 		</if>
 		
-		<if  test="valorCompensacion != null and valorCompensacion != 0">
+		<if  test="valorCompensacion != null and valorCompensacion != -1">
 			 AND a.VALOR_COMPENSACION = #{valorCompensacion}
 		</if>
-		<if  test="numeroTrace != null">
+		<if  test="numeroTrace != null and numeroTrace != ''">
 			 AND a.NUMERO_TRACE = #{numeroTrace}
 		</if>
 	</sql>
@@ -121,16 +121,28 @@
 	</sql>
 	
 	<sql id = "fragmentoWhereDetalle">
-		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
-		</if>
 		<if  test="idSecuencia != null">
-			 AND a.ID_SECUENCIA = #{idSecuencia}
+			  a.ID_SECUENCIA = #{idSecuencia}
 		</if>
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		
 	</sql>
 	
 	<select id="buscarPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="CompensacionDetalle" statementType="PREPARED">	
 		<include refid="consultaCompensacionDetalle" />
+			WHERE
+		<include refid="fragmentoWhereDetalle"/>
+   	</select>
+   	
+   	<sql id="consultaCompensacionComisiones" >
+		SELECT *
+		FROM VIE_CON_COMPENSACION_COMISION a
+	</sql>
+	
+	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="ComisCompensacion" statementType="PREPARED">	
+		<include refid="consultaCompensacionComisiones" />
 			WHERE
 		<include refid="fragmentoWhereDetalle"/>
    	</select>

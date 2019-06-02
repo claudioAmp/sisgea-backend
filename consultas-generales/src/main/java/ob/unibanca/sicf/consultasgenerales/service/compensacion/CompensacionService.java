@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.ICompensacionMapper;
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
@@ -32,6 +33,12 @@ public class CompensacionService implements  ICompensacionService{
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public CompensacionDetalle buscarPorSecuencia(CriterioBusquedaCompensacion criterio) {
 		return this.compensacionMapper.buscarPorSecuencia(criterio).orElseThrow(
+				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
+		return this.compensacionMapper.buscarComisionesPorSecuencia(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
 	}
 	

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 
+import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.CompensacionDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
@@ -24,8 +25,7 @@ public class CompensacionRestController {
 	@GetMapping(value = "/compensaciones/pagination")
 	public Pagina<CriterioBusquedaCompensacion, Compensacion> buscarCriterioPorPaginas(Pagina<CriterioBusquedaCompensacion, Compensacion> criterioPaginacion, CriterioBusquedaCompensacion criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		System.out.println("llegue aqui**********************************************************************************");
-		
+				
 		Page<Compensacion> lista = compensacionService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		Pagina<CriterioBusquedaCompensacion, Compensacion> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
@@ -33,7 +33,14 @@ public class CompensacionRestController {
 
 	@GetMapping("/compensaciones")
 	public CompensacionDetalle buscarDetalle(CriterioBusquedaCompensacion criterio) {
+	
 		return compensacionService.buscarPorSecuencia(criterio);
+	}
+	
+	@GetMapping("/compensaciones/comisiones")
+	public ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
+	
+		return compensacionService.buscarComisionesPorSecuencia(criterio);
 	}
 	
 }
