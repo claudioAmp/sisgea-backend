@@ -35,4 +35,10 @@ public class CompensacionService implements  ICompensacionService{
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public CompensacionDetalle buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
+		return this.compensacionMapper.buscarComisionesPorSecuencia(criterio).orElseThrow(
+				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
+	}
+	
 }

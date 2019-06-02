@@ -15,4 +15,6 @@ public interface ICompensacionMapper {
 	
 	Optional<CompensacionDetalle> buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
+	Optional<CompensacionDetalle> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
+	
 }

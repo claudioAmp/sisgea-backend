@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.consultasgenerales.service.compensacion;
 
+
 import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.Compensacion;
@@ -11,4 +12,6 @@ public interface ICompensacionService {
 	public Page<Compensacion> buscarPorCriterios(CriterioBusquedaCompensacion criterioPaginacion, int pageNo, int pageSize);
 	
 	CompensacionDetalle buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
+	
+	CompensacionDetalle buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
 }
