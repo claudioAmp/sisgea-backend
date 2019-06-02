@@ -16,7 +16,7 @@ public class Bulkfile {
 
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
-	String transactionDate;
+	Date transactionDate;
 	String transactionTime;
 	String accountNumber;
 	String processingCode;
@@ -33,5 +33,5 @@ public class Bulkfile {
 	Integer amountSettlement;
 	Integer interchangeFee;
 	String interchangeFeeInd;
-	String fechaProceso;
+	Date fechaProceso;
 }
