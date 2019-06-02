@@ -12,9 +12,9 @@ public interface ITablaQueryService extends IMantenibleService<TablaQuery> {
 	
 	List<TablaQuery> buscarPorCriteriosTablaQuery(CriterioBusquedaTablaQuery criterio);
 	
-	TablaQuery registrarTablaQuery(TablaQuery TablaQuery);
+	TablaQuery registrarTablaQuery(TablaQuery tablaQuery);
 	
-	TablaQuery actualizarTablaQuery(int idTablaQuery, TablaQuery TablaQuery);
+	TablaQuery actualizarTablaQuery(int idTablaQuery, TablaQuery tablaQuery);
 	
 	void eliminarTablaQuery(int idTablaQuery);
 	

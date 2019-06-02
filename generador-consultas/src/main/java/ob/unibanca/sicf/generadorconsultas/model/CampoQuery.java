@@ -10,13 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampoQuery {
-    int idReporte;
+	int idCampoQuery;
+	int idTablaQuery;
+	int idReporte;
     int idTabla;
     String tabla;
     String idInstanciaTabla;
     int idCampo;
     String campo;
     int idTablaFrom;
+    String idInstanciaTablaFrom;
     int idCampoFrom;
     String orderBy;
     boolean enSelect;

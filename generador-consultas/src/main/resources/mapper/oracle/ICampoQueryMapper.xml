@@ -4,18 +4,7 @@
 
 	<sql id="consultaVistaMant">
        SELECT 
-          ID_REPORTE			AS ID_REPORTE,
-          ID_TABLA				AS ID_TABLA,
-          TABLA					AS TABLA,
-          ID_INSTANCIA_TABLA	AS ID_INSTANCIA_TABLA,
-          ID_CAMPO				AS ID_CAMPO,
-          CAMPO					AS CAMPO,
-          ID_TABLA_FROM			AS ID_TABLA_FROM,
-          ID_CAMPO_FROM			AS ID_CAMPO_FROM,
-          ORDER_BY				AS ORDER_BY,
-          EN_SELECT				AS EN_SELECT,
-          EN_GROUP_BY			AS EN_GROUP_BY,
-          FUNCION_GRUPO			AS FUNCION_GRUPO
+         *
 		FROM VIE_MAN_REP_CAMPO_QUERY
 	</sql>
      <select id="buscarTodos" resultType="CampoQuery" statementType="PREPARED">
@@ -23,16 +12,24 @@
     </select>
     <select id="buscarPorCriterios" resultType="CampoQuery" parameterType="CriterioBusquedaCampoQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test=" (idTabla== null and idTabla == '') and (idReporte!= null and idReporte != '') ">
+        <if  test=" idTablaQuery!= null and idTablaQuery != '' ">
+       			WHERE
+       			ID_TABLA_QUERY =#{idTablaQuery}
+        </if>
+         <if  test=" idCampoQuery!= null and idCampoQuery != '' ">
+       			WHERE
+       			ID_CAMPO_QUERY =#{idCampoQuery}
+        </if>
+        <if  test=" idReporte!= null and idReporte != '' ">
        			WHERE
        			ID_REPORTE =#{idReporte}
         </if>
-        <if  test=" (idTabla!= null and idTabla != '') and (idReporte== null and idReporte == '') ">
+        <if  test=" idTabla!= null and idTabla != ''">
        			WHERE
        			ID_TABLA =#{idTabla}
         </if>
         
-        <if  test="(idTabla!= null and idTabla != '') and (idReporte!= null and idReporte != '') ">
+        <if  test="idTabla!= null and idTabla != ''and idReporte!= null and idReporte != ''">
         	WHERE
         	    ID_REPORTE =#{idReporte}
        			AND ID_TABLA =#{idTabla}
@@ -43,18 +40,16 @@
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_REP.prc_man_rep_campo_query(
-                #{modo, 						  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_reporte,     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_tabla,  	  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_instancia,   jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_campo,  	  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_tabla_from,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_campo_from,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.order_by,  	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.en_select , 	  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.en_group_by ,   jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.funcion_grupo , jdbcType=VARCHAR, mode=IN},
-                #{usuario, 						  jdbcType=VARCHAR, mode=IN}
+                #{modo, 						     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCampoQuery,      jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idTablaQuery,      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCampo,  	     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCampoQueryFrom,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.orderBy,  	     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.enSelect , 	     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.enGroupBy ,        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.funcionGrupo ,     jdbcType=VARCHAR, mode=IN},
+                #{usuario, 						     jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

@@ -10,8 +10,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioBusquedaTablaQuery{
+public class CriterioBusquedaFiltro{
+	int idFiltroCampo;
+	int idCampoQuery;
 	int idReporte;
 	int idTabla;
-	int idTablaQuery;
+	int idCampo;
+	int idinstancia;
+	/*int idOperador;
+	String simboloOperador;
+	String operadorLogico;
+	int tipoFiltro;
+	String valor;*/
 }

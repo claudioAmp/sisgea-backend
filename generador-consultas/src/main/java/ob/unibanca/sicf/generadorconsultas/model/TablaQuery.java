@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TablaQuery {
+	private int idTablaQuery;
 	private int idReporte;
 	private int idTabla;
     private String tabla;
 	private String instancia;
 	private int orden;
-	private List<CampoQuery> campos;
+	private boolean esBase;
 }

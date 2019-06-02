@@ -47,17 +47,17 @@ public class TablaQueryRestController {
 	}
 	@PostMapping(value = "/tablas-query", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public TablaQuery registrarTablaQuery(@Validated({IRegistro.class, Default.class}) @RequestBody TablaQuery TablaQuery) {
-		return this.TablaQueryService.registrarTablaQuery(TablaQuery);
+	public TablaQuery registrarTablaQuery(@Validated({IRegistro.class, Default.class}) @RequestBody TablaQuery tablaQuery) {
+		return this.TablaQueryService.registrarTablaQuery(tablaQuery);
 	}
 	
-	@PutMapping(value = "/tablas-query/{idTabla}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PutMapping(value = "/tablas-query/{idTablaQuery}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public TablaQuery actualizarTablaQuery(@IdNumerico(maxRange = 99) @PathVariable int idTablaQuery,
-	                             @Validated @RequestBody TablaQuery TablaQuery) {
-		return this.TablaQueryService.actualizarTablaQuery(idTablaQuery, TablaQuery);
+	                             @Validated @RequestBody TablaQuery tablaQuery) {
+		return this.TablaQueryService.actualizarTablaQuery(idTablaQuery, tablaQuery);
 	}
 	
-	@DeleteMapping(value = "/tablas-query/{idTabla}")
+	@DeleteMapping(value = "/tablas-query/{idTablaQuery}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarTablaQuery(@IdNumerico(maxRange = 99) @PathVariable int idTablaQuery) {
 		this.TablaQueryService.eliminarTablaQuery(idTablaQuery);

@@ -29,11 +29,11 @@
         {
             CALL PKG_MAN_REP.prc_man_rep_query(
                 #{modo, 						  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_reporte,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idReporte,     jdbcType=NUMERIC, mode=INOUT},
                 #{objetoMantenido.nombre,  		  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.desc_corta, 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.query_reporte,  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descCorta, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.queryReporte,  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.frecuencia, 	  jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )

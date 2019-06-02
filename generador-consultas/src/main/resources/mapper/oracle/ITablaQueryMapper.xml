@@ -4,11 +4,7 @@
 
 	<sql id="consultaVistaMant">
        SELECT 
-		  ID_REPORTE    AS ID_REPORTE,
-		  ID_TABLA   	AS ID_TABLA,
-		  TABLA 		AS TABLA,
-          ID_INSTANCIA  AS INSTANCIA,
-          ORDEN         AS ORDEN
+		  *
         FROM
 		VIE_MAN_REP_TABLA_QUERY
     </sql>
@@ -18,31 +14,38 @@
     </select>
 	<select id="buscarPorCriterios" resultType="TablaQuery" parameterType="CriterioBusquedaTablaQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test=" idReporte!=null and idReporte!=''">
+        <if  test="idTablaQuery!= null and idTablaQuery != ''">
+       			WHERE
+       			ID_TABLA_QUERY =#{idTablaQuery}
+        </if>
+        <if  test="idReporte!= null and idReporte != ''">
        			WHERE
        			ID_REPORTE =#{idReporte}
         </if>
-        <if  test=" idTabla!=null and idTabla!=''">
+        <if  test="idTabla!= null and idTabla != ''">
        			WHERE
        			ID_TABLA =#{idTabla}
         </if>
         
-        <if  test="(idTabla!= null and idTabla != '') and (idReporte!= null and idReporte != '')">
+        <if  test="idTabla!= null and idTabla != '' and idReporte!= null and idReporte != '' and idTablaQuery!= null and idTablaQuery != ''">
         	WHERE
-        	    ID_REPORTE =#{idReporte}
+        	    ID_TABLA_QUERY =#{idTablaQuery}
        			AND ID_TABLA =#{idTabla}
+       			AND ID_REPORTE =#{idReporte}
         </if>
     </select>
    
     
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_MAN_REP.prc_man_rep_permiso_usuario(
+            CALL PKG_MAN_REP.prc_man_rep_tabla_query(
                 #{modo, 						  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_reporte,     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_tabla,  	  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_instancia,   jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idTablaQuery,   jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idReporte,      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idTabla,  	  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idInstancia,    jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.orden , 	      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.esBase , 	      jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )
         }

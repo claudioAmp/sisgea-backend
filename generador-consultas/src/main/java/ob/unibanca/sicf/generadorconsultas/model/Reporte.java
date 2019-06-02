@@ -16,8 +16,7 @@ public class Reporte {
 	private int idReporte;
     private String nombre;
     private String descripcion;
-    private String desc_corta;
+    private String desCorta;
     private String queryReporte;
 	private int frecuencia;
-	private List<TablaQuery> tablas;
 }

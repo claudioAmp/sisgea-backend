@@ -35,29 +35,14 @@ import ob.unibanca.sicf.generadorconsultas.service.tablaquery.*;
 public class ReporteRestController {
 	
 	private final IReporteService ReporteService;
-	private final ITablaQueryService tablaQueryService;
-	private final ICampoQueryService campoQueryService;
 	
-	public ReporteRestController(IReporteService ReporteService,ITablaQueryService TablaQueryService,ICampoQueryService campoQueryService ) {
+	public ReporteRestController(IReporteService ReporteService ) {
 		this.ReporteService = ReporteService;
-		this.tablaQueryService = TablaQueryService;
-		this.campoQueryService = campoQueryService;
 	}
 	
 	@GetMapping(value = "/reportes")
 	public List<Reporte> buscarTodosReportes() {
 		List<Reporte> reportes = this.ReporteService.buscarTodosReportes();
-		CriterioBusquedaTablaQuery criterioTablas = new CriterioBusquedaTablaQuery() ;
-		CriterioBusquedaCampoQuery criterioCampos = new CriterioBusquedaCampoQuery() ;
-		for (Reporte r : reportes) {
-			criterioTablas.setIdReporte(r.getIdReporte());
-			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTablas));
-			for(TablaQuery t : r.getTablas()) {
-				criterioCampos.setIdReporte(t.getIdReporte());
-				criterioCampos.setIdTabla(t.getIdTabla());
-				t.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampos));
-			}
-		}
 		return reportes;
 		
 	}
