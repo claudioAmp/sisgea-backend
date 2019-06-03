@@ -32,6 +32,7 @@ public class BulkfileRestController {
 
 	@GetMapping("/bulkfiles")
 	public BulkfileDetalle buscarDetalle(CriterioBusquedaBulkfile criterio) {
+		System.out.println(criterio);
 		return bulkfileService.buscarDetalle(criterio);
 	}
 	

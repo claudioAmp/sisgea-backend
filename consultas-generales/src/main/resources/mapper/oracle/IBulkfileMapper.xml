@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IBulkfileMapper">
 	
-	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA LA GRILLA -->
+	<!-- CONSULTA DEL  BULKFILE PARA LA GRILLA -->
 	
 	<sql id="consultaBulkfile" >
 		SELECT *
@@ -42,11 +42,9 @@
 		<include refid="fragmentoWhere"/> 
 		<include refid="fragmentoWhereMultiples"/>
    	</select>
+   	  	
    	
-   	
-   	
-   	
-   	<!-- CONSULTA DEL BULKFILE GENERAL PARA EL DETALLE -->
+   	<!-- CONSULTA DEL BULKFILE PARA EL DETALLE -->
      	
    	<sql id="consultaBulkfileDetalle" >
 		SELECT *
@@ -54,8 +52,8 @@
 	</sql>
 	
 	<sql id = "fragmentoWhereDetalle">
-		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null and fechaTransaccionInicio != '' and fechaTransaccionFin != ''">
-			 a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		<if  test="fechaTransaccion != null and fechaTransaccion != ''">
+			 a.TRANSACTION_DATE =  #{fechaTransaccion}
 		</if>
 		<if  test="accountNumber != null and accountNumber != ''">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}

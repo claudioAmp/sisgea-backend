@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaBulkfile {
 	String messageTypeInd;
 	String fechaTransaccionInicio; //transactionDate
+	String fechaTransaccion; //transactionDate
 	String fechaTransaccionFin; //transactionDate
 	String accountNumber;
 	String traceNumber;

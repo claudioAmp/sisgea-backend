@@ -19,7 +19,7 @@ public class BulkfileDetalle {
 	Integer switchSerialNumber;
 	String processorAcqIss;
 	String processorId;
-	String transactionDate;
+	Date transactionDate;
 	String transactionTime;
 	Integer panLength;
 	String accountNumber;
@@ -64,5 +64,5 @@ public class BulkfileDetalle {
 	Integer visaIsaFeeInd;
 	String descripcionVisaIsaFeeInd;
 	String reqAmountTransLoc;
-	String fechaProceso;
+	Date fechaProceso;
 }
