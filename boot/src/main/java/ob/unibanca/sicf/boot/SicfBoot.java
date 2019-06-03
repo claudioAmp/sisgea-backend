@@ -1,6 +1,6 @@
 package ob.unibanca.sicf.boot;
 
-import ob.commons.commonsjwt.JWTUtil;
+import ob.commons.jwt.JWTUtil;
 import ob.unibanca.sicf.consultasgenerales.ConsultasGeneralesBoot;
 import ob.unibanca.sicf.facturacion.FacturacionBoot;
 import ob.unibanca.sicf.generadorconsultas.GeneradorConsultasBoot;
