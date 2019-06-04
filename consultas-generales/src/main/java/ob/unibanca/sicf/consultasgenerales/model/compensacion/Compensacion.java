@@ -44,6 +44,7 @@ public class Compensacion {
 	String descCodigoRespuesta;
 	String numeroTrace;
 	String giroNegocio;
+	String descGiroNegocio;
 	String nombreAdquirente;
 	String ciudadAdquirente;
 	String paisAdquirente;
