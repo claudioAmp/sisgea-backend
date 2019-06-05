@@ -31,7 +31,7 @@ public class IncomingVisaRestController {
 	public Pagina<CriterioBusquedaIncomingVisaTCR0, IncomingVisaTCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTCR0, IncomingVisaTCR0> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
-
+		System.out.println(criterioBusqueda);
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<IncomingVisaTCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPagina(
 				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),

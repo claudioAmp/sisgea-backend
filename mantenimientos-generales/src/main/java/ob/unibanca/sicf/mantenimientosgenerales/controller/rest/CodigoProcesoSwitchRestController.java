@@ -38,22 +38,21 @@ public class CodigoProcesoSwitchRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CodigoProcesoSwitch registrarCodigoProcesoSwitch(
 			@Validated({IRegistro.class, Default.class}) @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
+		System.out.println(codigoProcesoSwitch);
 		return this.codigoProcesoSwitchService.registrarCodigoProcesoSwitch(codigoProcesoSwitch);
 	}
 	
 	@PutMapping(value = "/codigos-procesos-switches/{idCodigoProcesoSwitch}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public CodigoProcesoSwitch actualizarCodigoProcesoSwitch(
-			@IdCadena(minLength = 6, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable
-					String idCodigoProcesoSwitch, @Validated @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
+	public CodigoProcesoSwitch actualizarCodigoProcesoSwitch(@PathVariable String idCodigoProcesoSwitch, @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
+		System.out.println(idCodigoProcesoSwitch);
 		return this.codigoProcesoSwitchService.actualizarCodigoProcesoSwitch(idCodigoProcesoSwitch,
 		                                                                     codigoProcesoSwitch);
 	}
 	
 	@DeleteMapping("/codigos-procesos-switches/{idCodigoProcesoSwitch}")
-	public void eliminarCodigoProcesoSwitch(
-			@IdCadena(minLength = 6, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable
-					String idCodigoProcesoSwitch) {
+	public void eliminarCodigoProcesoSwitch(@PathVariable String idCodigoProcesoSwitch) {
+		System.out.println(idCodigoProcesoSwitch);
 		this.codigoProcesoSwitchService.eliminarCodigoProcesoSwitch(idCodigoProcesoSwitch);
 	}
 }
