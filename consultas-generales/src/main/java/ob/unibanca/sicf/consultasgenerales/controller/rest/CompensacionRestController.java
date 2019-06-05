@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,8 +40,7 @@ public class CompensacionRestController {
 	}
 	
 	@GetMapping("/compensaciones/comisiones")
-	public ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
-	
+	public List<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
 		return compensacionService.buscarComisionesPorSecuencia(criterio);
 	}
 	

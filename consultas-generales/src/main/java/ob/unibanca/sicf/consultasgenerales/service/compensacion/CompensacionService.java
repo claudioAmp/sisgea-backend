@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.service.compensacion;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,9 +39,9 @@ public class CompensacionService implements  ICompensacionService{
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
-		return this.compensacionMapper.buscarComisionesPorSecuencia(criterio).orElseThrow(
-				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
+	public List<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio) {
+		
+		return this.compensacionMapper.buscarComisionesPorSecuencia(criterio);
 	}
 	
 }

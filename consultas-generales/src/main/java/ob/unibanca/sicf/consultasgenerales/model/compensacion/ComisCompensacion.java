@@ -15,7 +15,7 @@ public class ComisCompensacion {
 	Integer idSecuencia;
 	Date fechaProceso;
 	Integer idComision;
-	String descripcionComision;
+	String descripcion;
 	Integer idCuentaCompensacion;
 	String registroContable;
 	double valorComision;
