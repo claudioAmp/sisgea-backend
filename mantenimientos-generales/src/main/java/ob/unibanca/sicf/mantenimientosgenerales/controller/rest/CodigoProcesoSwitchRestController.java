@@ -46,8 +46,7 @@ public class CodigoProcesoSwitchRestController {
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoProcesoSwitch actualizarCodigoProcesoSwitch(@PathVariable String idCodigoProcesoSwitch, @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
 		System.out.println(idCodigoProcesoSwitch);
-		return this.codigoProcesoSwitchService.actualizarCodigoProcesoSwitch(idCodigoProcesoSwitch,
-		                                                                     codigoProcesoSwitch);
+		return this.codigoProcesoSwitchService.actualizarCodigoProcesoSwitch(idCodigoProcesoSwitch,codigoProcesoSwitch);
 	}
 	
 	@DeleteMapping("/codigos-procesos-switches/{idCodigoProcesoSwitch}")
