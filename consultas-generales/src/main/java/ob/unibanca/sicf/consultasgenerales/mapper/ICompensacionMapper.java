@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.consultasgenerales.mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -17,6 +18,6 @@ public interface ICompensacionMapper {
 	
 	Optional<CompensacionDetalle> buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
-	Optional<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
+	List<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
 }

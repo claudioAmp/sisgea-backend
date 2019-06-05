@@ -1,6 +1,8 @@
 package ob.unibanca.sicf.consultasgenerales.service.compensacion;
 
 
+import java.util.List;
+
 import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.compensacion.ComisCompensacion;
@@ -14,5 +16,5 @@ public interface ICompensacionService {
 	
 	CompensacionDetalle buscarPorSecuencia(CriterioBusquedaCompensacion criterio);
 	
-	ComisCompensacion buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
+	List<ComisCompensacion> buscarComisionesPorSecuencia(CriterioBusquedaCompensacion criterio);
 }

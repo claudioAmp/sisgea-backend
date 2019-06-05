@@ -5,7 +5,9 @@
 	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA LA GRILLA -->
 	
 	<sql id="consultaCompensacion" >
-		SELECT *
+		SELECT 
+		
+			*
 		FROM VIE_CON_COMPENSACION a
 	</sql>
 	
@@ -136,15 +138,14 @@
 		<include refid="fragmentoWhereDetalle"/>
    	</select>
    	
-   	<sql id="consultaCompensacionComisiones" >
+   	
+	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="ComisCompensacion" statementType="PREPARED">	
 		SELECT *
 		FROM VIE_CON_COMPENSACION_COMISION a
-	</sql>
-	
-	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="ComisCompensacion" statementType="PREPARED">	
-		<include refid="consultaCompensacionComisiones" />
 			WHERE
-		<include refid="fragmentoWhereDetalle"/>
+		<if  test="idSecuencia != null">
+			  a.ID_SECUENCIA = #{idSecuencia}
+		</if>
    	</select>
 
 </mapper>
