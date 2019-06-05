@@ -23,5 +23,6 @@ public class Filtro {
 	String operadorLogico;
 	int tipoFiltro;
 	String valor;
+	String tipoDatoValor;
 
 }

@@ -4,19 +4,7 @@
 
 	<sql id="consultaVistaMant">
        SELECT 
-             ID_FILTRO_CAMPO
-           , ID_CAMPO_QUERY
-           , ID_REPORTE
-           , ID_TABLA
-           , TABLA
-           , ID_CAMPO
-           , CAMPO
-           , ID_INSTANCIA
-           , ID_OPERADOR
-           , SIMBOLO_OPERADOR
-           , OPERADOR_LOGICO
-           , TIPO_FILTRO
-           , VALOR
+            *
 		FROM VIE_MAN_REP_FILTRO_CAMPO
 	</sql>
      <select id="buscarTodos" resultType="Filtro" statementType="PREPARED">
