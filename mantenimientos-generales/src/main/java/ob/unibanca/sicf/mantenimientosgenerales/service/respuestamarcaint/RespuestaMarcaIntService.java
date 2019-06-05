@@ -16,7 +16,7 @@ import java.util.List;
 public class RespuestaMarcaIntService extends MantenibleService<RespuestaMarcaInt> implements IRespuestaMarcaIntService {
 	
 	private static final String RESPUESTA_MARCA_INT_NO_ENCONTRADO =
-			"No existe la asociación entre la Respuesta %s y la membresía %s";
+			"No existe asociación entre la respuesta %s y la membresía %s";
 	private final IRespuestaMarcaIntMapper respuestaMarcaIntMapper;
 	
 	public RespuestaMarcaIntService(@Qualifier("IRespuestaMarcaIntMapper") IMantenibleMapper<RespuestaMarcaInt> mantenibleMapper) {
