@@ -42,7 +42,7 @@
         {
             CALL PKG_MAN_REP.prc_man_rep_filtro_campo_query(
                 #{modo, 						  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idFiltroCampo,  jdbcType=INTEGER, mode=INOUT},
+                #{objetoMantenido.idFiltroCampo,  jdbcType=INTEGER, mode=IN},
                 #{objetoMantenido.idCampoQuery,   jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idOperador,     jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.valor,     	  jdbcType=VARCHAR, mode=IN},

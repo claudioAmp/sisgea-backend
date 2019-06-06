@@ -11,4 +11,5 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReport
 public interface IReporteMapper extends IMantenibleMapper<Reporte>{
 	List<Reporte> buscarTodos();
 	List<Reporte> buscarPorCriterios(CriterioBusquedaReporte criterio);
+	
 }

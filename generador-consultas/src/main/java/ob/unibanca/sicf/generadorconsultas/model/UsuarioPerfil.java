@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioPerfil{
-	int idPerfilRepUsuario;
+	Integer idPerfilRepUsuario;
 	int idPerfil;
 	String perfil;
 	String usuario;
