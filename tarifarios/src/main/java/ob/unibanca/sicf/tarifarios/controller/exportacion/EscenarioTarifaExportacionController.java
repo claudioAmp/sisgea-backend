@@ -3,6 +3,7 @@ package ob.unibanca.sicf.tarifarios.controller.exportacion;
 import ob.unibanca.sicf.tarifarios.model.EscenarioTarifa;
 import ob.unibanca.sicf.tarifarios.service.escenariotarifa.IEscenarioTarifaService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class EscenarioTarifaExportacionController {
 		this.escenarioTarifaService = escenarioTarifaService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ESCCONT','5')")
 	@GetMapping(value = "/escenarios-tarifas.xlsx")
 	public ModelAndView exportarEscenarioTarifa(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
