@@ -20,4 +20,6 @@ public interface ICampoPerfilService extends IMantenibleService<CampoPerfil> {
 	CampoPerfil actualizarCampoPerfil(int idCampoPerfil, CampoPerfil CampoPerfil);
 	
 	void eliminarCampoPerfil(int idCampoPerfil);
+	
+	void actualizarCamposDePerfil(int idPerfil,String listaModificacion,String usuario);
 }

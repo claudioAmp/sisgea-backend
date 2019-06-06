@@ -58,4 +58,11 @@ public class CampoPerfilService extends MantenibleService<CampoPerfil> implement
 		CampoPerfil campoPerfil = CampoPerfil.builder().idPerfilRepCampo(idCampoPerfil).build();
 		this.eliminar(campoPerfil);
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public void actualizarCamposDePerfil(int idPerfil, String listaModificacion, String usuario) {
+		this.campoPerfilMapper.actualizarCamposDePerfil(idPerfil, listaModificacion, usuario);
+		
+	}
 }

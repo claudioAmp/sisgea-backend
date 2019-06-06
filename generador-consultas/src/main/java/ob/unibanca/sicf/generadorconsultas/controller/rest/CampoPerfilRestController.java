@@ -65,4 +65,11 @@ public class CampoPerfilRestController {
 		this.campoPerfilService.eliminarCampoPerfil(idPerfilRepCampo);
 	}
 	
+	@PutMapping(value = "/campos-perfil/{idPerfil}/{listaModificacion}/{usuario}")
+	public void actualizarCamposDePerfil(@IdNumerico(maxRange = 9999) @PathVariable int idPerfil,
+			 @PathVariable  String listaModificacion,  @PathVariable String usuario) {
+		System.out.println(idPerfil);
+		System.out.println(listaModificacion);
+		this.campoPerfilService.actualizarCamposDePerfil(idPerfil, listaModificacion, usuario);
+	}
 }
