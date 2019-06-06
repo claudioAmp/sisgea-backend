@@ -12,6 +12,8 @@
 		 ,ID_TABLA_FORANEA		AS ID_TABLA_FORANEA
 		 ,TABLA_FORANEA        	AS TABLA_FORANEA
 		 <if  test="distinct == 0">
+		 ,ID_CAMPO				AS ID_CAMPO
+		 ,CAMPO 				AS CAMPO
 		 ,ID_CAMPO_FK			AS ID_CAMPO_FK
 		 ,CAMPO_FK				AS CAMPO_FK
 		 </if> 

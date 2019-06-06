@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class TablasForaneas {
 	int idTabla;
 	String tabla;
+	int idCampo;
+	String campo;
 	int idTablaForanea;
 	String tablaForanea;
 	int idCampoFk;
