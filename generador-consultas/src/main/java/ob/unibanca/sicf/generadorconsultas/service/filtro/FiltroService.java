@@ -41,7 +41,7 @@ public class FiltroService extends MantenibleService<Filtro> implements IFiltroS
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Filtro actualizarFiltro(int idFiltroCampo, Filtro filtro) {
-		filtro.setIdCampo(idFiltroCampo);
+		filtro.setIdFiltroCampo(idFiltroCampo);
 		this.actualizar(filtro);
 		return filtro;
 	}
@@ -49,7 +49,7 @@ public class FiltroService extends MantenibleService<Filtro> implements IFiltroS
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarFiltro(int idFiltroCampo) {
-		Filtro filtro = Filtro.builder().idCampo(idFiltroCampo).build();
+		Filtro filtro = Filtro.builder().idFiltroCampo(idFiltroCampo).build();
 		this.eliminar(filtro);
 	}
 

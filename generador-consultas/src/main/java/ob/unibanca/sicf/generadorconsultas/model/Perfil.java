@@ -13,8 +13,8 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Perfil {
-	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idPerfil;
+	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
+	private Integer idPerfil;
 	@CaracterRequerido(maxLength = 30)
 	private String descripcion;
 	private boolean activo;

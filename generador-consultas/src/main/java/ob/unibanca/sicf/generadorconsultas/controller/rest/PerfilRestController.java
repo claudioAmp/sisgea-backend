@@ -46,14 +46,14 @@ public class PerfilRestController {
 	}
 	
 	@PutMapping(value = "/perfiles-reporteador/{idPerfil}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Perfil actualizarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil,
+	public Perfil actualizarPerfil(@IdNumerico(maxRange = 9999) @PathVariable Integer idPerfil,
 	                             @Validated @RequestBody Perfil perfil) {
 		return this.perfilService.actualizarPerfil(idPerfil, perfil);
 	}
 	
 	@DeleteMapping(value = "/perfiles-reporteador/{idPerfil}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarPerfil(@IdNumerico(maxRange = 99) @PathVariable int idPerfil) {
+	public void eliminarPerfil(@IdNumerico(maxRange = 9999) @PathVariable Integer idPerfil) {
 		this.perfilService.eliminarPerfil(idPerfil);
 	}
 }

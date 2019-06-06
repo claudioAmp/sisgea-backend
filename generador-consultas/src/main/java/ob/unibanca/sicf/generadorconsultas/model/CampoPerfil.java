@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampoPerfil{
-	int idPerfilRepCampo;
+	Integer idPerfilRepCampo;
 	int idPerfil;
 	String perfil;
 	int idTabla;
