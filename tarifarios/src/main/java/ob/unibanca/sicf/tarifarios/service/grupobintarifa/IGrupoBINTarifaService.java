@@ -8,6 +8,8 @@ import ob.unibanca.sicf.tarifarios.model.GrupoBINTarifa;
 public interface IGrupoBINTarifaService extends IMantenibleService<GrupoBINTarifa>{
 	
 	List<GrupoBINTarifa> buscarTodosGruposBIN();
+	
+	List<GrupoBINTarifa> buscarTodosGruposBINAgrupado();
 
 	List<GrupoBINTarifa> buscarGrupoBINTarifaPorBIN(String idBIN);
 

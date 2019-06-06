@@ -14,5 +14,7 @@ public interface IGrupoBINTarifaMapper extends IMantenibleMapper<GrupoBINTarifa>
 	Optional<GrupoBINTarifa> buscarGrupoBINTarifa(int idGrupoBIN, String idBIN);
 	
 	List<GrupoBINTarifa> buscarGrupoBINTarifaPorBIN(String idBIN);
+	
+	List<GrupoBINTarifa> buscarTodosAgrupado();
 
 }

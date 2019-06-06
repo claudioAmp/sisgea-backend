@@ -29,7 +29,7 @@ public class TarifarioEmisorExportacionController {
 		List<TarifarioEmisor> lista = tarifarioEmisorService.buscarTodosTarifariosEmisores();
       params.put("mantenimiento", lista);
       model.addAttribute("template", "tarifarios/tarifarioEmisor");
-      model.addAttribute("name", "Reporte Tarifario Emisor");
+      model.addAttribute("name", "Reporte Tarifario Ruteo");
       model.addAttribute("params", params);
       return new ModelAndView("jxlsView", model);
 	}

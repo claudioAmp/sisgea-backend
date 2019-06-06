@@ -8,9 +8,19 @@
              , descripcion_bin
         FROM VIE_MAN_GRUPO_BIN_TARIFA
     </sql>
+    
+    <sql id="consultaVistaAgrupado">
+    	SELECT id_grupo_bin
+    		, descripcion_bin
+    	FROM VIE_MAN_GRUPO_BIN_AGRUPADO 
+    </sql>
 
     <select id="buscarTodos" resultType="GrupoBINTarifa" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+    </select>
+    
+    <select id="buscarTodosAgrupado" resultType="GrupoBINTarifa" statementType="PREPARED">
+    	<include refid="consultaVistaAgrupado" />
     </select>
 
     <select id="buscarGrupoBINTarifa" resultType="GrupoBINTarifa">
