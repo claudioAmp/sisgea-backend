@@ -2,7 +2,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +17,7 @@ public class PaisRestController {
 	public PaisRestController(IPaisService paisService) {
 		this.paisService = paisService;
 	}
+	@PreAuthorize("hasPermission('CON_PAIS', '2')")
 	@GetMapping("/paises")
 	public List<Pais> buscarTodosPaises() {
 		return this.paisService.buscarTodosPaises();
