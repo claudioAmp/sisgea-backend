@@ -10,6 +10,7 @@
              , descripcion_tarifa
              , nivel
              , id_grupo_bin
+             , descripcion_grupo_bin 
              , transaccion
              , rango_inicial
              , rango_final
@@ -17,7 +18,7 @@
              , descripcion_moneda
              , tarifa_flat
              , tarifa_porcentual
-             , aplica_igv
+             , aplica_igv 
         FROM VIE_MAN_TARIFARIO_EMISOR
     </sql>
 

@@ -34,6 +34,12 @@ public class GrupoBINTarifaService extends MantenibleService<GrupoBINTarifa> imp
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<GrupoBINTarifa> buscarTodosGruposBINAgrupado(){
+		return this.grupoBINTarifaMapper.buscarTodosAgrupado();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public GrupoBINTarifa buscarGrupoBINTarifa(int idGrupoBIN, String idBIN) {
 		return this.grupoBINTarifaMapper.buscarGrupoBINTarifa(idGrupoBIN, idBIN).orElseThrow(
 				() -> new RecursoNoEncontradoException(GRUPO_BIN_TARIFA_NO_ENCONTRADO, idGrupoBIN, idBIN));

@@ -6,6 +6,7 @@ import ob.unibanca.sicf.tarifarios.model.EscenarioTarifa;
 import ob.unibanca.sicf.tarifarios.service.escenariotarifa.IEscenarioTarifaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class EscenarioTarifaRestController {
 		this.escenarioTarifaService = escenarioTarifaService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ESCCONT','2')")
 	@GetMapping("/escenarios-tarifas")
 	public List<EscenarioTarifa> buscarTodosEscenariosTarifas() {
 		return this.escenarioTarifaService.buscarTodosEscenariosTarifas();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ESCCONT','1')")
 	@PostMapping(value = "/escenarios-tarifas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public EscenarioTarifa registrarEscenarioTarifa(
@@ -41,12 +44,14 @@ public class EscenarioTarifaRestController {
 		return this.escenarioTarifaService.registrarEscenarioTarifa(escenarioTarifa);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ESCCONT','3')")
 	@PutMapping(value = "/escenarios-tarifas/{idEscenarioTarifa}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public EscenarioTarifa actualizarEscenarioTarifa(@IdNumerico(maxRange = 9999) @PathVariable int idEscenarioTarifa,
 	                                       @Validated @RequestBody EscenarioTarifa escenarioTarifa) {
 		return this.escenarioTarifaService.actualizarEscenarioTarifa(idEscenarioTarifa, escenarioTarifa);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ESCCONT','4')")
 	@DeleteMapping("/escenarios-tarifas/{idEscenarioTarifa}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarEscenarioTarifa(@IdNumerico(maxRange = 9999) @PathVariable int idEscenarioTarifa) {

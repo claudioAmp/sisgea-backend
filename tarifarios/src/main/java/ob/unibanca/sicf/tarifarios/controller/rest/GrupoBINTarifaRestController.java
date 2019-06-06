@@ -30,12 +30,17 @@ public class GrupoBINTarifaRestController {
 		this.grupoBINTarifaService = grupoBINTarifaService;
 	}
 	
-	@GetMapping("/grupo-bin-tarifa")
+	@GetMapping("/grupos-bines-tarifas")
 	public List<GrupoBINTarifa> buscarTodosGruposBIN(){
 		return this.grupoBINTarifaService.buscarTodosGruposBIN();
 	}
 	
-	@GetMapping(value = "/bins/{idBIN}/grupo-bin-tarifa",
+	@GetMapping("/grupos-bines-tarifas/grouping")
+	public List<GrupoBINTarifa> buscarTodosGruposBINAgrupado(){
+		return this.grupoBINTarifaService.buscarTodosGruposBINAgrupado();
+	}
+	
+	@GetMapping(value = "/bins/{idBIN}/grupos-bines-tarifas",
 				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public List<GrupoBINTarifa> buscarGrupoBINTarifaPorBIN(
@@ -43,7 +48,7 @@ public class GrupoBINTarifaRestController {
 		return this.grupoBINTarifaService.buscarGrupoBINTarifaPorBIN(idBIN);
 	}
 	
-	@PostMapping(value = "/bins/{idBIN}/grupo-bin-tarifa",
+	@PostMapping(value = "/bins/{idBIN}/grupos-bines-tarifas",
 				consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public GrupoBINTarifa registrarGrupoBINTarifa(@IdCadena(maxLength = 11) @PathVariable String idBIN,
@@ -52,7 +57,7 @@ public class GrupoBINTarifaRestController {
 		return this.grupoBINTarifaService.registrarGrupoBINTarifa(idBIN, grupoBINTarifa);
 	}
 	
-	@PostMapping(value = "/bins/{idBIN}/grupo-bin-tarifa/{idGrupoBIN}",
+	@PostMapping(value = "/bins/{idBIN}/grupos-bins-tarifas/{idGrupoBIN}",
 				 consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public GrupoBINTarifa actualizarGrupoBINTarifa(@IdNumerico(maxRange = 9999) int idGrupoBIN,
@@ -61,7 +66,7 @@ public class GrupoBINTarifaRestController {
 		return this.grupoBINTarifaService.actualizarGrupoBINTarifa(idGrupoBIN, idBIN, grupoBINTarifa);
 	}
 	
-	@DeleteMapping(value = "/bins/{idBIN}/grupo-bin-tarifa/{idGrupoBINTarifa}")
+	@DeleteMapping(value = "/bins/{idBIN}/grupos-bins-tarifas/{idGrupoBINTarifa}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarGrupoBINTarifa(@IdNumerico(maxRange = 9999) int idGrupoBIN,
 									   @IdCadena(maxLength = 11) @PathVariable String idBIN) {
