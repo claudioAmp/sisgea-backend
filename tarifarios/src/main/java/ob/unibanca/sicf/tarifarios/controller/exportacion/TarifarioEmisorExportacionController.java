@@ -3,6 +3,7 @@ package ob.unibanca.sicf.tarifarios.controller.exportacion;
 import ob.unibanca.sicf.tarifarios.model.TarifarioEmisor;
 import ob.unibanca.sicf.tarifarios.service.tarifarioemisor.ITarifarioEmisorService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class TarifarioEmisorExportacionController {
 		this.tarifarioEmisorService = tarifarioEmisorService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TAREMI','5')")
 	@GetMapping(value = "/tarifarios-emisores.xlsx")
 	public ModelAndView exportarTarifarioEmisor(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
