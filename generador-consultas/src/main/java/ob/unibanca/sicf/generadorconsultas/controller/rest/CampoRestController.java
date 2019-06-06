@@ -57,7 +57,7 @@ public class CampoRestController {
 	
 	@DeleteMapping(value = "/campos/{idCampo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCampo(@IdNumerico(maxRange = 99) @PathVariable int idCampo) {
+	public void eliminarCampo(@IdNumerico(maxRange = 99999) @PathVariable int idCampo) {
 		this.campoService.eliminarCampo(idCampo);
 	}
 }

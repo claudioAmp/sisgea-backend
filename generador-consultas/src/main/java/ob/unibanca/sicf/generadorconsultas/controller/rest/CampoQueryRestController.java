@@ -51,15 +51,15 @@ public class CampoQueryRestController {
 		return this.CampoQueryService.registrarCampoQuery(CampoQuery);
 	}
 	
-	@PutMapping(value = "/campos-query/{idCampo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public CampoQuery actualizarCampoQuery(@IdNumerico(maxRange = 99) @PathVariable int idCampoQuery,
+	@PutMapping(value = "/campos-query/{idCampoQuery}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CampoQuery actualizarCampoQuery(@IdNumerico(maxRange = 999999) @PathVariable Integer idCampoQuery,
 	                             @Validated @RequestBody CampoQuery CampoQuery) {
 		return this.CampoQueryService.actualizarCampoQuery(idCampoQuery, CampoQuery);
 	}
 	
-	@DeleteMapping(value = "/campos-query/{idCampo}")
+	@DeleteMapping(value = "/campos-query/{idCampoQuery}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCampoQuery(@IdNumerico(maxRange = 99) @PathVariable int idCampoQuery) {
+	public void eliminarCampoQuery(@IdNumerico(maxRange = 9999999) @PathVariable Integer idCampoQuery) {
 		this.CampoQueryService.eliminarCampoQuery(idCampoQuery);
 	}
 }

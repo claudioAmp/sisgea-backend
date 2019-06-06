@@ -41,7 +41,7 @@ public class CampoQueryService extends MantenibleService<CampoQuery> implements 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public CampoQuery actualizarCampoQuery(int idCampoQuery, CampoQuery campoQuery) {
-		campoQuery.setIdCampo(idCampoQuery);
+		campoQuery.setIdCampoQuery(idCampoQuery);
 		this.actualizar(campoQuery);
 		return campoQuery;
 	}
@@ -49,7 +49,7 @@ public class CampoQueryService extends MantenibleService<CampoQuery> implements 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarCampoQuery(int idCampoQuery) {
-		CampoQuery campoQuery = CampoQuery.builder().idCampo(idCampoQuery).build();
+		CampoQuery campoQuery = CampoQuery.builder().idCampoQuery(idCampoQuery).build();
 		this.eliminar(campoQuery);
 	}
 

@@ -36,33 +36,33 @@ public class CampoPerfilRestController {
 		this.campoPerfilService = campoPerfilService;
 	}
 	
-	@GetMapping(value = "/campo-perfil")
+	@GetMapping(value = "/campos-perfil")
 	public List<CampoPerfil> buscarTodosCanales() {
 		return this.campoPerfilService.buscarTodosCampoPerfil();
 	}
 	
-	@GetMapping(value = "/campo-perfil/buscar")
+	@GetMapping(value = "/campos-perfil/buscar")
 	public List<CampoPerfil> buscarTodosCanales(CriterioBusquedaCampoPerfil criterio) {
 		return this.campoPerfilService.buscarPorCriteriosCampoPerfil(criterio);
 	}
 	
 
-	@PostMapping(value = "/campo-perfil", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/campos-perfil", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CampoPerfil registrarCampoPerfil(@Validated({IRegistro.class, Default.class}) @RequestBody CampoPerfil campoPerfil) {
 		return this.campoPerfilService.registrarCampoPerfil(campoPerfil);
 	}
 	
 	@PutMapping(value = "/campos-perfil/{idPerfilRepCampo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public CampoPerfil actualizarCampoPerfil(@IdNumerico(maxRange = 99) @PathVariable int idCampoPerfil,
+	public CampoPerfil actualizarCampoPerfil(@IdNumerico(maxRange = 99) @PathVariable Integer idPerfilRepCampo,
 	                             @Validated @RequestBody CampoPerfil CampoPerfil) {
-		return this.campoPerfilService.actualizarCampoPerfil(idCampoPerfil, CampoPerfil);
+		return this.campoPerfilService.actualizarCampoPerfil(idPerfilRepCampo, CampoPerfil);
 	}
 	
 	@DeleteMapping(value = "/campos-perfil/{idPerfilRepCampo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCampoPerfil(@IdNumerico(maxRange = 99) @PathVariable int idCampoPerfil) {
-		this.campoPerfilService.eliminarCampoPerfil(idCampoPerfil);
+	public void eliminarCampoPerfil(@IdNumerico(maxRange = 99) @PathVariable Integer idPerfilRepCampo) {
+		this.campoPerfilService.eliminarCampoPerfil(idPerfilRepCampo);
 	}
 	
 }

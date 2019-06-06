@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TablaQuery {
-	private int idTablaQuery;
+	private Integer idTablaQuery;
 	private int idReporte;
 	private int idTabla;
     private String tabla;

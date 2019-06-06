@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampoQuery {
-	int idCampoQuery;
+	Integer idCampoQuery;
 	int idTablaQuery;
 	int idReporte;
     int idTabla;

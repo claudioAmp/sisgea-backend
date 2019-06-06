@@ -52,14 +52,14 @@ public class FiltroRestController {
 	}
 	
 	@PutMapping(value = "/filtros/{idFiltroCampo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Filtro actualizarFiltro(@IdNumerico(maxRange = 99) @PathVariable int idFiltroCampo,
+	public Filtro actualizarFiltro(@IdNumerico(maxRange = 99999) @PathVariable Integer idFiltroCampo,
 	                             @Validated @RequestBody Filtro filtro) {
 		return this.filtroService.actualizarFiltro(idFiltroCampo, filtro);
 	}
 	
 	@DeleteMapping(value = "/filtros/{idFiltroCampo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarFiltro(@IdNumerico(maxRange = 99) @PathVariable int idFiltroCampo) {
+	public void eliminarFiltro(@IdNumerico(maxRange = 99999) @PathVariable Integer idFiltroCampo) {
 		this.filtroService.eliminarFiltro(idFiltroCampo);
 	}
 }
