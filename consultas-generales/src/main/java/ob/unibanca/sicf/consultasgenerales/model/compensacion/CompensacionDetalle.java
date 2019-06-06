@@ -56,6 +56,7 @@ public class CompensacionDetalle {
 	String numeroTrace;
 	String codigoAutorizacion;
 	String codigoProcesamiento;
+	String desCodigoProcesamiento;
 	String idTerminal;
 	String binReceptor;
 	String descBinReceptor;
