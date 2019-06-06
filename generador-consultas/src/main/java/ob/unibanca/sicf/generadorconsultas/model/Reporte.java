@@ -16,7 +16,7 @@ public class Reporte {
 	private int idReporte;
     private String nombre;
     private String descripcion;
-    private String desCorta;
+    private String descCorta;
     private String queryReporte;
 	private int frecuencia;
 }

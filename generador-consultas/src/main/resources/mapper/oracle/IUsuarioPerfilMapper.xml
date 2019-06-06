@@ -34,10 +34,11 @@
         {
         	CALL PKG_MAN_REP.prc_man_rep_perfil_usuario 	(
       			#{modo, 							  			jdbcType=VARCHAR, mode=IN},
-      			#{objetoMantenido.id_perfil_rep_usuario, 	   	jdbcType=NUMERIC, mode=IN},
+      			#{objetoMantenido.idPerfilRepUsuario, 	     	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.usuario,   	  				jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_perfil, 	          		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPerfil, 	          		jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						      			jdbcType=VARCHAR, mode=IN}
+                )
         }
     </select>
 

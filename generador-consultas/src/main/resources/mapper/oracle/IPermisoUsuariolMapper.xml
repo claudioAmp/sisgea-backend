@@ -37,10 +37,10 @@
         {
             CALL PKG_MAN_REP.prc_man_rep_permiso_usuario(
                 #{modo, 							      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.id_permiso_usuario,     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_perfil_rep_usuario,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.id_perfil_rep_campo, 	  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.ver_truncado , 	      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPermisoUsuario,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPerfilRepUsuario,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPerfilRepCampo, 	  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.verTruncado , 	      jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						          jdbcType=NUMERIC, mode=IN}
             )
         }

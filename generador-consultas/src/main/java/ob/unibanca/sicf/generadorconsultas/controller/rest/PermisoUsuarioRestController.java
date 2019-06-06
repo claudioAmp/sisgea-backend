@@ -50,14 +50,14 @@ public class PermisoUsuarioRestController {
 	}
 	
 	@PutMapping(value = "/permisos-usuario/{idPermisoUsuario}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public PermisoUsuario actualizarPermisoUsuario(@IdNumerico(maxRange = 99) @PathVariable int idPermisoUsuario,
+	public PermisoUsuario actualizarPermisoUsuario(@IdNumerico(maxRange = 9999) @PathVariable int idPermisoUsuario,
 	                             @Validated @RequestBody PermisoUsuario permisoUsuario) {
 		return this.permisoUsuarioService.actualizarPermisoUsuario(idPermisoUsuario, permisoUsuario);
 	}
 	
 	@DeleteMapping(value = "/permisos-usuario/{idPermisoUsuario}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarPermisoUsuario(@IdNumerico(maxRange = 99) @PathVariable int idPermisoUsuario) {
+	public void eliminarPermisoUsuario(@IdNumerico(maxRange = 9999) @PathVariable int idPermisoUsuario) {
 		this.permisoUsuarioService.eliminarPermisoUsuario(idPermisoUsuario);
 	}
 }

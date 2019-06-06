@@ -52,15 +52,15 @@ public class UsuarioPerfilRestController {
 	}
 	
 	@PutMapping(value = "/usuarios-perfil/{idPerfilRepUsuario}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public UsuarioPerfil actualizarUsuarioPerfil(@IdNumerico(maxRange = 99) @PathVariable int idUsuarioPerfil,
+	public UsuarioPerfil actualizarUsuarioPerfil(@IdNumerico(maxRange = 9999) @PathVariable int idPerfilRepUsuario,
 	                             @Validated @RequestBody UsuarioPerfil UsuarioPerfil) {
-		return this.usuarioPerfilService.actualizarUsuarioPerfil(idUsuarioPerfil, UsuarioPerfil);
+		return this.usuarioPerfilService.actualizarUsuarioPerfil(idPerfilRepUsuario, UsuarioPerfil);
 	}
 	
 	@DeleteMapping(value = "/usuarios-perfil/{idPerfilRepUsuario}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarUsuarioPerfil(@IdNumerico(maxRange = 99) @PathVariable int idUsuarioPerfil) {
-		this.usuarioPerfilService.eliminarUsuarioPerfil(idUsuarioPerfil);
+	public void eliminarUsuarioPerfil(@IdNumerico(maxRange = 9999) @PathVariable int idPerfilRepUsuario) {
+		this.usuarioPerfilService.eliminarUsuarioPerfil(idPerfilRepUsuario);
 	}
 	
 }

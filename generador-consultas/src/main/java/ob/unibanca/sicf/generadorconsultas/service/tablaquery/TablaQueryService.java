@@ -51,7 +51,7 @@ public class TablaQueryService extends MantenibleService<TablaQuery> implements 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarTablaQuery(int idTablaQuery) {
-		TablaQuery tablaQuery = TablaQuery.builder().idTabla(idTablaQuery).build();
+		TablaQuery tablaQuery = TablaQuery.builder().idTablaQuery(idTablaQuery).build();
 		this.eliminar(tablaQuery);
 	}
 }

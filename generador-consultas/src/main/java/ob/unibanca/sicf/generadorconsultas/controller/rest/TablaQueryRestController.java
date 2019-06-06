@@ -52,14 +52,14 @@ public class TablaQueryRestController {
 	}
 	
 	@PutMapping(value = "/tablas-query/{idTablaQuery}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public TablaQuery actualizarTablaQuery(@IdNumerico(maxRange = 99) @PathVariable int idTablaQuery,
+	public TablaQuery actualizarTablaQuery(@IdNumerico(maxRange = 9999) @PathVariable int idTablaQuery,
 	                             @Validated @RequestBody TablaQuery tablaQuery) {
 		return this.TablaQueryService.actualizarTablaQuery(idTablaQuery, tablaQuery);
 	}
 	
 	@DeleteMapping(value = "/tablas-query/{idTablaQuery}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarTablaQuery(@IdNumerico(maxRange = 99) @PathVariable int idTablaQuery) {
+	public void eliminarTablaQuery(@IdNumerico(maxRange = 9999) @PathVariable int idTablaQuery) {
 		this.TablaQueryService.eliminarTablaQuery(idTablaQuery);
 	}
 }
