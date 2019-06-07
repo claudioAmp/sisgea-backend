@@ -17,7 +17,7 @@ public class PaisRestController {
 	public PaisRestController(IPaisService paisService) {
 		this.paisService = paisService;
 	}
-	@PreAuthorize("hasPermission('CON_PAIS', '2')")
+	@PreAuthorize("hasPermission('MANT_PAIS', '2')")
 	@GetMapping("/paises")
 	public List<Pais> buscarTodosPaises() {
 		return this.paisService.buscarTodosPaises();
