@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedAsociada;
 import ob.unibanca.sicf.mantenimientosgenerales.service.atmredasociada.IATMRedAsociadaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class ATMRedAsociadaRestController {
 		this.atmRedAsociadaService = atmRedAsociadaService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ATREAS', '2')")
 	@GetMapping("/atms-redes-asociadas")
 	public List<ATMRedAsociada> buscarTodosATMsRedAsociada() {
 		return this.atmRedAsociadaService.buscarTodosATMsRedAsociada();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ATREAS', '2')")
 	@GetMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<ATMRedAsociada> buscarATMsRedAsociadaPorInstitucion(
@@ -41,6 +44,7 @@ public class ATMRedAsociadaRestController {
 		return this.atmRedAsociadaService.buscarATMsRedAsociadaPorInstitucion(idInstitucion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ATREAS', '1')")
 	@PostMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas",
 	             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -50,6 +54,7 @@ public class ATMRedAsociadaRestController {
 		return this.atmRedAsociadaService.registrarATMRedAsociada(idInstitucion, atmRedAsociada);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ATREAS', '3')")
 	@PutMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas/{idATM}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ATMRedAsociada actualizarATMRedAsociada(@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion,
@@ -58,6 +63,7 @@ public class ATMRedAsociadaRestController {
 		return this.atmRedAsociadaService.actualizarATMRedAsociada(idATM, idInstitucion, atmRedAsociada);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ATREAS', '4')")
 	@DeleteMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas/{idATM}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarATMRedAsociada(@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion,

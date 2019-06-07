@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Canal;
 import ob.unibanca.sicf.mantenimientosgenerales.service.canal.ICanalService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class CanalExportacionController {
 		this.canalService = canalService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CANAL', '5')")
 	@GetMapping(value = "/canales.xlsx")
 	public ModelAndView exportarCanal(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();

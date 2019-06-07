@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.InstitucionTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.instituciontransaccion.IInstitucionTransaccionService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class InstitucionTransaccionExportacionController {
 		this.institucionTransaccionService = institucionTransaccionService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTRA', '5')")
 	@GetMapping(value = "/instituciones-transacciones.xlsx")
 	public ModelAndView exportarInstitucionTransaccion(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();

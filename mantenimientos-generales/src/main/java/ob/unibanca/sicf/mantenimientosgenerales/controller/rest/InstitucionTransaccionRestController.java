@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.InstitucionTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.instituciontransaccion.IInstitucionTransaccionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +29,13 @@ public class InstitucionTransaccionRestController {
 		this.institucionTransaccionService = institucionTransaccionService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTRA', '2')")
 	@GetMapping("/instituciones-transacciones")
 	public List<InstitucionTransaccion> buscarTodosInstitucionesTransacciones() {
 		return this.institucionTransaccionService.buscarTodosInstitucionesTransacciones();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTRA', '1')")
 	@PostMapping(value = "/instituciones/{idInstitucion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public InstitucionTransaccion registrarInstitucionTransaccion(
@@ -42,6 +45,7 @@ public class InstitucionTransaccionRestController {
 		                                                                          institucionesTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INSTRA', '4')")
 	@DeleteMapping("/instituciones/{idInstitucion}/clases-transacciones/{idClaseTransaccion}/codigos-transacciones" +
 	               "/{idCodigoTransaccion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)

@@ -7,6 +7,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.criterio.CriterioBusquedaI
 import ob.unibanca.sicf.mantenimientosgenerales.service.bin.IBINService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,22 +31,26 @@ public class BINRestController {
 		this.binService = binService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '2')")
 	@GetMapping("/bins")
 	public List<BIN> buscarTodosBINs() {
 		return this.binService.buscarTodosBINs();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '2')")
 	@GetMapping("/bins/buscar")
 	public List<BIN> buscarPorInstituciones(CriterioBusquedaInstitucion criterio) {
 		return this.binService.buscarPorInstituciones(criterio);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '1')")
 	@PostMapping(value = "/bins", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public BIN registrarBIN(@Validated({IRegistro.class, Default.class}) @RequestBody BIN bin) {
 		return this.binService.registrarBIN(bin);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '3')")
 	@PutMapping(value = "/bins/{idBIN}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public BIN actualizarBIN(
 			@IdCadena(minLength = 6, maxLength = 15, regexpPattern = "[0-9]+") @PathVariable String idBIN,
@@ -53,6 +58,7 @@ public class BINRestController {
 		return this.binService.actualizarBIN(idBIN, bin);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '4')")
 	@DeleteMapping("/bins/{idBIN}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarBIN(

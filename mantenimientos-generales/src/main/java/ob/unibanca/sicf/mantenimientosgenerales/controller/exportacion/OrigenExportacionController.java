@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Origen;
 import ob.unibanca.sicf.mantenimientosgenerales.service.origen.IOrigenService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class OrigenExportacionController {
 		this.origenService = origenService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_ORIGEN', '5')")
 	@GetMapping(value = "/origenes.xlsx")
 	public ModelAndView exportarOrigen(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();

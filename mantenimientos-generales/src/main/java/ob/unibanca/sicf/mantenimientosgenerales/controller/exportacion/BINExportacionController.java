@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.BIN;
 import ob.unibanca.sicf.mantenimientosgenerales.service.bin.IBINService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class BINExportacionController {
 		this.binService = binService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BIN', '5')")
 	@GetMapping(value = "/bins.xlsx")
 	public ModelAndView exportarBIN(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
