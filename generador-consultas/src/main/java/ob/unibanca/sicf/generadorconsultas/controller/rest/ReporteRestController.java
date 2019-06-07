@@ -20,6 +20,7 @@ import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
+import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
@@ -67,4 +68,5 @@ public class ReporteRestController {
 	public void eliminarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
 		this.ReporteService.eliminarReporte(idReporte);
 	}
+	
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PermisoUsuario{
-	private int idPermisoUsuario;
+	private Integer idPermisoUsuario;
 	private int idPerfilRepCampo;
 	private int idPerfilRepUsuario;
 	private String username;

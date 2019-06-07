@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
-import ob.unibanca.sicf.generadorconsultas.mapper.ITablasForaneasMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 
@@ -54,5 +53,6 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		Reporte reporte = Reporte.builder().idReporte(idReporte).build();
 		this.eliminar(reporte);
 	}
+
 }
 
