@@ -3,6 +3,7 @@ package ob.unibanca.sicf.tarifarios.controller.exportacion;
 import ob.unibanca.sicf.tarifarios.model.TarifarioAdquirente;
 import ob.unibanca.sicf.tarifarios.service.tarifarioadquirente.ITarifarioAdquirenteService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,7 @@ public class TarifarioAdquirenteExportacionController {
 		this.tarifarioAdquirenteService = tarifarioAdquirenteService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TARADQ','5')")
 	@GetMapping(value = "/tarifarios-adquirentes.xlsx")
 	public ModelAndView exportarTarifarioAdquirente(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();

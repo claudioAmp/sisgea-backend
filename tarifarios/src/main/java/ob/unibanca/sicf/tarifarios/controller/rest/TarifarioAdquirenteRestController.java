@@ -6,6 +6,7 @@ import ob.unibanca.sicf.tarifarios.model.TarifarioAdquirente;
 import ob.unibanca.sicf.tarifarios.service.tarifarioadquirente.ITarifarioAdquirenteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class TarifarioAdquirenteRestController {
 		this.tarifarioAdquirenteService = tarifarioAdquirenteService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TARADQ','2')")
 	@GetMapping("/tarifarios-adquirentes")
 	public List<TarifarioAdquirente> buscarTodosTarifariosAdquirentes() {
 		return this.tarifarioAdquirenteService.buscarTodosTarifariosAdquirentes();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TARADQ','1')")
 	@PostMapping(value = "/tarifarios-adquirentes", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TarifarioAdquirente registrarTarifarioAdquirente(
@@ -41,12 +44,14 @@ public class TarifarioAdquirenteRestController {
 		return this.tarifarioAdquirenteService.registrarTarifarioAdquirente(tarifarioAdquirente);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TARADQ','3')")
 	@PutMapping(value = "/tarifarios-adquirentes/{idTarifarioAdquirente}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public TarifarioAdquirente actualizarTarifarioAdquirente(@IdNumerico(maxRange = 9999) @PathVariable int idTarifarioAdquirente,
 	                                       @Validated @RequestBody TarifarioAdquirente tarifarioAdquirente) {
 		return this.tarifarioAdquirenteService.actualizarTarifarioAdquirente(idTarifarioAdquirente, tarifarioAdquirente);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_TARADQ','4')")
 	@DeleteMapping("/tarifarios-adquirentes/{idTarifarioAdquirente}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarTarifarioAdquirente(@IdNumerico(maxRange = 9999) @PathVariable int idTarifarioAdquirente) {
