@@ -21,6 +21,7 @@ public class BIN {
 	@CaracterRequerido(maxLength = 20)
 	private String descripcionBIN;
 	private boolean esInternacional;
+	@IdNumerico(maxRange = 99999999)
 	private double valorOIF;
 	@NumeroNoRequerido(maxRange = 99)
 	private int longitudPAN;
