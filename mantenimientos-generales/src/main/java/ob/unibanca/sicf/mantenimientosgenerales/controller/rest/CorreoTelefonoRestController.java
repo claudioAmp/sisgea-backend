@@ -54,7 +54,7 @@ public class CorreoTelefonoRestController {
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CorreoTelefono actualizarCorreoTelefono(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCorreoTelefono,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idCorreoTelefono,
 			@Validated @RequestBody CorreoTelefono correoTelefono) {
 		return this.correoTelefonoService.actualizarCorreoTelefono(idMembresia, idCorreoTelefono, correoTelefono);
 	}
@@ -63,7 +63,7 @@ public class CorreoTelefonoRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCorreoTelefono(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idCorreoTelefono) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idCorreoTelefono) {
 		this.correoTelefonoService.eliminarCorreoTelefono(idMembresia, idCorreoTelefono);
 	}
 	

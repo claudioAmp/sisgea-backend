@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CapacidadTerminalPOS;
 import ob.unibanca.sicf.mantenimientosgenerales.service.capacidadterminalpos.ICapacidadTerminalPOSService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,18 +29,18 @@ public class CapacidadTerminalPOSRestController {
 	public CapacidadTerminalPOSRestController(ICapacidadTerminalPOSService capacidadTerminalPOSService) {
 		this.capacidadTerminalPOSService = capacidadTerminalPOSService;
 	}
-	
+	@PreAuthorize("hasPermission('MANT_CAPTERPOS', '2')")
 	@GetMapping("/capacidades-terminales-pos")
 	public List<CapacidadTerminalPOS> buscarTodosCapacidadesTerminalesPOS() {
 		return this.capacidadTerminalPOSService.buscarTodosCapacidadesTerminalesPOS();
 	}
-	
+	@PreAuthorize("hasPermission('MANT_CAPTERPOS', '2')")
 	@GetMapping("/membresias/{idMembresia}/capacidades-terminales-pos")
 	public List<CapacidadTerminalPOS> buscarCapacidadesTerminalesPOSPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.capacidadTerminalPOSService.buscarCapacidadesTerminalesPOSPorMembresia(idMembresia);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_CAPTERPOS', '1')")
 	@PostMapping(value = "/membresias/{idMembresia}/capacidades-terminales-pos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CapacidadTerminalPOS registrarCapacidadTerminalPOS(
@@ -47,21 +48,21 @@ public class CapacidadTerminalPOSRestController {
 			@Validated({IRegistro.class, Default.class}) @RequestBody CapacidadTerminalPOS capacidadTerminalPOS) {
 		return this.capacidadTerminalPOSService.registrarCapacidadTerminalPOS(idMembresia, capacidadTerminalPOS);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_CAPTERPOS', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}/capacidades-terminales-pos/{idTerminalPOS}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CapacidadTerminalPOS actualizarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idTerminalPOS,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idTerminalPOS,
 			@Validated @RequestBody CapacidadTerminalPOS capacidadTerminalPOS) {
 		return this.capacidadTerminalPOSService.actualizarCapacidadTerminalPOS(idMembresia, idTerminalPOS, capacidadTerminalPOS);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_CAPTERPOS', '4')")
 	@DeleteMapping("/membresias/{idMembresia}/capacidades-terminales-pos/{idTerminalPOS}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+") @PathVariable String idTerminalPOS) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idTerminalPOS) {
 		this.capacidadTerminalPOSService.eliminarCapacidadTerminalPOS(idMembresia, idTerminalPOS);
 	}
 	
