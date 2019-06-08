@@ -1,11 +1,12 @@
 package ob.unibanca.sicf.consultasgenerales.mapper;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
@@ -13,9 +14,10 @@ import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
 @Mapper
 public interface ISwdmplogMapper {
 
-	List<TxnSwdmplog> buscarPorCriterios(@Param("criterioBusqueda") CriterioBusquedaSwdmplog criterioBusqueda);
+	List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterioBusqueda);
 	
-	TxnSwdmplogDetalle buscarDetallePorCriterios(@Param("idMovTxnSwdmplog") int idMovTxnSwdmplog,
-	                                             @Param("fechaProceso") Date fechaProceso);
+	public Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion);
+	
+	Optional<TxnSwdmplogDetalle> buscarDetalle(CriterioBusquedaSwdmplog criterioBusqueda);
 	
 }

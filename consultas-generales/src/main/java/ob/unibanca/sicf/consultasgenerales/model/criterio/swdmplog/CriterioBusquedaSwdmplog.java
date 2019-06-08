@@ -19,14 +19,10 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPag
 @EqualsAndHashCode(callSuper = false)
 public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaInicioProceso;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaFinProceso;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private String fechaInicioProceso;
+	private String fechaFinProceso;
 	private Date fechaInicioTransaccion;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaFinTransaccion;
+	private String fechaFinTransaccion;
 	private String numeroTarjeta;//pan
 	private List<Integer> idsProcesoSwitch;
 	private String trace;
@@ -40,14 +36,15 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private List<String> idsModoEntradaPos;
 	
 	private String tipoMensaje;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaInicioSwitch;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaFinSwitch;
+	private String fechaInicioSwitch;
+	private String fechaFinSwitch;
 	private List<String> idsMembresia;
 	private List<String> idsServicio;
 	private List<Integer> idsCanal;
 	private List<String> idsProceso;
 	private List<Integer> idsRolTransaccion;
-	
+		
+	//Detalle
+	private String fechaProceso;
+	private String idMovTxnSwdmplog;
 }

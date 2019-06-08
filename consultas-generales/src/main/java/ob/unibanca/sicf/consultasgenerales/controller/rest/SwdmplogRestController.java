@@ -1,15 +1,14 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.Page;
+
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
@@ -30,11 +29,19 @@ public class SwdmplogRestController {
 		return this.swdmplogService.buscarPorCriterios(criterio);
 	}
 	
-	@GetMapping("/txns-swdmplog/{idMovTxnSwdmplog}/detalle")
-	public TxnSwdmplogDetalle buscarDetalleSwdmplog(@PathVariable("idMovTxnSwdmplog") int idMovTxnSwdmplog,
-	                                                @RequestParam
-	                                                @DateTimeFormat(pattern = "dd/MM/yyyy") Date fechaProceso) {
-		return this.swdmplogService.buscarDetallePorCriterios(idMovTxnSwdmplog, fechaProceso);
+	@GetMapping("/txns-swdmplog/pagination")
+	public Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> buscarPorPaginas(Pagina<CriterioBusquedaSwdmplog,TxnSwdmplog> criterioPaginacion, CriterioBusquedaSwdmplog criterioBusqueda){
+		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		Page<TxnSwdmplog> lista = swdmplogService.buscarPaginada(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
+		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
+		return pagina;
 	}
+	
+	@GetMapping("/txns-swdmplog/detalle")
+	public TxnSwdmplogDetalle buscarDetalleSwdmplog(CriterioBusquedaSwdmplog criterio) {
+		return this.swdmplogService.buscarDetalle(criterio);
+	}
+	
+	
 	
 }

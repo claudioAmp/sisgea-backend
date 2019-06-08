@@ -2,113 +2,113 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ISwdmplogMapper">
 
-	<select id="buscarPorCriterios" resultType="TxnSwdmplog" >
+	<select id="buscarPaginada" resultType="TxnSwdmplog" >
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG consulta
 		<where>
-			<if test="criterioBusqueda.fechaInicioProceso != null">
-				consulta.fecha_proceso &gt;= #{criterioBusqueda.fechaInicioProceso}
+			<if test="fechaInicioProceso != null and fechaInicioProceso != ''">
+				consulta.fecha_proceso &gt;= #{fechaInicioProceso}
 			</if>
-			<if test="criterioBusqueda.fechaFinProceso != null">
-				AND consulta.fecha_proceso &lt;= #{criterioBusqueda.fechaFinProceso}
+			<if test="fechaFinProceso != null and fechaFinProceso != ''">
+				AND consulta.fecha_proceso &lt;= #{fechaFinProceso}
 			</if>
-			<if test="criterioBusqueda.fechaInicioTransaccion != null">
-				AND consulta.transmission_date &gt;= #{criterioBusqueda.fechaInicioTransaccion}
+			<if test="fechaInicioTransaccion != null and fechaInicioTransaccion != ''">
+				AND consulta.transmission_date &gt;= #{fechaInicioTransaccion}
 			</if>
-			<if test="criterioBusqueda.fechaFinTransaccion != null">
-				AND consulta.transmission_date &lt;= #{criterioBusqueda.fechaFinTransaccion}
+			<if test="fechaFinTransaccion != null and fechaFinTransaccion != ''">
+				AND consulta.transmission_date &lt;= #{fechaFinTransaccion}
 			</if>
-			<if test="criterioBusqueda.trace != null and criterioBusqueda.trace != ''">
-				AND consulta.trace_number = #{criterioBusqueda.trace}
+			<if test="trace != null and trace != ''">
+				AND consulta.trace_number = #{trace}
 			</if>
-			<if test="criterioBusqueda.numeroTarjeta != null and criterioBusqueda.numeroTarjeta != ''">
-				AND consulta.pan = #{criterioBusqueda.numeroTarjeta}
+			<if test="numeroTarjeta != null and numeroTarjeta != ''">
+				AND consulta.pan = #{numeroTarjeta}
 			</if>
-			<if test="criterioBusqueda.idsProcesoSwitch != null">
+			<if test="codigoAutorizacion != null and codigoAutorizacion != ''">
+				AND consulta.authorization_code = #{codigoAutorizacion}
+			</if>
+			<if test="numeroReferencia != null and numeroReferencia != ''">
+				AND consulta.reference_number = #{numeroReferencia} 
+			</if>
+			<if test="tipoMensaje != null and tipoMensaje != ''">
+				AND consulta.MESSAGE_TYPE = #{tipoMensaje}
+			</if>
+			<if test="fechaInicioSwitch != null and fechaFinSwitch != ''">
+				AND consulta.CAPTURE_DATE BETWEEN #{fechaInicioSwitch} AND #{fechaFinSwitch}
+			</if>
+			<if test="idsProcesoSwitch != null and idsProcesoSwitch.size()>0">
 				AND consulta.id_proceso IN 
-					<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
+					<foreach collection="idsProcesoSwitch" item="idProceso" index="index"
 						open="(" separator="," close=")">
 						#{idProceso}
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.idsRespuestaSwitch != null">
+			<if test="idsRespuestaSwitch != null and idsRespuestaSwitch.size()>0">
 				AND consulta.response_code IN 
-					<foreach collection="criterioBusqueda.idsRespuestaSwitch" item="idRespuesta" index="index"
+					<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index"
 						open="(" separator="," close=")">
 						#{idRespuesta}
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.idsGiroNegocio != null">
+			<if test="idsGiroNegocio != null and idsGiroNegocio.size()>0">
 				AND consulta.merchant_type IN
-					<foreach collection="criterioBusqueda.idsGiroNegocio" item="idGiroNegocio" index="index"
+					<foreach collection="idsGiroNegocio" item="idGiroNegocio" index="index"
 						open="(" separator="," close=")">
 						#{idGiroNegocio}
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.idsInstitucionEmisor != null">
+			<if test="idsInstitucionEmisor != null and idsInstitucionEmisor.size()>0">
 				AND consulta.requesting_institution IN
-					<foreach collection="criterioBusqueda.idsInstitucionEmisor" item="idInstitucion" index="index"
+					<foreach collection="idsInstitucionEmisor" item="idInstitucion" index="index"
 						open="(" separator="," close=")">
 						#{idInstitucion}	
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.idsInstitucionAdquirente != null">
+			<if test="idsInstitucionAdquirente != null and idsInstitucionAdquirente.size()>0">
 				AND consulta.acquiring_institution IN
-					<foreach collection="criterioBusqueda.idsInstitucionAdquirente" item="idInstitucion" index="index"
+					<foreach collection="idsInstitucionAdquirente" item="idInstitucion" index="index"
 						open="(" separator="," close=")">
 						#{idInstitucion}
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.codigoAutorizacion != null and criterioBusqueda.codigoAutorizacion != ''">
-				AND consulta.authorization_code = #{criterioBusqueda.codigoAutorizacion}
-			</if>
-			<if test="criterioBusqueda.numeroReferencia != null and criterioBusqueda.numeroReferencia != ''">
-				AND consulta.reference_number = #{criterioBusqueda.numeroReferencia} 
-			</if>
-			<if test="criterioBusqueda.idsModoEntradaPos">
+			<if test="idsModoEntradaPos != null and idsModoEntradaPos.size()>0">
 				AND consulta.pos_entry_mode IN
-					<foreach collection="criterioBusqueda.idsMosoEntradaPos" item="idModoEntradaPos" index="index"
+					<foreach collection="idsMosoEntradaPos" item="idModoEntradaPos" index="index"
 						open="(" separator="," close=")">
 						#{idModoEntradaPos}
 					</foreach>
 			</if>
-			<if test="criterioBusqueda.tipoMensaje != null and criterioBusqueda.tipoMensaje != ''">
-				AND consulta.MESSAGE_TYPE = #{criterioBusqueda.tipoMensaje}
-			</if>
-			<if test="criterioBusqueda.fechaInicioSwitch != null and criterioBusqueda.fechaFinSwitch != null">
-				AND consulta.CAPTURE_DATE BETWEEN #{criterioBusqueda.fechaInicioSwitch} AND #{criterioBusqueda.fechaFinSwitch}
-			</if>
-			<if test="criterioBusqueda.idsMembresia != null">
+			<if test="idsMembresia != null and idsMembresia.size()>0">
 				AND consulta.ID_MEMBRESIA IN
-				<foreach collection="criterioBusqueda.idsMembresia" item="idMembresia" index="index"
+				<foreach collection="idsMembresia" item="idMembresia" index="index"
 						 open="(" separator="," close=")">
 					#{idMembresia}
 				</foreach>
 			</if>
-			<if test="criterioBusqueda.idsServicio != null">
+			<if test="idsServicio != null and idsServicio.size()>0">
 				AND consulta.ID_SERVICIO IN
-				<foreach collection="criterioBusqueda.idsServicio" item="idServicio" index="index"
+				<foreach collection="idsServicio" item="idServicio" index="index"
 						 open="(" separator="," close=")">
 					#{idServicio}
 				</foreach>
 			</if>
-			<if test="criterioBusqueda.idsCanal != null">
+			<if test="idsCanal != null and idsCanal.size()>0">
 				AND consulta.ID_CANAL IN
-				<foreach collection="criterioBusqueda.idsCanal" item="idCanal" index="index"
+				<foreach collection="idsCanal" item="idCanal" index="index"
 						 open="(" separator="," close=")">
 					#{idCanal}
 				</foreach>
 			</if>
-			<if test="criterioBusqueda.idsProceso != null">
+			<if test="idsProceso != null and idsProceso.size()>0">
 				AND consulta.ID_PROCESO IN
-				<foreach collection="criterioBusqueda.idsProceso" item="idProceso" index="index"
+				<foreach collection="idsProceso" item="idProceso" index="index"
 						 open="(" separator="," close=")">
 					#{idProceso}
 				</foreach>
 			</if>
-			<if test="criterioBusqueda.idsRolTransaccion != null">
+			<if test="idsRolTransaccion != null and idsRolTransaccion.size()>0">
 				AND consulta.ID_ROL IN
-				<foreach collection="criterioBusqueda.idsRolTransaccion" item="idRolTransaccion" index="index"
+				<foreach collection="idsRolTransaccion" item="idRolTransaccion" index="index"
 						 open="(" separator="," close=")">
 					#{idRolTransaccion}
 				</foreach>
@@ -116,7 +116,7 @@
 		</where>
 	</select>
 
-	<select id="buscarDetallePorCriterios" resultType="TxnSwdmplogDetalle" >
+	<select id="buscarDetalle" resultType="TxnSwdmplogDetalle" >
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG_DET A
 		<where>
@@ -127,89 +127,6 @@
 				AND A.FECHA_PROCESO = #{fechaProceso}
 			</if>
 		</where>
-		<!--SELECT *
-		FROM (
-			SELECT
-				SUBQUERY.*,
-				ROWNUM 		RN
-			FROM (
-				SELECT
-					A.*
-				FROM VIE_CON_MOV_SWDMPLOG_DET
-				<where>
-					<if test="criterioBusqueda.fechaInicioProceso != null">
-						A.FECHA_PROCESO &gt;= #{criterioBusqueda.fechaInicioProceso}
-					</if>
-					<if test="criterioBusqueda.fechaFinProceso != null">
-						AND A.FECHA_PROCESO &lt;= #{criterioBusqueda.fechaFinProceso}
-					</if>
-					<if test="criterioBusqueda.fechaInicioTransaccion != null">
-						AND A.TRANSMISSION_DATE &gt;= #{criterioBusqueda.fechaInicioTransaccion}
-					</if>
-					<if test="criterioBusqueda.fechaFinTransaccion != null">
-						AND A.TRANSMISSION_DATE &lt;= #{criterioBusqueda.fechaFinTransaccion}
-					</if>
-					<if test="criterioBusqueda.trace != null and criterioBusqueda.trace != ''">
-						AND A.TRACE_NUMBER = #{criterioBusqueda.trace}
-					</if>
-					<if test="criterioBusqueda.numeroTarjeta != null and criterioBusqueda.numeroTarjeta != ''">
-						AND A.PAN = #{criterioBusqueda.numeroTarjeta}
-					</if>
-					<if test="criterioBusqueda.idsProcesoSwitch != null">
-						AND TO_NUMBER(SUBSTR(A.PROCESSING_CODE,1,2)) IN
-						<foreach collection="criterioBusqueda.idsProcesoSwitch" item="idProceso" index="index"
-								 open="(" separator="," close=")">
-							#{idProceso}
-						</foreach>
-					</if>
-					<if test="criterioBusqueda.idsRespuestaSwitch != null">
-						AND A.RESPONSE_CODE IN
-						<foreach collection="criterioBusqueda.idsRespuestaSwitch" item="idRespuesta" index="index"
-								 open="(" separator="," close=")">
-							#{idRespuesta}
-						</foreach>
-					</if>
-					<if test="criterioBusqueda.idsGiroNegocio != null">
-						AND consulta.MERCHANT_TYPE IN
-						<foreach collection="criterioBusqueda.idsGiroNegocio" item="idGiroNegocio" index="index"
-								 open="(" separator="," close=")">
-							#{idGiroNegocio}
-						</foreach>
-					</if>
-					<if test="criterioBusqueda.idsInstitucionEmisor != null">
-						AND A.REQUESTING_INSTITUTION IN
-						<foreach collection="criterioBusqueda.idsInstitucionEmisor" item="idInstitucion" index="index"
-								 open="(" separator="," close=")">
-							#{idInstitucion}
-						</foreach>
-					</if>
-					<if test="criterioBusqueda.idsInstitucionAdquirente != null">
-						AND A.ACQUIRING_INSTITUTION IN
-						<foreach collection="criterioBusqueda.idsInstitucionAdquirente" item="idInstitucion" index="index"
-								 open="(" separator="," close=")">
-							#{idInstitucion}
-						</foreach>
-					</if>
-					<if test="criterioBusqueda.codigoAutorizacion != null and criterioBusqueda.codigoAutorizacion != ''">
-						AND A.AUTHORIZATION_CODE= #{criterioBusqueda.codigoAutorizacion}
-					</if>
-					<if test="criterioBusqueda.numeroReferencia != null and criterioBusqueda.numeroReferencia != ''">
-						AND A.REFERENCE_NUMBER= #{criterioBusqueda.numeroReferencia}
-					</if>
-
-				</where>
-				ORDER BY
-					A.FECHA_PROCESO
-			)
-			WHERE
-				<if test="criterioBusqueda.pageSize != -1">
-					ROWNUM &lt;= #{criterioBusqueda.pageSize}
-				</if>
-		)
-		WHERE
-		<if test="criterioBusqueda.pageNum != -1">
-			ROWNUM &gt;= #{criterioBusqueda.pageSize}
-		</if>-->
 	</select>
    
 </mapper>
