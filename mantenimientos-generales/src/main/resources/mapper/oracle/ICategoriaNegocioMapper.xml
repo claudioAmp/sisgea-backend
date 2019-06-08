@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.ICategoriaNegocioMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT 
+	        id_categoria_negocio,
+	        descripcion
+        FROM MAE_CATEGORIA_NEGOCIO
+    </sql>
+
+    <select id="buscarTodosCategoriasNegocios" resultType="CategoriaNegocio" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+</mapper>

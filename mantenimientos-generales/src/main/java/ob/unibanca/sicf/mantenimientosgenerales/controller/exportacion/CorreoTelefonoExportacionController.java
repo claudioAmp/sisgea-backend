@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CorreoTelefono;
 import ob.unibanca.sicf.mantenimientosgenerales.service.correotelefono.ICorreoTelefonoService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +23,7 @@ public class CorreoTelefonoExportacionController {
 	public CorreoTelefonoExportacionController(ICorreoTelefonoService correoTelefonoService) {
 		this.correoTelefonoService = correoTelefonoService;
 	}
-	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '5')")
 	@GetMapping(value = "/correos-telefonos.xlsx")
 	public ModelAndView exportarCorreoTelefono(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
