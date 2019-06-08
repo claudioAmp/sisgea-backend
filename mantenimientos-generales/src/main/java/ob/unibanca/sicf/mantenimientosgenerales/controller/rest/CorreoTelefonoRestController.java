@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CorreoTelefono;
 import ob.unibanca.sicf.mantenimientosgenerales.service.correotelefono.ICorreoTelefonoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,18 +29,19 @@ public class CorreoTelefonoRestController {
 	public CorreoTelefonoRestController(ICorreoTelefonoService correoTelefonoService) {
 		this.correoTelefonoService = correoTelefonoService;
 	}
-	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '2')")
 	@GetMapping("/correos-telefonos")
 	public List<CorreoTelefono> buscarTodosCorreosTelefonos() {
 		return this.correoTelefonoService.buscarTodosCorreosTelefonos();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '2')")
 	@GetMapping("/membresias/{idMembresia}/correos-telefonos")
 	public List<CorreoTelefono> buscarCorreosTelefonosPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.correoTelefonoService.buscarCorreosTelefonosPorMembresia(idMembresia);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '1')")
 	@PostMapping(value = "/membresias/{idMembresia}/correos-telefonos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CorreoTelefono registrarCorreoTelefono(
@@ -47,7 +49,7 @@ public class CorreoTelefonoRestController {
 			@Validated({IRegistro.class, Default.class}) @RequestBody CorreoTelefono correoTelefono) {
 		return this.correoTelefonoService.registrarCorreoTelefono(idMembresia, correoTelefono);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}/correos-telefonos/{idCorreoTelefono}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CorreoTelefono actualizarCorreoTelefono(
@@ -56,7 +58,7 @@ public class CorreoTelefonoRestController {
 			@Validated @RequestBody CorreoTelefono correoTelefono) {
 		return this.correoTelefonoService.actualizarCorreoTelefono(idMembresia, idCorreoTelefono, correoTelefono);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_INDCORRTELF', '4')")
 	@DeleteMapping("/membresias/{idMembresia}/correos-telefonos/{idCorreoTelefono}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCorreoTelefono(
