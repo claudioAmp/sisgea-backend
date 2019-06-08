@@ -35,6 +35,10 @@
        			DESCRIPCION_PERFIL = #{perfil}
        		AND ID_TABLA    = #{idTabla}
         </if>
+        <if  test="idPerfil != null and  idPerfil != ''">
+        	WHERE
+       			ID_PERFIL = #{idPerfil}
+        </if>
     </select>
     
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
