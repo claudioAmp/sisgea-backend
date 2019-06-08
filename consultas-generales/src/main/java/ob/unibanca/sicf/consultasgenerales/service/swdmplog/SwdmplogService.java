@@ -44,7 +44,7 @@ public class SwdmplogService implements ISwdmplogService {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public TxnSwdmplogDetalle buscarDetalle(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogMapper.buscarDetalle(criterio).orElseThrow(
-				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdSecuencia()));
+				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdMovTxnSwdmplog()));
 	}
 
 	
