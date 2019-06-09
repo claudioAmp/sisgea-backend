@@ -29,6 +29,7 @@ public class CompensacionService implements  ICompensacionService{
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Compensacion> buscarPorCriterios(CriterioBusquedaCompensacion criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
+		
 		return compensacionMapper.buscarPorCriterios(criterioPaginacion);
 	}
 
