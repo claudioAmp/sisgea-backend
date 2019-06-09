@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +26,13 @@ public class IncomingVisaRestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 
-	/* Paginacion */
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTCR0, IncomingVisaTCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTCR0, IncomingVisaTCR0> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
-		System.out.println(criterioBusqueda);
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		System.out.println(criterioBusqueda);
 		Page<IncomingVisaTCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPagina(
 				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),
 				criterioPaginacion.getPageSize());
@@ -41,27 +41,27 @@ public class IncomingVisaRestController {
 				criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping("/incomings-visa-tcr0s")
 	public IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
 	}
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tcr1s")
 	public IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR1(criterio);
 	}
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tcr3s")
 	public IncomingVisaTCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR3(criterio);
 	}
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tcr4s")
 	public IncomingVisaTCR4 buscarPorIdSecuenciaTCR4(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR4(criterio);
 	}
-
+	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tcr5s")
 	public IncomingVisaTCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR5(criterio);

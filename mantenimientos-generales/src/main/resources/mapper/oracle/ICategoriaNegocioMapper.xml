@@ -9,7 +9,7 @@
         FROM MAE_CATEGORIA_NEGOCIO
     </sql>
 
-    <select id="buscarTodosCategoriasNegocios" resultType="CategoriaNegocio" statementType="PREPARED">
+    <select id="buscarTodos" resultType="CategoriaNegocio" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
 </mapper>

@@ -10,5 +10,5 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CategoriaNegocio;
 
 @Mapper
 public interface ICategoriaNegocioMapper extends IMantenibleMapper<CategoriaNegocio>{
-	List<CategoriaNegocio> buscarTodosCategoriasNegocios();
+	List<CategoriaNegocio> buscarTodos();
 }
