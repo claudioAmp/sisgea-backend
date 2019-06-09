@@ -23,12 +23,15 @@
     </select>
 	<select id="buscarPorCriterios" resultType="PermisoUsuario" parameterType="CriterioBusquedaPermisoUsuario" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test="(tabla != null and tabla != '' ) or ( username!=null and username!='')">
+        <if  test="(tabla != null and tabla != '' ) and ( username!=null and username!='')">
         	WHERE
-       			TABLA = #{tabla}
-       		<if  test=" username!=null and username!=''">
-       			AND USERNAME =#{username}
-        	</if>
+       			TABLA = #{tabla}		
+       			AND USUARIO =#{username}
+        </if>
+        <if  test="(idPerfil != null and idPerfil != '' ) and ( username!=null and username!='')">
+        	WHERE
+       			ID_PERFIL = #{idPerfil}		
+       			AND USUARIO =#{username}
         </if>
     </select>
    
