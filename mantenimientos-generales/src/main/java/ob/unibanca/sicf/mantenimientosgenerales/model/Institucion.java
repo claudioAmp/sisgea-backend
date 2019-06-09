@@ -16,7 +16,7 @@ import ob.commons.validation.validation.group.IRegistro;
 public class Institucion {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
-	private int idInstitucion;
+	private Integer idInstitucion;
 	@CaracterRequerido(maxLength = 80)
 	private String descripcionInstitucion;
 	@CaracterRequerido(maxLength = 20)
@@ -35,6 +35,6 @@ public class Institucion {
 	@CaracterNoRequerido(minLength = 1, maxLength = 15, regexpPattern = "[0-9]+")
 	private String cuentaContableMonedaAlterna;
 	@IdNumerico(maxRange = 99999)
-	private int idInstitucionOperador;
+	private Integer idInstitucionOperador;
 	private String descripcionInstitucionOpe;
 }

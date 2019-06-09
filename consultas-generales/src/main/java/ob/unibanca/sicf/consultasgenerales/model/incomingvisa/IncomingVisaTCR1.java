@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncomingVisaTCR1 {
-	private int idSecuenciaIncoming;
+	private Integer idSecuenciaIncoming;
 	private Integer chargebackRefNumber;
 	private String documentationIndicator;
 	private String memberMessageText;

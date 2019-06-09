@@ -24,9 +24,9 @@ public class BIN {
 	@IdNumerico(maxRange = 99999999)
 	private double valorOIF;
 	@NumeroNoRequerido(maxRange = 99)
-	private int longitudPAN;
+	private Integer longitudPAN;
 	@IdNumerico(maxRange = 99999)
-	private int idInstitucion;
+	private Integer idInstitucion;
 	private String descripcionInstitucion;
 	private String descripcionCortaInstitucion;
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]")
@@ -36,9 +36,9 @@ public class BIN {
 	private String idServicio;
 	private String descripcionServicio;
 	@IdNumerico(maxRange = 999)
-	private int idMonedaBase;
+	private Integer idMonedaBase;
 	private String descripcionMonedaBase;
 	@IdNumerico(maxRange = 999)
-	private int idMonedaAlterna;
+	private Integer idMonedaAlterna;
 	private String descripcionMonedaAlterna;
 }

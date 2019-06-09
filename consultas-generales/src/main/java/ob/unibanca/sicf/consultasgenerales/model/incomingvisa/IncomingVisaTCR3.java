@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class IncomingVisaTCR3 {
-	private int idSecuenciaIncoming;
+	private Integer idSecuenciaIncoming;
 	private String businessFormatCode;
 	private String dataContent;
 	private Date fechaProceso;

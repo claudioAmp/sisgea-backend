@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TxnSwdmplog {
 	
-	private int idMovTxnSwdmplog;
+	private Integer idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	private String pan;
@@ -31,10 +31,10 @@ public class TxnSwdmplog {
 	private String posConditionCode;
 	private double settAmountTxnFee;
 	private String authorizationCode;
-	private int responseCode;
+	private Integer responseCode;
 	private String descripcionCodigoRptaSw;
 	private String cardAcceptorLocation;
-	private int transactionCurrency;
+	private Integer transactionCurrency;
 	private String descripcionMoneda;
 	private Date fechaProceso;
 	
@@ -42,15 +42,15 @@ public class TxnSwdmplog {
 	private String descripcionMembresia;
 	private String idServicio;
 	private String descripcionServicio;
-	private int idCanal;
+	private Integer idCanal;
 	private String descripcionIdCanal;
-	private int idInstitucionEmisora;
+	private Integer idInstitucionEmisora;
 	private String descripcionInstEmisora;
-	private int idInstitucionReceptora;
+	private Integer idInstitucionReceptora;
 	private String descripcionInstReceptora;
 	private String idProceso;
 	private String descripcionProceso;
-	private int idRol;
+	private Integer idRol;
 	private String descripcionRolTransaccion;
 	private String idBin;
 	private String descripcionBin;

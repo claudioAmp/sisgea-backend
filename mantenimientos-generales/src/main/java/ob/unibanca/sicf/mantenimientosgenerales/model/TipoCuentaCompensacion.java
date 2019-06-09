@@ -15,11 +15,11 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class TipoCuentaCompensacion {
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idTipoCuentaComp;
+	private Integer idTipoCuentaComp;
 	@CaracterRequerido(maxLength = 30)
 	private String descripcionTipoCuentaComp;
 	@NumeroNoRequerido(maxRange = 99999)
-	private int idCuentaComp;
+	private Integer idCuentaComp;
 	@CaracterRequerido(maxLength = 1)
 	private String cuentaIntercambio;
 	private String descripcionCuentaComp;

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTCR0 {
 
-		private int idSecuenciaIncoming;
+		private Integer idSecuenciaIncoming;
 		private String transactionCode;
 		private String descTransactionCode;
 		private String transCodeQualifier;
@@ -69,7 +69,6 @@ public class IncomingVisaTCR0 {
 		private String descIdOrigen;
 		private Integer idProducto;
 		private String descidProducto;
-		
 		private Integer totalFilas;//agregado
 
 }

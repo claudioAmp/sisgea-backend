@@ -17,7 +17,7 @@ import ob.commons.validation.validation.group.IRegistro;
 public class MultitabDet {
 	
 	@IdNumerico(maxRange = 999, groups = IRegistro.class)
-	private int idMultitabCab;
+	private Integer idMultitabCab;
 	@IdCadena(maxLength = 4, regexpPattern = "[a-zA-Z0-9]+", groups = IRegistro.class)
 	private String idMultitabDet;
 	@CaracterRequerido(maxLength = 50)

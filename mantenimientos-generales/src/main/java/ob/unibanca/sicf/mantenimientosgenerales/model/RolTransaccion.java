@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RolTransaccion {
-	private int idRol;
+	private Integer idRol;
 	private String descripcionRol;
 }

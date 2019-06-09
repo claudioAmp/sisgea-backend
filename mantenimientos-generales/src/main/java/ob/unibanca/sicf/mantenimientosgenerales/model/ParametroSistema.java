@@ -19,10 +19,10 @@ public class ParametroSistema {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	@IdNumerico(maxRange = 99999)
-	private int idInstitucion;
+	private Integer idInstitucion;
 	private String descripcionInstitucion;
 	@IdNumerico(maxRange = 999)
-	private int idMonedaProcesador;
+	private Integer idMonedaProcesador;
 	private String descripcionMonedaProcesador;
 	private double porcentajeIGV;
 	private double porcentajeRenta;

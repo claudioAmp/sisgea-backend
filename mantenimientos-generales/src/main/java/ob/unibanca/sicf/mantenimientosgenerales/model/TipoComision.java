@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TipoComision {
-	private int idTipoComision;
+	private Integer idTipoComision;
 	private String descripcionTipoComision;
 	private String abreviatura;
 }

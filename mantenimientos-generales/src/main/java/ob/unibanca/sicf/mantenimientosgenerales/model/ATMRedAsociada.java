@@ -15,13 +15,13 @@ import ob.commons.validation.validation.group.IRegistro;
 public class ATMRedAsociada {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
-	private int idATM;
-	private int idInstitucion;
+	private Integer idATM;
+	private Integer idInstitucion;
 	@CaracterRequerido(maxLength = 40)
 	private String nombre;
 	@CaracterRequerido(maxLength = 60)
 	private String direccion;
 	private String descripcionInstitucion;
 	
-	private int tipo;   // 1 RED UNICARD - 2 RED ASOCIADA
+	private Integer tipo;   // 1 RED UNICARD - 2 RED ASOCIADA
 }

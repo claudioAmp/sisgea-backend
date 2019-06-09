@@ -14,7 +14,7 @@ import ob.commons.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class DistribucionComision {
 	
-	private int idDistribucionComision;
+	private Integer idDistribucionComision;
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]", groups = IRegistro.class)
 	private String idMembresia;
 	private String descripcionMembresia;
@@ -22,22 +22,22 @@ public class DistribucionComision {
 	private String idServicio;
 	private String descripcionServicio;
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idOrigen;
+	private Integer idOrigen;
 	private String descripcionOrigen;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
-	private int idClaseTransaccion;
+	private Integer idClaseTransaccion;
 	private String descripcionClaseTransaccion;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
-	private int idCodigoTransaccion;
+	private Integer idCodigoTransaccion;
 	private String descripcionCodigoTransaccion;
 	@IdNumerico(maxRange = 999, groups = IRegistro.class)
-	private int idTipoComision;
+	private Integer idTipoComision;
 	private String descripcionTipoComision;
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idCuentaCargo;
+	private Integer idCuentaCargo;
 	private String descripcionCuentaCargo;
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idCuentaAbono;
+	private Integer idCuentaAbono;
 	private String descripcionCuentaAbono;
 
 }
