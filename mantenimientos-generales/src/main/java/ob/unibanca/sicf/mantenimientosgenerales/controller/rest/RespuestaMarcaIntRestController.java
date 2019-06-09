@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.RespuestaMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.respuestamarcaint.IRespuestaMarcaIntService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,17 +30,20 @@ public class RespuestaMarcaIntRestController {
 		this.respuestaMarcaIntService = respuestaMarcaIntService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODRPTAMEMB', '2')")
 	@GetMapping("/respuestas-marcas-int")
 	public List<RespuestaMarcaInt> buscarTodosRespuestasMarcasInt() {
 		return this.respuestaMarcaIntService.buscarTodosRespuestasMarcasInt();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODRPTAMEMB', '2')")
 	@GetMapping("/membresias/{idMembresia}/respuestas-marcas-int")
 	public List<RespuestaMarcaInt> buscarRespuestasMarcasIntPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.respuestaMarcaIntService.buscarRespuestasMarcasIntPorMembresia(idMembresia);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODRPTAMEMB', '1')")
 	@PostMapping(value = "/membresias/{idMembresia}/respuestas-marcas-int", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public RespuestaMarcaInt registrarRespuestaMarcaInt(
@@ -48,6 +52,7 @@ public class RespuestaMarcaIntRestController {
 		return this.respuestaMarcaIntService.registrarRespuestaMarcaInt(idMembresia, respuestaMarcaInt);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODRPTAMEMB', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}/respuestas-marcas-int/{idRespuesta}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public RespuestaMarcaInt actualizarRespuestaMarcaInt(
@@ -57,6 +62,7 @@ public class RespuestaMarcaIntRestController {
 		return this.respuestaMarcaIntService.actualizarRespuestaMarcaInt(idMembresia, idRespuesta, respuestaMarcaInt);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODRPTAMEMB', '4')")
 	@DeleteMapping("/membresias/{idMembresia}/respuestas-marcas-int/{idRespuesta}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarRespuestaMarcaIntS(

@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoRespuestaSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigorespuestaswitch.ICodigoRespuestaSwitchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class CodigoRespuestaSwitchRestController {
 		this.codigoRespuestaSwitchService = codigoRespuestaSwitchService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CORPSW', '2')")
 	@GetMapping("/codigos-respuestas-switches")
 	public List<CodigoRespuestaSwitch> buscarTodosCodigoRespuestaSwitches() {
 		return this.codigoRespuestaSwitchService.buscarTodosCodigoRespuetaSwitches();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CORPSW', '1')")
 	@PostMapping(value = "/codigos-respuestas-switches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CodigoRespuestaSwitch registrarCodigoRespuestaSwitch(
@@ -41,6 +44,7 @@ public class CodigoRespuestaSwitchRestController {
 		return this.codigoRespuestaSwitchService.registrarCodigoRespuestaSwitch(codigoRespuestaSwitch);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CORPSW', '3')")
 	@PutMapping(value = "/codigos-respuestas-switches/{idCodigoRespuestaSwitch}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoRespuestaSwitch actualizarCodigoRespuestaSwitch(
@@ -51,6 +55,7 @@ public class CodigoRespuestaSwitchRestController {
 		                                                                         codigoRespuestaSwitch);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CORPSW', '4')")
 	@DeleteMapping("/codigos-respuestas-switches/{idCodigoRespuestaSwitch}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCodigoRespuestaSwitch(

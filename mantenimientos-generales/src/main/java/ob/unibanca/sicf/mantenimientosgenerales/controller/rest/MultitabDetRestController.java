@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.MultitabDet;
 import ob.unibanca.sicf.mantenimientosgenerales.service.multitabdet.IMultitabDetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +29,20 @@ public class MultitabDetRestController {
 		this.multitabDetService = multitabDetService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULDET', '2')")
 	@GetMapping(value = "/multitabs-dets")
 	public List<MultitabDet> buscarTodosMultitabsDet() {
 		return this.multitabDetService.buscarTodosMultitabsDet();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULDET', '2')")
 	@GetMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets")
 	public List<MultitabDet> buscarMultitabsDetPorMultitabCab(
 			@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab) {
 		return this.multitabDetService.buscarMultitabsDetPorMultitabCab(idMultitabCab);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULDET', '1')")
 	@PostMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets",
 	             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -47,6 +51,7 @@ public class MultitabDetRestController {
 		return this.multitabDetService.registrarMultitabDet(idMultitabCab, multitabDet);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULDET', '3')")
 	@PutMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets/{idMultitabDet}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public MultitabDet actualizarMultitabDet(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab,
@@ -56,6 +61,7 @@ public class MultitabDetRestController {
 		return this.multitabDetService.actualizarMultitabDet(idMultitabCab, idMultitabDet, multitabDet);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULDET', '4')")
 	@DeleteMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets/{idMultitabDet}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarMultitabDet(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab,

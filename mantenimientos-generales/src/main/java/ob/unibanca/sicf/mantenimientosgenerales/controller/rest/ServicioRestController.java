@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.Servicio;
 import ob.unibanca.sicf.mantenimientosgenerales.service.servicio.IServicioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,17 +30,20 @@ public class ServicioRestController {
 		this.servicioService = servicioService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_SERVIC', '2')")
 	@GetMapping("/servicios")
 	public List<Servicio> buscarTodosServicios() {
 		return this.servicioService.buscarTodosServicios();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_SERVIC', '2')")
 	@GetMapping("/membresias/{idMembresia}/servicios")
 	public List<Servicio> buscarServiciosPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.servicioService.buscarServiciosPorMembresia(idMembresia);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_SERVIC', '1')")
 	@PostMapping(value = "/membresias/{idMembresia}/servicios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Servicio registrarServicio(
@@ -48,6 +52,7 @@ public class ServicioRestController {
 		return this.servicioService.registrarServicio(idMembresia, servicio);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_SERVIC', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}/servicios/{idServicio}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Servicio actualizarServicio(
@@ -57,6 +62,7 @@ public class ServicioRestController {
 		return this.servicioService.actualizarServicio(idMembresia, idServicio, servicio);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_SERVIC', '4')")
 	@DeleteMapping("/membresias/{idMembresia}/servicios/{idServicio}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarServicio(
