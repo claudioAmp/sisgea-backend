@@ -1,6 +1,8 @@
 package ob.unibanca.sicf.boot.view;
 
 import ob.commons.excel.util.ConvertionUtil;
+
+import java.awt.Color;
 import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
@@ -17,9 +19,12 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.view.AbstractView;
 
@@ -32,10 +37,7 @@ public class XlsReporteView extends AbstractView {
     private static final String NOMBRE_REPORTE = "Resultado Consulta";
     private static final String MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     private static final String EXTENSION_XLSX = ".xlsx";
-    private static final String RUTA_TEMPLATES = "xlsx/";
     private static final String PARAM_REPORT_NAME = "name";
-    private static final String PARAM_REPORT_PARAMS = "params";
-    private static final String PARAM_REPORT_TEMPLATE = "template";
     private static final String FORMATO_FECHA = "dd/MM/yyyy";
     // Parámetros de tabla reporte
     private static final int ROW_START = 1;
@@ -136,10 +138,17 @@ public class XlsReporteView extends AbstractView {
 
     public CellStyle getEstiloCabeceras(Workbook wb){
 		byte[] rgbByte = new byte[]{ (byte)-1, (byte)33, (byte)89, (byte)103 };
-        XSSFColor color = new XSSFColor(rgbByte);
+		byte[] rgbFont = new byte[]{ (byte)-1, (byte)255, (byte)255, (byte)255 };
+        XSSFColor color_font = new XSSFColor();
+        color_font.setRgb(rgbFont);
+        Font font = wb.createFont();
+        ((XSSFFont) font).setColor(color_font);
+        XSSFColor color = new XSSFColor();
         color.setRgb(rgbByte);
         CellStyle estiloCabeceras = wb.createCellStyle();
-        ((XSSFCellStyle) estiloCabeceras).setFillBackgroundColor(color);
+        ((XSSFCellStyle) estiloCabeceras).setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        ((XSSFCellStyle) estiloCabeceras).setFillForegroundColor(color);
+        estiloCabeceras.setFont(font);
         estiloCabeceras.setAlignment(CellStyle.ALIGN_CENTER);
         return estiloCabeceras;
     }
