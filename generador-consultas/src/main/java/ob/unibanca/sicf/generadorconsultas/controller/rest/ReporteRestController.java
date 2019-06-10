@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.groups.Default;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -13,60 +14,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
+import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
-import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
-import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
-import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
-import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
-import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
-import ob.unibanca.sicf.generadorconsultas.service.tablaquery.*;
-
-
-
+import java.util.Map;
 
 @Validated
 @RestController
 public class ReporteRestController {
-	
-	private final IReporteService ReporteService;
-	
-	public ReporteRestController(IReporteService ReporteService ) {
-		this.ReporteService = ReporteService;
+
+	private @Autowired final IReporteService reporteService;
+
+	public ReporteRestController(IReporteService reporteService) {
+		this.reporteService = reporteService;
 	}
-	
+
 	@GetMapping(value = "/reportes")
 	public List<Reporte> buscarTodosReportes() {
-		List<Reporte> reportes = this.ReporteService.buscarTodosReportes();
+		List<Reporte> reportes = this.reporteService.buscarTodosReportes();
 		return reportes;
-		
+
 	}
+
 	@GetMapping(value = "/reportes/buscar")
 	public List<Reporte> buscarTodosReportes(CriterioBusquedaReporte criterio) {
-		return this.ReporteService.buscarPorCriteriosReporte(criterio);
+		return this.reporteService.buscarPorCriteriosReporte(criterio);
 	}
+
 	@PostMapping(value = "/reportes", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Reporte registrarReporte(@Validated({IRegistro.class, Default.class}) @RequestBody Reporte Reporte) {
-		return this.ReporteService.registrarReporte(Reporte);
+	public Reporte registrarReporte(@Validated({ IRegistro.class, Default.class }) @RequestBody Reporte Reporte) {
+		return this.reporteService.registrarReporte(Reporte);
 	}
-	
+
 	@PutMapping(value = "/reportes/{idReporte}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Reporte actualizarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte,
-	                             @Validated @RequestBody Reporte Reporte) {
-		return this.ReporteService.actualizarReporte(idReporte, Reporte);
+			@Validated @RequestBody Reporte Reporte) {
+		return this.reporteService.actualizarReporte(idReporte, Reporte);
 	}
-	
+
 	@DeleteMapping(value = "/reportes/{idReporte}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
-		this.ReporteService.eliminarReporte(idReporte);
+		this.reporteService.eliminarReporte(idReporte);
 	}
-	
+
 }
