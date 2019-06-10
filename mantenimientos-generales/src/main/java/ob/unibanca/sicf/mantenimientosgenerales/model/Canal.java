@@ -15,7 +15,7 @@ import ob.commons.validation.validation.group.IRegistro;
 public class Canal {
 	
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idCanal;
+	private Integer idCanal;
 	@CaracterRequerido(maxLength = 30)
 	private String descripcionCanal;
 

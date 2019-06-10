@@ -6,6 +6,7 @@ import javax.validation.groups.Default;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,25 +31,25 @@ public class DistribucionFondoRestController {
 	public DistribucionFondoRestController(IDistribucionFondoService distribucionFondoService) {
 		this.distribucionFondoService = distribucionFondoService;
 	}
-	
+	@PreAuthorize("hasPermission('MANT_REGCOMPFOND', '2')")
 	@GetMapping("/distribuciones-fondos")
 	public List<DistribucionFondo> buscarTodosDistFondo(){
 		return this.distribucionFondoService.buscarTodosDistFondo();
 	}
-	
+	@PreAuthorize("hasPermission('MANT_REGCOMPFOND', '1')")
 	@PostMapping(value = "/distribuciones-fondos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public DistribucionFondo registrarDistribucionFondo(
 			@Validated({IRegistro.class, Default.class}) @RequestBody DistribucionFondo distribucionFondo) {
 		return this.distribucionFondoService.registrarDistribucionComision(distribucionFondo);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_REGCOMPFOND', '3')")
 	@PutMapping(value = "/distribuciones-fondos/{idDistribucionFondo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public DistribucionFondo actualizarDistribucionFondo(@IdNumerico(maxRange = 9999) @PathVariable int idDistribucionFondo,
 												 @Validated @RequestBody DistribucionFondo distribucionFondo) {
 		return this.distribucionFondoService.actualizarDistribucionFondo(idDistribucionFondo, distribucionFondo);
 	}
-	
+	@PreAuthorize("hasPermission('MANT_REGCOMPFOND', '4')")
 	@DeleteMapping("/distribuciones-fondos/{idDistribucionFondo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	

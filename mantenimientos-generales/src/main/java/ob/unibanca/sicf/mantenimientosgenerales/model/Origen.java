@@ -15,7 +15,7 @@ import ob.commons.validation.validation.group.IRegistro;
 public class Origen {
 	
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
-	private int idOrigen;
+	private Integer idOrigen;
 	@CaracterRequerido(maxLength = 30)
    private String descripcionOrigen;
    

@@ -14,12 +14,12 @@ import ob.commons.validation.validation.group.IRegistro;
 public class InstitucionTransaccion {
 	
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
-	private int idInstitucion;
+	private Integer idInstitucion;
 	private String descripcionInstitucion;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
-	private int idClaseTransaccion;
+	private Integer idClaseTransaccion;
 	private String descripcionClaseTransaccion;
 	@IdNumerico(maxRange = 9999, groups = IRegistro.class)
-	private int idCodigoTransaccion;
+	private Integer idCodigoTransaccion;
 	private String descripcionCodigoTransaccion;
 }

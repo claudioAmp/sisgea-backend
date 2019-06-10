@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigotransaccion.ICodigoTransaccionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,17 +30,20 @@ public class CodigoTransaccionRestController {
 		this.codigoTransaccionService = codigoTransaccionService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODTRA', '2')")
 	@GetMapping(value = "/codigos-transacciones")
 	public List<CodigoTransaccion> buscarTodosCodigoTransacciones() {
 		return this.codigoTransaccionService.buscarTodosCodigoTransacciones();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODTRA', '2')")
 	@GetMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones")
 	public List<CodigoTransaccion> buscarCodigosTransaccionPorClaseTransaccion(
 			@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion) {
 		return this.codigoTransaccionService.buscarCodigosTransaccionPorClaseTransaccion(idClaseTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODTRA', '1')")
 	@PostMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones",
 	             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -49,6 +53,7 @@ public class CodigoTransaccionRestController {
 		return this.codigoTransaccionService.registrarCodigoTransaccion(idClaseTransaccion, codigoTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODTRA', '3')")
 	@PutMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones/{idCodigoTransaccion}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoTransaccion actualizarCodigoTransaccion(
@@ -59,6 +64,7 @@ public class CodigoTransaccionRestController {
 		                                                                 codigoTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CODTRA', '4')")
 	@DeleteMapping(value = "/clases-transacciones/{idClaseTransaccion}/codigos-transacciones/{idCodigoTransaccion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCodigoTransaccion(@IdNumerico(maxRange = 9999) @PathVariable int idClaseTransaccion,

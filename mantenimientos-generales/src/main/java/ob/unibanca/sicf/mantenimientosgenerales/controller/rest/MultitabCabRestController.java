@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.MultitabCab;
 import ob.unibanca.sicf.mantenimientosgenerales.service.multitabcab.IMultitabCabService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class MultitabCabRestController {
 		this.multitabCabService = multitabCabService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULCAB', '2')")
 	@GetMapping(value = "/multitabs-cabs")
 	public List<MultitabCab> buscarTodosMultitabsCab() {
 		return this.multitabCabService.buscarTodosMultitabsCab();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULCAB', '1')")
 	@PostMapping(value = "/multitabs-cabs", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public MultitabCab registrarMultitabCab(
@@ -41,12 +44,14 @@ public class MultitabCabRestController {
 		return this.multitabCabService.registrarMultitabCab(multitabCab);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULCAB', '3')")
 	@PutMapping(value = "/multitabs-cabs/{idMultitabCab}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public MultitabCab actualizarMultitabCab(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab,
 	                                         @Validated @RequestBody MultitabCab multitabCab) {
 		return this.multitabCabService.actualizarMultitabCab(idMultitabCab, multitabCab);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MULCAB', '4')")
 	@DeleteMapping("/multitabs-cabs/{idMultitabCab}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarMultitabCab(@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab) {

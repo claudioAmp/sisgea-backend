@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TxnSwdmplogDetalle {
 	
-	private int idMovTxnSwdmplog;
+	private Integer idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	private String pan;
@@ -37,11 +37,11 @@ public class TxnSwdmplogDetalle {
 	private String descripcionBINIntReenv;
 	private String referenceNumber;
 	private String authorizationCode;
-	private int responseCode;
+	private Integer responseCode;
 	private String descripcionCodigoRptaSw;
 	private String cardAcceptorTermId;
 	private String cardAcceptorLocation;
-	private int transactionCurrency;
+	private Integer transactionCurrency;
 	private String descripcionMonedaTransaccion;
 	private String origMessageType;
 	private String origTraceNumber;
@@ -60,25 +60,25 @@ public class TxnSwdmplogDetalle {
 	private String descripcionMembresia;
 	private String idServicio;
 	private String descripcionServicio;
-	private int idOrigen;
+	private Integer idOrigen;
 	private String descripcionOrigen;
-	private int idClaseTransaccion;
+	private Integer idClaseTransaccion;
 	private String descripcionClaseTransaccion;
-	private int idCodigoTransaccion;
+	private Integer idCodigoTransaccion;
 	private String descripcionCodigoTransaccion;
-	private int idCanal;
+	private Integer idCanal;
 	private String descripcionCanal;
-	private int idInstitucionEmisora;
+	private Integer idInstitucionEmisora;
 	private String descripcionInstEmisora;
-	private int idInstitucionReceptora;
+	private Integer idInstitucionReceptora;
 	private String descripcionIntReceptora;
-	private int idATM;
+	private Integer idATM;
 	private String nombreATM;
 	private String idProceso;
 	private String descripcionProceso;
 	private String idBIN;
 	private String descripcionBIN;
-	private int idRol;
+	private Integer idRol;
 	private String descripcionRolTransaccion;
 
 }

@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ModoEntradaPOS;
 import ob.unibanca.sicf.mantenimientosgenerales.service.modoentradapos.IModoEntradaPOSService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +23,7 @@ public class ModoEntradaPOSExportacionController {
 	public ModoEntradaPOSExportacionController(IModoEntradaPOSService modoEntradaPOSService) {
 		this.modoEntradaPOSService = modoEntradaPOSService;
 	}
-	
+	@PreAuthorize("hasPermission('MANT_MODENTPOS', '5')")
 	@GetMapping(value = "/modos-entradas-pos.xlsx")
 	public ModelAndView exportarModoEntradaPOS(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();

@@ -8,6 +8,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.MetodoIdThb;
 import ob.unibanca.sicf.mantenimientosgenerales.service.metodoidthb.IMetodoIdThbService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +29,20 @@ public class MetodoIdThbRestController {
 		this.metodoIdThbService = metodoIdThbService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_METIDTHB', '2')")
 	@GetMapping("/metodos-id-thb")
 	public List<MetodoIdThb> buscarTodosMetodoIdThb() {
 		return this.metodoIdThbService.buscarTodosMetodoIdThb();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_METIDTHB', '2')")
 	@GetMapping("/membresias/{idMembresia}/metodos-id-thb")
 	public List<MetodoIdThb> buscarMetodoIdThbPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.metodoIdThbService.buscarMetodoIdThbPorMembresia(idMembresia);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_METIDTHB', '1')")
 	@PostMapping(value = "/membresias/{idMembresia}/metodos-id-thb", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public MetodoIdThb registrarMetodoIdThb(
@@ -47,6 +51,7 @@ public class MetodoIdThbRestController {
 		return this.metodoIdThbService.registrarMetodoIdThb(idMembresia, metodoIdThb);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_METIDTHB', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}/metodos-id-thb/{idMetodoIdThb}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public MetodoIdThb actualizarMetodoIdThb(
@@ -56,6 +61,7 @@ public class MetodoIdThbRestController {
 		return this.metodoIdThbService.actualizarMetodoIdThb(idMembresia, idMetodoIdThb, metodoIdThb);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_METIDTHB', '4')")
 	@DeleteMapping("/membresias/{idMembresia}/metodos-id-thb/{idMetodoIdThb}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarMetodoIdThb(

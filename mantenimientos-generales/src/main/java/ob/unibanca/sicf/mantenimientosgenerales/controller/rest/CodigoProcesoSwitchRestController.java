@@ -1,11 +1,11 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
-import ob.commons.validation.validation.IdCadena;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoProcesoSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigoprocesoswitch.ICodigoProcesoSwitchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +29,13 @@ public class CodigoProcesoSwitchRestController {
 		this.codigoProcesoSwitchService = codigoProcesoSwitchService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_COPRSW', '2')")
 	@GetMapping(value = "/codigos-procesos-switches")
 	public List<CodigoProcesoSwitch> buscarTodosCodigoProcesoSwitches() {
 		return this.codigoProcesoSwitchService.buscarTodosCodigoProcesoSwitches();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_COPRSW', '1')")
 	@PostMapping(value = "/codigos-procesos-switches", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public CodigoProcesoSwitch registrarCodigoProcesoSwitch(
@@ -42,6 +44,7 @@ public class CodigoProcesoSwitchRestController {
 		return this.codigoProcesoSwitchService.registrarCodigoProcesoSwitch(codigoProcesoSwitch);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_COPRSW', '3')")
 	@PutMapping(value = "/codigos-procesos-switches/{idCodigoProcesoSwitch}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CodigoProcesoSwitch actualizarCodigoProcesoSwitch(@PathVariable String idCodigoProcesoSwitch, @RequestBody CodigoProcesoSwitch codigoProcesoSwitch) {
@@ -49,6 +52,7 @@ public class CodigoProcesoSwitchRestController {
 		return this.codigoProcesoSwitchService.actualizarCodigoProcesoSwitch(idCodigoProcesoSwitch,codigoProcesoSwitch);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_COPRSW', '4')")
 	@DeleteMapping("/codigos-procesos-switches/{idCodigoProcesoSwitch}")
 	public void eliminarCodigoProcesoSwitch(@PathVariable String idCodigoProcesoSwitch) {
 		System.out.println(idCodigoProcesoSwitch);

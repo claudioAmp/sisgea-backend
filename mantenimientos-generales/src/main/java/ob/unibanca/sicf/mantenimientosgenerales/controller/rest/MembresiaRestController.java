@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.Membresia;
 import ob.unibanca.sicf.mantenimientosgenerales.service.membresia.IMembresiaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,17 +30,20 @@ public class MembresiaRestController {
 		this.membresiaService = membresiaService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MEMBRE', '2')")
 	@GetMapping("/membresias")
 	public List<Membresia> buscarTodosMembresias() {
 		return this.membresiaService.buscarTodosMembresias();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MEMBRE', '1')")
 	@PostMapping(value = "/membresias", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Membresia registrarMembresia(@Validated({IRegistro.class, Default.class}) @RequestBody Membresia membresia) {
 		return this.membresiaService.registrarMembresia(membresia);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MEMBRE', '3')")
 	@PutMapping(value = "/membresias/{idMembresia}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Membresia actualizarMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
@@ -47,6 +51,7 @@ public class MembresiaRestController {
 		return this.membresiaService.actualizarMembresia(idMembresia, membresia);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_MEMBRE', '4')")
 	@DeleteMapping("/membresias/{idMembresia}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarMembresia(

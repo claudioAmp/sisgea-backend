@@ -6,6 +6,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.ClaseTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.clasetransaccion.IClaseTransaccionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class ClaseTransaccionRestController {
 		this.claseTransaccionService = claseTransaccionService;
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CLATRA', '2')")
 	@GetMapping(value = "/clases-transacciones")
 	public List<ClaseTransaccion> buscarTodosClaseTransacciones() {
 		return this.claseTransaccionService.buscarTodosClaseTransacciones();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CLATRA', '1')")
 	@PostMapping(value = "/clases-transacciones", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ClaseTransaccion registrarClaseTransaccion(
@@ -41,6 +44,7 @@ public class ClaseTransaccionRestController {
 		return this.claseTransaccionService.registrarClaseTransaccion(claseTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CLATRA', '3')")
 	@PutMapping(value = "/clases-transacciones/{idClaseTransaccion}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ClaseTransaccion actualizarClaseTransaccion(
 			@IdNumerico(maxRange = 99999) @PathVariable int idClaseTransaccion,
@@ -48,6 +52,7 @@ public class ClaseTransaccionRestController {
 		return this.claseTransaccionService.actualizarClaseTransaccion(idClaseTransaccion, claseTransaccion);
 	}
 	
+	@PreAuthorize("hasPermission('MANT_CLATRA', '4')")
 	@DeleteMapping(value = "/clases-transacciones/{idClaseTransaccion}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarClaseTransaccion(@IdNumerico(maxRange = 99999) @PathVariable int idClaseTransaccion) {

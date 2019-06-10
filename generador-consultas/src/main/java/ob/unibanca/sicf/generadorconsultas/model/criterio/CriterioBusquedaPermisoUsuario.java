@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaPermisoUsuario{
 	
 	String perfil;
+	int idPerfil;
 	String username;
 	String campo;
 	String tabla;
