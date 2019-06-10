@@ -25,7 +25,7 @@ public class ReporteExportacionController {
 		this.reporteService = reporteService;
 	}
 
-	@PostMapping(value = "/reportes/exportar-consulta.xls")
+	@PostMapping(value = "/reportes/exportar-consulta.xlsx")
 	public ModelAndView ejecutarConsulta(@RequestBody List<CampoQuery> campos,
 			@RequestParam(value = "consulta") String consulta, ModelMap model) {
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
