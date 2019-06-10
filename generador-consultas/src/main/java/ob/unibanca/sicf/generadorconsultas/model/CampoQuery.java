@@ -27,5 +27,6 @@ public class CampoQuery {
     boolean enSelect;
     boolean enGroupBy;
     String funcionGrupo;
+    String idTipoDato;
 
 }

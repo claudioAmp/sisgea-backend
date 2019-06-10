@@ -29,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.view.AbstractView;
 
-import ob.unibanca.sicf.generadorconsultas.model.Campo;
+import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -62,7 +62,7 @@ public class XlsReporteView extends AbstractView {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Hoja1");
         List<Map<String, Object>> cuerpo = (List<Map<String, Object>>) model.get("consulta");
-        List<Campo> campos = (List<Campo>) model.get("campos");
+        List<CampoQuery> campos = (List<CampoQuery>) model.get("campos");
 
         Counter counter_row = new Counter(ROW_START);
 
@@ -79,9 +79,9 @@ public class XlsReporteView extends AbstractView {
         Counter cabecera_column = new Counter(COLUMN_START);
 
         campos.forEach(c -> {
-            numeroLetrasColumna.add(c.getAlias().length() + LETRAS_POR_FILTRO);
+            numeroLetrasColumna.add(c.getAliasCampo().length() + LETRAS_POR_FILTRO);
             Cell celdaCabecera = cabeceraRow.createCell(cabecera_column.next());
-            celdaCabecera.setCellValue(c.getAlias());
+            celdaCabecera.setCellValue(c.getAliasCampo());
             celdaCabecera.setCellStyle(getEstiloCabeceras(workbook));
         });
 

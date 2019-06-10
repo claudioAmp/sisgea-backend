@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 
-import ob.unibanca.sicf.generadorconsultas.model.Campo;
+import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
 import java.util.Map;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +26,7 @@ public class ReporteExportacionController {
 	}
 
 	@PostMapping(value = "/reportes/exportar-consulta.xls")
-	public ModelAndView ejecutarConsulta(@RequestBody List<Campo> campos,
+	public ModelAndView ejecutarConsulta(@RequestBody List<CampoQuery> campos,
 			@RequestParam(value = "consulta") String consulta, ModelMap model) {
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
 		model.addAttribute("campos", campos);
