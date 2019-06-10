@@ -14,6 +14,8 @@
           TABLA                 AS TABLA,
           ID_CAMPO              AS ID_CAMPO,
           CAMPO                 AS CAMPO,
+          ID_TIPO_DATO          AS ID_TIPO_DATO,
+          ALIAS                 AS ALIAS,
           VER_TRUNCADO          AS VER_TRUNCADO
 		FROM VIE_MAN_REP_PERMISO_USUARIO
     </sql>
