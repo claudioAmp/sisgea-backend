@@ -7,6 +7,7 @@
              , id_institucion
              , descripcion_institucion
              , tipo_atm
+             , descripcion_tipo_atm 
              , nivel
              , rango_inicial
              , rango_final
@@ -34,7 +35,7 @@
                 #{modo,                             		jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idTarifarioSurcharge,		jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idInstitucion,        	jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.tipoTarifa,         		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.tipoATM,	         		jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nivel,					jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.rangoInicial,				jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.rangoFinal,				jdbcType=NUMERIC, mode=IN},

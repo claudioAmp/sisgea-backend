@@ -18,7 +18,7 @@ public class TarifarioSurcharge {
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
 	private int idInstitucion;
 	private String descripcionInstitucion;
-	
+	@IdNumerico(minRange = 0, maxRange = 99, groups = IRegistro.class)
 	private int tipoATM;
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
 	private int nivel;
@@ -32,5 +32,6 @@ public class TarifarioSurcharge {
 	private double tarifaFlat;
 	private double tarifaPorcentual;
 	private boolean aplicaIGV;
+	private String descripcionTipoAtm;
 
 }
