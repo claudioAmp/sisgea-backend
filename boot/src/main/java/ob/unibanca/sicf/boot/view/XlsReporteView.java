@@ -79,10 +79,15 @@ public class XlsReporteView extends AbstractView {
         Counter cabecera_column = new Counter(COLUMN_START);
 
         campos.forEach(c -> {
-            numeroLetrasColumna.add(c.getAliasCampo().length() + LETRAS_POR_FILTRO);
             Cell celdaCabecera = cabeceraRow.createCell(cabecera_column.next());
-            celdaCabecera.setCellValue(c.getAliasCampo());
             celdaCabecera.setCellStyle(getEstiloCabeceras(workbook));
+            if(c.getAliasCampo()!=null) {
+	            numeroLetrasColumna.add(c.getAliasCampo().length() + LETRAS_POR_FILTRO);
+	            celdaCabecera.setCellValue(c.getAliasCampo());
+            }else {
+	            numeroLetrasColumna.add(c.getCampo().length() + LETRAS_POR_FILTRO);
+	            celdaCabecera.setCellValue(c.getCampo());
+            }
         });
 
         SimpleDateFormat format = new SimpleDateFormat(FORMATO_FECHA);
