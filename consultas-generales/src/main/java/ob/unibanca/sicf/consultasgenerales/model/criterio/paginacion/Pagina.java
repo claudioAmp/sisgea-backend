@@ -46,8 +46,10 @@ public class Pagina<S,T>   implements Serializable {
             this.listaDatos = page;
             this.total = page.getTotal();
             this.criterioBusqueda=criterioBusqueda;
-            this.indexFirstOfRows= page.getStartRow();
-            this.indexLastOfRows= page.getEndRow();
+            this.indexFirstOfRows = this.pageNum > 0 ? (this.pageNum - 1) * this.pageSize : 0;
+            this.indexLastOfRows = this.indexFirstOfRows + this.pageSize * (this.pageNum > 0 ? 1 : 0);
+           
+         
                       
             }
       }
