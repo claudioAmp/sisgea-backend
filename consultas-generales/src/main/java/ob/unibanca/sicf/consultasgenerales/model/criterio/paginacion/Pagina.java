@@ -32,6 +32,11 @@ public class Pagina<S,T>   implements Serializable {
     private boolean isFirstPage = false;
 
     private boolean isLastPage = false;
+   
+    private Integer indexFirstOfRows;
+   
+    private Integer indexLastOfRows;
+    
     public Pagina(S criterioBusqueda ,List<T> list) {
         if (list instanceof Page) {
             Page page = (Page) list;
@@ -41,25 +46,12 @@ public class Pagina<S,T>   implements Serializable {
             this.pages = page.getPages();
             this.listaDatos = page;
             this.total = page.getTotal();
-           
+            
+            this.indexFirstOfRows= pageSize*(pageNum-1) +1;
+            this.indexLastOfRows= pageSize*(pageNum-1) ;
             this.criterioBusqueda=criterioBusqueda;
             }
-           else if (list instanceof Collection) {
-                this.pageNum = 1;
-                this.pageSize = list.size();
-
-                this.pages = 1;
-                this.listaDatos = list;
-                this.total = list.size();
-                
-            }
-            if (list instanceof Collection) {
-               
-            	limitadorPagina();
-            }
       }
-        private void limitadorPagina() {
-            isFirstPage = pageNum == 1;
-            isLastPage = pageNum == pages;
-        }
+       
+
   }
