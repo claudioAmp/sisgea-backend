@@ -47,11 +47,21 @@ public class Pagina<S,T>   implements Serializable {
             this.total = page.getTotal();
             this.criterioBusqueda=criterioBusqueda;
             this.indexFirstOfRows = this.pageNum > 0 ? (this.pageNum - 1) * this.pageSize : 0;
-            this.indexLastOfRows = this.indexFirstOfRows + this.pageSize * (this.pageNum > 0 ? 1 : 0);
-           
+            if(this.pageNum == 1) {
+            	this.isFirstPage = true;
+            }else {
+            	this.isFirstPage = false;
+            }
+            if(this.pageNum == this.pages) {
+            	this.isLastPage = true;
+            	this.indexLastOfRows = (int) this.total;
+            }else {
+            	this.isLastPage = false;
+            	this.indexLastOfRows = this.indexFirstOfRows + this.pageSize * (this.pageNum > 0 ? 1 : 0);
+            }
          
                       
-            }
+          }
       }
        
 
