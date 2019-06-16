@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.model.compensacion;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,9 +39,9 @@ public class Compensacion {
 	Integer idMonedaCompensacion;
 	String descMonedaCompensacion;
 	double valorCompensacion;
-	String fechaTransaccion;
-	String fechaProceso;
-	String fechaSwitch;
+	Date fechaTransaccion;
+	Date fechaProceso;
+	Date fechaSwitch;
 	String codigoRespuesta;
 	String descCodigoRespuesta;
 	String numeroTrace;
