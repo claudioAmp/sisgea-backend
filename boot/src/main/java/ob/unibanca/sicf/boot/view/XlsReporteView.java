@@ -78,19 +78,23 @@ public class XlsReporteView extends AbstractView {
 
         Counter cabecera_column = new Counter(COLUMN_START);
 
+        CellStyle estiloCabecera = getEstiloCabeceras(workbook);
+
         campos.forEach(c -> {
             Cell celdaCabecera = cabeceraRow.createCell(cabecera_column.next());
-            celdaCabecera.setCellStyle(getEstiloCabeceras(workbook));
-            if(c.getAliasCampo()!=null) {
-	            numeroLetrasColumna.add(c.getAliasCampo().length() + LETRAS_POR_FILTRO);
-	            celdaCabecera.setCellValue(c.getAliasCampo());
-            }else {
-	            numeroLetrasColumna.add(c.getCampo().length() + LETRAS_POR_FILTRO);
-	            celdaCabecera.setCellValue(c.getCampo());
+            celdaCabecera.setCellStyle(estiloCabecera);
+            if (c.getAliasCampo() != null) {
+                numeroLetrasColumna.add(c.getAliasCampo().length() + LETRAS_POR_FILTRO);
+                celdaCabecera.setCellValue(c.getAliasCampo());
+            } else {
+                numeroLetrasColumna.add(c.getCampo().length() + LETRAS_POR_FILTRO);
+                celdaCabecera.setCellValue(c.getCampo());
             }
         });
 
         SimpleDateFormat format = new SimpleDateFormat(FORMATO_FECHA);
+
+        XSSFCellStyle estiloCeldaNormal = getBordeCompleto(workbook);
 
         cuerpo.forEach((fila) -> {
             Row reporteRow = sheet.createRow(counter_row.next());
@@ -99,7 +103,7 @@ public class XlsReporteView extends AbstractView {
                 int i = counter_column.next();
                 Object v = fila.get(campo.getCampo());
                 Cell celda = reporteRow.createCell(i);
-                aplicarBorderCompleto(workbook, celda);
+                celda.setCellStyle(estiloCeldaNormal);
                 if (v == null)
                     return;
                 int num_letras = 0;
@@ -122,7 +126,7 @@ public class XlsReporteView extends AbstractView {
                     num_letras = v.toString().length();
                 }
                 }
-                num_letras+=ADICIONAL_LETRAS;
+                num_letras += ADICIONAL_LETRAS;
                 if (num_letras > numeroLetrasColumna.get(i - COLUMN_START))
                     numeroLetrasColumna.set(i - COLUMN_START, num_letras);
             });
@@ -239,13 +243,13 @@ public class XlsReporteView extends AbstractView {
         RegionUtil.setBorderBottom(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
     }
 
-    public void aplicarBorderCompleto(Workbook wb, Cell celda) {
+    public XSSFCellStyle getBordeCompleto(Workbook wb) {
         XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
         style.setBorderTop(XSSFCellStyle.BORDER_THIN);
         style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
         style.setBorderRight(XSSFCellStyle.BORDER_THIN);
         style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-        celda.setCellStyle(style);
+        return style;
     }
 
     public CellStyle getEstiloCabeceras(Workbook wb) {
