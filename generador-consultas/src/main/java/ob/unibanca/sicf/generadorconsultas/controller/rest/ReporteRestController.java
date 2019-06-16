@@ -66,4 +66,8 @@ public class ReporteRestController {
 		this.reporteService.eliminarReporte(idReporte);
 	}
 
+	@GetMapping(value = "/reportes/ejecutar-consulta")
+	public List<Map<String, Object>> ejecutarConsulta(@RequestParam String consulta) {
+		return this.reporteService.ejecutarConsulta(consulta);
+	}
 }
