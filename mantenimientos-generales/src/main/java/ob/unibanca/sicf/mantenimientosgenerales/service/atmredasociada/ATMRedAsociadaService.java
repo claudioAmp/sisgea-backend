@@ -5,6 +5,8 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.mantenimientosgenerales.mapper.IATMRedAsociadaMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedAsociada;
+import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedUnicard;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -54,7 +56,7 @@ public class ATMRedAsociadaService extends MantenibleService<ATMRedAsociada> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarATMRedAsociada(int idATM, int idInstitucion) {
-		ATMRedAsociada atmRedAsociada = ATMRedAsociada.builder().idATM(idATM).idInstitucion(idInstitucion).build();
+		ATMRedAsociada atmRedAsociada = ATMRedAsociada.builder().tipo(TIPO_ASOCIADA).idATM(idATM).idInstitucion(idInstitucion).build();
 		this.eliminar(atmRedAsociada);
 	}
 	
