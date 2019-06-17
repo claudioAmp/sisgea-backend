@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.RespuestaMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.respuestamarcaint.IRespuestaMarcaIntService;
@@ -29,7 +30,7 @@ public class RespuestaMarcaIntExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<RespuestaMarcaInt> lista = respuestaMarcaIntService.buscarTodosRespuestasMarcasInt();
 		params.put("mantenimiento", lista);
-		params.put("username", "Usuario Dummy");
+		params.put("username", UsuarioUtil.obtenerUsername());
 		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/respuestaMarcaInt");
 		model.addAttribute("name", "Reporte Respuesta Marca Int");

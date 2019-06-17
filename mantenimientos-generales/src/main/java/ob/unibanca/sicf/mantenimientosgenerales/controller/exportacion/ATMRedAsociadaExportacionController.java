@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedAsociada;
 import ob.unibanca.sicf.mantenimientosgenerales.service.atmredasociada.IATMRedAsociadaService;
@@ -32,7 +33,7 @@ public class ATMRedAsociadaExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<ATMRedAsociada> lista = atmRedAsociadaService.buscarTodosATMsRedAsociada();
       params.put("mantenimiento", lista);
-      params.put("username", "Usuario Dummy");
+      params.put("username", UsuarioUtil.obtenerUsername());
       params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/atmRedAsociada");
       model.addAttribute("name", "Reporte ATMRedAsociada");

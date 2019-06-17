@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoProcesoSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigoprocesoswitch.ICodigoProcesoSwitchService;
@@ -29,7 +30,7 @@ public class CodigoProcesoSwitchExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoProcesoSwitch> lista = codigoProcesoSwitchService.buscarTodosCodigoProcesoSwitches();
       params.put("mantenimiento", lista);
-      params.put("username", "Usuario Dummy");
+      params.put("username", UsuarioUtil.obtenerUsername());
       params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/codigoProcesoSwitch");
       model.addAttribute("name", "Reporte Código Proceso Switch");

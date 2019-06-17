@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.TransaccionMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.transaccionmarcaint.ITransaccionMarcaIntService;
@@ -29,7 +30,7 @@ public class TransaccionMarcaIntExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<TransaccionMarcaInt> lista = transaccionMarcaIntService.buscarTodasTransaccionesMarcaInt();
 		params.put("mantenimiento", lista);
-		params.put("username", "Usuario Dummy");
+		params.put("username", UsuarioUtil.obtenerUsername());
 		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "reportecito");
 		model.addAttribute("name", "Reporte ATM");

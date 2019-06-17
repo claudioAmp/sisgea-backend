@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Moneda;
 import ob.unibanca.sicf.mantenimientosgenerales.service.moneda.IMonedaService;
@@ -29,11 +30,11 @@ public class MonedaExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<Moneda> lista = monedaService.buscarTodosMonedas();
 		params.put("mantenimiento", lista);
+		params.put("username", UsuarioUtil.obtenerUsername());
+		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "reportecito");
 		model.addAttribute("name", "Reporte ATM");
 		model.addAttribute("params", params);
-		params.put("username", "Usuario Dummy");
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		return new ModelAndView("jxlsView", model);
 	}
 

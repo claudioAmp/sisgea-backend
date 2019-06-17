@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CorreoTelefono;
 import ob.unibanca.sicf.mantenimientosgenerales.service.correotelefono.ICorreoTelefonoService;
@@ -30,7 +31,7 @@ public class CorreoTelefonoExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CorreoTelefono> lista = correoTelefonoService.buscarTodosCorreosTelefonos();
       params.put("mantenimiento", lista);
-      params.put("username", "Usuario Dummy");
+      params.put("username", UsuarioUtil.obtenerUsername());
       params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/correoTelefono");
       model.addAttribute("name", "Reporte CorreoTelefono");

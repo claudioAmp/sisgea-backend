@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.MetodoIdThb;
 import ob.unibanca.sicf.mantenimientosgenerales.service.metodoidthb.IMetodoIdThbService;
@@ -30,7 +31,7 @@ public class MetodoIdThbExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<MetodoIdThb> lista = metodoIdThbService.buscarTodosMetodoIdThb();
 		params.put("mantenimiento", lista);
-		params.put("username", "Usuario Dummy");
+		params.put("username", UsuarioUtil.obtenerUsername());
 		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/metodoIdThb");
 		model.addAttribute("name", "Reporte Metodo THB");

@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Servicio;
 import ob.unibanca.sicf.mantenimientosgenerales.service.servicio.IServicioService;
@@ -29,7 +30,7 @@ public class ServicioExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<Servicio> lista = servicioService.buscarTodosServicios();
 		params.put("mantenimiento", lista);
-		params.put("username", "Usuario Dummy");
+		params.put("username", UsuarioUtil.obtenerUsername());
 		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/servicio");
 		model.addAttribute("name", "Reporte Servicio");
