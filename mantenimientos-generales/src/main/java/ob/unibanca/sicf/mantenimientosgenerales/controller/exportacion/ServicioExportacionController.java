@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Servicio;
 import ob.unibanca.sicf.mantenimientosgenerales.service.servicio.IServicioService;
 
@@ -16,22 +17,24 @@ import java.util.List;
 @Validated
 @Controller
 public class ServicioExportacionController {
-	
+
 	private final IServicioService servicioService;
-	
+
 	public ServicioExportacionController(IServicioService servicioService) {
 		this.servicioService = servicioService;
 	}
-	
+
 	@GetMapping(value = "/servicios.xlsx")
 	public ModelAndView exportarServicio(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<Servicio> lista = servicioService.buscarTodosServicios();
-      params.put("mantenimiento", lista);
-      model.addAttribute("template", "mantenimientosgenerales/servicio");
-      model.addAttribute("name", "Reporte Servicio");
-      model.addAttribute("params", params);
-      return new ModelAndView("jxlsView", model);
+		params.put("mantenimiento", lista);
+		params.put("username", "Usuario Dummy");
+		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		model.addAttribute("template", "mantenimientosgenerales/servicio");
+		model.addAttribute("name", "Reporte Servicio");
+		model.addAttribute("params", params);
+		return new ModelAndView("jxlsView", model);
 	}
 
 }

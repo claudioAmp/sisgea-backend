@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.TransaccionMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.transaccionmarcaint.ITransaccionMarcaIntService;
 
@@ -16,22 +17,24 @@ import java.util.List;
 @Validated
 @Controller
 public class TransaccionMarcaIntExportacionController {
-	
+
 	private final ITransaccionMarcaIntService transaccionMarcaIntService;
-	
+
 	public TransaccionMarcaIntExportacionController(ITransaccionMarcaIntService transaccionMarcaIntService) {
 		this.transaccionMarcaIntService = transaccionMarcaIntService;
 	}
-	
+
 	@GetMapping(value = "/transacciones-marcas-internacionales.xlsx")
 	public ModelAndView exportarTransaccionMarcaInt(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<TransaccionMarcaInt> lista = transaccionMarcaIntService.buscarTodasTransaccionesMarcaInt();
-      params.put("mantenimiento", lista);
-      model.addAttribute("template", "reportecito");
-      model.addAttribute("name", "Reporte ATM");
-      model.addAttribute("params", params);
-      return new ModelAndView("jxlsView", model);
+		params.put("mantenimiento", lista);
+		params.put("username", "Usuario Dummy");
+		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		model.addAttribute("template", "reportecito");
+		model.addAttribute("name", "Reporte ATM");
+		model.addAttribute("params", params);
+		return new ModelAndView("jxlsView", model);
 	}
 
 }

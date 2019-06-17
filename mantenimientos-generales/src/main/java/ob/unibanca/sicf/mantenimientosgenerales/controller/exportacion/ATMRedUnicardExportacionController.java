@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedUnicard;
 import ob.unibanca.sicf.mantenimientosgenerales.service.atmredunicard.IATMRedUnicardService;
 
@@ -30,6 +31,8 @@ public class ATMRedUnicardExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<ATMRedUnicard> lista = atmRedUnicardService.buscarTodosATMsRedUnicard();
       params.put("mantenimiento", lista);
+      params.put("username", "Usuario Dummy");
+      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/atmRedUnicard");
       model.addAttribute("name", "Reporte ATMRedUnicard");
       model.addAttribute("params", params);

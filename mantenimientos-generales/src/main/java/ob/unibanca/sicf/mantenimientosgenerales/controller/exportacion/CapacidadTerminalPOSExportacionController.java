@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CapacidadTerminalPOS;
 import ob.unibanca.sicf.mantenimientosgenerales.service.capacidadterminalpos.ICapacidadTerminalPOSService;
 
@@ -29,8 +30,9 @@ public class CapacidadTerminalPOSExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CapacidadTerminalPOS> lista = capacidadTerminalPOSService.buscarTodosCapacidadesTerminalesPOS();
       params.put("mantenimiento", lista);
+      params.put("username", "Usuario Dummy");
+      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/capacidadTerminalPOS");
-      System.out.println("Pase por aqui");
       model.addAttribute("name", "Reporte Capacidad Terminal POS");
       model.addAttribute("params", params);
       return new ModelAndView("jxlsView", model);

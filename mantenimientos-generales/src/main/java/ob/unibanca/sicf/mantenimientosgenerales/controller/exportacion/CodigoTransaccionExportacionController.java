@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigotransaccion.ICodigoTransaccionService;
 
@@ -28,6 +29,8 @@ public class CodigoTransaccionExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoTransaccion> lista = codigoTransaccionService.buscarTodosCodigoTransacciones();
       params.put("mantenimiento", lista);
+      params.put("username", "Usuario Dummy");
+      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/codigoTransaccion");
       model.addAttribute("name", "Reporte Código Transacción");
       model.addAttribute("params", params);

@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoProcesoSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigoprocesoswitch.ICodigoProcesoSwitchService;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class CodigoProcesoSwitchExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<CodigoProcesoSwitch> lista = codigoProcesoSwitchService.buscarTodosCodigoProcesoSwitches();
       params.put("mantenimiento", lista);
+      params.put("username", "Usuario Dummy");
+      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/codigoProcesoSwitch");
       model.addAttribute("name", "Reporte Código Proceso Switch");
       model.addAttribute("params", params);

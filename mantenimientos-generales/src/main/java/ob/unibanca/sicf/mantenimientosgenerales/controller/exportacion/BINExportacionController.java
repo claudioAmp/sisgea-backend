@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.BIN;
 import ob.unibanca.sicf.mantenimientosgenerales.service.bin.IBINService;
 
@@ -30,6 +31,8 @@ public class BINExportacionController {
 		Map<String, Object> params = new HashMap<>();
 		List<BIN> lista = binService.buscarTodosBINs();
       params.put("mantenimiento", lista);
+      params.put("username", "Usuario Dummy");
+      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/bin");
       model.addAttribute("name", "Reporte BIN");
       model.addAttribute("params", params);

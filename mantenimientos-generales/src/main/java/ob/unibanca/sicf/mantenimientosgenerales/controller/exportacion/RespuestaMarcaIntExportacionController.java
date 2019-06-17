@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
+import ob.commons.util.DateUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.RespuestaMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.respuestamarcaint.IRespuestaMarcaIntService;
 
@@ -16,22 +17,24 @@ import java.util.List;
 @Validated
 @Controller
 public class RespuestaMarcaIntExportacionController {
-	
+
 	private final IRespuestaMarcaIntService respuestaMarcaIntService;
-	
+
 	public RespuestaMarcaIntExportacionController(IRespuestaMarcaIntService respuestaMarcaIntService) {
 		this.respuestaMarcaIntService = respuestaMarcaIntService;
 	}
-	
+
 	@GetMapping(value = "/respuestas-marcas-int.xlsx")
 	public ModelAndView exportarRespuestaMarcaInt(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
 		List<RespuestaMarcaInt> lista = respuestaMarcaIntService.buscarTodosRespuestasMarcasInt();
-      params.put("mantenimiento", lista);
-      model.addAttribute("template", "mantenimientosgenerales/respuestaMarcaInt");
-      model.addAttribute("name", "Reporte Respuesta Marca Int");
-      model.addAttribute("params", params);
-      return new ModelAndView("jxlsView", model);
+		params.put("mantenimiento", lista);
+		params.put("username", "Usuario Dummy");
+		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		model.addAttribute("template", "mantenimientosgenerales/respuestaMarcaInt");
+		model.addAttribute("name", "Reporte Respuesta Marca Int");
+		model.addAttribute("params", params);
+		return new ModelAndView("jxlsView", model);
 	}
 
 }
