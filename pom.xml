@@ -4,13 +4,13 @@
 
     <!-- Modulos hijos -->
     <modules>
-        <module>mantenimientos-generales</module>
-        <module>facturacion</module>
-        <module>boot</module>
-        <module>tarifarios</module>
-    	<module>consultas-generales</module>
-    	<module>reportes</module>
-    	<module>generador-consultas</module>
+        <module>sicf-mantenimientos-generales</module>
+        <module>sicf-facturacion</module>
+        <module>sicf-boot</module>
+        <module>sicf-tarifarios</module>
+    	<module>sicf-consultas-generales</module>
+    	<module>sicf-reportes</module>
+    	<module>sicf-generador-consultas</module>
   </modules>
 
     <!-- Modulo padre Spring Boot -->
