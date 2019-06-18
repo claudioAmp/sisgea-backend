@@ -18,4 +18,6 @@ public interface IPermisoUsuarioService extends IMantenibleService<PermisoUsuari
 	
 	void eliminarPermisoUsuario(int idPermisoUsuario);
 	
+	void actualizarPermisosUsuario(int idPerfil,String listaModificacion,String usuario);
+	
 }

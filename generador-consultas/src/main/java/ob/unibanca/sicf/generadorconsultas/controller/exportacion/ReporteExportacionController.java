@@ -31,6 +31,7 @@ public class ReporteExportacionController {
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
 		model.addAttribute("campos", campos);
 		model.addAttribute("consulta", resultadoConsulta);
+		System.out.println("ENTRE AL CONTROLLER");
 		return new ModelAndView("xlsReporteView", model);
 	}
 

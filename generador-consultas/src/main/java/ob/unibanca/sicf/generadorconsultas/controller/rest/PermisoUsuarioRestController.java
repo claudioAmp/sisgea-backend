@@ -60,4 +60,12 @@ public class PermisoUsuarioRestController {
 	public void eliminarPermisoUsuario(@IdNumerico(maxRange = 9999) @PathVariable int idPermisoUsuario) {
 		this.permisoUsuarioService.eliminarPermisoUsuario(idPermisoUsuario);
 	}
+	
+	@PutMapping(value = "/permisos-usuario/{idPerfil}/{listaModificacion}/{usuario}")
+	public void actualizarPermisosUsuario(@IdNumerico(maxRange = 9999) @PathVariable int idPerfil,
+			 @PathVariable  String listaModificacion,  @PathVariable String usuario) {
+		System.out.println(idPerfil);
+		System.out.println(listaModificacion);
+		this.permisoUsuarioService.actualizarPermisosUsuario(idPerfil, listaModificacion, usuario);
+	}
 }

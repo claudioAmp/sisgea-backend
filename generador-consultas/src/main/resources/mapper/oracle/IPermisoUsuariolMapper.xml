@@ -25,16 +25,16 @@
     </select>
 	<select id="buscarPorCriterios" resultType="PermisoUsuario" parameterType="CriterioBusquedaPermisoUsuario" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test="(tabla != null and tabla != '' ) and ( username!=null and username!='')">
-        	WHERE
-       			TABLA = #{tabla}		
-       			AND USUARIO =#{username}
-        </if>
-        <if  test="(idPerfil != null and idPerfil != '' ) and ( username!=null and username!='')">
-        	WHERE
-       			ID_PERFIL = #{idPerfil}		
-       			AND USUARIO =#{username}
-        </if>
+        WHERE ID_PERMISO_USUARIO >0
+        	   <if  test="idPerfil != null and idPerfil != '' ">
+	        	  AND ID_PERFIL = #{idPerfil}	
+	           </if>
+	            <if  test="username!=null and username!='' ">
+	        	  AND USUARIO =#{username}
+	           </if>
+	           <if  test="tabla != null and tabla != '' ">
+	        	  AND TABLA = #{tabla}
+	           </if>	
     </select>
    
     
@@ -48,6 +48,16 @@
                 #{objetoMantenido.verTruncado , 	      jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						          jdbcType=NUMERIC, mode=IN}
             )
+        }
+    </select>
+    
+    <select id="actualizarPermisosUsuario" statementType="CALLABLE">
+         {
+        	CALL prc_update_permisos_usuario (
+      			#{idPerfil, 	      	jdbcType=INTEGER, mode=IN},
+                #{listaModificacion,   	jdbcType=VARCHAR, mode=IN},
+                #{usuario, 				jdbcType=VARCHAR, mode=IN}               
+                )
         }
     </select>
     

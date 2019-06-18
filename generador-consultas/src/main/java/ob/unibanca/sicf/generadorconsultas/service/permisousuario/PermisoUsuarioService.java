@@ -54,5 +54,12 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 		PermisoUsuario permisoUsuario = PermisoUsuario.builder().idPermisoUsuario(idPermisoUsuario).build();
 		this.eliminar(permisoUsuario);
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public void actualizarPermisosUsuario(int idPerfil, String listaModificacion, String usuario) {
+		this.permisoUsuarioMapper.actualizarPermisosUsuario(idPerfil, listaModificacion, usuario);
+		
+	}
 }
 

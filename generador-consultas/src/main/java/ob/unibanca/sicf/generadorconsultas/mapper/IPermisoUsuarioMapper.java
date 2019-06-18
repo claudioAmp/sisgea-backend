@@ -11,4 +11,5 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermis
 public interface IPermisoUsuarioMapper extends IMantenibleMapper<PermisoUsuario>{
 	List<PermisoUsuario> buscarTodos();
 	List<PermisoUsuario> buscarPorCriterios(CriterioBusquedaPermisoUsuario criterio);
+	void actualizarPermisosUsuario(int idPerfil,String listaModificacion,String usuario);
 }
