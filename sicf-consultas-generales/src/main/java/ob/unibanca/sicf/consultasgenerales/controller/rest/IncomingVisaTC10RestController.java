@@ -20,7 +20,7 @@ public class IncomingVisaTC10RestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 
-
+/*
 	@GetMapping(value = "/incomings-visa-tc10s-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion,
@@ -39,5 +39,5 @@ public class IncomingVisaTC10RestController {
 	@GetMapping("/incomings-visa-tc10s-tcr0s")
 	public IncomingVisaTC10TCR0Det buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
-	}
+	}*/
 }

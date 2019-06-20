@@ -2,6 +2,8 @@ package ob.unibanca.sicf.consultasgenerales.mapper;
 
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
@@ -9,7 +11,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
 
-
+@Mapper
 public interface IIncomingVisaTC10Mapper {
 	Page<IncomingVisaTC10TCR0> buscarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTC10 criterioPaginacion);
 	

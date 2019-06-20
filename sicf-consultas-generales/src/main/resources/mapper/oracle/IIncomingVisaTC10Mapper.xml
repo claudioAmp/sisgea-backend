@@ -37,7 +37,7 @@
 	</sql>
 	
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="CobroDesembolsoVisa" statementType="PREPARED">	
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
 		<include refid="consultaPorCriteriosTCR0" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
