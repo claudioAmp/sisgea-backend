@@ -15,7 +15,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
 import ob.unibanca.sicf.consultasgenerales.service.asincrono.IAsyncFileService;
-import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.IIncomingVisaService;
+import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaService;
 import ob.unibanca.sicf.consultasgenerales.service.subreporttmp.SubReportTmp;
 
 public class IncomingVisaExportacionController {

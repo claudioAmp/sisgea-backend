@@ -15,7 +15,7 @@ import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR1;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR3;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR4;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR5;
-import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.IIncomingVisaService;
+import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaService;
 
 @Validated
 @RestController

@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.service.incomingvisa;
+package ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5;
 
 
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaMapper;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR1;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR3;
