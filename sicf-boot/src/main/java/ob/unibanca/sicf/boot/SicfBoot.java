@@ -9,6 +9,7 @@ import ob.unibanca.sicf.reportes.ReportesBoot;
 import ob.unibanca.sicf.tarifarios.TarifariosBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.cors.CorsConfiguration;
@@ -44,12 +45,14 @@ public class SicfBoot {
 	
 	/**
 	 * En este método se configuran la integración con distintos origenes de petición.
+	 * Las configuraciones se aplican si la propiedad ob.sicf.cors.activo es true.
 	 * <p>
 	 * <b>Nota:</b> Esta método será reubicada
 	 * </p>
 	 *
-	 * @return CorsFilert con los origenes configurados
+	 * @return CorsFilter con los origenes configurados
 	 */
+	@ConditionalOnProperty(value = "ob.sicf.cors.activo", havingValue = "true")
 	@Bean
 	public CorsFilter corsFilter() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
