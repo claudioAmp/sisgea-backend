@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTC48Mapper">
+			
+	<sql id="consultaPorCriteriosTCR0" >
+		SELECT *
+		FROM VI_CON_MOV_INC_TC48_TCR0 a
+	</sql>
+	
+	<sql id = "fragmentoWhereGet" >
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		
+	</sql>
+	
+	<sql id ="fragmentoWhereGetMultiples" >
+		<if  test="transactionsCodes !=null and transactionsCodes.size()>0">
+			AND a.TRANSACTION_CODE IN 
+				<foreach item="item" index="index" collection="transactionsCodes" open ="(" separator="," close=")">
+					#{item}
+				</foreach>
+		</if>
+		
+	</sql>
+	
+	
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC48"  resultType="IncomingVisaTC48TCR0" statementType="PREPARED">	
+		<include refid="consultaPorCriteriosTCR0" />
+			WHERE
+		<include refid="fragmentoWhereGet" /> 
+		<include refid="fragmentoWhereGetMultiples" />
+   	</select>
+   	
+   	<sql id="framentoSelectTCR0" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INC_TC48_TCR0_DET a
+	</sql>
+  
+	 
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0Det" statementType="PREPARED">		
+		<include refid="framentoSelectTCR0" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   	
+   	<sql id="framentoSelectTCR1" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INC_TC48_TCR1 a
+	</sql>
+	
+   	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR1" statementType="PREPARED">		
+		<include refid="framentoSelectTCR0" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+	
+	
+	
+   	
+   	 
+</mapper>

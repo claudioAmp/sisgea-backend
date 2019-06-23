@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaMapper">
+			
+	<sql id="consultaPorCriteriosTCR0" >
+		SELECT *
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
+	</sql>
+	
+	<sql id = "fragmentoWhereGet" >
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">
+			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
+		</if>
+		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != ' ' and idSecuenciaIncoming != -1">
+			AND a.ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}  
+		</if>
+		<if  test="acquirerRefNumber != null and acquirerRefNumber != '' and acquirerRefNumber != '-1'">
+			AND a.ACQUIRER_REF_NUMBER = #{acquirerRefNumber}  
+		</if>
+		<if  test="destinationAmount != null and destinationAmount != '' and destinationAmount != -1">
+			AND a.DESTINATION_AMOUNT = #{destinationAmount}  
+		</if>
+		<if  test="merchantName != null and merchantName != '' and merchantName != '-1'">
+			AND a.MERCHANT_NAME = #{merchantName}  
+		</if>
+		<if  test="authorizationCode != null and authorizationCode !='' and authorizationCode !='-1'">
+			AND a.AUTHORIZATION_CODE = #{authorizationCode}  
+		</if>
+		<if  test="posTerminalCapability != null and posTerminalCapability !='' and posTerminalCapability !='-1'">
+			AND a.POS_TERMINAL_CAPABILITY = #{posTerminalCapability}  
+		</if>
+	</sql>
+	
+	<sql id ="fragmentoWhereGetMultiples" >
+		<if  test="entriesMode !=null and entriesMode.size()>0">
+			AND a.ENTRY_MODE IN 
+				<foreach item="item" index="index" collection="entriesMode" open ="(" separator="," close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="floorsLimitIndication != null and floorsLimitIndication.size()>0"  >
+			AND a.FLOOR_LIMIT_INDICATOR IN 
+				<foreach item="item" index="index" collection="floorsLimitIndication" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="transactionsCode != null and transactionsCode.size()>0" >
+			AND a.TRANSACTION_CODE IN 
+				<foreach item="item" index="index" collection="transactionsCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="accountsNumber != null and accountsNumber.size()>0" >
+			AND a.ACCOUNT_NUMBER IN 
+				<foreach item="item" index="index" collection="accountsNumber" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="cardholdersIdMethod != null and cardholdersIdMethod.size()>0" >
+			AND a.CARDHOLER_ID_METHOD IN 
+				<foreach item="item" index="index" collection="cardholdersIdMethod" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="idsOrigenes != null and idsOrigenes.size()>0" >
+			AND a.ID_ORIGEN IN 
+				<foreach item="item" index="index" collection="idsOrigenes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="institucionesEmisoras != null and institucionesEmisoras.size()>0" >
+			AND a.ID_INSTITUCION IN 
+				<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="institucionesReceptoras != null and institucionesReceptoras.size()>0" >
+			AND a.ID_INSTITUCION IN 
+				<foreach item="item" index="index" collection="institucionesReceptoras" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="idsBines != null and idsBines.size()>0" >
+			AND a.ID_BIN IN 
+				<foreach item="item" index="index" collection="idsBines" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchantsCategoryCode != null and merchantsCategoryCode.size()>0" >
+			AND a.MERCHANT_CATEGORY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchantsCountryCode != null and merchantsCountryCode.size()>0" >
+			AND a.MERCHANT_COUNTRY_CODE IN 
+				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+	</sql>
+	
+	
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTCR0"  resultType="IncomingVisaTCR0" statementType="PREPARED">	
+		<include refid="consultaPorCriteriosTCR0" />
+			WHERE
+		<include refid="fragmentoWhereGet" /> 
+		<include refid="fragmentoWhereGetMultiples" />
+   	</select>
+   	
+   	<sql id="framentoSelectTCR0" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
+	</sql>
+   	
+   	<sql id="framentoSelectTCR1" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR1 a
+	</sql>
+	
+	 <sql id="framentoSelectTCR3" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR3 a
+	 </sql>
+	 
+	 <sql id="framentoSelectTCR4" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR4 a	
+	 </sql>
+	 
+	 <sql id="framentoSelectTCR5" >
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR5 a
+	 </sql>
+	 
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR0" statementType="PREPARED">		
+		<include refid="framentoSelectTCR0" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+	
+	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR1" statementType="PREPARED">			
+		<include refid="framentoSelectTCR1" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   	
+   	 <select id="buscarPorIdSecuenciaTCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR3" statementType="PREPARED">	
+		<include refid="framentoSelectTCR3" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   	
+   	 <select id="buscarPorIdSecuenciaTCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR4" statementType="PREPARED">		
+		<include refid="framentoSelectTCR4" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>		
+   	</select>
+   	
+   	 <select id="buscarPorIdSecuenciaTCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR5" statementType="PREPARED">		
+		<include refid="framentoSelectTCR5" />
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   
+</mapper>

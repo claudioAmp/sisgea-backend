@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ISwdmplogMapper">
+
+	<select id="buscarPaginada" resultType="TxnSwdmplog" >
+		SELECT *
+		FROM VIE_CON_MOV_SWDMPLOG consulta
+		<where>
+			<if test="fechaInicioProceso != null and fechaInicioProceso != ''">
+				consulta.fecha_proceso &gt;= #{fechaInicioProceso}
+			</if>
+			<if test="fechaFinProceso != null and fechaFinProceso != ''">
+				AND consulta.fecha_proceso &lt;= #{fechaFinProceso}
+			</if>
+			<if test="fechaInicioTransaccion != null and fechaInicioTransaccion != ''">
+				AND consulta.transmission_date &gt;= #{fechaInicioTransaccion}
+			</if>
+			<if test="fechaFinTransaccion != null and fechaFinTransaccion != ''">
+				AND consulta.transmission_date &lt;= #{fechaFinTransaccion}
+			</if>
+			<if test="trace != null and trace != ''">
+				AND consulta.trace_number = #{trace}
+			</if>
+			<if test="numeroTarjeta != null and numeroTarjeta != ''">
+				AND consulta.pan = #{numeroTarjeta}
+			</if>
+			<if test="codigoAutorizacion != null and codigoAutorizacion != ''">
+				AND consulta.authorization_code = #{codigoAutorizacion}
+			</if>
+			<if test="numeroReferencia != null and numeroReferencia != ''">
+				AND consulta.reference_number = #{numeroReferencia} 
+			</if>
+			<if test="tipoMensaje != null and tipoMensaje != ''">
+				AND consulta.MESSAGE_TYPE = #{tipoMensaje}
+			</if>
+			<if test="fechaInicioSwitch != null and fechaFinSwitch != ''">
+				AND consulta.CAPTURE_DATE BETWEEN #{fechaInicioSwitch} AND #{fechaFinSwitch}
+			</if>
+			<if test="idsProcesoSwitch != null and idsProcesoSwitch.size()>0">
+				AND consulta.id_proceso IN 
+					<foreach collection="idsProcesoSwitch" item="idProceso" index="index"
+						open="(" separator="," close=")">
+						#{idProceso}
+					</foreach>
+			</if>
+			<if test="idsRespuestaSwitch != null and idsRespuestaSwitch.size()>0">
+				AND consulta.response_code IN 
+					<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index"
+						open="(" separator="," close=")">
+						#{idRespuesta}
+					</foreach>
+			</if>
+			<if test="idsGiroNegocio != null and idsGiroNegocio.size()>0">
+				AND consulta.merchant_type IN
+					<foreach collection="idsGiroNegocio" item="idGiroNegocio" index="index"
+						open="(" separator="," close=")">
+						#{idGiroNegocio}
+					</foreach>
+			</if>
+			<if test="idsInstitucionEmisor != null and idsInstitucionEmisor.size()>0">
+				AND consulta.requesting_institution IN
+					<foreach collection="idsInstitucionEmisor" item="idInstitucion" index="index"
+						open="(" separator="," close=")">
+						#{idInstitucion}	
+					</foreach>
+			</if>
+			<if test="idsInstitucionAdquirente != null and idsInstitucionAdquirente.size()>0">
+				AND consulta.acquiring_institution IN
+					<foreach collection="idsInstitucionAdquirente" item="idInstitucion" index="index"
+						open="(" separator="," close=")">
+						#{idInstitucion}
+					</foreach>
+			</if>
+			<if test="idsModoEntradaPos != null and idsModoEntradaPos.size()>0">
+				AND consulta.pos_entry_mode IN
+					<foreach collection="idsMosoEntradaPos" item="idModoEntradaPos" index="index"
+						open="(" separator="," close=")">
+						#{idModoEntradaPos}
+					</foreach>
+			</if>
+			<if test="idsMembresia != null and idsMembresia.size()>0">
+				AND consulta.ID_MEMBRESIA IN
+				<foreach collection="idsMembresia" item="idMembresia" index="index"
+						 open="(" separator="," close=")">
+					#{idMembresia}
+				</foreach>
+			</if>
+			<if test="idsServicio != null and idsServicio.size()>0">
+				AND consulta.ID_SERVICIO IN
+				<foreach collection="idsServicio" item="idServicio" index="index"
+						 open="(" separator="," close=")">
+					#{idServicio}
+				</foreach>
+			</if>
+			<if test="idsCanal != null and idsCanal.size()>0">
+				AND consulta.ID_CANAL IN
+				<foreach collection="idsCanal" item="idCanal" index="index"
+						 open="(" separator="," close=")">
+					#{idCanal}
+				</foreach>
+			</if>
+			<if test="idsProceso != null and idsProceso.size()>0">
+				AND consulta.ID_PROCESO IN
+				<foreach collection="idsProceso" item="idProceso" index="index"
+						 open="(" separator="," close=")">
+					#{idProceso}
+				</foreach>
+			</if>
+			<if test="idsRolTransaccion != null and idsRolTransaccion.size()>0">
+				AND consulta.ID_ROL IN
+				<foreach collection="idsRolTransaccion" item="idRolTransaccion" index="index"
+						 open="(" separator="," close=")">
+					#{idRolTransaccion}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="buscarDetalle" resultType="TxnSwdmplogDetalle" >
+		SELECT *
+		FROM VIE_CON_MOV_SWDMPLOG_DET A
+		<where>
+			<if test="idMovTxnSwdmplog != -1">
+				A.ID_MOV_TXN_SWDMPLOG = #{idMovTxnSwdmplog}
+			</if>
+			<if test="fechaProceso != null">
+				AND A.FECHA_PROCESO = #{fechaProceso}
+			</if>
+		</where>
+	</select>
+   
+</mapper>
