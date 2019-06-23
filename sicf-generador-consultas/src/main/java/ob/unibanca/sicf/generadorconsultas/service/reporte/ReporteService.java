@@ -14,7 +14,9 @@ import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.TablaQueryService;
@@ -44,12 +46,31 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarTodosReportes() {
-		return this.buscarTodos();
+		List<Reporte> reportes = this.buscarTodos();
+		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
+		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
+		for(Reporte r : reportes) {
+			criterioTabla.setIdReporte(r.getIdReporte());
+			criterioCampo.setIdReporte(r.getIdReporte());
+			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTabla));
+			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
+		}
+		return reportes;
+		
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio) {
-		return this.reporteMapper.buscarPorCriterios(criterio);
+		List<Reporte> reportes = this.reporteMapper.buscarPorCriterios(criterio);
+		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
+		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
+		for(Reporte r : reportes) {
+			criterioTabla.setIdReporte(r.getIdReporte());
+			criterioCampo.setIdReporte(r.getIdReporte());
+			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTabla));
+			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
+		}
+		return reportes;
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
