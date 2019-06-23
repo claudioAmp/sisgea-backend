@@ -24,6 +24,8 @@ import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
+import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
+
 import java.util.Map;
 
 @Validated
@@ -51,7 +53,8 @@ public class ReporteRestController {
 	@PostMapping(value = "/reportes", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Reporte registrarReporte(@Validated({ IRegistro.class, Default.class }) @RequestBody Reporte Reporte) {
-		return this.reporteService.registrarReporte(Reporte);
+		this.reporteService.registrarReporteTotal(Reporte);
+		return Reporte;
 	}
 
 	@PutMapping(value = "/reportes/{idReporte}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

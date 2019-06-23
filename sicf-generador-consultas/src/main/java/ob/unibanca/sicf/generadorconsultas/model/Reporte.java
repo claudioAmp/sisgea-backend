@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.generadorconsultas.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +18,7 @@ public class Reporte {
     private String descCorta;
     private String queryReporte;
 	private int frecuencia;
+	private List<TablaQuery> tablas; 
+	private List<CampoQuery> campos;
+	private List<Filtro> filtros; 
 }

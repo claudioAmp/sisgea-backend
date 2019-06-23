@@ -19,6 +19,8 @@ public interface IReporteService extends IMantenibleService<Reporte> {
 	
 	void eliminarReporte(int idReporte);
 	
+	public void registrarReporteTotal(Reporte Reporte);
+	
 	List<Map<String, Object>> ejecutarConsulta(String consulta);
 	
 }
