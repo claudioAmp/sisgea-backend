@@ -1,10 +1,13 @@
 package ob.unibanca.sicf.generadorconsultas.service.reporte;
 
 import java.util.List;
-import ob.unibanca.sicf.generadorconsultas.model.Campo;
+
+import com.github.pagehelper.Page;
 import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
+
 import java.util.Map;
 
 public interface IReporteService extends IMantenibleService<Reporte> {
@@ -19,8 +22,8 @@ public interface IReporteService extends IMantenibleService<Reporte> {
 	
 	void eliminarReporte(int idReporte);
 	
-	public void registrarReporteTotal(Reporte Reporte);
+	void registrarReporteTotal(Reporte Reporte);
 	
-	List<Map<String, Object>> ejecutarConsulta(String consulta);
+	Page<Map<String, Object>> ejecutarConsulta(String consulta, PageParameter pageParameter);
 	
 }

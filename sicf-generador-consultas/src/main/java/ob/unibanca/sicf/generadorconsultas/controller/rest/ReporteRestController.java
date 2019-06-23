@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.groups.Default;
 
+import com.github.pagehelper.Page;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PaginaGeneradorConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,11 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
-import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
-import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 
 import java.util.Map;
 
@@ -70,7 +71,8 @@ public class ReporteRestController {
 	}
 
 	@GetMapping(value = "/reportes/ejecutar-consulta")
-	public List<Map<String, Object>> ejecutarConsulta(@RequestParam String consulta) {
-		return this.reporteService.ejecutarConsulta(consulta);
+	public PaginaGeneradorConsulta<Map<String, Object>> ejecutarConsulta(@RequestParam String consulta, PageParameter pageParameter) {
+		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(consulta, pageParameter);
+		return new PaginaGeneradorConsulta<>(requestList);
 	}
 }

@@ -3,6 +3,12 @@ package ob.unibanca.sicf.generadorconsultas.service.reporte;
 import java.util.HashMap;
 import java.util.List;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
+import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,35 +18,27 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
-import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
-import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
-import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
-import ob.unibanca.sicf.generadorconsultas.service.tablaquery.TablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
 
 import java.util.Map;
-import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 
 
 @Service
 public class ReporteService extends MantenibleService<Reporte> implements IReporteService {
 	
-	private final IReporteMapper reporteMapper;
-	private @Autowired final ITablaQueryService tablaQueryService;
-	private @Autowired final ICampoQueryService campoQueryService;
-	private @Autowired final IUltimoSecuenciaService ultimoSecuenciaService;
+	private @Autowired final IReporteMapper reporteMapper;
+	private @Autowired ITablaQueryService tablaQueryService;
+	private @Autowired ICampoQueryService campoQueryService;
+	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;
 	
 	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService) {
 		super(mantenibleMapper);
 		this.reporteMapper = (IReporteMapper) mantenibleMapper;
-		this.tablaQueryService=tablaQueryService;
-		this.ultimoSecuenciaService=ultimoSecuenciaService;
-		this.campoQueryService=campoQueryService;
 	}
 	
 	@Override
@@ -78,6 +76,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		this.registrar(Reporte);
 		return Reporte;
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {
@@ -95,12 +94,13 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<Map<String, Object>> ejecutarConsulta(String consulta) {
+	public Page<Map<String, Object>> ejecutarConsulta(String consulta, PageParameter pageParameter) {
 		Map<String, String> map = new HashMap<>();
 		map.put("consulta", consulta);
+		PageHelper.startPage(pageParameter.getPageNumber(), pageParameter.getPageSize());
 		return reporteMapper.ejecutarConsulta(map);
 	}
-	// Registrar reporte 
+	// Registrar reporte
 	public void registrarReporteTotal(Reporte Reporte) {
 		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
 		int idReporte=ultSeq.getValor().intValue();

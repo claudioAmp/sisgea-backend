@@ -40,7 +40,7 @@
         }
     </select>
     
-    <select id="ejecutarConsulta" parameterType="java.util.Map"  resultType="java.util.Map" statementType="CALLABLE">
+    <select id="ejecutarConsulta" parameterType="java.util.Map"  resultType="java.util.Map" statementType="PREPARED">
         ${consulta}
     </select>
     
