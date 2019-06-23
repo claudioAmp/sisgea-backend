@@ -100,6 +100,15 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		PageHelper.startPage(pageParameter.getPageNumber(), pageParameter.getPageSize());
 		return reporteMapper.ejecutarConsulta(map);
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Map<String, Object>> ejecutarConsulta(String consulta) {
+		Map<String, String> map = new HashMap<>();
+		map.put("consulta", consulta);
+		return reporteMapper.ejecutarConsultaSinPaginar(map);
+	}
+	
 	// Registrar reporte
 	public void registrarReporteTotal(Reporte Reporte) {
 		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");

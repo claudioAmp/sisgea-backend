@@ -43,5 +43,9 @@
     <select id="ejecutarConsulta" parameterType="java.util.Map"  resultType="java.util.Map" statementType="PREPARED">
         ${consulta}
     </select>
+
+    <select id="ejecutarConsultaSinPaginar" parameterType="java.util.Map"  resultType="java.util.Map" statementType="CALLABLE">
+        ${consulta}
+    </select>
     
 </mapper>

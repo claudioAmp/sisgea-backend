@@ -11,7 +11,13 @@ import java.util.Map;
 
 @Mapper
 public interface IReporteMapper extends IMantenibleMapper<Reporte>{
+	
 	List<Reporte> buscarTodos();
+	
 	List<Reporte> buscarPorCriterios(CriterioBusquedaReporte criterio);
+	
 	Page<Map<String, Object>> ejecutarConsulta(Map<String, String> consulta);
+	
+	List<Map<String, Object>> ejecutarConsultaSinPaginar(Map<String, String> consulta);
+	
 }

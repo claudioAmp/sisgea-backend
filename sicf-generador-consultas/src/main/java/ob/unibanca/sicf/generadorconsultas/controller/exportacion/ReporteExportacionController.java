@@ -29,11 +29,11 @@ public class ReporteExportacionController {
 
 	@PostMapping(value = "/reportes/exportar-consulta.xlsx")
 	public ModelAndView ejecutarConsulta(@RequestBody List<CampoQuery> campos,
-	                                     @RequestParam(value = "consulta") String consulta, PageParameter pageParameter,
+	                                     @RequestParam(value = "consulta") String consulta,
 	                                     ModelMap model) {
-		Page<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta, pageParameter);
+		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
 		model.addAttribute("campos", campos);
-		model.addAttribute("consulta", resultadoConsulta.getResult());
+		model.addAttribute("consulta", resultadoConsulta);
 		
 		return new ModelAndView("xlsReporteView", model);
 	}

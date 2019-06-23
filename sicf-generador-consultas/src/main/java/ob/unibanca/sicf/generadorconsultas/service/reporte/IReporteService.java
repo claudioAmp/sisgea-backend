@@ -26,4 +26,6 @@ public interface IReporteService extends IMantenibleService<Reporte> {
 	
 	Page<Map<String, Object>> ejecutarConsulta(String consulta, PageParameter pageParameter);
 	
+	List<Map<String, Object>> ejecutarConsulta(String consulta);
+	
 }
