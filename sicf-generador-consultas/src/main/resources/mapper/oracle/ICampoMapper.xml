@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.generadorconsultas.mapper.ICampoMapper">
+
+
+    <sql id="consulta">
+       SELECT 
+          A.ID_TABLA	   		AS ID_TABLA,
+          A.TABLA		   		AS TABLA,
+		  A.ID_CAMPO     		AS ID_CAMPO,
+		  A.CAMPO   	   		AS CAMPO,
+		  A.ALIAS		   		AS ALIAS,
+		  A.ID_TIPO_DATO		AS ID_TIPO_DATO,
+		  A.ID_TABLA_FORANEA	AS ID_TABLA_FK,
+		  A.TRUNCABLE			AS TRUNCABLE,
+		  A.LLAVE_ASOCIADA	AS LLAVE_ASOCIADA
+		FROM VIE_MAN_REP_CAMPO A
+    </sql>
+
+     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
+        <include refid="consulta"/>
+    </select>
+    <select id="buscarPorCriterios" resultType="Campo" parameterType="CriterioBusquedaCampo" statementType="PREPARED">
+        <include refid="consulta"/>
+        <if  test="(idPerfil != null and idPerfil != '') or (usuario!=null and usuario!='')">
+        	<if  test="usuario==null or usuario==''">
+        	    INNER JOIN VIE_MAN_REP_PERFIL_CAMPO B ON (A.ID_CAMPO=B.ID_CAMPO)
+	        	WHERE B.ID_PERFIL =#{idPerfil}
+	        </if>
+	        <if  test="usuario!=null and usuario!=''">
+        	    INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
+	    		WHERE B.USUARIO =#{usuario}
+	    		<if  test="idPerfil != null and idPerfil != ''">
+		        	AND B.ID_PERFIL=#{idPerfil}
+		        </if>
+	        </if>	
+        </if>
+        
+    </select>
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_campo(
+            #{modo, 							      jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTabla,               jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.idCampo ,              jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.campo,                 jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.alias  ,           	 jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTipoDato  ,         jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTablaFk ,           jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.truncable,              jdbcType=NUMERIC, mode=IN},
+    		#{usuario,				                 jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+    
+</mapper>

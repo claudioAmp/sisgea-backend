@@ -4,20 +4,20 @@
 
     <!-- Modulos hijos -->
     <modules>
-        <module>mantenimientos-generales</module>
-        <module>facturacion</module>
-        <module>boot</module>
-        <module>tarifarios</module>
-    	<module>consultas-generales</module>
-    	<module>reportes</module>
-    	<module>generador-consultas</module>
+        <module>sicf-mantenimientos-generales</module>
+        <module>sicf-facturacion</module>
+        <module>sicf-boot</module>
+        <module>sicf-tarifarios</module>
+    	<module>sicf-consultas-generales</module>
+    	<module>sicf-reportes</module>
+    	<module>sicf-generador-consultas</module>
   </modules>
 
     <!-- Modulo padre Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
