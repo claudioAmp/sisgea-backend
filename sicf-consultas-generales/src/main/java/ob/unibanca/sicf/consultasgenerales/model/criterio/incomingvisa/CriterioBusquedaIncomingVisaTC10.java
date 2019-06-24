@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
 
 
 @Data
@@ -19,4 +20,6 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private List<String> transactionsCodes;
 	private List<String> reasonSCodes;
 	private List<Integer> destCurrenciesCodes;
+	EstructuraConsulta estructuraConsulta;
+	
 }

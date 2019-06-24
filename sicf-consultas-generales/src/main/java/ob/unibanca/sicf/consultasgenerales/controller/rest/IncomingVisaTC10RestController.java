@@ -10,6 +10,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc10.IIncomingVisaTC10Service;
+import ob.unibanca.sicf.consultasgenerales.util.pagination.request.EnterpriseGetRowsRequest;
 
 @Validated
 @RestController
@@ -39,5 +40,24 @@ public class IncomingVisaTC10RestController {
 	@GetMapping("/incomings-visa-tc10s-tcr0s")
 	public IncomingVisaTC10TCR0Det buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
+	}
+	
+	@GetMapping(value = "/incomings-visa-tc10s-tcr0s/pagination2")
+	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginasAggrid(
+			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion,
+			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,EnterpriseGetRowsRequest request) {
+		
+		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		
+		criterioPaginacion.setDatRequest(request);
+		
+		Page<IncomingVisaTC10TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPaginaAggrid(
+				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
+
+		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
+				criterioPaginacion.getCriterioBusqueda(), lista);
+		
+		
+		return pagina;
 	}
 }
