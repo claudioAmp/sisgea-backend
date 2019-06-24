@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class IncomingVisatTC5TCR3 {
+public class IncomingVisaTC5TCR3 {
 	private Integer idSecuenciaIncoming;
 	private String businessFormatCode;
 	private String dataContent;

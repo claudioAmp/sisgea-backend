@@ -9,7 +9,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisatTC5TCR3;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR3;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR4;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR5;
 
@@ -23,7 +23,7 @@ public interface IIncomingVisaTC5Mapper {
 	
 	Optional<IncomingVisaTC5TCR1> buscarPorIdSecuenciaTC5TCR1(CriterioBusquedaIncomingVisa criterio);
 	
-	Optional<IncomingVisatTC5TCR3> buscarPorIdSecuenciaTC5TCR3(CriterioBusquedaIncomingVisa criterio);
+	Optional<IncomingVisaTC5TCR3> buscarPorIdSecuenciaTC5TCR3(CriterioBusquedaIncomingVisa criterio);
 	
 	Optional<IncomingVisaTC5TCR4> buscarPorIdSecuenciaTC5TCR4(CriterioBusquedaIncomingVisa criterio);
 	

@@ -12,7 +12,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisatTC5TCR3;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR3;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR4;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR5;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaTC5Service;
@@ -53,7 +53,7 @@ public class IncomingVisaTC5RestController {
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
 	@GetMapping(value = "/incomings-visa-tc5s-tcr3s")
-	public IncomingVisatTC5TCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
+	public IncomingVisaTC5TCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR3(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
