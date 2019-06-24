@@ -5,23 +5,23 @@ import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR1;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR3;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR4;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR5;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisatTC5TCR3;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR4;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR5;
 
 public interface IIncomingVisaService {
 	
-	Page<IncomingVisaTCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda, int pageNo, int pageSize);
+	Page<IncomingVisaTC5TCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda, int pageNo, int pageSize);
 	
-	IncomingVisaTCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio);
 	
-	IncomingVisaTCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio);
 	
-	IncomingVisaTCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisatTC5TCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio);
 	
-	IncomingVisaTCR4 buscarPorIdSecuenciaTCR4(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR4 buscarPorIdSecuenciaTCR4(CriterioBusquedaIncomingVisa criterio);
 	
-	IncomingVisaTCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio);
 }

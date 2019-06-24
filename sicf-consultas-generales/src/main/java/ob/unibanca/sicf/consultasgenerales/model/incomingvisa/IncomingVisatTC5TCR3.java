@@ -9,16 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomingVisaTCR4 {
+
+public class IncomingVisatTC5TCR3 {
 	private Integer idSecuenciaIncoming;
 	private String businessFormatCode;
-	private String networkIdCode;
-	private String contactInformation;
-	private String adjustmentProcessingInd;
-	private String messageReasonCode;
-	private Integer surchargeAmount;
-	private String surchargeCreDebInd;
-	private Integer surchargeAmountCbc;
-	private Integer moneyTransferForeingFee;
+	private String dataContent;
 	private Date fechaProceso;
 }

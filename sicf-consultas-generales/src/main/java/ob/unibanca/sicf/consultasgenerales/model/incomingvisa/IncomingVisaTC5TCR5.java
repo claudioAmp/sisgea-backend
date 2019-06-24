@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomingVisaTCR5 {
+public class IncomingVisaTC5TCR5 {
 	private Integer idSecuenciaIncoming;
 	private String transactionIdentifier;
 	private Integer authorizedAmount;

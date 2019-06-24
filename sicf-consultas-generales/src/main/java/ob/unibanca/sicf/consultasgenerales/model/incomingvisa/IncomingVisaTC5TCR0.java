@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class IncomingVisaTCR0 {
+public class IncomingVisaTC5TCR0 {
 
 		private Integer idSecuenciaIncoming;
 		private String transactionCode;

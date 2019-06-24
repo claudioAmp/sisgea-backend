@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTCR0;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.service.asincrono.IAsyncFileService;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaService;
 import ob.unibanca.sicf.consultasgenerales.service.subreporttmp.SubReportTmp;
@@ -43,7 +43,7 @@ public class IncomingVisaExportacionController {
 		int chunk = 0;
 
 		List<Future<SubReportTmp>> futures = new ArrayList<>();
-		List<IncomingVisaTCR0> subReportResult;
+		List<IncomingVisaTC5TCR0> subReportResult;
 		
 		/*do {
 			CriterioPaginacion<CriterioBusquedaIncomingVisaTCR0> criterioPaginacion = PaginacionUtil

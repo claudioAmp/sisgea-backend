@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomingVisaTCR1 {
+public class IncomingVisaTC5TCR1 {
 	private Integer idSecuenciaIncoming;
 	private Integer chargebackRefNumber;
 	private String documentationIndicator;
