@@ -11,8 +11,11 @@ import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTC10Mapper;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC10;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
+import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
+import ob.unibanca.sicf.consultasgenerales.util.pagination.builder.OracleSqlQueryBuilder;
 
 @Service
 public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
@@ -27,6 +30,7 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 	public Page<IncomingVisaTC10TCR0> buscaPorCriteriosTCR0PorPagina(
 			CriterioBusquedaIncomingVisaTC10 criterioBusqueda, int pageNo, int pageSize){
 		
+		
 		PageHelper.startPage(pageNo, pageSize);
 		
 		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0(criterioBusqueda);
@@ -40,5 +44,23 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 		return this.incomingVisaTC10Mapper.buscarPorIdSecuenciaTCR0(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"0"));
 	}
+	
+	public Page<IncomingVisaTC10TCR0> buscaPorCriteriosTCR0PorPaginaAggrid(
+			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,
+			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0>criterioPaginacion){
+		criterioPaginacion.getDatRequest().setPivotMode(false);
+		OracleSqlQueryBuilder sql= new OracleSqlQueryBuilder();
+		sql.createSql(criterioPaginacion.getDatRequest());
+		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
+		EstructuraConsulta estructuraConsulta= new EstructuraConsulta();
+		estructuraConsulta.setSelectSql(sql.selectSql());
+		estructuraConsulta.setWhereSql(sql.whereSql());
+		estructuraConsulta.setGroupBySql(sql.groupBySql());
+		estructuraConsulta.setOrderBySql(sql.orderBySql());
+		criterioBusqueda.setEstructuraConsulta(estructuraConsulta);
+		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0Aggrid(criterioBusqueda);
+		
+	}
+	
 	
 }

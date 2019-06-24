@@ -58,6 +58,48 @@
 			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
 		</if>
    	</select>
+   	
+   	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
+		<if  test="selectSql != null " >
+			${estructuraConsulta.selectSql}
+		</if>
+		FROM VI_CON_MOV_INC_TC10_TCR0 a	
+		
+		WHERE
+		<include refid="fragmentoWhereGet" /> 
+		<include refid="fragmentoWhereGetMultiples" />
+		<if  test="whereSql != null " >
+			${estructuraConsulta.whereSql}
+		</if>
+		<if  test="groupBySql != null " >
+			${estructuraConsulta.groupBySql}
+		</if>
+		<if  test="orderBySql != null " >
+			${estructuraConsulta.orderBySql}
+		</if>
+   	</select>
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+   	
 	
 	
    	
