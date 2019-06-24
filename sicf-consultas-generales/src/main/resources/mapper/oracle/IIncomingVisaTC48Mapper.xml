@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriteriosTCR0" >
 		SELECT *
-		FROM VI_CON_MOV_INC_TC48_TCR0 a
+		FROM VIE_CON_MOV_INC_TC48_TCR0 a
 	</sql>
 	
 	<sql id = "fragmentoWhereGet" >
@@ -21,7 +21,6 @@
 					#{item}
 				</foreach>
 		</if>
-		
 	</sql>
 	
 	
@@ -31,30 +30,22 @@
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
-   	
-   	<sql id="framentoSelectTCR0" >
+     
+	 
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0Det" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_TC48_TCR0_DET a
-	</sql>
-  
-	 
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0Det" statementType="PREPARED">		
-		<include refid="framentoSelectTCR0" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
 		</if>
    	</select>
-   	
-   	<sql id="framentoSelectTCR1" >
+	
+   	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR1" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_TC48_TCR1 a
-	</sql>
-	
-   	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR1" statementType="PREPARED">		
-		<include refid="framentoSelectTCR0" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
