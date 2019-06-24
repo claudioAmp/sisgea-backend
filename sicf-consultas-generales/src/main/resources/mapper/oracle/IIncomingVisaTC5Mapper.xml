@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriterios" >
 		SELECT *
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR0 a
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
 	</sql>
 	
 	<sql id = "fragmentoWhereGet" >
@@ -115,7 +115,7 @@
 	 <select id="buscarPorIdSecuenciaTC5TCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR0" statementType="PREPARED">		
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR0 a
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
@@ -125,7 +125,7 @@
 	 <select id="buscarPorIdSecuenciaTC5TCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR1" statementType="PREPARED">			
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR1 a
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR1 a
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
@@ -135,7 +135,7 @@
    	 <select id="buscarPorIdSecuenciaTC5TCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR3" statementType="PREPARED">	
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR3 a
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR3 a
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
@@ -145,7 +145,7 @@
    	 <select id="buscarPorIdSecuenciaTC5TCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR4" statementType="PREPARED">		
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR4 a	
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR4 a	
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
@@ -155,7 +155,7 @@
    	 <select id="buscarPorIdSecuenciaTC5TCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR5" statementType="PREPARED">		
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TC5_TCR5 a	
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR5 a	
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
