@@ -61,6 +61,7 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	public List<Campo> buscarCamposPorUsuarioActivo() {
 		CriterioBusquedaCampo criterio = new CriterioBusquedaCampo();
 		criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		System.out.println(criterio);
 		return this.CampoMapper.buscarPorCriterios(criterio);
 	}
 }
