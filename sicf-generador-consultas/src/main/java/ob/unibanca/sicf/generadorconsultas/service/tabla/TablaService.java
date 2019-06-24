@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ITablaMapper;
@@ -52,6 +54,13 @@ public class TablaService extends MantenibleService<Tabla> implements ITablaServ
 	public void eliminarTabla(int idTabla) {
 		Tabla parametroRep = Tabla.builder().idTabla(idTabla).build();
 		this.eliminar(parametroRep);
+	}
+
+	@Override
+	public List<Tabla> buscarPermitidosTabla() {
+		CriterioBusquedaTabla criterio = new CriterioBusquedaTabla();
+		criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		return this.TablaMapper.buscarPorCriterios(criterio);
 	}
 }
 

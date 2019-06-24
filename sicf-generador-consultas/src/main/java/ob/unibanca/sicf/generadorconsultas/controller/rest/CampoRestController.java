@@ -43,6 +43,10 @@ public class CampoRestController {
 	public List<Campo> buscarTodosCampos(CriterioBusquedaCampo criterio) {
 		return this.campoService.buscarPorCriteriosCampo(criterio);
 	}
+	@GetMapping(value = "/campos/permitidos")
+	public List<Campo> buscarCamposPorUsuarioActivo() {
+		return this.campoService.buscarCamposPorUsuarioActivo();
+	}
 	@PostMapping(value = "/campos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Campo registrarCampo(@Validated({IRegistro.class, Default.class}) @RequestBody Campo Campo) {

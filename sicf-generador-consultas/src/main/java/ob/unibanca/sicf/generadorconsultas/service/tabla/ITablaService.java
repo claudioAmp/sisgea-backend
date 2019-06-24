@@ -11,6 +11,8 @@ public interface ITablaService extends IMantenibleService<Tabla> {
 
 	List<Tabla> buscarTodosTabla();
 	
+	List<Tabla> buscarPermitidosTabla();
+	
 	List<Tabla> buscarPorCriteriosTabla(CriterioBusquedaTabla criterio);
 	
 	Tabla registrarTabla(Tabla Tabla);

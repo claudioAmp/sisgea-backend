@@ -13,6 +13,8 @@ public interface ICampoService extends IMantenibleService<Campo> {
 	
 	List<Campo> buscarPorCriteriosCampo(CriterioBusquedaCampo criterio);
 	
+	List<Campo> buscarCamposPorUsuarioActivo();
+	
 	Campo registrarCampo(Campo Campo);
 	
 	Campo actualizarCampo(int idCampo, Campo Campo);

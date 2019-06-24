@@ -43,6 +43,10 @@ public class TablaRestController {
 	public List<Tabla> buscarTodosPermisosUsuario(CriterioBusquedaTabla criterio) {
 		return this.tablaService.buscarPorCriteriosTabla(criterio);
 	}
+	@GetMapping(value = "/tablas/permitidas")
+	public List<Tabla> buscarTodosPermitidos() {
+		return this.tablaService.buscarPermitidosTabla();
+	}
 	@PostMapping(value = "/tablas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Tabla registrarTabla(@Validated({IRegistro.class, Default.class}) @RequestBody Tabla tabla) {

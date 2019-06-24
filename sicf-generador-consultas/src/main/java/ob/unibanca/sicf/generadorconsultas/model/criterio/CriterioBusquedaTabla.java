@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaTabla{
 	String nombre;
 	String idTipoTabla;
+	String usuario;
 }

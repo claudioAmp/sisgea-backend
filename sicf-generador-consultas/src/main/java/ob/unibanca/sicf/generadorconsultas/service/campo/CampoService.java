@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ICampoMapper;
@@ -52,6 +54,14 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	public void eliminarCampo(int idCampo) {
 		Campo campo = Campo.builder().idCampo(idCampo).build();
 		this.eliminar(campo);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Campo> buscarCamposPorUsuarioActivo() {
+		CriterioBusquedaCampo criterio = new CriterioBusquedaCampo();
+		criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		return this.CampoMapper.buscarPorCriterios(criterio);
 	}
 }
 
