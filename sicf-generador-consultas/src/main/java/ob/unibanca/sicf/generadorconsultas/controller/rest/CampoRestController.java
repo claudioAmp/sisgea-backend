@@ -34,7 +34,6 @@ public class CampoRestController {
 	public CampoRestController(ICampoService CampoService) {
 		this.campoService = CampoService;
 	}
-	
 	@GetMapping(value = "/campos")
 	public List<Campo> buscarTodosCampos() {
 		return this.campoService.buscarTodosCampos();
