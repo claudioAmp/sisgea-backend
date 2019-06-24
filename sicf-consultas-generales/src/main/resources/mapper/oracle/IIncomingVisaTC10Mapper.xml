@@ -21,9 +21,9 @@
 					#{item}
 				</foreach>
 		</if>
-		<if  test="reasonSCodes != null and reasonSCodes.size()>0"  >
+		<if  test="reasonsCodes != null and reasonsCodes.size()>0"  >
 			AND a.REASON_CODE IN 
-				<foreach item="item" index="index" collection="reasonSCodes" open ="(" separator=","  close=")">
+				<foreach item="item" index="index" collection="reasonsCodes" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
