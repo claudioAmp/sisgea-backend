@@ -27,7 +27,7 @@ public class IncomingVisaTC5RestController {
 	}
 
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tcr0s/pagination")
+	@GetMapping(value = "/incomings-visa-tc5s-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTC5 criterioBusqueda) {
@@ -42,27 +42,27 @@ public class IncomingVisaTC5RestController {
 		return pagina;
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping("/incomings-visa-tcr0s")
+	@GetMapping("/incomings-visa-tc5s-tcr0s")
 	public IncomingVisaTC5TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR0(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tcr1s")
+	@GetMapping(value = "/incomings-visa-tc5s-tcr1s")
 	public IncomingVisaTC5TCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR1(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tcr3s")
+	@GetMapping(value = "/incomings-visa-tc5s-tcr3s")
 	public IncomingVisatTC5TCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR3(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tcr4s")
+	@GetMapping(value = "/incomings-visa-tc5s-tcr4s")
 	public IncomingVisaTC5TCR4 buscarPorIdSecuenciaTCR4(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR4(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tcr5s")
+	@GetMapping(value = "/incomings-visa-tc5s-tcr5s")
 	public IncomingVisaTC5TCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR5(criterio);
 	}
