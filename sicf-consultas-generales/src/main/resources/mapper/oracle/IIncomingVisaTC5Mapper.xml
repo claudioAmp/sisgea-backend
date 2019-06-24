@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaMapper">
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTC5Mapper">
 			
-	<sql id="consultaPorCriteriosTCR0" >
+	<sql id="consultaPorCriterios" >
 		SELECT *
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
 	</sql>
@@ -104,77 +104,58 @@
 	</sql>
 	
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTCR0"  resultType="IncomingVisaTCR0" statementType="PREPARED">	
-		<include refid="consultaPorCriteriosTCR0" />
+	<select id="buscarPorCriteriosTC5TCR0" parameterType="CriterioBusquedaIncomingVisaTC5"  resultType="IncomingVisaTC5TCR0" statementType="PREPARED">	
+		<include refid="consultaPorCriterios" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
    	
-   	<sql id="framentoSelectTCR0" >
+   	
+	 <select id="buscarPorIdSecuenciaTC5TCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR0" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR0 a
-	</sql>
-   	
-   	<sql id="framentoSelectTCR1" >
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+	
+	 <select id="buscarPorIdSecuenciaTC5TCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR1" statementType="PREPARED">			
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR1 a
-	</sql>
-	
-	 <sql id="framentoSelectTCR3" >
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   	
+   	 <select id="buscarPorIdSecuenciaTC5TCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR3" statementType="PREPARED">	
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR3 a
-	 </sql>
-	 
-	 <sql id="framentoSelectTCR4" >
+  		WHERE 
+  		<if  test="idSecuenciaIncoming != null " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+		</if>
+   	</select>
+   	
+   	 <select id="buscarPorIdSecuenciaTC5TCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR4" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INCOMING_VISA_TCR4 a	
-	 </sql>
-	 
-	 <sql id="framentoSelectTCR5" >
-		SELECT 
-			*
-		FROM VIE_CON_MOV_INCOMING_VISA_TCR5 a
-	 </sql>
-	 
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR0" statementType="PREPARED">		
-		<include refid="framentoSelectTCR0" />
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-		</if>
-   	</select>
-	
-	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR1" statementType="PREPARED">			
-		<include refid="framentoSelectTCR1" />
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-		</if>
-   	</select>
-   	
-   	 <select id="buscarPorIdSecuenciaTCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR3" statementType="PREPARED">	
-		<include refid="framentoSelectTCR3" />
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-		</if>
-   	</select>
-   	
-   	 <select id="buscarPorIdSecuenciaTCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR4" statementType="PREPARED">		
-		<include refid="framentoSelectTCR4" />
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
 		</if>		
    	</select>
    	
-   	 <select id="buscarPorIdSecuenciaTCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTCR5" statementType="PREPARED">		
-		<include refid="framentoSelectTCR5" />
+   	 <select id="buscarPorIdSecuenciaTC5TCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR5" statementType="PREPARED">		
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INCOMING_VISA_TCR5 a	
   		WHERE 
   		<if  test="idSecuenciaIncoming != null " >
 			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}

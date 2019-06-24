@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioBusquedaIncomingVisaTCR0 {
+public class CriterioBusquedaIncomingVisaTC5 {
 	
 	private Integer idSecuenciaIncoming; 
 	private String acquirerRefNumber;

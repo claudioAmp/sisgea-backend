@@ -11,19 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTCR0;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPaginacion;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.service.asincrono.IAsyncFileService;
-import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaService;
+import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc5.IIncomingVisaTC5Service;
 import ob.unibanca.sicf.consultasgenerales.service.subreporttmp.SubReportTmp;
 
 public class IncomingVisaExportacionController {
-	private @Autowired IIncomingVisaService incomingVisaService;
+	private @Autowired IIncomingVisaTC5Service incomingVisaTC5Service;
 	private @Autowired IAsyncFileService asyncFileService;
 	
 	
-	public ModelAndView exportarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTCR0 criterioBusqueda) {
+	public ModelAndView exportarPorCriteriosTCR0(CriterioBusquedaIncomingVisaTC5 criterioBusqueda) {
 		 
 		System.out.println(criterioBusqueda);
 		
@@ -46,7 +46,7 @@ public class IncomingVisaExportacionController {
 		List<IncomingVisaTC5TCR0> subReportResult;
 		
 		/*do {
-			CriterioPaginacion<CriterioBusquedaIncomingVisaTCR0> criterioPaginacion = PaginacionUtil
+			CriterioPaginacion<CriterioBusquedaIncomingVisaTC5> criterioPaginacion = PaginacionUtil
 					.getCriterioPaginacionParaReporteXLSX(criterioBusqueda, start, size);
 			subReportResult = this.tnxsSwDmpLogService
 					.filtrarTxnsSwDmpLogPaginado(criterioPaginacion);
