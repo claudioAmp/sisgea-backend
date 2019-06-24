@@ -25,12 +25,21 @@
 		<if  test="messageTypeInd != null and messageTypeInd != ''">
 			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
+<!-- 		<if test="currencyCodeTran != null and currencyCodeTran != ''"> -->
+<!-- 			AND a.CURRENCY_CODE_TRAN = #{currencyCodeTran} -->
+<!-- 		</if> -->
 	</sql>
 	
 	<sql id ="fragmentoWhereMultiples">
 		<if test="responsesCode !=null and responsesCode.size()>0">
 			AND a.RESPONSE_CODE IN 
 			<foreach item="item" index="index" collection="responsesCode" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="currencysCodeTran != null and currencysCodeTran.size()>0">
+			AND a.CURRENCY_CODE_TRAN IN
+			<foreach item="item" index="index" collection="currencysCodeTran" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>

@@ -21,4 +21,6 @@ public class CriterioBusquedaBulkfile {
 	List<Integer> responsesCode; //responseCode
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
+//	Integer currencyCodeTran;
+	List<Integer> currencysCodeTran; 
 }
