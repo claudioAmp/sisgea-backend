@@ -117,8 +117,8 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso = '' " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
 	
@@ -127,8 +127,8 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR1 a
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso = '' " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
    	
@@ -137,8 +137,8 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR3 a
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso = '' " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
    	
@@ -147,8 +147,8 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR4 a	
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso = '' " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>		
    	</select>
    	
@@ -157,8 +157,8 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR5 a	
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso = '' " >
+			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
    
