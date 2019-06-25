@@ -42,7 +42,7 @@ public class TxnSwdmplogDetalle {
 	private String cardAcceptorTermId;
 	private String cardAcceptorLocation;
 	private Integer transactionCurrency;
-	private String descripcionMonedaTransaccion;
+	private String descripcionMoneda;
 	private String origMessageType;
 	private String origTraceNumber;
 	private Date origDate;
@@ -50,12 +50,12 @@ public class TxnSwdmplogDetalle {
 	private String origAcquiringInst;
 	private String origForwardingInst;
 	private String requestingInstitution;
-	private String descripcionBINInstEmi;
+	private String descripcionBinInstEmi;
 	private String accountIdentification1;
 	private String accountIdentification2;
 	private String cardcategory;
 	private Date fechaProceso;
-	
+	private double transactionAmount;
 	private String idMembresia;
 	private String descripcionMembresia;
 	private String idServicio;

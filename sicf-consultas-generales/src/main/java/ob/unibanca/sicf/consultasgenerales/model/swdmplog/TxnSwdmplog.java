@@ -37,7 +37,7 @@ public class TxnSwdmplog {
 	private Integer transactionCurrency;
 	private String descripcionMoneda;
 	private Date fechaProceso;
-	
+	private double transactionAmount;
 	private String idMembresia;
 	private String descripcionMembresia;
 	private String idServicio;
