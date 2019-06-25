@@ -25,9 +25,6 @@
 		<if  test="messageTypeInd != null and messageTypeInd != ''">
 			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
-<!-- 		<if test="currencyCodeTran != null and currencyCodeTran != ''"> -->
-<!-- 			AND a.CURRENCY_CODE_TRAN = #{currencyCodeTran} -->
-<!-- 		</if> -->
 	</sql>
 	
 	<sql id ="fragmentoWhereMultiples">

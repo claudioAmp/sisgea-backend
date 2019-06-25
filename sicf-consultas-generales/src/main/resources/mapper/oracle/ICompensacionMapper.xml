@@ -5,9 +5,7 @@
 	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA LA GRILLA -->
 	
 	<sql id="consultaCompensacion" >
-		SELECT 
-		
-			*
+		SELECT *
 		FROM VIE_CON_COMPENSACION a
 	</sql>
 	
@@ -111,8 +109,6 @@
 		<include refid="fragmentoWhere"/> 
 		<include refid="fragmentoWhereMultiples"/>
    	</select>
-   	
-   	
    	
    	
    	<!-- CONSULTA DEL LOG CONTABLE GENERAL PARA EL DETALLE -->
