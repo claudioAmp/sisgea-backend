@@ -27,7 +27,7 @@ public class IncomingVisaTC5RestController {
 	}
 
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tc5s-tcr0s/pagination")
+	@GetMapping("/incomings-visa-tc5s-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTC5 criterioBusqueda) {
@@ -47,12 +47,12 @@ public class IncomingVisaTC5RestController {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR0(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tc5s-tcr1s")
+	@GetMapping("/incomings-visa-tc5s-tcr1s")
 	public IncomingVisaTC5TCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR1(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tc5s-tcr3s")
+	@GetMapping("/incomings-visa-tc5s-tcr3s")
 	public IncomingVisaTC5TCR3 buscarPorIdSecuenciaTCR3(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR3(criterio);
 	}
@@ -62,7 +62,7 @@ public class IncomingVisaTC5RestController {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR4(criterio);
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping(value = "/incomings-visa-tc5s-tcr5s")
+	@GetMapping("/incomings-visa-tc5s-tcr5s")
 	public IncomingVisaTC5TCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaTC5Service.buscarPorIdSecuenciaTC5TCR5(criterio);
 	}
