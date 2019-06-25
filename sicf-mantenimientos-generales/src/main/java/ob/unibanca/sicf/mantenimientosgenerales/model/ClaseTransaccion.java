@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.commons.validation.validation.CaracterNoRequerido;
 import ob.commons.validation.validation.CaracterRequerido;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
@@ -18,6 +19,6 @@ public class ClaseTransaccion {
 	private Integer idClaseTransaccion;
 	@CaracterRequerido(maxLength = 50)
 	private String descripcionClaseTransaccion;
-	@CaracterRequerido(maxLength = 2)
+	@CaracterNoRequerido(maxLength = 2)
 	private String tipoTransaccion;
 }

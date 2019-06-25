@@ -13,7 +13,7 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CorreoTelefono{
-	
+	@IdCadena(minLength = 1, maxLength = 1)
 	private String idMembresia;
 	private String descripcionMembresia;
 	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+", groups = IRegistro.class)
