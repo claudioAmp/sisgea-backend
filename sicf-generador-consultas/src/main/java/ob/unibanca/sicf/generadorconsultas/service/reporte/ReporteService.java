@@ -97,7 +97,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	public Page<Map<String, Object>> ejecutarConsulta(String consulta, PageParameter pageParameter) {
 		Map<String, String> map = new HashMap<>();
 		map.put("consulta", consulta);
-		PageHelper.startPage(pageParameter.getPageNumber(), pageParameter.getPageSize());
+		PageHelper.startPage(pageParameter.getPageNum(), pageParameter.getPageSize());
 		return reporteMapper.ejecutarConsulta(map);
 	}
 	

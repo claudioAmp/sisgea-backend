@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PageParameter {
 
-	private int pageNumber;
+	private int pageNum;
 	private int pageSize;
 
 }

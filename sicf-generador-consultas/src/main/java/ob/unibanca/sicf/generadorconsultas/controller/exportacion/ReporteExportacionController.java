@@ -2,8 +2,6 @@ package ob.unibanca.sicf.generadorconsultas.controller.exportacion;
 
 import java.util.List;
 
-import com.github.pagehelper.Page;
-import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -27,8 +27,9 @@ public class PaginaGeneradorConsulta<T> implements Serializable {
 	private List<T> list;
 	private boolean isFirstPage = false;
 	private boolean isLastPage = false;
-	private int firstRowIndex;
-	private int lastRowIndex;
+	private int indexFirstOfRows;
+  
+	private int indexLastOfRows;
 	
 	
 	public PaginaGeneradorConsulta(List<T> list) {
@@ -43,16 +44,16 @@ public class PaginaGeneradorConsulta<T> implements Serializable {
 			this.pages = page.getPages();
 			this.list = page;
 			this.total = page.getTotal();
-			this.firstRowIndex = this.pageNum > 0 ? (this.pageNum - 1) * this.pageSize : 0;
+			this.indexFirstOfRows = this.pageNum > 0 ? (this.pageNum - 1) * this.pageSize : 0;
 			this.isFirstPage = this.pageNum == 1 ? IS_TRUE : IS_FALSE;
 
 			if(this.pageNum == this.pages) {
 				this.isLastPage = true;
-				this.lastRowIndex = (int) this.total;
+				this.indexLastOfRows = (int) this.total;
 			}
 			else {
 				this.isLastPage = false;
-				this.lastRowIndex = this.firstRowIndex + this.pageSize * (this.pageNum > 0 ? 1 : 0);
+				this.indexLastOfRows = this.indexFirstOfRows + this.pageSize * (this.pageNum > 0 ? 1 : 0);
 			}
 		}
 	}
