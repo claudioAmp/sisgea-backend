@@ -17,11 +17,17 @@
 		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != ' ' and idSecuenciaIncoming != -1">
 			AND a.ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}  
 		</if>
+		<if  test="accountsNumber != null and accountsNumber != '' and accountsNumber != -1">
+			AND a.ACCOUNT_NUMBER = #{accountsNumber}  
+		</if>
 		<if  test="acquirerRefNumber != null and acquirerRefNumber != '' and acquirerRefNumber != '-1'">
 			AND a.ACQUIRER_REF_NUMBER = #{acquirerRefNumber}  
 		</if>
 		<if  test="destinationAmount != null and destinationAmount != '' and destinationAmount != -1">
 			AND a.DESTINATION_AMOUNT = #{destinationAmount}  
+		</if>
+		<if  test="destinationCurrencyCode != null and destinationCurrencyCode != '' and destinationCurrencyCode != -1">
+			AND a.DEST_CURRENCY_CODE = #{destinationCurrencyCode}  
 		</if>
 		<if  test="merchantName != null and merchantName != '' and merchantName != '-1'">
 			AND a.MERCHANT_NAME = #{merchantName}  
@@ -41,21 +47,15 @@
 					#{item}
 				</foreach>
 		</if>
-		<if  test="floorsLimitIndication != null and floorsLimitIndication.size()>0"  >
+		<if  test="idsLimitesPisos != null and idsLimitesPisos.size()>0"  >
 			AND a.FLOOR_LIMIT_INDICATOR IN 
-				<foreach item="item" index="index" collection="floorsLimitIndication" open ="(" separator=","  close=")">
+				<foreach item="item" index="index" collection="idsLimitesPisos" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
 		<if  test="transactionsCode != null and transactionsCode.size()>0" >
 			AND a.TRANSACTION_CODE IN 
 				<foreach item="item" index="index" collection="transactionsCode" open ="(" separator=","  close=")">
-					#{item}
-				</foreach>
-		</if>
-		<if  test="accountsNumber != null and accountsNumber.size()>0" >
-			AND a.ACCOUNT_NUMBER IN 
-				<foreach item="item" index="index" collection="accountsNumber" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
@@ -72,13 +72,13 @@
 				</foreach>
 		</if>
 		<if  test="institucionesEmisoras != null and institucionesEmisoras.size()>0" >
-			AND a.ID_INSTITUCION IN 
+			AND a.INSTITUCION_EMISORA IN 
 				<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
 		<if  test="institucionesReceptoras != null and institucionesReceptoras.size()>0" >
-			AND a.ID_INSTITUCION IN 
+			AND a.INSTITUCION_RECEPTORA IN 
 				<foreach item="item" index="index" collection="institucionesReceptoras" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>

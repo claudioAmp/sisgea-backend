@@ -28,10 +28,10 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private List<String> idsBines;
 	private List<Integer> idsOrigenes;
 	private List<String> entriesMode;
-	private List<String> floorsLimitIndication;
+	private List<String> idsLimitesPisos;
 	private List<String> transactionsCode;
-	private List<String> accountsNumber;
+	private String accountsNumber;
 	private List<String> accountsNumberExt;
-	private List<String> destCurrencyCode;
+	private Integer destinationCurrencyCode;
 	private List<String> cardholdersIdMethod;
 }
