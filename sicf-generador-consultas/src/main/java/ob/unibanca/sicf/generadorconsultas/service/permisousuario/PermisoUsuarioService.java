@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IPermisoUsuarioMapper;
@@ -31,6 +33,9 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<PermisoUsuario> buscarPorCriteriosPermisoUsuario(CriterioBusquedaPermisoUsuario criterio) {
+		if(criterio.getPermited()==1) {
+			criterio.setUsername(UsuarioUtil.obtenerUsername());
+		}
 		return this.permisoUsuarioMapper.buscarPorCriterios(criterio);
 	}
 	@Override

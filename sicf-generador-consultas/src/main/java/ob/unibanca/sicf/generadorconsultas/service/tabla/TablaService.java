@@ -60,7 +60,10 @@ public class TablaService extends MantenibleService<Tabla> implements ITablaServ
 	public List<Tabla> buscarPermitidosTabla() {
 		CriterioBusquedaTabla criterio = new CriterioBusquedaTabla();
 		criterio.setUsuario(UsuarioUtil.obtenerUsername());
-		return this.TablaMapper.buscarPorCriterios(criterio);
+		List<Tabla> result=this.TablaMapper.buscarPorCriterios(criterio);
+		System.out.println(criterio);
+		System.out.println(result);
+		return result;
 	}
 }
 

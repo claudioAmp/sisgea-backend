@@ -17,4 +17,6 @@ public class CriterioBusquedaPermisoUsuario{
 	String username;
 	String campo;
 	String tabla;
+	int permited;
+	
 }
