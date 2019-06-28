@@ -19,4 +19,5 @@ public class TablaQuery {
 	private String idInstancia;
 	private int orden;
 	private boolean esBase;
+	int permitido;
 }

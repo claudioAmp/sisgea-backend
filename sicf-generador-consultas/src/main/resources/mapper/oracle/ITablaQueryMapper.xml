@@ -34,7 +34,7 @@
        			AND ID_TABLA =#{idTabla}
         </if>
         <if  test=" permited!= null ">
-       			AND PERMITIDO > 0
+       			AND fun_tabla_permitida(ID_TABLA,#{usuario})  > 0
         </if>
     </select>
    

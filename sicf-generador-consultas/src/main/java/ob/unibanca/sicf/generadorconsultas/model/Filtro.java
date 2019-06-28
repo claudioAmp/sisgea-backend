@@ -24,5 +24,6 @@ public class Filtro {
 	int tipoFiltro;
 	String valor;
 	String tipoDatoValor;
+	int permitido;
 
 }
