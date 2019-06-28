@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaReporte{
 	int idReporte;
+	int permited;
+	String usuario;
 }

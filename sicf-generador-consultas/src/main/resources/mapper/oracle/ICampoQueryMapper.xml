@@ -3,8 +3,25 @@
 <mapper namespace="ob.unibanca.sicf.generadorconsultas.mapper.ICampoQueryMapper">
 
 	<sql id="consultaVistaMant">
-       SELECT 
-         *
+       SELECT ID_TABLA_QUERY
+			, ID_CAMPO_QUERY
+			, ID_REPORTE
+			, ID_TABLA
+			, TABLA
+			, ID_INSTANCIA_TABLA
+			, ID_CAMPO
+			, CAMPO
+			, ALIAS_CAMPO
+			, ID_TABLA_FROM
+			, ID_CAMPO_FROM
+			, ID_INSTANCIA_TABLA_FROM
+			, ORDER_BY
+			, EN_SELECT
+			, EN_GROUP_BY
+			, FUNCION_GRUPO
+			<if  test=" permited!= null ">
+       			, fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
+            </if>
 		FROM VIE_MAN_REP_CAMPO_QUERY
 	</sql>
      <select id="buscarTodos" resultType="CampoQuery" statementType="PREPARED">
@@ -12,27 +29,21 @@
     </select>
     <select id="buscarPorCriterios" resultType="CampoQuery" parameterType="CriterioBusquedaCampoQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        WHERE ID_CAMPO_QUERY > 0
         <if  test=" idTablaQuery!= null and idTablaQuery != '' ">
-       			WHERE
-       			ID_TABLA_QUERY =#{idTablaQuery}
+       			AND ID_TABLA_QUERY =#{idTablaQuery}
         </if>
          <if  test=" idCampoQuery!= null and idCampoQuery != '' ">
-       			WHERE
-       			ID_CAMPO_QUERY =#{idCampoQuery}
+       			AND ID_CAMPO_QUERY =#{idCampoQuery}
         </if>
         <if  test=" idReporte!= null and idReporte != '' ">
-       			WHERE
-       			ID_REPORTE =#{idReporte}
+       			AND ID_REPORTE =#{idReporte}
         </if>
         <if  test=" idTabla!= null and idTabla != ''">
-       			WHERE
-       			ID_TABLA =#{idTabla}
-        </if>
-        
-        <if  test="idTabla!= null and idTabla != ''and idReporte!= null and idReporte != ''">
-        	WHERE
-        	    ID_REPORTE =#{idReporte}
        			AND ID_TABLA =#{idTabla}
+        </if>
+        <if  test=" permited!= null ">
+       			AND PERMITIDO > 0
         </if>
     </select>
    

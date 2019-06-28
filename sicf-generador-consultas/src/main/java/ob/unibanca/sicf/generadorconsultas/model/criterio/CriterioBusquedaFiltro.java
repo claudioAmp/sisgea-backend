@@ -17,6 +17,8 @@ public class CriterioBusquedaFiltro{
 	int idTabla;
 	int idCampo;
 	int idinstancia;
+	int permited;
+	String usuario;
 	/*int idOperador;
 	String simboloOperador;
 	String operadorLogico;

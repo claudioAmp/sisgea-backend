@@ -3,8 +3,16 @@
 <mapper namespace="ob.unibanca.sicf.generadorconsultas.mapper.ITablaQueryMapper">
 
 	<sql id="consultaVistaMant">
-       SELECT 
-		  *
+       SELECT ID_TABLA_QUERY
+			, ID_REPORTE
+			, ID_TABLA
+			, TABLA
+			, ID_INSTANCIA
+			, ORDEN
+			, ES_BASE
+			<if  test=" permited!= null ">
+       			, fun_tabla_permitida(ID_TABLA,#{usuario}) AS "PERMITIDO"
+            </if>
         FROM
 		VIE_MAN_REP_TABLA_QUERY
     </sql>
@@ -14,24 +22,19 @@
     </select>
 	<select id="buscarPorCriterios" resultType="TablaQuery" parameterType="CriterioBusquedaTablaQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        WHERE
+       			ID_TABLA_QUERY > 0
         <if  test="idTablaQuery!= null and idTablaQuery != ''">
-       			WHERE
-       			ID_TABLA_QUERY =#{idTablaQuery}
+       			AND ID_TABLA_QUERY =#{idTablaQuery}
         </if>
         <if  test="idReporte!= null and idReporte != ''">
-       			WHERE
-       			ID_REPORTE =#{idReporte}
+       			AND ID_REPORTE =#{idReporte}
         </if>
         <if  test="idTabla!= null and idTabla != ''">
-       			WHERE
-       			ID_TABLA =#{idTabla}
-        </if>
-        
-        <if  test="idTabla!= null and idTabla != '' and idReporte!= null and idReporte != '' and idTablaQuery!= null and idTablaQuery != ''">
-        	WHERE
-        	    ID_TABLA_QUERY =#{idTablaQuery}
        			AND ID_TABLA =#{idTabla}
-       			AND ID_REPORTE =#{idReporte}
+        </if>
+        <if  test=" permited!= null ">
+       			AND PERMITIDO > 0
         </if>
     </select>
    

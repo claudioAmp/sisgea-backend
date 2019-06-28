@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ITablaQueryMapper;
@@ -31,6 +33,9 @@ public class TablaQueryService extends MantenibleService<TablaQuery> implements 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<TablaQuery> buscarPorCriteriosTablaQuery(CriterioBusquedaTablaQuery criterio) {
+		if(criterio.getPermited()==1) {
+			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		}
 		return this.TablaQueryMapper.buscarPorCriterios(criterio);
 	}
 	@Override

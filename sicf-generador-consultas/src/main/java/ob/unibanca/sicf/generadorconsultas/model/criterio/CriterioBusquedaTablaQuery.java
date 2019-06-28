@@ -14,4 +14,6 @@ public class CriterioBusquedaTablaQuery{
 	int idReporte;
 	int idTabla;
 	int idTablaQuery;
+	int permited;
+	String usuario;
 }

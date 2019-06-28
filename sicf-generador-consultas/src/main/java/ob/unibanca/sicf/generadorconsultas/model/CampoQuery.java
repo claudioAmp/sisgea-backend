@@ -28,5 +28,6 @@ public class CampoQuery {
     boolean enGroupBy;
     String funcionGrupo;
     String idTipoDato;
+    int permitido;
 
 }

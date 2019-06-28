@@ -19,6 +19,8 @@ public class CriterioBusquedaCampoQuery{
 	int idTablaFrom;
 	String idInstanciaTablaFrom;
 	int idCampoFrom;
+	int permited;
+	String usuario;
 	/*int idCampo;
 	int idTablaFrom;
 	int idCampoFrom;

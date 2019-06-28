@@ -8,12 +8,15 @@ import com.github.pagehelper.PageHelper;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaFiltro;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
@@ -21,11 +24,13 @@ import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
+import ob.unibanca.sicf.generadorconsultas.service.filtro.IFiltroService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
 
 import java.util.Map;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.Filtro;
 
 
 @Service
@@ -34,6 +39,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	private @Autowired final IReporteMapper reporteMapper;
 	private @Autowired ITablaQueryService tablaQueryService;
 	private @Autowired ICampoQueryService campoQueryService;
+	private @Autowired IFiltroService filtroService;
 	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;
 	
 	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService) {
@@ -44,16 +50,10 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarTodosReportes() {
-		List<Reporte> reportes = this.buscarTodos();
-		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
-		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
-		for(Reporte r : reportes) {
-			criterioTabla.setIdReporte(r.getIdReporte());
-			criterioCampo.setIdReporte(r.getIdReporte());
-			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTabla));
-			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
-		}
-		return reportes;
+		//List<Reporte> reportes = this.buscarTodos();
+		CriterioBusquedaReporte criterio = new CriterioBusquedaReporte();
+		criterio.setPermited(1);
+		return this.buscarPorCriteriosReporte(criterio);
 		
 	}
 	@Override
@@ -62,12 +62,20 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		List<Reporte> reportes = this.reporteMapper.buscarPorCriterios(criterio);
 		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
 		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
+		CriterioBusquedaFiltro criterioFiltro = new CriterioBusquedaFiltro();
+		if(criterio.getPermited()==1) {
+			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterioTabla.setPermited(1);
+			criterioCampo.setPermited(1);
+			criterioFiltro.setPermited(1);	
+		}
 		for(Reporte r : reportes) {
 			criterioTabla.setIdReporte(r.getIdReporte());
 			criterioCampo.setIdReporte(r.getIdReporte());
 			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTabla));
 			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
-		}
+			r.setFiltros(this.filtroService.buscarPorCriteriosFiltro(criterioFiltro));
+		}		
 		return reportes;
 	}
 	@Override
@@ -115,7 +123,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		int idReporte=ultSeq.getValor().intValue();
 		Reporte.setIdReporte(idReporte);
 		this.registrarReporte(Reporte);
-		int idxTabla=0,idxCampo=0;
+		int idxTabla=0,idxCampo=0,idxFiltro=0;
 		for(TablaQuery t : Reporte.getTablas()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("TABLA_QUERY");
 			t.setIdTablaQuery(ultSeq.getValor().intValue());
@@ -136,6 +144,17 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			}
 			idxCampo++;
 		}
+		for(Filtro f : Reporte.getFiltros()) {
+			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("FILTRO_CAMPO");
+			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),f.getIdCampo(), f.getIdInstancia());
+			if(c!=null) {
+				f.setIdCampoQuery(c.getIdCampoQuery());
+				f.setIdFiltroCampo(ultSeq.getValor().intValue());
+				Reporte.getFiltros().set(idxFiltro, f);
+				this.filtroService.registrar(f);
+			}
+			idxFiltro++;
+		}
 	}
 	public TablaQuery getTablaQuery(List<TablaQuery> tablas, int idTabla,String instancia) {
 		TablaQuery tq=null;
@@ -145,6 +164,15 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			}
 		}
 		return tq;
+	}
+	public CampoQuery getCampoQuery(List<CampoQuery> campos, int idCampo,String instancia) {
+		CampoQuery cq=null;
+		for(int i=0;i<campos.size();i++) {
+			if(campos.get(i).getIdCampo()==idCampo&&campos.get(i).getIdInstanciaTabla().compareTo(instancia)==0) {
+				return campos.get(i);
+			}
+		}
+		return cq;
 	}
 	
 	
