@@ -14,7 +14,10 @@
 		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">
 			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
 		</if>
-		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != ' ' and idSecuenciaIncoming != -1">
+		<if  test="fechaIncomingInicio != null and fechaIncomingInicio !='' and fechaIncomingFin != null and fechaIncomingFin !='' ">
+			AND a.PURCHASE_DATE BETWEEN #{fechaIncomingInicio}  AND #{fechaIncomingFin}
+		</if>
+		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != '' and idSecuenciaIncoming != -1">
 			AND a.ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}  
 		</if>
 		<if  test="accountsNumber != null and accountsNumber != '' and accountsNumber != -1">
@@ -65,9 +68,9 @@
 					#{item}
 				</foreach>
 		</if>
-		<if  test="idsOrigenes != null and idsOrigenes.size()>0" >
-			AND a.ID_ORIGEN IN 
-				<foreach item="item" index="index" collection="idsOrigenes" open ="(" separator=","  close=")">
+		<if  test="idsCanales != null and idsCanales.size()>0" >
+			AND a.ID_CANAL IN 
+				<foreach item="item" index="index" collection="idsCanales" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>

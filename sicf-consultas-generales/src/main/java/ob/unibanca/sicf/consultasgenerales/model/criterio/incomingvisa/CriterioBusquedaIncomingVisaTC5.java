@@ -17,6 +17,8 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String fechaProcesoFin;
 	private String purchaseDateInicio;
 	private String purchaseDateFin;
+	private String fechaIncomingInicio;
+	private String fechaIncomingFin;
 	private double destinationAmount;
 	private String merchantName;
 	private String authorizationCode;
@@ -26,7 +28,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private List<Integer> institucionesEmisoras;
 	private List<Integer> institucionesReceptoras;
 	private List<String> idsBines;
-	private List<Integer> idsOrigenes;
+	private List<Integer> idsCanales;
 	private List<String> entriesMode;
 	private List<String> idsLimitesPisos;
 	private List<String> transactionsCode;
