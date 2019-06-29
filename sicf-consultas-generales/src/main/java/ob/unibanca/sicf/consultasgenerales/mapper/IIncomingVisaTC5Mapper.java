@@ -19,14 +19,14 @@ public interface IIncomingVisaTC5Mapper {
 	
 	Page<IncomingVisaTC5TCR0> buscarPorCriteriosTC5TCR0(CriterioBusquedaIncomingVisaTC5 criterioPaginacion);
 	
-	Optional<IncomingVisaTC5TCR0> buscarPorIdSecuenciaTC5TCR0(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR0 buscarPorIdSecuenciaTC5TCR0(CriterioBusquedaIncomingVisa criterio);
 	
-	Optional<IncomingVisaTC5TCR1> buscarPorIdSecuenciaTC5TCR1(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR1 buscarPorIdSecuenciaTC5TCR1(CriterioBusquedaIncomingVisa criterio);
 	
-	Optional<IncomingVisaTC5TCR3> buscarPorIdSecuenciaTC5TCR3(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR3 buscarPorIdSecuenciaTC5TCR3(CriterioBusquedaIncomingVisa criterio);
 	
-	Optional<IncomingVisaTC5TCR4> buscarPorIdSecuenciaTC5TCR4(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR4 buscarPorIdSecuenciaTC5TCR4(CriterioBusquedaIncomingVisa criterio);
 	
-	Optional<IncomingVisaTC5TCR5> buscarPorIdSecuenciaTC5TCR5(CriterioBusquedaIncomingVisa criterio);
+	IncomingVisaTC5TCR5 buscarPorIdSecuenciaTC5TCR5(CriterioBusquedaIncomingVisa criterio);
 
 }

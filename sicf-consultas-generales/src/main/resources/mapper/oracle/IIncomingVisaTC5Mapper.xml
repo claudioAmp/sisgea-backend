@@ -60,7 +60,7 @@
 				</foreach>
 		</if>
 		<if  test="cardholdersIdMethod != null and cardholdersIdMethod.size()>0" >
-			AND a.CARDHOLER_ID_METHOD IN 
+			AND a.CARDHOLDER_ID_METHOD IN 
 				<foreach item="item" index="index" collection="cardholdersIdMethod" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>

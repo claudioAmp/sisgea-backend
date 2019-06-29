@@ -17,7 +17,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String fechaProcesoFin;
 	private String purchaseDateInicio;
 	private String purchaseDateFin;
-	private Integer destinationAmount;
+	private double destinationAmount;
 	private String merchantName;
 	private String authorizationCode;
 	private String posTerminalCapability;
