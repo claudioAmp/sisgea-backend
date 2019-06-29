@@ -27,10 +27,13 @@ public class Bulkfile {
 	String descripcionResponseCode;
 	String authorizationId;
 	Integer currencyCodeTran;
+	String descripcionCurrencyCodeTran;
 	Integer accessFeeLoc;
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
+	String descripcionCurrencyCodeSett;
 	Integer amountSettlement;
+	String amountSettlementInd;
 	Integer interchangeFee;
 	String interchangeFeeInd;
 	Date fechaProceso;

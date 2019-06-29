@@ -41,6 +41,7 @@ public class BulkfileDetalle {
 	String intracurrencyAgreeCode;
 	String authorizationId;
 	Integer currencyCodeTran;
+	String descripcionCurrencyCodeTran;
 	Integer impliedDecimalTran;
 	Integer amountTransactionLoc;
 	String amountTransactionLocInd;
@@ -49,6 +50,7 @@ public class BulkfileDetalle {
 	Integer accessFeeLoc;
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
+	String descripcionCurrencyCodeSett;
 	Integer impliedDecimalSett;
 	Integer conversionRateSett;
 	Integer amountSettlement;
