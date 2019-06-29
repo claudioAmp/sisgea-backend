@@ -16,6 +16,6 @@ public class TransaccionMarcaInt {
 	//private String descripcionMembresia;
 	private String idTransaccion;
 	@CaracterRequerido(maxLength = 20)
-   private String descripcionTransaccion;
+	private String descripcionTransaccion;
    
 }
