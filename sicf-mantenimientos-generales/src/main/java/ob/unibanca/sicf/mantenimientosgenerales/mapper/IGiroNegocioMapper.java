@@ -11,7 +11,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.GiroNegocio;
 @Mapper
 public interface IGiroNegocioMapper extends IMantenibleMapper<GiroNegocio>{
 	
-	List<GiroNegocio> buscarTodosGiroNegocioPOS();
+	List<GiroNegocio> buscarTodosGiroNegocio();
 	
 	List<GiroNegocio> buscarGiroNegocioPorMembresia(String idMembresia);
 }

@@ -25,8 +25,8 @@ public class GiroNegocioService extends MantenibleService<GiroNegocio> implement
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<GiroNegocio> buscarTodosGiroNegocioPOS() {
-		return this.buscarTodos();
+	public List<GiroNegocio> buscarTodosGiroNegocio() {
+		return this.giroNegocioMapper.buscarTodosGiroNegocio();
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.GiroNegocio;
 
 public interface IGiroNegocioService extends IMantenibleService<GiroNegocio> {
 	
-	List<GiroNegocio> buscarTodosGiroNegocioPOS();
+	List<GiroNegocio> buscarTodosGiroNegocio();
 	
 	List<GiroNegocio> buscarGiroNegocioPorMembresia(String idMembresia);
 }

@@ -7,11 +7,11 @@
         FROM VIE_MAN_GIRO_NEGOCIO
     </sql>
 
-    <select id="buscarTodosGiroNegocioPOS" resultType="GiroNegocio">
+    <select id="buscarTodosGiroNegocio" resultType="GiroNegocio">
         <include refid="consultaVistaMant"/>
     </select>
 
-    <select id="buscarCorreosTelefonosPorMembresia" resultType="GiroNegocio">
+    <select id="buscarGiroNegocioPorMembresia" resultType="GiroNegocio">
         <include refid="consultaVistaMant"/>
         WHERE id_membresia = #{idMembresia}
     </select>

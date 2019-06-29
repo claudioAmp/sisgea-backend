@@ -15,21 +15,19 @@ import ob.unibanca.sicf.mantenimientosgenerales.service.gironegocio.IGiroNegocio
 @Validated
 @RestController
 public class GiroNegocioRestController {
-	
+
 	private final IGiroNegocioService giroNegocioService;
-	
+
 	public GiroNegocioRestController(IGiroNegocioService giroNegocioService) {
 		this.giroNegocioService = giroNegocioService;
 	}
-	
-	@PreAuthorize("hasPermission('MANT_GIRONEGO', '2')")
+
 	@GetMapping("/giros-negocio")
-	public List<GiroNegocio> buscarTodos(){
-		return this.giroNegocioService.buscarTodosGiroNegocioPOS();
+	public List<GiroNegocio> buscarTodos() {
+		return this.giroNegocioService.buscarTodosGiroNegocio();
 	}
-	
-	@PreAuthorize("hasPermission('MANT_GIRONEGO', '2')")
-	@GetMapping("/membresias/{idMembresia}/giros-negocio")
+
+	@GetMapping("/giros-negocio/{idMembresia}")
 	public List<GiroNegocio> buscarModosEntradasPOSPorMembresia(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia) {
 		return this.giroNegocioService.buscarGiroNegocioPorMembresia(idMembresia);
