@@ -10,18 +10,18 @@
 	</sql>
 	
 	<sql id = "fragmentoWhere">
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null and fechaProcesoInicio != '' and fechaProcesoFin != ''">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
 		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null and fechaTransaccionInicio != '' and fechaTransaccionFin != ''">
-			 a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+			 AND a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
 		</if>
 		<if  test="accountNumber != null and accountNumber != ''">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}
 		</if>
 		<if  test="traceNumber != null and traceNumber != ''">
 			 AND a.TRACE_NUMBER = #{traceNumber}
-		</if>
-		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null and fechaProcesoInicio != '' and fechaProcesoFin != ''">
-			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
-		</if>
+		</if>	
 		<if  test="messageTypeInd != null and messageTypeInd != ''">
 			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
