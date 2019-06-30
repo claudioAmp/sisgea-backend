@@ -22,7 +22,9 @@ public class IncomingVisaTC5TCR0 {
 	private String idBin;
 	private String descIdBin;
 	private String binReceptor;
+	private String descBinReceptor;
 	private String accountNumber;
+	private String accountNumberExt;
 	private String floorLimitIndicator;
 	private String descFloorLimitIndicator;
 	private String crbExceptionFileInd;
@@ -46,7 +48,8 @@ public class IncomingVisaTC5TCR0 {
 	private String merchantStateCode;
 	private String requestPaymentServ;
 	private String numberPaymentForms;
-	private String reasonCode;
+	private String reasonCode; 
+	private String descReasonCode;
 	private String usageCode;
 	private String descUsageCode;
 	private String settlementFlag;
@@ -57,9 +60,11 @@ public class IncomingVisaTC5TCR0 {
 	private String cardholderIdMethod;
 	private String descCardholderIdMethod;
 	private String collectionOnlyFlag;
-	private String entryMode;
+	private String posEntryMode;
+	private String descPosEntryMode;
 	private Date centralProcessingDate;
-	private String reimbursementAttribute;
+	private String reimbursementAttribute; 
+	private String descReimbursementAttribute;
 	private Date fechaProceso;
 	private Integer institucionEmisora;
 	private Integer institucionReceptora;
@@ -68,7 +73,6 @@ public class IncomingVisaTC5TCR0 {
 	private Integer idOrigen;
 	private String descIdOrigen;
 	private Integer idProducto;
-	private String descIdProducto;
 	private Integer idCanal;
 	private String descCanal;
 	private Date fechaIncoming;

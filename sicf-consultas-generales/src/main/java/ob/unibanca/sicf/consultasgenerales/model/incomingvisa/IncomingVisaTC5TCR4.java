@@ -11,6 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR4 {
 	private Integer idSecuenciaIncoming;
+	private Date fechaProceso;
+	private String transactionCode;
+	private String descTransactionCode;
+	private String transCodeQualifier;
+	private String descTransCodeQualifier;
 	private String businessFormatCode;
 	private String networkIdCode;
 	private String contactInformation;
@@ -20,5 +25,4 @@ public class IncomingVisaTC5TCR4 {
 	private String surchargeCreDebInd;
 	private Integer surchargeAmountCbc;
 	private Integer moneyTransferForeingFee;
-	private Date fechaProceso;
 }

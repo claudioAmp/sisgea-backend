@@ -13,6 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR1 {
 	private Integer idSecuenciaIncoming;
+	private String transactionCode;
+	private String descTransactionCode;
+	private String transCodeQualifier;
+	private String descTransCodeQualifier;
 	private Integer chargebackRefNumber;
 	private String documentationIndicator;
 	private String memberMessageText;
