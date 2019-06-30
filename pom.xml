@@ -27,7 +27,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>sicf-backend</name>
-    <description>Subsistema sicf-backend del sistema SICF de UNIBANCA</description>
+    <description>Subsistema sicf-backend del sistema SICF para UNIBANCA</description>
 
     <properties>
         <java.version>11</java.version>
@@ -35,7 +35,8 @@
         <m2e.apt.activation>disabled</m2e.apt.activation>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <pagehelper.starter.version>1.2.10</pagehelper.starter.version> 
+        <pagehelper.starter.version>1.2.10</pagehelper.starter.version>
+        <owasp.dependency-check.skip>true</owasp.dependency-check.skip>
     </properties>
 
     <dependencies>
@@ -148,5 +149,26 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+    
+    <build>
+        <plugins>
+            <!--Plugin de OWASP para detectar vulnerabilidades en las líbrerias utilizados-->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>5.0.0-M2</version>
+                <configuration>
+                    <skip>${owasp.dependency-check.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     
 </project>
