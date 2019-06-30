@@ -1,8 +1,5 @@
 package ob.unibanca.sicf.consultasgenerales.service.swdmplog;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
@@ -15,10 +12,8 @@ import com.github.pagehelper.PageHelper;
 
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.ISwdmplogMapper;
-import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Columna;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
-import ob.unibanca.sicf.consultasgenerales.util.PaginacionUtils;
 
 @Service
 public class SwdmplogService implements ISwdmplogService {
@@ -46,8 +41,5 @@ public class SwdmplogService implements ISwdmplogService {
 		return this.swdmplogMapper.buscarDetalle(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdMovTxnSwdmplog()));
 	}
-
-	
-	
 	
 }

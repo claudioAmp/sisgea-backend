@@ -1,9 +1,6 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog;
 
-import java.util.Date;
 import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +31,6 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private String codigoAutorizacion;
 	private String numeroReferencia;
 	private List<String> idsModoEntradaPos;
-	
 	private String tipoMensaje;
 	private String fechaInicioSwitch;
 	private String fechaFinSwitch;

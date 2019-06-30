@@ -34,7 +34,5 @@ public class BulkfileService implements  IBulkfileService{
 		return this.bulkfileMapper.buscarDetalle(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getTraceNumber()));
 	}
-
-
 	
 }
