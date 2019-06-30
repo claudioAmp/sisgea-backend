@@ -9,6 +9,7 @@
              , direccion
              , descripcion_institucion
         FROM VIE_MAN_ATM_RED_UNICARD
+        ORDER BY id_atm ASC, id_institucion ASC
     </sql>
 
     <select id="buscarTodos" resultType="ATMRedUnicard" statementType="PREPARED">

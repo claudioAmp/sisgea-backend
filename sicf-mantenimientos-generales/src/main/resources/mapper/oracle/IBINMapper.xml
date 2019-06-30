@@ -20,6 +20,7 @@
              , id_moneda_alterna
              , descripcion_moneda_alterna
             FROM VIE_MAN_BIN
+            ORDER BY id_bin ASC
     </sql>
 
     <select id="buscarTodos" resultType="BIN" statementType="PREPARED">

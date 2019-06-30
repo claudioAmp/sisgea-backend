@@ -6,6 +6,7 @@
         SELECT id_canal
              , descripcion      AS descripcion_canal
         FROM MAE_CANAL
+        ORDER BY id_canal
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">

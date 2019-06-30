@@ -8,6 +8,7 @@
              , descripcion_terminal_pos
              , descripcion_membresia
         FROM VIE_MAN_CAPACIDAD_TERM_POS
+        ORDER BY id_terminal_pos ASC
     </sql>
 
     <select id="buscarTodos" resultType="CapacidadTerminalPOS" statementType="PREPARED">

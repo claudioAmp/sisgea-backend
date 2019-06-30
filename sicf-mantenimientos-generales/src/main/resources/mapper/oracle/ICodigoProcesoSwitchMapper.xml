@@ -13,6 +13,7 @@
              , descripcion_codigo_transaccion
              , descripcion_clase_transaccion
         FROM VIE_MAN_CODIGO_PROCESO_SWITCH
+        ORDER BY id_codigo_proceso_switch ASC
     </sql>
 
     <select id="buscarTodos" resultType="CodigoProcesoSwitch"

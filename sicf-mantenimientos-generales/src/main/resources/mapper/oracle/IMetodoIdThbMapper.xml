@@ -8,6 +8,7 @@
              , descripcion_metodo_id_thb
              , descripcion_membresia
         FROM VIE_MAN_METODO_ID_THB
+        ORDER BY id_metodo_id_thb ASC
     </sql>
 
     <select id="buscarTodos" resultType="MetodoIdThb" statementType="PREPARED">

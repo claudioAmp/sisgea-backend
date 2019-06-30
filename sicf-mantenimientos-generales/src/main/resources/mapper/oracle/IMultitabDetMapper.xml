@@ -9,6 +9,7 @@
              , abreviatura
              , descripcion_multitab_cab
         FROM VIE_MAN_MULTITAB_DET
+        ORDER BY id_multitab_cab ASC, id_multitab_det ASC
     </sql>
 
     <select id="buscarTodos" resultType="MultitabDet" statementType="PREPARED">

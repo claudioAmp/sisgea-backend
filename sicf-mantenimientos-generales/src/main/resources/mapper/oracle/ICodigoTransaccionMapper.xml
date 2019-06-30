@@ -14,6 +14,7 @@
              , descripcion_clase_transaccion
              , descripcion_codigo_facturacion
         FROM VIE_MAN_CODIGO_TRANSACCION
+        ORDER BY id_clase_transaccion 
     </sql>
 
     <select id="buscarTodos" resultType="CodigoTransaccion"

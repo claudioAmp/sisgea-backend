@@ -11,6 +11,7 @@
 		,continente
 		,moneda_iso
        FROM vie_man_pais
+       ORDER BY id_pais ASC
     </sql>
 
      <select id="buscarTodos" resultType="Pais"

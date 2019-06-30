@@ -7,6 +7,7 @@
         SELECT id_origen
              , descripcion AS descripcion_origen
         FROM MAE_ORIGEN
+        ORDER BY id_origen ASC
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
