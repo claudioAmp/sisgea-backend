@@ -50,5 +50,6 @@ public class Compensacion {
 	String nombreAdquirente;
 	String ciudadAdquirente;
 	String paisAdquirente;
+	String descPaisAdquirente;
 	String horaTransaccion;
 }

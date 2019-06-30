@@ -80,6 +80,7 @@ public class CompensacionDetalle {
 	String nombreAdquirente;
 	String ciudadAdquirente;
 	String paisAdquirente;
+	String descPaisAdquirente;
 	String estadoAdquirente;
 	String terminalPos;
 	String descTerminalPos;
