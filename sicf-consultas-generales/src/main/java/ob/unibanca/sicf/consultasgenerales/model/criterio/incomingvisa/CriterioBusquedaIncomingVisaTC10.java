@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
+import ob.unibanca.sicf.consultasgenerales.util.pagination.request.EnterpriseGetRowsRequest;
 
 
 @Data
@@ -15,11 +16,13 @@ import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTC10 {
-	private Date fechaProcesoInicio;
-	private Date fechaProcesoFin;
+	private String fechaProcesoInicio;
+	private String fechaProcesoFin;
 	private List<String> transactionsCodes;
-	private List<String> reasonSCodes;
+	private List<String> reasonsCodes;
 	private List<Integer> destCurrenciesCodes;
 	EstructuraConsulta estructuraConsulta;
+	EnterpriseGetRowsRequest request;
+	
 	
 }

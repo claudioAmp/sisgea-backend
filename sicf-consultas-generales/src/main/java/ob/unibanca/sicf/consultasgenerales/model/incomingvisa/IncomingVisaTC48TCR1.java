@@ -16,9 +16,12 @@ public class IncomingVisaTC48TCR1 {
 	private Integer secuenciaIncoming;
 	private Date fechaProceso;
 	private String transactionCode;
+	private String descTransactionCode;
 	private String transCodeQualifier;
+	private String descTransCodeQualifier;
 	private String cvv2Authorization;
 	private String cvv2ResultCode;
+	private String descCvv2ResultCode;
 	private String networkIdCode;
 	private String origMessageType;
 	private String traceNumber;

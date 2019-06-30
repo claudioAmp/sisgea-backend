@@ -55,7 +55,6 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 		EstructuraConsulta estructuraConsulta= new EstructuraConsulta();
 		estructuraConsulta.setSelectSql(sql.selectSql());
 		estructuraConsulta.setWhereSql(sql.whereSql());
-		estructuraConsulta.setGroupBySql(sql.groupBySql());
 		estructuraConsulta.setOrderBySql(sql.orderBySql());
 		criterioBusqueda.setEstructuraConsulta(estructuraConsulta);
 		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0Aggrid(criterioBusqueda);

@@ -45,11 +45,11 @@ public class IncomingVisaTC10RestController {
 	@GetMapping(value = "/incomings-visa-tc10s-tcr0s/pagination2")
 	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginasAggrid(
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion,
-			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,EnterpriseGetRowsRequest request) {
+			CriterioBusquedaIncomingVisaTC10 criterioBusqueda) {
 		
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		
-		criterioPaginacion.setDatRequest(request);
+		criterioPaginacion.setDatRequest(criterioBusqueda.getRequest());
 		
 		Page<IncomingVisaTC10TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPaginaAggrid(
 				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);

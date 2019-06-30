@@ -17,15 +17,22 @@ public class IncomingVisaTC10TCR0 {
 	Integer secuenciaIncoming;
 	Date fechaProceso;
 	String transactionCode;
+	String descTransactionCode;
 	String transCodeQualifier;
+	String descTransCodeQualifier;
 	String destinationBin;
+	String descDestinationBin;
 	String sourceBin;
+	String descSourceBin;
 	String reasonCode;
+	String descReasonCode;
 	String accountNumber;
 	String accountNumberExt;
 	double destinationAmount;
 	double destCurrencyCode;
+	String descDestCurrencyCode;
 	double sourceAmount;
 	double sourceCurrencyCode;
+	String descSourceCurrencyCode;
 	
 }

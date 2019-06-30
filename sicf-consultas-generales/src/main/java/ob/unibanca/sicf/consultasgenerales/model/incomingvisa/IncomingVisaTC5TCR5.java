@@ -11,14 +11,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR5 {
 	private Integer idSecuenciaIncoming;
+	private String transactionCode;
+	private String descTransactionCode;
+	private String transCodeQualifier;
+	private String descTransCodeQualifier;
 	private String transactionIdentifier;
 	private Integer authorizedAmount;
 	private String authorizCurrencyCode;
+	private String descAuthorizCurrencyCode;
 	private String authorizResponseCode;
 	private String validationCode;
 	private String excludedTransIdReason;
 	private String crsProcessingCode;
 	private String chargebackRightsInd;
+	private String descChargebackRightsInd;
 	private Integer multipleClearingSeqNumb;
 	private Integer multipleClearingSeqCount;
 	private String marketAuthorizDataInd;
@@ -40,5 +46,6 @@ public class IncomingVisaTC5TCR5 {
 	private String spendQualifiedInd;
 	private String panToken;
 	private String cvv2ResultCode;
+	private String descCvv2ResultCode;
 	private Date fechaProceso;
 }
