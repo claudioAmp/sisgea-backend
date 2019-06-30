@@ -15,12 +15,16 @@ public class IncomingVisaTC48TCR0 {
 	private Integer secuenciaIncoming;
 	private Date fechaProceso;
 	private String transactionCode;
+	private String descTransactionCode;
 	private String transCodeQualifier;
+	private String descTransCodeQualifier;
 	private String destinationBin;
+	private String descDestinationBin;
 	private String sourceBin;
-	private String constantIdentifier;
+	private String descSourceBin;
 	private String accountNumber;
 	private String responseCode;
+	private String descResponseCode;
 	private Date transactionDate;
 	private String transactionTime;
 	private String authorizationCode;
@@ -32,6 +36,8 @@ public class IncomingVisaTC48TCR0 {
 	private String processingCode;
 	private String posConditionCode;
 	private String merchantType;
+	private String descMerchantType;
 	private String networkIdentificationCode;
 	private String reimbursementAttribute;
+	private String descReimbursementAttribute;
 }
