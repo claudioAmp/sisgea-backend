@@ -18,7 +18,9 @@ public class IncomingVisaTC5TCR1 {
 	private String memberMessageText;
 	private String specialConditionInd;
 	private String feeProgramIndicator;
+	private String descFeeProgramIndicator;
 	private String issuerCharge;
+	private String descIssuerCharge;
 	private String cardAcceptorId;
 	private String terminalId;
 	private Integer nationalReimbursementFee;
@@ -37,9 +39,9 @@ public class IncomingVisaTC5TCR1 {
 	private String installmentPaymentCount;
 	private String purchaseIdentifier;
 	private Integer cashback;
-	private String  chipConditionCode;
-	private String  posEnvironment;
-	private String  descPosEnvironment;
+	private String chipConditionCode;
+	private String posEnvironment;
+	private String descPosEnvironment;
 	private Date fechaProceso;
 	private Integer numeroCuota;
 }

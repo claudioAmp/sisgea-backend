@@ -21,7 +21,7 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 
 	private String fechaInicioProceso;
 	private String fechaFinProceso;
-	private Date fechaInicioTransaccion;
+	private String fechaInicioTransaccion;
 	private String fechaFinTransaccion;
 	private String numeroTarjeta;//pan
 	private List<Integer> idsProcesoSwitch;
