@@ -14,19 +14,8 @@ import ob.unibanca.sicf.consultasgenerales.util.pagination.filter.ColumnFilter;
 @Builder
 @AllArgsConstructor
 public class EnterpriseGetRowsRequest {
-	/*private int startRow;
-	
-	private int endRow;*/
-
-    // row group columns
-    private List<ColumnVO> rowGroupCols;
-
-    // value columns
-    private List<ColumnVO> valueCols;
-
-    // pivot columns
-    private List<ColumnVO> pivotCols;
-
+	int startRow;
+	int endRow;
     // true if pivot mode is one, otherwise false
     private boolean pivotMode;
 
@@ -40,9 +29,7 @@ public class EnterpriseGetRowsRequest {
     private List<SortModel> sortModel;
     
     public EnterpriseGetRowsRequest() {
-        this.rowGroupCols = emptyList();
-        this.valueCols = emptyList();
-        this.pivotCols = emptyList();
+        
         this.groupKeys = emptyList();
         this.filterModel = emptyMap();
         this.sortModel = emptyList();

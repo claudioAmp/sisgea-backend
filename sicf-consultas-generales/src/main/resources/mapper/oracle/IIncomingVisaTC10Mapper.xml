@@ -71,9 +71,7 @@
 		<if  test="whereSql != null " >
 			${estructuraConsulta.whereSql}
 		</if>
-		<if  test="groupBySql != null " >
-			${estructuraConsulta.groupBySql}
-		</if>
+		
 		<if  test="orderBySql != null " >
 			${estructuraConsulta.orderBySql}
 		</if>

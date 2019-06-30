@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class EnterpriseGetRowsResponse {
 	private List<Map<String, Object>> data;
     //private int lastRow;
-    private List<String> secondaryColumnFields;
+    //private List<String> secondaryColumnFields;
 }
