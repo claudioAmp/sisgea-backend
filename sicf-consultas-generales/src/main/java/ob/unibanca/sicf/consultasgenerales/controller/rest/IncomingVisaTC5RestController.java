@@ -10,6 +10,7 @@ import com.github.pagehelper.Page;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR3;
@@ -27,19 +28,14 @@ public class IncomingVisaTC5RestController {
 	}
 
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
-	@GetMapping("/incomings-visa-tc5s-tcr0s/pagination")
-	public Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> buscarPorPaginas(
-			Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> criterioPaginacion,
+	@GetMapping("/incomings-visa-tc5s/pagination")
+	public Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5> buscarPorPaginas(
+			Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTC5 criterioBusqueda) {
 		System.out.println(criterioBusqueda);
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		
-		Page<IncomingVisaTC5TCR0> lista = incomingVisaTC5Service.buscaPorCriteriosTC5TCR0PorPagina(
-				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),
-				criterioPaginacion.getPageSize()); 
-
-		Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5TCR0> pagina = new Pagina<>(
-				criterioPaginacion.getCriterioBusqueda(), lista);
+		Page<IncomingVisaTC5> lista = incomingVisaTC5Service.buscaPorCriteriosTC5PorPagina(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize()); 
+		Pagina<CriterioBusquedaIncomingVisaTC5, IncomingVisaTC5> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
 	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")

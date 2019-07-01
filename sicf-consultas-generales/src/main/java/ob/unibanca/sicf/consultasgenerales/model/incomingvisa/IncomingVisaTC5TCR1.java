@@ -37,6 +37,7 @@ public class IncomingVisaTC5TCR1 {
 	private String serviceDevelopmentField;
 	private String descServiceDevelopment;
 	private String avsResponseCode;
+	private String descAvsResponseCode;
 	private String authorizationSourceCode;
 	private String purchaseIdentifierFormat;
 	private String accountSelection;

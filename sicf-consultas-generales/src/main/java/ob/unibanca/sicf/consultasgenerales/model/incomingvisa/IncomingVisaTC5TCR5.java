@@ -17,7 +17,7 @@ public class IncomingVisaTC5TCR5 {
 	private String descTransCodeQualifier;
 	private String transactionIdentifier;
 	private Integer authorizedAmount;
-	private String authorizCurrencyCode;
+	private Integer authorizCurrencyCode;
 	private String descAuthorizCurrencyCode;
 	private String authorizResponseCode;
 	private String validationCode;

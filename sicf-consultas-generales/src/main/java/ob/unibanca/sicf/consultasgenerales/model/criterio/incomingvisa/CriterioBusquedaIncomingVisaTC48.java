@@ -1,6 +1,5 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa;
 
-import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTC48 {
-	private Date fechaProcesoInicio;
-	private Date fechaProcesoFin;
-	private List<String> transactionsCodes;
+	private String fechaProcesoInicio;
+	private String fechaProcesoFin;
+	private String fechaTransaccionInicio;
+	private String fechaTransaccionFin;	
+	private String accountNumber;
+	private List<String> standInReasonsCodes;
+	private List<String> responsesCodes;
+	private List<String> merchantTypes;
 }

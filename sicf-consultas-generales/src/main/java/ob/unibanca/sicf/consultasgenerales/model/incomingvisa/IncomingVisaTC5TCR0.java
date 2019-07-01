@@ -13,21 +13,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC5TCR0 {
-
 	private Integer idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;
 	private String descTransCodeQualifier;
-	private String idBin;
-	private String descIdBin;
-	private String binReceptor;
-	private String descBinReceptor;
 	private String accountNumber;
 	private String accountNumberExt;
 	private String floorLimitIndicator;
 	private String descFloorLimitIndicator;
 	private String crbExceptionFileInd;
+	private String descCrbExceptionFileInd;
 	private String pcasIndicator;
 	private String acquirerRefNumber;
 	private String acquirerBusinessId;
@@ -54,6 +50,7 @@ public class IncomingVisaTC5TCR0 {
 	private String descUsageCode;
 	private String settlementFlag;
 	private String authorizationIndicator;
+	private String descAuthorizationIndicator;
 	private String authorizationCode;
 	private String posTerminalCapability;
 	private String descPosTerminalCapability;
@@ -66,6 +63,10 @@ public class IncomingVisaTC5TCR0 {
 	private String reimbursementAttribute; 
 	private String descReimbursementAttribute;
 	private Date fechaProceso;
+	private String idBin;
+	private String descBin;
+	private String binReceptor;
+	private String descBinReceptor;
 	private Integer institucionEmisora;
 	private Integer institucionReceptora;
 	private String descInstitucionEmisora;
@@ -76,6 +77,4 @@ public class IncomingVisaTC5TCR0 {
 	private Integer idCanal;
 	private String descCanal;
 	private Date fechaIncoming;
-	private Integer totalFilas;// agregado
-
 }

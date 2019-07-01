@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriterios" >
 		SELECT *
-		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
+		FROM VIE_CON_MOV_INC_VISA_TC5 a
 	</sql>
 	
 	<sql id = "fragmentoWhereGet" >
@@ -106,13 +106,14 @@
 		</if>
 	</sql>
 	
-	
-	<select id="buscarPorCriteriosTC5TCR0" parameterType="CriterioBusquedaIncomingVisaTC5"  resultType="IncomingVisaTC5TCR0" statementType="PREPARED">	
+	<select id="buscarPorCriteriosTC5" parameterType="CriterioBusquedaIncomingVisaTC5"  resultType="IncomingVisaTC5" statementType="PREPARED">	
 		<include refid="consultaPorCriterios" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
+   	
+   	
    	
    	
 	 <select id="buscarPorIdSecuenciaTC5TCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR0" statementType="PREPARED">		

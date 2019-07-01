@@ -7,8 +7,9 @@ import com.github.pagehelper.Page;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0Det;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR1;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc48.IIncomingVisaTC48Service;
 
@@ -22,23 +23,16 @@ public class IncomingVisaTC48RestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 
-	@GetMapping(value = "/incomings-visa-tc48s-tcr0s/pagination")
-	public Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48TCR0> buscarPorPaginas(
-			Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48TCR0> criterioPaginacion,
-			CriterioBusquedaIncomingVisaTC48 criterioBusqueda) {
+	@GetMapping(value = "/incomings-visa-tc48s/pagination")
+	public Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48> buscarPorPaginas(Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48> criterioPaginacion,CriterioBusquedaIncomingVisaTC48 criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-
-		Page<IncomingVisaTC48TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPagina(
-				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),
-				criterioPaginacion.getPageSize());
-
-		Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48TCR0> pagina = new Pagina<>(
-				criterioPaginacion.getCriterioBusqueda(), lista);
+		Page<IncomingVisaTC48> lista = incomingVisaService.buscaPorCriteriosPaginado(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
+		Pagina<CriterioBusquedaIncomingVisaTC48, IncomingVisaTC48> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
 
 	@GetMapping("/incomings-visa-tc48s-tcr0s")
-	public IncomingVisaTC48TCR0Det buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
+	public IncomingVisaTC48TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
 	}
 

@@ -4,27 +4,44 @@
 			
 	<sql id="consultaPorCriteriosTCR0" >
 		SELECT *
-		FROM VIE_CON_MOV_INC_TC48_TCR0 a
+		FROM VIE_CON_MOV_INC_TC48 a
 	</sql>
 	
 	<sql id = "fragmentoWhereGet" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null and fechaTransaccionInicio != '' and fechaTransaccionFin != ''">
+			 AND a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
+		<if  test="accountNumber != null and accountNumber != ''">
+			 AND a.ACCOUNT_NUMBER = #{accountNumber}
+		</if>
 	</sql>
 	
 	<sql id ="fragmentoWhereGetMultiples" >
-		<if  test="transactionsCodes !=null and transactionsCodes.size()>0">
+		<if  test="standInReasonsCodes != null and standInReasonsCodes.size()>0" >
+			AND a.STAND_IN_REASON_CODE IN 
+				<foreach item="item" index="index" collection="standInReasonsCodes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="responsesCodes != null and responsesCodes.size()>0" >
 			AND a.TRANSACTION_CODE IN 
-				<foreach item="item" index="index" collection="transactionsCodes" open ="(" separator="," close=")">
+				<foreach item="item" index="index" collection="responsesCodes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchantTypes != null and merchantTypes.size()>0" >
+			AND a.MERCHANT_TYPE IN 
+				<foreach item="item" index="index" collection="merchantTypes" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
 	</sql>
 	
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC48"  resultType="IncomingVisaTC48TCR0" statementType="PREPARED">	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaIncomingVisaTC48"  resultType="IncomingVisaTC48" statementType="PREPARED">	
 		<include refid="consultaPorCriteriosTCR0" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
@@ -32,13 +49,13 @@
    	</select>
      
 	 
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0Det" statementType="PREPARED">		
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0" statementType="PREPARED">		
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INC_TC48_TCR0_DET a
+		FROM VIE_CON_MOV_INC_TC48_TCR0 a
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+			SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
 	
@@ -47,8 +64,8 @@
 			*
 		FROM VIE_CON_MOV_INC_TC48_TCR1 a
   		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+			SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 		</if>
    	</select>
 	

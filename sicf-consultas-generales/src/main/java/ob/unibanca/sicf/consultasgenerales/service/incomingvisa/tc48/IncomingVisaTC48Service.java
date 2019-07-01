@@ -10,8 +10,9 @@ import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTC48Mapper;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
-import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0Det;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR1;
 
 @Service
@@ -23,24 +24,21 @@ public class IncomingVisaTC48Service implements IIncomingVisaTC48Service{
 	public IncomingVisaTC48Service(IIncomingVisaTC48Mapper incomingVisaTC48Mapper) {
 		this.incomingVisaTC48Mapper = incomingVisaTC48Mapper;
 	}
-	public Page<IncomingVisaTC48TCR0> buscaPorCriteriosTCR0PorPagina(
-			CriterioBusquedaIncomingVisaTC48 criterioBusqueda, int pageNo, int pageSize){
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Page<IncomingVisaTC48> buscaPorCriteriosPaginado(CriterioBusquedaIncomingVisaTC48 criterioBusqueda, int pageNo, int pageSize){
 		PageHelper.startPage(pageNo, pageSize);
-		
-		return incomingVisaTC48Mapper.buscarPorCriteriosTCR0(criterioBusqueda);
+		return incomingVisaTC48Mapper.buscarPorCriterios(criterioBusqueda);
 	}
 	
-	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public IncomingVisaTC48TCR0Det buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
-		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR0(criterio).orElseThrow(
-				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"0"));
+	public IncomingVisaTC48TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
+		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR0(criterio);
 	}
-	@Override
+	
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTC48TCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaIncomingVisa criterio) {
-		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR1(criterio).orElseThrow(
-				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"0"));
+		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR1(criterio);
 		
 	}
 }

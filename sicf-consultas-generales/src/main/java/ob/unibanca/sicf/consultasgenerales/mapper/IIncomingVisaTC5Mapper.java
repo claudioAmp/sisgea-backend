@@ -7,6 +7,7 @@ import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR3;
@@ -17,7 +18,7 @@ import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR
 @Mapper
 public interface IIncomingVisaTC5Mapper {
 	
-	Page<IncomingVisaTC5TCR0> buscarPorCriteriosTC5TCR0(CriterioBusquedaIncomingVisaTC5 criterioPaginacion);
+	Page<IncomingVisaTC5> buscarPorCriteriosTC5(CriterioBusquedaIncomingVisaTC5 criterioPaginacion);
 	
 	IncomingVisaTC5TCR0 buscarPorIdSecuenciaTC5TCR0(CriterioBusquedaIncomingVisa criterio);
 	
