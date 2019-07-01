@@ -71,7 +71,7 @@ public class TxnSwdmplogDetalle {
 	private Integer idInstitucionEmisora;
 	private String descripcionInstEmisora;
 	private Integer idInstitucionReceptora;
-	private String descripcionIntReceptora;
+	private String descripcionInstReceptora;
 	private Integer idATM;
 	private String nombreATM;
 	private String idProceso;
