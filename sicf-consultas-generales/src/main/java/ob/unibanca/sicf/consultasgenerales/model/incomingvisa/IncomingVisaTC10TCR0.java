@@ -29,10 +29,10 @@ public class IncomingVisaTC10TCR0 {
 	String accountNumber;
 	String accountNumberExt;
 	double destinationAmount;
-	double destCurrencyCode;
+	Integer destCurrencyCode;
 	String descDestCurrencyCode;
 	double sourceAmount;
-	double sourceCurrencyCode;
+	Integer sourceCurrencyCode;
 	String descSourceCurrencyCode;
 	
 }

@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriteriosTCR0" >
 		SELECT *
-		FROM VI_CON_MOV_INC_TC10_TCR0 a
+		FROM VIE_CON_MOV_INC_TC10 a
 	</sql>
 	
 	<sql id = "fragmentoWhereGet" >
@@ -36,7 +36,6 @@
 		
 	</sql>
 	
-	
 	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
 		<include refid="consultaPorCriteriosTCR0" />
 			WHERE
@@ -44,13 +43,14 @@
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
    	
+   	
+   	
    	<sql id="framentoSelectTCR0" >
 		SELECT 
 			*
-		FROM VIE_CON_MOV_INC_TC10_TCR0_DET a
+		FROM VIE_CON_MOV_INC_TC10_TCR0 a
 	</sql>
-  
-	 
+	
 	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
 		<include refid="framentoSelectTCR0" />
   		WHERE 
