@@ -11,8 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.request.EnterpriseGetRowsRequest;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.response.EnterpriseGetRowsResponse;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -39,12 +38,7 @@ public class Pagina<S,T>   implements Serializable {
     private int indexFirstOfRows;
    
     private int indexLastOfRows;
-    /*AG GRID REQUEST*/
-    private EnterpriseGetRowsRequest datRequest;
-    
-    /*AG GRID RESPONSE*/
-    //private EnterpriseGetRowsResponse datResponse;
-    
+
     
     public Pagina(S criterioBusqueda ,List<T> list) {
         if (list instanceof Page) {

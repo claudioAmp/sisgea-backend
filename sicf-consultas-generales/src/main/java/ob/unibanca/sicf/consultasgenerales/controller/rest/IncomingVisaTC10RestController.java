@@ -1,5 +1,5 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
-
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,8 +10,8 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc10.IIncomingVisaTC10Service;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.request.EnterpriseGetRowsRequest;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 @Validated
 @RestController
 public class IncomingVisaTC10RestController {
@@ -42,22 +42,21 @@ public class IncomingVisaTC10RestController {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
 	}
 	
-	@GetMapping(value = "/incomings-visa-tc10s-tcr0s/pagination2")
+	@GetMapping(value = "/incomings-visa-tc10s-tcr0s/pagination-filter-sort")
 	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginasAggrid(
-			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion,
 			CriterioBusquedaIncomingVisaTC10 criterioBusqueda) {
 		
-		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+	
+			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion = new Pagina();
+			criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+			
+			Page<IncomingVisaTC10TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPaginaAggrid(
+					criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
+	
+			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
+					criterioPaginacion.getCriterioBusqueda(), lista);
 		
-		criterioPaginacion.setDatRequest(criterioBusqueda.getRequest());
 		
-		Page<IncomingVisaTC10TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPaginaAggrid(
-				criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
-
-		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
-				criterioPaginacion.getCriterioBusqueda(), lista);
-		
-		
-		return pagina;
-	}
+			return pagina;
+		}
 }

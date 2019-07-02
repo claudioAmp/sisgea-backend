@@ -14,8 +14,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.builder.OracleSqlQueryBuilder;
+
 
 @Service
 public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
@@ -48,15 +47,10 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 	public Page<IncomingVisaTC10TCR0> buscaPorCriteriosTCR0PorPaginaAggrid(
 			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0>criterioPaginacion){
-		criterioPaginacion.getDatRequest().setPivotMode(false);
-		OracleSqlQueryBuilder sql= new OracleSqlQueryBuilder();
-		sql.createSql(criterioPaginacion.getDatRequest());
+		
 		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
-		EstructuraConsulta estructuraConsulta= new EstructuraConsulta();
-		estructuraConsulta.setSelectSql(sql.selectSql());
-		estructuraConsulta.setWhereSql(sql.whereSql());
-		estructuraConsulta.setOrderBySql(sql.orderBySql());
-		criterioBusqueda.setEstructuraConsulta(estructuraConsulta);
+
+
 		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0Aggrid(criterioBusqueda);
 		
 	}
