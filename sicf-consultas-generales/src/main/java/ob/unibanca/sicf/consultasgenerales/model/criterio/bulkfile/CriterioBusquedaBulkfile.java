@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaBulkfile {
-	String messageTypeInd;
+	List<String> messagesTypeInd;
 	String fechaTransaccionInicio; //transactionDate
 	String fechaTransaccion; //transactionDate
 	String fechaTransaccionFin; //transactionDate

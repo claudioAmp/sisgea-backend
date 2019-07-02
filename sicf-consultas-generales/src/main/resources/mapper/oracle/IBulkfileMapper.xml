@@ -21,9 +21,6 @@
 		</if>
 		<if  test="traceNumber != null and traceNumber != ''">
 			 AND a.TRACE_NUMBER = #{traceNumber}
-		</if>	
-		<if  test="messageTypeInd != null and messageTypeInd != ''">
-			 AND a.MESSAGE_TYPE_IND = #{messageTypeInd}
 		</if>
 	</sql>
 	
@@ -37,6 +34,12 @@
 		<if test="currencysCodeTran != null and currencysCodeTran.size()>0">
 			AND a.CURRENCY_CODE_TRAN IN
 			<foreach item="item" index="index" collection="currencysCodeTran" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="messagesTypeInd != null and messagesTypeInd.size()>0">
+			AND a.MESSAGE_TYPE_IND IN
+			<foreach item="item" index="index" collection="messagesTypeInd" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
