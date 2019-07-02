@@ -17,7 +17,6 @@
              , id_institucion_operador
              , descripcion_institucion_ope
             FROM vie_man_institucion
-            ORDER BY id_institucion ASC
     </sql>
 
     <select id="buscarTodos" resultType="Institucion"
