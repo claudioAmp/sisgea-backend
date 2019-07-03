@@ -49,8 +49,6 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0>criterioPaginacion){
 		
 		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
-
-
 		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0Aggrid(criterioBusqueda);
 		
 	}

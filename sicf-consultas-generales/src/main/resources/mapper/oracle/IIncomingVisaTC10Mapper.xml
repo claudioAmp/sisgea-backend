@@ -19,7 +19,7 @@
 			AND a.TRANSACTION_CODE IN 
 				<foreach item="item" index="index" collection="transactionsCodes" open ="(" separator="," close=")">
 					#{item}
-				</foreach>
+				</foreach> 
 		</if>
 		<if  test="reasonsCodes != null and reasonsCodes.size()>0"  >
 			AND a.REASON_CODE IN 
@@ -60,15 +60,10 @@
    	</select>
    	
    	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">	
-		<if  test="selectSql != null " >
-			${estructuraConsulta.selectSql}
-		</if>
-		FROM VI_CON_MOV_INC_TC10_TCR0 a	
-		
+		<include refid="consultaPorCriteriosTCR0" /> 
 		WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
-		<if  test="filtros != null " >
 			<if  test="filtroSecuenciaIncoming != null " >
 			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
 				AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
@@ -77,7 +72,6 @@
 			<bind name="pFiltroFechaProceso" value="'%' + filtroFechaProceso + '%'" />
 				AND FECHA_PROCESO = #{pFiltroFechaProceso}
 			</if>
-			
 			<if  test="filtroDestinationBin != null " >
 			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
 				AND DESTINATION_BIN = #{pFiltroDestinationBin}
@@ -102,6 +96,5 @@
 			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
 				AND SOURCE_CURRENCY_CODE = #{pFiltroSourceCurrencyCode}
 			</if>
-		</if>
    	</select>
 </mapper>
