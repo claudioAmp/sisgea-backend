@@ -60,15 +60,12 @@
    	</select>
    	
    	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">	
-		<if  test="selectSql != null " >
-			${estructuraConsulta.selectSql}
-		</if>
-		FROM VI_CON_MOV_INC_TC10_TCR0 a	
 		
+		<include refid="consultaPorCriteriosTCR0" />
 		WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
-		<if  test="filtros != null " >
+		<if  test="filtroSecuenciaIncoming != null " >
 			<if  test="filtroSecuenciaIncoming != null " >
 			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
 				AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}

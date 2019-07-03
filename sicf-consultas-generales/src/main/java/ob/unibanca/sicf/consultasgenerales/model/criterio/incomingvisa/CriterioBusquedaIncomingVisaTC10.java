@@ -20,7 +20,7 @@ import ob.unibanca.sicf.consultasgenerales.util.pagination.request.SortModel;
 public class CriterioBusquedaIncomingVisaTC10 {
 	private String fechaProcesoInicio;
 	private String fechaProcesoFin;
-	private List<ColumnFilter> filterModel;
+	//private List<ColumnFilter> filtro;
 	private List<SortModel> sortModel;
 	private List<String> transactionsCodes;
 	private List<String> reasonsCodes;
