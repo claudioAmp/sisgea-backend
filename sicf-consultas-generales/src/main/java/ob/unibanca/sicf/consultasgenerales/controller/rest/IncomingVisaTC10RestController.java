@@ -1,6 +1,5 @@
 package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
-import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +10,6 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0Det;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc10.IIncomingVisaTC10Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Validated
 @RestController
@@ -49,16 +46,10 @@ public class IncomingVisaTC10RestController {
 
 		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion = new Pagina();
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		System.out.println("---------------------------------------------------------------------------");
-		System.out.println(criterioBusqueda);
-
-		Page<IncomingVisaTC10TCR0> lista = incomingVisaService.buscaPorCriteriosTCR0PorPaginaAggrid(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
-
+		Page<IncomingVisaTC10TCR0> lista = incomingVisaService
+				.buscaPorCriteriosTCR0PorPaginaAggrid(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
 		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
-				criterioPaginacion.getCriterioBusqueda(), lista);
-		System.out.println("-----------------------------2222222222222222222222222222222----------------------------------------------");
-		System.out.println(lista);
+				criterioPaginacion.getCriterioBusqueda(), lista);	
 		return pagina;
-	
 	}
 }

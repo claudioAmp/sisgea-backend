@@ -59,9 +59,8 @@
 		</if>
    	</select>
    	
-   	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">	
-		<include refid="consultaPorCriteriosTCR0" /> 
-		WHERE
+   	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">		
+		<include refid="consultaPorCriteriosTCR0" />
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
 			<if  test="filtroSecuenciaIncoming != null " >
