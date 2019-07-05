@@ -61,38 +61,38 @@
    	
    	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">		
 		<include refid="consultaPorCriteriosTCR0" />
+		WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
 			<if  test="filtroSecuenciaIncoming != null " >
-			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
+				<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
 				AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 			</if>
 			<if  test="filtroFechaProceso != null " >
-			<bind name="pFiltroFechaProceso" value="'%' + filtroFechaProceso + '%'" />
-				AND FECHA_PROCESO = #{pFiltroFechaProceso}
+				AND FECHA_PROCESO = #{filtroFechaProceso}
 			</if>
 			<if  test="filtroDestinationBin != null " >
-			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
+				<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
 				AND DESTINATION_BIN = #{pFiltroDestinationBin}
 			</if>
 			<if  test="filtroSourceBin != null " >
-			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
+				<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
 				AND SOURCE_BIN = #{pFiltroSourceBin}
 			</if>
 			<if  test="filtroReasonCode != null " >
-			<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
+				<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
 				AND REASON_CODE = #{pFiltroReasonCode}
 			</if>
 			<if  test="filtroDestinationAmount != null " >
-			<bind name="pfiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
+				<bind name="pfiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
 				AND DESTINATION_AMOUNT = #{pfiltroDestinationAmount}
 			</if>
 			<if  test="filtroSourceAmount != null " >
-			<bind name="pFiltroSourceAmount" value="'%' + filtroSourceAmount + '%'" />
+				<bind name="pFiltroSourceAmount" value="'%' + filtroSourceAmount + '%'" />
 				AND SOURCE_AMOUNT = #{pFiltroSourceAmount}
 			</if>
 			<if  test="filtroSourceCurrencyCode != null " >
-			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
+				<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
 				AND SOURCE_CURRENCY_CODE = #{pFiltroSourceCurrencyCode}
 			</if>
    	</select>

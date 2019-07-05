@@ -25,10 +25,9 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private List<String> transactionsCodes;
 	private List<String> reasonsCodes;
 	private List<Integer> destCurrenciesCodes;
-	
 	//Filtros:
 	private String filtroSecuenciaIncoming;
-	private String filtroFechaProceso ;
+	private String filtroFechaProceso;
 	private String filtroDestinationBin;
 	private String filtroSourceBin;
 	private String filtroReasonCode ;
