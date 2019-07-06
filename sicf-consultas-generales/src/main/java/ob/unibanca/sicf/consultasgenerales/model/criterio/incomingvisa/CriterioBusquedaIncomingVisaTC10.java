@@ -27,10 +27,13 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private String filtroFechaProceso;
 	private String filtroDestinationBin;
 	private String filtroSourceBin;
-	private String filtroReasonCode ;
 	private String filtroDestinationAmount;
 	private String filtroSourceAmount;
 	private String filtroSourceCurrencyCode ;
+	
+	private String filtroAccountNumber;
+	private String filtroReasonCode ;
+	private String filtroDestCurrencyCode ;
 	//ordenamiento
 	private String ordenSecuenciaIncoming;
 	private String ordenFechaProceso;
@@ -40,5 +43,8 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private String ordenDestinationAmount;
 	private String ordenSourceAmount;
 	private String ordenSourceCurrencyCode ;
+	
+	private String ordenAccountNumber;
+	private String ordenDestCurrencyCode ;
 
 }
