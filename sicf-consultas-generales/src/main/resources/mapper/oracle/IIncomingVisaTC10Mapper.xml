@@ -98,7 +98,7 @@
 			
 			<if  test="ordenSecuenciaIncoming != null " >
 			ORDER BY
-				SECUENCIA_INCOMING ${ordenoSecuenciaIncoming}
+				SECUENCIA_INCOMING ${ordenSecuenciaIncoming}
 			</if>
 			<if  test="ordenFechaProceso != null " >
 			ORDER BY
