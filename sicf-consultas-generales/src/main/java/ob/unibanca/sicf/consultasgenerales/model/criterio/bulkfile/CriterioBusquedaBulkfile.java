@@ -22,4 +22,48 @@ public class CriterioBusquedaBulkfile {
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
 	List<Integer> currencysCodeTran; 
+	
+	//Filtros
+	
+	private String filtroFechaProceso;
+	private String filtroAccountNumber;
+	private String filtroTransactionDate;
+	private String filtroCurrencyCodeTran;
+	private String filtroProcessingCode;
+	private String filtroTraceNumber;
+	private String filtroTerminalId;
+	private String filtroResponseCode;
+	private String filtroAuthorizationId;
+	private String filtroAccessFeeLocInd;
+	private String filtroAccessFeeLoc;
+	private String filtroAmountSettlementInd;
+	private String filtroCurrencyCodeSett;
+	private String filtroAmountSettlement;
+	private String filtroInterchangeFeeInd;
+	private String filtroInterchangeFee;
+
+	//Orden
+	
+		private String ordenFechaProceso;
+		private String ordenAccountNumber;
+		private String ordenTransactionDate;
+		private String ordenCurrencyCodeTran;
+		private String ordenProcessingCode;
+		private String ordenTraceNumber;
+		private String ordenTerminalId;
+		private String ordenResponseCode;
+		private String ordenAuthorizationId;
+		private String ordenAccessFeeLocInd;
+		private String ordenAccessFeeLoc;
+		private String ordenAmountSettlementInd;
+		private String ordenCurrencyCodeSett;
+		private String ordenAmountSettlement;
+		private String ordenInterchangeFeeInd;
+		private String ordenInterchangeFee;
+
+
+
+
+
+
 }

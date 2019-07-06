@@ -108,10 +108,7 @@
 			<if  test="filtroDestCurrencyCode != null " >
 				<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
 				AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
-			</if>		
-			
-			
-			
+			</if>	
 			<if  test="ordenSecuenciaIncoming != null " >
 			ORDER BY
 				SECUENCIA_INCOMING ${ordenSecuenciaIncoming}

@@ -20,4 +20,26 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private List<String> standInReasonsCodes;
 	private List<String> responsesCodes;
 	private List<String> merchantTypes;
+	
+	//filtros
+	
+	private String filtroFechaProceso;
+	private String filtroSecuenciaIncoming;
+	private String filtroDestinationBin;
+	private String filtroSourceBin;
+	private String filtroAccountNumber;
+	private String filtroResponseCode;
+	private String filtroTransactionAmount;
+	private String filtroTransmissionDateTime;
+	private String filtroTransactionTime;
+	
+	private String ordenFechaProceso;
+	private String ordenSecuenciaIncoming;
+	private String ordenDestinationBin;
+	private String ordenSourceBin;
+	private String ordenAccountNumber;
+	private String ordenResponseCode;
+	private String ordenTransactionAmount;
+	private String ordenTransmissionDateTime;
+	private String ordenTransactionTime;
 }

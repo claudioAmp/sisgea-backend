@@ -36,4 +36,44 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private List<String> accountsNumberExt;
 	private Integer destinationCurrencyCode;
 	private List<String> cardholdersIdMethod;
+	
+	//filtros
+	private String filtroFechaProceso;
+	private String filtroIdSecuenciaIncoming;
+	private String filtroTransactionCode;
+	private String filtroAccountNumber;
+	private String filtroAcquirerRefNumber;
+	private String filtroFechaIncoming;
+	private String filtroPurchaseDate;
+	private String filtroSourceCurrencyCode;
+	private String filtroSourceAmount;
+	private String filtroDestCurrencyCode;
+	private String filtroDestinationAmount;
+	private String filtroMerchantName;
+	private String filtroMerchantCity;
+	private String filtroMerchantCountryCode;
+	private String filtroMerchantCategoryCode;
+	private String filtroInstitucionEmisora;
+	private String filtroInstitucionReceptora;
+	private String filtroIdOrigen;
+	
+	//Orden
+	private String ordenFechaProceso;
+	private String ordenIdSecuenciaIncoming;
+	private String ordenTransactionCode;
+	private String ordenAccountNumber;
+	private String ordenAcquirerRefNumber;
+	private String ordenFechaIncoming;
+	private String ordenPurchaseDate;
+	private String ordenSourceCurrencyCode;
+	private String ordenSourceAmount;
+	private String ordenDestCurrencyCode;
+	private String ordenDestinationAmount;
+	private String ordenMerchantName;
+	private String ordenMerchantCity;
+	private String ordenMerchantCountryCode;
+	private String ordenMerchantCategoryCode;
+	private String ordenInstitucionEmisora;
+	private String ordenInstitucionReceptora;
+	private String ordenIdOrigen;
 }
