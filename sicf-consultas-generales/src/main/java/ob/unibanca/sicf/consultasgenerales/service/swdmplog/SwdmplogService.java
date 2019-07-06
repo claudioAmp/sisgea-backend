@@ -12,7 +12,10 @@ import com.github.pagehelper.PageHelper;
 
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.unibanca.sicf.consultasgenerales.mapper.ISwdmplogMapper;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC10;
+import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
 
 @Service
@@ -40,6 +43,12 @@ public class SwdmplogService implements ISwdmplogService {
 	public TxnSwdmplogDetalle buscarDetalle(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogMapper.buscarDetalle(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdMovTxnSwdmplog()));
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Page<TxnSwdmplog> buscarPorFiltrosOrdenamiento(CriterioBusquedaSwdmplog criterioBusqueda,Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog>criterioPaginacion){
+		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
+		return swdmplogMapper.buscarPorFiltrosOrdenamiento(criterioBusqueda);
 	}
 	
 }

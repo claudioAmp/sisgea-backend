@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 
+import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC10;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
+import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 import ob.unibanca.sicf.consultasgenerales.service.swdmplog.ISwdmplogService;
@@ -40,6 +42,17 @@ public class SwdmplogRestController {
 	@GetMapping("/txns-swdmplog/detalle")
 	public TxnSwdmplogDetalle buscarDetalleSwdmplog(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogService.buscarDetalle(criterio);
+	}
+	
+	
+	@GetMapping("/txns-swdmplog/filtering-ordering")
+	public Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> buscarPorPaginasAggrid(
+			CriterioBusquedaSwdmplog criterioBusqueda) {
+		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> criterioPaginacion = new Pagina();
+		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		Page<TxnSwdmplog> lista = swdmplogService.buscarPorFiltrosOrdenamiento(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
+		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);	
+		return pagina;
 	}
 	
 	

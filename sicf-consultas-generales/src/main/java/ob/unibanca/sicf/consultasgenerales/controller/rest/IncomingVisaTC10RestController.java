@@ -49,7 +49,7 @@ public class IncomingVisaTC10RestController {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		
 		Page<IncomingVisaTC10TCR0> lista = incomingVisaService
-				.buscaPorCriteriosTCR0PorPaginaAggrid(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
+				.buscarPorFiltrosOrdenamiento(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
 		
 		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
 				criterioPaginacion.getCriterioBusqueda(), lista);	

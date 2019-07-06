@@ -37,6 +37,7 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	//ordenamiento
 	private String ordenSecuenciaIncoming;
 	private String ordenFechaProceso;
+	private String ordenTransactionCode;
 	private String ordenDestinationBin;
 	private String ordenSourceBin;
 	private String ordenReasonCode ;

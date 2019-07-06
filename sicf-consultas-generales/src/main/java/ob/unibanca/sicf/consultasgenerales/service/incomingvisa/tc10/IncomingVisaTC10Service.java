@@ -44,13 +44,12 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 				() -> new RecursoNoEncontradoException(TRCX_NO_ENCONTRADO,"0"));
 	}
 	
-	public Page<IncomingVisaTC10TCR0> buscaPorCriteriosTCR0PorPaginaAggrid(
+	public Page<IncomingVisaTC10TCR0> buscarPorFiltrosOrdenamiento(
 			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0>criterioPaginacion){
 		
 		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
-		return incomingVisaTC10Mapper.buscarPorCriteriosTCR0Aggrid(criterioBusqueda);
-		
+		return incomingVisaTC10Mapper.buscarPorFiltrosOrdenamiento(criterioBusqueda);
 	}
 	
 	

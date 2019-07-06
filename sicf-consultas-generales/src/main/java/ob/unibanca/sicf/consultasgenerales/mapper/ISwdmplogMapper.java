@@ -16,8 +16,9 @@ public interface ISwdmplogMapper {
 
 	List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterioBusqueda);
 	
-	public Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion);
+	Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion);
 	
 	Optional<TxnSwdmplogDetalle> buscarDetalle(CriterioBusquedaSwdmplog criterioBusqueda);
 	
+	Page<TxnSwdmplog> buscarPorFiltrosOrdenamiento(CriterioBusquedaSwdmplog criterioPaginacion);
 }

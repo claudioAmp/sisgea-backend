@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIncomingVisaTC10Mapper">
-			
-	<sql id="consultaPorCriteriosTCR0" >
+	
+	<!-- Reutilizables -->	
+	<sql id="fragmentoSelect" >
 		SELECT *
 		FROM VIE_CON_MOV_INC_TC10 a
 	</sql>
 	
-	<sql id = "fragmentoWhereGet" >
+	<sql id = "fragmentoWhere" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		
 	</sql>
 	
-	<sql id ="fragmentoWhereGetMultiples" >
+	<sql id ="fragmentoWhereMultiples" >
 		<if  test="transactionsCodes !=null and transactionsCodes.size()>0">
 			AND a.TRANSACTION_CODE IN 
 				<foreach item="item" index="index" collection="transactionsCodes" open ="(" separator="," close=")">
@@ -33,120 +33,116 @@
 					#{item}
 				</foreach>
 		</if>
-		
 	</sql>
+	<!-- Fin Reutilizables -->
 	
 	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
-		<include refid="consultaPorCriteriosTCR0" />
-			WHERE
-		<include refid="fragmentoWhereGet" /> 
-		<include refid="fragmentoWhereGetMultiples" />
+		<include refid="fragmentoSelect" />
+		<where>
+			<include refid="fragmentoWhere" /> 
+			<include refid="fragmentoWhereMultiples" />
+		</where>
    	</select>
-   	
-   	
-   	
-   	<sql id="framentoSelectTCR0" >
-		SELECT 
-			*
-		FROM VIE_CON_MOV_INC_TC10_TCR0 a
-	</sql>
-	
+   		
 	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
-		<include refid="framentoSelectTCR0" />
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null " >
-			SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-		</if>
+		<include refid="fragmentoSelect" />
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null " >
+				SECUENCIA_INCOMING = #{idSecuenciaIncoming}
+			</if>
+		</where>
    	</select>
    	
-   	<select id="buscarPorCriteriosTCR0Aggrid" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">		
-		<include refid="consultaPorCriteriosTCR0" />
-		WHERE
-		<include refid="fragmentoWhereGet" /> 
-		<include refid="fragmentoWhereGetMultiples" />
-			<if  test="filtroSecuenciaIncoming != null " >
-				<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
-				AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
-			</if>
-			<if  test="filtroFechaProceso != null " >
-				AND FECHA_PROCESO = #{filtroFechaProceso}
-			</if>
-			<if  test="filtroDestinationBin != null " >
-				<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
-				AND DESTINATION_BIN LIKE #{pFiltroDestinationBin}
-			</if>
-			<if  test="filtroSourceBin != null " >
-				<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
-				AND SOURCE_BIN LIKE #{pFiltroSourceBin}
-			</if>
-			<if  test="filtroReasonCode != null " >
-				<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
-				AND REASON_CODE LIKE #{pFiltroReasonCode}
-			</if>
-			<if  test="filtroDestinationAmount != null " >
-				<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
-				AND DESTINATION_AMOUNT LIKE #{pFiltroDestinationAmount}
-			</if>
-			<if  test="filtroSourceAmount != null " >
-				<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
-				AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
-			</if>
-			<if  test="filtroSourceCurrencyCode != null " >
-				<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
-				AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
-			</if>
-			
-			<if  test="filtroAccountNumber != null " >
-				<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
-				AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
-			</if>
-			
-			<if  test="filtroDestCurrencyCode != null " >
-				<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
-				AND DEST_CURRENCY_CODE LIKE #{pFiltroDestCurrencyCode}
-			</if>	
-			<if  test="ordenSecuenciaIncoming != null " >
-			ORDER BY
-				SECUENCIA_INCOMING ${ordenSecuenciaIncoming}
-			</if>
-			<if  test="ordenFechaProceso != null " >
-			ORDER BY
-				 FECHA_PROCESO ${ordenFechaProceso}
-			</if>
-			<if  test="ordenDestinationBin != null " >
-			ORDER BY
-				 DESTINATION_BIN ${ordenDestinationBin}
-			</if>
-			<if  test="ordenSourceBin != null " >
-			ORDER BY
-				 SOURCE_BIN ${ordenSourceBin}
-			</if>
-			<if  test="ordenReasonCode != null " >
-			ORDER BY	
-				 REASON_CODE ${ordenReasonCode}
-			</if>
-			<if  test="ordenDestinationAmount != null " >
-			ORDER BY	
-				DESTINATION_AMOUNT ${ordenDestinationAmount}
-			</if>
-			<if  test="ordenSourceAmount != null " >
-			ORDER BY	
-				 SOURCE_AMOUNT ${ordenSourceAmount}
-			</if>
-			<if  test="ordenSourceCurrencyCode != null " >
-			ORDER BY	
-				 SOURCE_CURRENCY_CODE ${ordenSourceCurrencyCode}
-			</if>
-			
-			
-			<if  test="ordenAccountNumber != null " >
-			ORDER BY	
-				 ACCOUNT_NUMBER ${ordenAccountNumber}
-			</if>
-			<if  test="ordenDestCurrencyCode != null " >
+   	<select id="buscarPorFiltrosOrdenamiento" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">		
+		<include refid="fragmentoSelect" />
+		<where>
+			<include refid="fragmentoWhere" /> 
+			<include refid="fragmentoWhereMultiples" />
+				<if  test="filtroSecuenciaIncoming != null " >
+					<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
+					AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
+				</if>
+				<if  test="filtroFechaProceso != null " >
+					AND FECHA_PROCESO = #{filtroFechaProceso}
+				</if>
+				<if  test="filtroDestinationBin != null " >
+					<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
+					AND DESTINATION_BIN LIKE #{pFiltroDestinationBin}
+				</if>
+				<if  test="filtroSourceBin != null " >
+					<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
+					AND SOURCE_BIN LIKE #{pFiltroSourceBin}
+				</if>
+				<if  test="filtroReasonCode != null " >
+					<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
+					AND REASON_CODE LIKE #{pFiltroReasonCode}
+				</if>
+				<if  test="filtroDestinationAmount != null " >
+					<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
+					AND DESTINATION_AMOUNT LIKE #{pFiltroDestinationAmount}
+				</if>
+				<if  test="filtroSourceAmount != null " >
+					<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
+					AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
+				</if>
+				<if  test="filtroSourceCurrencyCode != null " >
+					<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
+					AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
+				</if>
+				
+				<if  test="filtroAccountNumber != null " >
+					<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
+					AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
+				</if>
+				
+				<if  test="filtroDestCurrencyCode != null " >
+					<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
+					AND DEST_CURRENCY_CODE LIKE #{pFiltroDestCurrencyCode}
+				</if>	
+				<if  test="ordenSecuenciaIncoming != null " >
+				ORDER BY
+					SECUENCIA_INCOMING ${ordenSecuenciaIncoming}
+				</if>
+				<if  test="ordenTransactionCode != null " >
+				ORDER BY
+					TRANSACTION_CODE ${ordenTransactionCode}
+				</if>
+				<if  test="ordenFechaProceso != null " >
+				ORDER BY
+					 FECHA_PROCESO ${ordenFechaProceso}
+				</if>
+				<if  test="ordenDestinationBin != null " >
+				ORDER BY
+					 DESTINATION_BIN ${ordenDestinationBin}
+				</if>
+				<if  test="ordenSourceBin != null " >
+				ORDER BY
+					 SOURCE_BIN ${ordenSourceBin}
+				</if>
+				<if  test="ordenReasonCode != null " >
+				ORDER BY	
+					 REASON_CODE ${ordenReasonCode}
+				</if>
+				<if  test="ordenDestinationAmount != null " >
+				ORDER BY	
+					DESTINATION_AMOUNT ${ordenDestinationAmount}
+				</if>
+				<if  test="ordenSourceAmount != null " >
+				ORDER BY	
+					 SOURCE_AMOUNT ${ordenSourceAmount}
+				</if>
+				<if  test="ordenSourceCurrencyCode != null " >
+				ORDER BY	
+					 SOURCE_CURRENCY_CODE ${ordenSourceCurrencyCode}
+				</if>
+				<if  test="ordenAccountNumber != null " >
+				ORDER BY	
+					 ACCOUNT_NUMBER ${ordenAccountNumber}
+				</if>
+				<if  test="ordenDestCurrencyCode != null " >
 			ORDER BY	
 				 DEST_CURRENCY_CODE ${ordenDestCurrencyCode}
 			</if>
-			
+		</where>
    	</select>
 </mapper>

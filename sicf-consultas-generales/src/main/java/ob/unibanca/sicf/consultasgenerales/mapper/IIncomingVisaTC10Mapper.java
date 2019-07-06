@@ -18,5 +18,5 @@ public interface IIncomingVisaTC10Mapper {
 	
 	Optional<IncomingVisaTC10TCR0Det> buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio);
 	
-	Page<IncomingVisaTC10TCR0> buscarPorCriteriosTCR0Aggrid(CriterioBusquedaIncomingVisaTC10 criterioPaginacion);
+	Page<IncomingVisaTC10TCR0> buscarPorFiltrosOrdenamiento(CriterioBusquedaIncomingVisaTC10 criterioPaginacion);
 }
