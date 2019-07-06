@@ -25,6 +25,7 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReport
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.filtro.IFiltroService;
+import ob.unibanca.sicf.generadorconsultas.service.tablaonjoin.ITablaOnJoinService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
 
@@ -38,6 +39,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	
 	private @Autowired final IReporteMapper reporteMapper;
 	private @Autowired ITablaQueryService tablaQueryService;
+	private @Autowired ITablaOnJoinService tablaOnJoinService;
 	private @Autowired ICampoQueryService campoQueryService;
 	private @Autowired IFiltroService filtroService;
 	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;

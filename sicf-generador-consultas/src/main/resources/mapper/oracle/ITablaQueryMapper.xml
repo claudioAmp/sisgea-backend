@@ -10,6 +10,9 @@
 			, ID_INSTANCIA
 			, ORDEN
 			, ES_BASE
+			, ID_TIPO_JOIN
+            , TIPO_JOIN
+            , DESCRIPCION_TIPO_JOIN
 			<if  test=" permited!= null ">
        			, fun_tabla_permitida(ID_TABLA,#{usuario}) AS "PERMITIDO"
             </if>
@@ -49,6 +52,7 @@
                 #{objetoMantenido.idInstancia,    jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.orden , 	      jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.esBase , 	      jdbcType=NUMERIC, mode=IN},
+                 #{objetoMantenido.idTipoJoin,    jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )
         }

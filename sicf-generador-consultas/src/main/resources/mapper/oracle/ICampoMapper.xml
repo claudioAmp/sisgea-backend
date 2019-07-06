@@ -13,6 +13,7 @@
 		  A.ID_TIPO_DATO		AS ID_TIPO_DATO,
 		  A.ID_TABLA_FORANEA	AS ID_TABLA_FK,
 		  A.TRUNCABLE			AS TRUNCABLE,
+		  A.SENSIBLE			AS SENSIBLE,
 		  A.LLAVE_ASOCIADA	AS LLAVE_ASOCIADA
 		FROM VIE_MAN_REP_CAMPO A
     </sql>
@@ -26,6 +27,9 @@
         	<if  test="usuario==null or usuario==''">
         	    INNER JOIN VIE_MAN_REP_PERFIL_CAMPO B ON (A.ID_CAMPO=B.ID_CAMPO)
 	        	WHERE B.ID_PERFIL =#{idPerfil}
+	        	<if  test="sensible != null and sensible != ''">
+			       AND A.SENSIBLE=#{sensible}
+			    </if>
 	        </if>
 	        <if  test="usuario!=null and usuario!=''">
         	    INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
@@ -33,6 +37,9 @@
 	    		<if  test="idPerfil != null and idPerfil != ''">
 		        	AND B.ID_PERFIL=#{idPerfil}
 		        </if>
+		        <if  test="sensible != null and sensible != ''">
+			       AND A.SENSIBLE=#{sensible}
+			    </if>
 	        </if>	
         </if>
         
@@ -41,14 +48,15 @@
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_REP.prc_man_rep_campo(
-            #{modo, 							      jdbcType=VARCHAR, mode=IN},
+            #{modo, 							     jdbcType=VARCHAR, mode=IN},
     		#{objetoMantenido.idTabla,               jdbcType=NUMERIC, mode=IN},
     		#{objetoMantenido.idCampo ,              jdbcType=NUMERIC, mode=IN},
     		#{objetoMantenido.campo,                 jdbcType=VARCHAR, mode=IN},
     		#{objetoMantenido.alias  ,           	 jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.idTipoDato  ,         jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.idTablaFk ,           jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.truncable,              jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.idTipoDato  ,          jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idTablaFk ,            jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.sensible,              jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.truncable,             jdbcType=NUMERIC, mode=IN},
     		#{usuario,				                 jdbcType=VARCHAR, mode=IN}
             )
         }

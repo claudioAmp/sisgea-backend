@@ -25,7 +25,6 @@ public class CampoQuery {
     String idInstanciaTablaFrom;
     String orderBy;
     boolean enSelect;
-    boolean enGroupBy;
     String funcionGrupo;
     String idTipoDato;
     int permitido;
