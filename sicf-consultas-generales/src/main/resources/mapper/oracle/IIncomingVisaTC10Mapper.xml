@@ -96,18 +96,14 @@
 				AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
 			</if>
 			
-			
 			<if  test="filtroAccountNumber != null " >
 				<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
 				AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
 			</if>
-			<if  test="filtroReasonCode != null " >
-				<bind name="pFiltroReasonCode" value="'%'+ filtroReasonCode +'%'" />
-				AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
-			</if>
+			
 			<if  test="filtroDestCurrencyCode != null " >
 				<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
-				AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
+				AND DEST_CURRENCY_CODE LIKE #{pFiltroDestCurrencyCode}
 			</if>	
 			<if  test="ordenSecuenciaIncoming != null " >
 			ORDER BY
