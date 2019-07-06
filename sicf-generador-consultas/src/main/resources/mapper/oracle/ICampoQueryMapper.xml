@@ -17,7 +17,6 @@
 			, ID_INSTANCIA_TABLA_FROM
 			, ORDER_BY
 			, EN_SELECT
-			, EN_GROUP_BY
 			, FUNCION_GRUPO
             , ID_TIPO_DATO
 			<if  test=" permited!= null ">

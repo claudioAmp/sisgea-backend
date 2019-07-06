@@ -18,5 +18,6 @@ public class Campo {
 	private String idTipoDato;
 	private int idTablaFk;
 	private int truncable;
+	private int sensible;
 	private String llaveAsociada;
 }

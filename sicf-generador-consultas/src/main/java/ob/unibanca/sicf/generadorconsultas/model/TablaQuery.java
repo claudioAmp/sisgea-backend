@@ -19,5 +19,8 @@ public class TablaQuery {
 	private String idInstancia;
 	private int orden;
 	private boolean esBase;
-	int permitido;
+	private int permitido;
+    private int idTipoJoin;
+    private String tipoJoin;
+    private String descripcionTipoJoin;
 }

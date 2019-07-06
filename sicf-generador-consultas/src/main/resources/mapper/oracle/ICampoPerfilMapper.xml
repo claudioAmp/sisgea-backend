@@ -22,22 +22,21 @@
     <select id="buscarPorCriterios" resultType="CampoPerfil" parameterType="CriterioBusquedaCampoPerfil"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test="perfil != null and  perfil != '' and  idTabla == null and  idTabla == ''  ">
-        	WHERE
-       			DESCRIPCION_PERFIL = #{perfil}
+        WHERE ID_PERFIL > 0
+        <if  test="perfil != null and  perfil != '' ">
+        	AND DESCRIPCION_PERFIL = #{perfil}
         </if>
-        <if  test="idTabla != null and  idTabla != '' and perfil == null and  perfil == '' ">
-        	WHERE
-       			ID_TABLA    = #{idTabla}
+        <if  test="idTabla != null and  idTabla != '' ">
+        	AND ID_TABLA    = #{idTabla}
         </if>
-        <if  test="perfil != null and  perfil != '' and  idTabla != null and  idTabla != ''  ">
-        	WHERE
-       			DESCRIPCION_PERFIL = #{perfil}
-       		AND ID_TABLA    = #{idTabla}
+         <if  test="idCampo != null and  idCampo != ''  ">
+        	AND ID_CAMPO    = #{idCampo}
         </if>
         <if  test="idPerfil != null and  idPerfil != ''">
-        	WHERE
-       			ID_PERFIL = #{idPerfil}
+        	AND ID_PERFIL = #{idPerfil}
+        </if>
+        <if  test="idPerfilRepCampo != null and  idPerfilRepCampo != ''">
+        	AND ID_PERFIL_REP_CAMPO = #{idPerfilRepCampo}
         </if>
     </select>
     

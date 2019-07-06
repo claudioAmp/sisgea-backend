@@ -14,4 +14,6 @@ public class CriterioBusquedaCampoPerfil{
 	String perfil;
 	int idTabla;
 	int idPerfil;
+	int idCampo;
+	int idPerfilRepCampo;
 }

@@ -16,6 +16,7 @@ public class CriterioBusquedaCampo{
 	String campo;
 	String tabla;
 	int truncable;
+	int sensible;
 	int idPerfil;
 	String usuario;
 }
