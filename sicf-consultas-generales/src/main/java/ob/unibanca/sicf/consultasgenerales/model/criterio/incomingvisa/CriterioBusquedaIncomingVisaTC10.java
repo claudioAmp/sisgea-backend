@@ -1,15 +1,12 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa;
 
-import java.util.Date;
+
 import java.util.List;
-import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.EstructuraConsulta;
-import ob.unibanca.sicf.consultasgenerales.util.pagination.filter.ColumnFilter;
 import ob.unibanca.sicf.consultasgenerales.util.pagination.request.SortModel;
 
 
@@ -20,7 +17,7 @@ import ob.unibanca.sicf.consultasgenerales.util.pagination.request.SortModel;
 public class CriterioBusquedaIncomingVisaTC10 {
 	private String fechaProcesoInicio;
 	private String fechaProcesoFin;
-	//private List<ColumnFilter> filtro;
+
 	private List<SortModel> sortModel;
 	private List<String> transactionsCodes;
 	private List<String> reasonsCodes;
@@ -34,5 +31,14 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private String filtroDestinationAmount;
 	private String filtroSourceAmount;
 	private String filtroSourceCurrencyCode ;
+	//ordenamiento
+	private String ordenSecuenciaIncoming;
+	private String ordenFechaProceso;
+	private String ordenDestinationBin;
+	private String ordenSourceBin;
+	private String ordenReasonCode ;
+	private String ordenDestinationAmount;
+	private String ordenSourceAmount;
+	private String ordenSourceCurrencyCode ;
 
 }

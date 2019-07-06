@@ -95,5 +95,38 @@
 				<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
 				AND SOURCE_CURRENCY_CODE = #{pFiltroSourceCurrencyCode}
 			</if>
+			
+			<if  test="ordenSecuenciaIncoming != null " >
+			ORDER BY
+				SECUENCIA_INCOMING ${ordenoSecuenciaIncoming}
+			</if>
+			<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				 FECHA_PROCESO ${ordenFechaProceso}
+			</if>
+			<if  test="ordenDestinationBin != null " >
+			ORDER BY
+				 DESTINATION_BIN ${ordenDestinationBin}
+			</if>
+			<if  test="ordenSourceBin != null " >
+			ORDER BY
+				 SOURCE_BIN ${ordenSourceBin}
+			</if>
+			<if  test="ordenReasonCode != null " >
+			ORDER BY	
+				 REASON_CODE ${ordenReasonCode}
+			</if>
+			<if  test="ordenDestinationAmount != null " >
+			ORDER BY	
+				DESTINATION_AMOUNT ${ordenDestinationAmount}
+			</if>
+			<if  test="ordenSourceAmount != null " >
+			ORDER BY	
+				 SOURCE_AMOUNT ${ordenSourceAmount}
+			</if>
+			<if  test="ordenSourceCurrencyCode != null " >
+			ORDER BY	
+				 SOURCE_CURRENCY_CODE ${ordenSourceCurrencyCode}
+			</if>
    	</select>
 </mapper>
