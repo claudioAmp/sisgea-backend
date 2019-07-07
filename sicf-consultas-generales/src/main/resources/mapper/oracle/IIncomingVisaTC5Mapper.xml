@@ -7,6 +7,7 @@
 		FROM VIE_CON_MOV_INC_VISA_TC5 a
 	</sql>
 	
+	<!-- Reutilizables -->	
 	<sql id = "fragmentoWhereGet" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
@@ -106,15 +107,158 @@
 		</if>
 	</sql>
 	
+	<sql id= "fragmentoFiltrosOrdenaciones" >
+		<if test="filtroIdSecuenciaIncoming != null ">
+			<bind name="pFiltroIdSecuenciaIncoming" value="'%' + filtroIdSecuenciaIncoming + '%'"/>
+			AND SECUENCIA_INCOMING LIKE #{pFiltroIdSecuenciaIncoming}
+		</if>
+		<if test="filtroFechaProceso != null ">
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if test="filtroFechaIncoming != null ">
+			AND FECHA_INCOMING = #{filtroFechaIncoming}
+		</if>
+		<if test="filtroPurchaseDate != null ">
+			AND PURCHASE_DATE = #{filtroPurchaseDate}
+		</if>
+		<if  test="filtroDestinationAmount != null " >
+			<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
+			AND DESTINATION_AMOUNT LIKE #{pFiltroDestinationAmount}
+		</if>
+		<if  test="filtroSourceAmount != null " >
+			<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
+			AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
+		</if>
+		<if  test="filtroSourceCurrencyCode != null " >
+			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
+			AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
+		</if>
+		<if  test="filtroAccountNumber != null " >
+			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
+			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
+		</if>
+		<if  test="filtroAcquirerRefNumber != null " >
+			<bind name="pFiltroAcquirerRefNumber" value="'%' + filtroAcquirerRefNumber + '%'" />
+			AND ACQUIRER_REF_NUMBER LIKE #{pFiltroAcquirerRefNumber}
+		</if>
+		<if  test="filtroTransactionCode != null " >
+			<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
+			AND TRANSACTION_CODE LIKE #{pFiltroTransactionCode}
+		</if>
+		<if  test="filtroDestCurrencyCode != null " >
+			<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
+			AND DEST_CURRENCY_CODE LIKE #{pFiltroDestCurrencyCode}
+		</if>
+		<if  test="filtroMerchantName != null " >
+			<bind name="pFiltroMerchantName" value="'%' + filtroMerchantName + '%'" />
+			AND MERCHANT_NAME LIKE #{pFiltroMerchantName}
+		</if>
+		<if  test="filtroMerchantCity != null " >
+			<bind name="pFiltroMerchantCity" value="'%' + filtroMerchantCity + '%'" />
+			AND MERCHANT_CITY LIKE #{pFiltroMerchantCity}
+		</if>
+		<if  test="filtroMerchantCountryCode != null " >
+			<bind name="pFiltroMerchantCountryCode" value="'%' + filtroMerchantCountryCode + '%'" />
+			AND MERCHANT_COUNTRY_CODE LIKE #{pFiltroMerchantCountryCode}
+		</if>
+		<if  test="filtroMerchantCategoryCode != null " >
+			<bind name="pFiltroMerchantCategoryCode" value="'%' + filtroMerchantCategoryCode + '%'" />
+			AND MERCHANT_CATEGORY_CODE LIKE #{pFiltroMerchantCategoryCode}
+		</if>
+		<if  test="filtroInstitucionEmisora != null " >
+			<bind name="pFiltroInstitucionEmisora" value="'%' + filtroInstitucionEmisora + '%'" />
+			AND ID_INSTITUCION_EMISORA LIKE #{pFiltroInstitucionEmisora}
+		</if>
+		<if  test="filtroInstitucionReceptora != null " >
+			<bind name="pFiltroInstitucionReceptora" value="'%' + filtroInstitucionReceptora + '%'" />
+			AND ID_INSTITUCION_RECEPTORA LIKE #{pFiltroInstitucionReceptora}
+		</if>
+		<if  test="filtroIdOrigen != null " >
+			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+			AND ID_ORIGEN LIKE #{pFiltroIdOrigen}
+		</if>
+		
+		<if  test="ordenIdSecuenciaIncoming != null " >
+			ORDER BY
+				SECUENCIA_INCOMING ${ordenIdSecuenciaIncoming}
+		</if>
+		<if  test="ordenTransactionCode != null " >
+			ORDER BY
+				TRANSACTION_CODE ${ordenTransactionCode}
+		</if>
+		<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				 FECHA_PROCESO ${ordenFechaProceso}
+		</if>
+		<if  test="ordenFechaIncoming != null " >
+			ORDER BY
+				 FECHA_INCOMING ${ordenFechaIncoming}
+		</if>
+		<if  test="ordenPurchaseDate != null " >
+			ORDER BY
+				 PURCHASE_DATE ${ordenPurchaseDate}
+		</if>
+		<if  test="ordenAccountNumber != null " >
+			ORDER BY
+				 ACCOUNT_NUMBER ${ordenAccountNumber}
+		</if>
+		<if  test="ordenAcquirerRefNumber != null " >
+			ORDER BY
+				 ACQUIRER_REF_NUMBER ${ordenAcquirerRefNumber}
+		</if>
+		<if  test="ordenSourceCurrencyCode != null " >
+			ORDER BY
+				 SOURCE_CURRENCY_CODE ${ordenSourceCurrencyCode}
+		</if>
+		<if  test="ordenSourceAmount != null " >
+			ORDER BY
+				 SOURCE_AMOUNT ${ordenSourceAmount}
+		</if>
+		<if  test="ordenDestCurrencyCode != null " >
+			ORDER BY
+				 DEST_CURRENCY_CODE ${ordenDestCurrencyCode}
+		</if>
+		<if  test="ordenDestinationAmount != null " >
+			ORDER BY
+				 DESTINATION_AMOUNT ${ordenDestinationAmount}
+		</if>
+		<if  test="ordenMerchantName != null " >
+			ORDER BY
+				 MERCHANT_NAME ${ordenMerchantName}
+		</if>
+		<if  test="ordenMerchantCity != null " >
+			ORDER BY
+				 MERCHANT_CITY ${ordenMerchantCity}
+		</if>
+		<if  test="ordenMerchantCountryCode != null " >
+			ORDER BY
+				 MERCHANT_COUNTRY_CODE ${ordenMerchantCountryCode}
+		</if>
+		<if  test="ordenMerchantCategoryCode != null " >
+			ORDER BY
+				 MERCHANT_CATEGORY_CODE ${ordenMerchantCategoryCode}
+		</if>
+		<if  test="ordenInstitucionEmisora != null " >
+			ORDER BY
+				 ID_INSTITUCION_EMISORA ${ordenInstitucionEmisora}
+		</if>
+		<if  test="ordenInstitucionReceptora != null " >
+			ORDER BY
+				 ID_INSTITUCION_RECEPTORA ${ordenInstitucionReceptora}
+		</if>
+		<if  test="ordenIdOrigen != null " >
+			ORDER BY
+				 ID_ORIGEN ${ordenIdOrigen}
+		</if>
+	</sql>
+	<!-- Fin Reutilizables -->
+	
 	<select id="buscarPorCriteriosTC5" parameterType="CriterioBusquedaIncomingVisaTC5"  resultType="IncomingVisaTC5" statementType="PREPARED">	
 		<include refid="consultaPorCriterios" />
 			WHERE
 		<include refid="fragmentoWhereGet" /> 
 		<include refid="fragmentoWhereGetMultiples" />
    	</select>
-   	
-   	
-   	
    	
 	 <select id="buscarPorIdSecuenciaTC5TCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR0" statementType="PREPARED">		
 		SELECT 
