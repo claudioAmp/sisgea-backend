@@ -40,37 +40,110 @@
 		</if>
 	</sql>
 	
+	<sql id = "fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null " >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroSecuenciaIncoming != null " >
+			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
+			AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
+		</if>
+		<if  test="filtroDestinationBin != null " >
+			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
+			AND DESTINATION_BIN LIKE #{pFiltroDestinationBin}
+		</if>
+		<if  test="filtroSourceBin != null " >
+			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
+			AND SOURCE_BIN #{pFiltroSourceBin}
+		</if>
+		<if  test="filtroAccountNumber != null " >
+			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
+			AND ACCOUNT_NUMBER #{pFiltroAccountNumber}
+		</if>
+		<if  test="filtroResponseCode != null " >
+			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+			AND RESPONSE_CODE #{pFiltroResponseCode}
+		</if>
+		<if  test="filtroTransactionAmount != null " >
+			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
+			AND TRANSACTION_AMOUNT #{pFiltroTransactionAmount}
+		</if>
+		<if  test="filtroTransmissionDateTime != null " >
+			<bind name="pFiltroTransmissionDateTime" value="'%' + filtroTransmissionDateTime + '%'" />
+			AND TRANSMISSION_DATE_TIME #{pFiltroTransmissionDateTime}
+		</if>
+		<if  test="filtroTransactionTime != null " >
+			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
+			AND TRANSACTION_TIME #{pFiltroTransactionTime}
+		</if>
+		<if  test="ordenFechaProceso != null " >
+		ORDER BY
+			FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
+		<if  test="ordenSecuenciaIncoming != null " >
+		ORDER BY
+			SECUENCIA_INCOMING  ${ordenSecuenciaIncoming}
+		</if>
+		<if  test="ordenDestinationBin != null " >
+		ORDER BY
+			DESTINATION_BIN  ${ordenDestinationBin}
+		</if>
+		<if  test="ordenSourceBin != null " >
+		ORDER BY
+			SOURCE_BIN  ${ordenSourceBin}
+		</if>
+		<if  test="ordenAccountNumber != null " >
+		ORDER BY
+			ACCOUNT_NUMBER  ${ordenAccountNumber}
+		</if>
+		<if  test="ordenResponseCode != null " >
+		ORDER BY
+			RESPONSE_CODE  ${ordenResponseCode}
+		</if>
+		<if  test="ordenTransactionAmount != null " >
+		ORDER BY
+			TRANSACTION_AMOUNT  ${ordenTransactionAmount}
+		</if>
+		<if  test="ordenTransmissionDateTime != null " >
+		ORDER BY
+			TRANSMISSION_DATE_TIME  ${ordenTransmissionDateTime}
+		</if>
+		<if  test="ordenTransactionTime != null " >
+		ORDER BY
+			TRANSACTION_TIME  ${ordenTransactionTime}
+		</if>
+	</sql>
 	
 	<select id="buscarPorCriterios" parameterType="CriterioBusquedaIncomingVisaTC48"  resultType="IncomingVisaTC48" statementType="PREPARED">	
 		<include refid="consultaPorCriteriosTCR0" />
-			WHERE
-		<include refid="fragmentoWhereGet" /> 
-		<include refid="fragmentoWhereGetMultiples" />
+		<where>
+			<include refid="fragmentoWhereGet" /> 
+			<include refid="fragmentoWhereGetMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>	
    	</select>
      
 	 
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0" statementType="PREPARED">		
+	<select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR0" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_TC48_TCR0 a
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>	
    	</select>
 	
    	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC48TCR1" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_TC48_TCR1 a
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>
    	</select>
 	
-	
-	
-   	
-   	 
 </mapper>
