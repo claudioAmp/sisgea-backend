@@ -49,6 +49,10 @@
 		<if  test="filtroFechaProceso != null" >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
 		</if>
+		<if  test="filtroTraceNumber != null" >
+			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
+			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
+		</if>
 		<if  test="filtroAccountNumber != null" >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
 			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
@@ -60,13 +64,17 @@
 			<bind name="pFiltroTransaccionTime" value="'%' + filtroTransaccionTime + '%'" />
 			AND TRANSACTION_TIME LIKE #{pFiltroTransaccionTime}
 		</if>
+		<if  test="filtroCurrencyCodeTran != null" >
+			<bind name="pFiltroCurrencyCodeTran" value="'%' + filtroCurrencyCodeTran + '%'" />
+			AND CURRENCY_CODE_TRAN LIKE #{pFiltroCurrencyCodeTran}
+		</if>
 		<if  test="filtroProcessingCode != null" >
 			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
 			AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
 		</if>
-		<if  test="filtroTraceNumber != null" >
-			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
-			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
+		<if  test="filtroTerminalId != null" >
+			<bind name="pFiltroTerminalId" value="'%' + filtroTerminalId + '%'" />
+			AND TERMINAL_ID LIKE #{pFiltroTerminalId}
 		</if>
 		<if  test="filtroResponseCode != null" >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
@@ -88,7 +96,6 @@
 			<bind name="pFiltroCurrencyCodeSett" value="'%' + filtroCurrencyCodeSett + '%'" />
 			AND CURRENCY_CODE_SETT LIKE #{pFiltroCurrencyCodeSett}
 		</if>
-		
 		<if  test="filtroAmountSettlement != null" >
 			<bind name="pFiltroAmountSettlement" value="'%' + filtroAmountSettlement + '%'" />
 			AND AMOUNT_SETTLEMENT LIKE #{pFiltroAmountSettlement}
@@ -105,30 +112,33 @@
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
 		</if>
-		<if  test="ordenFechaProceso != null" >
+		<if  test="ordenTraceNumber != null" >
 			ORDER BY
-				FECHA_PROCESO  ${ordenFechaProceso}
+				TRACE_NUMBER   ${ordenTraceNumber}
 		</if>
 		<if  test="ordenAccountNumber != null" >
 			ORDER BY
 				ACCOUNT_NUMBER   ${ordenAccountNumber}
 		</if>
-		
 		<if  test="ordenTransactionDate != null" >
 			ORDER BY
 				TRANSACTION_DATE   ${ordenTransactionDate}
-		</if>
-		<if  test="ordenAccountNumber != null" >
-			ORDER BY
-				TRANSACTION_TIME   ${ordenAccountNumber}
 		</if>
 		<if  test="ordenTransaccionTime != null" >
 			ORDER BY
 				TRANSACTION_TIME   ${ordenTransaccionTime}
 		</if>
+		<if  test="ordenCurrencyCodeTran != null" >
+			ORDER BY
+				CURRENCY_CODE_TRAN   ${ordenCurrencyCodeTran}
+		</if>
 		<if  test="ordenProcessingCode != null" >
 			ORDER BY
 				PROCESSING_CODE   ${ordenProcessingCode}
+		</if>
+		<if  test="ordenTerminalId != null" >
+			ORDER BY
+				TERMINAL_ID    ${ordenTerminalId}
 		</if>
 		<if  test="ordenResponseCode != null" >
 			ORDER BY
