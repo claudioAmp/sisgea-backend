@@ -45,120 +45,120 @@
 		</if>
 	</sql>
 	
-	<sql id="fragmentoFiltrosOrdenaciones ">
-		<if  test="filtroFechaProceso != null " >
+	<sql id="fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null" >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
 		</if>
-		<if  test="filtroAccountNumber != null " >
+		<if  test="filtroAccountNumber != null" >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
 			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
 		</if>
-		<if  test="filtroTransactionDate != null " >
+		<if  test="filtroTransactionDate != null" >
 			AND TRANSACTION_DATE = #{filtroTransactionDate}
 		</if>
-		<if  test="filtroTransaccionTime != null " >
+		<if  test="filtroTransaccionTime != null" >
 			<bind name="pFiltroTransaccionTime" value="'%' + filtroTransaccionTime + '%'" />
 			AND TRANSACTION_TIME LIKE #{pFiltroTransaccionTime}
 		</if>
-		<if  test="filtroProcessingCode != null " >
+		<if  test="filtroProcessingCode != null" >
 			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
 			AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
 		</if>
-		<if  test="filtroTraceNumber != null " >
+		<if  test="filtroTraceNumber != null" >
 			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
 			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
 		</if>
-		<if  test="filtroResponseCode != null " >
+		<if  test="filtroResponseCode != null" >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
 			AND RESPONSE_CODE LIKE #{pFiltroResponseCode}
 		</if>
-		<if  test="filtroAuthorizationId != null " >
+		<if  test="filtroAuthorizationId != null" >
 			<bind name="pFiltroAuthorizationId" value="'%' + filtroAuthorizationId + '%'" />
 			AND AUTHORIZATION_ID LIKE #{pFiltroAuthorizationId}
 		</if>
-		<if  test="filtroAccessFeeLocInd != null " >
+		<if  test="filtroAccessFeeLocInd != null" >
 			<bind name="pFiltroAccessFeeLocInd" value="'%' + filtroAccessFeeLocInd + '%'" />
 			AND ACCESS_FEE_LOC_IND LIKE #{pFiltroAccessFeeLocInd}
 		</if>
-		<if  test="filtroAccessFeeLoc != null " >
+		<if  test="filtroAccessFeeLoc != null" >
 			<bind name="pFiltroAccessFeeLoc" value="'%' + filtroAccessFeeLoc + '%'" />
 			AND ACCESS_FEE_LOC LIKE #{pFiltroAccessFeeLoc}
 		</if>
-		<if  test="filtroCurrencyCodeSett != null " >
+		<if  test="filtroCurrencyCodeSett != null" >
 			<bind name="pFiltroCurrencyCodeSett" value="'%' + filtroCurrencyCodeSett + '%'" />
 			AND CURRENCY_CODE_SETT LIKE #{pFiltroCurrencyCodeSett}
 		</if>
 		
-		<if  test="filtroAmountSettlement != null " >
+		<if  test="filtroAmountSettlement != null" >
 			<bind name="pFiltroAmountSettlement" value="'%' + filtroAmountSettlement + '%'" />
 			AND AMOUNT_SETTLEMENT LIKE #{pFiltroAmountSettlement}
 		</if>
-		<if  test="filtroInterchangeFeeInd != null " >
+		<if  test="filtroInterchangeFeeInd != null" >
 			<bind name="pFiltroInterchangeFeeInd" value="'%' + filtroInterchangeFeeInd + '%'" />
 			AND INTERCHANGE_FEE_IND LIKE #{pFiltroInterchangeFeeInd}
 		</if>
-		<if  test="filtroInterchangeFee != null " >
+		<if  test="filtroInterchangeFee != null" >
 			<bind name="pFiltroInterchangeFee" value="'%' + filtroInterchangeFee + '%'" />
 			AND INTERCHANGE_FEE LIKE #{pFiltroInterchangeFee}
 		</if>
-		<if  test="ordenFechaProceso != null " >
+		<if  test="ordenFechaProceso != null" >
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
 		</if>
-		<if  test="ordenFechaProceso != null " >
+		<if  test="ordenFechaProceso != null" >
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
 		</if>
-		<if  test="ordenAccountNumber != null " >
+		<if  test="ordenAccountNumber != null" >
 			ORDER BY
 				ACCOUNT_NUMBER   ${ordenAccountNumber}
 		</if>
 		
-		<if  test="ordenTransactionDate != null " >
+		<if  test="ordenTransactionDate != null" >
 			ORDER BY
 				TRANSACTION_DATE   ${ordenTransactionDate}
 		</if>
-		<if  test="ordenAccountNumber != null " >
+		<if  test="ordenAccountNumber != null" >
 			ORDER BY
 				TRANSACTION_TIME   ${ordenAccountNumber}
 		</if>
-		<if  test="ordenTransaccionTime != null " >
+		<if  test="ordenTransaccionTime != null" >
 			ORDER BY
 				TRANSACTION_TIME   ${ordenTransaccionTime}
 		</if>
-		<if  test="ordenProcessingCode != null " >
+		<if  test="ordenProcessingCode != null" >
 			ORDER BY
 				PROCESSING_CODE   ${ordenProcessingCode}
 		</if>
-		<if  test="ordenResponseCode != null " >
+		<if  test="ordenResponseCode != null" >
 			ORDER BY
 				RESPONSE_CODE    ${ordenResponseCode}
 		</if>
-		<if  test="ordenAuthorizationId != null " >
+		<if  test="ordenAuthorizationId != null" >
 			ORDER BY
 				AUTHORIZATION_ID   ${AuthorizationId}
 		</if>
-		<if  test="ordenAccessFeeLocInd != null " >
+		<if  test="ordenAccessFeeLocInd != null" >
 			ORDER BY
 				ACCESS_FEE_LOC_IND    ${ordenAccessFeeLocInd}
 		</if>
-		<if  test="ordenAccessFeeLoc != null " >
+		<if  test="ordenAccessFeeLoc != null" >
 			ORDER BY
 				ACCESS_FEE_LOC    ${ordenAccessFeeLoc}
 		</if>
-		<if  test="ordenCurrencyCodeSett != null " >
+		<if  test="ordenCurrencyCodeSett != null" >
 			ORDER BY
 				CURRENCY_CODE_SETT     ${ordenCurrencyCodeSett}
 		</if>
-		<if  test="ordenAmountSettlement != null " >
+		<if  test="ordenAmountSettlement != null" >
 			ORDER BY
 				AMOUNT_SETTLEMENT      ${ordenAmountSettlement}
 		</if>
-		<if  test="ordenInterchangeFeeInd != null " >
+		<if  test="ordenInterchangeFeeInd != null" >
 			ORDER BY
 				INTERCHANGE_FEE_IND       ${ordenInterchangeFeeInd}
 		</if>
-		<if  test="ordenInterchangeFee != null " >
+		<if  test="ordenInterchangeFee != null" >
 			ORDER BY
 				INTERCHANGE_FEE        ${ordenInterchangeFee}
 		</if>
@@ -196,7 +196,7 @@
 	<select id="buscarDetalle" parameterType="CriterioBusquedaBulkfile"  resultType="BulkfileDetalle" statementType="PREPARED">	
 		<include refid="consultaBulkfileDetalle" />
 		<where>
-			<include refid="fragmentoWhereDetalle"/>
+			<include refid="consultaBulkfileDetalle"/>
 		</where>
    	</select>
 
