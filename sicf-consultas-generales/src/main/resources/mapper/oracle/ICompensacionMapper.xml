@@ -102,12 +102,215 @@
 			</foreach>
 		</if>
 	</sql>
+
+	<sql id = "fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null " >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroIdSecuencia != null " >
+			<bind name="pFiltroIdSecuencia" value="'%' + filtroIdSecuencia + '%'" />
+			AND ID_SECUENCIA LIKE #{pFiltroIdSecuencia}
+		</if>
+		<if  test="filtroIdMembresia != null " >
+			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+			AND ID_MEMBRESIA LIKE #{pFiltroIdMembresia}
+		</if>
+		<if  test="filtroIdServicio != null " >
+			<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+			AND ID_SERVICIO LIKE #{pFiltroIdServicio}
+		</if>
+		<if  test="filtroIdOrigen != null " >
+			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+			AND ID_ORIGEN LIKE #{pFiltroIdOrigen}
+		</if>
+		<if  test="filtroIdClaseTransaccion != null " >
+			<bind name="pFiltroIdClaseTransaccion" value="'%' + filtroIdClaseTransaccion + '%'" />
+			AND ID_CLASE_TRANSACCION LIKE #{pFiltroIdClaseTransaccion}
+		</if>
+		<if  test="filtroIdCodigoTransaccion != null " >
+			<bind name="pFiltroIdCodigoTransaccion" value="'%' + filtroIdCodigoTransaccion + '%'" />
+			AND ID_CODIGO_TRANSACCION LIKE #{pFiltroIdCodigoTransaccion}
+		</if>
+		<if  test="filtroIdRol != null " >
+			<bind name="pFiltroIdRol" value="'%' + filtroIdRol + '%'" />
+			AND ID_ROL LIKE #{pFiltroIdRol}
+		</if>
+		<if  test="filtroIdCanal != null " >
+			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
+			AND ID_CANAL LIKE #{pFiltroIdCanal}
+		</if>
+		<if  test="filtroIdInstitucionEmisora != null " >
+			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
+			AND ID_INSTITUCION_EMISORA LIKE #{pFiltroIdInstitucionEmisora}
+		</if>
+		<if  test="filtroIdInstitucionReceptora != null " >
+			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+			AND ID_INSTITUCION_RECEPTORA LIKE #{pFiltroIdInstitucionReceptora}
+		</if>
+		<if  test="filtroNumeroTarjeta != null " >
+			<bind name="pFiltroNumeroTarjeta" value="'%' + filtroNumeroTarjeta + '%'" />
+			AND NUMERO_TARJETA LIKE #{pFiltroNumeroTarjeta}
+		</if>
+		<if  test="filtroBin != null " >
+			<bind name="pFiltroBin" value="'%' + filtroBin + '%'" />
+			AND BIN LIKE #{pFiltroBin}
+		</if>
+		<if  test="filtroIdMonedaCompensacion != null " >
+			<bind name="pFiltroIdMonedaCompensacion" value="'%' + filtroIdMonedaCompensacion + '%'" />
+			AND ID_MONEDA_COMPENSACION LIKE #{pFiltroIdMonedaCompensacion}
+		</if>
+		<if  test="filtroValorCompensacion != null " >
+			<bind name="pFiltroValorCompensacion" value="'%' + filtroValorCompensacion + '%'" />
+			AND VALOR_COMPENSACION LIKE #{pFiltroValorCompensacion}
+		</if>
+		<if  test="filtroFechaSwitch != null " >
+			AND FECHA_SWITCH = #{filtroFechaSwitch}
+		</if>
+		<if  test="filtroHoraTransaccion != null " >
+			<bind name="pFiltroHoraTransaccion" value="'%' + filtroHoraTransaccion + '%'" />
+			AND HORA_TRANSACCION LIKE #{pFiltroHoraTransaccion}
+		</if>
+		<if  test="filtroCodigoRespuesta != null " >
+			<bind name="pFiltroCodigoRespuesta" value="'%' + filtroCodigoRespuesta + '%'" />
+			AND CODIGO_RESPUESTA LIKE #{pFiltroCodigoRespuesta}
+		</if>
+		<if  test="filtroNumeroTrace != null " >
+			<bind name="pFiltroNumeroTrace" value="'%' + filtroNumeroTrace + '%'" />
+			AND NUMERO_TRACE LIKE #{pFiltroNumeroTrace}
+		</if>
+		<if  test="filtroCodigoAutorizacion != null " >
+			<bind name="pFiltroCodigoAutorizacion" value="'%' + filtroCodigoAutorizacion + '%'" />
+			AND CODIGO_AUTORIZACION LIKE #{pFiltroCodigoAutorizacion}
+		</if>
+		<if  test="filtroReferenciaIntercambio != null " >
+			<bind name="pFiltroReferenciaIntercambio" value="'%' + filtroReferenciaIntercambio + '%'" />
+			AND REFERENCIA_INTERCAMBIO LIKE #{pFiltroReferenciaIntercambio}
+		</if>
+		<if  test="filtroGiroNegocio != null " >
+			<bind name="pFiltroGiroNegocio" value="'%' + filtroGiroNegocio + '%'" />
+			AND GIRO_NEGOCIO LIKE #{pFiltroGiroNegocio}
+		</if>
+		<if  test="filtroNombreAdquirente != null " >
+			<bind name="pFiltroNombreAdquirente" value="'%' + filtroNombreAdquirente + '%'" />
+			AND NOMBRE_ADQUIRENTE LIKE #{pFiltroNombreAdquirente}
+		</if>
+		<if  test="filtroCiudadAdquirente != null " >
+			<bind name="pFiltroCiudadAdquirente" value="'%' + filtroCiudadAdquirente + '%'" />
+			AND CIUDAD_ADQUIRENTE LIKE #{pFiltroCiudadAdquirente}
+		</if>
+		<if  test="filtroPaisAdquirente != null " >
+			<bind name="pFiltroPaisAdquirente" value="'%' + filtroPaisAdquirente + '%'" />
+			AND PAIS_ADQUIRENTE LIKE #{pFiltroPaisAdquirente}
+		</if>
+		<if  test="ordenFechaProceso != null " >
+		ORDER BY
+			FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
+		<if  test="ordenIdSecuencia != null " >
+		ORDER BY
+			ID_SECUENCIA  ${ordenIdSecuencia}
+		</if>
+		<if  test="ordenIdMembresia != null " >
+		ORDER BY
+			ID_MEMBRESIA  ${ordenIdMembresia}
+		</if>
+		<if  test="ordenIdServicio != null " >
+		ORDER BY
+			ID_SERVICIO  ${ordenIdServicio}
+		</if>
+		<if  test="ordenIdOrigen != null " >
+		ORDER BY
+			ID_ORIGEN  ${ordenIdOrigen}
+		</if>
+		<if  test="ordenIdClaseTransaccion != null " >
+		ORDER BY
+			ID_CLASE_TRANSACCION  ${ordenIdClaseTransaccion}
+		</if>
+		<if  test="ordenIdCodigoTransaccion != null " >
+		ORDER BY
+			ID_CODIGO_TRANSACCION  ${ordenIdCodigoTransaccion}
+		</if>
+		<if  test="ordenIdRol != null " >
+		ORDER BY
+			ID_ROL  ${ordenIdRol}
+		</if>
+		<if  test="ordenIdCanal != null " >
+		ORDER BY
+			ID_CANAL  ${ordenIdCanal}
+		</if>
+		<if  test="ordenIdInstitucionEmisora != null " >
+		ORDER BY
+			ID_INSTITUCION_EMISORA  ${ordenIdInstitucionEmisora}
+		</if>
+		<if  test="ordenIdInstitucionReceptora != null " >
+		ORDER BY
+			ID_INSTITUCION_RECEPTORA  ${ordenIdInstitucionReceptora}
+		</if>
+		<if  test="ordenNumeroTarjeta != null " >
+		ORDER BY
+			NUMERO_TARJETA  ${ordenNumeroTarjeta}
+		</if>
+		<if  test="ordenBin != null " >
+		ORDER BY
+			BIN  ${ordenBin}
+		</if>
+		<if  test="ordenIdMonedaCompensacion != null " >
+		ORDER BY
+			ID_MONEDA_COMPENSACION  ${ordenIdMonedaCompensacion}
+		</if>
+		<if  test="ordenValorCompensacion != null " >
+		ORDER BY
+			VALOR_COMPENSACION  ${ordenValorCompensacion}
+		</if>
+		<if  test="ordenFechaSwitch != null " >
+		ORDER BY
+			FECHA_SWITCH  ${ordenFechaSwitch}
+		</if>
+		<if  test="ordenHoraTransaccion != null " >
+		ORDER BY
+			HORA_TRANSACCION  ${ordenHoraTransaccion}
+		</if>
+		<if  test="ordenCodigoRespuesta != null " >
+		ORDER BY
+			CODIGO_RESPUESTA  ${ordenCodigoRespuesta}
+		</if>
+		<if  test="ordenNumeroTrace != null " >
+		ORDER BY
+			NUMERO_TRACE  ${ordenNumeroTrace}
+		</if>
+		<if  test="ordenCodigoAutorizacion != null " >
+		ORDER BY
+			CODIGO_AUTORIZACION  ${ordenCodigoAutorizacion}
+		</if>
+		<if  test="ordenReferenciaIntercambio != null " >
+		ORDER BY
+			REFERENCIA_INTERCAMBIO  ${ordenReferenciaIntercambio}
+		</if>
+		<if  test="ordenGiroNegocio != null " >
+		ORDER BY
+			GIRO_NEGOCIO  ${ordenGiroNegocio}
+		</if>
+		<if  test="ordenNombreAdquirente != null " >
+		ORDER BY
+			NOMBRE_ADQUIRENTE  ${ordenNombreAdquirente}
+		</if>
+		<if  test="ordenCiudadAdquirente != null " >
+		ORDER BY
+			CIUDAD_ADQUIRENTE  ${ordenCiudadAdquirente}
+		</if>
+		<if  test="ordenPaisAdquirente != null " >
+		ORDER BY
+			PAIS_ADQUIRENTE  ${ordenPaisAdquirente}
+		</if>
+	</sql>
 	
 	<select id="buscarPorCriterios" parameterType="CriterioBusquedaCompensacion"  resultType="Compensacion" statementType="PREPARED">	
 		<include refid="consultaCompensacion" />
-			WHERE
-		<include refid="fragmentoWhere"/> 
-		<include refid="fragmentoWhereMultiples"/>
+		<where>
+			<include refid="fragmentoWhere"/> 
+			<include refid="fragmentoWhereMultiples"/>
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
    	</select>
    	
    	
@@ -124,24 +327,24 @@
 		</if>
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
-		</if>
-		
+		</if>	
 	</sql>
 	
 	<select id="buscarPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="CompensacionDetalle" statementType="PREPARED">	
 		<include refid="consultaCompensacionDetalle" />
-			WHERE
-		<include refid="fragmentoWhereDetalle"/>
+		<where>
+			<include refid="fragmentoWhereDetalle"/>
+		</where>
    	</select>
-   	
-   	
+   	  	
 	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaCompensacion"  resultType="ComisCompensacion" statementType="PREPARED">	
 		SELECT *
 		FROM VIE_CON_COMPENSACION_COMISION a
-			WHERE
-		<if  test="idSecuencia != null">
-			  a.ID_SECUENCIA = #{idSecuencia}
-		</if>
+		<where>
+			<if  test="idSecuencia != null">
+				  a.ID_SECUENCIA = #{idSecuencia}
+			</if>
+		</where>
    	</select>
 
 </mapper>
