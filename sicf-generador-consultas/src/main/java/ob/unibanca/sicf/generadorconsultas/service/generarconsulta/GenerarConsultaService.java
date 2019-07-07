@@ -4,6 +4,7 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.Filtro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 
 import java.util.HashMap;
@@ -83,7 +84,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	          query += tabla.getTabla() + tabla.getIdInstancia();
 	          flagFrom = false;
 	        } else {
-	          query += " INNER JOIN " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
+	          query += " " + tabla.getTipoJoin()+ " " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
 	        }
 	      }
 	    }
@@ -92,15 +93,19 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 
 	  String findCompareOfTablaJoin(Reporte reporteEstado , int idTabla, String idInstancia){
 	    String query = "";
-	    for (CampoQuery campo : reporteEstado.getCampos()) {
-	      if (campo.getIdTabla() == idTabla && campo.getIdInstanciaTabla() == idInstancia) {
-	        if (campo.getIdTablaFrom() != 0 && campo.getIdInstanciaTablaFrom() != "" && campo.getIdCampoFrom() != 0) {
-	          query += " " + campo.getIdInstanciaTablaFrom() + "." + this.findFieldNameAlias(reporteEstado,campo.getIdTablaFrom(), campo.getIdInstanciaTablaFrom(), campo.getIdCampoFrom());
-	          query += " = " + campo.getIdInstanciaTabla() + "." + this.findFieldNameAlias(reporteEstado,campo.getIdTabla(), campo.getIdInstanciaTabla(), campo.getIdCampo());
-	          return query;
-	        }
-	      }
-		}
+	    boolean flagFirst=true;
+	    for(TablaOnJoin join : reporteEstado.getTablasOnJoin()) {
+	    	if(join.getIdTablaBase()==idTabla && join.getInstanciaTablaBase()==idInstancia) {
+	    		if(flagFirst) {
+	    			//No posee operador logico
+	    			flagFirst=false;
+	    		} else {
+	    			query+=" "+join.getOperadorLogico();
+	    		}
+	    		query += " " + join.getInstanciaTablaBase() + "." + this.findFieldNameAlias(reporteEstado,join.getIdTablaBase(), join.getInstanciaTablaBase(), join.getIdCampoBase());
+    			query += " = " + join.getInstanciaTablaJoin() + "." + this.findFieldNameAlias(reporteEstado,join.getIdTablaJoin(), join.getInstanciaTablaJoin(), join.getIdCampoJoin());
+    		}
+	    }
 		return query;
 	  }
 
