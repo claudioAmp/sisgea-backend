@@ -54,27 +54,27 @@
 		</if>
 		<if  test="filtroSourceBin != null " >
 			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
-			AND SOURCE_BIN #{pFiltroSourceBin}
+			AND SOURCE_BIN LIKE #{pFiltroSourceBin}
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
-			AND ACCOUNT_NUMBER #{pFiltroAccountNumber}
+			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
 		</if>
 		<if  test="filtroResponseCode != null " >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-			AND RESPONSE_CODE #{pFiltroResponseCode}
+			AND RESPONSE_CODE LIKE #{pFiltroResponseCode}
 		</if>
 		<if  test="filtroTransactionAmount != null " >
 			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
-			AND TRANSACTION_AMOUNT #{pFiltroTransactionAmount}
+			AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
 		</if>
 		<if  test="filtroTransmissionDateTime != null " >
 			<bind name="pFiltroTransmissionDateTime" value="'%' + filtroTransmissionDateTime + '%'" />
-			AND TRANSMISSION_DATE_TIME #{pFiltroTransmissionDateTime}
+			AND TRANSMISSION_DATE_TIME LIKE #{pFiltroTransmissionDateTime}
 		</if>
 		<if  test="filtroTransactionTime != null " >
 			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
-			AND TRANSACTION_TIME #{pFiltroTransactionTime}
+			AND TRANSACTION_TIME LIKE #{pFiltroTransactionTime}
 		</if>
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
