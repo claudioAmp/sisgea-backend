@@ -40,19 +40,4 @@ public class IncomingVisaTC10RestController {
 		return incomingVisaService.buscarPorIdSecuenciaTCR0(criterio);
 	}
 
-	@GetMapping("/incomings-visa-tc10s-tcr0s/filtering-ordering")
-	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginasAggrid(
-			CriterioBusquedaIncomingVisaTC10 criterioBusqueda) {
-		System.out.println(criterioBusqueda);
-
-		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion = new Pagina();
-		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		
-		Page<IncomingVisaTC10TCR0> lista = incomingVisaService
-				.buscarPorFiltrosOrdenamiento(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
-		
-		Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> pagina = new Pagina<>(
-				criterioPaginacion.getCriterioBusqueda(), lista);	
-		return pagina;
-	}
 }

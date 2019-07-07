@@ -14,14 +14,15 @@ import ob.unibanca.sicf.consultasgenerales.util.pagination.request.SortModel;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTC10 {
+	
+	//Filtros de busqueda
 	private String fechaProcesoInicio;
 	private String fechaProcesoFin;
-
-	private List<SortModel> sortModel;
 	private List<String> transactionsCodes;
 	private List<String> reasonsCodes;
 	private List<Integer> destCurrenciesCodes;
-	//Filtros:
+	
+	//Filtros cabecera de grilla
 	private String filtroSecuenciaIncoming;
 	private String filtroFechaProceso;
 	private String filtroDestinationBin;
@@ -33,8 +34,7 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private String filtroReasonCode ;
 	private String filtroDestCurrencyCode ;
 
-
-	//ordenamiento
+	//Ordenamiento
 	private String ordenSecuenciaIncoming;
 	private String ordenFechaProceso;
 	private String ordenTransactionCode;

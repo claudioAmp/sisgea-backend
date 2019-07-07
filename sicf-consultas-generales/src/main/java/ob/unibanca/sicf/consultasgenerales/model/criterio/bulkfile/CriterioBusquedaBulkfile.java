@@ -12,19 +12,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaBulkfile {
+	
 	List<String> messagesTypeInd;
-	String fechaTransaccionInicio; //transactionDate
-	String fechaTransaccion; //transactionDate
-	String fechaTransaccionFin; //transactionDate
+	String fechaTransaccionInicio; // transactionDate
+	String fechaTransaccion; // transactionDate
+	String fechaTransaccionFin; // transactionDate
 	String accountNumber;
 	String traceNumber;
-	List<Integer> responsesCode; //responseCode
+	List<Integer> responsesCode; // responseCode
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
-	List<Integer> currencysCodeTran; 
-	
-	//Filtros
-	
+	List<Integer> currencysCodeTran;
+
+	// Filtros
+
 	private String filtroFechaProceso;
 	private String filtroAccountNumber;
 	private String filtroTransactionDate;
@@ -42,28 +43,23 @@ public class CriterioBusquedaBulkfile {
 	private String filtroInterchangeFeeInd;
 	private String filtroInterchangeFee;
 
-	//Orden
-	
-		private String ordenFechaProceso;
-		private String ordenAccountNumber;
-		private String ordenTransactionDate;
-		private String ordenCurrencyCodeTran;
-		private String ordenProcessingCode;
-		private String ordenTraceNumber;
-		private String ordenTerminalId;
-		private String ordenResponseCode;
-		private String ordenAuthorizationId;
-		private String ordenAccessFeeLocInd;
-		private String ordenAccessFeeLoc;
-		private String ordenAmountSettlementInd;
-		private String ordenCurrencyCodeSett;
-		private String ordenAmountSettlement;
-		private String ordenInterchangeFeeInd;
-		private String ordenInterchangeFee;
+	// Orden
 
-
-
-
-
+	private String ordenFechaProceso;
+	private String ordenAccountNumber;
+	private String ordenTransactionDate;
+	private String ordenCurrencyCodeTran;
+	private String ordenProcessingCode;
+	private String ordenTraceNumber;
+	private String ordenTerminalId;
+	private String ordenResponseCode;
+	private String ordenAuthorizationId;
+	private String ordenAccessFeeLocInd;
+	private String ordenAccessFeeLoc;
+	private String ordenAmountSettlementInd;
+	private String ordenCurrencyCodeSett;
+	private String ordenAmountSettlement;
+	private String ordenInterchangeFeeInd;
+	private String ordenInterchangeFee;
 
 }

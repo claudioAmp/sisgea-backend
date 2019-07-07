@@ -13,7 +13,4 @@ public interface IIncomingVisaTC10Service {
 			CriterioBusquedaIncomingVisaTC10 criterioBusqueda, int pageNo, int pageSize);
 	
 	public IncomingVisaTC10TCR0Det buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio);
-	
-	public Page<IncomingVisaTC10TCR0> buscarPorFiltrosOrdenamiento(
-			CriterioBusquedaIncomingVisaTC10 criterioBusqueda,Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0>criterioPaginacion);
 }

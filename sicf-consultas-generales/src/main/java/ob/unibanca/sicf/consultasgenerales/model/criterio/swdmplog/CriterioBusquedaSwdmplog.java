@@ -15,7 +15,8 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPag
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
-
+	
+	//Filtros de busqueda
 	private String fechaInicioProceso;
 	private String fechaFinProceso;
 	private String fechaInicioTransaccion;
@@ -43,4 +44,57 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	//Detalle
 	private String fechaProceso;
 	private String idMovTxnSwdmplog;
+	
+	//Filtros cabecera de grilla
+	private String filtroFechaProceso;
+	private String filtroIdMovTxnSwdmplog;
+	private String filtroMessageType;
+	private String filtroIdBin;
+	private String filtroPan;
+	private String filtroIdRol;
+	private String filtroIdCanal;
+	private String filtroProcessingCode;
+	private String filtroIdProceso;
+	private String filtroTransmissionDate;
+	private String filtroTransmissionTime;
+	private String filtroAuthorizationCode;
+	private String filtroTraceNumber;
+	private String filtroResponseCode;
+	private String filtroTransactionCurrency;
+	private String filtroTransactionAmount;
+	private String filtroCardAcceptorLocation;
+	private String filtroStfwdIndicator;
+	private String filtroPosConditionCode;
+	private String filtroMerchantType;
+	private String filtroCaptureDate;
+	private String filtroLocalTransactionDate;
+	private String filtroLocalTransactionTime;
+	private String filtroPosEntryMode;
+	
+	//Ordenamiento
+	private String ordenFechaProceso;
+	private String ordenIdMovTxnSwdmplog;
+	private String ordenMessageType;
+	private String ordenIdBin;
+	private String ordenPan;
+	private String ordenIdRol;
+	private String ordenIdCanal;
+	private String ordenProcessingCode;
+	private String ordenIdProceso;
+	private String ordenTransmissionDate;
+	private String ordenTransmissionTime;
+	private String ordenAuthorizationCode;
+	private String ordenTraceNumber;
+	private String ordenResponseCode;
+	private String ordenTransactionCurrency;
+	private String ordenTransactionAmount;
+	private String ordenCardAcceptorLocation;
+	private String ordenStfwdIndicator;
+	private String ordenPosConditionCode;
+	private String ordenMerchantType;
+	private String ordenCaptureDate;
+	private String ordenLocalTransactionDate;
+	private String ordenLocalTransactionTime;
+	private String ordenPosEntryMode;
+	
 }

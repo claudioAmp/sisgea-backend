@@ -10,7 +10,7 @@
 	
 	<sql id = "fragmentoWhere" >
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio} AND #{fechaProcesoFin}
 		</if>
 	</sql>
 	
@@ -34,31 +34,9 @@
 				</foreach>
 		</if>
 	</sql>
-	<!-- Fin Reutilizables -->
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
-		<include refid="fragmentoSelect" />
-		<where>
-			<include refid="fragmentoWhere" /> 
-			<include refid="fragmentoWhereMultiples" />
-		</where>
-   	</select>
-   		
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
-		<include refid="fragmentoSelect" />
-  		<where>
-	  		<if  test="idSecuenciaIncoming != null " >
-				SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-			</if>
-		</where>
-   	</select>
-   	
-   	<select id="buscarPorFiltrosOrdenamiento" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">		
-		<include refid="fragmentoSelect" />
-		<where>
-			<include refid="fragmentoWhere" /> 
-			<include refid="fragmentoWhereMultiples" />
-				<if  test="filtroSecuenciaIncoming != null " >
+	<sql id = "fragmentoFiltrosOrdenaciones" >
+		<if  test="filtroSecuenciaIncoming != null " >
 					<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
 					AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 				</if>
@@ -140,9 +118,28 @@
 					 ACCOUNT_NUMBER ${ordenAccountNumber}
 				</if>
 				<if  test="ordenDestCurrencyCode != null " >
-			ORDER BY	
-				 DEST_CURRENCY_CODE ${ordenDestCurrencyCode}
+				ORDER BY	
+				 	DEST_CURRENCY_CODE ${ordenDestCurrencyCode}
+				</if>
+	</sql>
+	<!-- Fin Reutilizables -->
+	
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
+		<include refid="fragmentoSelect" />
+		<where>
+			<include refid="fragmentoWhere" /> 
+			<include refid="fragmentoWhereMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
+   	</select>
+   		
+	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
+		<include refid="fragmentoSelect" />
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null " >
+				SECUENCIA_INCOMING = #{idSecuenciaIncoming}
 			</if>
 		</where>
    	</select>
+   	
 </mapper>

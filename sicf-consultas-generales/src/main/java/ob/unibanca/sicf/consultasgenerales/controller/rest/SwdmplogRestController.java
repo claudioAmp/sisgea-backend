@@ -30,6 +30,11 @@ public class SwdmplogRestController {
 	public List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterio){
 		return this.swdmplogService.buscarPorCriterios(criterio);
 	}
+		
+	@GetMapping("/txns-swdmplog/detalle")
+	public TxnSwdmplogDetalle buscarDetalleSwdmplog(CriterioBusquedaSwdmplog criterio) {
+		return this.swdmplogService.buscarDetalle(criterio);
+	}	
 	
 	@GetMapping("/txns-swdmplog/pagination")
 	public Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> buscarPorPaginas(Pagina<CriterioBusquedaSwdmplog,TxnSwdmplog> criterioPaginacion, CriterioBusquedaSwdmplog criterioBusqueda){
@@ -38,23 +43,5 @@ public class SwdmplogRestController {
 		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 		return pagina;
 	}
-	
-	@GetMapping("/txns-swdmplog/detalle")
-	public TxnSwdmplogDetalle buscarDetalleSwdmplog(CriterioBusquedaSwdmplog criterio) {
-		return this.swdmplogService.buscarDetalle(criterio);
-	}
-	
-	
-	@GetMapping("/txns-swdmplog/filtering-ordering")
-	public Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> buscarPorPaginasAggrid(
-			CriterioBusquedaSwdmplog criterioBusqueda) {
-		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> criterioPaginacion = new Pagina();
-		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
-		Page<TxnSwdmplog> lista = swdmplogService.buscarPorFiltrosOrdenamiento(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion);
-		Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);	
-		return pagina;
-	}
-	
-	
 	
 }

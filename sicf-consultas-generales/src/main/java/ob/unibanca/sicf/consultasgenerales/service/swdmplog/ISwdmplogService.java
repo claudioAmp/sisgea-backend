@@ -13,10 +13,7 @@ public interface ISwdmplogService {
 
 	List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterioBusqueda);
 	
-	public Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion, int pageNo, int pageSize);
+	Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion, int pageNo, int pageSize);
 	
-	TxnSwdmplogDetalle buscarDetalle(CriterioBusquedaSwdmplog criterio);
-	
-	Page<TxnSwdmplog> buscarPorFiltrosOrdenamiento(CriterioBusquedaSwdmplog criterio, Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> criterioPaginacion);
-	
+	TxnSwdmplogDetalle buscarDetalle(CriterioBusquedaSwdmplog criterio);	
 }

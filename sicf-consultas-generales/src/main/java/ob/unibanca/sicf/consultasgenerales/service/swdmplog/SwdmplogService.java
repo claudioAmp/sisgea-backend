@@ -45,10 +45,4 @@ public class SwdmplogService implements ISwdmplogService {
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdMovTxnSwdmplog()));
 	}
 	
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public Page<TxnSwdmplog> buscarPorFiltrosOrdenamiento(CriterioBusquedaSwdmplog criterioBusqueda,Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog>criterioPaginacion){
-		PageHelper.startPage(criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
-		return swdmplogMapper.buscarPorFiltrosOrdenamiento(criterioBusqueda);
-	}
-	
 }
