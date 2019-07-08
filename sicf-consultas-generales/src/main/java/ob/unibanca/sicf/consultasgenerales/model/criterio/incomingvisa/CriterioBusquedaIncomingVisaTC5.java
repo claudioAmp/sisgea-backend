@@ -34,7 +34,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private List<String> transactionsCode;
 	private String accountsNumber;
 	private List<String> accountsNumberExt;
-	private Integer destinationCurrencyCode;
+	private List<Integer> destinationCurrencyCode;
 	private List<String> cardholdersIdMethod;
 	
 	//filtros

@@ -64,6 +64,10 @@
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
 			AND RESPONSE_CODE LIKE #{pFiltroResponseCode}
 		</if>
+		<if  test="filtroTransactionCurrencyCode != null " >
+			<bind name="pFiltroTransactionCurrencyCode" value="'%' + filtroTransactionCurrencyCode + '%'" />
+			AND TRANSACTION_CURRENCY_CODE LIKE #{pFiltroTransactionCurrencyCode}
+		</if>
 		<if  test="filtroTransactionAmount != null " >
 			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
 			AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}

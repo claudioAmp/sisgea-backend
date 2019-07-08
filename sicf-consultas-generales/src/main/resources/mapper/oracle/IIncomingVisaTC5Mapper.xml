@@ -30,9 +30,7 @@
 		<if  test="destinationAmount != null and destinationAmount != '' and destinationAmount != -1">
 			AND a.DESTINATION_AMOUNT = #{destinationAmount}  
 		</if>
-		<if  test="destinationCurrencyCode != null and destinationCurrencyCode != '' and destinationCurrencyCode != -1">
-			AND a.DEST_CURRENCY_CODE = #{destinationCurrencyCode}  
-		</if>
+		
 		<if  test="merchantName != null and merchantName != '' and merchantName != '-1'">
 			AND a.MERCHANT_NAME = #{merchantName}  
 		</if>
@@ -102,6 +100,12 @@
 		<if  test="merchantsCountryCode != null and merchantsCountryCode.size()>0" >
 			AND a.MERCHANT_COUNTRY_CODE IN 
 				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="destinationCurrencyCode != null and destinationCurrencyCode.size()>0" >
+			AND a.DEST_CURRENCY_CODE IN 
+				<foreach item="item" index="index" collection="destinationCurrencyCode" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>

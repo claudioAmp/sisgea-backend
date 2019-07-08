@@ -29,6 +29,7 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String filtroSourceBin;
 	private String filtroAccountNumber;
 	private String filtroResponseCode;
+	private String filtroTransactionCurrencyCode;
 	private String filtroTransactionAmount;
 	private String filtroTransmissionDateTime;
 	private String filtroTransactionTime;
@@ -39,6 +40,7 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String ordenSourceBin;
 	private String ordenAccountNumber;
 	private String ordenResponseCode;
+	private String ordenTransactionCurrencyCode;
 	private String ordenTransactionAmount;
 	private String ordenTransmissionDateTime;
 	private String ordenTransactionTime;
