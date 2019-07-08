@@ -206,7 +206,7 @@
 	<select id="buscarDetalle" parameterType="CriterioBusquedaBulkfile"  resultType="BulkfileDetalle" statementType="PREPARED">	
 		<include refid="consultaBulkfileDetalle" />
 		<where>
-			<include refid="consultaBulkfileDetalle"/>
+			<include refid="fragmentoWhereDetalle"/>
 		</where>
    	</select>
 
