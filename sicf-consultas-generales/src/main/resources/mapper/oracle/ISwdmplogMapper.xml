@@ -118,7 +118,7 @@
 				</if>
 				<if  test="filtroIdBin != null " >
 					<bind name="pFiltroIdBin" value="'%' + filtroIdBin + '%'" />
-					AND ID_BIN LIKE #{pFiltroIdBin}
+					AND CONCAT(ID_BIN, DESCRIPCION_BIN) LIKE #{pFiltroIdBin}
 				</if>
 				<if  test="filtroPan != null " >
 					<bind name="pFiltroPan" value="'%' + filtroPan + '%'" />
@@ -126,11 +126,11 @@
 				</if>
 				<if  test="filtroIdRol != null " >
 					<bind name="pFiltroIdRol" value="'%' + filtroIdRol + '%'" />
-					AND ID_ROL LIKE #{pFiltroIdRol}
+					AND CONCAT(ID_ROL, DESCRIPCION_ROL_TRANSACCION) LIKE #{pFiltroIdRol}
 				</if>
 				<if  test="filtroIdCanal != null " >
 					<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
-					AND ID_CANAL LIKE #{pFiltroIdCanal}
+					AND CONCAT(ID_CANAL, DESCRIPCION_CANAL) LIKE #{pFiltroIdCanal}
 				</if>
 				<if  test="filtroProcessingCode != null " >
 					<bind name="pFiltroProcessingCode" value="'%'+ filtroProcessingCode +'%'" />
@@ -138,7 +138,7 @@
 				</if>
 				<if  test="filtroIdProceso != null " >
 					<bind name="pFiltroIdProceso" value="'%'+ filtroIdProceso +'%'" />
-					AND ID_PROCESO LIKE #{pFiltroIdProceso}
+					AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
 				</if>
 				<if  test="filtroTransmissionDate != null " >
 					AND TRANSMISSION_DATE = #{filtroTransmissionDate}
@@ -155,9 +155,13 @@
 					<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
 					AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
 				</if>
+				<if  test="filtroResponseCode != null " >
+					<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+					AND CONCAT(RESPONSE_CODE, DESCRIPCION_CODIGO_RPTA_SW) LIKE #{pFiltroResponseCode}
+				</if>
 				<if  test="filtroTransactionCurrency != null " >
 					<bind name="pFiltroTransactionCurrency" value="'%' + filtroTransactionCurrency + '%'" />
-					AND TRANSACTION_CURRENCY LIKE #{pFiltroTransactionCurrency}
+					AND CONCAT(TRANSACTION_CURRENCY, DESCRIPCION_MONEDA) LIKE #{pFiltroTransactionCurrency}
 				</if>
 				<if  test="filtroTransactionAmount != null " >
 					<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
@@ -177,7 +181,7 @@
 				</if>
 				<if  test="filtroMerchantType != null " >
 					<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
-					AND MERCHANT_TYPE LIKE #{pFiltroMerchantType}
+					AND CONCAT(MERCHANT_TYPE, DESCRIPCION_GIRO_NEGOCIO) LIKE #{pFiltroMerchantType}
 				</if>
 				<if  test="filtroCaptureDate != null " >
 					<bind name="pFiltroCaptureDate" value="'%' + filtroCaptureDate + '%'" />
