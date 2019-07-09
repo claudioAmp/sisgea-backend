@@ -112,30 +112,16 @@
 	</sql>
 	
 	<sql id= "fragmentoFiltrosOrdenaciones" >
-		<if test="filtroIdSecuenciaIncoming != null ">
-			<bind name="pFiltroIdSecuenciaIncoming" value="'%' + filtroIdSecuenciaIncoming + '%'"/>
-			AND SECUENCIA_INCOMING LIKE #{pFiltroIdSecuenciaIncoming}
-		</if>
 		<if test="filtroFechaProceso != null ">
 			AND FECHA_PROCESO = #{filtroFechaProceso}
 		</if>
-		<if test="filtroFechaIncoming != null ">
-			AND FECHA_INCOMING = #{filtroFechaIncoming}
+		<if test="filtroIdSecuenciaIncoming != null ">
+			<bind name="pFiltroIdSecuenciaIncoming" value="'%' + filtroIdSecuenciaIncoming + '%'"/>
+			AND ID_SECUENCIA_INCOMING LIKE #{pFiltroIdSecuenciaIncoming}
 		</if>
-		<if test="filtroPurchaseDate != null ">
-			AND PURCHASE_DATE = #{filtroPurchaseDate}
-		</if>
-		<if  test="filtroDestinationAmount != null " >
-			<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
-			AND DESTINATION_AMOUNT LIKE #{pFiltroDestinationAmount}
-		</if>
-		<if  test="filtroSourceAmount != null " >
-			<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
-			AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
-		</if>
-		<if  test="filtroSourceCurrencyCode != null " >
-			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
-			AND SOURCE_CURRENCY_CODE LIKE #{pFiltroSourceCurrencyCode}
+		<if  test="filtroTransactionCode != null " >
+			<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
+			AND CONCAT(TRANSACTION_CODE, DESC_TRANSACTION_CODE) LIKE #{pFiltroTransactionCode}
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -145,13 +131,27 @@
 			<bind name="pFiltroAcquirerRefNumber" value="'%' + filtroAcquirerRefNumber + '%'" />
 			AND ACQUIRER_REF_NUMBER LIKE #{pFiltroAcquirerRefNumber}
 		</if>
-		<if  test="filtroTransactionCode != null " >
-			<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
-			AND TRANSACTION_CODE LIKE #{pFiltroTransactionCode}
+		<if test="filtroFechaIncoming != null ">
+			AND FECHA_INCOMING = #{filtroFechaIncoming}
+		</if>
+		<if test="filtroPurchaseDate != null ">
+			AND PURCHASE_DATE = #{filtroPurchaseDate}
+		</if>
+		<if  test="filtroSourceCurrencyCode != null " >
+			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
+			AND CONCAT(SOURCE_CURRENCY_CODE, DESC_SOURCE_CURRENCY_CODE) LIKE #{pFiltroSourceCurrencyCode}
+		</if>
+		<if  test="filtroSourceAmount != null " >
+			<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
+			AND SOURCE_AMOUNT LIKE #{pFiltroSourceAmount}
 		</if>
 		<if  test="filtroDestCurrencyCode != null " >
 			<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
-			AND DEST_CURRENCY_CODE LIKE #{pFiltroDestCurrencyCode}
+			AND CONCAT(DEST_CURRENCY_CODE, DESC_DEST_CURRENCY_CODE) LIKE #{pFiltroDestCurrencyCode}
+		</if>
+		<if  test="filtroDestinationAmount != null " >
+			<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
+			AND DESTINATION_AMOUNT LIKE #{pFiltroDestinationAmount}
 		</if>
 		<if  test="filtroMerchantName != null " >
 			<bind name="pFiltroMerchantName" value="'%' + filtroMerchantName + '%'" />
@@ -163,44 +163,35 @@
 		</if>
 		<if  test="filtroMerchantCountryCode != null " >
 			<bind name="pFiltroMerchantCountryCode" value="'%' + filtroMerchantCountryCode + '%'" />
-			AND MERCHANT_COUNTRY_CODE LIKE #{pFiltroMerchantCountryCode}
+			AND CONCAT(MERCHANT_COUNTRY_CODE, DESC_MERCHANT_COUNTRY_CODE) LIKE #{pFiltroMerchantCountryCode}
 		</if>
 		<if  test="filtroMerchantCategoryCode != null " >
 			<bind name="pFiltroMerchantCategoryCode" value="'%' + filtroMerchantCategoryCode + '%'" />
-			AND MERCHANT_CATEGORY_CODE LIKE #{pFiltroMerchantCategoryCode}
+			AND CONCAT(MERCHANT_CATEGORY_CODE, DESC_MERCHANT_CATEGORY_CODE) LIKE #{pFiltroMerchantCategoryCode}
 		</if>
 		<if  test="filtroInstitucionEmisora != null " >
 			<bind name="pFiltroInstitucionEmisora" value="'%' + filtroInstitucionEmisora + '%'" />
-			AND ID_INSTITUCION_EMISORA LIKE #{pFiltroInstitucionEmisora}
+			AND CONCAT(INSTITUCION_EMISORA, DESC_INSTITUCION_EMISORA) LIKE #{pFiltroInstitucionEmisora}
 		</if>
 		<if  test="filtroInstitucionReceptora != null " >
 			<bind name="pFiltroInstitucionReceptora" value="'%' + filtroInstitucionReceptora + '%'" />
-			AND ID_INSTITUCION_RECEPTORA LIKE #{pFiltroInstitucionReceptora}
+			AND CONCAT(INSTITUCION_RECEPTORA, DESC_INSTITUCION_RECEPTORA) LIKE #{pFiltroInstitucionReceptora}
 		</if>
-		<if  test="filtroIdOrigen != null " >
-			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
-			AND ID_ORIGEN LIKE #{pFiltroIdOrigen}
+		<if  test="filtroIdCanal != null " >
+			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
+			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
 		</if>
-		
+		<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				FECHA_PROCESO ${ordenFechaProceso}
+		</if>
 		<if  test="ordenIdSecuenciaIncoming != null " >
 			ORDER BY
-				SECUENCIA_INCOMING ${ordenIdSecuenciaIncoming}
+				ID_SECUENCIA_INCOMING ${ordenIdSecuenciaIncoming}
 		</if>
 		<if  test="ordenTransactionCode != null " >
 			ORDER BY
 				TRANSACTION_CODE ${ordenTransactionCode}
-		</if>
-		<if  test="ordenFechaProceso != null " >
-			ORDER BY
-				 FECHA_PROCESO ${ordenFechaProceso}
-		</if>
-		<if  test="ordenFechaIncoming != null " >
-			ORDER BY
-				 FECHA_INCOMING ${ordenFechaIncoming}
-		</if>
-		<if  test="ordenPurchaseDate != null " >
-			ORDER BY
-				 PURCHASE_DATE ${ordenPurchaseDate}
 		</if>
 		<if  test="ordenAccountNumber != null " >
 			ORDER BY
@@ -209,6 +200,14 @@
 		<if  test="ordenAcquirerRefNumber != null " >
 			ORDER BY
 				 ACQUIRER_REF_NUMBER ${ordenAcquirerRefNumber}
+		</if>
+		<if  test="ordenFechaIncoming != null " >
+			ORDER BY
+				 FECHA_INCOMING ${ordenFechaIncoming}
+		</if>
+		<if  test="ordenPurchaseDate != null " >
+			ORDER BY
+				 PURCHASE_DATE ${ordenPurchaseDate}
 		</if>
 		<if  test="ordenSourceCurrencyCode != null " >
 			ORDER BY
@@ -244,74 +243,81 @@
 		</if>
 		<if  test="ordenInstitucionEmisora != null " >
 			ORDER BY
-				 ID_INSTITUCION_EMISORA ${ordenInstitucionEmisora}
+				 INSTITUCION_EMISORA ${ordenInstitucionEmisora}
 		</if>
 		<if  test="ordenInstitucionReceptora != null " >
 			ORDER BY
-				 ID_INSTITUCION_RECEPTORA ${ordenInstitucionReceptora}
+				 INSTITUCION_RECEPTORA ${ordenInstitucionReceptora}
 		</if>
-		<if  test="ordenIdOrigen != null " >
+		<if  test="ordenIdCanal != null " >
 			ORDER BY
-				 ID_ORIGEN ${ordenIdOrigen}
+				 ID_CANAL ${ordenIdCanal}
 		</if>
 	</sql>
 	<!-- Fin Reutilizables -->
 	
 	<select id="buscarPorCriteriosTC5" parameterType="CriterioBusquedaIncomingVisaTC5"  resultType="IncomingVisaTC5" statementType="PREPARED">	
 		<include refid="consultaPorCriterios" />
-			WHERE
-		<include refid="fragmentoWhereGet" /> 
-		<include refid="fragmentoWhereGetMultiples" />
+		<where>
+			<include refid="fragmentoWhereGet" /> 
+			<include refid="fragmentoWhereGetMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
    	</select>
    	
 	 <select id="buscarPorIdSecuenciaTC5TCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR0" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+		<where>
+			<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+		</where>
    	</select>
 	
 	 <select id="buscarPorIdSecuenciaTC5TCR1" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR1" statementType="PREPARED">			
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR1 a
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>
    	</select>
    	
    	 <select id="buscarPorIdSecuenciaTC5TCR3" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR3" statementType="PREPARED">	
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR3 a
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>
    	</select>
    	
    	 <select id="buscarPorIdSecuenciaTC5TCR4" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR4" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR4 a	
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>		
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>
    	</select>
    	
    	 <select id="buscarPorIdSecuenciaTC5TCR5" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC5TCR5" statementType="PREPARED">		
 		SELECT 
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR5 a	
-  		WHERE 
-  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
-			ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
-		</if>
+  		<where>
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>	
    	</select>
    
 </mapper>

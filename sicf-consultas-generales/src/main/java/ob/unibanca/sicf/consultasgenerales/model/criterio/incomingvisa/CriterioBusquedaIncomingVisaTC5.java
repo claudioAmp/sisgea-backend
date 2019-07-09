@@ -55,7 +55,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroMerchantCategoryCode;
 	private String filtroInstitucionEmisora;
 	private String filtroInstitucionReceptora;
-	private String filtroIdOrigen;
+	private String filtroIdCanal;
 	
 	//Orden
 	private String ordenFechaProceso;
@@ -75,5 +75,5 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenMerchantCategoryCode;
 	private String ordenInstitucionEmisora;
 	private String ordenInstitucionReceptora;
-	private String ordenIdOrigen;
+	private String ordenIdCanal;
 }
