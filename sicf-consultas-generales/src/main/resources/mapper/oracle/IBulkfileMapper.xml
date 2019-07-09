@@ -66,11 +66,11 @@
 		</if>
 		<if  test="filtroCurrencyCodeTran != null" >
 			<bind name="pFiltroCurrencyCodeTran" value="'%' + filtroCurrencyCodeTran + '%'" />
-			AND CURRENCY_CODE_TRAN LIKE #{pFiltroCurrencyCodeTran}
+			AND CONCAT(CURRENCY_CODE_TRAN, DESCRIPCION_CURRENCY_CODE_TRAN) LIKE #{pFiltroCurrencyCodeTran}
 		</if>
 		<if  test="filtroProcessingCode != null" >
 			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
-			AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
+			AND CONCAT(ROCESSING_CODE, DESCRIPCION_PROCESSING_CODE) LIKE #{pFiltroProcessingCode}
 		</if>
 		<if  test="filtroTerminalId != null" >
 			<bind name="pFiltroTerminalId" value="'%' + filtroTerminalId + '%'" />
@@ -78,7 +78,7 @@
 		</if>
 		<if  test="filtroResponseCode != null" >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-			AND RESPONSE_CODE LIKE #{pFiltroResponseCode}
+			AND CONCAT(RESPONSE_CODE, DESCRIPCION_RESPONSE_CODE) LIKE #{pFiltroResponseCode}
 		</if>
 		<if  test="filtroAuthorizationId != null" >
 			<bind name="pFiltroAuthorizationId" value="'%' + filtroAuthorizationId + '%'" />
@@ -94,7 +94,7 @@
 		</if>
 		<if  test="filtroCurrencyCodeSett != null" >
 			<bind name="pFiltroCurrencyCodeSett" value="'%' + filtroCurrencyCodeSett + '%'" />
-			AND CURRENCY_CODE_SETT LIKE #{pFiltroCurrencyCodeSett}
+			AND CONCAT(CURRENCY_CODE_SETT, DESCRIPCION_CURRENCY_CODE_SETT) LIKE #{pFiltroCurrencyCodeSett}
 		</if>
 		<if  test="filtroAmountSettlement != null" >
 			<bind name="pFiltroAmountSettlement" value="'%' + filtroAmountSettlement + '%'" />
