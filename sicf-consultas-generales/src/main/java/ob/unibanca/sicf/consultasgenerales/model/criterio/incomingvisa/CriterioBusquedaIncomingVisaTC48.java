@@ -33,6 +33,7 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String filtroTransactionAmount;
 	private String filtroTransmissionDateTime;
 	private String filtroTransactionTime;
+	private String filtroMerchantType;
 	
 	private String ordenFechaProceso;
 	private String ordenSecuenciaIncoming;
@@ -44,4 +45,5 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String ordenTransactionAmount;
 	private String ordenTransmissionDateTime;
 	private String ordenTransactionTime;
+	private String ordenMerchantType;
 }

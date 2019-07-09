@@ -50,11 +50,11 @@
 		</if>
 		<if  test="filtroDestinationBin != null " >
 			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
-			AND DESTINATION_BIN LIKE #{pFiltroDestinationBin}
+			AND CONCAT(DESTINATION_BIN, DESC_DESTINATION_BIN) LIKE #{pFiltroDestinationBin}
 		</if>
 		<if  test="filtroSourceBin != null " >
 			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
-			AND SOURCE_BIN LIKE #{pFiltroSourceBin}
+			AND CONCAT(SOURCE_BIN, DESC_SOURCE_BIN) LIKE #{pFiltroSourceBin}
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -62,11 +62,11 @@
 		</if>
 		<if  test="filtroResponseCode != null " >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-			AND RESPONSE_CODE LIKE #{pFiltroResponseCode}
+			AND CONCAT(RESPONSE_CODE, DESC_RESPONSE_CODE) LIKE #{pFiltroResponseCode}
 		</if>
 		<if  test="filtroTransactionCurrencyCode != null " >
 			<bind name="pFiltroTransactionCurrencyCode" value="'%' + filtroTransactionCurrencyCode + '%'" />
-			AND TRANSACTION_CURRENCY_CODE LIKE #{pFiltroTransactionCurrencyCode}
+			AND CONCAT(TRANSACTION_CURRENCY_CODE, DESC_TRANSACTION_CURRENCY_CODE) LIKE #{pFiltroTransactionCurrencyCode}
 		</if>
 		<if  test="filtroTransactionAmount != null " >
 			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
@@ -79,6 +79,10 @@
 		<if  test="filtroTransactionTime != null " >
 			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
 			AND TRANSACTION_TIME LIKE #{pFiltroTransactionTime}
+		</if>
+		<if  test="filtroMerchantType != null " >
+			<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
+			AND CONCAT(MERCHANT_TYPE, DESC_MERCHANT_TYPE) LIKE #{pFiltroMerchantType}
 		</if>
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
@@ -115,6 +119,10 @@
 		<if  test="ordenTransactionTime != null " >
 		ORDER BY
 			TRANSACTION_TIME  ${ordenTransactionTime}
+		</if>
+		<if  test="ordenMerchantType != null " >
+		ORDER BY
+			MERCHANT_TYPE  ${ordenMerchantType}
 		</if>
 	</sql>
 	
