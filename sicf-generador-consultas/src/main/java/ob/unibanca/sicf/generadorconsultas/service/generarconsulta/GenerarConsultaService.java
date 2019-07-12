@@ -32,7 +32,10 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    queryReporte += this.getOnFrom(reporteEstado);
 	    queryReporte += " ";
 	    queryReporte += this.getOnWhere(reporteEstado);
-	    queryReporte += " ";
+		queryReporte += " ";
+		if(this.flagOnGroupBy(reporteEstado)){
+			queryReporte+=this.getOnGroupBy(reporteEstado);
+		}
 	    queryReporte += this.getOnOrderBy(reporteEstado);
 	    return queryReporte;
 	}
@@ -49,7 +52,12 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." + this.findFieldName(campo.getIdCampo()) + " AS " + "\"" ;
+			if(campo.getFuncionGrupo()!=null){
+				query+=campo.getFuncionGrupo()+"("+campo.getIdInstanciaTabla() + "." + this.findFieldName(campo.getIdCampo()) +")";
+			} else {
+				query += campo.getIdInstanciaTabla() + "." + this.findFieldName(campo.getIdCampo()) ;
+			}
+			query += " AS " + "\"" ;
 	        String b=campo.getCampo();
 	        if(a.get(b)==null){
 	          a.put(b, 0);
@@ -160,6 +168,30 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    if (!flagFirst)
 	      query += " )";
 	    return query;
+	  }
+
+	  boolean flagOnGroupBy(Reporte reporteEstado){
+		  for(CampoQuery campo:reporteEstado.getCampos()){
+			  if(campo.getFuncionGrupo()==null){
+				  return false;
+			  }
+		  }
+		  return true;
+	  }
+
+	  String getOnGroupBy(Reporte reporteEstado) {
+		String query = "GROUP BY ";
+		boolean flagFirst = true;
+		for(CampoQuery campo:reporteEstado.getCampos()){
+			if(campo.getFuncionGrupo()!=null){
+				if(flagFirst){
+					query += campo.getIdInstanciaTabla() + "." + this.findFieldNameAlias(reporteEstado,campo.getIdTabla(), campo.getIdInstanciaTabla(), campo.getIdCampo());
+				}else{
+					query += ", " + campo.getIdInstanciaTabla() + "." + this.findFieldNameAlias(reporteEstado,campo.getIdTabla(), campo.getIdInstanciaTabla(), campo.getIdCampo());
+				}
+			}
+		}
+		return query;
 	  }
 
 	  String getOnOrderBy(Reporte reporteEstado) {
