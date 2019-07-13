@@ -21,5 +21,6 @@ public class Reporte {
 	private List<TablaQuery> tablas; 
 	private List<CampoQuery> campos;
 	private List<Filtro> filtros; 
+	private List<CondicionQuery> condiciones;
 	private List<TablaOnJoin> tablasOnJoin; 
 }
