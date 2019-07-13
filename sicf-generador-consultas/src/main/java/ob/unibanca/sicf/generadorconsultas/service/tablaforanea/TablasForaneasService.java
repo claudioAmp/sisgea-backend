@@ -36,4 +36,26 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	public List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio) {
 		return this.tablasForaneasMapper.buscarPorCriterios(criterio);
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public TablasForaneas registrarTablasForaneas(TablasForaneas tablaForanea) {
+		this.registrar(tablaForanea);
+		return tablaForanea;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public TablasForaneas actualizarTablasForaneas(int idRelacionTablaFk, TablasForaneas tablaForanea) {
+		tablaForanea.setIdRelacionTablaFk(idRelacionTablaFk);
+		this.actualizar(tablaForanea);
+		return tablaForanea;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarTablasForaneas(int idRelacionTablaFk) {
+		TablasForaneas tablaForanea = TablasForaneas.builder().idRelacionTablaFk(idRelacionTablaFk).build();
+		this.eliminar(tablaForanea);
+	}
 }

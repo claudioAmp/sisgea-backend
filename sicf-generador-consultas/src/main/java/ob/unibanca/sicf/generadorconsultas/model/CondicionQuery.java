@@ -9,14 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TablasForaneas {
-	int idRelacionTablaFk;
-	int idTabla;
-	String tabla;
-	int idCampo;
-	String campo;
-	int idTablaForanea;
-	String tablaForanea;
-	int idCampoForaneo;
-	String campoForaneo;
+public class CondicionQuery {
+	private int idCondicionQuery;
+	private int idCondicionPadre;
+	private int idReporte;
+    private String operadorLogico;
+	private int tipoCondicion;
 }

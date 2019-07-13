@@ -20,8 +20,7 @@ public class Filtro {
 	String idInstancia;
 	int idOperador;
 	String simboloOperador;
-	String operadorLogico;
-	int tipoFiltro;
+	int idCondicionPadre;
 	String valor;
 	String tipoDatoValor;
 	int permitido;

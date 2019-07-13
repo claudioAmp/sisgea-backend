@@ -15,7 +15,8 @@
 			, ID_TABLA_FROM
 			, ID_CAMPO_FROM
 			, ID_INSTANCIA_TABLA_FROM
-			, ORDER_BY
+			, EN_ORDER_BY
+			, ORDEN_ORDER_BY
 			, EN_SELECT
 			, FUNCION_GRUPO
             , ID_TIPO_DATO
@@ -56,9 +57,9 @@
                 #{objetoMantenido.idTablaQuery,      jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idCampo,  	     jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idCampoQueryFrom,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.orderBy,  	     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.enOrderBy,  	     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.ordenOrderBy,  	 jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.enSelect , 	     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.enGroupBy ,        jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.funcionGrupo ,     jdbcType=VARCHAR, mode=IN},
                 #{usuario, 						     jdbcType=VARCHAR, mode=IN}
             )
