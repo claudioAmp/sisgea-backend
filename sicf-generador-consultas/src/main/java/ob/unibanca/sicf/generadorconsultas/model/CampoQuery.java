@@ -22,6 +22,7 @@ public class CampoQuery {
     String enOrderBy;
     int ordenOrderBy;
     boolean enSelect;
+    int idFuncionGrupo;
     String funcionGrupo;
     String idTipoDato;
     int permitido;
