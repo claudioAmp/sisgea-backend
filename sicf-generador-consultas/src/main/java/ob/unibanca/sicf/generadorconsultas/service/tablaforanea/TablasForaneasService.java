@@ -44,7 +44,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TablasForaneas registrarTablasForaneas(TablasForaneas tablaForanea) {
-		this.registrar(tablaForanea);
+		this.registrar(tablaForanea);	
 		return tablaForanea;
 	}
 	

@@ -49,6 +49,18 @@
 			    </if>
 	        </if>	
         </if>
+        <if  test="(idPerfil == null or idPerfil == '') or  (usuario==null or usuario=='')">
+        	WHERE A.ID_CAMPO>0
+        	<if  test="idTabla!= null and idTabla != ''">
+			    AND A.ID_TABLA=#{idTabla}
+			</if>
+        	<if  test="idCampo != null and idCampo != ''">
+			    AND A.ID_CAMPO=#{idCampo}
+			</if>
+        	<if  test="idTipoDato != null and idTipoDato != ''">
+			    AND A.ID_TIPO_DATO=#{idTipoDato}
+			</if>
+        </if>
         
     </select>
     

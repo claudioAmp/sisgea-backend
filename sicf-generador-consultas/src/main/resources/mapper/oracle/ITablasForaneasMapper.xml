@@ -32,6 +32,9 @@
         <if  test=" permited!= null ">
        			AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
         </if>
+         <if  test=" idRelacionTablaFk!= null ">
+       			AND ID_RELACION_TABLA_FK=#{idRelacionTablaFk}
+        </if>
     </select>
    
     
