@@ -50,8 +50,8 @@ public class CondicionQueryService extends MantenibleService<CondicionQuery> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void eliminarCondicionQuery(int idCondicionQuery) {
-		CondicionQuery parametroRep = CondicionQuery.builder().idCondicionQuery(idCondicionQuery).build();
-		this.eliminar(parametroRep);
+		CondicionQuery condicionQuery = CondicionQuery.builder().idCondicionQuery(idCondicionQuery).build();
+		this.eliminar(condicionQuery);
 	}
 }
 

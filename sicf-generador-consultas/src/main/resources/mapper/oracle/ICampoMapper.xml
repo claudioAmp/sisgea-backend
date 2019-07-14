@@ -62,8 +62,8 @@
     		#{objetoMantenido.alias  ,           	 jdbcType=VARCHAR, mode=IN},
     		#{objetoMantenido.idTipoDato  ,          jdbcType=VARCHAR, mode=IN},
     		#{objetoMantenido.idTablaFk ,            jdbcType=NUMERIC, mode=IN},
-    		#{objetoMantenido.sensible,              jdbcType=NUMERIC, mode=IN},
     		#{objetoMantenido.truncable,             jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.sensible,              jdbcType=NUMERIC, mode=IN},		
     		#{usuario,				                 jdbcType=VARCHAR, mode=IN}
             )
         }

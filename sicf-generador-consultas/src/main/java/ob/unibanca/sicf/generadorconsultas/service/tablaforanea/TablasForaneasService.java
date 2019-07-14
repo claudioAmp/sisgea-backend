@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ob.commons.autorizacionjwt.util.UsuarioUtil;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ITablasForaneasMapper;
@@ -34,6 +35,9 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio) {
+		if(criterio.getPermited()==1) {
+			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		}
 		return this.tablasForaneasMapper.buscarPorCriterios(criterio);
 	}
 

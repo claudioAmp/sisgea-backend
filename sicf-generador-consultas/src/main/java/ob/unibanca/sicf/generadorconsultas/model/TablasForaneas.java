@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TablasForaneas {
-	int idRelacionTablaFk;
+	Integer idRelacionTablaFk;
 	int idTabla;
 	String tabla;
 	int idCampo;
@@ -19,4 +19,5 @@ public class TablasForaneas {
 	String tablaForanea;
 	int idCampoForaneo;
 	String campoForaneo;
+	int permitido;
 }

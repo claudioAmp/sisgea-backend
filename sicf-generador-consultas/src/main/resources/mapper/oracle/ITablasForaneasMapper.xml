@@ -4,37 +4,51 @@
 
     <sql id="consultaVistaMant">
        SELECT
-       	<if  test="distinct == 1">
-        	DISTINCT
-        </if> 
-       	  ID_TABLA				AS ID_TABLA 
-		 ,TABLA      			AS TABLA
-		 ,ID_TABLA_FORANEA		AS ID_TABLA_FORANEA
-		 ,TABLA_FORANEA        	AS TABLA_FORANEA
-		 <if  test="distinct == 0">
-		 ,ID_CAMPO				AS ID_CAMPO
-		 ,CAMPO 				AS CAMPO
-		 ,ID_CAMPO_FK			AS ID_CAMPO_FK
-		 ,CAMPO_FK				AS CAMPO_FK
-		 </if> 
+             ID_RELACION_TABLA_FK
+           , ID_TABLA
+           , TABLA
+           , ID_CAMPO
+           , CAMPO
+           , ID_TABLA_FORANEA
+           , TABLA_FORANEA
+           , ID_CAMPO_FORANEO
+           , CAMPO_FORANEO
+        <if  test=" permited!= null ">
+       	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO"
+        </if>
 		FROM VIE_REP_TABLAS_FORANEAS
     </sql>
 
-     <select id="buscarTodos" resultType="TablasForaneas"
-            statementType="PREPARED">
+     <select id="buscarTodos" resultType="TablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
-    
-    <select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas"
-            statementType="PREPARED">
+	<select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <if  test="(tabla != null and tabla != '' ) or ( tablaForanea!=null and tablaForanea!='')">
-        	WHERE
-       			TABLA = #{tabla}
-       		<if  test=" tablaForanea!=null and tablaForanea!=''">
-       			AND TABLA_FORANEA =#{tablaForanea}
-        	</if>
+        WHERE
+       			ID_TABLA > 0
+        <if  test="idTabla!= null and idTabla != ''">
+       			AND ID_TABLA =#{idTabla}
+        </if>
+        <if  test=" permited!= null ">
+       			AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
         </if>
     </select>
+   
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_rel_tabla_foranea(
+                #{modo, 						  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idRelacionTablaFk,jdbcType=INTEGER, mode=INOUT},           
+                #{objetoMantenido.idTabla,  	  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCampo,        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idTablaForanea, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCampoForaneo, jdbcType=NUMERIC, mode=IN},
+                #{usuario, 						  jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+    
+    
 
 </mapper>

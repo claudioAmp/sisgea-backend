@@ -12,12 +12,10 @@
 			, ID_CAMPO
 			, CAMPO
 			, ALIAS_CAMPO
-			, ID_TABLA_FROM
-			, ID_CAMPO_FROM
-			, ID_INSTANCIA_TABLA_FROM
 			, EN_ORDER_BY
 			, ORDEN_ORDER_BY
 			, EN_SELECT
+			, ID_FUNCION_GRUPO
 			, FUNCION_GRUPO
             , ID_TIPO_DATO
 			<if  test=" permited!= null ">
@@ -56,11 +54,10 @@
                 #{objetoMantenido.idCampoQuery,      jdbcType=INTEGER, mode=IN},
                 #{objetoMantenido.idTablaQuery,      jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idCampo,  	     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idCampoQueryFrom,  jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.enOrderBy,  	     jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.ordenOrderBy,  	 jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.enSelect , 	     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.funcionGrupo ,     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idFuncionGrupo ,   jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						     jdbcType=VARCHAR, mode=IN}
             )
         }
