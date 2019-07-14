@@ -4,6 +4,7 @@ import java.util.List;
 
 import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
+import ob.unibanca.sicf.generadorconsultas.model.Tabla;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermisoUsuario;
 
 public interface IPermisoUsuarioService extends IMantenibleService<PermisoUsuario> {

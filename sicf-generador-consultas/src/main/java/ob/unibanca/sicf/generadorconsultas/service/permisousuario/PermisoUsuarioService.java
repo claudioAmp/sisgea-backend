@@ -13,6 +13,7 @@ import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IPermisoUsuarioMapper;
 import ob.unibanca.sicf.generadorconsultas.mapper.ITablasForaneasMapper;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
+import ob.unibanca.sicf.generadorconsultas.model.Tabla;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermisoUsuario;
 
 
@@ -70,8 +71,7 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Tabla> buscarTablasPermitidasUsuario() {
-		
-		return this.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername());
+		return this.permisoUsuarioMapper.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername());
 	}
 }
 

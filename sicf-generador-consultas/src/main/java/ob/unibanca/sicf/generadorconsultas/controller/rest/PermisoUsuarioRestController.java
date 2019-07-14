@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.generadorconsultas.controller.rest;
 
+import java.util.List;
+
 import javax.validation.groups.Default;
 
 import org.springframework.http.HttpStatus;
@@ -17,10 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.PermisoUsuario;
+import ob.unibanca.sicf.generadorconsultas.model.Tabla;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPermisoUsuario;
 import ob.unibanca.sicf.generadorconsultas.service.permisousuario.IPermisoUsuarioService;
-
-
 
 
 @Validated
@@ -37,10 +38,17 @@ public class PermisoUsuarioRestController {
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
 		return this.permisoUsuarioService.buscarTodosPermisosUsuario();
 	}
+	
 	@GetMapping(value = "/permisos-usuario/buscar")
 	public List<PermisoUsuario> buscarTodosPermisosUsuario(CriterioBusquedaPermisoUsuario criterio) {
 		return this.permisoUsuarioService.buscarPorCriteriosPermisoUsuario(criterio);
 	}
+	
+	@GetMapping(value = "/permisos-usuario/tablas-permitidas")
+	public List<Tabla> buscarTablasPermitidasUsuario() {
+		return this.permisoUsuarioService.buscarTablasPermitidasUsuario();
+	}
+	
 	@PostMapping(value = "/permisos-usuario", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PermisoUsuario registrarPermisoUsuario(@Validated({IRegistro.class, Default.class}) @RequestBody PermisoUsuario permisoUsuario) {
@@ -65,10 +73,5 @@ public class PermisoUsuarioRestController {
 		System.out.println(idPerfil);
 		System.out.println(listaModificacion);
 		this.permisoUsuarioService.actualizarPermisosUsuario(idPerfil, listaModificacion, usuario);
-	}
-	
-	@GetMapping(value = "/usuarios-perfil/tablas-permitidas")
-	public List<Tabla> buscarTablasPermitidasUsuario() {
-		return this.permisoUsuarioService.buscarTablasPermitidasUsuario();
 	}
 }
