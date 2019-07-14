@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CondicionQuery {
 	private int idCondicionQuery;
-	private int idCondicionPadre;
+	private Integer idCondicionPadre;
 	private int idReporte;
     private String operadorLogico;
 	private int tipoCondicion;
