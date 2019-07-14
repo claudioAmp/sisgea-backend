@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriterioBusquedaTablasForaneas {
-	String idTabla;
-	String tablaForanea;
-	int permited;
-	String usuario;
+public class CriterioBusquedaCondicionQuery{
+	private int idCondicionQuery;
+	private int idCondicionPadre;
+	private int idReporte;
+    private String operadorLogico;
+	private int tipoCondicion;
 }

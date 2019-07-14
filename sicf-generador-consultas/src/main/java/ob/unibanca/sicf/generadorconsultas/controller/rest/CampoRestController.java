@@ -22,9 +22,6 @@ import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
 import ob.unibanca.sicf.generadorconsultas.service.campo.ICampoService;
 
-
-
-
 @Validated
 @RestController
 public class CampoRestController {
@@ -37,6 +34,10 @@ public class CampoRestController {
 	@GetMapping(value = "/campos")
 	public List<Campo> buscarTodosCampos() {
 		return this.campoService.buscarTodosCampos();
+	}
+	@GetMapping(value = "/campos/{idCampo}")
+	public Campo buscarPorId(@PathVariable int idCampo) {
+		return this.campoService.buscarPorId(idCampo);
 	}
 	@GetMapping(value = "/campos/buscar")
 	public List<Campo> buscarTodosCampos(CriterioBusquedaCampo criterio) {

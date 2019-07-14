@@ -2,6 +2,7 @@ package ob.unibanca.sicf.generadorconsultas.service.generarconsulta;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.CondicionQuery;
 import ob.unibanca.sicf.generadorconsultas.model.Filtro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
@@ -15,12 +16,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class GenerarConsultaService implements IGenerarConsultaService {
 
-	List<CampoQuery> allCampos;
-
-	public GenerarConsultaService(@Qualifier("ICampoQueryMapper") IMantenibleMapper<CampoQuery> mantenibleMapper) {
-		this.allCampos = (List<CampoQuery>) mantenibleMapper.buscarTodos();
-	}
-
 	@Override
 	public String generarConsulta(Reporte reporteEstado) {
 		//CambiosParaGenerateQuery
@@ -32,7 +27,8 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    queryReporte += this.getOnFrom(reporteEstado);
 	    queryReporte += " ";
 	    queryReporte += this.getOnWhere(reporteEstado);
-	    queryReporte += " ";
+		queryReporte += " ";
+		queryReporte+=this.getOnGroupBy(reporteEstado);
 	    queryReporte += this.getOnOrderBy(reporteEstado);
 	    return queryReporte;
 	}
@@ -49,7 +45,12 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." + this.findFieldName(campo.getIdCampo()) + " AS " + "\"" ;
+			if(campo.getFuncionGrupo()!=null){
+				query+=campo.getFuncionGrupo()+"("+campo.getIdInstanciaTabla() + "." + campo.getCampo()+")";
+			} else {
+				query += campo.getIdInstanciaTabla() + "." + campo.getCampo() ;
+			}
+			query += " AS " + "\"" ;
 	        String b=campo.getCampo();
 	        if(a.get(b)==null){
 	          a.put(b, 0);
@@ -63,25 +64,17 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    return query;
 	  }
 
-	  String findFieldName(int id){
-	    for (CampoQuery campo : this.allCampos) {
-	      if (campo.getIdCampo() == id)
-	        return campo.getCampo();
-		}
-		return null;
-	  }
-
 	  String getOnFrom(Reporte reporteEstado ) {
 	    String query = "";
 	    boolean flagFrom = true;
 	    if (reporteEstado.getTablas().size() == 1) {
 	      TablaQuery tabla = reporteEstado.getTablas().get(0);
-	      query +=  tabla.getTabla() + tabla.getIdInstancia();
+	      query +=  tabla.getTabla() + " " + tabla.getIdInstancia();
 	    }
 	    else {
 	      for (TablaQuery tabla : reporteEstado.getTablas()) {
 	        if (flagFrom) {
-	          query += tabla.getTabla() + tabla.getIdInstancia();
+	          query += tabla.getTabla() + " " + tabla.getIdInstancia();
 	          flagFrom = false;
 	        } else {
 	          query += " " + tabla.getTipoJoin()+ " " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
@@ -102,25 +95,11 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    		} else {
 	    			query+=" "+join.getOperadorLogico();
 	    		}
-	    		query += " " + join.getInstanciaTablaBase() + "." + this.findFieldNameAlias(reporteEstado,join.getIdTablaBase(), join.getInstanciaTablaBase(), join.getIdCampoBase());
-    			query += " = " + join.getInstanciaTablaJoin() + "." + this.findFieldNameAlias(reporteEstado,join.getIdTablaJoin(), join.getInstanciaTablaJoin(), join.getIdCampoJoin());
+	    		query += " " + join.getInstanciaTablaBase() + "." + join.getCampoBase();
+    			query += " = " + join.getInstanciaTablaJoin() + "." + join.getCampoJoin();
     		}
 	    }
 		return query;
-	  }
-
-	  //funcion que recibe la tabla, instancia y un identificador del campo y devuelve su alias en caso lo tenga y sino su nombre
-	  String findFieldNameAlias(Reporte reporteEstado , int tabla, String instancia,int idCampo) {
-	    for (CampoQuery campo : reporteEstado.getCampos()) {
-	      if (campo.getIdTabla() == tabla && campo.getIdInstanciaTabla() == instancia && campo.getIdCampo() == idCampo) {
-	        if (campo.getCampo() != null && campo.getCampo() != "") {
-	          return campo.getCampo();
-	        } else {
-	          return this.findFieldName(campo.getIdCampo());
-	        }
-	      }
-		}
-		return null;
 	  }
 
 	  String getOnWhere(Reporte reporteEstado ) {
@@ -128,52 +107,80 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    if(reporteEstado.getFiltros()==null) {
 	      return query;}
 	    boolean flagFirst = true;
-	    query+=" (";
-	    for (Filtro filtro : reporteEstado.getFiltros()) {
-	      if (filtro.getTipoFiltro() == 0) {
-	        if (flagFirst) {
-	          query += "WHERE ("; flagFirst = false;
-	        } else {
-	          filtro.setOperadorLogico(filtro.getOperadorLogico().equals("O") ? "OR" : "AND");
-	          query += " " + filtro.getOperadorLogico();
-	        }
-	        query += " " + filtro.getIdInstancia() + "." + this.findFieldNameAlias(reporteEstado,filtro.getIdTabla(), filtro.getIdInstancia(), filtro.getIdCampo());
-	        String operador = filtro.getSimboloOperador();
-	        if (operador == "=" || operador == "<" || operador == ">" || operador == "<=" || operador == ">=" || operador == "LIKE" || operador == "!=") {
-	          switch (filtro.getTipoDatoValor()) {
-	            case "VARCHAR2":
-	            case "DATE":
-				{
-				  query += " " + operador + " '" + filtro.getValor() + "' ";
-				  break;
-				}
-	            default: {
-	              query += " " + operador + " " + filtro.getValor();
-	            }
-
-	          }
-
-	        } 
-	          query += " )";
-	        }
-	      }
-	    if (!flagFirst)
-	      query += " )";
+	    query+="WHERE (";
+	    for(CondicionQuery condicion : reporteEstado.getCondiciones()) {
+	    	//Si se trata de una condicion del where
+	    	if(condicion.getTipoCondicion()==0) {
+	    		if(condicion.getIdCondicionPadre()==null) {
+	    			query+= this.getInWhere(reporteEstado,0,condicion);
+	    		}
+	    	}
+	    }
+	    query += " )";
 	    return query;
+	  }
+	  
+	  String getInWhere(Reporte reporteEstado, int index,CondicionQuery condicion) {
+		  String query = "(";boolean flagFirst=true;
+		  for(int tempIndex=index;tempIndex<reporteEstado.getFiltros().size();tempIndex++) {
+			  Filtro filtro=reporteEstado.getFiltros().get(tempIndex);
+			  if(filtro.getIdCondicionPadre()==condicion.getIdCondicionQuery()) {
+				  if(!flagFirst) {
+					  query+=" "+condicion.getOperadorLogico()+" ";
+				  } else {
+					  flagFirst=false;
+				  }
+				  query+=filtro.getIdInstancia()+"."+filtro.getCampo()+filtro.getSimboloOperador()+filtro.getValor();
+			  } else {
+				  if(!flagFirst) {
+					  query+=" "+condicion.getOperadorLogico()+" "+getInWhere(reporteEstado,tempIndex,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()));
+				  } else {
+					  query+=getInWhere(reporteEstado,tempIndex,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()));
+				  }
+			  }
+		  }
+		  query+=")";
+		  return query;
+	  }
+	  
+	  CondicionQuery findCondicionById(Reporte reporteEstado,int id_buscado) {
+		  for(CondicionQuery condicion:reporteEstado.getCondiciones()) {
+			  if(condicion.getIdCondicionQuery()==id_buscado) {
+				  return condicion;
+			  }
+		  }
+		  return null;
+	  }
+
+	  String getOnGroupBy(Reporte reporteEstado) {
+		String query = "";
+		boolean flagFirst = true;
+		for(CampoQuery campo:reporteEstado.getCampos()){
+			if(campo.getFuncionGrupo()==null){
+				if(flagFirst){
+					query+=" GROUP BY ";
+					flagFirst=false;
+				}else{
+					query += ", ";
+				}
+				query += campo.getIdInstanciaTabla() + "." + campo.getCampo();
+			}
+		}
+		return query;
 	  }
 
 	  String getOnOrderBy(Reporte reporteEstado) {
 	    String query = "";
 	    boolean flagFirst = true;
 	    for (CampoQuery campo : reporteEstado.getCampos()) {
-	      if (campo.getOrderBy() != null) {
+	      if (campo.getEnOrderBy() != null) {
 	        if (flagFirst) {
 	          query += " ORDER BY ";
 	          flagFirst = false;
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." + this.findFieldNameAlias(reporteEstado,campo.getIdTabla(), campo.getIdInstanciaTabla(), campo.getIdCampo()) + " " + campo.getOrderBy();
+	        query += campo.getIdInstanciaTabla() + "." + campo.getEnOrderBy();
 	      }
 	    }
 	    return query;

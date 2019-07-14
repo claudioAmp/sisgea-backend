@@ -19,12 +19,10 @@ public class CampoQuery {
     int idCampo;
     String campo;
     String aliasCampo;
-    int idCampoQueryFrom;
-    int idCampoFrom;
-    int idTablaFrom;
-    String idInstanciaTablaFrom;
-    String orderBy;
+    String enOrderBy;
+    int ordenOrderBy;
     boolean enSelect;
+    int idFuncionGrupo;
     String funcionGrupo;
     String idTipoDato;
     int permitido;

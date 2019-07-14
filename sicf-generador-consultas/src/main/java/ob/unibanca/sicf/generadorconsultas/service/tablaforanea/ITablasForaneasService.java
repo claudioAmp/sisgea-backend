@@ -12,4 +12,11 @@ public interface ITablasForaneasService extends IMantenibleService<TablasForanea
 	List<TablasForaneas> buscarTodosTablasForaneas();
 	
 	List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio);
+	
+    TablasForaneas registrarTablasForaneas(TablasForaneas tablaForanea);
+	
+	TablasForaneas actualizarTablasForaneas(int idRelacionTablaFk, TablasForaneas tablaForanea);
+	
+	void eliminarTablasForaneas(int idRelacionTablaFk);
 }
+

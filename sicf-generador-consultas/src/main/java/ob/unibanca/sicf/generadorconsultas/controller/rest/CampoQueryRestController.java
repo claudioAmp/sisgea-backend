@@ -22,9 +22,6 @@ import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.*;
 
-
-
-
 @Validated
 @RestController
 public class CampoQueryRestController {

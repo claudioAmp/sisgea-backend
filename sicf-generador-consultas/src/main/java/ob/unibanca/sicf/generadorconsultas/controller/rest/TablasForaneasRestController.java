@@ -1,11 +1,24 @@
 package ob.unibanca.sicf.generadorconsultas.controller.rest;
 
+
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
+import ob.commons.validation.validation.IdNumerico;
+import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.TablasForaneas;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablasForaneas;
 import ob.unibanca.sicf.generadorconsultas.service.tablaforanea.ITablasForaneasService;
@@ -22,30 +35,31 @@ public class TablasForaneasRestController {
 	}
 	
 	@GetMapping(value = "/tablas-foraneas")
-	public List<TablasForaneas> buscarTodosCanales() {
+	public List<TablasForaneas> buscarTodosTablasForaneases() {
 		return this.tablasForaneasService.buscarTodosTablasForaneas();
 	}
 	
 	@GetMapping(value = "/tablas-foraneas/buscar")
-	public List<TablasForaneas> buscarTodosCanales(CriterioBusquedaTablasForaneas criterio) {
+	public List<TablasForaneas> buscarTodosTablasForaneases(CriterioBusquedaTablasForaneas criterio) {
 		return this.tablasForaneasService.buscarPorCriteriosTablasForaneas(criterio);
 	}
 	
-	/*@PostMapping(value = "/tablas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/tablas-foraneas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Canal registrarCanal(@Validated({IRegistro.class, Default.class}) @RequestBody Canal canal) {
-		return this.canalService.registrarCanal(canal);
+	public TablasForaneas registrarTablasForaneas(@Validated({IRegistro.class, Default.class}) @RequestBody TablasForaneas tablaQuery) {
+		return this.tablasForaneasService.registrarTablasForaneas(tablaQuery);
 	}
 	
-	@PutMapping(value = "/canales/{idCanal}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Canal actualizarCanal(@IdNumerico(maxRange = 99) @PathVariable int idCanal,
-	                             @Validated @RequestBody Canal canal) {
-		return this.canalService.actualizarCanal(idCanal, canal);
+	@PutMapping(value = "/tablas-foraneas/{idRelacionTablaFk}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public TablasForaneas actualizarTablasForaneas(@IdNumerico(maxRange = 9999) @PathVariable int idRelacionTablaFk,
+	                             @Validated @RequestBody TablasForaneas tablaQuery) {
+		return this.tablasForaneasService.actualizarTablasForaneas(idRelacionTablaFk, tablaQuery);
 	}
 	
-	@DeleteMapping(value = "/canales/{idCanal}")
+	@DeleteMapping(value = "/tablas-foraneas/{idRelacionTablaFk}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarCanal(@IdNumerico(maxRange = 99) @PathVariable int idCanal) {
-		this.canalService.eliminarCanal(idCanal);
-	}*/
+	public void eliminarTablasForaneas(@IdNumerico(maxRange = 9999) @PathVariable int idRelacionTablaFk) {
+		this.tablasForaneasService.eliminarTablasForaneas(idRelacionTablaFk);
+	}
+
 }

@@ -18,10 +18,11 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
 @Service
 public class CampoService extends MantenibleService<Campo> implements ICampoService {
 	
-	private final ICampoMapper CampoMapper;
+	private final ICampoMapper campoMapper;
+	
 	public CampoService(@Qualifier("ICampoMapper") IMantenibleMapper<Campo> mantenibleMapper) {
 		super(mantenibleMapper);
-		this.CampoMapper = (ICampoMapper) mantenibleMapper;
+		this.campoMapper = (ICampoMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -31,8 +32,13 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Campo buscarPorId(int idCampo) {
+		return this.campoMapper.buscarPorId(idCampo);
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Campo> buscarPorCriteriosCampo(CriterioBusquedaCampo criterio) {
-		return this.CampoMapper.buscarPorCriterios(criterio);
+		return this.campoMapper.buscarPorCriterios(criterio);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -61,8 +67,7 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	public List<Campo> buscarCamposPorUsuarioActivo() {
 		CriterioBusquedaCampo criterio = new CriterioBusquedaCampo();
 		criterio.setUsuario(UsuarioUtil.obtenerUsername());
-		System.out.println(criterio);
-		return this.CampoMapper.buscarPorCriterios(criterio);
+		return this.campoMapper.buscarPorCriterios(criterio);
 	}
 }
 
