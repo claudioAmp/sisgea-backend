@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriterios" >
 		SELECT *
-		FROM VIE_CON_MOV_INC_VISA_TC5 a
+		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
 	</sql>
 	
 	<!-- Reutilizables -->	
