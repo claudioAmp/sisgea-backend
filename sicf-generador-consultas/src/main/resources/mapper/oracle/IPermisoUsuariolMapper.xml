@@ -61,4 +61,13 @@
         }
     </select>
     
+    
+    <select id="buscarTablasPermitidasUsuario" resultType="Tabla" parameterType="String" statementType="PREPARED">
+       	SELECT 
+		 DISTINCT 
+		 ID_TABLA AS ID_TABLA,
+		 TABLA AS NOMBRE 
+		FROM VIE_MAN_REP_PERMISO_USUARIO
+		WHERE USUARIO = #{username}
+    </select>
 </mapper>

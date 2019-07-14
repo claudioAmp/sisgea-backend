@@ -1,7 +1,5 @@
 package ob.unibanca.sicf.generadorconsultas.controller.rest;
 
-import java.util.List;
-
 import javax.validation.groups.Default;
 
 import org.springframework.http.HttpStatus;
@@ -67,5 +65,10 @@ public class PermisoUsuarioRestController {
 		System.out.println(idPerfil);
 		System.out.println(listaModificacion);
 		this.permisoUsuarioService.actualizarPermisosUsuario(idPerfil, listaModificacion, usuario);
+	}
+	
+	@GetMapping(value = "/usuarios-perfil/tablas-permitidas")
+	public List<Tabla> buscarTablasPermitidasUsuario() {
+		return this.permisoUsuarioService.buscarTablasPermitidasUsuario();
 	}
 }

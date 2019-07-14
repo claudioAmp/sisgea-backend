@@ -66,5 +66,12 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 		this.permisoUsuarioMapper.actualizarPermisosUsuario(idPerfil, listaModificacion, usuario);
 		
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Tabla> buscarTablasPermitidasUsuario() {
+		
+		return this.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername());
+	}
 }
 

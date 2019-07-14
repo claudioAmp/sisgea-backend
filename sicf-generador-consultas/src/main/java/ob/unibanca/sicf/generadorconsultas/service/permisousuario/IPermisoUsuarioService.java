@@ -20,4 +20,5 @@ public interface IPermisoUsuarioService extends IMantenibleService<PermisoUsuari
 	
 	void actualizarPermisosUsuario(int idPerfil,String listaModificacion,String usuario);
 	
+	List<Tabla> buscarTablasPermitidasUsuario();
 }
