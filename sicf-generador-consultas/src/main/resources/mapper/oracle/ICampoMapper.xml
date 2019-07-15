@@ -30,15 +30,14 @@
     
     <select id="buscarPorCriterios" resultType="Campo" parameterType="CriterioBusquedaCampo" statementType="PREPARED">
         <include refid="consulta"/>
-        <if  test="(idPerfil != null and idPerfil != '') or (usuario!=null and usuario!='')">
-        	<if  test="usuario==null or usuario==''">
+        <if  test="usuario==null or usuario==''">
         	    INNER JOIN VIE_MAN_REP_PERFIL_CAMPO B ON (A.ID_CAMPO=B.ID_CAMPO)
 	        	WHERE B.ID_PERFIL =#{idPerfil}
 	        	<if  test="sensible != null and sensible != ''">
 			       AND A.SENSIBLE=#{sensible}
 			    </if>
-	        </if>
-	        <if  test="usuario!=null and usuario!=''">
+	    </if>
+         <if  test="usuario!=null and usuario!=''">
         	    INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
 	    		WHERE B.USUARIO =#{usuario}
 	    		<if  test="idPerfil != null and idPerfil != ''">
@@ -48,8 +47,7 @@
 			       AND A.SENSIBLE=#{sensible}
 			    </if>
 	        </if>	
-        </if>
-        <if  test="(idPerfil == null or idPerfil == '') or  (usuario==null or usuario=='')">
+        <if  test="(idPerfil == null or idPerfil == '') and  (usuario==null or usuario=='')">
         	WHERE A.ID_CAMPO>0
         	<if  test="idTabla!= null and idTabla != ''">
 			    AND A.ID_TABLA=#{idTabla}
