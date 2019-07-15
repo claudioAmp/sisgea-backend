@@ -8,12 +8,15 @@ import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GenerarConsultaService implements IGenerarConsultaService {
 
 	@Override
@@ -21,9 +24,9 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		//CambiosParaGenerateQuery
 		Map<String, Integer> a = new HashMap<>();
 	    String queryReporte;
-	    queryReporte = "SELECT";
+	    queryReporte = "SELECT ";
 	    queryReporte += this.getOnSelect(reporteEstado,a);
-	    queryReporte += " FROM";
+	    queryReporte += " FROM ";
 	    queryReporte += this.getOnFrom(reporteEstado);
 	    queryReporte += " ";
 	    queryReporte += this.getOnWhere(reporteEstado);
@@ -77,7 +80,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	          query += tabla.getTabla() + " " + tabla.getIdInstancia();
 	          flagFrom = false;
 	        } else {
-	          query += " " + tabla.getTipoJoin()+ " " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
+	          query += " " + tabla.getTipoJoin()+ " JOIN " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
 	        }
 	      }
 	    }
@@ -88,7 +91,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    String query = "";
 	    boolean flagFirst=true;
 	    for(TablaOnJoin join : reporteEstado.getTablasOnJoin()) {
-	    	if(join.getIdTablaBase()==idTabla && join.getInstanciaTablaBase()==idInstancia) {
+	    	if(join.getIdTablaJoin()==idTabla && join.getInstanciaTablaJoin().equalsIgnoreCase(idInstancia)) {
 	    		if(flagFirst) {
 	    			//No posee operador logico
 	    			flagFirst=false;
@@ -104,39 +107,56 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 
 	  String getOnWhere(Reporte reporteEstado ) {
 	    String query = "";
-	    if(reporteEstado.getFiltros()==null) {
-	      return query;}
-	    boolean flagFirst = true;
-	    query+="WHERE (";
+	    query+=" WHERE ";
+	    boolean flagExiste=false;
 	    for(CondicionQuery condicion : reporteEstado.getCondiciones()) {
 	    	//Si se trata de una condicion del where
 	    	if(condicion.getTipoCondicion()==0) {
-	    		if(condicion.getIdCondicionPadre()==null) {
-	    			query+= this.getInWhere(reporteEstado,0,condicion);
+	    		if(condicion.getIdCondicionPadre()==null && reporteEstado.getFiltros()!=null) {
+	    			flagExiste=true;
+	    			List<Filtro> trucoLista=new ArrayList<Filtro>();
+	    			  List<Filtro> temporal = new ArrayList<Filtro>();
+	    			  for(Filtro filtro:reporteEstado.getFiltros()) {
+	    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==0)
+	    					  temporal.add(filtro);
+	    			  }
+	    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista);
+	    			break;
 	    		}
 	    	}
 	    }
-	    query += " )";
-	    return query;
+	    if(flagExiste)
+	    	return query;
+	    else
+	    	return "";
 	  }
 	  
-	  String getInWhere(Reporte reporteEstado, int index,CondicionQuery condicion) {
+	  String getInConditional(Reporte reporteEstado, Integer index,CondicionQuery condicion,List<Filtro> temporal ,List<Filtro> trucoLista) {
 		  String query = "(";boolean flagFirst=true;
-		  for(int tempIndex=index;tempIndex<reporteEstado.getFiltros().size();tempIndex++) {
-			  Filtro filtro=reporteEstado.getFiltros().get(tempIndex);
+		  for(Integer tempIndex=index;tempIndex<temporal.size();tempIndex++) {
+			  Filtro filtro=temporal.get(tempIndex);
 			  if(filtro.getIdCondicionPadre()==condicion.getIdCondicionQuery()) {
-				  if(!flagFirst) {
-					  query+=" "+condicion.getOperadorLogico()+" ";
-				  } else {
-					  flagFirst=false;
+				  if(!trucoLista.contains(filtro)) {
+					  if(!flagFirst) {
+						  query+=" "+condicion.getOperadorLogico()+" ";
+					  } else {
+						  flagFirst=false;
+					  }
+					  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" "+filtro.getValor();
+					  trucoLista.add(filtro);
 				  }
-				  query+=filtro.getIdInstancia()+"."+filtro.getCampo()+filtro.getSimboloOperador()+filtro.getValor();
 			  } else {
-				  if(!flagFirst) {
-					  query+=" "+condicion.getOperadorLogico()+" "+getInWhere(reporteEstado,tempIndex,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()));
-				  } else {
-					  query+=getInWhere(reporteEstado,tempIndex,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()));
-				  }
+				  if(this.getChildOrFatherCondition(reporteEstado,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()), condicion)==0) {
+					  if(!trucoLista.contains(filtro)) {
+						  if(!flagFirst) {
+							  query+=" "+condicion.getOperadorLogico();
+						  } else {
+							  flagFirst=false;
+						  }
+						  query+=" "+getInConditional(reporteEstado,tempIndex,this.getChildOrFather(reporteEstado,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()), condicion),temporal,trucoLista);
+					  }
+				  } else 
+					  break;
 			  }
 		  }
 		  query+=")";
@@ -150,6 +170,45 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 			  }
 		  }
 		  return null;
+	  }
+	  
+	  //metodo que retorna 0 si es padre y 1 si es hijo
+	  int getChildOrFatherCondition(Reporte reporteEstado,CondicionQuery condicion_origen,CondicionQuery condicion_destino) {
+		  CondicionQuery obtenerPadre=condicion_origen;boolean flagHijo=false;
+		  if(obtenerPadre.getIdCondicionPadre()!=null) {
+			  while(obtenerPadre.getIdCondicionPadre()!=condicion_destino.getIdCondicionQuery()) {
+				  obtenerPadre=this.findCondicionById(reporteEstado, obtenerPadre.getIdCondicionPadre());
+				  if(obtenerPadre.getIdCondicionPadre()==null) {
+					  flagHijo=true;
+					  break;
+				  }
+			  }
+		  } else 
+			  flagHijo=true;
+		  if(flagHijo) {
+			  for(CondicionQuery condicion:reporteEstado.getCondiciones()) {
+				  if(condicion.getIdCondicionPadre()!=null) {
+					  if(condicion.getIdCondicionPadre()==condicion_origen.getIdCondicionQuery()) {
+						  return 1;
+					  }
+				  }
+			  }
+		  }
+		  return 0;
+	  }
+	  
+	  CondicionQuery getChildOrFather(Reporte reporteEstado,CondicionQuery condicion_origen,CondicionQuery condicion_destino) {
+		  CondicionQuery obtenerPadre=condicion_origen;boolean flagHijo=false;
+		  if(obtenerPadre.getIdCondicionPadre()!=null) {
+			  while(obtenerPadre.getIdCondicionPadre()!=condicion_destino.getIdCondicionQuery()) {
+				  obtenerPadre=this.findCondicionById(reporteEstado, obtenerPadre.getIdCondicionPadre());
+				  if(obtenerPadre.getIdCondicionPadre()==null) {
+					  flagHijo=true;
+					  break;
+				  }
+			  }
+		  }
+		  return obtenerPadre;
 	  }
 
 	  String getOnGroupBy(Reporte reporteEstado) {
@@ -168,6 +227,32 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		}
 		return query;
 	  }
+	  
+	  String getOnHaving(Reporte reporteEstado) {
+		  String query = "";
+		    query+=" HAVING ";
+		    boolean flagExiste=false;
+		    for(CondicionQuery condicion : reporteEstado.getCondiciones()) {
+		    	//Si se trata de una condicion del where
+		    	if(condicion.getTipoCondicion()==1) {
+		    		if(condicion.getIdCondicionPadre()==null && reporteEstado.getFiltros()!=null) {
+		    			flagExiste=true;
+		    			List<Filtro> trucoLista=new ArrayList<Filtro>();
+		    			  List<Filtro> temporal = new ArrayList<Filtro>();
+		    			  for(Filtro filtro:reporteEstado.getFiltros()) {
+		    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==1)
+		    					  temporal.add(filtro);
+		    			  }
+		    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista);
+		    			break;
+		    		}
+		    	}
+		    }
+		    if(flagExiste)
+		    	return query;
+		    else
+		    	return "";
+	  }
 
 	  String getOnOrderBy(Reporte reporteEstado) {
 	    String query = "";
@@ -180,7 +265,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." + campo.getEnOrderBy();
+	        query += campo.getIdInstanciaTabla() + "." +campo.getCampo()+" "+ campo.getEnOrderBy();
 	      }
 	    }
 	    return query;
