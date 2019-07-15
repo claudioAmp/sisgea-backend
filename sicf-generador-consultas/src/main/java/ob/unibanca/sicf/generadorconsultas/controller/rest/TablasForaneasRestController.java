@@ -41,6 +41,7 @@ public class TablasForaneasRestController {
 	
 	@GetMapping(value = "/tablas-foraneas/buscar")
 	public List<TablasForaneas> buscarTodosTablasForaneases(CriterioBusquedaTablasForaneas criterio) {
+		System.out.println(criterio);
 		return this.tablasForaneasService.buscarPorCriteriosTablasForaneas(criterio);
 	}
 	

@@ -25,7 +25,7 @@
     </select>
 	<select id="buscarPorCriterios" resultType="PermisoUsuario" parameterType="CriterioBusquedaPermisoUsuario" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        WHERE ID_PERMISO_USUARIO >0
+        <where>
         	   <if  test="idPerfil != null and idPerfil != '' ">
 	        	  AND ID_PERFIL = #{idPerfil}	
 	           </if>
@@ -34,7 +34,8 @@
 	           </if>
 	           <if  test="tabla != null and tabla != '' ">
 	        	  AND TABLA = #{tabla}
-	           </if>	
+	           </if>
+	     </where>	
     </select>
    
     
