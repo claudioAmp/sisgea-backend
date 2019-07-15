@@ -25,14 +25,14 @@
 	<select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         WHERE
-       			ID_TABLA > 0
+       			ID_RELACION_TABLA_FK > 0
         <if  test="idTabla!= null and idTabla != ''">
        			AND ID_TABLA =#{idTabla}
         </if>
-        <if  test=" permited!= null ">
+        <if  test=" permited!= null  and permited!= 0 ">
        			AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
         </if>
-         <if  test=" idRelacionTablaFk!= null ">
+         <if  test=" idRelacionTablaFk != null ">
        			AND ID_RELACION_TABLA_FK=#{idRelacionTablaFk}
         </if>
     </select>

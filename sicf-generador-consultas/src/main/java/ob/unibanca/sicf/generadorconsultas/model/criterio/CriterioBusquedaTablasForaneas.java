@@ -15,5 +15,5 @@ public class CriterioBusquedaTablasForaneas {
 	String tablaForanea;
 	int permited;
 	String usuario;
-	Integer idRelacionTablaFk;
+	int idRelacionTablaFk;
 }
