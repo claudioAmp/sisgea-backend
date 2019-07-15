@@ -21,6 +21,7 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
@@ -124,8 +125,9 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
 		int idReporte=ultSeq.getValor().intValue();
 		Reporte.setIdReporte(idReporte);
+		
 		this.registrarReporte(Reporte);
-		int idxTabla=0,idxCampo=0,idxFiltro=0;
+		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0;		
 		for(TablaQuery t : Reporte.getTablas()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("TABLA_QUERY");
 			t.setIdTablaQuery(ultSeq.getValor().intValue());
@@ -137,6 +139,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		for(CampoQuery c : Reporte.getCampos()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("CAMPO_QUERY");
 			TablaQuery t = this.getTablaQuery(Reporte.getTablas(),c.getIdTabla(),c.getIdInstanciaTabla());
+			System.out.println(c);
 			if(t!=null) {
 				c.setIdTablaQuery(t.getIdTablaQuery());
 				c.setIdCampoQuery(ultSeq.getValor().intValue());
@@ -144,7 +147,22 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 				Reporte.getCampos().set(idxCampo, c);
 				this.campoQueryService.registrar(c);
 			}
+			
 			idxCampo++;
+		}
+		for(TablaOnJoin to :Reporte.getTablasOnJoin()) {
+			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoBase(), to.getInstanciaTablaBase());
+			to.setIdReporte(idReporte);
+			if(c!=null) {
+				to.setIdCampoQueryBase(c.getIdCampoQuery());
+			}
+			c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoJoin(), to.getInstanciaTablaJoin());
+			if(c!=null) {
+				to.setIdCampoQueryJoin(c.getIdCampoQuery());
+			}
+			Reporte.getTablasOnJoin().set(idxTablaOnJoin, to);
+			this.tablaOnJoinService.registrar(to);
+			idxTablaOnJoin++;
 		}
 		for(Filtro f : Reporte.getFiltros()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("FILTRO_CAMPO");
@@ -161,7 +179,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	public TablaQuery getTablaQuery(List<TablaQuery> tablas, int idTabla,String instancia) {
 		TablaQuery tq=null;
 		for(int i=0;i<tablas.size();i++) {
-			if(tablas.get(i).getIdTabla()==idTabla&&tablas.get(i).getIdInstancia().compareTo(instancia)==0) {
+			if(tablas.get(i).getIdTabla()==idTabla && tablas.get(i).getIdInstancia().compareTo(instancia)==0) {		
 				return tablas.get(i);
 			}
 		}
