@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.generadorconsultas.service.reporte;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
+import ob.unibanca.sicf.generadorconsultas.service.condicionquery.ICondicionQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.filtro.IFiltroService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaonjoin.ITablaOnJoinService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
@@ -32,6 +34,7 @@ import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuen
 
 import java.util.Map;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.CondicionQuery;
 import ob.unibanca.sicf.generadorconsultas.model.Filtro;
 
 
@@ -43,6 +46,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	private @Autowired ITablaOnJoinService tablaOnJoinService;
 	private @Autowired ICampoQueryService campoQueryService;
 	private @Autowired IFiltroService filtroService;
+	private @Autowired ICondicionQueryService condicionService;
 	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;
 	
 	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService) {
@@ -127,7 +131,8 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		Reporte.setIdReporte(idReporte);
 		
 		this.registrarReporte(Reporte);
-		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0;		
+		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0,idxCondicion=0;
+		List<List<Integer>> idConQAux= new ArrayList<>();
 		for(TablaQuery t : Reporte.getTablas()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("TABLA_QUERY");
 			t.setIdTablaQuery(ultSeq.getValor().intValue());
@@ -139,7 +144,6 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		for(CampoQuery c : Reporte.getCampos()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("CAMPO_QUERY");
 			TablaQuery t = this.getTablaQuery(Reporte.getTablas(),c.getIdTabla(),c.getIdInstanciaTabla());
-			System.out.println(c);
 			if(t!=null) {
 				c.setIdTablaQuery(t.getIdTablaQuery());
 				c.setIdCampoQuery(ultSeq.getValor().intValue());
@@ -164,12 +168,26 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			this.tablaOnJoinService.registrar(to);
 			idxTablaOnJoin++;
 		}
+		for(CondicionQuery cq : Reporte.getCondiciones()) {
+			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("CONDICION_QUERY");
+			System.out.println(cq);
+			cq.setIdReporte(idReporte);
+			cq.setIdCondicionQuery(ultSeq.getValor());
+			if( cq.getIdCondicionPadre()!=0) {
+				cq.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(), cq.getIdCondicionPadre()).getIdCondicionQuery());
+			}
+			Reporte.getCondiciones().set(idxFiltro, cq);
+			this.condicionService.registrar(cq);
+			idxCondicion++;
+		}
 		for(Filtro f : Reporte.getFiltros()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("FILTRO_CAMPO");
 			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),f.getIdCampo(), f.getIdInstancia());
 			if(c!=null) {
 				f.setIdCampoQuery(c.getIdCampoQuery());
 				f.setIdFiltroCampo(ultSeq.getValor().intValue());
+				System.out.println(f);
+				f.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(),f.getIdCondicionPadre()).getIdCondicionQuery());
 				Reporte.getFiltros().set(idxFiltro, f);
 				this.filtroService.registrar(f);
 			}
@@ -194,6 +212,16 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		}
 		return cq;
 	}
+	public CondicionQuery getCondicionQuery(List<CondicionQuery> condiciones, int idCondAux) {
+		CondicionQuery cq=null;
+		for(int i=0;i<condiciones.size();i++) {
+			if(condiciones.get(i).getIdCondicionQueryAux()==idCondAux) {
+				return condiciones.get(i);
+			}
+		}
+		return cq;
+	}
+	
 	
 	
 

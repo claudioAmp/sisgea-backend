@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CondicionQuery {
-	private int idCondicionQuery;
+	private Integer idCondicionQuery;
 	private Integer idCondicionPadre;
+	private int idCondicionQueryAux;
 	private int idReporte;
     private String operadorLogico;
 	private int tipoCondicion;
