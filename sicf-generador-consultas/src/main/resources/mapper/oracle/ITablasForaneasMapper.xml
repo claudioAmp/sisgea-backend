@@ -7,12 +7,16 @@
              ID_RELACION_TABLA_FK
            , ID_TABLA
            , TABLA
+           , ALIAS_TABLA
            , ID_CAMPO
            , CAMPO
+           , ALIAS_CAMPO
            , ID_TABLA_FORANEA
            , TABLA_FORANEA
+           , ALIAS_TABLA_FORANEA
            , ID_CAMPO_FORANEO
            , CAMPO_FORANEO
+           , ALIAS_CAMPO_FORANEO
         <if  test=" permited!= null ">
        	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO"
         </if>
@@ -25,14 +29,14 @@
 	<select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         WHERE
-       			ID_TABLA > 0
+       			ID_RELACION_TABLA_FK > 0
         <if  test="idTabla!= null and idTabla != ''">
        			AND ID_TABLA =#{idTabla}
         </if>
-        <if  test=" permited!= null ">
+        <if  test=" permited!= null  and permited!= 0 ">
        			AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
         </if>
-         <if  test=" idRelacionTablaFk!= null ">
+         <if  test=" idRelacionTablaFk != null ">
        			AND ID_RELACION_TABLA_FK=#{idRelacionTablaFk}
         </if>
     </select>
