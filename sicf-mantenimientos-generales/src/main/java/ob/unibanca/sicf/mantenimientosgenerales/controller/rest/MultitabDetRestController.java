@@ -39,6 +39,7 @@ public class MultitabDetRestController {
 	@GetMapping(value = "/multitabs-cabs/{idMultitabCab}/multitabs-dets")
 	public List<MultitabDet> buscarMultitabsDetPorMultitabCab(
 			@IdNumerico(maxRange = 999) @PathVariable int idMultitabCab) {
+		System.out.print(this.multitabDetService.buscarMultitabsDetPorMultitabCab(idMultitabCab));
 		return this.multitabDetService.buscarMultitabsDetPorMultitabCab(idMultitabCab);
 	}
 	

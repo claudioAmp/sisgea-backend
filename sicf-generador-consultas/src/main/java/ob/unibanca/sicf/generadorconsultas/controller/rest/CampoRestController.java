@@ -20,6 +20,7 @@ import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaConjuntoCampo;
 import ob.unibanca.sicf.generadorconsultas.service.campo.ICampoService;
 
 @Validated
@@ -42,6 +43,10 @@ public class CampoRestController {
 	@GetMapping(value = "/campos/buscar")
 	public List<Campo> buscarTodosCampos(CriterioBusquedaCampo criterio) {
 		return this.campoService.buscarPorCriteriosCampo(criterio);
+	}
+	@GetMapping(value = "/campos/buscar/conjunto")
+	public List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio) {
+		return this.campoService.buscarConjuntoCampos(criterio);
 	}
 	@GetMapping(value = "/campos/permitidos")
 	public List<Campo> buscarCamposPorUsuarioActivo() {

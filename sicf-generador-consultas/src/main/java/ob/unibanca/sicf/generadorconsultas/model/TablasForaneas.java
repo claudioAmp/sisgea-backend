@@ -20,4 +20,9 @@ public class TablasForaneas {
 	int idCampoForaneo;
 	String campoForaneo;
 	int permitido;
+	//Nuevos
+	String aliasTabla;
+	String aliasCampo;
+	String aliasTablaForanea;
+	String aliasCampoForaneo;
 }

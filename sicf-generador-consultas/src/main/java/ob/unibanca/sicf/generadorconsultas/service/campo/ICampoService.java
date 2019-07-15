@@ -5,6 +5,7 @@ import java.util.List;
 import ob.commons.mantenimiento.service.IMantenibleService;
 import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaConjuntoCampo;
 
 
 public interface ICampoService extends IMantenibleService<Campo> {
@@ -14,6 +15,8 @@ public interface ICampoService extends IMantenibleService<Campo> {
 	Campo buscarPorId(int idCampo);
 	
 	List<Campo> buscarPorCriteriosCampo(CriterioBusquedaCampo criterio);
+	
+	List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio);
 	
 	List<Campo> buscarCamposPorUsuarioActivo();
 	

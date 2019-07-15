@@ -51,6 +51,7 @@
 					  AND A.SENSIBLE=#{sensible}
 					</if>
 			    </if>
+			    
 	    </if>
 	     <if  test="usuario!=null and usuario!=''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)

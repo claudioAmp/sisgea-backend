@@ -13,6 +13,7 @@ import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.ICampoMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Campo;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampo;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaConjuntoCampo;
 
 
 @Service
@@ -39,6 +40,11 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Campo> buscarPorCriteriosCampo(CriterioBusquedaCampo criterio) {
 		return this.campoMapper.buscarPorCriterios(criterio);
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio) {
+		return this.campoMapper.buscarConjuntoCampos(criterio);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

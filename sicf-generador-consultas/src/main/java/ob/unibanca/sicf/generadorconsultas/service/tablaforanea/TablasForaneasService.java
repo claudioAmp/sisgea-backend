@@ -44,8 +44,16 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TablasForaneas registrarTablasForaneas(TablasForaneas tablaForanea) {
-		this.registrar(tablaForanea);	
+		this.registrar(tablaForanea);
+		tablaForanea=this.buscarTablaForaneaPorId(tablaForanea.getIdRelacionTablaFk());
+		
 		return tablaForanea;
+	}
+	
+	public TablasForaneas buscarTablaForaneaPorId(Integer idRelacionTablaFk) {
+		CriterioBusquedaTablasForaneas criterio = new CriterioBusquedaTablasForaneas();
+		criterio.setIdRelacionTablaFk(idRelacionTablaFk);
+		return this.tablasForaneasMapper.buscarPorCriterios(criterio).get(0);
 	}
 	
 	@Override
