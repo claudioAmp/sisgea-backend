@@ -17,7 +17,7 @@
            , ID_CAMPO_FORANEO
            , CAMPO_FORANEO
            , ALIAS_CAMPO_FORANEO
-        <if  test=" permited!= null ">
+        <if  test=" permited != null ">
        	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO"
         </if>
 		FROM VIE_REP_TABLAS_FORANEAS
@@ -30,14 +30,14 @@
         <include refid="consultaVistaMant"/>
         WHERE
        			ID_RELACION_TABLA_FK > 0
-        <if  test="idTabla!= null and idTabla != ''">
-       			AND ID_TABLA =#{idTabla}
+        <if  test="idTabla != null and idTabla != ''">
+       			AND ID_TABLA = #{idTabla}
         </if>
-        <if  test=" permited!= null  and permited!= 0 ">
+        <if  test=" permited != null  and permited != 0 ">
        			AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
         </if>
          <if  test=" idRelacionTablaFk != null ">
-       			AND ID_RELACION_TABLA_FK=#{idRelacionTablaFk}
+       			AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
         </if>
     </select>
    
