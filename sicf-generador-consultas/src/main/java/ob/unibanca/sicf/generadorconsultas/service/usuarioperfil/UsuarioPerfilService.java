@@ -19,7 +19,7 @@ public class UsuarioPerfilService extends MantenibleService<UsuarioPerfil> imple
 	
 	private final IUsuarioPerfilMapper usuarioPerfilMapper;
 	
-	public UsuarioPerfilService(@Qualifier("IusuarioPerfilMapper") IMantenibleMapper<UsuarioPerfil> mantenibleMapper) {
+	public UsuarioPerfilService(@Qualifier("IUsuarioPerfilMapper") IMantenibleMapper<UsuarioPerfil> mantenibleMapper) {
 		super(mantenibleMapper);
 		this.usuarioPerfilMapper = (IUsuarioPerfilMapper) mantenibleMapper;
 	}
