@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaUsuarioPerfil{
-	String idPerfil;
+	int idPerfil;
 	String usuario;
 }

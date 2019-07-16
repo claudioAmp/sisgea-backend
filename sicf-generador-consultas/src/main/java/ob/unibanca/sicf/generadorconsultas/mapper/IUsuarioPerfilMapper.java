@@ -15,4 +15,6 @@ public interface IUsuarioPerfilMapper extends IMantenibleMapper<UsuarioPerfil>{
 	List<UsuarioPerfil> buscarTodos();
 	
 	List<UsuarioPerfil> buscarPorCriterios(CriterioBusquedaUsuarioPerfil criterio);
+	
+	void actualizarPerfilesUsuario(int idPerfil, String listaModificacion, String usuario);
 }
