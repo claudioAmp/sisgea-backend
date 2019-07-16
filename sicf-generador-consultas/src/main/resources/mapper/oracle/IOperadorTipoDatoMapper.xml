@@ -24,7 +24,7 @@
 	       			AND ID_TIPO_DATO = #{idTipoDato}
 	        </if>
 	        <if  test="soloBinario != null and soloBinario != ''">
-	       			AND TIPO_OPERADOR = "BINARIO"
+	       			AND ID_TIPO_OPERADOR = 2
 	        </if>
         </where>
     </select>
