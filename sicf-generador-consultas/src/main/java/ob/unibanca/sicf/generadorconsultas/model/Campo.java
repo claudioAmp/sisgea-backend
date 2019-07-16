@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Campo {
 	private int idTabla;
     private String tabla;
+    private String aliasTabla;
 	private int idCampo;
 	private String campo;
 	private String alias;

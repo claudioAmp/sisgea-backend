@@ -6,6 +6,7 @@
        SELECT 
           A.ID_TABLA	   		AS ID_TABLA,
           A.TABLA		   		AS TABLA,
+          A.ALIAS_TABLA			AS ALIAS_TABLA,
 		  A.ID_CAMPO     		AS ID_CAMPO,
 		  A.CAMPO   	   		AS CAMPO,
 		  A.ALIAS		   		AS ALIAS,
@@ -19,12 +20,15 @@
 
     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
+        <where>
+        	CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+        </where>
     </select>
     
     <select id="buscarPorId" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	ID_CAMPO = #{idCampo}
+        	ID_CAMPO = #{idCampo} AND CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
         </where>
     </select>
     
@@ -33,7 +37,7 @@
         
         <if  test="usuario==null or usuario=='' ">      	   
 			    <if  test="idPerfil == null or idPerfil == ''">	
-			        WHERE A.ID_TABLA>0       
+			        WHERE A.ID_TABLA>0 AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
 				   	<if  test="idTabla!= null and idTabla != ''">
 					    AND  A.ID_TABLA=#{idTabla}
 					</if>
@@ -46,7 +50,7 @@
 			    </if>
 			    <if  test="idPerfil != null and idPerfil != ''">	
 			        INNER JOIN VIE_MAN_REP_PERFIL_CAMPO B ON (A.ID_CAMPO=B.ID_CAMPO)
-					WHERE B.ID_PERFIL =#{idPerfil}
+					WHERE B.ID_PERFIL =#{idPerfil} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
 					<if  test="sensible != null and sensible != ''">
 					  AND A.SENSIBLE=#{sensible}
 					</if>
@@ -55,7 +59,7 @@
 	    </if>
 	     <if  test="usuario!=null and usuario!=''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
-			   WHERE B.USUARIO =#{usuario}
+			   WHERE B.USUARIO =#{usuario} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
 				<if  test="idPerfil != null and idPerfil != ''">
 				    AND B.ID_PERFIL=#{idPerfil}
 				</if>
@@ -74,10 +78,16 @@
 					#{item}
 				</foreach>
 			</if>
+			<if test="listaTabla != null and listaTabla.size()>0">
+				a.ID_TABLA IN 
+				<foreach item="item" index="index" collection="listaTabla" open ="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
     	</where>
 	     <if  test="usuario!=null and usuario!=''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
-			   WHERE B.USUARIO =#{usuario}
+			   WHERE B.USUARIO =#{usuario} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
 				<if  test="idPerfil != null and idPerfil != ''">
 				    AND B.ID_PERFIL=#{idPerfil}
 				</if>
