@@ -72,14 +72,15 @@
     <select id="buscarConjuntoCampos" resultType="Campo" parameterType="CriterioBusquedaConjuntoCampo" statementType="PREPARED">
     	<include refid="consulta"/>
     	<where>
+    		AND a.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
     		<if test="listaCampo !=null and listaCampo.size()>0">
-				a.ID_CAMPO IN 
+				AND a.ID_CAMPO IN 
 				<foreach item="item" index="index" collection="listaCampo" open ="(" separator="," close=")">
 					#{item}
 				</foreach>
 			</if>
 			<if test="listaTabla != null and listaTabla.size()>0">
-				a.ID_TABLA IN 
+				AND a.ID_TABLA IN 
 				<foreach item="item" index="index" collection="listaTabla" open ="(" separator="," close=")">
 					#{item}
 				</foreach>
