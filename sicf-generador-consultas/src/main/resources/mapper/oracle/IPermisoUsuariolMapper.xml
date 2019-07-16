@@ -35,6 +35,12 @@
 	           <if  test="tabla != null and tabla != '' ">
 	        	  AND TABLA = #{tabla}
 	           </if>
+	           <if  test="idTabla != null and idTabla != 0 ">
+	        	  AND ID_TABLA = #{idTabla}
+	           </if>
+	           <if  test="idCampo != null and idCampo != 0 ">
+	        	  AND ID_CAMPO = #{idCampo}
+	           </if>
 	     </where>	
     </select>
    

@@ -22,22 +22,24 @@
     <select id="buscarPorCriterios" resultType="CampoPerfil" parameterType="CriterioBusquedaCampoPerfil"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        WHERE ID_PERFIL > 0
-        <if  test="perfil != null and  perfil != '' ">
-        	AND DESCRIPCION_PERFIL = #{perfil}
-        </if>
-        <if  test="idTabla != null and  idTabla != '' ">
-        	AND ID_TABLA    = #{idTabla}
-        </if>
-         <if  test="idCampo != null and  idCampo != ''  ">
-        	AND ID_CAMPO    = #{idCampo}
-        </if>
-        <if  test="idPerfil != null and  idPerfil != ''">
-        	AND ID_PERFIL = #{idPerfil}
-        </if>
-        <if  test="idPerfilRepCampo != null and  idPerfilRepCampo != ''">
-        	AND ID_PERFIL_REP_CAMPO = #{idPerfilRepCampo}
-        </if>
+        <where>
+	        <if  test="perfil != null and  perfil != '' ">
+	        	AND DESCRIPCION_PERFIL = #{perfil}
+	        </if>
+	        <if  test="idTabla != null and  idTabla != '' ">
+	        	AND ID_TABLA    = #{idTabla}
+	        </if>
+	         <if  test="idCampo != null and  idCampo != ''  ">
+	        	AND ID_CAMPO    = #{idCampo}
+	        </if>
+	        <if  test="idPerfil != null and  idPerfil != ''">
+	        	AND ID_PERFIL = #{idPerfil}
+	        </if>
+	        <if  test="idPerfilRepCampo != null and  idPerfilRepCampo != ''">
+	        	AND ID_PERFIL_REP_CAMPO = #{idPerfilRepCampo}
+	        </if>
+        </where>
+        
     </select>
     
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">

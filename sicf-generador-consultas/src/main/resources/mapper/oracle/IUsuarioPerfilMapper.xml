@@ -42,5 +42,15 @@
                 )
         }
     </select>
+    
+     <select id="actualizarPerfilesUsuario" statementType="CALLABLE">
+         {
+        	CALL prc_update_usuarios_perfil (
+      			#{idPerfil, 	      	jdbcType=INTEGER, mode=IN},
+                #{listaModificacion,   	jdbcType=VARCHAR, mode=IN},
+                #{usuario, 				jdbcType=VARCHAR, mode=IN}               
+                )
+        }
+    </select>
 
 </mapper>
