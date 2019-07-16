@@ -50,6 +50,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 		return tablaForanea;
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED)
 	public TablasForaneas buscarTablaForaneaPorId(Integer idRelacionTablaFk) {
 		CriterioBusquedaTablasForaneas criterio = new CriterioBusquedaTablasForaneas();
 		criterio.setIdRelacionTablaFk(idRelacionTablaFk);
