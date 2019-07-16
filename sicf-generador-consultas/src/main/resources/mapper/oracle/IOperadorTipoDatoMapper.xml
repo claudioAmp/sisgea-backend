@@ -13,17 +13,17 @@
     </select>
 	<select id="buscarPorCriterios" resultType="OperadorTipoDato" parameterType="CriterioBusquedaOperadorTipoDato" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        WHERE
-       			ID_OPERADOR > 0
-        <if  test="idTipoOperador!= null and idTipoOperador!= ''">
-       			AND ID_TIPO_OPERADOR =#{idTipoOperador}
-        </if>
-        <if  test="idOperador!= null and idOperador != ''">
-       			AND ID_OPERADOR =#{idOperador}
-        </if>
-        <if  test="idTipoDato!= null and idTipoDato != ''">
-       			AND ID_TIPO_DATO =#{idTipoDato}
-        </if>
+        <where>
+	        <if  test="idTipoOperador!= null and idTipoOperador!= ''">
+	       			AND ID_TIPO_OPERADOR =#{idTipoOperador}
+	        </if>
+	        <if  test="idOperador!= null and idOperador != ''">
+	       			AND ID_OPERADOR =#{idOperador}
+	        </if>
+	        <if  test="idTipoDato!= null and idTipoDato != ''">
+	       			AND ID_TIPO_DATO =#{idTipoDato}
+	        </if>
+        </where>
     </select>
 
 </mapper>
