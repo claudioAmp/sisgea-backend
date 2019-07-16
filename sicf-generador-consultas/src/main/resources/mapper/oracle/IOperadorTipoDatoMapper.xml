@@ -14,14 +14,17 @@
 	<select id="buscarPorCriterios" resultType="OperadorTipoDato" parameterType="CriterioBusquedaOperadorTipoDato" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         <where>
-	        <if  test="idTipoOperador!= null and idTipoOperador!= ''">
-	       			AND ID_TIPO_OPERADOR =#{idTipoOperador}
+	        <if  test="idTipoOperador != null and idTipoOperador != ''">
+	       			AND ID_TIPO_OPERADOR = #{idTipoOperador}
 	        </if>
-	        <if  test="idOperador!= null and idOperador != ''">
-	       			AND ID_OPERADOR =#{idOperador}
+	        <if  test="idOperador != null and idOperador != ''">
+	       			AND ID_OPERADOR = #{idOperador}
 	        </if>
-	        <if  test="idTipoDato!= null and idTipoDato != ''">
-	       			AND ID_TIPO_DATO =#{idTipoDato}
+	        <if  test="idTipoDato != null and idTipoDato != ''">
+	       			AND ID_TIPO_DATO = #{idTipoDato}
+	        </if>
+	        <if  test="soloBinario != null and soloBinario != ''">
+	       			AND TIPO_OPERADOR = "BINARIO"
 	        </if>
         </where>
     </select>

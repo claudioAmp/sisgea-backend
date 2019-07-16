@@ -85,7 +85,7 @@
 				</foreach>
 			</if>
     	</where>
-	     <if  test="usuario!=null and usuario!=''">
+	     <if  test="usuario != null and usuario != ''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
 			   WHERE B.USUARIO =#{usuario} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
 				<if  test="idPerfil != null and idPerfil != ''">

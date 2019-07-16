@@ -18,4 +18,5 @@ public class CriterioBusquedaOperadorTipoDato{
 	private String operador;
 	private int idTipoOperador;
 	private String tipoOperador;
+	private String soloBinario;
 }

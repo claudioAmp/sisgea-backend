@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaConjuntoCampo {
 	private List<Integer> listaCampo;
 	private List<Integer> listaTabla;
+	private String usuario;
 }
