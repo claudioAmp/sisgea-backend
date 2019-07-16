@@ -19,6 +19,9 @@
 
     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
+        <where>
+        	CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+        </where>
     </select>
     
     <select id="buscarPorId" resultType="Campo" statementType="PREPARED">
