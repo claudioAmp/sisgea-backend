@@ -32,6 +32,9 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    queryReporte += this.getOnWhere(reporteEstado);
 		queryReporte += " ";
 		queryReporte+=this.getOnGroupBy(reporteEstado);
+		queryReporte += " ";
+		queryReporte+=this.getOnHaving(reporteEstado);
+		queryReporte += " ";
 	    queryReporte += this.getOnOrderBy(reporteEstado);
 	    return queryReporte;
 	}

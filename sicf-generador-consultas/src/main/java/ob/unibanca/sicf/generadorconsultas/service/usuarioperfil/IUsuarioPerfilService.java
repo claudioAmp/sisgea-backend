@@ -20,4 +20,5 @@ public interface IUsuarioPerfilService extends IMantenibleService<UsuarioPerfil>
 	UsuarioPerfil actualizarUsuarioPerfil(int idUsuarioPerfil, UsuarioPerfil UsuarioPerfil);
 	
 	void eliminarUsuarioPerfil(int idUsuarioPerfil);
+	public void actualizarPefilesUsuario(int idPerfil, String listaModificacion, String usuario);
 }

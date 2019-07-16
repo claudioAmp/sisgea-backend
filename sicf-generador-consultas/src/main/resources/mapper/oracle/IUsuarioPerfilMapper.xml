@@ -19,15 +19,16 @@
     <select id="buscarPorCriterios" resultType="UsuarioPerfil" parameterType="CriterioBusquedaUsuarioPerfil"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <where>
+	        <if  test="idPerfil != null and  idPerfil != ''">
+	       		AND ID_PERFIL = #{idPerfil}
+	        </if>
+	         <if  test="usuario != null and  usuario != ''">
+       			AND USUARIO = #{usuario}
+        	</if>
+        </where>
        
-        <if  test="idPerfil != null and  idperfil != ''">
-        	WHERE
-       			DESCRIPCION_PERFIL = #{idPerfil}
-        </if>
-         <if  test="usuario != null and  usuario != ''">
-        	WHERE
-       			DESCRIPCION_PERFIL = #{usuario}
-        </if>
+        
     </select>
     
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">

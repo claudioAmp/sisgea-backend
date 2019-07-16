@@ -63,4 +63,12 @@ public class UsuarioPerfilRestController {
 		this.usuarioPerfilService.eliminarUsuarioPerfil(idPerfilRepUsuario);
 	}
 	
+	@PutMapping(value = "/permisos-usuario/{idPerfil}/{listaModificacion}/{usuario}")
+	public void actualizarPerfilesUsuario(@IdNumerico(maxRange = 9999) @PathVariable int idPerfil,
+			 @PathVariable  String listaModificacion,  @PathVariable String usuario) {
+		System.out.println(idPerfil);
+		System.out.println(listaModificacion);
+		this.usuarioPerfilService.actualizarPefilesUsuario(idPerfil, listaModificacion, usuario);
+	}
+	
 }

@@ -17,11 +17,11 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaUsuari
 @Service
 public class UsuarioPerfilService extends MantenibleService<UsuarioPerfil> implements IUsuarioPerfilService {
 	
-	private final IUsuarioPerfilMapper UsuarioPerfilMapper;
+	private final IUsuarioPerfilMapper usuarioPerfilMapper;
 	
-	public UsuarioPerfilService(@Qualifier("IUsuarioPerfilMapper") IMantenibleMapper<UsuarioPerfil> mantenibleMapper) {
+	public UsuarioPerfilService(@Qualifier("IusuarioPerfilMapper") IMantenibleMapper<UsuarioPerfil> mantenibleMapper) {
 		super(mantenibleMapper);
-		this.UsuarioPerfilMapper = (IUsuarioPerfilMapper) mantenibleMapper;
+		this.usuarioPerfilMapper = (IUsuarioPerfilMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class UsuarioPerfilService extends MantenibleService<UsuarioPerfil> imple
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<UsuarioPerfil> buscarPorCriteriosUsuarioPerfil(CriterioBusquedaUsuarioPerfil criterio) {
-		return this.UsuarioPerfilMapper.buscarPorCriterios(criterio);
+		return this.usuarioPerfilMapper.buscarPorCriterios(criterio);
 	}
 	
 
@@ -57,5 +57,11 @@ public class UsuarioPerfilService extends MantenibleService<UsuarioPerfil> imple
 	public void eliminarUsuarioPerfil(int idUsuarioPerfil) {
 		UsuarioPerfil usuarioPerfil = UsuarioPerfil.builder().idPerfilRepUsuario(idUsuarioPerfil).build();
 		this.eliminar(usuarioPerfil);
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public void actualizarPefilesUsuario(int idPerfil, String listaModificacion, String usuario) {
+		this.usuarioPerfilMapper.actualizarPerfilesUsuario(idPerfil, listaModificacion, usuario);
+		
 	}
 }
