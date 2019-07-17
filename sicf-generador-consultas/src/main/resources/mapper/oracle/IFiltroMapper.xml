@@ -16,7 +16,7 @@
 			, ID_CONDICION_PADRE
 			, VALOR
 			, TIPO_DATO_VALOR
-			<if  test=" permited!= null or permited!= 0 ">
+			<if  test=" permited!= null and permited!= 0 ">
        			, fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
             </if>
 		FROM VIE_MAN_REP_FILTRO_CAMPO
@@ -39,7 +39,7 @@
         <if  test=" idTabla!= null and idTabla != 0 ">
        			AND ID_TABLA =#{idTabla}
         </if>
-        <if  test=" permited!= null or permited!= 0  ">
+        <if  test=" permited!= null and permited!= 0  ">
        			AND fun_campo_permitido(ID_CAMPO,#{usuario})  > 0
         </if> 
         </where>
