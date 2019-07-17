@@ -18,7 +18,7 @@
 			, ID_FUNCION_GRUPO
 			, FUNCION_GRUPO
             , ID_TIPO_DATO
-			<if  test=" permited!= null ">
+			<if  test=" permited!= null or permited!= 0  ">
        			, fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
             </if>
 		FROM VIE_MAN_REP_CAMPO_QUERY
@@ -41,7 +41,7 @@
         <if  test=" idTabla!= null and idTabla != 0">
        			AND ID_TABLA =#{idTabla}
         </if>
-        <if  test=" permited!= null ">
+        <if  test=" permited!= null or permited!= 0  ">
        			AND fun_campo_permitido(ID_CAMPO,#{usuario})  > 0
         </if>
         </where>

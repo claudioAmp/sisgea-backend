@@ -19,10 +19,10 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQ
 @Service
 public class TablaQueryService extends MantenibleService<TablaQuery> implements ITablaQueryService {
 	
-	private final ITablaQueryMapper TablaQueryMapper;
+	private final ITablaQueryMapper tablaQueryMapper;
 	public TablaQueryService(@Qualifier("ITablaQueryMapper") IMantenibleMapper<TablaQuery> mantenibleMapper) {
 		super(mantenibleMapper);
-		this.TablaQueryMapper = (ITablaQueryMapper) mantenibleMapper;
+		this.tablaQueryMapper = (ITablaQueryMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -36,7 +36,8 @@ public class TablaQueryService extends MantenibleService<TablaQuery> implements 
 		if(criterio.getPermited()==1) {
 			criterio.setUsuario(UsuarioUtil.obtenerUsername());
 		}
-		return this.TablaQueryMapper.buscarPorCriterios(criterio);
+		System.out.println(criterio);
+		return this.tablaQueryMapper.buscarPorCriterios(criterio);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

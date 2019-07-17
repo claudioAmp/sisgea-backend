@@ -13,7 +13,7 @@
 			, ID_TIPO_JOIN
             , TIPO_JOIN
             , DESCRIPCION_TIPO_JOIN
-			<if  test=" permited!= null ">
+			<if  test=" permited!= null or permited!= 0 ">
        			, fun_tabla_permitida(ID_TABLA,#{usuario}) AS "PERMITIDO"
             </if>
         FROM
@@ -35,7 +35,7 @@
         <if  test="idTabla!= null and idTabla != 0">
        			AND ID_TABLA =#{idTabla}
         </if>
-        <if  test=" permited!= null ">
+        <if  test=" permited!= null or permited!= 0  ">
        			AND fun_tabla_permitida(ID_TABLA,#{usuario})  > 0
         </if>
         </where>
