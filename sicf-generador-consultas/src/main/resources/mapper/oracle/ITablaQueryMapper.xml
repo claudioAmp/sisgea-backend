@@ -25,20 +25,21 @@
     </select>
 	<select id="buscarPorCriterios" resultType="TablaQuery" parameterType="CriterioBusquedaTablaQuery" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        WHERE
-       			ID_TABLA_QUERY > 0
-        <if  test="idTablaQuery!= null and idTablaQuery != ''">
+        <where>
+        <if  test="idTablaQuery!= null and idTablaQuery != 0">
        			AND ID_TABLA_QUERY =#{idTablaQuery}
         </if>
-        <if  test="idReporte!= null and idReporte != ''">
+        <if  test="idReporte!= null and idReporte != 0">
        			AND ID_REPORTE =#{idReporte}
         </if>
-        <if  test="idTabla!= null and idTabla != ''">
+        <if  test="idTabla!= null and idTabla != 0">
        			AND ID_TABLA =#{idTabla}
         </if>
         <if  test=" permited!= null ">
        			AND fun_tabla_permitida(ID_TABLA,#{usuario})  > 0
         </if>
+        </where>
+        
     </select>
    
     

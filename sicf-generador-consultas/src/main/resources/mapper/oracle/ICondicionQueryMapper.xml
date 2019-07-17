@@ -9,7 +9,7 @@
           , A.ID_CONDICION_QUERY
           , OPERADOR_LOGICO
           , TIPO_CONDICION
-		FROM VIE_MAN_REP_CAMPO A
+		FROM VIE_MAN_REP_CONDICION_QUERY A
     </sql>
 
     <select id="buscarTodos" resultType="CondicionQuery" statementType="PREPARED">
@@ -25,13 +25,15 @@
     
     <select id="buscarPorCriterios" resultType="CondicionQuery" parameterType="CriterioBusquedaCondicionQuery" statementType="PREPARED">
         <include refid="consulta"/>
-        WHERE idCondicionQuery > 1
-        <if  test="idReporte != null and idReporte != ''">
+        <where>
+        <if  test="idReporte != null and idReporte != 0">
 			 AND A.ID_QUERY=#{idReporte}
 		</if>
-		<if  test="idCondicionPadre != null and idCondicionPadre != ''">
+		<if  test="idCondicionPadre != null and idCondicionPadre != 0">
 			 AND A.ID_CONDICION_PADRE=#{idCondicionPadre}
 		</if>
+        </where>
+        
         
     </select>
     

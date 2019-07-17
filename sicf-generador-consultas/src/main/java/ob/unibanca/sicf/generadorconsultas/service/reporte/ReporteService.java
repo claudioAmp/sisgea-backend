@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCondicionQuery;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaFiltro;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.paginacion.PageParameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.condicionquery.ICondicionQueryService;
@@ -57,16 +59,17 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarTodosReportes() {
-		//List<Reporte> reportes = this.buscarTodos();
-		CriterioBusquedaReporte criterio = new CriterioBusquedaReporte();
+		/*CriterioBusquedaReporte criterio = new CriterioBusquedaReporte();
 		criterio.setPermited(1);
-		return this.buscarPorCriteriosReporte(criterio);
+		return this.buscarPorCriteriosReporte(criterio);*/
+		return this.buscarTodos();
+		
 		
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio) {
-		List<Reporte> reportes = this.reporteMapper.buscarPorCriterios(criterio);
+		/*List<Reporte> reportes = this.reporteMapper.buscarPorCriterios(criterio);
 		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
 		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
 		CriterioBusquedaFiltro criterioFiltro = new CriterioBusquedaFiltro();
@@ -83,7 +86,8 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
 			r.setFiltros(this.filtroService.buscarPorCriteriosFiltro(criterioFiltro));
 		}		
-		return reportes;
+		return reportes;*/
+		return this.reporteMapper.buscarPorCriterios(criterio);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -220,6 +224,55 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			}
 		}
 		return cq;
+	}
+
+	@Override
+	public Reporte buscarReporte(int idReporte) {
+		CriterioBusquedaReporte criterio = new CriterioBusquedaReporte();
+		List<TablaQuery> tablas= new ArrayList<>();
+		List<CampoQuery> campos= new ArrayList<>();
+		List<TablaOnJoin> tablasOnJoin= new ArrayList<>();
+		List<Filtro> filtros= new ArrayList<>();
+		List<CondicionQuery> condiciones= new ArrayList<>();
+		//Obtener el reporte
+		criterio.setIdReporte(idReporte);
+		Reporte reporte =this.buscarPorCriteriosReporte(criterio).get(0);	
+		//Obtener tablas query del reporte
+		CriterioBusquedaTablaQuery c1 = new CriterioBusquedaTablaQuery();
+		c1.setIdReporte(idReporte);
+		for(TablaQuery t : this.tablaQueryService.buscarPorCriteriosTablaQuery(c1)) {
+			tablas.add(t);
+		}
+		reporte.setTablas(tablas);
+		//obtener campos query del reporte
+		CriterioBusquedaCampoQuery c2 = new CriterioBusquedaCampoQuery();
+		c2.setIdReporte(idReporte);
+		for(CampoQuery c : this.campoQueryService.buscarPorCriteriosCamposQuery(c2)) {
+			campos.add(c);
+		}
+		reporte.setCampos(campos);
+		//Obtener tablas on join
+		CriterioBusquedaTablaOnJoin c3 = new CriterioBusquedaTablaOnJoin();
+		c3.setIdReporte(idReporte);
+		for(TablaOnJoin t : this.tablaOnJoinService.buscarPorCriteriosTablaOnJoin(c3)) {
+			tablasOnJoin.add(t);
+		}
+		reporte.setTablasOnJoin(tablasOnJoin);
+		//Obtener filtros
+		CriterioBusquedaFiltro c4 = new CriterioBusquedaFiltro();
+		c4.setIdReporte(idReporte);
+		for(Filtro f : this.filtroService.buscarPorCriteriosFiltro(c4)) {
+			filtros.add(f);
+		}
+		reporte.setFiltros(filtros);
+		//Obtener filtros
+		CriterioBusquedaCondicionQuery c5 = new CriterioBusquedaCondicionQuery();
+		c5.setIdReporte(idReporte);
+		for(CondicionQuery c : this.condicionService.buscarPorCriteriosCondicionQuery(c5)) {
+			condiciones.add(c);
+		}
+		reporte.setCondiciones(condiciones);
+		return reporte;
 	}
 	
 	
