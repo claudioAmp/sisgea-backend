@@ -1,6 +1,5 @@
 package ob.unibanca.sicf.generadorconsultas.service.generarconsulta;
 
-import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.CondicionQuery;
 import ob.unibanca.sicf.generadorconsultas.model.Filtro;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,7 +31,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		queryReporte += " ";
 		queryReporte+=this.getOnGroupBy(reporteEstado);
 		queryReporte += " ";
-		queryReporte+=this.getOnHaving(reporteEstado);
+	    queryReporte += this.getOnHaving(reporteEstado);
 		queryReporte += " ";
 	    queryReporte += this.getOnOrderBy(reporteEstado);
 	    return queryReporte;
@@ -123,7 +121,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==0)
 	    					  temporal.add(filtro);
 	    			  }
-	    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista);
+	    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista,0);
 	    			break;
 	    		}
 	    	}
@@ -134,7 +132,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    	return "";
 	  }
 	  
-	  String getInConditional(Reporte reporteEstado, Integer index,CondicionQuery condicion,List<Filtro> temporal ,List<Filtro> trucoLista) {
+	  String getInConditional(Reporte reporteEstado, Integer index,CondicionQuery condicion,List<Filtro> temporal ,List<Filtro> trucoLista,int tipoCondicion) {
 		  String query = "(";boolean flagFirst=true;
 		  for(Integer tempIndex=index;tempIndex<temporal.size();tempIndex++) {
 			  Filtro filtro=temporal.get(tempIndex);
@@ -145,7 +143,12 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 					  } else {
 						  flagFirst=false;
 					  }
-					  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" "+filtro.getValor();
+					  if(tipoCondicion==0) {
+						  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" "+filtro.getValor();
+					  }else{
+						  CampoQuery temporalCampo=this.findCampoById(reporteEstado,filtro.getIdCampo());
+						  query+=" "+temporalCampo.getFuncionGrupo()+"( "+filtro.getIdInstancia()+"."+filtro.getCampo()+" ) "+filtro.getSimboloOperador()+" "+filtro.getValor();
+					  }
 					  trucoLista.add(filtro);
 				  }
 			  } else {
@@ -156,7 +159,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 						  } else {
 							  flagFirst=false;
 						  }
-						  query+=" "+getInConditional(reporteEstado,tempIndex,this.getChildOrFather(reporteEstado,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()), condicion),temporal,trucoLista);
+						  query+=" "+getInConditional(reporteEstado,tempIndex,this.getChildOrFather(reporteEstado,this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()), condicion),temporal,trucoLista,tipoCondicion);
 					  }
 				  } else 
 					  break;
@@ -164,6 +167,14 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		  }
 		  query+=")";
 		  return query;
+	  }
+	  
+	  CampoQuery findCampoById(Reporte reporteEstado,int id_buscado) {
+		  for(CampoQuery campo:reporteEstado.getCampos()) {
+			  if(campo.getIdCampo()==id_buscado)
+				  return campo;
+		  }
+		  return null;
 	  }
 	  
 	  CondicionQuery findCondicionById(Reporte reporteEstado,int id_buscado) {
@@ -201,12 +212,11 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	  }
 	  
 	  CondicionQuery getChildOrFather(Reporte reporteEstado,CondicionQuery condicion_origen,CondicionQuery condicion_destino) {
-		  CondicionQuery obtenerPadre=condicion_origen;boolean flagHijo=false;
+		  CondicionQuery obtenerPadre=condicion_origen;
 		  if(obtenerPadre.getIdCondicionPadre()!=null) {
 			  while(obtenerPadre.getIdCondicionPadre()!=condicion_destino.getIdCondicionQuery()) {
 				  obtenerPadre=this.findCondicionById(reporteEstado, obtenerPadre.getIdCondicionPadre());
 				  if(obtenerPadre.getIdCondicionPadre()==null) {
-					  flagHijo=true;
 					  break;
 				  }
 			  }
@@ -216,19 +226,32 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 
 	  String getOnGroupBy(Reporte reporteEstado) {
 		String query = "";
-		boolean flagFirst = true;
-		for(CampoQuery campo:reporteEstado.getCampos()){
-			if(campo.getFuncionGrupo()==null){
-				if(flagFirst){
-					query+=" GROUP BY ";
-					flagFirst=false;
-				}else{
-					query += ", ";
+		if(this.findSomeOnGroupFunction(reporteEstado)) {
+			boolean flagFirst = true;
+			for(CampoQuery campo:reporteEstado.getCampos()){
+				if(campo.getFuncionGrupo()==null){
+					if(flagFirst){
+						query+=" GROUP BY ";
+						flagFirst=false;
+					}else{
+						query += ", ";
+					}
+					query += campo.getIdInstanciaTabla() + "." + campo.getCampo();
 				}
-				query += campo.getIdInstanciaTabla() + "." + campo.getCampo();
 			}
 		}
 		return query;
+	  }
+	  
+	  boolean findSomeOnGroupFunction(Reporte reporteEstado) {
+		  boolean flagFind=false;
+		  for(CampoQuery campo:reporteEstado.getCampos()) {
+			  if(campo.getFuncionGrupo()!=null) {
+				  if(!(campo.getFuncionGrupo().isEmpty()||campo.getFuncionGrupo().isBlank()))
+					  flagFind = true;
+			  }
+		  }
+		  return flagFind;
 	  }
 	  
 	  String getOnHaving(Reporte reporteEstado) {
@@ -246,7 +269,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==1)
 		    					  temporal.add(filtro);
 		    			  }
-		    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista);
+		    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista,1);
 		    			break;
 		    		}
 		    	}
