@@ -16,6 +16,7 @@ public class TablaQuery {
 	private int idReporte;
 	private int idTabla;
     private String tabla;
+    private String aliasTabla;
 	private String idInstancia;
 	private int orden;
 	private boolean esBase;

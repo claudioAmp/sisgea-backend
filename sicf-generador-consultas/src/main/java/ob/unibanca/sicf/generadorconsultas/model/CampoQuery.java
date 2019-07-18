@@ -15,6 +15,7 @@ public class CampoQuery {
 	int idReporte;
     int idTabla;
     String tabla;
+    String aliasTabla;
     String idInstanciaTabla;
     int idCampo;
     String campo;

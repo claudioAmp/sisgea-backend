@@ -8,6 +8,7 @@
 			, ID_REPORTE
 			, ID_TABLA
 			, TABLA
+			, ALIAS_TABLA
 			, ID_INSTANCIA_TABLA
 			, ID_CAMPO
 			, CAMPO

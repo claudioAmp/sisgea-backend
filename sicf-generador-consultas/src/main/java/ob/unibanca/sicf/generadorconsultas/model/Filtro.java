@@ -15,8 +15,10 @@ public class Filtro {
 	int idReporte;
 	int idTabla;
 	String tabla;
+	String aliasTabla;
 	int idCampo;
 	String campo;
+	String aliasCampo;
 	String idInstancia;
 	int idOperador;
 	String simboloOperador;
