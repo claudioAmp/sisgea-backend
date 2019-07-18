@@ -62,7 +62,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	public TablasForaneas actualizarTablasForaneas(int idRelacionTablaFk, TablasForaneas tablaForanea) {
 		tablaForanea.setIdRelacionTablaFk(idRelacionTablaFk);
 		this.actualizar(tablaForanea);
-		return tablaForanea;
+		return this.buscarTablaForaneaPorId(idRelacionTablaFk);
 	}
 	
 	@Override
