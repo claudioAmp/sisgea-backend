@@ -30,6 +30,7 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQ
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.condicionquery.ICondicionQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.filtro.IFiltroService;
+import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaonjoin.ITablaOnJoinService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
@@ -50,6 +51,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	private @Autowired IFiltroService filtroService;
 	private @Autowired ICondicionQueryService condicionService;
 	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;
+	private @Autowired IGenerarConsultaService generarConsultaService;
 	
 	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService) {
 		super(mantenibleMapper);
@@ -133,7 +135,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
 		int idReporte=ultSeq.getValor().intValue();
 		Reporte.setIdReporte(idReporte);
-		
+		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
 		this.registrarReporte(Reporte);
 		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0,idxCondicion=0;
 		List<List<Integer>> idConQAux= new ArrayList<>();
@@ -180,7 +182,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			if( cq.getIdCondicionPadre()!=0) {
 				cq.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(), cq.getIdCondicionPadre()).getIdCondicionQuery());
 			}
-			Reporte.getCondiciones().set(idxFiltro, cq);
+			Reporte.getCondiciones().set(idxCondicion, cq);
 			this.condicionService.registrar(cq);
 			idxCondicion++;
 		}
