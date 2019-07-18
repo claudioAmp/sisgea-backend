@@ -32,7 +32,7 @@ public class TxnSwdmplogDetalle {
 	private String posConditionCode;
 	private double settAmountTxnFee;
 	private String acquiringInstitution;
-	private String descripcionBINInstAdq;
+	private String descripcionBinInstAdq;
 	private String forwardingInstitution;
 	private String descripcionBINIntReenv;
 	private String referenceNumber;
@@ -72,12 +72,12 @@ public class TxnSwdmplogDetalle {
 	private String descripcionInstEmisora;
 	private Integer idInstitucionReceptora;
 	private String descripcionInstReceptora;
-	private Integer idATM;
-	private String nombreATM;
+	private Integer idAtm;
+	private String nombreAtm;
 	private String idProceso;
 	private String descripcionProceso;
-	private String idBIN;
-	private String descripcionBIN;
+	private String idBin;
+	private String descripcionBin;
 	private Integer idRol;
 	private String descripcionRolTransaccion;
 
