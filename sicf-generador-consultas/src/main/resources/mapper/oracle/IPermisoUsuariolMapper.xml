@@ -12,6 +12,7 @@
           PERFIL                AS PERFIL,
           ID_TABLA              AS ID_TABLA,
           TABLA                 AS TABLA,
+          ALIAS_TABLA			AS ALIAS_TABLA,
           ID_CAMPO              AS ID_CAMPO,
           CAMPO                 AS CAMPO,
           ID_TIPO_DATO          AS ID_TIPO_DATO,
@@ -73,8 +74,8 @@
        	SELECT 
 		 DISTINCT 
 		 ID_TABLA AS ID_TABLA,
-		 TABLA AS NOMBRE,
-		 ALIAS_TABLA AS ALIAS 
+		 ALIAS_TABLA AS ALIAS,
+		 TABLA AS NOMBRE
 		FROM VIE_MAN_REP_PERMISO_USUARIO
 		WHERE USUARIO = #{username}
     </select>

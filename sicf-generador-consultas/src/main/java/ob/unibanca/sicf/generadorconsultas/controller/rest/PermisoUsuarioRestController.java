@@ -46,6 +46,7 @@ public class PermisoUsuarioRestController {
 	
 	@GetMapping(value = "/permisos-usuario/tablas-permitidas")
 	public List<Tabla> buscarTablasPermitidasUsuario() {
+		System.out.println(this.permisoUsuarioService.buscarTablasPermitidasUsuario());
 		return this.permisoUsuarioService.buscarTablasPermitidasUsuario();
 	}
 	

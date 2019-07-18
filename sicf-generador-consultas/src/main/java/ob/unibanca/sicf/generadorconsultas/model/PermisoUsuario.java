@@ -22,5 +22,6 @@ public class PermisoUsuario{
 	private String campo;
 	private String idTipoDato;
 	private String alias;
+	private String aliasTabla;
 	private boolean verTruncado;
 }
