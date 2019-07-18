@@ -41,6 +41,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroFechaProceso;
 	private String filtroIdSecuenciaIncoming;
 	private String filtroTransactionCode;
+	private String filtroIdProducto;
 	private String filtroAccountNumber;
 	private String filtroAcquirerRefNumber;
 	private String filtroFechaIncoming;
@@ -61,6 +62,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenFechaProceso;
 	private String ordenIdSecuenciaIncoming;
 	private String ordenTransactionCode;
+	private String ordenIdProducto;
 	private String ordenAccountNumber;
 	private String ordenAcquirerRefNumber;
 	private String ordenFechaIncoming;

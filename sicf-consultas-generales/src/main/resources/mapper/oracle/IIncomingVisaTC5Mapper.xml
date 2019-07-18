@@ -123,6 +123,10 @@
 			<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
 			AND CONCAT(TRANSACTION_CODE, DESC_TRANSACTION_CODE) LIKE #{pFiltroTransactionCode}
 		</if>
+		<if  test="filtroIdProducto != null " >
+			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
+			AND ID_PRODUCTO LIKE #{pFiltroIdProducto}
+		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
 			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
@@ -192,6 +196,10 @@
 		<if  test="ordenTransactionCode != null " >
 			ORDER BY
 				TRANSACTION_CODE ${ordenTransactionCode}
+		</if>
+		<if  test="ordenIdProducto != null " >
+			ORDER BY
+				ID_PRODUCTO ${ordenIdProducto}
 		</if>
 		<if  test="ordenAccountNumber != null " >
 			ORDER BY

@@ -53,7 +53,7 @@
 				</if>
 				<if  test="filtroReasonCode != null " >
 					<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
-					AND REASON_CODE LIKE #{pFiltroReasonCode}
+					AND CONCAT(REASON_CODE, DESC_REASON_CODE) LIKE #{pFiltroReasonCode}
 				</if>
 				<if  test="filtroDestinationAmount != null " >
 					<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
@@ -132,7 +132,9 @@
    	</select>
    		
 	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
-		<include refid="fragmentoSelect" />
+		SELECT 
+			*
+		FROM VIE_CON_MOV_INC_TC10_TCR0 a
   		<where>
 	  		<if  test="idSecuenciaIncoming != null " >
 				SECUENCIA_INCOMING = #{idSecuenciaIncoming}

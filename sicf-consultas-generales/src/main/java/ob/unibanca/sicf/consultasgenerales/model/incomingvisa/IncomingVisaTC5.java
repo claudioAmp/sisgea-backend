@@ -37,6 +37,7 @@ public class IncomingVisaTC5 {
 	private Integer institucionReceptora;
 	private String descInstitucionEmisora;
 	private String descInstitucionReceptora;
+	private Integer idProducto;
 	private Integer idCanal;
 	private String descCanal;
 	private Date fechaIncoming;

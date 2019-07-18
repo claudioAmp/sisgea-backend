@@ -45,11 +45,12 @@ public class IncomingVisaTC48TCR0 {
 	private String expirationDate;
 	private String acquiringInstId;
 	private String descAcquiringInstId;
-	private String acqInstCountrycode;
-	private String descAcqInstCountrycode;
+	private String acqInstCountryCode;
+	private String descAcqInstCountryCode;
 	private String messageType;
 	private String processingCode;
 	private String posConditionCode;
+	private String descPosConditionCode;
 	private String merchantType;
 	private String descMerchantType;
 	private String posEntryMode;

@@ -34,5 +34,4 @@ public class IncomingVisaTC10TCR0 {
 	double sourceAmount;
 	Integer sourceCurrencyCode;
 	String descSourceCurrencyCode;
-	
 }
