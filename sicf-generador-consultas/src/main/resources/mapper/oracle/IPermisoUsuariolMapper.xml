@@ -74,9 +74,12 @@
        	SELECT 
 		 DISTINCT 
 		 ID_TABLA AS ID_TABLA,
-		 ALIAS_TABLA AS ALIAS,
+		 CASE WHEN ALIAS_TABLA IS NOT NULL THEN ALIAS_TABLA ELSE TABLA END AS ALIAS,
 		 TABLA AS NOMBRE
 		FROM VIE_MAN_REP_PERMISO_USUARIO
-		WHERE USUARIO = #{username}
+		<where>
+			USUARIO = #{username}
+		</where>
+		
     </select>
 </mapper>

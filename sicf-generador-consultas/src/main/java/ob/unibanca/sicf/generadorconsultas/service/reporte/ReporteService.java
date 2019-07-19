@@ -274,7 +274,9 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			condiciones.add(c);
 		}
 		reporte.setCondiciones(condiciones);
-		return reporte;
+		List<Reporte> result = new ArrayList<>();
+		result.add(reporte);
+		return result;
 	}
 	
 	
