@@ -25,6 +25,7 @@ import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
+import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
 
 import java.util.Map;
@@ -34,9 +35,11 @@ import java.util.Map;
 public class ReporteRestController {
 
 	private @Autowired final IReporteService reporteService;
+	private @Autowired final IGenerarConsultaService generarConsultaService;
 
-	public ReporteRestController(IReporteService reporteService) {
+	public ReporteRestController(IReporteService reporteService,IGenerarConsultaService generarConsultaService) {
 		this.reporteService = reporteService;
+		this.generarConsultaService=generarConsultaService;
 	}
 
 	@GetMapping(value = "/reportes")
@@ -75,9 +78,13 @@ public class ReporteRestController {
 		this.reporteService.eliminarReporte(idReporte);
 	}
 
-	@GetMapping(value = "/reportes/ejecutar-consulta")
-	public PaginaGeneradorConsulta<Map<String, Object>> ejecutarConsulta(@RequestParam String consulta, PageParameter pageParameter) {
-		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(consulta, pageParameter);
+	@GetMapping(value = "/reportes/ejecutar-consulta", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public PaginaGeneradorConsulta<Map<String, Object>> ejecutarConsulta(@RequestBody Reporte reporte, PageParameter pageParameter) {
+		System.out.println(reporte);
+		if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
+			reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
+		}
+		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(reporte.getQueryReporte(), pageParameter);
 		return new PaginaGeneradorConsulta<>(requestList);
 	}
 }
