@@ -14,7 +14,7 @@ public interface IReporteService extends IMantenibleService<Reporte> {
 	
 	List<Reporte> buscarTodosReportes();
 	
-	Reporte buscarReporte(int idReporte);
+	List<Reporte> buscarReporte(int idReporte);
 	
 	List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio);
 	

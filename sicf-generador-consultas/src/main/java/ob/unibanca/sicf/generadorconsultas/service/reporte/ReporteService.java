@@ -229,7 +229,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	}
 
 	@Override
-	public Reporte buscarReporte(int idReporte) {
+	public List<Reporte> buscarReporte(int idReporte) {
 		CriterioBusquedaReporte criterio = new CriterioBusquedaReporte();
 		List<TablaQuery> tablas= new ArrayList<>();
 		List<CampoQuery> campos= new ArrayList<>();

@@ -30,6 +30,9 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    queryReporte += this.getOnWhere(reporteEstado);
 		queryReporte += " ";
 		queryReporte+=this.getOnGroupBy(reporteEstado);
+	    queryReporte += " ";
+	    queryReporte += this.getOnHaving(reporteEstado);
+	    queryReporte += " ";
 	    queryReporte += this.getOnOrderBy(reporteEstado);
 	    return queryReporte;
 	}
@@ -78,7 +81,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	          query += tabla.getTabla() + " " + tabla.getIdInstancia();
 	          flagFrom = false;
 	        } else {
-	          query += " " + tabla.getTipoJoin()+ " JOIN " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
+	          query += " " + tabla.getTipoJoin() + " " + tabla.getTabla() + " " + tabla.getIdInstancia() + " ON ( " + this.findCompareOfTablaJoin(reporteEstado,tabla.getIdTabla(), tabla.getIdInstancia()) + " )";
 	        }
 	      }
 	    }
@@ -110,7 +113,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    for(CondicionQuery condicion : reporteEstado.getCondiciones()) {
 	    	//Si se trata de una condicion del where
 	    	if(condicion.getTipoCondicion()==0) {
-	    		if(condicion.getIdCondicionPadre()==null && reporteEstado.getFiltros()!=null) {
+	    		if(condicion.getIdCondicionPadre()==0 && reporteEstado.getFiltros()!=null) {
 	    			flagExiste=true;
 	    			List<Filtro> trucoLista=new ArrayList<Filtro>();
 	    			  List<Filtro> temporal = new ArrayList<Filtro>();

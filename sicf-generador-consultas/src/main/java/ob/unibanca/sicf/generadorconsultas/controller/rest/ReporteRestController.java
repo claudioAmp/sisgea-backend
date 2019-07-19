@@ -46,7 +46,7 @@ public class ReporteRestController {
 
 	}
 	@GetMapping(value = "/reportes/{idReporte}")
-	public Reporte buscarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
+	public List<Reporte> buscarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
 		return this.reporteService.buscarReporte(idReporte);
 
 	}
