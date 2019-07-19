@@ -38,13 +38,31 @@
             <artifactId>sicf-reportes</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        
         <dependency>
             <groupId>ob.unibanca.sicf</groupId>
             <artifactId>sicf-generador-consultas</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        
     </dependencies>
+    
+    <build>
+        <finalName>sicf#api</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
