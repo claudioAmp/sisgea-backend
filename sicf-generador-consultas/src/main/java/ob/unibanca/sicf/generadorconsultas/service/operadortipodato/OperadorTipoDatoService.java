@@ -10,28 +10,32 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IOperadorTipoDatoMapper;
 import ob.unibanca.sicf.generadorconsultas.model.OperadorTipoDato;
+import ob.unibanca.sicf.generadorconsultas.model.OperadoresTipoDato;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaOperadorTipoDato;
 
 
 @Service
 public class OperadorTipoDatoService extends MantenibleService<OperadorTipoDato> implements IOperadorTipoDatoService {
 	
-	private final IOperadorTipoDatoMapper OperadorTipoDatoMapper;
+	private final IOperadorTipoDatoMapper operadorTipoDatoMapper;
 	public OperadorTipoDatoService(@Qualifier("IOperadorTipoDatoMapper") IMantenibleMapper<OperadorTipoDato> mantenibleMapper) {
 		super(mantenibleMapper);
-		this.OperadorTipoDatoMapper = (IOperadorTipoDatoMapper) mantenibleMapper;
+		this.operadorTipoDatoMapper = (IOperadorTipoDatoMapper) mantenibleMapper;
 	}
 	
-	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<OperadorTipoDato> buscarTodosOperadorTipoDato() {
 		return this.buscarTodos();
 	}
-	@Override
+	
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<OperadorTipoDato> buscarPorCriterioOperadorTipoDato(CriterioBusquedaOperadorTipoDato criterio) {
-		return this.OperadorTipoDatoMapper.buscarPorCriterios(criterio);
+		return this.operadorTipoDatoMapper.buscarPorCriterios(criterio);
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<OperadoresTipoDato> buscarPorGruposTipoDato(CriterioBusquedaOperadorTipoDato criterio){
+		return this.operadorTipoDatoMapper.buscarPorGruposTipoDato(criterio);
+	}
 }
 

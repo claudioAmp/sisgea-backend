@@ -12,11 +12,11 @@ import ob.commons.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Operador{
-   
-	@IdNumerico(maxRange = 999, groups = IRegistro.class)
+   @IdNumerico(maxRange = 999, groups = IRegistro.class)
    Integer idOperador;
    String simboloOperador;
    String descripcionOperador;
+   String operador; // por la vista
    String idTipoOperador;
-   
+   String tipoOperador; //por la vista
 }

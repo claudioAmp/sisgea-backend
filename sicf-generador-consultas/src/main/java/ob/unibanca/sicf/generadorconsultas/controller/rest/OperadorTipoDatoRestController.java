@@ -5,6 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import ob.unibanca.sicf.generadorconsultas.model.OperadorTipoDato;
+import ob.unibanca.sicf.generadorconsultas.model.OperadoresTipoDato;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaOperadorTipoDato;
 import ob.unibanca.sicf.generadorconsultas.service.operadortipodato.IOperadorTipoDatoService;
 
@@ -30,5 +31,9 @@ public class OperadorTipoDatoRestController {
 		return this.operadorTipoDatoService.buscarPorCriterioOperadorTipoDato(criterio);
 	}
 	
+	@GetMapping(value = "/operadores-tipo-dato/grouping/tipo-dato")
+	public List<OperadoresTipoDato> buscarPorGruposTipoDato(CriterioBusquedaOperadorTipoDato criterio) {
+		return this.operadorTipoDatoService.buscarPorGruposTipoDato(criterio);
+	}
 	
 }
