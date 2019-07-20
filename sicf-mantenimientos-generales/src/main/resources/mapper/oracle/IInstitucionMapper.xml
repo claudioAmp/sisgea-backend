@@ -16,6 +16,8 @@
              , cuenta_contable_moneda_alterna
              , id_institucion_operador
              , descripcion_institucion_ope
+             , tipo_adquirente
+             , cta_compensacion
             FROM vie_man_institucion
     </sql>
 
@@ -31,9 +33,11 @@
        		WHERE
        		<if  test="operador=='LIKE'">
        			id_institucion_operador = #{idInstitucionOperador}
+       			AND cta_compensacion = 0
        		</if>
        		<if  test="operador=='NOT LIKE'">
        			id_institucion_operador != #{idInstitucionOperador}
+       			AND  tipo_adquirente IN (1,2)
        		</if>
        	</if>
     </select>

@@ -32,7 +32,8 @@
 		</if>
 		
 		<if  test="merchantName != null and merchantName != '' and merchantName != '-1'">
-			AND a.MERCHANT_NAME = #{merchantName}  
+			<bind name="pMerchantName" value="'%' + merchantName + '%'" />
+			AND a.MERCHANT_NAME LIKE  #{pMerchantName}  
 		</if>
 		<if  test="authorizationCode != null and authorizationCode !='' and authorizationCode !='-1'">
 			AND a.AUTHORIZATION_CODE = #{authorizationCode}  
@@ -99,7 +100,7 @@
 		</if>
 		<if  test="merchantsCountryCode != null and merchantsCountryCode.size()>0" >
 			AND a.MERCHANT_COUNTRY_CODE IN 
-				<foreach item="item" index="index" collection="merchantsCategoryCode" open ="(" separator=","  close=")">
+				<foreach item="item" index="index" collection="merchantsCountryCode" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
