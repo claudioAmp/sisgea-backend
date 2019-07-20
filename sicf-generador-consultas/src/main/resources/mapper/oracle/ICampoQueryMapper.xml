@@ -13,6 +13,7 @@
 			, ID_CAMPO
 			, CAMPO
 			, ALIAS_CAMPO
+			, ALIAS_EN_QUERY
 			, EN_ORDER_BY
 			, ORDEN_ORDER_BY
 			, EN_SELECT
@@ -61,6 +62,7 @@
                 #{objetoMantenido.ordenOrderBy,  	 jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.enSelect , 	     jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idFuncionGrupo ,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.aliasEnQuery,	     jdbcType=VARCHAR, mode=IN},
                 #{usuario, 						     jdbcType=VARCHAR, mode=IN}
             )
         }
