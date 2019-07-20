@@ -20,6 +20,7 @@ public class CampoQuery {
     int idCampo;
     String campo;
     String aliasCampo;
+    String aliasEnQuery;
     String enOrderBy;
     int ordenOrderBy;
     boolean enSelect;
