@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TxnSwdmplog {
 	
-	private Integer idMovTxnSwdmplog;
+	private long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	private String pan;

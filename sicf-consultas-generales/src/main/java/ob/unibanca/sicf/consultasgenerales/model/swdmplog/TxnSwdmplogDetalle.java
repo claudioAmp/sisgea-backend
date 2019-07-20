@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TxnSwdmplogDetalle {
 	
-	private Integer idMovTxnSwdmplog;
+	private long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	private String pan;
