@@ -12,9 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplogDetalle {
-	private long idMovTxnSwdmplog;
+	private Long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
+	private String descripcionStfwd;
 	private String pan;
 	private String processingCode;
 	private String descripcionCodProcSw;
@@ -30,6 +31,7 @@ public class TxnSwdmplogDetalle {
 	private String posEntryMode;
 	private String posConditionCode;
 	private double settAmountTxnFee;
+	private double settAmountProcFee;
 	private String acquiringInstitution;
 	private String descripcionBinInstAdq;
 	private String forwardingInstitution;
@@ -77,6 +79,4 @@ public class TxnSwdmplogDetalle {
 	private String descripcionProceso;
 	private String idBin;
 	private String descripcionBin;
-	private Integer idRol;
-	private String descripcionRolTransaccion;
 }
