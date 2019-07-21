@@ -14,19 +14,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Compensacion {
-	Integer idSecuencia;
+	long idSecuencia;
 	String idMembresia;
 	String descMembresia;
 	String idServicio;
 	String descServicio;
 	Integer idOrigen;
 	String descOrigen;
-	Integer idClaseTransaccion;
-	String descClaseTransaccion;
-	Integer idCodigoTransaccion;
+	Integer idTransaccion;
 	String descCodigoTransaccion;
-	Integer idRol;
-	String descRol;
 	Integer idCanal;
 	String descCanal;
 	Integer idInstitucionEmisora;
@@ -52,4 +48,5 @@ public class Compensacion {
 	String paisAdquirente;
 	String descPaisAdquirente;
 	String horaTransaccion;
+	String codigoAutorizacion;
 }

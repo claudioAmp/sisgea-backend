@@ -27,7 +27,6 @@ public class BulkfileRestController {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<Bulkfile> lista = bulkfileService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		Pagina<CriterioBusquedaBulkfile, Bulkfile> pagina = new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
-		System.out.println(criterioBusqueda);
 		return pagina;
 	}
 

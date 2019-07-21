@@ -12,7 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplogDetalle {
-	
 	private long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
@@ -80,5 +79,4 @@ public class TxnSwdmplogDetalle {
 	private String descripcionBin;
 	private Integer idRol;
 	private String descripcionRolTransaccion;
-
 }

@@ -23,7 +23,8 @@ public class CriterioBusquedaBulkfile {
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
 	List<Integer> currencysCodeTran;
-
+	long idBulkfileMC;
+	String fechaProceso;
 	// Filtros
 
 	private String filtroFechaProceso;

@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplog {
-	
 	private long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;

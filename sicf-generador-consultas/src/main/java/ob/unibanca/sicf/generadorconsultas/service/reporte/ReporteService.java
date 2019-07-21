@@ -101,9 +101,11 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {
-		this.eliminarReporte(idReporte);
-		this.registrarReporte(Reporte);		
-		//this.actualizar(Reporte);
+		/*this.eliminarReporte(idReporte);
+		System.out.println(Reporte);
+		this.registrarReporteTotal(Reporte);*/	
+		this.actualizar(Reporte);
+		System.out.println(Reporte);
 		return Reporte;
 	}
 	
@@ -162,12 +164,15 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			idxCampo++;
 		}
 		for(TablaOnJoin to :Reporte.getTablasOnJoin()) {
+			System.out.println(to);
 			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoBase(), to.getInstanciaTablaBase());
 			to.setIdReporte(idReporte);
+			System.out.println("BASE:"+c);
 			if(c!=null) {
 				to.setIdCampoQueryBase(c.getIdCampoQuery());
 			}
 			c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoJoin(), to.getInstanciaTablaJoin());
+			System.out.println("JOIN:"+c);
 			if(c!=null) {
 				to.setIdCampoQueryJoin(c.getIdCampoQuery());
 			}
@@ -204,7 +209,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	public TablaQuery getTablaQuery(List<TablaQuery> tablas, int idTabla,String instancia) {
 		TablaQuery tq=null;
 		for(int i=0;i<tablas.size();i++) {
-			if(tablas.get(i).getIdTabla()==idTabla && tablas.get(i).getIdInstancia().compareTo(instancia)==0) {		
+			if(tablas.get(i).getIdTabla()==idTabla && tablas.get(i).getIdInstancia().equalsIgnoreCase(instancia)) {		
 				return tablas.get(i);
 			}
 		}
@@ -212,8 +217,10 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	}
 	public CampoQuery getCampoQuery(List<CampoQuery> campos, int idCampo,String instancia) {
 		CampoQuery cq=null;
+		System.out.println("idCampo:"+idCampo+",instancia:"+instancia);
+		System.out.println(campos);
 		for(int i=0;i<campos.size();i++) {
-			if(campos.get(i).getIdCampo()==idCampo&&campos.get(i).getIdInstanciaTabla().compareTo(instancia)==0) {
+			if(campos.get(i).getIdCampo()==idCampo&&campos.get(i).getIdInstanciaTabla().equalsIgnoreCase(instancia)) {
 				return campos.get(i);
 			}
 		}

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC5 {
-	private Integer idSecuenciaIncoming;
+	private Long idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String accountNumber;

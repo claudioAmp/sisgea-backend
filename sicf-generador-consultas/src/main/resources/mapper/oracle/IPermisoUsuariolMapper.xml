@@ -20,16 +20,34 @@
           VER_TRUNCADO          AS VER_TRUNCADO
 		FROM VIE_MAN_REP_PERMISO_USUARIO
     </sql>
+    <sql id="camposDiferentesPermitidos">
+      SELECT DISTINCT
+	       ID_TABLA
+	     , TABLA
+	     , ALIAS_TABLA
+	     , ID_CAMPO
+	     , CAMPO
+	     , ALIAS
+	     , ID_TIPO_DATO
+	  FROM VIE_MAN_REP_PERMISO_USUARIO
+    </sql>
 
      <select id="buscarTodos" resultType="PermisoUsuario" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
 	<select id="buscarPorCriterios" resultType="PermisoUsuario" parameterType="CriterioBusquedaPermisoUsuario" statementType="PREPARED">
-        <include refid="consultaVistaMant"/>
+		<if  test="distinct==1">
+	        	 <include refid="camposDiferentesPermitidos"/>	
+	    </if>
+	    <if  test="distinct!=1">
+	        	 <include refid="consultaVistaMant"/>
+	    </if>    
         <where>
-        	   <if  test="idPerfil != null and idPerfil != '' ">
+	        <if  test="distinct!=1">
+	          <if  test="idPerfil != null and idPerfil != '' ">
 	        	  AND ID_PERFIL = #{idPerfil}	
 	           </if>
+		    </if> 	  
 	            <if  test="username!=null and username!='' ">
 	        	  AND USUARIO =#{username}
 	           </if>

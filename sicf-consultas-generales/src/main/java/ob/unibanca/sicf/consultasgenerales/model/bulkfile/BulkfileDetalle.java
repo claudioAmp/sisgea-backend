@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class BulkfileDetalle {
-
+	long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	Integer switchSerialNumber;
@@ -24,13 +24,12 @@ public class BulkfileDetalle {
 	Integer panLength;
 	String accountNumber;
 	String processingCode;
-	String descripcionProcessingCode;
 	String traceNumber;
 	String merchantType;
 	String descripcionMerchantType;
 	String posEntry;
-	String modEntradaPos;
-	String capacidadEntradaPin;
+	String modEntradaPos;//
+	String capacidadEntradaPin;//
 	String referenceNumber;
 	String acquirerInstId;
 	String terminalId;
@@ -43,19 +42,19 @@ public class BulkfileDetalle {
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	Integer impliedDecimalTran;
-	Integer amountTransactionLoc;
+	double amountTransactionLoc;
 	String amountTransactionLocInd;
 	Integer cashbackAmountLoc;
 	String cashbackAmountLocInd;
-	Integer accessFeeLoc;
+	double accessFeeLoc;
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
 	Integer impliedDecimalSett;
-	Integer conversionRateSett;
-	Integer amountSettlement;
+	double conversionRateSett;
+	double amountSettlement;
 	String amountSettlementInd;
-	Integer interchangeFee;
+	double interchangeFee;
 	String interchangeFeeInd;
 	String serviceLevelInd;
 	String responseCode2;
@@ -63,7 +62,7 @@ public class BulkfileDetalle {
 	String atmSurchargeFree;
 	String crossBordeInd;
 	String crossBorderCurrInd;
-	Integer visaIsaFeeInd;
+	Integer visaIsaFeeInd;//
 	String descripcionVisaIsaFeeInd;
 	String reqAmountTransLoc;
 	Date fechaProceso;

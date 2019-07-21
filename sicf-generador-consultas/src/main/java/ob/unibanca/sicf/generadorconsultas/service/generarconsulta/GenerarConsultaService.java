@@ -40,7 +40,6 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	String getOnSelect(Reporte reporteEstado , Map<String, Integer> a ) {
 	    String query = "";
 	    boolean flagFirst = true;
-	    int i=0;
 	    for (CampoQuery campo :reporteEstado.getCampos()) {
 	      if (campo.isEnSelect()) {
 	        //Logica para colocar en el query
@@ -55,20 +54,8 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 			} else {
 				query += campo.getIdInstanciaTabla() + "." + campo.getCampo() ;
 			}
-			query += " AS " + "\"" ;
-	        String b=campo.getCampo();
-	        if(a.get(b)==null){
-	          a.put(b, 0);
-	          query+= campo.getCampo() +"\"";
-		      campo.setAliasEnQuery(campo.getCampo());
-	        }else{
-			  a.put(b, a.get(b)+1);
-	          query+= campo.getCampo() + a.get(b)+"\"";
-		      campo.setAliasEnQuery(campo.getCampo()+ a.get(b));
-	        }
+			query += " AS " + "\"" + campo.getAliasEnQuery() + "\"";
 	      }
-	      reporteEstado.getCampos().set(i,campo);
-	      i++;
 	    }
 	    return query;
 	  }
@@ -149,10 +136,20 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 						  flagFirst=false;
 					  }
 					  if(tipoCondicion==0) {
-						  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" "+filtro.getValor();
+						  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" ";
+						  if(filtro.getTipoDatoValor().equalsIgnoreCase("VARCHAR2")||filtro.getTipoDatoValor().equalsIgnoreCase("CHAR")) {
+							  query+= "'" + filtro.getValor() + "'";
+						  } else {
+							  query+=filtro.getValor();
+						  }
 					  }else{
 						  CampoQuery temporalCampo=this.findCampoById(reporteEstado,filtro.getIdCampo());
-						  query+=" "+temporalCampo.getFuncionGrupo()+"( "+filtro.getIdInstancia()+"."+filtro.getCampo()+" ) "+filtro.getSimboloOperador()+" "+filtro.getValor();
+						  query+=" "+temporalCampo.getFuncionGrupo()+"( "+filtro.getIdInstancia()+"."+filtro.getCampo()+" ) "+filtro.getSimboloOperador()+" ";
+						  if(filtro.getTipoDatoValor().equalsIgnoreCase("VARCHAR2")||filtro.getTipoDatoValor().equalsIgnoreCase("CHAR")) {
+							  query+= "'" + filtro.getValor() + "'";
+						  } else {
+							  query+=filtro.getValor();
+						  }
 					  }
 					  trucoLista.add(filtro);
 				  }

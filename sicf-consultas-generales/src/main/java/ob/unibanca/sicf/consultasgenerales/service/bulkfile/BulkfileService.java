@@ -31,6 +31,7 @@ public class BulkfileService implements  IBulkfileService{
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public BulkfileDetalle buscarDetalle(CriterioBusquedaBulkfile criterio) {
+		System.out.println(criterio);
 		return this.bulkfileMapper.buscarDetalle(criterio).orElseThrow(
 				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getTraceNumber()));
 	}

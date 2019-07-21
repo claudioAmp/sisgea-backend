@@ -20,5 +20,6 @@ public class CriterioBusquedaPermisoUsuario{
 	String campo;
 	String tabla;
 	int permited;
+	int distinct;
 	
 }

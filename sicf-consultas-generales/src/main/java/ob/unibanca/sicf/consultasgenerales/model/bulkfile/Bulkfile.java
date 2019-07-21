@@ -13,14 +13,15 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Bulkfile {
-
+	long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	Date transactionDate;
 	String transactionTime;
 	String accountNumber;
 	String processingCode;
-	String descripcionProcessingCode;
+	String idProceso;
+	String descripcionProceso;
 	String traceNumber;
 	String terminalId;
 	Integer responseCode;
@@ -28,13 +29,14 @@ public class Bulkfile {
 	String authorizationId;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
-	Integer accessFeeLoc;
+	double amountTransactionLoc;
+	double accessFeeLoc;
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
-	Integer amountSettlement;
+	double amountSettlement;
 	String amountSettlementInd;
-	Integer interchangeFee;
+	double interchangeFee;
 	String interchangeFeeInd;
 	Date fechaProceso;
 }
