@@ -13,6 +13,9 @@
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			 AND a.FECHA_TRANSACCION BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
 		<if  test="idSecuencia != null and idSecuencia != '' and idSecuencia != -1">
 			 AND a.ID_SECUENCIA = #{idSecuencia}
 		</if>
@@ -59,12 +62,7 @@
 				#{item}
 			</foreach>
 		</if>
-		<if test="roles !=null and roles.size()>0">
-			AND a.ID_ROL IN 
-			<foreach item="item" index="index" collection="roles" open ="(" separator="," close=")">
-				#{item}
-			</foreach>
-		</if>
+		
 		<if test="canales !=null and canales.size()>0">
 			AND a.ID_CANAL IN 
 			<foreach item="item" index="index" collection="canales" open ="(" separator="," close=")">
@@ -123,18 +121,11 @@
 			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
 			AND CONCAT(ID_ORIGEN, DESC_ORIGEN) LIKE #{pFiltroIdOrigen}
 		</if>
-		<if  test="filtroIdClaseTransaccion != null " >
-			<bind name="pFiltroIdClaseTransaccion" value="'%' + filtroIdClaseTransaccion + '%'" />
-			AND CONCAT(ID_CLASE_TRANSACCION, DESC_CLASE_TRANSACCION) LIKE #{pFiltroIdClaseTransaccion}
+		<if  test="filtroIdTransaccion != null " >
+			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
+			AND CONCAT(ID_TRANSACCION, DESC_CODIGO_TRANSACCION) LIKE #{pFiltroIdTransaccion}
 		</if>
-		<if  test="filtroIdCodigoTransaccion != null " >
-			<bind name="pFiltroIdCodigoTransaccion" value="'%' + filtroIdCodigoTransaccion + '%'" />
-			AND CONCAT(ID_CODIGO_TRANSACCION, DESC_CODIGO_TRANSACCION) LIKE #{pFiltroIdCodigoTransaccion}
-		</if>
-		<if  test="filtroIdRol != null " >
-			<bind name="pFiltroIdRol" value="'%' + filtroIdRol + '%'" />
-			AND CONCAT(ID_ROL, DESC_ROL) LIKE #{pFiltroIdRol}
-		</if>
+	
 		<if  test="filtroIdCanal != null " >
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
 			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
@@ -163,8 +154,8 @@
 			<bind name="pFiltroValorCompensacion" value="'%' + filtroValorCompensacion + '%'" />
 			AND VALOR_COMPENSACION LIKE #{pFiltroValorCompensacion}
 		</if>
-		<if  test="filtroFechaSwitch != null " >
-			AND FECHA_SWITCH = #{filtroFechaSwitch}
+		<if  test="filtroFechaTransaccion != null " >
+			AND FECHA_TRANSACCION = #{filtroFechaTransaccion}
 		</if>
 		<if  test="filtroHoraTransaccion != null " >
 			<bind name="pFiltroHoraTransaccion" value="'%' + filtroHoraTransaccion + '%'" />
@@ -194,10 +185,7 @@
 			<bind name="pFiltroNombreAdquirente" value="'%' + filtroNombreAdquirente + '%'" />
 			AND NOMBRE_ADQUIRENTE LIKE #{pFiltroNombreAdquirente}
 		</if>
-		<if  test="filtroCiudadAdquirente != null " >
-			<bind name="pFiltroCiudadAdquirente" value="'%' + filtroCiudadAdquirente + '%'" />
-			AND CIUDAD_ADQUIRENTE LIKE #{pFiltroCiudadAdquirente}
-		</if>
+		
 		<if  test="filtroPaisAdquirente != null " >
 			<bind name="pFiltroPaisAdquirente" value="'%' + filtroPaisAdquirente + '%'" />
 			AND CONCAT(PAIS_ADQUIRENTE, DESC_PAIS_ADQUIRENTE) LIKE #{pFiltroPaisAdquirente}
@@ -222,18 +210,12 @@
 		ORDER BY
 			ID_ORIGEN  ${ordenIdOrigen}
 		</if>
-		<if  test="ordenIdClaseTransaccion != null " >
+		<if  test="ordenIdTransaccion != null " >
 		ORDER BY
-			ID_CLASE_TRANSACCION  ${ordenIdClaseTransaccion}
+			ID_TRANSACCION  ${ordenIdTransaccion}
 		</if>
-		<if  test="ordenIdCodigoTransaccion != null " >
-		ORDER BY
-			ID_CODIGO_TRANSACCION  ${ordenIdCodigoTransaccion}
-		</if>
-		<if  test="ordenIdRol != null " >
-		ORDER BY
-			ID_ROL  ${ordenIdRol}
-		</if>
+		
+		
 		<if  test="ordenIdCanal != null " >
 		ORDER BY
 			ID_CANAL  ${ordenIdCanal}
@@ -262,9 +244,9 @@
 		ORDER BY
 			VALOR_COMPENSACION  ${ordenValorCompensacion}
 		</if>
-		<if  test="ordenFechaSwitch != null " >
+		<if  test="ordenFechaTransaccion != null " >
 		ORDER BY
-			FECHA_SWITCH  ${ordenFechaSwitch}
+			FECHA_TRANSACCION  ${ordenFechaTransaccion}
 		</if>
 		<if  test="ordenHoraTransaccion != null " >
 		ORDER BY
@@ -294,10 +276,7 @@
 		ORDER BY
 			NOMBRE_ADQUIRENTE  ${ordenNombreAdquirente}
 		</if>
-		<if  test="ordenCiudadAdquirente != null " >
-		ORDER BY
-			CIUDAD_ADQUIRENTE  ${ordenCiudadAdquirente}
-		</if>
+		
 		<if  test="ordenPaisAdquirente != null " >
 		ORDER BY
 			PAIS_ADQUIRENTE  ${ordenPaisAdquirente}

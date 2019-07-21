@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class CompensacionDetalle {
-	Integer idSecuencia;
+	Long idSecuencia;
 	String idMembresia;
 	String descMembresia;
 	String idServicio;
@@ -105,6 +105,7 @@ public class CompensacionDetalle {
 	Integer fondosAbono;
 	String instFondosAbono;
 	String indicadorCompensacion;
+	String descIndicadorCompensacion;
 	Integer transaccionTipoC;
 	String horaTransaccion;
 	String glosaRegularizacion;

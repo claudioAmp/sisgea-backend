@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComisCompensacion {
-	Integer idSecuencia;
+	Long idSecuencia;
 	Date fechaProceso;
 	Integer idComision;
 	String descripcionComision;
@@ -22,4 +22,6 @@ public class ComisCompensacion {
 	Integer nivelTarifario;
 	Integer tarifaFlat;
 	Integer tarifaPorcentual;
+	Integer aplicaTarifaFlat;
+	Integer aplicaTarifaPorcentual;
 }

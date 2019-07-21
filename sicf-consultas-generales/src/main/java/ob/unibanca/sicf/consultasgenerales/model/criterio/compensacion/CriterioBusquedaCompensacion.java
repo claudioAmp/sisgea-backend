@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaCompensacion {
 	String fechaProcesoInicio;
 	String fechaProcesoFin;
-	Integer idSecuencia;
+	String fechaTransaccionInicio;
+	String fechaTransaccionFin;
+	Long idSecuencia;
 	String numeroTarjeta;
 	List<Integer> monedasCompensacion;
 	double valorCompensacion;
@@ -24,7 +26,6 @@ public class CriterioBusquedaCompensacion {
 	List<Integer> origenes;
 	List<Integer> clasesTransaccion;
 	List<Integer> codigosTransaccion;
-	List<Integer> roles;
 	List<Integer> canales;
 	List<Integer> instituciones;
 	List<Integer> institucionesReceptoras;
@@ -38,9 +39,7 @@ public class CriterioBusquedaCompensacion {
 	private String filtroIdMembresia;
 	private String filtroIdServicio;
 	private String filtroIdOrigen;
-	private String filtroIdClaseTransaccion;
-	private String filtroIdCodigoTransaccion;
-	private String filtroIdRol;
+	private String filtroIdTransaccion;
 	private String filtroIdCanal;
 	private String filtroIdInstitucionEmisora;
 	private String filtroIdInstitucionReceptora;
@@ -48,7 +47,7 @@ public class CriterioBusquedaCompensacion {
 	private String filtroBin;
 	private String filtroIdMonedaCompensacion;
 	private String filtroValorCompensacion;
-	private String filtroFechaSwitch;
+	private String filtroFechaTransaccion;
 	private String filtroHoraTransaccion;
 	private String filtroCodigoRespuesta;
 	private String filtroNumeroTrace;
@@ -64,9 +63,7 @@ public class CriterioBusquedaCompensacion {
 	private String ordenIdMembresia;
 	private String ordenIdServicio;
 	private String ordenIdOrigen;
-	private String ordenIdClaseTransaccion;
-	private String ordenIdCodigoTransaccion;
-	private String ordenIdRol;
+	private String ordenIdTransaccion;
 	private String ordenIdCanal;
 	private String ordenIdInstitucionEmisora;
 	private String ordenIdInstitucionReceptora;
@@ -74,7 +71,7 @@ public class CriterioBusquedaCompensacion {
 	private String ordenBin;
 	private String ordenIdMonedaCompensacion;
 	private String ordenValorCompensacion;
-	private String ordenFechaSwitch;
+	private String ordenFechaTransaccion;
 	private String ordenHoraTransaccion;
 	private String ordenCodigoRespuesta;
 	private String ordenNumeroTrace;
@@ -82,6 +79,5 @@ public class CriterioBusquedaCompensacion {
 	private String ordenReferenciaIntercambio;
 	private String ordenGiroNegocio;
 	private String ordenNombreAdquirente;
-	private String ordenCiudadAdquirente;
 	private String ordenPaisAdquirente;
 }
