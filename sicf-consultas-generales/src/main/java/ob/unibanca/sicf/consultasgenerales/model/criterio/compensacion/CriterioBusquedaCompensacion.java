@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.compensacion;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,10 +15,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaCompensacion {
-	String fechaProcesoInicio;
-	String fechaProcesoFin;
-	String fechaTransaccionInicio;
-	String fechaTransaccionFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaTransaccionInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaTransaccionFin;
 	Long idSecuencia;
 	String numeroTarjeta;
 	List<Integer> monedasCompensacion;
@@ -33,8 +40,8 @@ public class CriterioBusquedaCompensacion {
 	List<String> codigosRespuesta;
 	
 	//filtros
-	
-	private String filtroFechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	private String filtroIdSecuencia;
 	private String filtroIdMembresia;
 	private String filtroIdServicio;
@@ -47,7 +54,8 @@ public class CriterioBusquedaCompensacion {
 	private String filtroBin;
 	private String filtroIdMonedaCompensacion;
 	private String filtroValorCompensacion;
-	private String filtroFechaTransaccion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaTransaccion;
 	private String filtroHoraTransaccion;
 	private String filtroCodigoRespuesta;
 	private String filtroNumeroTrace;
@@ -57,7 +65,7 @@ public class CriterioBusquedaCompensacion {
 	private String filtroNombreAdquirente;
 	private String filtroCiudadAdquirente;
 	private String filtroPaisAdquirente;
-	
+
 	private String ordenFechaProceso;
 	private String ordenIdSecuencia;
 	private String ordenIdMembresia;

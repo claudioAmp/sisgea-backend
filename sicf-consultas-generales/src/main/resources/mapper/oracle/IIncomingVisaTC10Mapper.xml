@@ -40,8 +40,36 @@
 					<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
 					AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 				</if>
+				<if  test="filtroEventDate != null " >
+					<bind name="pFiltroEventDate" value="'%' + filtroEventDate + '%'" />
+					AND EVENT_DATE LIKE #{pFiltroEventDate}
+				</if>
 				<if  test="filtroFechaProceso != null " >
 					AND FECHA_PROCESO = #{filtroFechaProceso}
+				</if>
+				<if  test="filtroCentralProcessingDate != null " >
+					AND CENTRAL_PROCESSING_DATE = #{filtroCentralProcessingDate}
+				</if>
+				<if  test="filtroMessageText != null " >
+					<bind name="pFiltroMessageText" value="'%' + filtroMessageText + '%'" />
+					AND MESSAGE_TEXT LIKE #{pFiltroMessageText}
+				</if>
+				<if  test="filtroTransactionIdentifier != null " >
+					<bind name="pFiltroTransactionIdentifier" value="'%' + filtroTransactionIdentifier + '%'" />
+					AND TRANSACTION_IDENTIFIER LIKE #{pFiltroTransactionIdentifier}
+				</if>
+				<if  test="filtroTransCodeQualifier != null " >
+					<bind name="pFiltroTransCodeQualifier" value="'%' + filtroTransCodeQualifier + '%'" />
+					AND CONCAT(TRANS_CODE_QUALIFIER,DESC_TRANS_CODE_QUALIFIER) LIKE #{pFiltroTransCodeQualifier}
+				</if>
+				<if  test="filtroSettlementFlag != null " >
+					<bind name="pFiltroSettlementFlag" value="'%' + filtroSettlementFlag + '%'" />
+					AND CONCAT(SETTLEMENT_FLAG, DESC_SETTLEMENT_FLAG) LIKE #{pFiltroSettlementFlag}
+				</if>
+				
+				<if  test="filtroReimbursementAttribute != null " >
+					<bind name="pFiltroReimbursementAttribute" value="'%' + filtroReimbursementAttribute + '%'" />
+					AND CONCAT(REIMBURSEMENT_ATTRIBUTE, DESC_REIMBURSEMENT_ATTRIBUTE) LIKE #{pFiltroReimbursementAttribute}
 				</if>
 				<if  test="filtroDestinationBin != null " >
 					<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
@@ -54,6 +82,10 @@
 				<if  test="filtroReasonCode != null " >
 					<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
 					AND CONCAT(REASON_CODE, DESC_REASON_CODE) LIKE #{pFiltroReasonCode}
+				</if>
+				<if  test="filtroTransactionCode != null " >
+					<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
+					AND CONCAT(TRANSACTION_CODE, DESC_TRANSACTION_CODE) LIKE #{pFiltroTransactionCode}
 				</if>
 				<if  test="filtroDestinationAmount != null " >
 					<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
@@ -119,10 +151,39 @@
 				ORDER BY	
 				 	DEST_CURRENCY_CODE ${ordenDestCurrencyCode}
 				</if>
+				<if  test="ordenEventDate != null " >
+				ORDER BY	
+				 	EVENT_DATE ${ordenEventDate}
+				</if>
+				<if  test="ordenMessageText != null " >
+				ORDER BY	
+				 	MESSAGE_TEXT ${ordenMessageText}
+				</if>
+				<if  test="ordenSettlementFlag != null " >
+				ORDER BY	
+				 	SETTLEMENT_FLAG ${ordenSettlementFlag}
+				</if>
+				<if  test="ordenReimbursementAttribute != null " >
+				ORDER BY	
+				 	REIMBURSEMENT_ATTRIBUTE ${ordenReimbursementAttribute}
+				</if>
+				
+				<if  test="ordenCentralProcessingDate != null " >
+				ORDER BY	
+				 	MESSAGE_TEXT ${ordenCentralProcessingDate}
+				</if>
+				<if  test="ordenTransactionIdentifier != null " >
+				ORDER BY	
+				 	TRANSACTION_IDENTIFIER ${ordenTransactionIdentifier}
+				</if>
+				<if  test="ordenTransCodeQualifier != null " >
+				ORDER BY	
+				 	TRANS_CODE_QUALIFIER ${ordenTransCodeQualifier}
+				</if>
 	</sql>
 	<!-- Fin Reutilizables -->
 	
-	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">	
+	<select id="buscarPorCriteriosTCR0" parameterType="CriterioBusquedaIncomingVisaTC10"  resultType="IncomingVisaTC10TCR0" statementType="PREPARED">	
 		<include refid="fragmentoSelect" />
 		<where>
 			<include refid="fragmentoWhere" /> 
@@ -131,15 +192,6 @@
 		</where>
    	</select>
    		
-	 <select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaIncomingVisa" resultType="IncomingVisaTC10TCR0Det" statementType="PREPARED">		
-		SELECT 
-			*
-		FROM VIE_CON_MOV_INC_TC10_TCR0 a
-  		<where>
-	  		<if  test="idSecuenciaIncoming != null " >
-				SECUENCIA_INCOMING = #{idSecuenciaIncoming}
-			</if>
-		</where>
-   	</select>
+	
    	
 </mapper>

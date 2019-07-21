@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -65,5 +67,6 @@ public class BulkfileDetalle {
 	Integer visaIsaFeeInd;//
 	String descripcionVisaIsaFeeInd;
 	String reqAmountTransLoc;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 }

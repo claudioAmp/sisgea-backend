@@ -1,6 +1,8 @@
 package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +20,6 @@ public class IncomingVisaTC5TCR3 {
 	private String descTransCodeQualifier;
 	private String businessFormatCode;
 	private String dataContent;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 }

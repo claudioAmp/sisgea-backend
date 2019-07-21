@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfile;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,20 +17,26 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaBulkfile {
 	
 	List<String> messagesTypeInd;
-	String fechaTransaccionInicio; // transactionDate
-	String fechaTransaccion; // transactionDate
-	String fechaTransaccionFin; // transactionDate
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaTransaccionInicio; // transactionDate
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaTransaccion; // transactionDate
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaTransaccionFin; // transactionDate
 	String accountNumber;
 	String traceNumber;
 	List<Integer> responsesCode; // responseCode
-	String fechaProcesoInicio;
-	String fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoFin;
 	List<Integer> currencysCodeTran;
 	long idBulkfileMC;
-	String fechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProceso;
 	// Filtros
-
-	private String filtroFechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	private String filtroTraceNumber;
 	private String filtroAccountNumber;
 	private String filtroTransactionDate;

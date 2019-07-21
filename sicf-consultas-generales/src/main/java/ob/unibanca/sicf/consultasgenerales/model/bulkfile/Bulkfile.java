@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,6 +18,7 @@ public class Bulkfile {
 	long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date transactionDate;
 	String transactionTime;
 	String accountNumber;
@@ -38,5 +41,6 @@ public class Bulkfile {
 	String amountSettlementInd;
 	double interchangeFee;
 	String interchangeFeeInd;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 }

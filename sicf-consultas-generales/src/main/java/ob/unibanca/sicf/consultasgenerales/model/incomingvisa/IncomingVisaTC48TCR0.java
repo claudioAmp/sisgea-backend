@@ -2,6 +2,8 @@ package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC48TCR0 {
 	private Long secuenciaIncoming;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String transactionCode;
 	private String descTransactionCode;
@@ -29,6 +32,7 @@ public class IncomingVisaTC48TCR0 {
 	private String accountNumber;
 	private String responseCode;
 	private String descResponseCode;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transactionDate;
 	private String transactionTime;
 	private String authorizationCode;
@@ -42,7 +46,8 @@ public class IncomingVisaTC48TCR0 {
 	private String transactionCurrencyCode;
 	private String descTransactionCurrencyCode;
 	private String cardholderConvRate;
-	private String expirationDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date expirationDate;
 	private String acquiringInstId;
 	private String descAcquiringInstId;
 	private String acqInstCountryCode;

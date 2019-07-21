@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,18 +15,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTC48 {
-	private String fechaProcesoInicio;
-	private String fechaProcesoFin;
-	private String fechaTransaccionInicio;
-	private String fechaTransaccionFin;	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaTransaccionInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaTransaccionFin;	
 	private String accountNumber;
 	private List<String> standInReasonsCodes;
 	private List<String> responsesCodes;
 	private List<String> merchantTypes;
 	
 	//filtros
-	
-	private String filtroFechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	private String filtroSecuenciaIncoming;
 	private String filtroDestinationBin;
 	private String filtroSourceBin;
