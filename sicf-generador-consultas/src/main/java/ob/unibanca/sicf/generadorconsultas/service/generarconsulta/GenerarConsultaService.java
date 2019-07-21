@@ -136,10 +136,20 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 						  flagFirst=false;
 					  }
 					  if(tipoCondicion==0) {
-						  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" "+filtro.getValor();
+						  query+=" "+filtro.getIdInstancia()+"."+filtro.getCampo()+" "+filtro.getSimboloOperador()+" ";
+						  if(filtro.getTipoDatoValor().equalsIgnoreCase("VARCHAR2")||filtro.getTipoDatoValor().equalsIgnoreCase("CHAR")) {
+							  query+= "'" + filtro.getValor() + "'";
+						  } else {
+							  query+=filtro.getValor();
+						  }
 					  }else{
 						  CampoQuery temporalCampo=this.findCampoById(reporteEstado,filtro.getIdCampo());
-						  query+=" "+temporalCampo.getFuncionGrupo()+"( "+filtro.getIdInstancia()+"."+filtro.getCampo()+" ) "+filtro.getSimboloOperador()+" "+filtro.getValor();
+						  query+=" "+temporalCampo.getFuncionGrupo()+"( "+filtro.getIdInstancia()+"."+filtro.getCampo()+" ) "+filtro.getSimboloOperador()+" ";
+						  if(filtro.getTipoDatoValor().equalsIgnoreCase("VARCHAR2")||filtro.getTipoDatoValor().equalsIgnoreCase("CHAR")) {
+							  query+= "'" + filtro.getValor() + "'";
+						  } else {
+							  query+=filtro.getValor();
+						  }
 					  }
 					  trucoLista.add(filtro);
 				  }

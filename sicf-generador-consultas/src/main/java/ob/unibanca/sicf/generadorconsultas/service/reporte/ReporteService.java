@@ -101,9 +101,11 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {
-		this.eliminarReporte(idReporte);
-		this.registrarReporte(Reporte);		
-		//this.actualizar(Reporte);
+		/*this.eliminarReporte(idReporte);
+		System.out.println(Reporte);
+		this.registrarReporteTotal(Reporte);*/	
+		this.actualizar(Reporte);
+		System.out.println(Reporte);
 		return Reporte;
 	}
 	

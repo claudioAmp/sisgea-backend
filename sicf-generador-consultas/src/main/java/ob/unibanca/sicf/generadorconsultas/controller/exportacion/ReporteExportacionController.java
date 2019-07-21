@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
+import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
 import java.util.Map;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,17 +22,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class ReporteExportacionController {
 
 	private @Autowired final IReporteService reporteService;
+	private @Autowired final IGenerarConsultaService generarConsultaService;
 
-	public ReporteExportacionController(IReporteService reporteService) {
+	public ReporteExportacionController(IReporteService reporteService,IGenerarConsultaService generarConsultaService) {
 		this.reporteService = reporteService;
+		this.generarConsultaService=generarConsultaService;
 	}
 
 	@PostMapping(value = "/reportes/exportar-consulta.xlsx")
-	public ModelAndView ejecutarConsulta(@RequestBody List<CampoQuery> campos,
-	                                     @RequestParam(value = "consulta") String consulta,
+	public ModelAndView ejecutarConsulta(@RequestBody Reporte reporte,
 	                                     ModelMap model) {
+		String consulta=this.generarConsultaService.generarConsulta(reporte);
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
-		model.addAttribute("campos", campos);
+		model.addAttribute("campos", reporte.getCampos());
 		model.addAttribute("consulta", resultadoConsulta);
 		
 		return new ModelAndView("xlsReporteView", model);
