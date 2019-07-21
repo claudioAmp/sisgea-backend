@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC10TCR0Det {
-	Integer secuenciaIncoming;
+	Long secuenciaIncoming;
 	Date fechaProceso;
 	String transactionCode;
 	String descTransactionCode;

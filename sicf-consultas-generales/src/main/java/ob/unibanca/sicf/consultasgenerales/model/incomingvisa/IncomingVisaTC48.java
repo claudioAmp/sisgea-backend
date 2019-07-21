@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncomingVisaTC48 {
-	private Integer secuenciaIncoming;
+	private Long secuenciaIncoming;
 	private Date fechaProceso;
 	private String destinationBin;
 	private String descDestinationBin;
