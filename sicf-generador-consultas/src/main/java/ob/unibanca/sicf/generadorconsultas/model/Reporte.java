@@ -18,6 +18,7 @@ public class Reporte {
     private String descCorta;
     private String queryReporte;
 	private int frecuencia;
+	private int frecuenciaMaxima;
 	private List<TablaQuery> tablas; 
 	private List<CampoQuery> campos;
 	private List<Filtro> filtros; 
