@@ -32,7 +32,15 @@ public class ReporteExportacionController {
 	@PostMapping(value = "/reportes/exportar-consulta.xlsx")
 	public ModelAndView ejecutarConsulta(@RequestBody Reporte reporte,
 	                                     ModelMap model) {
-		String consulta=this.generarConsultaService.generarConsulta(reporte);
+		String consulta="";
+		if(reporte.getQueryReporte()!=null) {
+			if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
+				reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
+			}
+		} else {
+			reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
+		}
+		consulta=reporte.getQueryReporte();
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
 		model.addAttribute("campos", reporte.getCampos());
 		model.addAttribute("consulta", resultadoConsulta);
