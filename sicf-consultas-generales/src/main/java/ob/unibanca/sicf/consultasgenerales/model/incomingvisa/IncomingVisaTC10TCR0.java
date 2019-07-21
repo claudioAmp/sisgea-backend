@@ -21,8 +21,6 @@ public class IncomingVisaTC10TCR0 {
 	Date fechaProceso;
 	String transactionCode;
 	String descTransactionCode;
-	String transCodeQualifier;
-	String descTransCodeQualifier;
 	String destinationBin;
 	String descDestinationBin;
 	String sourceBin;
