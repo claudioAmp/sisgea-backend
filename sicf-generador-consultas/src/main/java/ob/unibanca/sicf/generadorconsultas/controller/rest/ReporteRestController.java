@@ -80,13 +80,17 @@ public class ReporteRestController {
 
 	@PostMapping(value = "/reportes/ejecutar-consulta/{pageNum}/{pageSize}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public PaginaGeneradorConsulta<Map<String, Object>> ejecutarConsulta(@PathVariable int pageNum, @PathVariable int pageSize, @RequestBody Reporte reporte) {
-		System.out.println(reporte);
 		 PageParameter pageParameter= new  PageParameter();
 		 pageParameter.setPageNum(pageNum);
 		 pageParameter.setPageSize(pageSize);
-		if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
+		if(reporte.getQueryReporte()!=null) {
+			if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
+				reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
+			}
+		} else {
 			reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
 		}
+		System.out.println(reporte);
 		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(reporte.getQueryReporte(), pageParameter);
 		return new PaginaGeneradorConsulta<>(requestList);
 	}

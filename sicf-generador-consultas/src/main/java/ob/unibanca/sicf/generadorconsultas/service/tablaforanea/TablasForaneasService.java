@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.generadorconsultas.service.tablaforanea;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,10 +36,37 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<TablasForaneas> buscarPorCriteriosTablasForaneas(CriterioBusquedaTablasForaneas criterio) {
+		List<TablasForaneas> resultAux = new ArrayList<>(); 
+		TablasForaneas aux = new TablasForaneas();
+		List<TablasForaneas> result = this.tablasForaneasMapper.buscarPorCriterios(criterio);
+		System.out.println(result);
 		if(criterio.getPermited()==1) {
 			criterio.setUsuario(UsuarioUtil.obtenerUsername());
 		}
-		return this.tablasForaneasMapper.buscarPorCriterios(criterio);
+		if(criterio.getBidireccional()==1 && criterio.getIdTabla()!=0) {
+			for(TablasForaneas t : result) {
+				if(t.getIdTablaForanea()==criterio.getIdTabla() && t.getIdTabla()!=criterio.getIdTabla()) {
+					aux = new TablasForaneas();
+					aux.setIdTabla(t.getIdTablaForanea());
+					aux.setTabla(t.getTablaForanea());
+					aux.setAliasTabla(t.getAliasTablaForanea());
+					aux.setIdCampo(t.getIdCampoForaneo());
+					aux.setCampo(t.getCampoForaneo());
+					aux.setAliasCampo(t.getAliasCampoForaneo());
+					
+					aux.setIdTablaForanea(t.getIdTabla());
+					aux.setTablaForanea(t.getTabla());
+					aux.setAliasTablaForanea(t.getAliasTabla());
+					aux.setIdCampoForaneo(t.getIdCampo());
+					aux.setCampoForaneo(t.getCampo());
+					aux.setAliasCampoForaneo(t.getAliasCampo());
+					t=aux;
+				}
+				resultAux.add(t);
+			}
+			result=resultAux;
+		}
+		return result;
 	}
 
 	@Override

@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaTablasForaneas {
-	String idTabla;
+	int idTabla;
 	String tablaForanea;
 	int permited;
 	String usuario;
 	int idRelacionTablaFk;
+	int bidireccional;
 }

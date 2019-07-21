@@ -29,7 +29,7 @@
 	<select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         <where>
-	        <if  test="idTabla != null and idTabla != ''">
+	        <if  test="idTabla != null and idTabla != '' and bidireccional != 1">
 	       		AND ID_TABLA = #{idTabla}
 	        </if>
 	        <if  test=" permited != null  and permited != 0 ">
@@ -37,6 +37,14 @@
 	        </if>
 	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
 	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
+	        </if>
+	        <if  test=" bidireccional == 1 ">
+	       		<if  test="idTabla != null and idTabla != ''">
+		       		OR ID_TABLA = #{idTabla}
+		        </if>
+		        <if  test="idTabla != null and idTabla != ''">
+		       		OR ID_TABLA_FORANEA= #{idTabla}
+		        </if>       		
 	        </if>
         </where>
     </select>
