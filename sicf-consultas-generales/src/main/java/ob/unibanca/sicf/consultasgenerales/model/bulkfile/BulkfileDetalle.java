@@ -22,6 +22,7 @@ public class BulkfileDetalle {
 	String descripcionMessageTypeInd;
 	Integer switchSerialNumber;
 	String processorAcqIss;
+	String descripcionProcessorAcqIss;
 	String processorId;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date transactionDate;
@@ -55,24 +56,34 @@ public class BulkfileDetalle {
 	Integer impliedDecimalTran;
 	double amountTransactionLoc;
 	String amountTransactionLocInd;
+	String descripcionAmountTransactionLocInd; //
 	Integer cashbackAmountLoc;
 	String cashbackAmountLocInd;
+	String descripcionCashbackAmountLocInd; //
 	double accessFeeLoc;
 	String accessFeeLocInd;
+	String descripcionAccessFeeLocInd; //
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
 	Integer impliedDecimalSett;
 	double conversionRateSett;
 	double amountSettlement;
 	String amountSettlementInd;
+	String descripcionAmountSettlementInd;//
 	double interchangeFee;
 	String interchangeFeeInd;
+	String descripcionInterchangeFeeInd; //
 	String serviceLevelInd;
+	String descripcionServiceLevelInd; //
 	String responseCode2;
 	Integer positiveIdInd;
+	String descripcionPositiveIdInd; //
 	String atmSurchargeFree;
+	String descripcionAtmSurchargeFree; //
 	String crossBordeInd;
+	String descripcionCrossBordeInd; //
 	String crossBorderCurrInd;
+	String descripcionCrossBorderCurrInd; //
 	Integer visaIsaFeeInd;//
 	String descripcionVisaIsaFeeInd;
 	String reqAmountTransLoc;
