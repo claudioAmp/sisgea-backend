@@ -18,10 +18,6 @@ public class IncomingVisaTC48TCR1 {
 	private Long secuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
-	private String transactionCode;
-	private String descTransactionCode;
-	private String transCodeQualifier;
-	private String descTransCodeQualifier;
 	private String cvv2Authorization;
 	private String cvv2ResultCode;
 	private String descCvv2ResultCode;

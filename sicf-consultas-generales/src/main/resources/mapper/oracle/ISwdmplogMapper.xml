@@ -9,13 +9,13 @@
 	</sql>
 	
 	<sql id="fragmentoWhere" >
-		<if test="fechaInicioProceso != null and fechaInicioProceso != '' and fechaFinProceso != null and fechaFinProceso != ''">
+		<if test="fechaInicioProceso != null and fechaFinProceso != null">
 			consulta.fecha_proceso BETWEEN #{fechaInicioProceso} AND #{fechaFinProceso} 
 		</if>
-		<if test="fechaInicioTransaccion != null and fechaInicioTransaccion != '' and fechaFinTransaccion != null and fechaFinTransaccion != ''">
+		<if test="fechaInicioTransaccion != null and fechaFinTransaccion != null">
 			AND consulta.transmission_date BETWEEN #{fechaInicioTransaccion} AND #{fechaFinTransaccion}
 		</if>
-		<if test="fechaInicioSwitch != null and fechaFinSwitch != ''">
+		<if test="fechaInicioSwitch != null and fechaFinSwitch != null">
 			AND consulta.CAPTURE_DATE BETWEEN #{fechaInicioSwitch} AND #{fechaFinSwitch}
 		</if>
 		<if test="trace != null and trace != ''">
@@ -313,7 +313,7 @@
 			<if test="idMovTxnSwdmplog != -1 and idMovTxnSwdmplog != null">
 				A.ID_MOV_TXN_SWDMPLOG = #{idMovTxnSwdmplog}
 			</if>
-			<if test="fechaProceso != null and fechaProceso != ''">
+			<if test="fechaProceso != null">
 				AND A.FECHA_PROCESO = #{fechaProceso}
 			</if>
 		</where>

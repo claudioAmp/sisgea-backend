@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,12 +21,15 @@ public class TxnSwdmplogDetalle {
 	private String pan;
 	private String processingCode;
 	private String descripcionCodProcSw;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transmissionDate;
 	private String transmissionTime;
 	private String traceNumber;
 	private String localTransactionTime;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date localTransactionDate;
 	private String expiryDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date captureDate;
 	private String merchantType;
 	private String descripcionGiroNegocio;
@@ -35,7 +40,7 @@ public class TxnSwdmplogDetalle {
 	private String acquiringInstitution;
 	private String descripcionBinInstAdq;
 	private String forwardingInstitution;
-	private String descripcionBINIntReenv;
+	private String descripcionBinInstReenv;
 	private String referenceNumber;
 	private String authorizationCode;
 	private Integer responseCode;
@@ -46,6 +51,7 @@ public class TxnSwdmplogDetalle {
 	private String descripcionMoneda;
 	private String origMessageType;
 	private String origTraceNumber;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date origDate;
 	private String origTime;
 	private String origAcquiringInst;
@@ -55,6 +61,7 @@ public class TxnSwdmplogDetalle {
 	private String accountIdentification1;
 	private String accountIdentification2;
 	private String cardcategory;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private double transactionAmount;
 	private String idMembresia;

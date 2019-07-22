@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +20,14 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.CriterioPag
 public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	
 	//Filtros de busqueda
-	private String fechaInicioProceso;
-	private String fechaFinProceso;
-	private String fechaInicioTransaccion;
-	private String fechaFinTransaccion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaInicioProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaFinProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaInicioTransaccion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaFinTransaccion;
 	private String numeroTarjeta;//pan
 	private List<Integer> idsProcesoSwitch;
 	private String trace;
@@ -42,11 +49,13 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private List<Integer> idsRolTransaccion;
 		
 	//Detalle
-	private String fechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
 	private String idMovTxnSwdmplog;
 	
 	//Filtros cabecera de grilla
-	private String filtroFechaProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	private String filtroIdMovTxnSwdmplog;
 	private String filtroMessageType;
 	private String filtroIdBin;
