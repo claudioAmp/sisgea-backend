@@ -100,13 +100,9 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {
-		/*this.eliminarReporte(idReporte);
-		System.out.println(Reporte);
-		this.registrarReporteTotal(Reporte);*/	
-		this.actualizar(Reporte);
-		System.out.println(Reporte);
-		return Reporte;
+	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {	
+		this.eliminar(Reporte);
+		return this.registrarReporteTotal(idReporte, Reporte);
 	}
 	
 	@Override
@@ -134,9 +130,8 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	}
 	
 	// Registrar reporte
-	public void registrarReporteTotal(Reporte Reporte) {
-		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
-		int idReporte=ultSeq.getValor().intValue();
+	public Reporte registrarReporteTotal(int idReporte,Reporte Reporte) {
+		UltimoSecuencia ultSeq= new UltimoSecuencia();
 		Reporte.setIdReporte(idReporte);
 		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
 		this.registrarReporte(Reporte);
@@ -205,6 +200,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			}
 			idxFiltro++;
 		}
+		return this.buscarReporte(idReporte).get(0);
 	}
 	public TablaQuery getTablaQuery(List<TablaQuery> tablas, int idTabla,String instancia) {
 		TablaQuery tq=null;

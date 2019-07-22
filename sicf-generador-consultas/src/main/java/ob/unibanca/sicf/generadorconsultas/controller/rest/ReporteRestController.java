@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
 import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
 import ob.unibanca.sicf.generadorconsultas.service.reporte.IReporteService;
+import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
 
 import java.util.Map;
 
@@ -36,10 +38,12 @@ public class ReporteRestController {
 
 	private @Autowired final IReporteService reporteService;
 	private @Autowired final IGenerarConsultaService generarConsultaService;
+	private @Autowired final IUltimoSecuenciaService ultimoSecuenciaService;
 
-	public ReporteRestController(IReporteService reporteService,IGenerarConsultaService generarConsultaService) {
+	public ReporteRestController(IReporteService reporteService,IGenerarConsultaService generarConsultaService,IUltimoSecuenciaService ultimoSecuenciaService) {
 		this.reporteService = reporteService;
 		this.generarConsultaService=generarConsultaService;
+		this.ultimoSecuenciaService=ultimoSecuenciaService;
 	}
 
 	@GetMapping(value = "/reportes")
@@ -62,8 +66,9 @@ public class ReporteRestController {
 	@PostMapping(value = "/reportes", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Reporte registrarReporte(@Validated({ IRegistro.class, Default.class }) @RequestBody Reporte Reporte) {
-		this.reporteService.registrarReporteTotal(Reporte);
-		return Reporte;
+		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
+		int idReporte=ultSeq.getValor().intValue();
+		return this.reporteService.registrarReporteTotal(idReporte,Reporte);
 	}
 
 	@PutMapping(value = "/reportes/{idReporte}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
