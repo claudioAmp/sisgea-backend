@@ -24,16 +24,15 @@ public class IncomingVisaTC48 {
 	private String accountNumber;
 	private String responseCode;
 	private String descResponseCode;
+	private String standInResponseCode;
+	private String descStandInResponseCode;
+	private String transmissionDateTime;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transactionDate;
 	private String transactionTime;
-	private String standInReasonCode;
-	private String descStandInReasonCode;
-	private String transmissionDateTime;
 	private double transactionAmount;
 	private String transactionCurrencyCode;
 	private String descTransactionCurrencyCode;
-	private String descTxnCurrencyCode;
 	private String merchantType;
 	private String descMerchantType;
 }

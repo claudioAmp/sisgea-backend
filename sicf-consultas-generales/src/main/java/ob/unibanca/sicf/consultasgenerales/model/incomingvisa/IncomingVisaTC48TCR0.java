@@ -21,25 +21,22 @@ public class IncomingVisaTC48TCR0 {
 	private Date fechaProceso;
 	private String transactionCode;
 	private String descTransactionCode;
-	private String transCodeQualifier;
-	private String descTransCodeQualifier;
 	private String destinationBin;
 	private String descDestinationBin;
 	private String sourceBin;
 	private String descSourceBin;
 	private String formatCode;
-	private String constantIdentifier;
 	private String accountNumber;
 	private String responseCode;
 	private String descResponseCode;
+	private String authorizationCode;
+	private String standInResponseCode;
+	private String descStandInResponseCode;
+	private String serviceReasonCode;
+	private String transmissionDateTime;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transactionDate;
 	private String transactionTime;
-	private String authorizationCode;
-	private String standInReasonCode;
-	private String descStandInReasonCode;
-	private String serviceReasonCode;
-	private String transmissionDateTime;
 	private double transactionAmount;
 	private String cardholderCurrencyCode;
 	private String descCardholderCurrencyCode;
@@ -55,7 +52,6 @@ public class IncomingVisaTC48TCR0 {
 	private String messageType;
 	private String processingCode;
 	private String posConditionCode;
-	private String descPosConditionCode;
 	private String merchantType;
 	private String descMerchantType;
 	private String posEntryMode;
@@ -65,9 +61,6 @@ public class IncomingVisaTC48TCR0 {
 	private String cardAcceptorTermId;
 	private String cardAcceptorId;
 	private String referenceNumber;
-	private String crisAlertType;
-	private String crisAccountScore;
-	private String networkIdentificationCode;
 	private String reimbursementAttribute;
 	private String descReimbursementAttribute;
 }
