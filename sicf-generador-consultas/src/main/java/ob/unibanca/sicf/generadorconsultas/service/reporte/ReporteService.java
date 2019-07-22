@@ -99,18 +99,22 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	//@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Reporte actualizarReporte(int idReporte, Reporte Reporte) {
 		CriterioBusquedaReporte criterio= new CriterioBusquedaReporte();
 		criterio.setIdReporte(idReporte);
 		Reporte repAnt = this.reporteMapper.buscarPorCriterios(criterio).get(0);
 		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia()) {
+			System.out.println("Estoy actualizando +1 frecuencia : "+Reporte);
 			this.actualizar(Reporte);
 			return Reporte;
 			
 		}else {
-			this.eliminarReporte(Reporte.getIdReporte());
+			System.out.println("Estoy guardando cambios en : "+Reporte);
+			this.eliminar(Reporte);
+			System.out.println("Eliminé");
 			return this.registrarReporteTotal(idReporte, Reporte);
+			//return new Reporte();
 		}
 		
 	}
@@ -140,6 +144,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	}
 	
 	// Registrar reporte
+	//@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte registrarReporteTotal(int idReporte,Reporte Reporte) {
 		UltimoSecuencia ultSeq= new UltimoSecuencia();
 		Reporte.setIdReporte(idReporte);
@@ -147,6 +152,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		this.registrarReporte(Reporte);
 		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0,idxCondicion=0;
 		List<List<Integer>> idConQAux= new ArrayList<>();
+		System.out.println("Empecé a insertar");
 		for(TablaQuery t : Reporte.getTablas()) {
 			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("TABLA_QUERY");
 			t.setIdTablaQuery(ultSeq.getValor().intValue());
@@ -210,6 +216,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			}
 			idxFiltro++;
 		}
+		System.out.println("Acabé de insertar");
 		return this.buscarReporte(idReporte).get(0);
 	}
 	public TablaQuery getTablaQuery(List<TablaQuery> tablas, int idTabla,String instancia) {
