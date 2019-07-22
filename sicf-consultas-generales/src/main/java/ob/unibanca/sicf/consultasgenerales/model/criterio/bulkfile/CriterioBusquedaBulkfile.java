@@ -31,7 +31,7 @@ public class CriterioBusquedaBulkfile {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProcesoFin;
 	List<Integer> currencysCodeTran;
-	long idBulkfileMC;
+	Long idBulkfileMC;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 	// Filtros
@@ -40,12 +40,16 @@ public class CriterioBusquedaBulkfile {
 	private String filtroTraceNumber;
 	private String filtroAccountNumber;
 	private String filtroTransactionDate;
-	private String filtroTransaccionTime;
+	private String filtroTransactionTime;
+	private String filtroAmountTransactionLoc;
+	private String filtroIdProceso;
 	private String filtroCurrencyCodeTran;
-	private String filtroProcessingCode;
+	//private String filtroProcessingCode;
 	private String filtroTerminalId;
 	private String filtroResponseCode;
 	private String filtroAuthorizationId;
+	private String filtroIdEmisor;
+	private String filtroIdReceptor;
 	private String filtroAccessFeeLocInd;
 	private String filtroAccessFeeLoc;
 	//private String filtroAmountSettlementInd;
@@ -53,19 +57,22 @@ public class CriterioBusquedaBulkfile {
 	private String filtroAmountSettlement;
 	private String filtroInterchangeFeeInd;
 	private String filtroInterchangeFee;
+	private String filtroIdBulkFileMc;
 
 	// Orden
-
 	private String ordenFechaProceso;
 	private String ordenTraceNumber;
 	private String ordenAccountNumber;
 	private String ordenTransactionDate;
-	private String ordenTransaccionTime;
+	private String ordenTransactionTime;
 	private String ordenCurrencyCodeTran;
-	private String ordenProcessingCode;
-	private String ordenTerminalId;
+	private String ordenAmountTransactionLoc;
+	private String ordenIdProceso;
 	private String ordenResponseCode;
 	private String ordenAuthorizationId;
+	private String ordenIdEmisor;
+	private String ordenIdReceptor;
+	private String ordenTerminalId;
 	private String ordenAccessFeeLocInd;
 	private String ordenAccessFeeLoc;
 	//private String ordenAmountSettlementInd;
@@ -73,5 +80,6 @@ public class CriterioBusquedaBulkfile {
 	private String ordenAmountSettlement;
 	private String ordenInterchangeFeeInd;
 	private String ordenInterchangeFee;
+	private String ordenIdBulkFileMc;
 
 }

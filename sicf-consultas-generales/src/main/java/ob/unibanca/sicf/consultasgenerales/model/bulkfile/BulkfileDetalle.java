@@ -9,18 +9,21 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class BulkfileDetalle {
-	long idBulkFileMc;
+	Long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	Integer switchSerialNumber;
 	String processorAcqIss;
 	String processorId;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date transactionDate;
 	String transactionTime;
 	Integer panLength;
@@ -41,6 +44,10 @@ public class BulkfileDetalle {
 	String adviceReasonCode;
 	String intracurrencyAgreeCode;
 	String authorizationId;
+	Integer idEmisor;
+	String descripcionEmisor;
+	Integer idReceptor;
+	String descripcionReceptor;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	Integer impliedDecimalTran;

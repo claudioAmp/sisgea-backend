@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Bulkfile {
-	long idBulkFileMc;
+	Long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -30,6 +30,10 @@ public class Bulkfile {
 	Integer responseCode;
 	String descripcionResponseCode;
 	String authorizationId;
+	Integer idEmisor;
+	String descripcionEmisor;
+	Integer idReceptor;
+	String descripcionReceptor;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	double amountTransactionLoc;

@@ -10,10 +10,10 @@
 	</sql>
 	
 	<sql id = "fragmentoWhere">
-		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null and fechaProcesoInicio != '' and fechaProcesoFin != ''">
-			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null and fechaTransaccionInicio != '' and fechaTransaccionFin != ''">
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
 			 AND a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
 		</if>
 		<if  test="accountNumber != null and accountNumber != ''">
@@ -60,17 +60,21 @@
 		<if  test="filtroTransactionDate != null" >
 			AND TRANSACTION_DATE = #{filtroTransactionDate}
 		</if>
-		<if  test="filtroTransaccionTime != null" >
-			<bind name="pFiltroTransaccionTime" value="'%' + filtroTransaccionTime + '%'" />
-			AND TRANSACTION_TIME LIKE #{pFiltroTransaccionTime}
+		<if  test="filtroTransactionTime != null" >
+			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
+			AND TRANSACTION_TIME LIKE #{pFiltroTransactionTime}
+		</if>
+		<if  test="filtroAmountTransactionLoc != null" >
+			<bind name="pFiltroAmountTransactionLoc" value="'%' + filtroAmountTransactionLoc + '%'" />
+			AND AMOUNT_TRANSACTION_LOC LIKE #{pFiltroAmountTransactionLoc}
+		</if>
+		<if  test="filtroIdProceso != null" >
+			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
+			AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
 		</if>
 		<if  test="filtroCurrencyCodeTran != null" >
 			<bind name="pFiltroCurrencyCodeTran" value="'%' + filtroCurrencyCodeTran + '%'" />
 			AND CONCAT(CURRENCY_CODE_TRAN, DESCRIPCION_CURRENCY_CODE_TRAN) LIKE #{pFiltroCurrencyCodeTran}
-		</if>
-		<if  test="filtroProcessingCode != null" >
-			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
-			AND CONCAT(ROCESSING_CODE, DESCRIPCION_PROCESSING_CODE) LIKE #{pFiltroProcessingCode}
 		</if>
 		<if  test="filtroTerminalId != null" >
 			<bind name="pFiltroTerminalId" value="'%' + filtroTerminalId + '%'" />
@@ -83,6 +87,14 @@
 		<if  test="filtroAuthorizationId != null" >
 			<bind name="pFiltroAuthorizationId" value="'%' + filtroAuthorizationId + '%'" />
 			AND AUTHORIZATION_ID LIKE #{pFiltroAuthorizationId}
+		</if>
+		<if  test="filtroIdEmisor != null" >
+			<bind name="pFiltroIdEmisor" value="'%' + filtroIdEmisor + '%'" />
+			AND CONCAT(ID_EMISOR, DESCRIPCION_EMISOR) LIKE #{pFiltroIdEmisor}
+		</if>
+		<if  test="filtroIdReceptor != null" >
+			<bind name="pFiltroIdReceptor" value="'%' + filtroIdReceptor + '%'" />
+			AND CONCAT(ID_RECEPTOR, DESCRIPCION_RECEPTOR) LIKE #{pFiltroIdReceptor}
 		</if>
 		<if  test="filtroAccessFeeLocInd != null" >
 			<bind name="pFiltroAccessFeeLocInd" value="'%' + filtroAccessFeeLocInd + '%'" />
@@ -108,6 +120,10 @@
 			<bind name="pFiltroInterchangeFee" value="'%' + filtroInterchangeFee + '%'" />
 			AND INTERCHANGE_FEE LIKE #{pFiltroInterchangeFee}
 		</if>
+		<if  test="filtroIdBulkFileMc != null" >
+			<bind name="pFiltroIdBulkFileMc" value="'%' + filtroIdBulkFileMc + '%'" />
+			AND ID_BULK_FILE_MC LIKE #{filtroIdBulkFileMc}
+		</if>
 		<if  test="ordenFechaProceso != null" >
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
@@ -124,17 +140,21 @@
 			ORDER BY
 				TRANSACTION_DATE   ${ordenTransactionDate}
 		</if>
-		<if  test="ordenTransaccionTime != null" >
+		<if  test="ordenTransactionTime != null" >
 			ORDER BY
-				TRANSACTION_TIME   ${ordenTransaccionTime}
+				TRANSACTION_TIME   ${ordenTransactionTime}
 		</if>
 		<if  test="ordenCurrencyCodeTran != null" >
 			ORDER BY
 				CURRENCY_CODE_TRAN   ${ordenCurrencyCodeTran}
 		</if>
-		<if  test="ordenProcessingCode != null" >
+		<if  test="ordenAmountTransactionLoc != null" >
 			ORDER BY
-				PROCESSING_CODE   ${ordenProcessingCode}
+				AMOUNT_TRANSACTION_LOC   ${ordenAmountTransactionLoc}
+		</if>
+		<if  test="ordenIdProceso != null" >
+			ORDER BY
+				ID_PROCESO   ${ordenIdProceso}
 		</if>
 		<if  test="ordenTerminalId != null" >
 			ORDER BY
@@ -146,7 +166,15 @@
 		</if>
 		<if  test="ordenAuthorizationId != null" >
 			ORDER BY
-				AUTHORIZATION_ID   ${AuthorizationId}
+				AUTHORIZATION_ID   ${ordenAuthorizationId}
+		</if>
+		<if  test="ordenIdEmisor != null" >
+			ORDER BY
+				ID_EMISOR   ${ordenIdEmisor}
+		</if>
+		<if  test="ordenIdReceptor != null" >
+			ORDER BY
+				ID_RECEPTOR   ${ordenIdReceptor}
 		</if>
 		<if  test="ordenAccessFeeLocInd != null" >
 			ORDER BY
@@ -172,6 +200,11 @@
 			ORDER BY
 				INTERCHANGE_FEE        ${ordenInterchangeFee}
 		</if>
+		<if  test="ordenIdBulkFileMc != null" >
+			ORDER BY
+				ID_BULK_FILE_MC        ${ordenIdBulkFileMc}
+		</if>
+		
 	</sql>
 	
 	<select id="buscarPorCriterios" parameterType="CriterioBusquedaBulkfile"  resultType="Bulkfile" statementType="PREPARED">	
@@ -192,7 +225,7 @@
 	</sql>
 	
 	<sql id = "fragmentoWhereDetalle">
-		<if  test="fechaProceso != null and fechaProceso != ''">
+		<if  test="fechaProceso != null">
 			 a.FECHA_PROCESO =  #{fechaProceso}
 		</if>
 		<if  test="idBulkfileMC != null and idBulkfileMC != ''">
