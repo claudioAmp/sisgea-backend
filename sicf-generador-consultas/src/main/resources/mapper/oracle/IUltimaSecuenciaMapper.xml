@@ -5,7 +5,7 @@
     
     <select id="obtenerUltimoSecuencia" parameterType="UltimoSecuencia" statementType="CALLABLE">
         {
-            CALL GET_ULTIMO_DE_SECUENCIA(
+            CALL PRC_GET_ULTIMO_DE_SECUENCIA(
                 #{claseSecuencia,       		  jdbcType=VARCHAR, mode=IN},
                 #{valor,     					  jdbcType=INTEGER, mode=OUT}
             )
