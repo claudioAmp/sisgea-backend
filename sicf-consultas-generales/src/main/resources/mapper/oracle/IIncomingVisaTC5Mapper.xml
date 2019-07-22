@@ -4,7 +4,7 @@
 			
 	<sql id="consultaPorCriterios" >
 		SELECT *
-		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
+		FROM VIE_CON_MOV_INC_VISA_TC5 a
 	</sql>
 	
 	<!-- Reutilizables -->	
@@ -12,13 +12,13 @@
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="purchaseDateInicio != null and purchaseDateInicio !='' and purchaseDateFin != null and purchaseDateFin !='' ">
+		<if  test="purchaseDateInicio != null and purchaseDateFin != null ">
 			AND a.PURCHASE_DATE BETWEEN #{purchaseDateInicio}  AND #{purchaseDateFin}
 		</if>
-		<if  test="fechaIncomingInicio != null and fechaIncomingInicio !='' and fechaIncomingFin != null and fechaIncomingFin !='' ">
+		<if  test="fechaIncomingInicio != null and fechaIncomingFin != null">
 			AND a.PURCHASE_DATE BETWEEN #{fechaIncomingInicio}  AND #{fechaIncomingFin}
 		</if>
-		<if  test="idSecuenciaIncoming != null and idSecuenciaIncoming != '' and idSecuenciaIncoming != -1">
+		<if  test="idSecuenciaIncoming != null  and idSecuenciaIncoming != -1">
 			AND a.ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming}  
 		</if>
 		<if  test="accountsNumber != null and accountsNumber != '' and accountsNumber != -1">
@@ -45,7 +45,7 @@
 	
 	<sql id ="fragmentoWhereGetMultiples" >
 		<if  test="entriesMode !=null and entriesMode.size()>0">
-			AND a.ENTRY_MODE IN 
+			AND a.POS_ENTRY_MODE IN 
 				<foreach item="item" index="index" collection="entriesMode" open ="(" separator="," close=")">
 					#{item}
 				</foreach>
@@ -279,7 +279,7 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR0 a
 		<where>
-			<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+			<if  test="idSecuenciaIncoming != null and fechaProceso != null " >
 				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 			</if>
 		</where>
@@ -290,7 +290,7 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR1 a
   		<where>
-	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso !=null " >
 				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 			</if>
   		</where>
@@ -301,7 +301,7 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR3 a
   		<where>
-	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != null " >
 				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 			</if>
   		</where>
@@ -312,7 +312,7 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR4 a	
   		<where>
-	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso !=null " >
 				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 			</if>
   		</where>
@@ -323,7 +323,7 @@
 			*
 		FROM VIE_CON_MOV_INC_VISA_TC5_TCR5 a	
   		<where>
-	  		<if  test="idSecuenciaIncoming != null and fechaProceso != '' " >
+	  		<if  test="idSecuenciaIncoming != null and fechaProceso != null " >
 				ID_SECUENCIA_INCOMING = #{idSecuenciaIncoming} AND FECHA_PROCESO = #{fechaProceso}
 			</if>
   		</where>	
