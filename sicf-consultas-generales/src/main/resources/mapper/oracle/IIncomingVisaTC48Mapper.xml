@@ -72,9 +72,9 @@
 			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
 			AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
 		</if>
-		<if  test="filtroTransmissionDateTime != null " >
-			<bind name="pFiltroTransmissionDateTime" value="'%' + filtroTransmissionDateTime + '%'" />
-			AND TRANSMISSION_DATE_TIME LIKE #{pFiltroTransmissionDateTime}
+		<if  test="filtroTransactionDate != null " >
+			<bind name="pFiltroTransactionDate" value="'%' + filtroTransactionDate + '%'" />
+			AND TRANSACTION_DATE LIKE #{pFiltroTransactionDate}
 		</if>
 		<if  test="filtroTransactionTime != null " >
 			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
@@ -116,9 +116,9 @@
 		ORDER BY
 			TRANSACTION_AMOUNT  ${ordenTransactionAmount}
 		</if>
-		<if  test="ordenTransmissionDateTime != null " >
+		<if  test="ordenTransactionDate != null " >
 		ORDER BY
-			TRANSMISSION_DATE_TIME  ${ordenTransmissionDateTime}
+			TRANSACTION_DATE  ${ordenTransactionDate}
 		</if>
 		<if  test="ordenTransactionTime != null " >
 		ORDER BY
