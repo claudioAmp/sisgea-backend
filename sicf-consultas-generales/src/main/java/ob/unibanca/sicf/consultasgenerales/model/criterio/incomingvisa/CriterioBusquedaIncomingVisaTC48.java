@@ -24,7 +24,7 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaTransaccionFin;	
 	private String accountNumber;
-	private List<String> standInReasonsCodes;
+	private List<String> standInResponsesCodes;
 	private List<String> responsesCodes;
 	private List<String> merchantTypes;
 	
@@ -41,6 +41,7 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String filtroTransmissionDateTime;
 	private String filtroTransactionTime;
 	private String filtroMerchantType;
+	private String filtroStandInResponseCode;
 	
 	private String ordenFechaProceso;
 	private String ordenSecuenciaIncoming;
@@ -53,4 +54,5 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String ordenTransmissionDateTime;
 	private String ordenTransactionTime;
 	private String ordenMerchantType;
+	private String ordenStandInResponseCode;
 }

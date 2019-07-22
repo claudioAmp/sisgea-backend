@@ -20,9 +20,9 @@
 	</sql>
 	
 	<sql id ="fragmentoWhereGetMultiples" >
-		<if  test="standInReasonsCodes != null and standInReasonsCodes.size()>0" >
-			AND a.STAND_IN_REASON_CODE IN 
-				<foreach item="item" index="index" collection="standInReasonsCodes" open ="(" separator=","  close=")">
+		<if  test="standInResponsesCodes != null and standInResponsesCodes.size()>0" >
+			AND a.STAND_IN_RESPONSE_CODE IN 
+				<foreach item="item" index="index" collection="standInResponsesCodes" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
@@ -84,6 +84,10 @@
 			<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
 			AND CONCAT(MERCHANT_TYPE, DESC_MERCHANT_TYPE) LIKE #{pFiltroMerchantType}
 		</if>
+		<if  test="filtroStandInResponseCode != null " >
+			<bind name="pFiltroStandInResponseCode" value="'%' + filtroStandInResponseCode + '%'" />
+			AND CONCAT(STAND_IN_RESPONSE_CODE, DESC_STAND_IN_RESPONSE_CODE) LIKE #{pFiltroStandInResponseCode}
+		</if>
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
 			FECHA_PROCESO  ${ordenFechaProceso}
@@ -123,6 +127,10 @@
 		<if  test="ordenMerchantType != null " >
 		ORDER BY
 			MERCHANT_TYPE  ${ordenMerchantType}
+		</if>
+		<if  test="ordenStandInResponseCode != null " >
+		ORDER BY
+			STAND_IN_RESPONSE_CODE  ${ordenStandInResponseCode}
 		</if>
 	</sql>
 	
