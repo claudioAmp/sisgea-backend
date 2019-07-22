@@ -2,6 +2,8 @@ package ob.unibanca.sicf.consultasgenerales.model.swdmplog;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,11 +20,14 @@ public class TxnSwdmplog {
 	private String pan;
 	private String processingCode;
 	private String descripcionCodProcSw;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transmissionDate;
 	private String transmissionTime;
 	private String traceNumber;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date localTransactionDate;
 	private String localTransactionTime;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date captureDate;
 	private String merchantType;
 	private String descripcionGiroNegocio;
@@ -34,6 +39,7 @@ public class TxnSwdmplog {
 	private String cardAcceptorLocation;
 	private Integer transactionCurrency;
 	private String descripcionMoneda;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private double transactionAmount;
 	private String idMembresia;
