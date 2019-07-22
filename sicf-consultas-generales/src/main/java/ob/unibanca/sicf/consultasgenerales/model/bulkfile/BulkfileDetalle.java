@@ -29,6 +29,8 @@ public class BulkfileDetalle {
 	Integer panLength;
 	String accountNumber;
 	String processingCode;
+	Integer idProceso;
+	String descripcionProceso;
 	String traceNumber;
 	String merchantType;
 	String descripcionMerchantType;
