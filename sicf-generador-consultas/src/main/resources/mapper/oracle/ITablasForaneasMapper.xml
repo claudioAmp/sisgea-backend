@@ -47,6 +47,9 @@
 		)
 		<if  test=" permited != null ">
 		   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) > 0
+		   AND fun_tabla_permitida(ID_TABLA_FORANEA,#{usuario}) > 0
+		    AND fun_campo_permitido(ID_CAMPO,#{usuario}) > 0
+		   AND fun_tabla_permitida(ID_TABLA,#{usuario}) > 0
 		 </if>
     </sql>
 
