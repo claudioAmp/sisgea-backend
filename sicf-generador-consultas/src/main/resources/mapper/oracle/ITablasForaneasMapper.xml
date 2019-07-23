@@ -31,7 +31,7 @@
 	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
 	        </if>
 	        <if  test=" permited != null ">
-			   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO_FK"
+			   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})>0
 			 </if>    
         </where>
     </sql>
