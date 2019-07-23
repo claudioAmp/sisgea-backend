@@ -24,27 +24,22 @@
     </sql>
     <sql id="WhereComun">
    		 <where>
-	        <if  test="idTabla != null and idTabla != '' and bidireccional != 1">
+	        <if  test="idTabla != null and idTabla != 0 and bidireccional != 1">
 	       		AND ID_TABLA = #{idTabla}
 	        </if>
 	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
 	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
 	        </if>
-	        <if  test=" permited != null ">
+	        <if  test=" permited != 0 ">
 			   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})>0
 			 </if>    
         </where>
     </sql>
     <sql id="WhereEspecial">
     	WHERE
-    	(
     	<if  test="idTabla != null and idTabla != ''">
-			ID_TABLA = #{idTabla}
-		</if>
-		<if  test="idTabla != null and idTabla != ''">
-		    OR ID_TABLA_FORANEA= #{idTabla}
+			(ID_TABLA = #{idTabla} OR ID_TABLA_FORANEA= #{idTabla})
 		</if> 
-		)
 		<if  test=" permited != null ">
 		   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) > 0
 		   AND fun_tabla_permitida(ID_TABLA_FORANEA,#{usuario}) > 0
