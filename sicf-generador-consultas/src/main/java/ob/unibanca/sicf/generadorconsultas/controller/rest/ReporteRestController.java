@@ -88,13 +88,7 @@ public class ReporteRestController {
 		 PageParameter pageParameter= new  PageParameter();
 		 pageParameter.setPageNum(pageNum);
 		 pageParameter.setPageSize(pageSize);
-		if(reporte.getQueryReporte()!=null) {
-			if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
-				reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
-			}
-		} else {
-			reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
-		}
+		reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
 		System.out.println(reporte);
 		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(reporte.getQueryReporte(), pageParameter);
 		return new PaginaGeneradorConsulta<>(requestList);
