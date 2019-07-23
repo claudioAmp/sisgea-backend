@@ -71,24 +71,10 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio) {
-		/*List<Reporte> reportes = this.reporteMapper.buscarPorCriterios(criterio);
-		CriterioBusquedaTablaQuery criterioTabla = new CriterioBusquedaTablaQuery();
-		CriterioBusquedaCampoQuery criterioCampo = new CriterioBusquedaCampoQuery();
-		CriterioBusquedaFiltro criterioFiltro = new CriterioBusquedaFiltro();
+		
 		if(criterio.getPermited()==1) {
 			criterio.setUsuario(UsuarioUtil.obtenerUsername());
-			criterioTabla.setPermited(1);
-			criterioCampo.setPermited(1);
-			criterioFiltro.setPermited(1);	
 		}
-		for(Reporte r : reportes) {
-			criterioTabla.setIdReporte(r.getIdReporte());
-			criterioCampo.setIdReporte(r.getIdReporte());
-			r.setTablas(this.tablaQueryService.buscarPorCriteriosTablaQuery(criterioTabla));
-			r.setCampos(this.campoQueryService.buscarPorCriteriosCamposQuery(criterioCampo));
-			r.setFiltros(this.filtroService.buscarPorCriteriosFiltro(criterioFiltro));
-		}		
-		return reportes;*/
 		return this.reporteMapper.buscarPorCriterios(criterio);
 	}
 	@Override

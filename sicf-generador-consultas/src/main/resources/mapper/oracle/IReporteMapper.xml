@@ -19,10 +19,16 @@
     </select>
 	<select id="buscarPorCriterios" resultType="Reporte" parameterType="CriterioBusquedaReporte" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-       
-       		<if  test=" idReporte!=null and idReporte!=''">
-       			WHERE ID_REPORTE =#{idReporte}
-        	</if>
+       <where>
+       	<if  test=" idReporte!=null and idReporte!=''">
+       	  AND ID_REPORTE =#{idReporte}
+        </if>
+        <if  test=" permited!=null and permited==1">
+       	  AND FUN_REPORTE_AUTORIZADO(ID_REPORTE,#{usuario}) > 0
+        </if>
+       </where>
+       		
+        	 
     </select>
    
     
