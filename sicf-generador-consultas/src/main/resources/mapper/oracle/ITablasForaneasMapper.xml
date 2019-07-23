@@ -18,10 +18,36 @@
            , CAMPO_FORANEO
            , ALIAS_CAMPO_FORANEO
         <if  test=" permited != null ">
-       	   , fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
        	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO_FK"
         </if>
 		FROM VIE_REP_TABLAS_FORANEAS
+    </sql>
+    <sql id="WhereComun">
+   		 <where>
+	        <if  test="idTabla != null and idTabla != '' and bidireccional != 1">
+	       		AND ID_TABLA = #{idTabla}
+	        </if>
+	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
+	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
+	        </if>
+	        <if  test=" permited != null ">
+			   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO_FK"
+			 </if>    
+        </where>
+    </sql>
+    <sql id="WhereEspecial">
+    	WHERE
+    	(
+    	<if  test="idTabla != null and idTabla != ''">
+			ID_TABLA = #{idTabla}
+		</if>
+		<if  test="idTabla != null and idTabla != ''">
+		    OR ID_TABLA_FORANEA= #{idTabla}
+		</if> 
+		)
+		<if  test=" permited != null ">
+		   AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) > 0
+		 </if>
     </sql>
 
      <select id="buscarTodos" resultType="TablasForaneas" statementType="PREPARED">
@@ -29,22 +55,14 @@
     </select>
 	<select id="buscarPorCriterios" resultType="TablasForaneas" parameterType="CriterioBusquedaTablasForaneas" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        <where>
-	        <if  test="idTabla != null and idTabla != '' and bidireccional != 1">
-	       		AND ID_TABLA = #{idTabla}
-	        </if>
-	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
-	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
-	        </if>
-	        <if  test=" bidireccional == 1 ">
-	       		<if  test="idTabla != null and idTabla != ''">
-		       		OR ID_TABLA = #{idTabla}
-		        </if>
-		        <if  test="idTabla != null and idTabla != ''">
-		       		OR ID_TABLA_FORANEA= #{idTabla}
-		        </if>   		
-	        </if>
-        </where>
+        <if  test=" bidireccional == 1 ">
+        	<include refid="WhereEspecial"/>
+         </if>
+          <if  test=" bidireccional != 1 ">
+        	<include refid="WhereComun"/>
+         </if>
+        
+        
     </select>
    
     

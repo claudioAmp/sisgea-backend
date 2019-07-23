@@ -20,7 +20,6 @@ public class TablasForaneas {
 	int idCampoForaneo;
 	String campoForaneo;
 	int permitido;
-	int permitidoFk;
 	//Nuevos
 	String aliasTabla;
 	String aliasCampo;
