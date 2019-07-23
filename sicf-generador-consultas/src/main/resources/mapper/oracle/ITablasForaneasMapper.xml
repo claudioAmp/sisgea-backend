@@ -18,7 +18,8 @@
            , CAMPO_FORANEO
            , ALIAS_CAMPO_FORANEO
         <if  test=" permited != null ">
-       	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO"
+       	   , fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
+       	   , fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario}) AS "PERMITIDO_FK"
         </if>
 		FROM VIE_REP_TABLAS_FORANEAS
     </sql>
@@ -32,9 +33,6 @@
 	        <if  test="idTabla != null and idTabla != '' and bidireccional != 1">
 	       		AND ID_TABLA = #{idTabla}
 	        </if>
-	        <if  test=" permited != null  and permited != 0 ">
-	       		AND fun_campo_permitido(ID_CAMPO_FORANEO,#{usuario})  > 0
-	        </if>
 	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
 	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
 	        </if>
@@ -44,7 +42,7 @@
 		        </if>
 		        <if  test="idTabla != null and idTabla != ''">
 		       		OR ID_TABLA_FORANEA= #{idTabla}
-		        </if>       		
+		        </if>   		
 	        </if>
         </where>
     </select>

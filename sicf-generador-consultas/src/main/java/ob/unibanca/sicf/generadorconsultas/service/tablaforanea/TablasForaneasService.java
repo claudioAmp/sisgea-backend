@@ -45,7 +45,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 		}
 		if(criterio.getBidireccional()==1 && criterio.getIdTabla()!=0) {
 			for(TablasForaneas t : result) {
-				if(t.getIdTablaForanea()==criterio.getIdTabla() && t.getIdTabla()!=criterio.getIdTabla()) {
+				if(t.getIdTablaForanea()==criterio.getIdTabla() && t.getIdTabla()!=criterio.getIdTabla() && t.getPermitido()>0 && t.getPermitidoFk()>0) {
 					aux = new TablasForaneas();
 					aux.setIdTabla(t.getIdTablaForanea());
 					aux.setTabla(t.getTablaForanea());
