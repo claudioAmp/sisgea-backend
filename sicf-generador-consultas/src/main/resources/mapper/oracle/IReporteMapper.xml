@@ -8,7 +8,6 @@
 		  NOMBRE  		AS NOMBRE,
 		  DESCRIPCION 	AS DESCRIPCION,
           DESC_CORTA    AS DESC_CORTA,
-          QUERY_REPORTE AS QUERY_REPORTE,
           FRECUENCIA	AS FRECUENCIA,
           FRECUENCIA_MAXIMA AS FRECUENCIA_MAXIMA
 		FROM VIE_MAN_REP_QUERY 
@@ -40,7 +39,6 @@
                 #{objetoMantenido.nombre,  		  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descCorta, 	  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.queryReporte,  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.frecuencia, 	  jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )
