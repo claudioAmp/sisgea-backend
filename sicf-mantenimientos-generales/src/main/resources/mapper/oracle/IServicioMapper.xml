@@ -8,6 +8,7 @@
              , descripcion_servicio
              , descripcion_membresia
         FROM VIE_MAN_SERVICIO
+        ORDER BY ID_SERVICIO ASC
     </sql>
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">
