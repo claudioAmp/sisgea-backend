@@ -47,7 +47,7 @@
        			AND fun_campo_permitido(ID_CAMPO,#{usuario})  > 0
         </if>
         </where>
-        
+        ORDER BY ID_CAMPO_QUERY
     </select>
    
     

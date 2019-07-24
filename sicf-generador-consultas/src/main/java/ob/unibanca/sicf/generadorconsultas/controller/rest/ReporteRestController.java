@@ -89,7 +89,7 @@ public class ReporteRestController {
 		 pageParameter.setPageNum(pageNum);
 		 pageParameter.setPageSize(pageSize);
 		reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
-		System.out.println(reporte);
+		System.out.println(reporte.getQueryReporte());
 		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(reporte.getQueryReporte(), pageParameter);
 		return new PaginaGeneradorConsulta<>(requestList);
 	}

@@ -40,6 +40,7 @@
        			AND fun_tabla_permitida(ID_TABLA,#{usuario})  > 0
         </if>
         </where>
+        ORDER BY ID_TABLA_QUERY 
         
     </select>
    
