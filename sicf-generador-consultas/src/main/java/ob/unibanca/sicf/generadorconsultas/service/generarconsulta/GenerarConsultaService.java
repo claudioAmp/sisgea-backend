@@ -8,6 +8,7 @@ import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.TablaQuery;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,15 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	  String getOnFrom(Reporte reporteEstado ) {
 	    String query = "";
 	    boolean flagFrom = true;
+	    List<TablaQuery> aux= reporteEstado.getTablas();
+	    aux.sort(new Comparator<TablaQuery>() {
+				    @Override
+					public int compare(TablaQuery o1, TablaQuery o2) {
+					return Integer.valueOf(o1.getOrden()).compareTo(Integer.valueOf(o2.getOrden()));
+					} 									  
+				});
+	    System.out.println(aux);
+	    reporteEstado.setTablas(aux);
 	    if (reporteEstado.getTablas().size() == 1) {
 	      TablaQuery tabla = reporteEstado.getTablas().get(0);
 	      query +=  tabla.getTabla() + " " + tabla.getIdInstancia();
