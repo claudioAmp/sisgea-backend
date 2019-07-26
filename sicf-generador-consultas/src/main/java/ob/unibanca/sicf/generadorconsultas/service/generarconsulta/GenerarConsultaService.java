@@ -303,7 +303,11 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." +campo.getCampo()+" "+ campo.getEnOrderBy();
+	        if(campo.getFuncionGrupo()!=null){
+				query+=campo.getFuncionGrupo()+"("+campo.getIdInstanciaTabla() + "." + campo.getCampo()+")"+" "+ campo.getEnOrderBy();
+			} else {
+				query += campo.getIdInstanciaTabla() + "." + campo.getCampo() +" "+ campo.getEnOrderBy();
+			}
 	      }
 	    }
 	    return query;
