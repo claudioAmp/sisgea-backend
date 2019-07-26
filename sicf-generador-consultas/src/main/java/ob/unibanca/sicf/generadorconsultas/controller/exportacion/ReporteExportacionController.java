@@ -44,7 +44,7 @@ public class ReporteExportacionController {
 		List<Map<String, Object>> resultadoConsulta = reporteService.ejecutarConsulta(consulta);
 		model.addAttribute("campos", reporte.getCampos());
 		model.addAttribute("consulta", resultadoConsulta);
-		
+		model.addAttribute("name", reporte.getNombre());
 		return new ModelAndView("xlsReporteView", model);
 	}
 
