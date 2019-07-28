@@ -17,16 +17,19 @@
     
      <select id="buscarTodos" resultType="Tabla" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <where>
+        	ASIGNABLE!=0
+        </where>
     </select>
 	<select id="buscarPorCriterios" resultType="Tabla" parameterType="CriterioBusquedaTabla" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         <if  test="nombre != null and nombre != ''">
         	WHERE
-       			NOMBRE = #{nombre}
+       			NOMBRE = #{nombre} AND ASIGNABLE!=0
         </if>
         <if  test="idTipoTabla!= null and idTipoTabla != ''">
         	WHERE
-       			ID_TIPO_TABLA = #{idTipoTabla}
+       			ID_TIPO_TABLA = #{idTipoTabla} AND ASIGNABLE!=0
         </if>
         
     </select>
