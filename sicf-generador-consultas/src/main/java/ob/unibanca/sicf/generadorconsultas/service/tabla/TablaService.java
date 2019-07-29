@@ -59,7 +59,7 @@ public class TablaService extends MantenibleService<Tabla> implements ITablaServ
 	@Override
 	public List<Tabla> buscarPermitidosTabla() {
 		CriterioBusquedaTabla criterio = new CriterioBusquedaTabla();
-		criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		List<Tabla> result=this.TablaMapper.buscarPorCriterios(criterio);
 		System.out.println(criterio);
 		System.out.println(result);

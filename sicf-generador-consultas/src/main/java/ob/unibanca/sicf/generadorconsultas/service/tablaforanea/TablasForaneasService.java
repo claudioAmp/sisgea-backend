@@ -39,10 +39,9 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 		List<TablasForaneas> resultAux = new ArrayList<>(); 
 		TablasForaneas aux = new TablasForaneas();
 		if(criterio.getPermited()==1) {
-			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		List<TablasForaneas> result = this.tablasForaneasMapper.buscarPorCriterios(criterio);
-		System.out.println(result);
 		if(criterio.getBidireccional()==1 && criterio.getIdTabla()!=0) {
 			for(TablasForaneas t : result) {
 				if(t.getIdTablaForanea()==criterio.getIdTabla() && t.getIdTabla()!=criterio.getIdTabla() ) {
@@ -74,7 +73,6 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 	public TablasForaneas registrarTablasForaneas(TablasForaneas tablaForanea) {
 		this.registrar(tablaForanea);
 		tablaForanea=this.buscarTablaForaneaPorId(tablaForanea.getIdRelacionTablaFk());
-		
 		return tablaForanea;
 	}
 	

@@ -34,7 +34,7 @@ public class TablaQueryService extends MantenibleService<TablaQuery> implements 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<TablaQuery> buscarPorCriteriosTablaQuery(CriterioBusquedaTablaQuery criterio) {
 		if(criterio.getPermited()==1) {
-			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		System.out.println(criterio);
 		return this.tablaQueryMapper.buscarPorCriterios(criterio);

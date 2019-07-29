@@ -32,7 +32,7 @@ public class FiltroService extends MantenibleService<Filtro> implements IFiltroS
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Filtro> buscarPorCriteriosFiltro(CriterioBusquedaFiltro criterio) {
 		if(criterio.getPermited()==1) {
-			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		return this.FiltroMapper.buscarPorCriterios(criterio);
 	}
