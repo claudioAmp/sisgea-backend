@@ -170,6 +170,10 @@
 					AND ID_MOV_TXN_SWDMPLOG LIKE #{pFiltroIdMovTxnSwdmplog}
 				</if>
 				
+				<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
+					AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
+				</if>
+				
 				<if  test="ordenFechaProceso != null " >
 				ORDER BY
 					FECHA_PROCESO  ${ordenFechaProceso}

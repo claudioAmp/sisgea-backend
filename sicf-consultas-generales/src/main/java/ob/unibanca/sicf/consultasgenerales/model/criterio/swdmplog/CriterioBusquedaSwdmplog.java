@@ -102,4 +102,8 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private String ordenPosEntryMode;
 	private String ordenCaptureDate;
 	private String ordenIdMovTxnSwdmplog;
+	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoTransactionAmountMin;
+	private Double rangoTransactionAmountMax;
 }
