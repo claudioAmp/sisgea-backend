@@ -14,20 +14,17 @@
 		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
 			 AND a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
 		</if>
+		<if  test="transactionCurrencyCode != null">
+			 AND a.TRANSACTION_CURRENCY_CODE = #{transactionCurrencyCode}
+		</if>
 		<if  test="accountNumber != null and accountNumber != ''">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}
 		</if>
 	</sql>
 	
 	<sql id ="fragmentoWhereGetMultiples" >
-		<if  test="standInResponsesCodes != null and standInResponsesCodes.size()>0" >
-			AND a.STAND_IN_RESPONSE_CODE IN 
-				<foreach item="item" index="index" collection="standInResponsesCodes" open ="(" separator=","  close=")">
-					#{item}
-				</foreach>
-		</if>
 		<if  test="responsesCodes != null and responsesCodes.size()>0" >
-			AND a.TRANSACTION_CODE IN 
+			AND a.RESPONSE_CODE IN 
 				<foreach item="item" index="index" collection="responsesCodes" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
@@ -43,10 +40,6 @@
 	<sql id = "fragmentoFiltrosOrdenaciones">
 		<if  test="filtroFechaProceso != null " >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
-		</if>
-		<if  test="filtroSecuenciaIncoming != null " >
-			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
-			AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 		</if>
 		<if  test="filtroDestinationBin != null " >
 			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
@@ -64,6 +57,10 @@
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
 			AND CONCAT(RESPONSE_CODE, DESC_RESPONSE_CODE) LIKE #{pFiltroResponseCode}
 		</if>
+		<if  test="filtroStandInResponseCode != null " >
+			<bind name="pFiltroStandInResponseCode" value="'%' + filtroStandInResponseCode + '%'" />
+			AND CONCAT(STAND_IN_RESPONSE_CODE, DESC_STAND_IN_RESPONSE_CODE) LIKE #{pFiltroStandInResponseCode}
+		</if>
 		<if  test="filtroTransactionCurrencyCode != null " >
 			<bind name="pFiltroTransactionCurrencyCode" value="'%' + filtroTransactionCurrencyCode + '%'" />
 			AND CONCAT(TRANSACTION_CURRENCY_CODE, DESC_TRANSACTION_CURRENCY_CODE) LIKE #{pFiltroTransactionCurrencyCode}
@@ -73,8 +70,7 @@
 			AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
 		</if>
 		<if  test="filtroTransactionDate != null " >
-			<bind name="pFiltroTransactionDate" value="'%' + filtroTransactionDate + '%'" />
-			AND TRANSACTION_DATE LIKE #{pFiltroTransactionDate}
+			AND TRANSACTION_DATE = #{filtroTransactionDate}
 		</if>
 		<if  test="filtroTransactionTime != null " >
 			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
@@ -84,17 +80,14 @@
 			<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
 			AND CONCAT(MERCHANT_TYPE, DESC_MERCHANT_TYPE) LIKE #{pFiltroMerchantType}
 		</if>
-		<if  test="filtroStandInResponseCode != null " >
-			<bind name="pFiltroStandInResponseCode" value="'%' + filtroStandInResponseCode + '%'" />
-			AND CONCAT(STAND_IN_RESPONSE_CODE, DESC_STAND_IN_RESPONSE_CODE) LIKE #{pFiltroStandInResponseCode}
+		<if  test="filtroSecuenciaIncoming != null " >
+			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
+			AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 		</if>
+		
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
 			FECHA_PROCESO  ${ordenFechaProceso}
-		</if>
-		<if  test="ordenSecuenciaIncoming != null " >
-		ORDER BY
-			SECUENCIA_INCOMING  ${ordenSecuenciaIncoming}
 		</if>
 		<if  test="ordenDestinationBin != null " >
 		ORDER BY
@@ -112,6 +105,14 @@
 		ORDER BY
 			RESPONSE_CODE  ${ordenResponseCode}
 		</if>
+		<if  test="ordenStandInResponseCode != null " >
+		ORDER BY
+			STAND_IN_RESPONSE_CODE  ${ordenStandInResponseCode}
+		</if>
+		<if  test="ordenTransactionCurrencyCode != null " >
+		ORDER BY
+			TRANSACTION_CURRENCY_CODE  ${ordenTransactionCurrencyCode}
+		</if>
 		<if  test="ordenTransactionAmount != null " >
 		ORDER BY
 			TRANSACTION_AMOUNT  ${ordenTransactionAmount}
@@ -128,9 +129,9 @@
 		ORDER BY
 			MERCHANT_TYPE  ${ordenMerchantType}
 		</if>
-		<if  test="ordenStandInResponseCode != null " >
+		<if  test="ordenSecuenciaIncoming != null " >
 		ORDER BY
-			STAND_IN_RESPONSE_CODE  ${ordenStandInResponseCode}
+			SECUENCIA_INCOMING  ${ordenSecuenciaIncoming}
 		</if>
 	</sql>
 	

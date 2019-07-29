@@ -43,8 +43,6 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private List<Integer> institucionesReceptoras;
 	private List<Integer> idsRespuestaSwitch;
 	private String numeroTarjeta;//pan
-//	private List<String> idsInstitucionAdquirente;
-//	private List<String> idsInstitucionEmisor;
 		
 	//Detalle
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
