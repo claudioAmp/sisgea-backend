@@ -10,9 +10,14 @@
              , descripcion_multitab_cab
         FROM VIE_MAN_MULTITAB_DET
     </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_multitab_cab,id_multitab_det
+    </sql>
 
     <select id="buscarTodos" resultType="MultitabDet" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarMultiTabDet" resultType="MultitabDet">

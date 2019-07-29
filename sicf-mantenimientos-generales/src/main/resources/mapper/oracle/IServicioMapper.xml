@@ -8,11 +8,15 @@
              , descripcion_servicio
              , descripcion_membresia
         FROM VIE_MAN_SERVICIO
-        ORDER BY ID_SERVICIO ASC
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_membresia,id_servicio
     </sql>
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarServicio" resultType="Servicio">

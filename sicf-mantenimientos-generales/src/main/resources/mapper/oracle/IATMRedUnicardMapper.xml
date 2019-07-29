@@ -9,11 +9,15 @@
              , direccion
              , descripcion_institucion
         FROM VIE_MAN_ATM_RED_UNICARD
+    </sql>
+    
+    <sql id="orden">
         ORDER BY id_atm ASC, id_institucion ASC
     </sql>
 
     <select id="buscarTodos" resultType="ATMRedUnicard" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarATMRedUnicard" resultType="ATMRedUnicard" statementType="PREPARED">

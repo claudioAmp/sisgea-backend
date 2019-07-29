@@ -14,12 +14,16 @@
              , descripcion_clase_transaccion
              , descripcion_codigo_facturacion
         FROM VIE_MAN_CODIGO_TRANSACCION
-        ORDER BY id_clase_transaccion 
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_clase_transaccion
     </sql>
 
     <select id="buscarTodos" resultType="CodigoTransaccion"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarCodigoTransaccion" resultType="CodigoTransaccion">

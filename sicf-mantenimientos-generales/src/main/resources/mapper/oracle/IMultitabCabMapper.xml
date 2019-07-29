@@ -6,7 +6,12 @@
         SELECT id_multitab_cab
              , descripcion      AS descripcion_multitab_cab
         FROM MAE_MULTITAB_CAB
+        <include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+    	ORDER BY id_multitab_cab ASC
+    </sql>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {

@@ -7,8 +7,12 @@
         SELECT id_origen
              , descripcion AS descripcion_origen
         FROM MAE_ORIGEN
-        ORDER BY id_origen ASC
+        <include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+    	ORDER BY id_origen ASC
+    </sql>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">

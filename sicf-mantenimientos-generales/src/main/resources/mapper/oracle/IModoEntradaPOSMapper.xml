@@ -8,11 +8,15 @@
              , descripcion_modo_entrada_pos
              , descripcion_membresia
         FROM VIE_MAN_MODO_ENTRADA_POS
-        ORDER BY id_modo_entrada_pos ASC
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_modo_entrada_pos ASC
     </sql>
 
     <select id="buscarTodos" resultType="ModoEntradaPOS" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarModoEntradaPOS" resultType="ModoEntradaPOS">

@@ -8,7 +8,6 @@
 	    descripcion_membresia,
 	    id_limite_piso,
 	    descripcion
-
 	  FROM VIE_MAN_IND_LIMITE_PISO
     </sql>
 

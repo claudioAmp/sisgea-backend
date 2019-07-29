@@ -10,12 +10,16 @@
         	 , id_codigo_transaccion
         	 , descripcion_codigo_transaccion 
         FROM VIE_MAN_INST_X_TXN
-        ORDER BY id_institucion ASC
     </sql>
-
+	
+	<sql id="orden">
+		ORDER BY id_institucion ASC
+	</sql>
+	
     <select id="buscarTodos" resultType="InstitucionTransaccion"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarInstitucionTransaccion" resultType="InstitucionTransaccion"

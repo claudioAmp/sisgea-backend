@@ -8,11 +8,15 @@
              , descripcion_terminal_pos
              , descripcion_membresia
         FROM VIE_MAN_CAPACIDAD_TERM_POS
-        ORDER BY id_terminal_pos ASC
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_terminal_pos ASC
     </sql>
 
     <select id="buscarTodos" resultType="CapacidadTerminalPOS" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarCapacidadTerminalPOS" resultType="CapacidadTerminalPOS">

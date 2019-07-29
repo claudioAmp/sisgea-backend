@@ -6,8 +6,12 @@
         SELECT id_canal
              , descripcion      AS descripcion_canal
         FROM MAE_CANAL
-        ORDER BY id_canal
+        <include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+        ORDER BY id_canal
+    </sql>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {

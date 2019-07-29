@@ -7,7 +7,11 @@
              , descripcion      AS descripcion_moneda
              , abreviatura
         FROM MAE_MONEDA
-        ORDER BY id_moneda ASC
+        <include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+    	ORDER BY id_moneda ASC
+    </sql>
 
 </mapper>

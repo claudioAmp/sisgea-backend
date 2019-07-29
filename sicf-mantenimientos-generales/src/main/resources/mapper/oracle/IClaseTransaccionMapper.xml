@@ -8,8 +8,12 @@
 		     , descripcion             AS descripcion_clase_transaccion
 		     , tipo_transaccion
 		FROM MAE_CLASE_TRANSACCION
-		ORDER BY id_clase_transaccion ASC
+		<include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+    	ORDER BY id_clase_transaccion ASC
+    </sql>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">

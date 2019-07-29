@@ -7,8 +7,12 @@
         SELECT id_respuesta    				AS id_codigo_respuesta_switch
              , descripcion                 	AS descripcion_codigo_rpta_switch
         FROM MAE_CODIGO_RESPUESTA_SWITCH
-        ORDER BY id_respuesta ASC
+        <include refid="orden"/>
     </select>
+    
+    <sql id="orden">
+    	ORDER BY id_respuesta ASC
+    </sql>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">

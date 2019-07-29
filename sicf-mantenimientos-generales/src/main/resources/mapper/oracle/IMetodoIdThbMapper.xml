@@ -8,11 +8,15 @@
              , descripcion_metodo_id_thb
              , descripcion_membresia
         FROM VIE_MAN_METODO_ID_THB
-        ORDER BY id_metodo_id_thb ASC
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_metodo_id_thb ASC
     </sql>
 
     <select id="buscarTodos" resultType="MetodoIdThb" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarMetodoIdThb" resultType="MetodoIdThb">

@@ -20,11 +20,15 @@
              , id_moneda_alterna
              , descripcion_moneda_alterna
             FROM VIE_MAN_BIN
-            ORDER BY id_bin ASC
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_bin ASC
     </sql>
 
     <select id="buscarTodos" resultType="BIN" statementType="PREPARED">
        <include refid="consultaVistaMant" />
+       <include refid="orden"/>
     </select>
     
     <select id="buscarPorInstituciones" resultType="BIN" statementType="PREPARED">
