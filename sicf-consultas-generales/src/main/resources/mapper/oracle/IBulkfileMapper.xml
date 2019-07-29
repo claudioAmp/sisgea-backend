@@ -64,10 +64,6 @@
 			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
 			AND TRANSACTION_TIME LIKE #{pFiltroTransactionTime}
 		</if>
-		<if  test="filtroAmountTransactionLoc != null" >
-			<bind name="pFiltroAmountTransactionLoc" value="'%' + filtroAmountTransactionLoc + '%'" />
-			AND AMOUNT_TRANSACTION_LOC LIKE #{pFiltroAmountTransactionLoc}
-		</if>
 		<if  test="filtroIdProceso != null" >
 			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
 			AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
@@ -117,12 +113,10 @@
 			AND ID_BULK_FILE_MC LIKE #{filtroIdBulkFileMc}
 		</if>
 		<if  test="rangoAmountTransactionLocMin != null and rangoAmountTransactionLocMax != null" >
-			AND ACCESS_FEE_LOC &gt;= #{rangoAmountTransactionLocMin}
-			AND ACCESS_FEE_LOC &lt;= #{rangoAmountTransactionLocMax}
+			AND AMOUNT_TRANSACTION_LOC BETWEEN #{rangoAmountTransactionLocMin} AND #{rangoAmountTransactionLocMax}
 		</if>
 		<if  test="rangoAmountSettlementMin != null and rangoAmountSettlementMax != null" >
-			AND AMOUNT_SETTLEMENT &gt;= #{rangoAmountSettlementMin}
-			AND AMOUNT_SETTLEMENT &lt;= #{rangoAmountSettlementMax}
+			AND AMOUNT_SETTLEMENT BETWEEN #{rangoAmountSettlementMin} AND #{rangoAmountSettlementMax}
 		</if>
 		<if  test="ordenFechaProceso != null" >
 			ORDER BY
