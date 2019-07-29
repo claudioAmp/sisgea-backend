@@ -81,5 +81,10 @@ public class CriterioBusquedaBulkfile {
 	private String ordenInterchangeFeeInd;
 	private String ordenInterchangeFee;
 	private String ordenIdBulkFileMc;
-
+	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoAmountTransactionLocMin;
+	private Double rangoAmountTransactionLocMax;
+	private Double rangoAmountSettlementMin;
+	private Double rangoAmountSettlementMax;
 }

@@ -100,17 +100,9 @@
 			<bind name="pFiltroAccessFeeLocInd" value="'%' + filtroAccessFeeLocInd + '%'" />
 			AND ACCESS_FEE_LOC_IND LIKE #{pFiltroAccessFeeLocInd}
 		</if>
-		<if  test="filtroAccessFeeLoc != null" >
-			<bind name="pFiltroAccessFeeLoc" value="'%' + filtroAccessFeeLoc + '%'" />
-			AND ACCESS_FEE_LOC LIKE #{pFiltroAccessFeeLoc}
-		</if>
 		<if  test="filtroCurrencyCodeSett != null" >
 			<bind name="pFiltroCurrencyCodeSett" value="'%' + filtroCurrencyCodeSett + '%'" />
 			AND CONCAT(CURRENCY_CODE_SETT, DESCRIPCION_CURRENCY_CODE_SETT) LIKE #{pFiltroCurrencyCodeSett}
-		</if>
-		<if  test="filtroAmountSettlement != null" >
-			<bind name="pFiltroAmountSettlement" value="'%' + filtroAmountSettlement + '%'" />
-			AND AMOUNT_SETTLEMENT LIKE #{pFiltroAmountSettlement}
 		</if>
 		<if  test="filtroInterchangeFeeInd != null" >
 			<bind name="pFiltroInterchangeFeeInd" value="'%' + filtroInterchangeFeeInd + '%'" />
@@ -123,6 +115,14 @@
 		<if  test="filtroIdBulkFileMc != null" >
 			<bind name="pFiltroIdBulkFileMc" value="'%' + filtroIdBulkFileMc + '%'" />
 			AND ID_BULK_FILE_MC LIKE #{filtroIdBulkFileMc}
+		</if>
+		<if  test="rangoAmountTransactionLocMin != null and rangoAmountTransactionLocMax != null" >
+			AND ACCESS_FEE_LOC &gt;= #{rangoAmountTransactionLocMin}
+			AND ACCESS_FEE_LOC &lt;= #{rangoAmountTransactionLocMax}
+		</if>
+		<if  test="rangoAmountSettlementMin != null and rangoAmountSettlementMax != null" >
+			AND AMOUNT_SETTLEMENT &gt;= #{rangoAmountSettlementMin}
+			AND AMOUNT_SETTLEMENT &lt;= #{rangoAmountSettlementMax}
 		</if>
 		<if  test="ordenFechaProceso != null" >
 			ORDER BY
