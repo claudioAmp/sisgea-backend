@@ -123,6 +123,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==0)
 	    					  temporal.add(filtro);
 	    			  }
+	    			if(temporal.size()==0) flagExiste=false;
 	    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista,0);
 	    			break;
 	    		}
@@ -303,7 +304,11 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	        } else {
 	          query += ", ";
 	        }
-	        query += campo.getIdInstanciaTabla() + "." +campo.getCampo()+" "+ campo.getEnOrderBy();
+	        if(campo.getFuncionGrupo()!=null){
+				query+=campo.getFuncionGrupo()+"("+campo.getIdInstanciaTabla() + "." + campo.getCampo()+")"+" "+ campo.getEnOrderBy();
+			} else {
+				query += campo.getIdInstanciaTabla() + "." + campo.getCampo() +" "+ campo.getEnOrderBy();
+			}
 	      }
 	    }
 	    return query;

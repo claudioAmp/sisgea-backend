@@ -21,14 +21,14 @@
     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+        	ASIGNABLE!=0
         </where>
     </select>
     
     <select id="buscarPorId" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	ID_CAMPO = #{idCampo} AND CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+        	ID_CAMPO = #{idCampo} AND ASIGNABLE!=0
         </where>
     </select>
     
@@ -37,7 +37,7 @@
         
         <if  test="usuario==null or usuario=='' ">      	   
 			    <if  test="idPerfil == null or idPerfil == ''">	
-			        WHERE A.ID_TABLA>0 AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+			        WHERE A.ID_TABLA>0 AND A.ASIGNABLE!=0
 				   	<if  test="idTabla!= null and idTabla != ''">
 					    AND  A.ID_TABLA=#{idTabla}
 					</if>
@@ -50,7 +50,7 @@
 			    </if>
 			    <if  test="idPerfil != null and idPerfil != ''">	
 			        INNER JOIN VIE_MAN_REP_PERFIL_CAMPO B ON (A.ID_CAMPO=B.ID_CAMPO)
-					WHERE B.ID_PERFIL =#{idPerfil} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+					WHERE B.ID_PERFIL =#{idPerfil} AND A.ASIGNABLE!=0
 					<if  test="sensible != null and sensible != ''">
 					  AND A.SENSIBLE=#{sensible}
 					</if>
@@ -59,7 +59,7 @@
 	    </if>
 	     <if  test="usuario!=null and usuario!=''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
-			   WHERE B.USUARIO =#{usuario} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+			   WHERE B.USUARIO =#{usuario} AND A.ASIGNABLE!=0
 				<if  test="idPerfil != null and idPerfil != ''">
 				    AND B.ID_PERFIL=#{idPerfil}
 				</if>
@@ -72,7 +72,7 @@
     <select id="buscarConjuntoCampos" resultType="Campo" parameterType="CriterioBusquedaConjuntoCampo" statementType="PREPARED">
     	<include refid="consulta"/>
     	<where>
-    		AND a.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+    		AND a.ASIGNABLE!=0
     		<if test="listaCampo !=null and listaCampo.size()>0">
 				AND a.ID_CAMPO IN 
 				<foreach item="item" index="index" collection="listaCampo" open ="(" separator="," close=")">
@@ -88,7 +88,7 @@
     	</where>
 	     <if  test="usuario != null and usuario != ''">
 			   INNER JOIN VIE_MAN_REP_PERMISO_USUARIO B ON (A.ID_CAMPO=B.ID_CAMPO)
-			   WHERE B.USUARIO =#{usuario} AND A.CAMPO NOT IN ('USUARIO_ADICION','USUARIO_MODIFICACION','FECHA_ADICION','FECHA_MODIFICACION')
+			   WHERE B.USUARIO =#{usuario} AND A.ASIGNABLE!=0
 				<if  test="idPerfil != null and idPerfil != ''">
 				    AND B.ID_PERFIL=#{idPerfil}
 				</if>
