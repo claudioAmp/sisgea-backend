@@ -194,10 +194,7 @@
 			<bind name="pFiltroIdBin" value="'%' + filtroIdBIN + '%'" />
 			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
 		</if>
-		<if  test="filtroIdBin != null " >
-			<bind name="pFiltroIdBin" value="'%' + filtroIdBIN + '%'" />
-			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
-		</if>
+		
 		<if  test="filtroCardHolderIdMethod != null " >
 			<bind name="pFiltroCardHolderIdMethod" value="'%' + filtroCardHolderIdMethod + '%'" />
 			AND CONCAT(CARDHOLDER_ID_METHOD, DESC_CARDHOLDER_ID_METHOD) LIKE #{pFiltroCardHolderIdMethod}
@@ -206,7 +203,7 @@
 			<bind name="pFiltroPosEntryMode" value="'%' + filtroPosEntryMode + '%'" />
 			AND CONCAT(POS_ENTRY_MODE, DESC_POS_ENTRY_MODE) LIKE #{pFiltroPosEntryMode}
 		</if>
-		<if  test="filtroPosEntryMode != null " >
+		<if  test="filtroPosTerminalCapability != null " >
 			<bind name="pFiltroPosTerminalCapability" value="'%' + filtroPosTerminalCapability + '%'" />
 			AND CONCAT(POS_TERMINAL_CAPABILITY, DESC_POS_TERMINAL_CAPABILITY) LIKE #{pFiltroPosTerminalCapability}
 		</if>

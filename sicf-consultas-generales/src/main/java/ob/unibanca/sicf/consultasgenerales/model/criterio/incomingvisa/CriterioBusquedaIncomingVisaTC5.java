@@ -69,6 +69,11 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroInstitucionEmisora;
 	private String filtroInstitucionReceptora;
 	private String filtroIdCanal;
+	private String filtroCardHolderIdMethod;
+	private String filtroPosEntryMode;
+	private String filtroPosTerminalCapability;
+	private String filtroIdBin;
+	private String filtroAuthorization;
 	
 	//Orden
 	private String ordenFechaProceso;
@@ -90,4 +95,10 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenInstitucionEmisora;
 	private String ordenInstitucionReceptora;
 	private String ordenIdCanal;
+	private String ordenCardHolderIdMethod;
+	private String ordenPosEntryMode;
+	private String ordenPosTerminalCapability;
+	private String ordenIdBin;
+	private String ordenAuthorizationCode;
+	
 }
