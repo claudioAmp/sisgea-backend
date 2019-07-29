@@ -66,9 +66,7 @@ public class ReporteRestController {
 	@PostMapping(value = "/reportes", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Reporte registrarReporte(@Validated({ IRegistro.class, Default.class }) @RequestBody Reporte Reporte) {
-		UltimoSecuencia ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("REPORTE");
-		int idReporte=ultSeq.getValor().intValue();
-		return this.reporteService.registrarReporteTotal(idReporte,Reporte);
+		return this.reporteService.registrarReporteTotal(0,Reporte);
 	}
 
 	@PutMapping(value = "/reportes/{idReporte}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

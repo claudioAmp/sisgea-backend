@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reporte {
-	private int idReporte;
+	private Integer idReporte;
     private String nombre;
     private String descripcion;
     private String descCorta;

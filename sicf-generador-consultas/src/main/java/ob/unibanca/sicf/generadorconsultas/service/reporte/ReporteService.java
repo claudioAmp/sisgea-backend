@@ -100,7 +100,6 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			this.eliminar(Reporte);
 			System.out.println("Eliminé");
 			return this.registrarReporteTotal(idReporte, Reporte);
-			//return new Reporte();
 		}
 		
 	}
@@ -132,27 +131,25 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	// Registrar reporte
 	//@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte registrarReporteTotal(int idReporte,Reporte Reporte) {
-		UltimoSecuencia ultSeq= new UltimoSecuencia();
-		Reporte.setIdReporte(idReporte);
-		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
-		this.registrarReporte(Reporte);
 		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0,idxCondicion=0;
 		List<List<Integer>> idConQAux= new ArrayList<>();
+		if(idReporte!=0) {
+			Reporte.setIdReporte(idReporte);
+		}	
+		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
+		this.registrarReporte(Reporte);
+		idReporte=Reporte.getIdReporte();		
 		System.out.println("Empecé a insertar");
 		for(TablaQuery t : Reporte.getTablas()) {
-			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("TABLA_QUERY");
-			t.setIdTablaQuery(ultSeq.getValor().intValue());
 			t.setIdReporte(idReporte);
 			Reporte.getTablas().set(idxTabla, t);
 			this.tablaQueryService.registrar(t);
 			idxTabla++;
 		}
 		for(CampoQuery c : Reporte.getCampos()) {
-			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("CAMPO_QUERY");
 			TablaQuery t = this.getTablaQuery(Reporte.getTablas(),c.getIdTabla(),c.getIdInstanciaTabla());
 			if(t!=null) {
 				c.setIdTablaQuery(t.getIdTablaQuery());
-				c.setIdCampoQuery(ultSeq.getValor().intValue());
 				c.setIdReporte(idReporte);
 				Reporte.getCampos().set(idxCampo, c);
 				this.campoQueryService.registrar(c);
@@ -178,10 +175,8 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			idxTablaOnJoin++;
 		}
 		for(CondicionQuery cq : Reporte.getCondiciones()) {
-			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("CONDICION_QUERY");
 			System.out.println(cq);
 			cq.setIdReporte(idReporte);
-			cq.setIdCondicionQuery(ultSeq.getValor());
 			if( cq.getIdCondicionPadre()!=0) {
 				cq.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(), cq.getIdCondicionPadre()).getIdCondicionQuery());
 			}
@@ -190,11 +185,9 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			idxCondicion++;
 		}
 		for(Filtro f : Reporte.getFiltros()) {
-			ultSeq= this.ultimoSecuenciaService.obtenerUltimoSecuencia("FILTRO_CAMPO");
 			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),f.getIdCampo(), f.getIdInstancia());
 			if(c!=null) {
 				f.setIdCampoQuery(c.getIdCampoQuery());
-				f.setIdFiltroCampo(ultSeq.getValor().intValue());
 				System.out.println(f);
 				f.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(),f.getIdCondicionPadre()).getIdCondicionQuery());
 				Reporte.getFiltros().set(idxFiltro, f);

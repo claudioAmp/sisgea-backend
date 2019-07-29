@@ -42,7 +42,7 @@
         {
             CALL PKG_MAN_REP.prc_man_rep_condicion_query(
             #{modo, 							     jdbcType=VARCHAR, mode=IN},
-    		#{objetoMantenido.idCondicionQuery,      jdbcType=INTEGER, mode=IN},
+    		#{objetoMantenido.idCondicionQuery,      jdbcType=INTEGER, mode=INOUT},
     		#{objetoMantenido.idCondicionPadre,      jdbcType=NUMERIC, mode=IN},
     		#{objetoMantenido.idReporte,             jdbcType=NUMERIC, mode=IN},
     		#{objetoMantenido.operadorLogico ,     	 jdbcType=VARCHAR, mode=IN},

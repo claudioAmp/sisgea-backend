@@ -49,7 +49,7 @@
         {
             CALL PKG_MAN_REP.prc_man_rep_tabla_query(
                 #{modo, 						  jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idTablaQuery,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idTablaQuery,   jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idReporte,      jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idTabla,  	  jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idInstancia,    jdbcType=VARCHAR, mode=IN},
