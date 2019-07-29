@@ -20,9 +20,7 @@
 
     <select id="buscarTodos" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
-        <where>
-        	ASIGNABLE!=0
-        </where>
+        WHERE ASIGNABLE!=0
     </select>
     
     <select id="buscarPorId" resultType="Campo" statementType="PREPARED">

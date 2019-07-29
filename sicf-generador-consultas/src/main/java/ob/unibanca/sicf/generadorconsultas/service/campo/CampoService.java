@@ -29,7 +29,7 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Campo> buscarTodosCampos() {
-		return this.buscarTodos();
+		return this.campoMapper.buscarTodos();
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
