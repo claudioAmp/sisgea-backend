@@ -123,6 +123,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 	    				  if(this.findCondicionById(reporteEstado,filtro.getIdCondicionPadre()).getTipoCondicion()==0)
 	    					  temporal.add(filtro);
 	    			  }
+	    			if(temporal.size()==0) flagExiste=false;
 	    			query+= this.getInConditional(reporteEstado,0,condicion,temporal,trucoLista,0);
 	    			break;
 	    		}

@@ -32,7 +32,7 @@ public class CampoQueryService extends MantenibleService<CampoQuery> implements 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<CampoQuery> buscarPorCriteriosCamposQuery(CriterioBusquedaCampoQuery criterio) {
 		if(criterio.getPermited()==1) {
-			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		return this.CampoQueryMapper.buscarPorCriterios(criterio);
 	}

@@ -35,7 +35,7 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<PermisoUsuario> buscarPorCriteriosPermisoUsuario(CriterioBusquedaPermisoUsuario criterio) {
 		if(criterio.getPermited()==1) {
-			criterio.setUsername(UsuarioUtil.obtenerUsername());
+			criterio.setUsername(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		return this.permisoUsuarioMapper.buscarPorCriterios(criterio);
 	}
@@ -71,7 +71,7 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Tabla> buscarTablasPermitidasUsuario() {
-		return this.permisoUsuarioMapper.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername());
+		return this.permisoUsuarioMapper.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 	}
 }
 

@@ -23,36 +23,37 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private Date fechaTransaccionInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaTransaccionFin;	
+	private Integer transactionCurrencyCode;
 	private String accountNumber;
-	private List<String> standInResponsesCodes;
 	private List<String> responsesCodes;
 	private List<String> merchantTypes;
 	
 	//filtros
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaProceso;
-	private String filtroSecuenciaIncoming;
 	private String filtroDestinationBin;
 	private String filtroSourceBin;
 	private String filtroAccountNumber;
 	private String filtroResponseCode;
+	private String filtroStandInResponseCode;
 	private String filtroTransactionCurrencyCode;
 	private String filtroTransactionAmount;
-	private String filtroTransactionDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroTransactionDate;
 	private String filtroTransactionTime;
 	private String filtroMerchantType;
-	private String filtroStandInResponseCode;
+	private String filtroSecuenciaIncoming;
 	
 	private String ordenFechaProceso;
-	private String ordenSecuenciaIncoming;
 	private String ordenDestinationBin;
 	private String ordenSourceBin;
 	private String ordenAccountNumber;
 	private String ordenResponseCode;
+	private String ordenStandInResponseCode;
 	private String ordenTransactionCurrencyCode;
 	private String ordenTransactionAmount;
 	private String ordenTransactionDate;
 	private String ordenTransactionTime;
 	private String ordenMerchantType;
-	private String ordenStandInResponseCode;
+	private String ordenSecuenciaIncoming;
 }

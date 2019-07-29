@@ -73,7 +73,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	public List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio) {
 		
 		if(criterio.getPermited()==1) {
-			criterio.setUsuario(UsuarioUtil.obtenerUsername());
+			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		return this.reporteMapper.buscarPorCriterios(criterio);
 	}

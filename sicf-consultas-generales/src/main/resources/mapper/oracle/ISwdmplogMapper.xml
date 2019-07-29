@@ -18,20 +18,14 @@
 		<if test="fechaInicioSwitch != null and fechaFinSwitch != null">
 			AND consulta.CAPTURE_DATE BETWEEN #{fechaInicioSwitch} AND #{fechaFinSwitch}
 		</if>
+		<if test="tipoMensaje != null and tipoMensaje != ''">
+			AND consulta.MESSAGE_TYPE = #{tipoMensaje}
+		</if>
 		<if test="trace != null and trace != ''">
 			AND consulta.trace_number = #{trace}
 		</if>
 		<if test="numeroTarjeta != null and numeroTarjeta != ''">
 			AND consulta.pan = #{numeroTarjeta}
-		</if>
-		<if test="codigoAutorizacion != null and codigoAutorizacion != ''">
-			AND consulta.authorization_code = #{codigoAutorizacion}
-		</if>
-		<if test="numeroReferencia != null and numeroReferencia != ''">
-			AND consulta.reference_number = #{numeroReferencia} 
-		</if>
-		<if test="tipoMensaje != null and tipoMensaje != ''">
-			AND consulta.MESSAGE_TYPE = #{tipoMensaje}
 		</if>
 	</sql>
 	
@@ -40,36 +34,6 @@
 			AND consulta.id_proceso IN 
 				<foreach collection="idsProcesoSwitch" item="idProceso" index="index" open="(" separator="," close=")">
 					#{idProceso}
-				</foreach>
-		</if>
-		<if test="idsRespuestaSwitch != null and idsRespuestaSwitch.size()>0">
-			AND consulta.response_code IN 
-				<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index" open="(" separator="," close=")">
-					#{idRespuesta}
-				</foreach>
-		</if>
-		<if test="idsGiroNegocio != null and idsGiroNegocio.size()>0">
-			AND consulta.merchant_type IN
-				<foreach collection="idsGiroNegocio" item="idGiroNegocio" index="index" open="(" separator="," close=")">
-					#{idGiroNegocio}
-				</foreach>
-		</if>
-			<if test="idsInstitucionEmisor != null and idsInstitucionEmisor.size()>0">
-				AND consulta.requesting_institution IN
-				<foreach collection="idsInstitucionEmisor" item="idInstitucion" index="index" open="(" separator="," close=")">
-					#{idInstitucion}	
-				</foreach>
-		</if>
-		<if test="idsInstitucionAdquirente != null and idsInstitucionAdquirente.size()>0">
-			AND consulta.acquiring_institution IN
-				<foreach collection="idsInstitucionAdquirente" item="idInstitucion" index="index" open="(" separator="," close=")">
-					#{idInstitucion}
-				</foreach>
-		</if>
-		<if test="idsModoEntradaPos != null and idsModoEntradaPos.size()>0">
-			AND consulta.pos_entry_mode IN
-				<foreach collection="idsMosoEntradaPos" item="idModoEntradaPos" index="index" open="(" separator="," close=")">
-					#{idModoEntradaPos}
 				</foreach>
 		</if>
 		<if test="idsMembresia != null and idsMembresia.size()>0">
@@ -90,31 +54,35 @@
 				#{idCanal}
 			</foreach>
 		</if>
-		<if test="idsProceso != null and idsProceso.size()>0">
-			AND consulta.ID_PROCESO IN
-			<foreach collection="idsProceso" item="idProceso" index="index" open="(" separator="," close=")">
-				#{idProceso}
-			</foreach>
+		<if test="institucionesEmisoras != null and institucionesEmisoras.size()>0">
+				AND consulta.id_institucion_emisora IN
+				<foreach collection="institucionesEmisoras" item="idInstitucion" index="index" open="(" separator="," close=")">
+					#{idInstitucion}	
+				</foreach>
 		</if>
-		<if test="idsRolTransaccion != null and idsRolTransaccion.size()>0">
-			AND consulta.ID_ROL IN
-			<foreach collection="idsRolTransaccion" item="idRolTransaccion" index="index" open="(" separator="," close=")">
-				#{idRolTransaccion}
-			</foreach>
+		<if test="idsBines != null and idsBines.size()>0">
+				AND consulta.id_bin IN
+				<foreach collection="idsBines" item="idBin" index="index" open="(" separator="," close=")">
+					#{idBin}	
+				</foreach>
+		</if>
+		<if test="institucionesReceptoras != null and institucionesReceptoras.size()>0">
+			AND consulta.id_institucion_receptora IN
+				<foreach collection="institucionesReceptoras" item="idInstitucion" index="index" open="(" separator="," close=")">
+					#{idInstitucion}
+				</foreach>
+		</if>
+		<if test="idsRespuestaSwitch != null and idsRespuestaSwitch.size()>0">
+			AND consulta.response_code IN 
+				<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index" open="(" separator="," close=")">
+					#{idRespuesta}
+				</foreach>
 		</if>
 	</sql>
 	
 	<sql id="fragmentoFiltrosOrdenaciones">
 				<if  test="filtroFechaProceso != null " >
 					AND FECHA_PROCESO = #{filtroFechaProceso}
-				</if>
-				<if  test="filtroIdMovTxnSwdmplog != null " >
-					<bind name="pFiltroIdMovTxnSwdmplog" value="'%' + filtroIdMovTxnSwdmplog + '%'" />
-					AND ID_MOV_TXN_SWDMPLOG LIKE #{pFiltroIdMovTxnSwdmplog}
-				</if>
-				<if  test="filtroMessageType != null " >
-					<bind name="pFiltroMessageType" value="'%' + filtroMessageType + '%'" />
-					AND MESSAGE_TYPE LIKE #{pFiltroMessageType}
 				</if>
 				<if  test="filtroIdBin != null " >
 					<bind name="pFiltroIdBin" value="'%' + filtroIdBin + '%'" />
@@ -124,21 +92,21 @@
 					<bind name="pFiltroPan" value="'%' + filtroPan + '%'" />
 					AND PAN LIKE #{pFiltroPan}
 				</if>
-				<if  test="filtroIdRol != null " >
-					<bind name="pFiltroIdRol" value="'%' + filtroIdRol + '%'" />
-					AND CONCAT(ID_ROL, DESCRIPCION_ROL_TRANSACCION) LIKE #{pFiltroIdRol}
+				<if  test="filtroMessageType != null " >
+					<bind name="pFiltroMessageType" value="'%' + filtroMessageType + '%'" />
+					AND MESSAGE_TYPE LIKE #{pFiltroMessageType}
+				</if>
+				<if  test="filtroIdProceso != null " >
+					<bind name="pFiltroIdProceso" value="'%'+ filtroIdProceso +'%'" />
+					AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
 				</if>
 				<if  test="filtroIdCanal != null " >
 					<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
 					AND CONCAT(ID_CANAL, DESCRIPCION_CANAL) LIKE #{pFiltroIdCanal}
 				</if>
-				<if  test="filtroProcessingCode != null " >
-					<bind name="pFiltroProcessingCode" value="'%'+ filtroProcessingCode +'%'" />
-					AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
-				</if>
-				<if  test="filtroIdProceso != null " >
-					<bind name="pFiltroIdProceso" value="'%'+ filtroIdProceso +'%'" />
-					AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
+				<if  test="filtroCardAcceptorLocation != null " >
+					<bind name="pFiltroCardAcceptorLocation" value="'%' + filtroCardAcceptorLocation + '%'" />
+					AND CARD_ACCEPTOR_LOCATION LIKE #{pFiltroCardAcceptorLocation}
 				</if>
 				<if  test="filtroTransmissionDate != null " >
 					AND TRANSMISSION_DATE = #{filtroTransmissionDate}
@@ -146,18 +114,6 @@
 				<if  test="filtroTransmissionTime != null " >
 					<bind name="pFiltroTransmissionTime" value="'%' + filtroTransmissionTime + '%'" />
 					AND TRANSMISSION_TIME LIKE #{pFiltroTransmissionTime}
-				</if>
-				<if  test="filtroAuthorizationCode != null " >
-					<bind name="pFiltroAuthorizationCode" value="'%' + filtroAuthorizationCode + '%'" />
-					AND AUTHORIZATION_CODE LIKE #{pFiltroAuthorizationCode}
-				</if>
-				<if  test="filtroTraceNumber != null " >
-					<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
-					AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
-				</if>
-				<if  test="filtroResponseCode != null " >
-					<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-					AND CONCAT(RESPONSE_CODE, DESCRIPCION_CODIGO_RPTA_SW) LIKE #{pFiltroResponseCode}
 				</if>
 				<if  test="filtroTransactionCurrency != null " >
 					<bind name="pFiltroTransactionCurrency" value="'%' + filtroTransactionCurrency + '%'" />
@@ -167,25 +123,17 @@
 					<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
 					AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
 				</if>
-				<if  test="filtroCardAcceptorLocation != null " >
-					<bind name="pFiltroCardAcceptorLocation" value="'%' + filtroCardAcceptorLocation + '%'" />
-					AND CARD_ACCEPTOR_LOCATION LIKE #{pFiltroCardAcceptorLocation}
+				<if  test="filtroTraceNumber != null " >
+					<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
+					AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
 				</if>
-				<if  test="filtroStfwdIndicator != null " >
-					<bind name="pFiltroStfwdIndicator" value="'%' + filtroStfwdIndicator + '%'" />
-					AND STFWD_INDICATOR LIKE #{pFiltroStfwdIndicator}
+				<if  test="filtroAuthorizationCode != null " >
+					<bind name="pFiltroAuthorizationCode" value="'%' + filtroAuthorizationCode + '%'" />
+					AND AUTHORIZATION_CODE LIKE #{pFiltroAuthorizationCode}
 				</if>
-				<if  test="filtroPosConditionCode != null " >
-					<bind name="pFiltroPosConditionCode" value="'%' + filtroPosConditionCode + '%'" />
-					AND POS_CONDITION_CODE LIKE #{pFiltroPosConditionCode}
-				</if>
-				<if  test="filtroMerchantType != null " >
-					<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
-					AND CONCAT(MERCHANT_TYPE, DESCRIPCION_GIRO_NEGOCIO) LIKE #{pFiltroMerchantType}
-				</if>
-				<if  test="filtroCaptureDate != null " >
-					<bind name="pFiltroCaptureDate" value="'%' + filtroCaptureDate + '%'" />
-					AND CAPTURE_DATE LIKE #{pFiltroCaptureDate}
+				<if  test="filtroResponseCode != null " >
+					<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+					AND CONCAT(RESPONSE_CODE, DESCRIPCION_CODIGO_RPTA_SW) LIKE #{pFiltroResponseCode}
 				</if>
 				<if  test="filtroLocalTransactionDate != null " >
 					AND LOCAL_TRANSACTION_DATE = #{filtroLocalTransactionDate}
@@ -194,21 +142,37 @@
 					<bind name="pFiltroLocalTransactionTime" value="'%' + filtroLocalTransactionTime + '%'" />
 					AND LOCAL_TRANSACTION_TIME LIKE #{pFiltroLocalTransactionTime}
 				</if>
+				<if  test="filtroIdMembresia != null " >
+					<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+					AND CONCAT(ID_MEMBRESIA, DESCRIPCION_MEMBRESIA) LIKE #{pFiltroIdMembresia}
+				</if>
+				<if  test="filtroIdServicio != null " >
+					<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+					AND CONCAT(ID_SERVICIO, DESCRIPCION_SERVICIO) LIKE #{pFiltroIdServicio}
+				</if>
+				<if  test="filtroIdInstitucionEmisora != null " >
+					<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
+					AND CONCAT(ID_INSTITUCION_EMISORA, DESCRIPCION_INST_EMISORA) LIKE #{pFiltroIdInstitucionEmisora}
+				</if>
+				<if  test="filtroIdInstitucionReceptora != null " >
+					<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+					AND CONCAT(ID_INSTITUCION_RECEPTORA, DESCRIPCION_INST_RECEPTORA) LIKE #{pFiltroIdInstitucionReceptora}
+				</if>
 				<if  test="filtroPosEntryMode != null " >
 					<bind name="pFiltroPosEntryMode" value="'%' + filtroPosEntryMode + '%'" />
 					AND POS_ENTRY_MODE LIKE #{pFiltroPosEntryMode}
 				</if>
+				<if  test="filtroCaptureDate != null " >
+					AND CAPTURE_DATE = #{filtroCaptureDate}
+				</if>
+				<if  test="filtroIdMovTxnSwdmplog != null " >
+					<bind name="pFiltroIdMovTxnSwdmplog" value="'%' + filtroIdMovTxnSwdmplog + '%'" />
+					AND ID_MOV_TXN_SWDMPLOG LIKE #{pFiltroIdMovTxnSwdmplog}
+				</if>
+				
 				<if  test="ordenFechaProceso != null " >
 				ORDER BY
 					FECHA_PROCESO  ${ordenFechaProceso}
-				</if>
-				<if  test="ordenIdMovTxnSwdmplog != null " >
-				ORDER BY
-					ID_MOV_TXN_SWDMPLOG  ${ordenIdMovTxnSwdmplog}
-				</if>
-				<if  test="ordenMessageType != null " >
-				ORDER BY
-					 MESSAGE_TYPE  ${ordenMessageType}
 				</if>
 				<if  test="ordenIdBin != null " >
 				ORDER BY
@@ -218,21 +182,21 @@
 				ORDER BY
 					 PAN  ${ordenPan}
 				</if>
-				<if  test="ordenIdRol != null " >
+				<if  test="ordenMessageType != null " >
+				ORDER BY
+					 MESSAGE_TYPE  ${ordenMessageType}
+				</if>
+				<if  test="ordenIdProceso != null " >
 				ORDER BY	
-					 ID_ROL  ${ordenIdRol}
+					 ID_PROCESO  ${ordenIdProceso}
 				</if>
 				<if  test="ordenIdCanal != null " >
 				ORDER BY	
 					ID_CANAL  ${ordenIdCanal}
 				</if>
-				<if  test="ordenProcessingCode != null " >
+				<if  test="ordenCardAcceptorLocation != null " >
 				ORDER BY	
-					 PROCESSING_CODE  ${ordenProcessingCode}
-				</if>
-				<if  test="ordenIdProceso != null " >
-				ORDER BY	
-					 ID_PROCESO  ${ordenIdProceso}
+				 	CARD_ACCEPTOR_LOCATION  ${ordenCardAcceptorLocation}
 				</if>
 				<if  test="ordenTransmissionDate != null " >
 				ORDER BY	
@@ -242,18 +206,6 @@
 				ORDER BY	
 				 	TRANSMISSION_TIME  ${ordenTransmissionTime}
 				</if>
-				<if  test="ordenAuthorizationCode != null " >
-				ORDER BY	
-				 	AUTHORIZATION_CODE  ${ordenAuthorizationCode}
-				</if>
-				<if  test="ordenTraceNumber != null " >
-				ORDER BY	
-				 	TRACE_NUMBER  ${ordenTraceNumber}
-				</if>
-				<if  test="ordenResponseCode != null " >
-				ORDER BY	
-				 	RESPONSE_CODE  ${ordenResponseCode}
-				</if>
 				<if  test="ordenTransactionCurrency != null " >
 				ORDER BY	
 				 	TRANSACTION_CURRENCY  ${ordenTransactionCurrency}
@@ -262,25 +214,17 @@
 				ORDER BY	
 				 	TRANSACTION_AMOUNT  ${ordenTransactionAmount}
 				</if>
-				<if  test="ordenCardAcceptorLocation != null " >
+				<if  test="ordenTraceNumber != null " >
 				ORDER BY	
-				 	CARD_ACCEPTOR_LOCATION  ${ordenCardAcceptorLocation}
+				 	TRACE_NUMBER  ${ordenTraceNumber}
 				</if>
-				<if  test="ordenStfwdIndicator != null " >
+				<if  test="ordenAuthorizationCode != null " >
 				ORDER BY	
-				 	STFWD_INDICATOR  ${ordenStfwdIndicator}
+				 	AUTHORIZATION_CODE  ${ordenAuthorizationCode}
 				</if>
-				<if  test="ordenPosConditionCode != null " >
+				<if  test="ordenResponseCode != null " >
 				ORDER BY	
-				 	POS_CONDITION_CODE  ${ordenPosConditionCode}
-				</if>
-				<if  test="ordenMerchantType != null " >
-				ORDER BY	
-				 	MERCHANT_TYPE  ${ordenMerchantType}
-				</if>
-				<if  test="ordenCaptureDate != null " >
-				ORDER BY	
-				 	CAPTURE_DATE  ${ordenCaptureDate}
+				 	RESPONSE_CODE  ${ordenResponseCode}
 				</if>
 				<if  test="ordenLocalTransactionDate != null " >
 				ORDER BY	
@@ -290,9 +234,33 @@
 				ORDER BY	
 				 	LOCAL_TRANSACTION_TIME ${ordenLocalTransactionTime}
 				</if>
+				<if  test="ordenIdMembresia != null " >
+				ORDER BY	
+				 	ID_MEMBRESIA  ${ordenIdMembresia}
+				</if>
+				<if  test="ordenIdServicio != null " >
+				ORDER BY	
+				 	ID_SERVICIO  ${ordenIdServicio}
+				</if>
+				<if  test="ordenIdInstitucionEmisora != null " >
+				ORDER BY	
+				 	ID_INSTITUCION_EMISORA  ${ordenIdInstitucionEmisora}
+				</if>
+				<if  test="ordenIdInstitucionReceptora != null " >
+				ORDER BY	
+				 	ID_INSTITUCION_RECEPTORA  ${ordenIdInstitucionReceptora}
+				</if>
 				<if  test="ordenPosEntryMode != null " >
 				ORDER BY	
 				 	POS_ENTRY_MODE ${ordenPosEntryMode}
+				</if>
+				<if  test="ordenCaptureDate != null " >
+				ORDER BY	
+				 	CAPTURE_DATE  ${ordenCaptureDate}
+				</if>
+				<if  test="ordenIdMovTxnSwdmplog != null " >
+				ORDER BY
+					ID_MOV_TXN_SWDMPLOG  ${ordenIdMovTxnSwdmplog}
 				</if>
 	</sql>
 	<!-- Fin Reutilizables -->

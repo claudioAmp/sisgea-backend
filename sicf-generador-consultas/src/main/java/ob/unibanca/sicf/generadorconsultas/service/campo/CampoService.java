@@ -72,7 +72,7 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Campo> buscarCamposPorUsuarioActivo() {
 		CriterioBusquedaCampo criterio = new CriterioBusquedaCampo();
-		criterio.setUsuario(UsuarioUtil.obtenerUsername());
+		criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		return this.campoMapper.buscarPorCriterios(criterio);
 	}
 }
