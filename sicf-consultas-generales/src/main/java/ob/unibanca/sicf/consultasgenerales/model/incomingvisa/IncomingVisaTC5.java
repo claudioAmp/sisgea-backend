@@ -42,9 +42,17 @@ public class IncomingVisaTC5 {
 	private String descInstitucionEmisora;
 	private String descInstitucionReceptora;
 	private Integer idProducto;
+	private String descProducto;
 	private Integer idCanal;
 	private String descCanal;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaIncoming;
-
+	private String idBin;
+	private String descBin;
+	private String cardholderIdMethod;
+	private String descCardholderIdMethod;
+	private String posTerminalCapability;
+	private String descPosTerminalCapability;
+	private String posEntryMode;
+	private String descPosEntryMode;
 }

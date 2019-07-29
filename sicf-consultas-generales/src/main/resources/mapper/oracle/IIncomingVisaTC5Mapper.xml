@@ -126,7 +126,7 @@
 		</if>
 		<if  test="filtroIdProducto != null " >
 			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
-			AND ID_PRODUCTO LIKE #{pFiltroIdProducto}
+			AND CONCAT(ID_PRODUCTO,DESC_PRODUCTO) LIKE #{pFiltroIdProducto}
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -166,6 +166,10 @@
 			<bind name="pFiltroMerchantCity" value="'%' + filtroMerchantCity + '%'" />
 			AND MERCHANT_CITY LIKE #{pFiltroMerchantCity}
 		</if>
+		<if  test="filtroAuthorization != null " >
+			<bind name="pFiltroAuthorization" value="'%' + filtroAuthorization + '%'" />
+			AND AUTHORIZATION_CODE LIKE #{pFiltroAuthorization}
+		</if>
 		<if  test="filtroMerchantCountryCode != null " >
 			<bind name="pFiltroMerchantCountryCode" value="'%' + filtroMerchantCountryCode + '%'" />
 			AND CONCAT(MERCHANT_COUNTRY_CODE, DESC_MERCHANT_COUNTRY_CODE) LIKE #{pFiltroMerchantCountryCode}
@@ -185,6 +189,26 @@
 		<if  test="filtroIdCanal != null " >
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
 			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
+		</if>
+		<if  test="filtroIdBin != null " >
+			<bind name="pFiltroIdBin" value="'%' + filtroIdBIN + '%'" />
+			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
+		</if>
+		<if  test="filtroIdBin != null " >
+			<bind name="pFiltroIdBin" value="'%' + filtroIdBIN + '%'" />
+			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
+		</if>
+		<if  test="filtroCardHolderIdMethod != null " >
+			<bind name="pFiltroCardHolderIdMethod" value="'%' + filtroCardHolderIdMethod + '%'" />
+			AND CONCAT(CARDHOLDER_ID_METHOD, DESC_CARDHOLDER_ID_METHOD) LIKE #{pFiltroCardHolderIdMethod}
+		</if>
+		<if  test="filtroPosEntryMode != null " >
+			<bind name="pFiltroPosEntryMode" value="'%' + filtroPosEntryMode + '%'" />
+			AND CONCAT(POS_ENTRY_MODE, DESC_POS_ENTRY_MODE) LIKE #{pFiltroPosEntryMode}
+		</if>
+		<if  test="filtroPosEntryMode != null " >
+			<bind name="pFiltroPosTerminalCapability" value="'%' + filtroPosTerminalCapability + '%'" />
+			AND CONCAT(POS_TERMINAL_CAPABILITY, DESC_POS_TERMINAL_CAPABILITY) LIKE #{pFiltroPosTerminalCapability}
 		</if>
 		<if  test="ordenFechaProceso != null " >
 			ORDER BY
@@ -261,6 +285,26 @@
 		<if  test="ordenIdCanal != null " >
 			ORDER BY
 				 ID_CANAL ${ordenIdCanal}
+		</if>
+		<if  test="ordenIdBin != null " >
+			ORDER BY
+				 ID_BIN ${ordenIdBin}
+		</if>
+		<if  test="ordenAuthorizationCode != null " >
+			ORDER BY
+				 AUTHORIZATION_CODE ${ordenAuthorizationCode}
+		</if>
+		<if  test="ordenCardholderIdMethod != null " >
+			ORDER BY
+				 CARDHOLDER_ID_METHOD ${ordenCardholderIdMethod}
+		</if>
+		<if  test="ordenPosEntryMode != null " >
+			ORDER BY
+				 POS_ENTRY_MODE ${ordenPosEntryMode}
+		</if>
+		<if  test="ordenPosTerminalCapability != null " >
+			ORDER BY
+				 POS_TERMINAL_CAPABILITY ${ordenPosTerminalCapability}
 		</if>
 	</sql>
 	<!-- Fin Reutilizables -->

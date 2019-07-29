@@ -83,4 +83,5 @@ public class IncomingVisaTC5TCR0 {
 	private String descCanal;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaIncoming;
+	private String descProducto;
 }
