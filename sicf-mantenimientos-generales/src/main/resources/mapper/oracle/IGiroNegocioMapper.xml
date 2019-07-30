@@ -6,14 +6,20 @@
         SELECT *
         FROM VIE_MAN_GIRO_NEGOCIO
     </sql>
+    
+    <sql id="orden">
+    	ORDER BY ID_GIRO_NEGOCIO
+    </sql>
 
     <select id="buscarTodosGiroNegocio" resultType="GiroNegocio">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
     <select id="buscarGiroNegocioPorMembresia" resultType="GiroNegocio">
         <include refid="consultaVistaMant"/>
         WHERE id_membresia = #{idMembresia}
+        <include refid="orden"/>
     </select>
 
     
