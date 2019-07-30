@@ -56,4 +56,8 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private String ordenTransactionTime;
 	private String ordenMerchantType;
 	private String ordenSecuenciaIncoming;
+	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoTransactionAmountMin;
+	private Double rangoTransactionAmountMax;
 }

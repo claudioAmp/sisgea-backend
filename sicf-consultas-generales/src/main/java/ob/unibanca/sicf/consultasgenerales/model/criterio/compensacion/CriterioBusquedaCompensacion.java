@@ -88,4 +88,8 @@ public class CriterioBusquedaCompensacion {
 	private String ordenGiroNegocio;
 	private String ordenNombreAdquirente;
 	private String ordenPaisAdquirente;
+	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoValorCompensacionMin;
+	private Double rangoValorCompensacionMax;
 }

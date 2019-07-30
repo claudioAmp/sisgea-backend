@@ -85,6 +85,10 @@
 			AND SECUENCIA_INCOMING LIKE #{pFiltroSecuenciaIncoming}
 		</if>
 		
+		<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
+			AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
+		</if>
+		
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
 			FECHA_PROCESO  ${ordenFechaProceso}

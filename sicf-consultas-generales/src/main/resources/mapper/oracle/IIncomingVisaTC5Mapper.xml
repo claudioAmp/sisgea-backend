@@ -207,6 +207,15 @@
 			<bind name="pFiltroPosTerminalCapability" value="'%' + filtroPosTerminalCapability + '%'" />
 			AND CONCAT(POS_TERMINAL_CAPABILITY, DESC_POS_TERMINAL_CAPABILITY) LIKE #{pFiltroPosTerminalCapability}
 		</if>
+		
+		<if  test="rangoDestinationAmountMin != null and rangoDestinationAmountMax != null" >
+			AND DESTINATION_AMOUNT BETWEEN #{rangoDestinationAmountMin} AND #{rangoDestinationAmountMax}
+		</if>
+		
+		<if  test="rangoSourceAmountMin != null and rangoSourceAmountMax != null" >
+			AND SOURCE_AMOUNT BETWEEN #{rangoSourceAmountMin} AND #{rangoSourceAmountMax}
+		</if>
+		
 		<if  test="ordenFechaProceso != null " >
 			ORDER BY
 				FECHA_PROCESO ${ordenFechaProceso}

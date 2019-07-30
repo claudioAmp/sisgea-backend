@@ -69,5 +69,9 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private String ordenTransactionIdentifier;
 	private String ordenTransCodeQualifier;
 
-
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoDestinationAmountMin;
+	private Double rangoDestinationAmountMax;
+	private Double rangoSourceAmountMin;
+	private Double rangoSourceAmountMax;
 }

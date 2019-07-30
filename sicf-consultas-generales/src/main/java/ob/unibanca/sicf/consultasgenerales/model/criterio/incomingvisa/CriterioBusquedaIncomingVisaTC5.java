@@ -101,4 +101,10 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenIdBin;
 	private String ordenAuthorizationCode;
 	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoDestinationAmountMin;
+	private Double rangoDestinationAmountMax;
+	private Double rangoSourceAmountMin;
+	private Double rangoSourceAmountMax;
+	
 }

@@ -190,6 +190,11 @@
 			<bind name="pFiltroPaisAdquirente" value="'%' + filtroPaisAdquirente + '%'" />
 			AND CONCAT(PAIS_ADQUIRENTE, DESC_PAIS_ADQUIRENTE) LIKE #{pFiltroPaisAdquirente}
 		</if>
+		
+		<if  test="rangoValorCompensacionMin != null and rangoValorCompensacionMax != null" >
+			AND VALOR_COMPENSACION BETWEEN #{rangoValorCompensacionMin} AND #{rangoValorCompensacionMax}
+		</if>
+		
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
 			FECHA_PROCESO  ${ordenFechaProceso}

@@ -106,7 +106,16 @@
 				<if  test="filtroDestCurrencyCode != null " >
 					<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
 					AND CONCAT(DEST_CURRENCY_CODE, DESC_DEST_CURRENCY_CODE) LIKE #{pFiltroDestCurrencyCode}
-				</if>	
+				</if>
+				
+				<if  test="rangoDestinationAmountMin != null and rangoDestinationAmountMax != null" >
+					AND DESTINATION_AMOUNT BETWEEN #{rangoDestinationAmountMin} AND #{rangoDestinationAmountMax}
+				</if>
+				
+				<if  test="rangoSourceAmountMin != null and rangoSourceAmountMax != null" >
+					AND SOURCE_AMOUNT BETWEEN #{rangoSourceAmountMin} AND #{rangoSourceAmountMax}
+				</if>
+				
 				<if  test="ordenSecuenciaIncoming != null " >
 				ORDER BY
 					SECUENCIA_INCOMING ${ordenSecuenciaIncoming}
