@@ -41,6 +41,8 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 		if(criterio.getPermited()==1) {
 			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
+		//seteando bidireccional en 0 para no permitirla
+		criterio.setBidireccional(0);
 		List<TablasForaneas> result = this.tablasForaneasMapper.buscarPorCriterios(criterio);
 		if(criterio.getBidireccional()==1 && criterio.getIdTabla()!=0) {
 			for(TablasForaneas t : result) {
