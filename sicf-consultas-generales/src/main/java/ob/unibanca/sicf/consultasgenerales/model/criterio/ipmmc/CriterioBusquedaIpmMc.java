@@ -30,7 +30,7 @@ public class CriterioBusquedaIpmMc {
 	private List<String> typesRecord; //VALOR 1ST y 2ND Debe ir a Una Mutitabla 
 	private List<String> processingCodes;
 	private List<String> cardAuthsMethod; //modo entreda POS
-	private List<String> cardAcceptorsCode;
+	private List<String> cardAcceptorsCode; //MCC
 	private List<String> acqInstitutions; //Tiene longitud 1 a 11
 	private List<String> forInstitutions; //varia de 6 a 11 en longitud 
 	private List<Integer> currencysCode; //Longitud 3
