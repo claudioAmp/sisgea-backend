@@ -22,7 +22,7 @@ public class IpmMcRestController {
 		this.ipmMcService = ipmMcService;
 	}
 	
-	@GetMapping("/ipms-mc/pagination")
+	@GetMapping(value = "/ipms/pagination")
 	public Pagina<CriterioBusquedaIpmMc, IpmMc> buscarPorPagionas(Pagina<CriterioBusquedaIpmMc, IpmMc> criterioPaginacion, CriterioBusquedaIpmMc criterioBusqueda){
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<IpmMc> lista = ipmMcService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(), criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
@@ -30,7 +30,7 @@ public class IpmMcRestController {
 		return pagina;
 	}
 	
-	@GetMapping("/ipms-mc/detalle")
+	@GetMapping("/ipms/detalle")
 	public IpmMcDetalle buscarDetalle(CriterioBusquedaIpmMc criterio) {
 		return ipmMcService.buscarDetalle(criterio);
 	}
