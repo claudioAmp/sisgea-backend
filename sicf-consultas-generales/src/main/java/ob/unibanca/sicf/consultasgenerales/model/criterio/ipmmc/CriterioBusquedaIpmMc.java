@@ -16,24 +16,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIpmMc {
 	
-	private String tramsKey;//x
+	String tramsKey;//x
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaProcesoInicio;//x
+	Date fechaProcesoInicio;//x
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaProcesoFin;//x
+	Date fechaProcesoFin;//x
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaTransaccionInicio; // dateLocalTransaction
+	Date fechaTransaccionInicio; // dateLocalTransaction
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaTransaccionFin; // dateLocalTransaction
-	private String pan;//x
-	private List<String> typesRecord; //VALOR 1ST y 2ND Debe ir a Una Mutitabla 
-	private List<String> processingCodes;
-	private List<String> cardAuthsMethod; //modo entreda POS
-	private List<String> cardAcceptorsCode; //MCC
-	private List<String> acqInstitutions; //Tiene longitud 1 a 11
-	private List<String> forInstitutions; //varia de 6 a 11 en longitud 
-	private List<Integer> currencysCode; //Longitud 3
+	Date fechaTransaccionFin; // dateLocalTransaction
+	String pan;//x
+	List<String> typesRecord; //VALOR 1ST y 2ND Debe ir a Una Mutitabla 
+	List<String> processingCodes;
+	List<String> cardAuthsMethod; //modo entreda POS
+	List<String> cardAcceptorsCode; //MCC
+	List<String> acqInstitutions; //Tiene longitud 1 a 11
+	List<String> forInstitutions; //varia de 6 a 11 en longitud 
+	List<Integer> currencysCode; //Longitud 3
 	
 	//filtros Grilla
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

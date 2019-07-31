@@ -1,252 +1,286 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIpmMcMapper">
-	
-	<!-- CONSULTA DEL  IPM PARA LA GRILLA -->
-	<select id="consultaIpm">
+<mapper
+	namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIpmMcMapper">
+
+	<!-- CONSULTA DEL IPM PARA LA GRILLA -->
+	<sql id="consultaIpmMc">
 		SELECT *
 		FROM MOV_IPM_MCTRANSACTION a
-<!-- 		FROM VIE_CON_IPM_MC a -->
-	</select>
-	
-	<sql id = "fragmentoWhere">
-		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+	</sql>
+
+	<sql id="fragmentoWhere">
+		<if test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio} AND #{fechaProcesoFin}
 		</if>
-		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
-			 AND a.DATE_LOCAL_TXN BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		<if
+			test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			AND a.DATE_LOCAL_TXN BETWEEN #{fechaTransaccionInicio} AND
+			#{fechaTransaccionFin}
 		</if>
-		<if  test="pan != null and pan != ''">
-			 AND a.PAN = #{pan}
+		<if test="pan != null and pan != ''">
+			AND a.PAN = #{pan}
 		</if>
 	</sql>
-	
-	<sql id ="fragmentoWhereMultiples">
+
+	<sql id="fragmentoWhereMultiples">
 		<if test="typesRecord !=null and typesRecord.size()>0">
-			AND a.TYPE_RECORD IN 
-			<foreach item="item" index="index" collection="typesRecord" open ="(" separator="," close=")">
+			AND a.TYPE_RECORD IN
+			<foreach item="item" index="index" collection="typesRecord"
+				open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="processingCodes !=null and processingCodes.size()>0">
-			AND a.PROCESSING_CODE IN 
-			<foreach item="item" index="index" collection="processingCodes" open ="(" separator="," close=")">
+			AND a.PROCESSING_CODE IN
+			<foreach item="item" index="index"
+				collection="processingCodes" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="cardAuthsMethod !=null and cardAuthsMethod.size()>0">
-			AND a.CARDH_AUTHENTICATION_METHOD IN 
-			<foreach item="item" index="index" collection="cardAuthsMethod" open ="(" separator="," close=")">
+			AND a.CARDH_AUTHENTICATION_METHOD IN
+			<foreach item="item" index="index"
+				collection="cardAuthsMethod" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="cardAcceptorsCode !=null and cardAcceptorsCode.size()>0">
-			AND a.CARD_ACCEPTOR_BUSINESS_CODE IN 
-			<foreach item="item" index="index" collection="cardAcceptorsCode" open ="(" separator="," close=")">
+			AND a.CARD_ACCEPTOR_BUSINESS_CODE IN
+			<foreach item="item" index="index"
+				collection="cardAcceptorsCode" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="acqInstitutions !=null and acqInstitutions.size()>0">
-			AND a.ACQUIRING_INSTITUTION_IDCODE IN 
-			<foreach item="item" index="index" collection="acqInstitutions" open ="(" separator="," close=")">
+			AND a.ACQUIRING_INSTITUTION_IDCODE IN
+			<foreach item="item" index="index"
+				collection="acqInstitutions" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="forInstitutions !=null and forInstitutions.size()>0">
-			AND a.FORWARDING_INSTITUTION_IDCODE IN 
-			<foreach item="item" index="index" collection="forInstitutions" open ="(" separator="," close=")">
+			AND a.FORWARDING_INSTITUTION_IDCODE IN
+			<foreach item="item" index="index"
+				collection="forInstitutions" open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 		<if test="currencysCode !=null and currencysCode.size()>0">
-			AND a.CURRENCY_CODE_TRANSACTION IN 
-			<foreach item="item" index="index" collection="currencysCode" open ="(" separator="," close=")">
+			AND a.CURRENCY_CODE_TRANSACTION IN
+			<foreach item="item" index="index" collection="currencysCode"
+				open="(" separator="," close=")">
 				#{item}
 			</foreach>
 		</if>
 	</sql>
-	
+
 	<sql id="fragmentoFiltrosOrdenaciones">
-		<if  test="filtroFechaProceso != null" >
-			AND FECHA_PROCESO = #{filtroFechaProceso}
+		<if test="filtroFechaProceso != null">
+			AND FECHA_PROCESO =
+			#{filtroFechaProceso}
 		</if>
-		<if  test="filtroDateLocalTxn != null" >
-			AND DATE_LOCAL_TXN = #{filtroDateLocalTxn}
+		<if test="filtroDateLocalTxn != null">
+			AND DATE_LOCAL_TXN =
+			#{filtroDateLocalTxn}
 		</if>
-		<if  test="filtroPan != null" >
+		<if test="filtroPan != null">
 			<bind name="pFiltroPan" value="'%' + filtroPan + '%'" />
 			AND PAN LIKE #{pFiltroPan}
 		</if>
-		<if  test="filtroTypeRecord != null" >
-			<bind name="pFiltroTypeRecord" value="'%' + filtroTypeRecord + '%'" />
+		<if test="filtroTypeRecord != null">
+			<bind name="pFiltroTypeRecord"
+				value="'%' + filtroTypeRecord + '%'" />
 			AND TYPE_RECORD LIKE #{pFiltroTypeRecord}
 		</if>
-		<if  test="filtroProcessingCode != null" >
-			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
+		<if test="filtroProcessingCode != null">
+			<bind name="pFiltroProcessingCode"
+				value="'%' + filtroProcessingCode + '%'" />
 			AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
 		</if>
-		<if  test="rangoAmountTxnMin != null and rangoAmountTxnMax != null" >
+		<if test="rangoAmountTxnMin != null and rangoAmountTxnMax != null">
 			AND AMOUNT_TXN BETWEEN #{rangoAmountTxnMin} AND #{rangoAmountTxnMax}
 		</if>
-		<if  test="rangoAmountReconciliaMin != null and rangoAmountReconciliaMax != null" >
-			AND AMOUNT_RECONCILIA BETWEEN #{rangoAmountReconciliaMin} AND #{rangoAmountReconciliaMax}
+		<if
+			test="rangoAmountReconciliaMin != null and rangoAmountReconciliaMax != null">
+			AND AMOUNT_RECONCILIA BETWEEN #{rangoAmountReconciliaMin} AND
+			#{rangoAmountReconciliaMax}
 		</if>
-		<if  test="rangoAmountCardholderMin != null and rangoAmountCardholderMax != null" >
-			AND AMOUNT_CARDHOLDER BETWEEN #{rangoAmountCardholderMin} AND #{rangoAmountCardholderMax}
+		<if
+			test="rangoAmountCardholderMin != null and rangoAmountCardholderMax != null">
+			AND AMOUNT_CARDHOLDER BETWEEN #{rangoAmountCardholderMin} AND
+			#{rangoAmountCardholderMax}
 		</if>
-		<if  test="filtroTimeLocalTxn != null" >
-			<bind name="pFiltroTimeLocalTxn" value="'%' + filtroTimeLocalTxn + '%'" />
+		<if test="filtroTimeLocalTxn != null">
+			<bind name="pFiltroTimeLocalTxn"
+				value="'%' + filtroTimeLocalTxn + '%'" />
 			AND DATE_LOCAL_TXN LIKE #{pFiltroTimeLocalTxn}
 		</if>
-		<if  test="filtroCardhAuthenticationMethod != null" >
-			<bind name="pFiltroCardhAuthenticationMethod" value="'%' + filtroCardhAuthenticationMethod + '%'" />
-			AND CARDH_AUTHENTICATION_METHOD LIKE #{pFiltroCardhAuthenticationMethod}
+		<if test="filtroCardhAuthenticationMethod != null">
+			<bind name="pFiltroCardhAuthenticationMethod"
+				value="'%' + filtroCardhAuthenticationMethod + '%'" />
+			AND CARDH_AUTHENTICATION_METHOD LIKE
+			#{pFiltroCardhAuthenticationMethod}
 		</if>
-		<if  test="filtroCardAcceptorBusinessCode != null" >
-			<bind name="pFiltroCardAcceptorBusinessCode" value="'%' + filtroCardAcceptorBusinessCode + '%'" />
-			AND CARD_ACCEPTOR_BUSINESS_CODE LIKE #{pFiltroCardAcceptorBusinessCode}
+		<if test="filtroCardAcceptorBusinessCode != null">
+			<bind name="pFiltroCardAcceptorBusinessCode"
+				value="'%' + filtroCardAcceptorBusinessCode + '%'" />
+			AND CARD_ACCEPTOR_BUSINESS_CODE LIKE
+			#{pFiltroCardAcceptorBusinessCode}
 		</if>
-		<if  test="filtroAcquiringInstitutionIdcode != null" >
-			<bind name="pFiltroAcquiringInstitutionIdcode" value="'%' + filtroAcquiringInstitutionIdcode + '%'" />
-			AND ACQUIRING_INSTITUTION_IDCODE LIKE #{pFiltroAcquiringInstitutionIdcode}
+		<if test="filtroAcquiringInstitutionIdcode != null">
+			<bind name="pFiltroAcquiringInstitutionIdcode"
+				value="'%' + filtroAcquiringInstitutionIdcode + '%'" />
+			AND ACQUIRING_INSTITUTION_IDCODE LIKE
+			#{pFiltroAcquiringInstitutionIdcode}
 		</if>
-		<if  test="filtroForwardingInstitutionIdcode != null" >
-			<bind name="pFiltroForwardingInstitutionIdcode" value="'%' + filtroForwardingInstitutionIdcode + '%'" />
-			AND FORWARDING_INSTITUTION_IDCODE LIKE #{pFiltroForwardingInstitutionIdcode}
+		<if test="filtroForwardingInstitutionIdcode != null">
+			<bind name="pFiltroForwardingInstitutionIdcode"
+				value="'%' + filtroForwardingInstitutionIdcode + '%'" />
+			AND FORWARDING_INSTITUTION_IDCODE LIKE
+			#{pFiltroForwardingInstitutionIdcode}
 		</if>
-		<if  test="filtroCardAcceptorName != null" >
-			<bind name="pFiltroCardAcceptorName" value="'%' + filtroCardAcceptorName + '%'" />
+		<if test="filtroCardAcceptorName != null">
+			<bind name="pFiltroCardAcceptorName"
+				value="'%' + filtroCardAcceptorName + '%'" />
 			AND CARD_ACCEPTOR_NAME LIKE #{pFiltroCardAcceptorName}
 		</if>
-		<if  test="filtroCardAcceptorCity != null" >
-			<bind name="pFiltroCardAcceptorCity" value="'%' + filtroCardAcceptorCity + '%'" />
+		<if test="filtroCardAcceptorCity != null">
+			<bind name="pFiltroCardAcceptorCity"
+				value="'%' + filtroCardAcceptorCity + '%'" />
 			AND CARD_ACCEPTOR_CITY LIKE #{pFiltroCardAcceptorCity}
 		</if>
-		<if  test="filtroCardAcceptorCountrycode != null" >
-			<bind name="pFiltroCardAcceptorCountrycode" value="'%' + filtroCardAcceptorCountrycode + '%'" />
+		<if test="filtroCardAcceptorCountrycode != null">
+			<bind name="pFiltroCardAcceptorCountrycode"
+				value="'%' + filtroCardAcceptorCountrycode + '%'" />
 			AND CARD_ACCEPTOR_COUNTRYCODE LIKE #{pFiltroCardAcceptorCountrycode}
 		</if>
-		<if  test="filtroCurrencyCodeTransaction != null" >
-			<bind name="pFiltroCurrencyCodeTransaction" value="'%' + filtroCurrencyCodeTransaction + '%'" />
+		<if test="filtroCurrencyCodeTransaction != null">
+			<bind name="pFiltroCurrencyCodeTransaction"
+				value="'%' + filtroCurrencyCodeTransaction + '%'" />
 			AND CURRENCY_CODE_TRANSACTION LIKE #{pFiltroCurrencyCodeTransaction}
 		</if>
-		<if  test="filtroCurrencyCodeReconciliation != null" >
-			<bind name="pFiltroCurrencyCodeReconciliation" value="'%' + filtroCurrencyCodeReconciliation + '%'" />
-			AND CURRENCY_CODE_RECONCILIATION LIKE #{pFiltroCurrencyCodeReconciliation}
+		<if test="filtroCurrencyCodeReconciliation != null">
+			<bind name="pFiltroCurrencyCodeReconciliation"
+				value="'%' + filtroCurrencyCodeReconciliation + '%'" />
+			AND CURRENCY_CODE_RECONCILIATION LIKE
+			#{pFiltroCurrencyCodeReconciliation}
 		</if>
-		<if  test="filtroTramsKey != null" >
+		<if test="filtroTramsKey != null">
 			<bind name="pFiltroTramsKey" value="'%' + filtroTramsKey + '%'" />
 			AND TRAMS_KEY LIKE #{pFiltroTramsKey}
 		</if>
-				
-		<if  test="ordenFechaProceso != null" >
+
+		<if test="ordenFechaProceso != null">
 			ORDER BY
-				FECHA_PROCESO  ${ordenFechaProceso}
+			FECHA_PROCESO ${ordenFechaProceso}
 		</if>
-		<if  test="ordenDateLocalTxn != null" >
+		<if test="ordenDateLocalTxn != null">
 			ORDER BY
-				DATE_LOCAL_TXN  ${ordenDateLocalTxn}
+			DATE_LOCAL_TXN ${ordenDateLocalTxn}
 		</if>
-		<if  test="ordenPan != null" >
+		<if test="ordenPan != null">
 			ORDER BY
-				PAN  ${ordenPan}
+			PAN ${ordenPan}
 		</if>
-		<if  test="ordenTypeRecord != null" >
+		<if test="ordenTypeRecord != null">
 			ORDER BY
-				TYPE_RECORD  ${ordenTypeRecord}
+			TYPE_RECORD ${ordenTypeRecord}
 		</if>
-		<if  test="ordenProcessingCode != null" >
+		<if test="ordenProcessingCode != null">
 			ORDER BY
-				PROCESSING_CODE  ${ordenProcessingCode}
+			PROCESSING_CODE ${ordenProcessingCode}
 		</if>
-		<if  test="ordenAmountTxn != null" >
+		<if test="ordenAmountTxn != null">
 			ORDER BY
-				AMOUNT_TXN  ${ordenAmountTxn}
+			AMOUNT_TXN ${ordenAmountTxn}
 		</if>
-		<if  test="ordenAmountReconcilia != null" >
+		<if test="ordenAmountReconcilia != null">
 			ORDER BY
-				AMOUNT_RECONCILIA  ${ordenAmountReconcilia}
+			AMOUNT_RECONCILIA ${ordenAmountReconcilia}
 		</if>
-		<if  test="ordenAmountCardholder != null" >
+		<if test="ordenAmountCardholder != null">
 			ORDER BY
-				AMOUNT_CARDHOLDER  ${ordenAmountCardholder}
+			AMOUNT_CARDHOLDER ${ordenAmountCardholder}
 		</if>
-		<if  test="ordenTimeLocalTxn != null" >
+		<if test="ordenTimeLocalTxn != null">
 			ORDER BY
-				TIME_LOCAL_TXN  ${ordenTimeLocalTxn}
+			TIME_LOCAL_TXN ${ordenTimeLocalTxn}
 		</if>
-		<if  test="ordenCardhAuthenticationMethod != null" >
+		<if test="ordenCardhAuthenticationMethod != null">
 			ORDER BY
-				CARDH_AUTHENTICATION_METHOD  ${ordenCardhAuthenticationMethod}
+			CARDH_AUTHENTICATION_METHOD ${ordenCardhAuthenticationMethod}
 		</if>
-		<if  test="ordenCardAcceptorBusinessCode != null" >
+		<if test="ordenCardAcceptorBusinessCode != null">
 			ORDER BY
-				CARD_ACCEPTOR_BUSINESS_CODE  ${ordenCardAcceptorBusinessCode}
+			CARD_ACCEPTOR_BUSINESS_CODE ${ordenCardAcceptorBusinessCode}
 		</if>
-		<if  test="ordenAcquiringInstitutionIdcode != null" >
+		<if test="ordenAcquiringInstitutionIdcode != null">
 			ORDER BY
-				ACQUIRING_INSTITUTION_IDCODE  ${ordenAcquiringInstitutionIdcode}
+			ACQUIRING_INSTITUTION_IDCODE ${ordenAcquiringInstitutionIdcode}
 		</if>
-		<if  test="ordenForwardingInstitutionIdcode != null" >
+		<if test="ordenForwardingInstitutionIdcode != null">
 			ORDER BY
-				FORWARDING_INSTITUTION_IDCODE  ${ordenForwardingInstitutionIdcode}
+			FORWARDING_INSTITUTION_IDCODE ${ordenForwardingInstitutionIdcode}
 		</if>
-		<if  test="ordenCardAcceptorName != null" >
+		<if test="ordenCardAcceptorName != null">
 			ORDER BY
-				CARD_ACCEPTOR_NAME  ${ordenCardAcceptorName}
+			CARD_ACCEPTOR_NAME ${ordenCardAcceptorName}
 		</if>
-		<if  test="ordenCardAcceptorCity != null" >
+		<if test="ordenCardAcceptorCity != null">
 			ORDER BY
-				CARD_ACCEPTOR_CITY  ${ordenCardAcceptorCity}
+			CARD_ACCEPTOR_CITY ${ordenCardAcceptorCity}
 		</if>
-		<if  test="ordenCardAcceptorCountrycode != null" >
+		<if test="ordenCardAcceptorCountrycode != null">
 			ORDER BY
-				CARD_ACCEPTOR_COUNTRYCODE  ${ordenCardAcceptorCountrycode}
+			CARD_ACCEPTOR_COUNTRYCODE ${ordenCardAcceptorCountrycode}
 		</if>
-		<if  test="ordenCurrencyCodeTransaction != null" >
+		<if test="ordenCurrencyCodeTransaction != null">
 			ORDER BY
-				CURRENCY_CODE_TRANSACTION  ${ordenCurrencyCodeTransaction}
+			CURRENCY_CODE_TRANSACTION ${ordenCurrencyCodeTransaction}
 		</if>
-		<if  test="ordenCurrencyCodeReconciliation != null" >
+		<if test="ordenCurrencyCodeReconciliation != null">
 			ORDER BY
-				CURRENCY_CODE_RECONCILIATION  ${ordenCurrencyCodeReconciliation}
+			CURRENCY_CODE_RECONCILIATION ${ordenCurrencyCodeReconciliation}
 		</if>
-		<if  test="ordenTramsKey != null" >
+		<if test="ordenTramsKey != null">
 			ORDER BY
-				TRAMS_KEY  ${ordenTramsKey}
+			TRAMS_KEY ${ordenTramsKey}
 		</if>
 	</sql>
-	
-	<select id="buscarPorCriterios" parameterType="CriterioBusquedaIpmMc"  resultType="IpmMc" statementType="PREPARED">	
-		<include refid="consultaIpm" />
+
+	<select id="buscarPorCriterios"
+		parameterType="CriterioBusquedaIpmMc" resultType="IpmMc"
+		statementType="PREPARED">
+		<include refid="consultaIpmMc" />
 		<where>
-			<include refid="fragmentoWhere"/> 
-			<include refid="fragmentoWhereMultiples"/>
-			<include refid="fragmentoFiltrosOrdenaciones"/>
+			<include refid="fragmentoWhere" />
+			<include refid="fragmentoWhereMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
 		</where>
-   	</select>
-   	  	
-   	 <!-- CONSULTA DEL  IPM DETALLE -->
-   	<select id="consultaIpmDetalle">
-   	SELECT *
-   	FROM MOV_IPM_MCTRANSACTION
-<!--    	FROM VIE_CON_IPM_MC_DET  -->
-   	</select>
-	
-	<sql id = "fragmentoWhereDetalle">
-		<if  test="fechaProceso != null">
-			 a.FECHA_PROCESO =  #{fechaProceso}
+	</select>
+
+	<!-- CONSULTA DEL IPM DETALLE -->
+	<sql id="consultaIpmMcDetalle">
+		SELECT *
+		FROM MOV_IPM_MCTRANSACTION
+	</sql>
+
+	<sql id="fragmentoWhereDetalle">
+		<if test="fechaProceso != null">
+			a.FECHA_PROCESO = #{fechaProceso}
 		</if>
-		<if  test="tramsKey != null and tramsKey != ''">
-			 AND a.TRAMS_KEY = #{tramsKey}
+		<if test="tramsKey != null and tramsKey != ''">
+			AND a.TRAMS_KEY = #{tramsKey}
 		</if>
 	</sql>
-	
-	<select id="buscarDetalle" parameterType="CriterioBusquedaIpmMc"  resultType="IpmMcDetalle" statementType="PREPARED">	
-		<include refid="consultaIpmDetalle" />
+
+	<select id="buscarDetalle" parameterType="CriterioBusquedaIpmMc"
+		resultType="IpmMcDetalle" statementType="PREPARED">
+		<include refid="consultaIpmMcDetalle" />
 		<where>
-			<include refid="fragmentoWhereDetalle"/>
+			<include refid="fragmentoWhereDetalle" />
 		</where>
-   	</select>
+	</select>
 
 </mapper>

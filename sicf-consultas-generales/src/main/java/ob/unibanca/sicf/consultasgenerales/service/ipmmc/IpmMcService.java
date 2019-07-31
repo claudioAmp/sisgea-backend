@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.service.ipmmc;
 
+import org.springframework.stereotype.Service;
+
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
@@ -9,6 +11,7 @@ import ob.unibanca.sicf.consultasgenerales.model.ipmmc.IpmMc;
 import ob.unibanca.sicf.consultasgenerales.model.ipmmc.IpmMcDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.ipmmc.CriterioBusquedaIpmMc;
 
+@Service
 public class IpmMcService implements IIpmMcService {
 	
 	private static final String TXN_NO_ENCONTRADA = "No existe una transacción con identificación de secuencia: %s";
