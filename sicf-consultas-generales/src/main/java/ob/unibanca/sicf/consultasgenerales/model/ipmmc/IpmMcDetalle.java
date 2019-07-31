@@ -135,5 +135,30 @@ public class IpmMcDetalle {
 	private Integer originatingMessageFormat;
 	private Integer riskManagementApprovalCode;
 	private String memberReconciliationInd1;
+	
+	/* pirámide */
+	private String idMembresia;
+	private String descMembresia;
+	private String idServicio;
+	private String descServicio;
+	private Integer idProducto;
+	private String descProducto;
+	private Integer idOrigen;
+	private String descOrigen;
+	private Integer idCanal;
+	private String descCanal;
+	private Integer idClaseTransaccion;
+	private String descClaseTransaccion;
+	private Integer idCodigoTransaccion;
+	private String descCodigoTransaccion;
+	private Integer idInstitucionEmisora;
+	private String descInstEmisora;
+	private Integer idInstitucionReceptora;
+	private String descInstReceptora;
+	private String idProceso;
+	private String descProceso;
+	private String idBin;
+	private String descBin;
+	private String idBinReceptor;
 
 }

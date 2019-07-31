@@ -39,6 +39,32 @@ public class IpmMc {
 	private Integer currencyCodeTransaction;
 	private Integer currencyCodeReconciliation;
 	
+	/* pirámide */
+	private String idMembresia;
+	private String descMembresia;
+	private String idServicio;
+	private String descServicio;
+	private Integer idProducto;
+	private String descProducto;
+	private Integer idOrigen;
+	private String descOrigen;
+	private Integer idCanal;
+	private String descCanal;
+	private Integer idClaseTransaccion;
+	private String descClaseTransaccion;
+	private Integer idCodigoTransaccion;
+	private String descCodigoTransaccion;
+	private Integer idInstitucionEmisora;
+	private String descInstEmisora;
+	private Integer idInstitucionReceptora;
+	private String descInstReceptora;
+	private String idProceso;
+	private String descProceso;
+	private String idBin;
+	private String descBin;
+	private String idBinReceptor;
+	private String descBinReceptor;
+	
 	//POR VER SI ALGUNAS DE LAS SIGUIENTES VA EN LA GRILLA O EN EL FILTRO DE CONSULTA
 	private Integer currencyCodeCardholder;
 	private String addAmountAccountType;
