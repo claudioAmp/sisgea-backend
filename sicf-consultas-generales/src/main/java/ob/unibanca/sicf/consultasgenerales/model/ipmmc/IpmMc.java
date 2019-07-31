@@ -17,53 +17,54 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class IpmMc {
 	
-	private String tramsKey;
+	private String tramsKey; //
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaProceso;
-	private String pan;
-	private String typeRecord;
-	private String processingCode;
-	private Double amountTxn;
+	private Date fechaProceso; //
+	private String pan; //
+	private String typeRecord; //falta descripcion
+	private String processingCode; //no en debe estar en la grilla
+	private Double amountTxn; //
 	private Double amountReconcilia;
 	private Double amountCardholder;
+	private String acquirerReferenceData; // es el ARN
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dateLocalTxn;
-	private String timeLocalTxn;
+	private Date dateLocalTxn;//	
+	private String timeLocalTxn; //
 	private String cardhAuthenticationMethod;
-	private String cardAcceptorBusinessCode;
+	private String cardAcceptorBusinessCode;  //
 	private String acquiringInstitutionIdcode;
 	private String forwardingInstitutionIdcode;
-	private String cardAcceptorName;
-	private String cardAcceptorCity;
-	private String cardAcceptorCountrycode;
-	private Integer currencyCodeTransaction;
-	private Integer currencyCodeReconciliation;
+	private String cardAcceptorName; //
+	private String cardAcceptorCity; // no debe ir en grilla
+	private String cardAcceptorCountrycode; // falta descripcion descCardAcceptorCountrycode
+	private Integer currencyCodeTransaction; // falta descripcion descCurrencyCodeTransaction
+	private Integer currencyCodeReconciliation;  // falta descripcion descCurrencyCodeReconciliation
 	
 	/* pirámide */
 	private String idMembresia;
 	private String descMembresia;
 	private String idServicio;
 	private String descServicio;
-	private Integer idProducto;
-	private String descProducto;
+	private Integer idProducto; //
+	private String descProducto; //
 	private Integer idOrigen;
 	private String descOrigen;
-	private Integer idCanal;
-	private String descCanal;
+	private Integer idCanal; //
+	private String descCanal; //
 	private Integer idClaseTransaccion;
 	private String descClaseTransaccion;
 	private Integer idCodigoTransaccion;
 	private String descCodigoTransaccion;
-	private Integer idInstitucionEmisora;
-	private String descInstEmisora;
-	private Integer idInstitucionReceptora;
-	private String descInstReceptora;
-	private String idProceso;
-	private String descProceso;
-	private String idBin;
-	private String descBin;
-	private String idBinReceptor;
-	private String descBinReceptor;
+	private Integer idInstitucionEmisora; //
+	private String descInstEmisora; //
+	private Integer idInstitucionReceptora; //
+	private String descInstReceptora; //
+	private String idProceso; //
+	private String descProceso; //
+	private String idBin; //
+	private String descBin; //
+	private String idBinReceptor; //no debe en grilla
+	private String descBinReceptor; //no debe en grilla
 	
 	//POR VER SI ALGUNAS DE LAS SIGUIENTES VA EN LA GRILLA O EN EL FILTRO DE CONSULTA
 	private Integer currencyCodeCardholder;
