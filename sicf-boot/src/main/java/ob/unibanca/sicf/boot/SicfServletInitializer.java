@@ -33,12 +33,12 @@ public class SicfServletInitializer extends SpringBootServletInitializer {
 			} else {
 				log.info("El archivo de configuración {} no existe", rutaAppProperties);
 				log.info("Cargando archivos de configuración del empaquetado WAR");
-				return application.sources(SicfBoot.class).properties();
+				return application.sources(SicfBoot.class);
 			}
 		} else {
 			log.info("La variabla de entorno {} no existe", UBA_SICF_CFG);
 			log.info("Cargando archivos locales de configuración del empaquetado WAR");
-			return application.sources(SicfBoot.class).properties();
+			return application.sources(SicfBoot.class);
 		}
 	}
 }
