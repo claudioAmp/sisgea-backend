@@ -16,71 +16,90 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIpmMc {
 	
-	String tramsKey;//x
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date dateLocalTxnInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date dateLocalTxnFin;
+	String pan;
+	List<String> typeRecord;
+	List<String> cardDataInputCapability;
+	List<String> cardDataInputMode;
+	List<String> cardhAuthenticationMethod;
+	Integer currencyCodeCardholder;
+	List<Integer> idCanal;
+	List<Integer> idInstitucionEmisora;
+	List<String> idProceso;
+	List<String> idBin;
 	
+	//Filtro para Llamar Detalle del IPM
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	Date fechaProcesoInicio;//x
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	Date fechaProcesoFin;//x
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	Date fechaTransaccionInicio; // dateLocalTransaction
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	Date fechaTransaccionFin; // dateLocalTransaction
-	String pan;//x
-	List<String> typesRecord; //VALOR 1ST y 2ND Debe ir a Una Mutitabla 
-	List<String> processingCodes;
-	List<String> cardAuthsMethod; //modo entreda POS
-	List<String> cardAcceptorsCode; //MCC
-	List<String> acqInstitutions; //Tiene longitud 1 a 11
-	List<String> forInstitutions; //varia de 6 a 11 en longitud 
-	List<Integer> currencysCode; //Longitud 3
+	Date dateLocalTxn;
+	String tramsKey;
 	
 	//filtros Grilla
+	private String filtroTramsKey;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaProceso;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date filtroDateLocalTxn;
 	private String filtroPan;
 	private String filtroTypeRecord;
-	private String filtroProcessingCode;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroDateLocalTxn;
 	private String filtroTimeLocalTxn;
+	private String filtroCardDataInputCapability;
+	private String filtroCardDataInputMode;
 	private String filtroCardhAuthenticationMethod;
 	private String filtroCardAcceptorBusinessCode;
-	private String filtroAcquiringInstitutionIdcode;
-	private String filtroForwardingInstitutionIdcode;
+	private String filtroAcquirerReferenceData;
+	private String filtroApprovalCode;
 	private String filtroCardAcceptorName;
-	private String filtroCardAcceptorCity;
 	private String filtroCardAcceptorCountrycode;
 	private String filtroCurrencyCodeTransaction;
-	private String filtroCurrencyCodeReconciliation;
-	private String filtroTramsKey;
+	private String filtroCurrencyCodeCardholder;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroSettlDate;
+	private String filtroIdTransaccion;
+	private String filtroIdProducto;
+	private String filtroIdCanal;
+	private String filtroIdInstitucionEmisora;
+	private String filtroIdInstitucionReceptora;
+	private String filtroIdProceso;
+	private String filtroIdBin;
 	
 	//orden Grilla
+	private String ordenTramsKey;
 	private String ordenFechaProceso;
-	private String ordenDateLocalTxn;
 	private String ordenPan;
 	private String ordenTypeRecord;
-	private String ordenProcessingCode;
 	private String ordenAmountTxn;
-	private String ordenAmountReconcilia;
 	private String ordenAmountCardholder;
+	private String ordenDateLocalTxn;
 	private String ordenTimeLocalTxn;
+	private String ordenCardDataInputCapability;
+	private String ordenCardDataInputMode;
 	private String ordenCardhAuthenticationMethod;
 	private String ordenCardAcceptorBusinessCode;
-	private String ordenAcquiringInstitutionIdcode;
-	private String ordenForwardingInstitutionIdcode;
+	private String ordenAcquirerReferenceData;
+	private String ordenApprovalCode;
 	private String ordenCardAcceptorName;
-	private String ordenCardAcceptorCity;
 	private String ordenCardAcceptorCountrycode;
 	private String ordenCurrencyCodeTransaction;
-	private String ordenCurrencyCodeReconciliation;
-	private String ordenTramsKey;
+	private String ordenCurrencyCodeCardholder;
+	private String ordenSettlDate;
+	private String ordenIdTransaccion;
+	private String ordenIdProducto;
+	private String ordenIdCanal;
+	private String ordenIdInstitucionEmisora;
+	private String ordenIdInstitucionReceptora;
+	private String ordenIdProceso;
+	private String ordenIdBin;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoAmountTxnMin;
 	private Double rangoAmountTxnMax;
-	private Double rangoAmountReconciliaMin;
-	private Double rangoAmountReconciliaMax;
 	private Double rangoAmountCardholderMin;
 	private Double rangoAmountCardholderMax;
 	
