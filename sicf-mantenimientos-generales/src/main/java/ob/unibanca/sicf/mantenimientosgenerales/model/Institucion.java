@@ -29,6 +29,7 @@ public class Institucion {
 	private String direccion;
 	private boolean esBancoAdministrador;
 	private String tipoInstitucion;
+	private String descripcionTipoInstitucion;
 	private boolean esProcesador;
 	@CaracterNoRequerido(minLength = 1, maxLength = 15, regexpPattern = "[0-9]+")
 	private String cuentaContableMonedaBase;
