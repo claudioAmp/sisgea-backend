@@ -95,7 +95,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenInstitucionEmisora;
 	private String ordenInstitucionReceptora;
 	private String ordenIdCanal;
-	private String ordenCardHolderIdMethod;
+	private String ordenCardholderIdMethod;
 	private String ordenPosEntryMode;
 	private String ordenPosTerminalCapability;
 	private String ordenIdBin;

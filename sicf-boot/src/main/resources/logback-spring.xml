@@ -52,7 +52,7 @@
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
         </logger>
-        <logger name="ob.unibanca.sicf" level="error" additivity="false">
+        <logger name="ob.unibanca.sicf" level="info" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>
         </logger>
