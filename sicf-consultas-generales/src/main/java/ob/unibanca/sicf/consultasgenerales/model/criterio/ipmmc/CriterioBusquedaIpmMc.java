@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIpmMc {
 	
-	String tramsKey;
-	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProcesoInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -36,6 +34,11 @@ public class CriterioBusquedaIpmMc {
 	List<Integer> idInstitucionEmisora;
 	List<String> idProceso;
 	List<String> idBin;
+	
+	//Filtro para Llamar Detalle del IPM
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProceso;
+	String tramsKey;
 	
 	//filtros Grilla
 	private String filtroTramsKey;
