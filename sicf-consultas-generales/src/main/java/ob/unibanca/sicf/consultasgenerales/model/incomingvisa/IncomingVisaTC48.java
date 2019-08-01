@@ -30,8 +30,8 @@ public class IncomingVisaTC48 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transactionDate;
 	private String transactionTime;
-	private double transactionAmount;
-	private String transactionCurrencyCode;
+	private Double transactionAmount;
+	private Integer transactionCurrencyCode;
 	private String descTransactionCurrencyCode;
 	private String merchantType;
 	private String descMerchantType;

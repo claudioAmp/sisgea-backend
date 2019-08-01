@@ -26,7 +26,7 @@ public class IncomingVisaTC48TCR1 {
 	private String traceNumber;
 	private String cardAcceptorName;
 	private String nationalPosGeoData;
-	private double amountIssuer;
+	private Double amountIssuer;
 	private String addressVerifData;
 	private String forwardingInstId;
 	private String forwInstCountryCode;
