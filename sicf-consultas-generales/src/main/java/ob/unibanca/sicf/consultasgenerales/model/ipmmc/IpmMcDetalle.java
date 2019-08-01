@@ -112,7 +112,7 @@ public class IpmMcDetalle {
 	private Integer idInstitucionReceptora;
 	private String descInstitucionReceptora;
 	private String idProceso;
-	private String descIdProceso;
+	private String descProceso;
 	private String idBin;
 	private String descBin;
 

@@ -25,7 +25,7 @@ public class CriterioBusquedaIpmMc {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date dateLocalTxnFin;
 	String pan;
-	String typeRecord;
+	List<String> typeRecord;
 	List<String> cardDataInputCapability;
 	List<String> cardDataInputMode;
 	List<String> cardhAuthenticationMethod;
@@ -46,8 +46,6 @@ public class CriterioBusquedaIpmMc {
 	private Date filtroFechaProceso;
 	private String filtroPan;
 	private String filtroTypeRecord;
-	private String filtroAmountTxn;
-	private String filtroAmountCardholder;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroDateLocalTxn;
 	private String filtroTimeLocalTxn;
@@ -62,7 +60,7 @@ public class CriterioBusquedaIpmMc {
 	private String filtroCurrencyCodeTransaction;
 	private String filtroCurrencyCodeCardholder;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date filtroDettlDate;
+	private Date filtroSettlDate;
 	private String filtroIdTransaccion;
 	private String filtroIdProducto;
 	private String filtroIdCanal;
@@ -90,7 +88,7 @@ public class CriterioBusquedaIpmMc {
 	private String ordenCardAcceptorCountrycode;
 	private String ordenCurrencyCodeTransaction;
 	private String ordenCurrencyCodeCardholder;
-	private String ordenDettlDate;
+	private String ordenSettlDate;
 	private String ordenIdTransaccion;
 	private String ordenIdProducto;
 	private String ordenIdCanal;
