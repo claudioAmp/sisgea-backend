@@ -48,7 +48,7 @@ public class IpmMc {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date settlDate;
 	private Integer idTransaccion;
-	private String  descIdTransaccion;
+	private String  descTransaccion;
 	private Integer idProducto;
 	private String descProducto;
 	private Integer idCanal;

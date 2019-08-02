@@ -37,14 +37,13 @@ public class IncomingVisaTC48TCR0 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transactionDate;
 	private String transactionTime;
-	private double transactionAmount;
-	private String cardholderCurrencyCode;
+	private Double transactionAmount;
+	private Integer cardholderCurrencyCode;
 	private String descCardholderCurrencyCode;
-	private String transactionCurrencyCode;
+	private Integer transactionCurrencyCode;
 	private String descTransactionCurrencyCode;
 	private String cardholderConvRate;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date expirationDate;
+	private String expirationDate;
 	private String acquiringInstId;
 	private String descAcquiringInstId;
 	private String acqInstCountryCode;

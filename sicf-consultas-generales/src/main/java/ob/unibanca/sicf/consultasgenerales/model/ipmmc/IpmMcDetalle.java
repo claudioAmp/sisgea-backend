@@ -102,9 +102,11 @@ public class IpmMcDetalle {
 	private String idServicio;
 	private String descServicio;
 	private Integer idTransaccion;
-	private String  descIdTransaccion;
+	private String  descTransaccion;
 	private Integer idProducto;
 	private String descProducto;
+	private Integer idOrigen;
+	private String descOrigen;
 	private Integer idCanal;
 	private String descCanal;
 	private Integer idInstitucionEmisora;
