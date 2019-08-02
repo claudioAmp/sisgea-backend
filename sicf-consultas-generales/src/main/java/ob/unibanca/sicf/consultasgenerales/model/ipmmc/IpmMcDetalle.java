@@ -56,6 +56,7 @@ public class IpmMcDetalle {
 	private String functionCode;
 	private String descFunctionCode;
 	private String messageReasonCode;
+	private String descMessageReasonCode;
 	private String cardAcceptorBusinessCode;
 	private String descCardAcceptorBusinessCode;
 	private Double originalAmountTxn;
@@ -78,6 +79,7 @@ public class IpmMcDetalle {
 	private Integer currencyCodeTransaction;
 	private String descCurrencyCodeTransaction;
 	private Integer currencyCodeReconciliation;
+	private String descCurrencyCodeReconciliation;
 	private Integer currencyCodeCardholder;
 	private String descCurrencyCodeCardholder;
 	private String lifeCycleSupportIndicator;
