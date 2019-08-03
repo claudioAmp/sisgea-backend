@@ -28,5 +28,5 @@ public class CampoQuery {
     String funcionGrupo;
     String idTipoDato;
     int permitido;
-
+    int truncable;
 }

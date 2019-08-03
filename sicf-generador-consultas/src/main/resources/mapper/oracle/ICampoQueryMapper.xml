@@ -20,6 +20,7 @@
 			, ID_FUNCION_GRUPO
 			, FUNCION_GRUPO
             , ID_TIPO_DATO
+            , TRUNCABLE
 			<if  test="permited!= null and permited!= 0">
        			, fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
             </if>

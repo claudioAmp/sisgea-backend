@@ -24,4 +24,5 @@ public class Reporte {
 	private List<Filtro> filtros; 
 	private List<CondicionQuery> condiciones;
 	private List<TablaOnJoin> tablasOnJoin; 
+	private boolean visualiza;
 }
