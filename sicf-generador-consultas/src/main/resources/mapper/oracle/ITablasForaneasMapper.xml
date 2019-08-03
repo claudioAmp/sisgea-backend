@@ -27,7 +27,7 @@
 	        <if  test="idTabla != null and idTabla != 0 and bidireccional != 1">
 	       		AND ID_TABLA = #{idTabla}
 	        </if>
-	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != -1 ">
+	         <if  test=" idRelacionTablaFk != null and idRelacionTablaFk != 0 ">
 	       		AND ID_RELACION_TABLA_FK = #{idRelacionTablaFk}
 	        </if>
 	        <if  test=" permited != 0 ">
