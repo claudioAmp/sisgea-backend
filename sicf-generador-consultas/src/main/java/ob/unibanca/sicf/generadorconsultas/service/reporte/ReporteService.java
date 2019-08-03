@@ -179,6 +179,8 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			cq.setIdReporte(idReporte);
 			if( cq.getIdCondicionPadre()!=0) {
 				cq.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(), cq.getIdCondicionPadre()).getIdCondicionQuery());
+			}else {
+				cq.setIdCondicionPadre(null);
 			}
 			Reporte.getCondiciones().set(idxCondicion, cq);
 			this.condicionService.registrar(cq);
