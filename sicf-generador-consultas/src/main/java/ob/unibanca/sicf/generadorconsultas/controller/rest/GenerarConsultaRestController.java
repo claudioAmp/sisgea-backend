@@ -29,6 +29,7 @@ public class GenerarConsultaRestController {
 	@PostMapping(value = "/generar-consulta", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public String generar(@RequestBody Reporte reporteEstado) {
+		reporteEstado.setVisualiza(false);
 		return this.generarConsultaService.generarConsulta(reporteEstado);
 	}
 }
