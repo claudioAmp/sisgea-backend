@@ -12,7 +12,7 @@
         FROM VIE_MAN_TIPO_TARIFA
     </sql>
     
-    <sql id="ordenBy">
+    <sql id="orderBy">
     	ORDER BY id_tarifa
     </sql>    
 
