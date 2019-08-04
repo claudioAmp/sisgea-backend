@@ -69,7 +69,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroInstitucionEmisora;
 	private String filtroInstitucionReceptora;
 	private String filtroIdCanal;
-	private String filtroCardHolderIdMethod;
+	private String filtroCardholderIdMethod;
 	private String filtroPosEntryMode;
 	private String filtroPosTerminalCapability;
 	private String filtroIdBin;
