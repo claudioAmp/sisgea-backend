@@ -34,6 +34,7 @@ public class InstitucionRestController {
 	@PreAuthorize("hasPermission('MANT_INSTIT', '2')")
 	@GetMapping(value = "/instituciones")
 	public List<Institucion> buscarTodosInstituciones() {
+		System.out.println(this.institucionService.buscarTodos());
 		return this.institucionService.buscarTodosInstituciones();
 	}
 	

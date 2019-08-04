@@ -11,6 +11,10 @@
              , descripcion_esquema
         FROM VIE_MAN_TIPO_TARIFA
     </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_tarifa
+    </sql>    
 
     <select id="buscarTodos" resultType="TipoTarifa" statementType="PREPARED">
        <include refid="consultaVistaMant" />
