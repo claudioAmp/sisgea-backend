@@ -9,6 +9,7 @@
 		  DESCRIPCION 	AS DESCRIPCION,
           DESC_CORTA    AS DESC_CORTA,
           FRECUENCIA	AS FRECUENCIA,
+          PRIORIDAD 	AS PRIORIDAD,
           FRECUENCIA_MAXIMA AS FRECUENCIA_MAXIMA
 		FROM VIE_MAN_REP_QUERY 
     </sql>
@@ -40,6 +41,7 @@
                 #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descCorta, 	  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.frecuencia, 	  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.prioridad, 	  jdbcType=NUMERIC, mode=IN},
                 #{usuario, 						  jdbcType=VARCHAR, mode=IN}
             )
         }
