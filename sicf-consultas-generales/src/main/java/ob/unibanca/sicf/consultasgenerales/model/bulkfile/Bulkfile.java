@@ -41,6 +41,11 @@ public class Bulkfile {
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
+	String posEntry;
+	String modEntradaPos;//
+	String descripcionModEntradaPos;
+	String capacidadEntradaPin;//
+	String descripcionCapacidadEntradaPin;//
 	double amountSettlement;
 	String amountSettlementInd;
 	double interchangeFee;

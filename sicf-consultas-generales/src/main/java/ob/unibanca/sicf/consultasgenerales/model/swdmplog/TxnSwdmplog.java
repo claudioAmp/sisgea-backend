@@ -47,7 +47,7 @@ public class TxnSwdmplog {
 	private String idServicio;
 	private String descripcionServicio;
 	private Integer idCanal;
-	private String descripcionIdCanal;
+	private String descripcionCanal;
 	private Integer idInstitucionEmisora;
 	private String descripcionInstEmisora;
 	private Integer idInstitucionReceptora;
