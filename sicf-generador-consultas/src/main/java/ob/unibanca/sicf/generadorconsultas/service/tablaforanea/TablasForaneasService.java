@@ -43,7 +43,7 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 		}
 		//seteando bidireccional en 0 para no permitirla
 		criterio.setBidireccional(0);
-		List<TablasForaneas> result = this.tablasForaneasMapper.buscarPorCriterios(criterio);
+		/*List<TablasForaneas> result = this.tablasForaneasMapper.buscarPorCriterios(criterio);
 		if(criterio.getBidireccional()==1 && criterio.getIdTabla()!=0) {
 			for(TablasForaneas t : result) {
 				if(t.getIdTablaForanea()==criterio.getIdTabla() && t.getIdTabla()!=criterio.getIdTabla() ) {
@@ -66,8 +66,8 @@ public class TablasForaneasService extends MantenibleService<TablasForaneas> imp
 				resultAux.add(t);
 			}
 			result=resultAux;
-		}
-		return result;
+		}*/
+		return this.tablasForaneasMapper.buscarPorCriterios(criterio);
 	}
 
 	@Override

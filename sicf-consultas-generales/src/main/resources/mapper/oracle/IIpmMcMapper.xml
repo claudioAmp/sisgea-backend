@@ -122,7 +122,7 @@
 		</if>
 		<if test="filtroAcquirerReferenceData != null">
 			<bind name="pFiltroAcquirerReferenceData" value="'%' + filtroAcquirerReferenceData + '%'" />
-			AND ACQUIRER_REFERENCE_DATA LIKE #{pFiltroCardAcceptorBusinessCode}
+			AND ACQUIRER_REFERENCE_DATA LIKE #{pFiltroAcquirerReferenceData}
 		</if>
 		<if test="filtroApprovalCode != null">
 			<bind name="pFiltroApprovalCode" value="'%' + filtroApprovalCode + '%'" />

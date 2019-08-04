@@ -130,7 +130,7 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		for (CondicionQuery condicion : reporteEstado.getCondiciones()) {
 			// Si se trata de una condicion del where
 			if (condicion.getTipoCondicion() == 0) {
-				if (condicion.getIdCondicionPadre() == 0 && reporteEstado.getFiltros() != null) {
+				if ((condicion.getIdCondicionPadre() == null||condicion.getIdCondicionPadre() == 0) && reporteEstado.getFiltros() != null) {
 					flagExiste = true;
 					List<Filtro> trucoLista = new ArrayList<Filtro>();
 					List<Filtro> temporal = new ArrayList<Filtro>();
