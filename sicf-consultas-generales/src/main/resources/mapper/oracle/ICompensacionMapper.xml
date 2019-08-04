@@ -111,32 +111,32 @@
 		</if>
 		<if  test="filtroIdMembresia != null " >
 			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
-			AND CONCAT(ID_MEMBRESIA, DESC_MEMBRESIA) LIKE #{pFiltroIdMembresia} 
+			AND CONCAT(ID_MEMBRESIA, UPPER(DESC_MEMBRESIA)) LIKE UPPER(#{pFiltroIdMembresia})
 		</if>
 		<if  test="filtroIdServicio != null " >
 			<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
-			AND CONCAT(ID_SERVICIO, DESC_SERVICIO) LIKE #{pFiltroIdServicio}
+			AND CONCAT(ID_SERVICIO, UPPER(DESC_SERVICIO)) LIKE UPPER(#{pFiltroIdServicio})
 		</if>
 		<if  test="filtroIdOrigen != null " >
 			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
-			AND CONCAT(ID_ORIGEN, DESC_ORIGEN) LIKE #{pFiltroIdOrigen}
+			AND CONCAT(ID_ORIGEN, UPPER(DESC_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
 		</if>
 		<if  test="filtroIdTransaccion != null " >
 			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
-			AND CONCAT(ID_TRANSACCION, DESC_CODIGO_TRANSACCION) LIKE #{pFiltroIdTransaccion}
+			AND CONCAT(ID_TRANSACCION, UPPER(DESC_CODIGO_TRANSACCION)) LIKE UPPER(#{pFiltroIdTransaccion})
 		</if>
 	
 		<if  test="filtroIdCanal != null " >
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
-			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
+			AND CONCAT(ID_CANAL, UPPER(DESC_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
 		</if>
 		<if  test="filtroIdInstitucionEmisora != null " >
 			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
-			AND CONCAT(ID_INSTITUCION_EMISORA, DESC_INSTITUCION_EMISORA) LIKE #{pFiltroIdInstitucionEmisora}
+			AND CONCAT(ID_INSTITUCION_EMISORA, UPPER(DESC_INSTITUCION_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
 		</if>
 		<if  test="filtroIdInstitucionReceptora != null " >
 			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
-			AND CONCAT(ID_INSTITUCION_RECEPTORA, DESC_INSTITUCION_RECEPTORA) LIKE #{pFiltroIdInstitucionReceptora}
+			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		<if  test="filtroNumeroTarjeta != null " >
 			<bind name="pFiltroNumeroTarjeta" value="'%' + filtroNumeroTarjeta + '%'" />
@@ -144,11 +144,11 @@
 		</if>
 		<if  test="filtroBin != null " >
 			<bind name="pFiltroBin" value="'%' + filtroBin + '%'" />
-			AND CONCAT(BIN, DESC_BIN) LIKE #{pFiltroBin}
+			AND CONCAT(BIN, UPPER(DESC_BIN)) LIKE UPPER(#{pFiltroBin})
 		</if>
 		<if  test="filtroIdMonedaCompensacion != null " >
 			<bind name="pFiltroIdMonedaCompensacion" value="'%' + filtroIdMonedaCompensacion + '%'" />
-			AND CONCAT(ID_MONEDA_COMPENSACION, DESC_MONEDA_COMPENSACION) LIKE #{pFiltroIdMonedaCompensacion}
+			AND CONCAT(ID_MONEDA_COMPENSACION, UPPER(DESC_MONEDA_COMPENSACION)) LIKE UPPER(#{pFiltroIdMonedaCompensacion})
 		</if>
 		<if  test="filtroValorCompensacion != null " >
 			<bind name="pFiltroValorCompensacion" value="'%' + filtroValorCompensacion + '%'" />
@@ -163,7 +163,7 @@
 		</if>
 		<if  test="filtroCodigoRespuesta != null " >
 			<bind name="pFiltroCodigoRespuesta" value="'%' + filtroCodigoRespuesta + '%'" />
-			AND CONCAT(CODIGO_RESPUESTA, DESC_CODIGO_RESPUESTA) LIKE #{pFiltroCodigoRespuesta}
+			AND CONCAT(CODIGO_RESPUESTA, UPPER(DESC_CODIGO_RESPUESTA)) LIKE UPPER(#{pFiltroCodigoRespuesta})
 		</if>
 		<if  test="filtroNumeroTrace != null " >
 			<bind name="pFiltroNumeroTrace" value="'%' + filtroNumeroTrace + '%'" />
@@ -179,7 +179,7 @@
 		</if>
 		<if  test="filtroGiroNegocio != null " >
 			<bind name="pFiltroGiroNegocio" value="'%' + filtroGiroNegocio + '%'" />
-			AND CONCAT(GIRO_NEGOCIO, DESC_GIRO_NEGOCIO) LIKE #{pFiltroGiroNegocio}
+			AND CONCAT(GIRO_NEGOCIO, UPPER(DESC_GIRO_NEGOCIO)) LIKE UPPER(#{pFiltroGiroNegocio})
 		</if>
 		<if  test="filtroNombreAdquirente != null " >
 			<bind name="pFiltroNombreAdquirente" value="'%' + filtroNombreAdquirente + '%'" />
@@ -188,7 +188,7 @@
 		
 		<if  test="filtroPaisAdquirente != null " >
 			<bind name="pFiltroPaisAdquirente" value="'%' + filtroPaisAdquirente + '%'" />
-			AND CONCAT(PAIS_ADQUIRENTE, DESC_PAIS_ADQUIRENTE) LIKE #{pFiltroPaisAdquirente}
+			AND CONCAT(PAIS_ADQUIRENTE, UPPER(DESC_PAIS_ADQUIRENTE)) LIKE UPPER(#{pFiltroPaisAdquirente})
 		</if>
 		
 		<if  test="rangoValorCompensacionMin != null and rangoValorCompensacionMax != null" >

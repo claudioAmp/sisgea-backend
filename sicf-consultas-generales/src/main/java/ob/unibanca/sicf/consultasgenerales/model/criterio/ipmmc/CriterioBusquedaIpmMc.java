@@ -38,7 +38,6 @@ public class CriterioBusquedaIpmMc {
 	//Filtro para Llamar Detalle del IPM
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date dateLocalTxn;
-	Date fechaProceso;
 	String tramsKey;
 	
 	//filtros Grilla

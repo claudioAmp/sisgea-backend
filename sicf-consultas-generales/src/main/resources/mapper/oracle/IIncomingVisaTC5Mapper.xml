@@ -122,11 +122,11 @@
 		</if>
 		<if  test="filtroTransactionCode != null " >
 			<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
-			AND CONCAT(TRANSACTION_CODE, DESC_TRANSACTION_CODE) LIKE #{pFiltroTransactionCode}
+			AND CONCAT(TRANSACTION_CODE, UPPER(DESC_TRANSACTION_CODE)) LIKE UPPER(#{pFiltroTransactionCode})
 		</if>
 		<if  test="filtroIdProducto != null " >
 			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
-			AND CONCAT(ID_PRODUCTO,DESC_PRODUCTO) LIKE #{pFiltroIdProducto}
+			AND CONCAT(ID_PRODUCTO, UPPER(DESC_PRODUCTO)) LIKE UPPER(#{pFiltroIdProducto})
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -144,7 +144,7 @@
 		</if>
 		<if  test="filtroSourceCurrencyCode != null " >
 			<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
-			AND CONCAT(SOURCE_CURRENCY_CODE, DESC_SOURCE_CURRENCY_CODE) LIKE #{pFiltroSourceCurrencyCode}
+			AND CONCAT(SOURCE_CURRENCY_CODE, UPPER(DESC_SOURCE_CURRENCY_CODE)) LIKE UPPER(#{pFiltroSourceCurrencyCode})
 		</if>
 		<if  test="filtroSourceAmount != null " >
 			<bind name="pFiltroSourceAmount" value="'%'+filtroSourceAmount+'%'" />
@@ -152,7 +152,7 @@
 		</if>
 		<if  test="filtroDestCurrencyCode != null " >
 			<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
-			AND CONCAT(DEST_CURRENCY_CODE, DESC_DEST_CURRENCY_CODE) LIKE #{pFiltroDestCurrencyCode}
+			AND CONCAT(DEST_CURRENCY_CODE, UPPER(DESC_DEST_CURRENCY_CODE)) LIKE UPPER(#{pFiltroDestCurrencyCode})
 		</if>
 		<if  test="filtroDestinationAmount != null " >
 			<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
@@ -172,7 +172,7 @@
 		</if>
 		<if  test="filtroMerchantCountryCode != null " >
 			<bind name="pFiltroMerchantCountryCode" value="'%' + filtroMerchantCountryCode + '%'" />
-			AND CONCAT(MERCHANT_COUNTRY_CODE, DESC_MERCHANT_COUNTRY_CODE) LIKE UPPER(#{pFiltroMerchantCountryCode})
+			AND CONCAT(MERCHANT_COUNTRY_CODE, UPPER(DESC_MERCHANT_COUNTRY_CODE)) LIKE UPPER(#{pFiltroMerchantCountryCode})
 		</if>
 		<if  test="filtroMerchantCategoryCode != null " >
 			<bind name="pFiltroMerchantCategoryCode" value="'%' + filtroMerchantCategoryCode + '%'" />
@@ -180,19 +180,19 @@
 		</if>
 		<if  test="filtroInstitucionEmisora != null " >
 			<bind name="pFiltroInstitucionEmisora" value="'%' + filtroInstitucionEmisora + '%'" />
-			AND CONCAT(INSTITUCION_EMISORA, DESC_INSTITUCION_EMISORA) LIKE #{pFiltroInstitucionEmisora}
+			AND CONCAT(INSTITUCION_EMISORA, UPPER(DESC_INSTITUCION_EMISORA)) LIKE UPPER(#{pFiltroInstitucionEmisora})
 		</if>
 		<if  test="filtroInstitucionReceptora != null " >
 			<bind name="pFiltroInstitucionReceptora" value="'%' + filtroInstitucionReceptora + '%'" />
-			AND CONCAT(INSTITUCION_RECEPTORA, DESC_INSTITUCION_RECEPTORA) LIKE #{pFiltroInstitucionReceptora}
+			AND CONCAT(INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroInstitucionReceptora})
 		</if>
 		<if  test="filtroIdCanal != null " >
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
-			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
+			AND CONCAT(ID_CANAL, UPPER(DESC_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
 		</if>
 		<if  test="filtroIdBin != null " >
 			<bind name="pFiltroIdBin" value="'%' + filtroIdBIN + '%'" />
-			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
+			AND CONCAT(ID_BIN, UPPER(DESC_BIN)) LIKE UPPER(#{pFiltroIdBin})
 		</if>
 		
 		<if  test="filtroCardholderIdMethod != null " >
@@ -201,11 +201,11 @@
 		</if>
 		<if  test="filtroPosEntryMode != null " >
 			<bind name="pFiltroPosEntryMode" value="'%' + filtroPosEntryMode + '%'" />
-			AND CONCAT(POS_ENTRY_MODE, DESC_POS_ENTRY_MODE) LIKE #{pFiltroPosEntryMode}
+			AND CONCAT(POS_ENTRY_MODE, UPPER(DESC_POS_ENTRY_MODE)) LIKE UPPER(#{pFiltroPosEntryMode})
 		</if>
 		<if  test="filtroPosTerminalCapability != null " >
 			<bind name="pFiltroPosTerminalCapability" value="'%' + filtroPosTerminalCapability + '%'" />
-			AND CONCAT(POS_TERMINAL_CAPABILITY, DESC_POS_TERMINAL_CAPABILITY) LIKE #{pFiltroPosTerminalCapability}
+			AND CONCAT(POS_TERMINAL_CAPABILITY, UPPER(DESC_POS_TERMINAL_CAPABILITY)) LIKE UPPER(#{pFiltroPosTerminalCapability})
 		</if>
 		
 		<if  test="rangoDestinationAmountMin != null and rangoDestinationAmountMax != null" >
