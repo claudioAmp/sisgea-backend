@@ -7,6 +7,7 @@
              , id_transaccion     
              , descripcion          AS descripcion_transaccion
         FROM MAE_TRANSACCION_MARCA_INT
+        ORDER BY id_membresia,id_transaccion
     </select>
 
 </mapper>
