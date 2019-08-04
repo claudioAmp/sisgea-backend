@@ -18,7 +18,7 @@
 
     <select id="buscarTodos" resultType="TipoTarifa" statementType="PREPARED">
        <include refid="consultaVistaMant" />
-       <include refid="orderBy" />
+       <include refid="ordenBy" />
     </select>
 
     <select id="buscarTipoTarifa" resultType="TipoTarifa">
