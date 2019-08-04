@@ -7,6 +7,7 @@ import ob.unibanca.sicf.generadorconsultas.GeneradorConsultasBoot;
 import ob.unibanca.sicf.mantenimientosgenerales.MantenimientosGeneralesBoot;
 import ob.unibanca.sicf.reportes.ReportesBoot;
 import ob.unibanca.sicf.tarifarios.TarifariosBoot;
+import ob.unibanca.sicf.visualizacionpan.VisualizacionPANBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -36,7 +37,8 @@ import java.util.List;
  */
 @SpringBootApplication(
 		scanBasePackageClasses = {MantenimientosGeneralesBoot.class, FacturacionBoot.class, TarifariosBoot.class,
-		                          ConsultasGeneralesBoot.class, ReportesBoot.class, GeneradorConsultasBoot.class})
+		                          ConsultasGeneralesBoot.class, ReportesBoot.class, GeneradorConsultasBoot.class,
+		                          VisualizacionPANBoot.class})
 public class SicfBoot {
 	
 	public static void main(String[] args) {

@@ -1,12 +1,12 @@
-package ob.unibanca.sicf.tarifarios;
+package ob.unibanca.sicf.visualizacionpan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TarifariosBoot {
+public class VisualizacionPANBoot {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(TarifariosBoot.class, args);
+		SpringApplication.run(VisualizacionPANBoot.class, args);
 	}
 }
