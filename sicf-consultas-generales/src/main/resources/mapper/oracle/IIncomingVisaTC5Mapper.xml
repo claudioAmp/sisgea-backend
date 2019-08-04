@@ -172,11 +172,11 @@
 		</if>
 		<if  test="filtroMerchantCountryCode != null " >
 			<bind name="pFiltroMerchantCountryCode" value="'%' + filtroMerchantCountryCode + '%'" />
-			AND CONCAT(MERCHANT_COUNTRY_CODE, DESC_MERCHANT_COUNTRY_CODE) LIKE #{pFiltroMerchantCountryCode}
+			AND CONCAT(MERCHANT_COUNTRY_CODE, DESC_MERCHANT_COUNTRY_CODE) LIKE UPPER(#{pFiltroMerchantCountryCode})
 		</if>
 		<if  test="filtroMerchantCategoryCode != null " >
 			<bind name="pFiltroMerchantCategoryCode" value="'%' + filtroMerchantCategoryCode + '%'" />
-			AND CONCAT(MERCHANT_CATEGORY_CODE, DESC_MERCHANT_CATEGORY_CODE) LIKE #{pFiltroMerchantCategoryCode}
+			AND CONCAT(MERCHANT_CATEGORY_CODE, UPPER(DESC_MERCHANT_CATEGORY_CODE)) LIKE UPPER(#{pFiltroMerchantCategoryCode})
 		</if>
 		<if  test="filtroInstitucionEmisora != null " >
 			<bind name="pFiltroInstitucionEmisora" value="'%' + filtroInstitucionEmisora + '%'" />
