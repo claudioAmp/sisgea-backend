@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ob.commons.truncadorpan.decisor.IVisualizacionPANService;
 import ob.commons.validation.validation.IdNumerico;
 import ob.commons.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
@@ -38,12 +39,12 @@ public class ReporteRestController {
 
 	private @Autowired final IReporteService reporteService;
 	private @Autowired final IGenerarConsultaService generarConsultaService;
-	private @Autowired final IUltimoSecuenciaService ultimoSecuenciaService;
+	private @Autowired final IVisualizacionPANService visualizacionPANService;
 
-	public ReporteRestController(IReporteService reporteService,IGenerarConsultaService generarConsultaService,IUltimoSecuenciaService ultimoSecuenciaService) {
+	public ReporteRestController(IReporteService reporteService,IGenerarConsultaService generarConsultaService,IVisualizacionPANService visualizacionPANService) {
 		this.reporteService = reporteService;
 		this.generarConsultaService=generarConsultaService;
-		this.ultimoSecuenciaService=ultimoSecuenciaService;
+		this.visualizacionPANService=visualizacionPANService;
 	}
 
 	@GetMapping(value = "/reportes")
@@ -53,7 +54,7 @@ public class ReporteRestController {
 
 	}
 	@GetMapping(value = "/reportes/{idReporte}")
-	public List<Reporte> buscarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
+	public List<Reporte> buscarReporte(@IdNumerico(maxRange = 999) @PathVariable int idReporte) {
 		return this.reporteService.buscarReporte(idReporte);
 
 	}
@@ -70,14 +71,14 @@ public class ReporteRestController {
 	}
 
 	@PutMapping(value = "/reportes/{idReporte}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Reporte actualizarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte,
+	public Reporte actualizarReporte(@IdNumerico(maxRange = 999) @PathVariable int idReporte,
 			@Validated @RequestBody Reporte Reporte) {
 		return this.reporteService.actualizarReporte(idReporte, Reporte);
 	}
 
 	@DeleteMapping(value = "/reportes/{idReporte}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarReporte(@IdNumerico(maxRange = 99) @PathVariable int idReporte) {
+	public void eliminarReporte(@IdNumerico(maxRange = 999) @PathVariable int idReporte) {
 		this.reporteService.eliminarReporte(idReporte);
 	}
 
@@ -86,6 +87,7 @@ public class ReporteRestController {
 		 PageParameter pageParameter= new  PageParameter();
 		 pageParameter.setPageNum(pageNum);
 		 pageParameter.setPageSize(pageSize);
+		reporte.setVisualiza(this.visualizacionPANService.puedeVisualizarPAN());
 		reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
 		System.out.println(reporte.getQueryReporte());
 		Page<Map<String, Object>> requestList = this.reporteService.ejecutarConsulta(reporte.getQueryReporte(), pageParameter);
