@@ -9,9 +9,15 @@
              , descripcion_membresia
         FROM VIE_MAN_IND_CORREO_TELEFONO
     </sql>
+    
+    <sql id="orderBy">
+    	ORDER BY id_membresia
+    		   , id_correo_telefono 
+    </sql>
 
     <select id="buscarTodos" resultType="CorreoTelefono" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orderBy" />
     </select>
 
     <select id="buscarCorreoTelefono" resultType="CorreoTelefono">
