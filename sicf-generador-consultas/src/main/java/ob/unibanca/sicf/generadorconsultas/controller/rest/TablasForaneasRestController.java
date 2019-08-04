@@ -45,6 +45,11 @@ public class TablasForaneasRestController {
 		return this.tablasForaneasService.buscarPorCriteriosTablasForaneas(criterio);
 	}
 	
+	@GetMapping(value="/tablas-foraneas/buscar/{idRelacionTablaFk}")
+	public TablasForaneas buscarPorIdTablaForanea(@PathVariable int idRelacionTablaFk){
+		return this.tablasForaneasService.buscarTablaForaneaPorId(idRelacionTablaFk);
+	}
+	
 	@PostMapping(value = "/tablas-foraneas", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TablasForaneas registrarTablasForaneas(@Validated({IRegistro.class, Default.class}) @RequestBody TablasForaneas tablaQuery) {

@@ -37,7 +37,9 @@ public class BulkfileDetalle {
 	String descripcionMerchantType;
 	String posEntry;
 	String modEntradaPos;//
+	String descripcionModEntradaPos;
 	String capacidadEntradaPin;//
+	String descripcionCapacidadEntradaPin;//
 	String referenceNumber;
 	String acquirerInstId;
 	String terminalId;
