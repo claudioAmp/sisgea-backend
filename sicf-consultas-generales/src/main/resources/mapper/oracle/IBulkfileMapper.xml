@@ -66,11 +66,11 @@
 		</if>
 		<if  test="filtroIdProceso != null" >
 			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
-			AND CONCAT(ID_PROCESO, DESCRIPCION_PROCESO) LIKE #{pFiltroIdProceso}
+			AND CONCAT(ID_PROCESO, UPPER(DESCRIPCION_PROCESO)) LIKE UPPER(#{pFiltroIdProceso})
 		</if>
 		<if  test="filtroCurrencyCodeTran != null" >
 			<bind name="pFiltroCurrencyCodeTran" value="'%' + filtroCurrencyCodeTran + '%'" />
-			AND CONCAT(CURRENCY_CODE_TRAN, DESCRIPCION_CURRENCY_CODE_TRAN) LIKE #{pFiltroCurrencyCodeTran}
+			AND CONCAT(CURRENCY_CODE_TRAN, UPPER(DESCRIPCION_CURRENCY_CODE_TRAN)) LIKE UPPER(#{pFiltroCurrencyCodeTran})
 		</if>
 		<if  test="filtroTerminalId != null" >
 			<bind name="pFiltroTerminalId" value="'%' + filtroTerminalId + '%'" />
@@ -78,7 +78,7 @@
 		</if>
 		<if  test="filtroResponseCode != null" >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-			AND CONCAT(RESPONSE_CODE, DESCRIPCION_RESPONSE_CODE) LIKE #{pFiltroResponseCode}
+			AND CONCAT(RESPONSE_CODE, UPPER(DESCRIPCION_RESPONSE_CODE)) LIKE UPPER(#{pFiltroResponseCode})
 		</if>
 		<if  test="filtroAuthorizationId != null" >
 			<bind name="pFiltroAuthorizationId" value="'%' + filtroAuthorizationId + '%'" />
@@ -86,11 +86,11 @@
 		</if>
 		<if  test="filtroIdEmisor != null" >
 			<bind name="pFiltroIdEmisor" value="'%' + filtroIdEmisor + '%'" />
-			AND CONCAT(ID_EMISOR, DESCRIPCION_EMISOR) LIKE #{pFiltroIdEmisor}
+			AND CONCAT(ID_EMISOR, UPPER(DESCRIPCION_EMISOR)) LIKE UPPER(#{pFiltroIdEmisor})
 		</if>
 		<if  test="filtroIdReceptor != null" >
 			<bind name="pFiltroIdReceptor" value="'%' + filtroIdReceptor + '%'" />
-			AND CONCAT(ID_RECEPTOR, DESCRIPCION_RECEPTOR) LIKE #{pFiltroIdReceptor}
+			AND CONCAT(ID_RECEPTOR, UPPER(DESCRIPCION_RECEPTOR)) LIKE UPPER(#{pFiltroIdReceptor})
 		</if>
 		<if  test="filtroAccessFeeLocInd != null" >
 			<bind name="pFiltroAccessFeeLocInd" value="'%' + filtroAccessFeeLocInd + '%'" />
@@ -98,7 +98,7 @@
 		</if>
 		<if  test="filtroCurrencyCodeSett != null" >
 			<bind name="pFiltroCurrencyCodeSett" value="'%' + filtroCurrencyCodeSett + '%'" />
-			AND CONCAT(CURRENCY_CODE_SETT, DESCRIPCION_CURRENCY_CODE_SETT) LIKE #{pFiltroCurrencyCodeSett}
+			AND CONCAT(CURRENCY_CODE_SETT, UPPER(DESCRIPCION_CURRENCY_CODE_SETT)) LIKE UPPER(#{pFiltroCurrencyCodeSett})
 		</if>
 		<if  test="filtroInterchangeFeeInd != null" >
 			<bind name="pFiltroInterchangeFeeInd" value="'%' + filtroInterchangeFeeInd + '%'" />

@@ -60,7 +60,7 @@
 				</if>
 				<if  test="filtroTransCodeQualifier != null " >
 					<bind name="pFiltroTransCodeQualifier" value="'%' + filtroTransCodeQualifier + '%'" />
-					AND CONCAT(TRANS_CODE_QUALIFIER,DESC_TRANS_CODE_QUALIFIER) LIKE #{pFiltroTransCodeQualifier}
+					AND CONCAT(TRANS_CODE_QUALIFIER, UPPER(DESC_TRANS_CODE_QUALIFIER)) LIKE UPPER(#{pFiltroTransCodeQualifier})
 				</if>
 				<if  test="filtroSettlementFlag != null " >
 					<bind name="pFiltroSettlementFlag" value="'%' + filtroSettlementFlag + '%'" />
@@ -69,23 +69,23 @@
 				
 				<if  test="filtroReimbursementAttribute != null " >
 					<bind name="pFiltroReimbursementAttribute" value="'%' + filtroReimbursementAttribute + '%'" />
-					AND CONCAT(REIMBURSEMENT_ATTRIBUTE, DESC_REIMBURSEMENT_ATTRIBUTE) LIKE #{pFiltroReimbursementAttribute}
+					AND CONCAT(REIMBURSEMENT_ATTRIBUTE, UPPER(DESC_REIMBURSEMENT_ATTRIBUTE)) LIKE UPPER(#{pFiltroReimbursementAttribute})
 				</if>
 				<if  test="filtroDestinationBin != null " >
 					<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
-					AND CONCAT(DESTINATION_BIN, DESC_DESTINATION_BIN) LIKE #{pFiltroDestinationBin}
+					AND CONCAT(DESTINATION_BIN, UPPER(DESC_DESTINATION_BIN)) LIKE UPPER(#{pFiltroDestinationBin})
 				</if>
 				<if  test="filtroSourceBin != null " >
 					<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
-					AND CONCAT(SOURCE_BIN, DESC_SOURCE_BIN) LIKE #{pFiltroSourceBin}
+					AND CONCAT(SOURCE_BIN, UPPER(DESC_SOURCE_BIN)) LIKE UPPER(#{pFiltroSourceBin})
 				</if>
 				<if  test="filtroReasonCode != null " >
 					<bind name="pFiltroReasonCode" value="'%' + filtroReasonCode + '%'" />
-					AND CONCAT(REASON_CODE, DESC_REASON_CODE) LIKE #{pFiltroReasonCode}
+					AND CONCAT(REASON_CODE, UPPER(DESC_REASON_CODE)) LIKE UPPER(#{pFiltroReasonCode})
 				</if>
 				<if  test="filtroTransactionCode != null " >
 					<bind name="pFiltroTransactionCode" value="'%' + filtroTransactionCode + '%'" />
-					AND CONCAT(TRANSACTION_CODE, DESC_TRANSACTION_CODE) LIKE #{pFiltroTransactionCode}
+					AND CONCAT(TRANSACTION_CODE, UPPER(DESC_TRANSACTION_CODE)) LIKE UPPER(#{pFiltroTransactionCode})
 				</if>
 				<if  test="filtroDestinationAmount != null " >
 					<bind name="pFiltroDestinationAmount" value="'%' + filtroDestinationAmount + '%'" />
@@ -97,7 +97,7 @@
 				</if>
 				<if  test="filtroSourceCurrencyCode != null " >
 					<bind name="pFiltroSourceCurrencyCode" value="'%' + filtroSourceCurrencyCode + '%'" />
-					AND CONCAT(SOURCE_CURRENCY_CODE, DESC_SOURCE_CURRENCY_CODE) LIKE #{pFiltroSourceCurrencyCode}
+					AND CONCAT(SOURCE_CURRENCY_CODE, UPPER(DESC_SOURCE_CURRENCY_CODE)) LIKE UPPER(#{pFiltroSourceCurrencyCode})
 				</if>
 				<if  test="filtroAccountNumber != null " >
 					<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -105,7 +105,7 @@
 				</if>
 				<if  test="filtroDestCurrencyCode != null " >
 					<bind name="pFiltroDestCurrencyCode" value="'%' + filtroDestCurrencyCode + '%'" />
-					AND CONCAT(DEST_CURRENCY_CODE, DESC_DEST_CURRENCY_CODE) LIKE #{pFiltroDestCurrencyCode}
+					AND CONCAT(DEST_CURRENCY_CODE, UPPER(DESC_DEST_CURRENCY_CODE)) LIKE UPPER(#{pFiltroDestCurrencyCode})
 				</if>
 				
 				<if  test="rangoDestinationAmountMin != null and rangoDestinationAmountMax != null" >

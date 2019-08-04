@@ -89,7 +89,7 @@
 		</if>
 		<if test="filtroTypeRecord != null">
 			<bind name="pFiltroTypeRecord" value="'%' + filtroTypeRecord + '%'" />
-			AND CONCAT(TYPE_RECORD, DESC_TYPE_RECORD) LIKE #{pFiltroTypeRecord}
+			AND CONCAT(TYPE_RECORD, UPPER(DESC_TYPE_RECORD)) LIKE UPPER(#{pFiltroTypeRecord})
 		</if>
 		<if test="rangoAmountTxnMin != null and rangoAmountTxnMax != null">
 			AND AMOUNT_TXN BETWEEN #{rangoAmountTxnMin} AND #{rangoAmountTxnMax}
@@ -106,19 +106,19 @@
 		</if>
 		<if test="filtroCardDataInputCapability != null">
 			<bind name="pFiltroCardDataInputCapability" value="'%' + filtroCardDataInputCapability + '%'" />
-			AND CONCAT(CARD_DATA_INPUT_CAPABILITY, DESC_CARD_DATA_INPUT_CAPABILITY) LIKE #{pFiltroCardDataInputCapability}
+			AND CONCAT(CARD_DATA_INPUT_CAPABILITY, UPPER(DESC_CARD_DATA_INPUT_CAPABILITY)) LIKE UPPER(#{pFiltroCardDataInputCapability})
 		</if>
 		<if test="filtroCardDataInputMode != null">
 			<bind name="pFiltroCardDataInputMode" value="'%' + filtroCardDataInputMode + '%'" />
-			AND CONCAT(CARD_DATA_INPUT_MODE, DESC_CARD_DATA_INPUT_MODE) LIKE #{pFiltroCardDataInputMode}
+			AND CONCAT(CARD_DATA_INPUT_MODE, UPPER(DESC_CARD_DATA_INPUT_MODE)) LIKE UPPER(#{pFiltroCardDataInputMode})
 		</if>
 		<if test="filtroCardhAuthenticationMethod != null">
 			<bind name="pFiltroCardhAuthenticationMethod" value="'%' + filtroCardhAuthenticationMethod + '%'" />
-			AND CONCAT(CARDH_AUTHENTICATION_METHOD, DESC_CARDH_AUTHENTICATION_METHOD) LIKE #{pFiltroCardhAuthenticationMethod}
+			AND CONCAT(CARDH_AUTHENTICATION_METHOD, UPPER(DESC_CARDH_AUTHENTICATION_METHOD)) LIKE UPPER(#{pFiltroCardhAuthenticationMethod})
 		</if>
 		<if test="filtroCardAcceptorBusinessCode != null">
 			<bind name="pFiltroCardAcceptorBusinessCode" value="'%' + filtroCardAcceptorBusinessCode + '%'" />
-			AND CONCAT(CARD_ACCEPTOR_BUSINESS_CODE, DESC_CARD_ACCEPTOR_BUSINESS_CODE) LIKE #{pFiltroCardAcceptorBusinessCode}
+			AND CONCAT(CARD_ACCEPTOR_BUSINESS_CODE, UPPER(DESC_CARD_ACCEPTOR_BUSINESS_CODE)) LIKE UPPER(#{pFiltroCardAcceptorBusinessCode})
 		</if>
 		<if test="filtroAcquirerReferenceData != null">
 			<bind name="pFiltroAcquirerReferenceData" value="'%' + filtroAcquirerReferenceData + '%'" />
@@ -134,46 +134,46 @@
 		</if>
 		<if test="filtroCardAcceptorCountrycode != null">
 			<bind name="pFiltroCardAcceptorCountrycode" value="'%' + filtroCardAcceptorCountrycode + '%'" />
-			AND CONCAT(CARD_ACCEPTOR_COUNTRYCODE, DESC_CARD_ACCEPTOR_COUNTRYCODE) LIKE #{pFiltroCardAcceptorCountrycode}
+			AND CONCAT(CARD_ACCEPTOR_COUNTRYCODE, UPPER(DESC_CARD_ACCEPTOR_COUNTRYCODE)) LIKE UPPER(#{pFiltroCardAcceptorCountrycode})
 		</if>
 		<if test="filtroCurrencyCodeTransaction != null">
 			<bind name="pFiltroCurrencyCodeTransaction" value="'%' + filtroCurrencyCodeTransaction + '%'" />
-			AND CONCAT(CURRENCY_CODE_TRANSACTION, DESC_CURRENCY_CODE_TRANSACTION) LIKE #{pFiltroCurrencyCodeTransaction}
+			AND CONCAT(CURRENCY_CODE_TRANSACTION, UPPER(DESC_CURRENCY_CODE_TRANSACTION)) LIKE UPPER(#{pFiltroCurrencyCodeTransaction})
 		</if>
 		<if test="filtroCurrencyCodeCardholder != null">
 			<bind name="pFiltroCurrencyCodeCardholder" value="'%' + filtroCurrencyCodeCardholder + '%'" />
-			AND CONCAT(CURRENCY_CODE_CARDHOLDER, DESC_CURRENCY_CODE_CARDHOLDER) LIKE #{pFiltroCurrencyCodeCardholder}
+			AND CONCAT(CURRENCY_CODE_CARDHOLDER, UPPER(DESC_CURRENCY_CODE_CARDHOLDER)) LIKE UPPER(#{pFiltroCurrencyCodeCardholder})
 		</if>
 		<if test="filtroSettlDate != null">
 			AND SETTL_DATE = #{filtroSettlDate}
 		</if>
 		<if test="filtroIdTransaccion != null">
 			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
-			AND CONCAT(ID_TRANSACCION, DESC_ID_TRANSACCION) LIKE #{pFiltroIdTransaccion}
+			AND CONCAT(ID_TRANSACCION, UPPER(DESC_ID_TRANSACCION)) LIKE UPPER(#{pFiltroIdTransaccion})
 		</if>
 		<if test="filtroIdProducto != null">
 			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
-			AND CONCAT(ID_PRODUCTO, DESC_PRODUCTO) LIKE #{pFiltroIdProducto}
+			AND CONCAT(ID_PRODUCTO, UPPER(DESC_PRODUCTO)) LIKE UPPER(#{pFiltroIdProducto})
 		</if>
 		<if test="filtroIdCanal != null">
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
-			AND CONCAT(ID_CANAL, DESC_CANAL) LIKE #{pFiltroIdCanal}
+			AND CONCAT(ID_CANAL, UPPER(DESC_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
 		</if>
 		<if test="filtroIdInstitucionEmisora != null">
 			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
-			AND CONCAT(ID_INSTITUCION_EMISORA, DESC_INSTITUCION_EMISORA) LIKE #{pFiltroIdInstitucionEmisora}
+			AND CONCAT(ID_INSTITUCION_EMISORA, UPPER(DESC_INSTITUCION_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
 		</if>
 		<if test="filtroIdInstitucionReceptora != null">
 			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
-			AND CONCAT(ID_INSTITUCION_RECEPTORA, DESC_INSTITUCION_RECEPTORA) LIKE #{pFiltroIdInstitucionReceptora}
+			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		<if test="filtroIdProceso != null">
 			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
-			AND CONCAT(ID_PROCESO, DESC_PROCESO) LIKE #{pFiltroIdProceso}
+			AND CONCAT(ID_PROCESO, UPPER(DESC_PROCESO)) LIKE UPPER(#{pFiltroIdProceso})
 		</if>
 		<if test="filtroIdBin != null">
 			<bind name="pFiltroIdBin" value="'%' + filtroIdBin + '%'" />
-			AND CONCAT(ID_BIN, DESC_BIN) LIKE #{pFiltroIdBin}
+			AND CONCAT(ID_BIN, UPPER(DESC_BIN)) LIKE UPPER(#{pFiltroIdBin})
 		</if>
 		
 		<if test="ordenTramsKey != null">
@@ -300,14 +300,8 @@
 	</sql>
 
 	<sql id="fragmentoWhereDetalle">
-		<if test="fechaProceso != null">
-			a.FECHA_PROCESO = #{fechaProceso}
-		</if>
-		<if test="tramsKey != null and tramsKey != ''">
-			AND a.TRAMS_KEY = #{tramsKey}
-		</if>
-		<if test="pan != null">
-			AND a.PAN = #{pan}
+		<if test="dateLocalTxn != null and tramsKey != null and pan != null">
+			a.DATE_LOCAL_TXN = #{dateLocalTxn} AND a.TRAMS_KEY = #{tramsKey} AND a.PAN = #{pan}
 		</if>
 	</sql>
 

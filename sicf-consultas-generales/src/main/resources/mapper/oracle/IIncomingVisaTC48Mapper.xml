@@ -43,11 +43,11 @@
 		</if>
 		<if  test="filtroDestinationBin != null " >
 			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
-			AND CONCAT(DESTINATION_BIN, DESC_DESTINATION_BIN) LIKE #{pFiltroDestinationBin}
+			AND CONCAT(DESTINATION_BIN, UPPER(DESC_DESTINATION_BIN)) LIKE UPPER(#{pFiltroDestinationBin})
 		</if>
 		<if  test="filtroSourceBin != null " >
 			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
-			AND CONCAT(SOURCE_BIN, DESC_SOURCE_BIN) LIKE #{pFiltroSourceBin}
+			AND CONCAT(SOURCE_BIN, UPPER(DESC_SOURCE_BIN)) LIKE UPPER(#{pFiltroSourceBin})
 		</if>
 		<if  test="filtroAccountNumber != null " >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
@@ -55,15 +55,15 @@
 		</if>
 		<if  test="filtroResponseCode != null " >
 			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
-			AND CONCAT(RESPONSE_CODE, DESC_RESPONSE_CODE) LIKE #{pFiltroResponseCode}
+			AND CONCAT(RESPONSE_CODE, UPPER(DESC_RESPONSE_CODE)) LIKE UPPER(#{pFiltroResponseCode})
 		</if>
 		<if  test="filtroStandInResponseCode != null " >
 			<bind name="pFiltroStandInResponseCode" value="'%' + filtroStandInResponseCode + '%'" />
-			AND CONCAT(STAND_IN_RESPONSE_CODE, DESC_STAND_IN_RESPONSE_CODE) LIKE #{pFiltroStandInResponseCode}
+			AND CONCAT(STAND_IN_RESPONSE_CODE, UPPER(DESC_STAND_IN_RESPONSE_CODE)) LIKE UPPER(#{pFiltroStandInResponseCode})
 		</if>
 		<if  test="filtroTransactionCurrencyCode != null " >
 			<bind name="pFiltroTransactionCurrencyCode" value="'%' + filtroTransactionCurrencyCode + '%'" />
-			AND CONCAT(TRANSACTION_CURRENCY_CODE, DESC_TRANSACTION_CURRENCY_CODE) LIKE #{pFiltroTransactionCurrencyCode}
+			AND CONCAT(TRANSACTION_CURRENCY_CODE, UPPER(DESC_TRANSACTION_CURRENCY_CODE)) LIKE UPPER(#{pFiltroTransactionCurrencyCode})
 		</if>
 		<if  test="filtroTransactionAmount != null " >
 			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
@@ -78,7 +78,7 @@
 		</if>
 		<if  test="filtroMerchantType != null " >
 			<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
-			AND CONCAT(MERCHANT_TYPE, DESC_MERCHANT_TYPE) LIKE #{pFiltroMerchantType}
+			AND CONCAT(MERCHANT_TYPE, UPPER(DESC_MERCHANT_TYPE)) LIKE UPPER(#{pFiltroMerchantType})
 		</if>
 		<if  test="filtroSecuenciaIncoming != null " >
 			<bind name="pFiltroSecuenciaIncoming" value="'%' + filtroSecuenciaIncoming + '%'" />
