@@ -137,7 +137,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		if(idReporte!=0) {
 			Reporte.setIdReporte(idReporte);
 		}	
-		Reporte.setPrioridad(1);
+		Reporte.setPrioridad(0);
 		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
 		this.registrarReporte(Reporte);
 		idReporte=Reporte.getIdReporte();
