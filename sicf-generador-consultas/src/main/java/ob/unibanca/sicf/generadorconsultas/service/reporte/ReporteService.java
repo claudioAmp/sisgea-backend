@@ -101,7 +101,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		return result ;
 	}
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	//@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte registrarReporte(Reporte Reporte) {
 		this.registrar(Reporte);
 		ReportePrioridad reportePrioridad = new ReportePrioridad();
@@ -118,16 +118,21 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		CriterioBusquedaReporte criterio= new CriterioBusquedaReporte();
 		criterio.setIdReporte(idReporte);
 		Reporte repAnt = this.reporteMapper.buscarPorCriterios(criterio).get(0);
+		System.out.println("Testing : ");System.out.println(repAnt);
 		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia()) {
 			System.out.println("Estoy actualizando +1 frecuencia : "+Reporte);
 			this.actualizar(Reporte);
 			return Reporte;
 			
 		}else {
+			CriterioBusquedaReportePrioridad criterio1 = new CriterioBusquedaReportePrioridad();
+			criterio1.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+			criterio1.setIdReporte(idReporte);
+			repAnt.setPrioridad(this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio1).get(0).getPrioridad());
 			if(repAnt.getPrioridad()+1==Reporte.getPrioridad()) {
 				System.out.println("Estoy actualizando +1 prioridad : "+Reporte);
 				CriterioBusquedaReportePrioridad criterio2 = new CriterioBusquedaReportePrioridad();
-				criterio2.setIdReporte(Reporte.getIdReporte());
+				criterio2.setIdReporte(idReporte);
 				criterio2.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 				ReportePrioridad reportePrioridad= this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2).get(0);
 				reportePrioridad.setPrioridad(Reporte.getPrioridad());

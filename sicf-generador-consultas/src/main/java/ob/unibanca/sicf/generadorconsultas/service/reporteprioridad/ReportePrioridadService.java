@@ -24,26 +24,26 @@ public class ReportePrioridadService extends MantenibleService<ReportePrioridad>
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<ReportePrioridad> buscarTodosReportesPrioridades() {
 		return this.reportePrioridadMapper.buscarTodos();
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<ReportePrioridad> buscarPorCriterioReportesPrioridades(CriterioBusquedaReportePrioridad criterio) {
 		return this.reportePrioridadMapper.buscarPorCriterios(criterio);
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	//@Transactional(propagation = Propagation.REQUIRED)
 	public ReportePrioridad registrarReportePrioridad(ReportePrioridad reporte) {
 		this.registrar(reporte);
 		return reporte;
 	}
 	
 	@Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ReportePrioridad actualizarReportePrioridad(int idQueryUsua,ReportePrioridad reporte) {
 		reporte.setIdQueryUsua(idQueryUsua);
 		this.actualizar(reporte);
