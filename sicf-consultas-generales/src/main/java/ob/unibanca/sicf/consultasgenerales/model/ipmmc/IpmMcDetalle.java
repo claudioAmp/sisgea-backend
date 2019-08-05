@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,6 +23,7 @@ public class IpmMcDetalle {
 	private Date fechaProceso;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateLocalTxn;
+	@TruncarPAN
 	private String pan;
 	private String typeRecord;
 	private String descTypeRecord;

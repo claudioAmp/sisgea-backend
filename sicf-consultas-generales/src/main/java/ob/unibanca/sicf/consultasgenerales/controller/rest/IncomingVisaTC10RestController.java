@@ -5,6 +5,8 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.incomingvisa.CriterioB
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import ob.unibanca.sicf.consultasgenerales.service.incomingvisa.tc10.IIncomingVisaTC10Service;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +19,7 @@ public class IncomingVisaTC10RestController {
 		this.incomingVisaService = incomingVisaService;
 	}
 	
+	@PreAuthorize("hasPermission('CON_COBRODES_VISA', '2')")
 	@GetMapping("/incomings-visa-tc10s-tcr0s/pagination")
 	public Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingVisaTC10, IncomingVisaTC10TCR0> criterioPaginacion,

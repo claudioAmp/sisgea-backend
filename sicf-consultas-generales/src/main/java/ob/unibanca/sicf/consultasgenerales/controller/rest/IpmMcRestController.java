@@ -6,6 +6,8 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.model.ipmmc.IpmMc;
 import ob.unibanca.sicf.consultasgenerales.model.ipmmc.IpmMcDetalle;
 import ob.unibanca.sicf.consultasgenerales.service.ipmmc.IIpmMcService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +20,7 @@ public class IpmMcRestController {
 		this.ipmMcService = ipmMcService;
 	}
 	
+	@PreAuthorize("hasPermission('CON_IPM_MC', '2')")
 	@GetMapping(value = "/ipms/pagination")
 	public Pagina<CriterioBusquedaIpmMc, IpmMc> buscarPorPaginas(
 			Pagina<CriterioBusquedaIpmMc, IpmMc> criterioPaginacion, CriterioBusquedaIpmMc criterioBusqueda) {
@@ -27,6 +30,7 @@ public class IpmMcRestController {
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
 	
+	@PreAuthorize("hasPermission('CON_IPM_MC', '2')")
 	@GetMapping("/ipms/detalle")
 	public IpmMcDetalle buscarDetalle(CriterioBusquedaIpmMc criterio) {
 		return ipmMcService.buscarDetalle(criterio);

@@ -6,6 +6,8 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.swdmplog.CriterioBusqu
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplog;
 import ob.unibanca.sicf.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 import ob.unibanca.sicf.consultasgenerales.service.swdmplog.ISwdmplogService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,16 +22,19 @@ public class SwdmplogRestController {
 		this.swdmplogService = swdmplogService;
 	}
 	
+	@PreAuthorize("hasPermission('CON_SWDMPLOG', '2')")
 	@GetMapping("/txns-swdmplog")
 	public List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogService.buscarPorCriterios(criterio);
 	}
 	
+	@PreAuthorize("hasPermission('CON_SWDMPLOG', '2')")
 	@GetMapping("/txns-swdmplog/detalle")
 	public TxnSwdmplogDetalle buscarDetalleSwdmplog(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogService.buscarDetalle(criterio);
 	}
 	
+	@PreAuthorize("hasPermission('CON_SWDMPLOG', '2')")
 	@GetMapping("/txns-swdmplog/pagination")
 	public Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> buscarPorPaginas(
 			Pagina<CriterioBusquedaSwdmplog, TxnSwdmplog> criterioPaginacion,

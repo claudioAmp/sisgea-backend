@@ -6,6 +6,8 @@ import ob.unibanca.sicf.consultasgenerales.model.bulkfile.BulkfileDetalle;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.bulkfile.CriterioBusquedaBulkfile;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
 import ob.unibanca.sicf.consultasgenerales.service.bulkfile.IBulkfileService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +20,7 @@ public class BulkfileRestController {
 		this.bulkfileService = bulkfileService;
 	}
 	
+	@PreAuthorize("hasPermission('CON_BULKFILEMC', '2')")
 	@GetMapping(value = "/bulkfiles/pagination")
 	public Pagina<CriterioBusquedaBulkfile, Bulkfile> buscarPorPaginas(
 			Pagina<CriterioBusquedaBulkfile, Bulkfile> criterioPaginacion, CriterioBusquedaBulkfile criterioBusqueda) {
@@ -27,6 +30,7 @@ public class BulkfileRestController {
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
 	
+	@PreAuthorize("hasPermission('CON_BULKFILEMC', '2')")
 	@GetMapping("/bulkfiles/detalle")
 	public BulkfileDetalle buscarDetalle(CriterioBusquedaBulkfile criterio) {
 		return this.bulkfileService.buscarDetalle(criterio);
