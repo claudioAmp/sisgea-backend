@@ -31,9 +31,9 @@ public class Institucion {
 	private String tipoInstitucion;
 	private String descripcionTipoInstitucion;
 	private boolean esProcesador;
-	@CaracterNoRequerido(minLength = 1, maxLength = 15, regexpPattern = "[0-9]+")
+	@CaracterNoRequerido(minLength = 1, maxLength = 15)
 	private String cuentaContableMonedaBase;
-	@CaracterNoRequerido(minLength = 1, maxLength = 15, regexpPattern = "[0-9]+")
+	@CaracterNoRequerido(minLength = 1, maxLength = 15)
 	private String cuentaContableMonedaAlterna;
 	@IdNumerico(maxRange = 99999)
 	private Integer idInstitucionOperador;
