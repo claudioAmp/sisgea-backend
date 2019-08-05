@@ -11,7 +11,7 @@
              , direccion
              , es_banco_administrador
              , tipo_institucion
-             , desc_tipo_institucion
+             , descripcion_tipo_institucion
              , es_procesador
              , cuenta_contable_moneda_base
              , cuenta_contable_moneda_alterna
