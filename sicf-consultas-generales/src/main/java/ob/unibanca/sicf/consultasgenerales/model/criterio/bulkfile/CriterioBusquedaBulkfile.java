@@ -38,6 +38,7 @@ public class CriterioBusquedaBulkfile {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaProceso;
 	private String filtroTraceNumber;
+	private String filtroMessageTypeInd;
 	private String filtroAccountNumber;
 	private String filtroTransactionDate;
 	private String filtroTransactionTime;
@@ -81,6 +82,7 @@ public class CriterioBusquedaBulkfile {
 	private String ordenInterchangeFeeInd;
 	private String ordenInterchangeFee;
 	private String ordenIdBulkFileMc;
+	private String ordenMessageTypeInd;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoAmountTransactionLocMin;

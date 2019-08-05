@@ -53,6 +53,10 @@
 			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
 			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
 		</if>
+		<if  test="filtroMessageTypeInd != null" >
+		<bind name="pFiltroMessageTypeInd" value="'%' + filtroMessageTypeInd + '%'" />
+			AND CONCAT(UPPER(MESSAGE_TYPE_IND),UPPER(DESCRIPCION_MESSAGE_TYPE_IND)) LIKE UPPER(#{pFiltroMessageTypeInd})
+		</if>
 		<if  test="filtroAccountNumber != null" >
 			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
 			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
@@ -110,7 +114,7 @@
 		</if>
 		<if  test="filtroIdBulkFileMc != null" >
 			<bind name="pFiltroIdBulkFileMc" value="'%' + filtroIdBulkFileMc + '%'" />
-			AND ID_BULK_FILE_MC LIKE #{filtroIdBulkFileMc}
+			AND ID_BULK_FILE_MC LIKE #{pFiltroIdBulkFileMc}
 		</if>
 		<if  test="rangoAmountTransactionLocMin != null and rangoAmountTransactionLocMax != null" >
 			AND AMOUNT_TRANSACTION_LOC BETWEEN #{rangoAmountTransactionLocMin} AND #{rangoAmountTransactionLocMax}
@@ -129,6 +133,10 @@
 		<if  test="ordenAccountNumber != null" >
 			ORDER BY
 				ACCOUNT_NUMBER   ${ordenAccountNumber}
+		</if>
+		<if  test="ordenMessageTypeInd != null" >
+			ORDER BY
+				MESSAGE_TYPE_IND   ${ordenMessageTypeInd}
 		</if>
 		<if  test="ordenTransactionDate != null" >
 			ORDER BY
