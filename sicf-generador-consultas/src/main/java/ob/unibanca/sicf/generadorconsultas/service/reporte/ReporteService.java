@@ -90,7 +90,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		CriterioBusquedaReporte criterio= new CriterioBusquedaReporte();
 		criterio.setIdReporte(idReporte);
 		Reporte repAnt = this.reporteMapper.buscarPorCriterios(criterio).get(0);
-		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia()) {
+		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia() || repAnt.getPrioridad()+1==Reporte.getPrioridad()) {
 			System.out.println("Estoy actualizando +1 frecuencia : "+Reporte);
 			this.actualizar(Reporte);
 			return Reporte;
@@ -131,15 +131,16 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	// Registrar reporte
 	//@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte registrarReporteTotal(int idReporte,Reporte Reporte) {
+		System.out.println(Reporte);
 		int idxTabla=0,idxCampo=0,idxFiltro=0,idxTablaOnJoin=0,idxCondicion=0;
 		List<List<Integer>> idConQAux= new ArrayList<>();
 		if(idReporte!=0) {
 			Reporte.setIdReporte(idReporte);
 		}	
+		Reporte.setPrioridad(1);
 		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
 		this.registrarReporte(Reporte);
-		idReporte=Reporte.getIdReporte();		
-		System.out.println("Empecé a insertar");
+		idReporte=Reporte.getIdReporte();
 		for(TablaQuery t : Reporte.getTablas()) {
 			t.setIdReporte(idReporte);
 			Reporte.getTablas().set(idxTabla, t);
@@ -161,12 +162,10 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			System.out.println(to);
 			CampoQuery c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoBase(), to.getInstanciaTablaBase());
 			to.setIdReporte(idReporte);
-			System.out.println("BASE:"+c);
 			if(c!=null) {
 				to.setIdCampoQueryBase(c.getIdCampoQuery());
 			}
 			c = this.getCampoQuery(Reporte.getCampos(),to.getIdCampoJoin(), to.getInstanciaTablaJoin());
-			System.out.println("JOIN:"+c);
 			if(c!=null) {
 				to.setIdCampoQueryJoin(c.getIdCampoQuery());
 			}
@@ -175,7 +174,6 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 			idxTablaOnJoin++;
 		}
 		for(CondicionQuery cq : Reporte.getCondiciones()) {
-			System.out.println(cq);
 			cq.setIdReporte(idReporte);
 			if( cq.getIdCondicionPadre()!=0) {
 				cq.setIdCondicionPadre(this.getCondicionQuery(Reporte.getCondiciones(), cq.getIdCondicionPadre()).getIdCondicionQuery());
@@ -240,7 +238,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		List<CondicionQuery> condiciones= new ArrayList<>();
 		//Obtener el reporte
 		criterio.setIdReporte(idReporte);
-		Reporte reporte =this.buscarPorCriteriosReporte(criterio).get(0);	
+		Reporte reporte =this.buscarPorCriteriosReporte(criterio).get(0);
 		//Obtener tablas query del reporte
 		CriterioBusquedaTablaQuery c1 = new CriterioBusquedaTablaQuery();
 		c1.setIdReporte(idReporte);
