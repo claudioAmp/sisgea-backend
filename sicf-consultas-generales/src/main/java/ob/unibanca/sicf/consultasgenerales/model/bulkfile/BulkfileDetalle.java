@@ -5,11 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import java.util.Date;
-
+import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 
 @Data
 @Builder
@@ -17,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class BulkfileDetalle {
+	
 	Long idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
@@ -28,6 +28,7 @@ public class BulkfileDetalle {
 	Date transactionDate;
 	String transactionTime;
 	Integer panLength;
+	@TruncarPAN
 	String accountNumber;
 	String processingCode;
 	Integer idProceso;

@@ -1,22 +1,24 @@
 package ob.unibanca.sicf.consultasgenerales.model.swdmplog;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TxnSwdmplog {
+	
 	private Long idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
+	@TruncarPAN
 	private String pan;
 	private String processingCode;
 	private String descripcionCodProcSw;

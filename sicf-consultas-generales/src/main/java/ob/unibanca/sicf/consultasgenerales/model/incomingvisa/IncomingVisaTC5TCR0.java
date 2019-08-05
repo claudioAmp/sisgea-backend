@@ -1,14 +1,14 @@
 package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @Builder
@@ -16,11 +16,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC5TCR0 {
+	
 	private Long idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;
 	private String descTransCodeQualifier;
+	@TruncarPAN
 	private String accountNumber;
 	private String accountNumberExt;
 	private String floorLimitIndicator;
@@ -48,7 +50,7 @@ public class IncomingVisaTC5TCR0 {
 	private String merchantStateCode;
 	private String requestPaymentServ;
 	private String numberPaymentForms;
-	private String reasonCode; 
+	private String reasonCode;
 	private String descReasonCode;
 	private String usageCode;
 	private String descUsageCode;
@@ -64,7 +66,7 @@ public class IncomingVisaTC5TCR0 {
 	private String posEntryMode;
 	private String descPosEntryMode;
 	private Date centralProcessingDate;
-	private String reimbursementAttribute; 
+	private String reimbursementAttribute;
 	private String descReimbursementAttribute;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
