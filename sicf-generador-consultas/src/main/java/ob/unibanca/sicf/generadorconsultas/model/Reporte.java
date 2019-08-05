@@ -11,14 +11,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reporte {
+public class Reporte  {
 	private Integer idReporte;
     private String nombre;
     private String descripcion;
     private String descCorta;
     private String queryReporte;
-	private int frecuencia;
-	private int prioridad;
+	private Integer frecuencia;
+	private Integer prioridad;
+	private boolean publico;
 	private int frecuenciaMaxima;
 	private List<TablaQuery> tablas; 
 	private List<CampoQuery> campos;
@@ -26,4 +27,5 @@ public class Reporte {
 	private List<CondicionQuery> condiciones;
 	private List<TablaOnJoin> tablasOnJoin; 
 	private boolean visualiza;
+
 }

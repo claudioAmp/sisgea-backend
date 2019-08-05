@@ -1,6 +1,8 @@
 package ob.unibanca.sicf.generadorconsultas.service.reporte;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,14 +25,17 @@ import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.generadorconsultas.mapper.IReporteMapper;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
+import ob.unibanca.sicf.generadorconsultas.model.ReportePrioridad;
 import ob.unibanca.sicf.generadorconsultas.model.TablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReportePrioridad;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaOnJoin;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablaQuery;
 import ob.unibanca.sicf.generadorconsultas.service.campoquery.ICampoQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.condicionquery.ICondicionQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.filtro.IFiltroService;
 import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
+import ob.unibanca.sicf.generadorconsultas.service.reporteprioridad.IReportePrioridadService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaonjoin.ITablaOnJoinService;
 import ob.unibanca.sicf.generadorconsultas.service.tablaquery.ITablaQueryService;
 import ob.unibanca.sicf.generadorconsultas.service.ultimosecuencia.IUltimoSecuenciaService;
@@ -45,6 +50,7 @@ import ob.unibanca.sicf.generadorconsultas.model.Filtro;
 public class ReporteService extends MantenibleService<Reporte> implements IReporteService {
 	
 	private @Autowired final IReporteMapper reporteMapper;
+	private @Autowired IReportePrioridadService reportePrioridadService;
 	private @Autowired ITablaQueryService tablaQueryService;
 	private @Autowired ITablaOnJoinService tablaOnJoinService;
 	private @Autowired ICampoQueryService campoQueryService;
@@ -53,7 +59,7 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	private @Autowired IUltimoSecuenciaService ultimoSecuenciaService;
 	private @Autowired IGenerarConsultaService generarConsultaService;
 	
-	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService) {
+	public ReporteService(@Qualifier("IReporteMapper") IMantenibleMapper<Reporte> mantenibleMapper,ITablaQueryService tablaQueryService,ICampoQueryService campoQueryService,IUltimoSecuenciaService ultimoSecuenciaService,IReportePrioridadService reportePrioridadService) {
 		super(mantenibleMapper);
 		this.reporteMapper = (IReporteMapper) mantenibleMapper;
 	}
@@ -71,16 +77,38 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Reporte> buscarPorCriteriosReporte(CriterioBusquedaReporte criterio) {
-		
+		CriterioBusquedaReportePrioridad criterio2 = new CriterioBusquedaReportePrioridad();
 		if(criterio.getPermited()==1) {
 			criterio.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+		    criterio2.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
-		return this.reporteMapper.buscarPorCriterios(criterio);
+		List<Reporte> result=this.reporteMapper.buscarPorCriterios(criterio);
+		List<ReportePrioridad> prioridades=this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2);
+		for(int i=0;i<result.size();i++ ) {
+			result.get(i).setPrioridad(prioridades.get(i).getPrioridad());
+		}
+		result.sort(new Comparator<Reporte>() {
+			@Override
+			public int compare(Reporte o1, Reporte o2) {
+				int resultado = Integer.compare( o2.getPrioridad(), o1.getPrioridad());
+		        if ( resultado != 0 ) { return resultado;}
+		        resultado = o2.getFrecuencia().compareTo(o1.getFrecuencia());
+		        if ( resultado != 0 ) { return resultado; }
+		        return resultado;
+			}
+		});
+
+		return result ;
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Reporte registrarReporte(Reporte Reporte) {
 		this.registrar(Reporte);
+		ReportePrioridad reportePrioridad = new ReportePrioridad();
+		reportePrioridad.setIdReporte(Reporte.getIdReporte());
+		reportePrioridad.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+		reportePrioridad.setPrioridad(0);
+		this.reportePrioridadService.registrar(reportePrioridad);
 		return Reporte;
 	}
 	
@@ -90,16 +118,28 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		CriterioBusquedaReporte criterio= new CriterioBusquedaReporte();
 		criterio.setIdReporte(idReporte);
 		Reporte repAnt = this.reporteMapper.buscarPorCriterios(criterio).get(0);
-		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia() || repAnt.getPrioridad()+1==Reporte.getPrioridad()) {
+		if(repAnt.getFrecuencia()+1==Reporte.getFrecuencia()) {
 			System.out.println("Estoy actualizando +1 frecuencia : "+Reporte);
 			this.actualizar(Reporte);
 			return Reporte;
 			
 		}else {
-			System.out.println("Estoy guardando cambios en : "+Reporte);
-			this.eliminar(Reporte);
-			System.out.println("Eliminé");
-			return this.registrarReporteTotal(idReporte, Reporte);
+			if(repAnt.getPrioridad()+1==Reporte.getPrioridad()) {
+				System.out.println("Estoy actualizando +1 prioridad : "+Reporte);
+				CriterioBusquedaReportePrioridad criterio2 = new CriterioBusquedaReportePrioridad();
+				criterio2.setIdReporte(Reporte.getIdReporte());
+				criterio2.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+				ReportePrioridad reportePrioridad= this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2).get(0);
+				reportePrioridad.setPrioridad(Reporte.getPrioridad());
+				this.reportePrioridadService.actualizar(reportePrioridad);
+				return Reporte;
+			}
+			else {
+				System.out.println("Estoy guardando cambios en : "+Reporte);
+				this.eliminar(Reporte);
+				System.out.println("Eliminé");
+				return this.registrarReporteTotal(idReporte, Reporte);
+			}		
 		}
 		
 	}
@@ -239,6 +279,11 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		//Obtener el reporte
 		criterio.setIdReporte(idReporte);
 		Reporte reporte =this.buscarPorCriteriosReporte(criterio).get(0);
+		//Obtener prioridad
+		CriterioBusquedaReportePrioridad criterio2 = new CriterioBusquedaReportePrioridad();
+		criterio2.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+		criterio2.setIdReporte(reporte.getIdReporte());
+		reporte.setPrioridad(this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2).get(0).getPrioridad());
 		//Obtener tablas query del reporte
 		CriterioBusquedaTablaQuery c1 = new CriterioBusquedaTablaQuery();
 		c1.setIdReporte(idReporte);
