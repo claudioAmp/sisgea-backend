@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 
+import ob.commons.truncadorpan.decisor.IVisualizacionPANService;
 import ob.unibanca.sicf.generadorconsultas.model.CampoQuery;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
@@ -23,16 +24,19 @@ public class ReporteExportacionController {
 
 	private @Autowired final IReporteService reporteService;
 	private @Autowired final IGenerarConsultaService generarConsultaService;
+	private @Autowired final IVisualizacionPANService visualizacionPANService;
 
-	public ReporteExportacionController(IReporteService reporteService,IGenerarConsultaService generarConsultaService) {
+	public ReporteExportacionController(IReporteService reporteService,IGenerarConsultaService generarConsultaService,IVisualizacionPANService visualizacionPANService) {
 		this.reporteService = reporteService;
 		this.generarConsultaService=generarConsultaService;
+		this.visualizacionPANService=visualizacionPANService;
 	}
 
 	@PostMapping(value = "/reportes/exportar-consulta.xlsx")
 	public ModelAndView ejecutarConsulta(@RequestBody Reporte reporte,
 	                                     ModelMap model) {
 		String consulta="";
+		reporte.setVisualiza(this.visualizacionPANService.puedeVisualizarPAN());
 		if(reporte.getQueryReporte()!=null) {
 			if(reporte.getQueryReporte().isBlank()||reporte.getQueryReporte().isEmpty()) {
 				reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));

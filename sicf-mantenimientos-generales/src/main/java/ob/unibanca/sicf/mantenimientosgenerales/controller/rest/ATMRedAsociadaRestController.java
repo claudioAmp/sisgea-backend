@@ -48,7 +48,7 @@ public class ATMRedAsociadaRestController {
 	@PostMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas",
 	             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ATMRedAsociada registrarATMRedAsociada(@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion,
+	public ATMRedAsociada registrarATMRedAsociada(@IdNumerico(maxRange = 99999) @PathVariable int idInstitucion,
 	                                              @Validated({IRegistro.class, Default.class}) @RequestBody
 			                                              ATMRedAsociada atmRedAsociada) {
 		return this.atmRedAsociadaService.registrarATMRedAsociada(idInstitucion, atmRedAsociada);
@@ -57,8 +57,8 @@ public class ATMRedAsociadaRestController {
 	@PreAuthorize("hasPermission('MANT_ATREAS', '3')")
 	@PutMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas/{idATM}",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ATMRedAsociada actualizarATMRedAsociada(@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion,
-	                                               @IdNumerico(maxRange = 9999) @PathVariable int idATM,
+	public ATMRedAsociada actualizarATMRedAsociada(@IdNumerico(maxRange = 99999) @PathVariable int idInstitucion,
+	                                               @IdNumerico(maxRange = 99999) @PathVariable int idATM,
 	                                               @Validated @RequestBody ATMRedAsociada atmRedAsociada) {
 		return this.atmRedAsociadaService.actualizarATMRedAsociada(idATM, idInstitucion, atmRedAsociada);
 	}
@@ -66,8 +66,8 @@ public class ATMRedAsociadaRestController {
 	@PreAuthorize("hasPermission('MANT_ATREAS', '4')")
 	@DeleteMapping(value = "/instituciones/{idInstitucion}/atms-redes-asociadas/{idATM}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void eliminarATMRedAsociada(@IdNumerico(maxRange = 9999) @PathVariable int idInstitucion,
-	                                   @IdNumerico(maxRange = 9999) @PathVariable int idATM) {
+	public void eliminarATMRedAsociada(@IdNumerico(maxRange = 99999) @PathVariable int idInstitucion,
+	                                   @IdNumerico(maxRange = 99999) @PathVariable int idATM) {
 		this.atmRedAsociadaService.eliminarATMRedAsociada(idATM, idInstitucion);
 	}
 }

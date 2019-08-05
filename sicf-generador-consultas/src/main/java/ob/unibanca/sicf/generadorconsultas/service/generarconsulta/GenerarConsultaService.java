@@ -35,7 +35,6 @@ public class GenerarConsultaService implements IGenerarConsultaService {
 		queryReporte += this.getOnHaving(reporteEstado);
 		queryReporte += " ";
 		queryReporte += this.getOnOrderBy(reporteEstado);
-		System.out.println(reporteEstado.isVisualiza());
 		return queryReporte;
 	}
 

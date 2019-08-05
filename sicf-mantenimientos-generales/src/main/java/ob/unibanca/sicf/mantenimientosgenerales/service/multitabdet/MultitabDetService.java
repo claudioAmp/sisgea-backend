@@ -16,7 +16,7 @@ import java.util.List;
 public class MultitabDetService extends MantenibleService<MultitabDet> implements IMultitabDetService {
 	
 	private static final String MULTITAB_DET_NO_ENCONTRADO =
-			"No existe la asociación entre la Multitab Det %s y la Multitab Cab %d";
+			"No existe la asociación entre el detalle de la Tabla de Tablas %s y el Código de la Tabla de Tablas %d";
 	private final IMultitabDetMapper multitabDetMapper;
 	
 	public MultitabDetService(@Qualifier("IMultitabDetMapper") IMantenibleMapper<MultitabDet> mantenibleMapper) {
