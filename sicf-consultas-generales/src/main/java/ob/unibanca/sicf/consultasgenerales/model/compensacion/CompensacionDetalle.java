@@ -1,12 +1,13 @@
 package ob.unibanca.sicf.consultasgenerales.model.compensacion;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
+
+import java.util.Date;
 
 @Data
 @Builder
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class CompensacionDetalle {
+	
 	Long idSecuencia;
 	String idMembresia;
 	String descMembresia;
@@ -35,6 +37,7 @@ public class CompensacionDetalle {
 	String descInstitucionReceptora;
 	Integer idFacturacion;
 	String descFacturacion;
+	@TruncarPAN
 	String numeroTarjeta;
 	String bin;
 	String descBin;

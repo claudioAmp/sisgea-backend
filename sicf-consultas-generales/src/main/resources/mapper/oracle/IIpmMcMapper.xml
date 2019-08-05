@@ -300,8 +300,8 @@
 	</sql>
 
 	<sql id="fragmentoWhereDetalle">
-		<if test="dateLocalTxn != null and tramsKey != null and pan != null">
-			a.DATE_LOCAL_TXN = #{dateLocalTxn} AND a.TRAMS_KEY = #{tramsKey} AND a.PAN = #{pan}
+		<if test="dateLocalTxn != null and tramsKey != null">
+			a.DATE_LOCAL_TXN = #{dateLocalTxn} AND a.TRAMS_KEY = #{tramsKey}
 		</if>
 	</sql>
 

@@ -31,8 +31,8 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="file"/>
     </logger>
-    <!-- Declaración de logger específicos para el profiles dev (include: dev) -->
-    <springProfile name="dev-ccu">
+    <!-- Declaración de logger específicos para el profile incluido dev (include: dev) -->
+    <springProfile name="dev">
         <logger name="org.springframework" level="debug" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="file"/>

@@ -12,7 +12,7 @@
     </sql>
     
     <sql id="orden">
-    	ORDER BY id_atm ASC, id_institucion ASC
+    	ORDER BY  id_institucion ASC, id_atm ASC
     </sql>
 
     <select id="buscarTodos" resultType="ATMRedAsociada" statementType="PREPARED">

@@ -11,7 +11,7 @@
     </sql>
     
     <sql id="orden">
-    	ORDER BY id_modo_entrada_pos ASC
+    	ORDER BY id_membresia ASC,id_modo_entrada_pos ASC
     </sql>
  
     <select id="buscarTodos" resultType="ModoEntradaPOS" statementType="PREPARED">

@@ -1,19 +1,20 @@
 package ob.unibanca.sicf.consultasgenerales.model.incomingvisa;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncomingVisaTC48 {
+	
 	private Long secuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
@@ -21,6 +22,7 @@ public class IncomingVisaTC48 {
 	private String descDestinationBin;
 	private String sourceBin;
 	private String descSourceBin;
+	@TruncarPAN
 	private String accountNumber;
 	private String responseCode;
 	private String descResponseCode;
