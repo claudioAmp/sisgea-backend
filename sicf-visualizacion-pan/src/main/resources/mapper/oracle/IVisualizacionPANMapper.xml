@@ -5,7 +5,7 @@
 	<select id="puedeVisualizarPAN" resultType="boolean" statementType="PREPARED">
 		SELECT visualiza_pan
 			FROM vie_seg_visualiza_pan
-			WHERE username = #{username}
+			WHERE UPPER(username) = UPPER(#{username})
 			  AND codigo_audiencia = #{codigoAudiencia}
 	</select>
 
