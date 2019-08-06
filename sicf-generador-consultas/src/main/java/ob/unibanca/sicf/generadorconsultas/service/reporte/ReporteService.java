@@ -83,13 +83,34 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		    criterio2.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
 		}
 		List<Reporte> result=this.reporteMapper.buscarPorCriterios(criterio);
-		List<ReportePrioridad> prioridades=this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2);
+
 		for(int i=0;i<result.size();i++ ) {
-			result.get(i).setPrioridad(prioridades.get(i).getPrioridad());
+			criterio2.setIdReporte(result.get(i).getIdReporte());
+			List<ReportePrioridad> prioridad= this.reportePrioridadService.buscarPorCriterioReportesPrioridades(criterio2);
+			System.out.println(prioridad);
+			if(prioridad.size()!=0) {
+				result.get(i).setPrioridad(prioridad.get(0).getPrioridad());
+			}else {
+				ReportePrioridad aux  = new ReportePrioridad();
+				aux.setPrioridad(0);
+				aux.setIdReporte(result.get(i).getIdReporte());
+				aux.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+				System.out.println("Debo insertar");
+				System.out.println(aux);
+				this.reportePrioridadService.registrar(aux);
+			}
+			
 		}
+		System.out.println(result);
 		result.sort(new Comparator<Reporte>() {
 			@Override
 			public int compare(Reporte o1, Reporte o2) {
+				if(o2.getPrioridad()==null) {
+					o2.setPrioridad(0);
+				}
+				if(o1.getPrioridad()==null) {
+					o1.setPrioridad(0);
+				}
 				int resultado = Integer.compare( o2.getPrioridad(), o1.getPrioridad());
 		        if ( resultado != 0 ) { return resultado;}
 		        resultado = o2.getFrecuencia().compareTo(o1.getFrecuencia());
