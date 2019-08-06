@@ -128,7 +128,11 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		ReportePrioridad reportePrioridad = new ReportePrioridad();
 		reportePrioridad.setIdReporte(Reporte.getIdReporte());
 		reportePrioridad.setUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
-		reportePrioridad.setPrioridad(0);
+		if(Reporte.getPrioridad()==null||Reporte.getPrioridad()==0) {
+			reportePrioridad.setPrioridad(0);
+		} else {
+			reportePrioridad.setPrioridad(Reporte.getPrioridad());
+		}
 		this.reportePrioridadService.registrar(reportePrioridad);
 		return Reporte;
 	}
@@ -203,7 +207,9 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		if(idReporte!=0) {
 			Reporte.setIdReporte(idReporte);
 		}	
-		Reporte.setPrioridad(0);
+		if(Reporte.getPrioridad()==null||Reporte.getPrioridad()==0) {
+			Reporte.setPrioridad(0);
+		}
 		Reporte.setQueryReporte(this.generarConsultaService.generarConsulta(Reporte));
 		this.registrarReporte(Reporte);
 		idReporte=Reporte.getIdReporte();
