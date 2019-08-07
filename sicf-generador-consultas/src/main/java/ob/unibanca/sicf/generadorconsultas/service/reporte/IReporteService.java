@@ -24,6 +24,8 @@ public interface IReporteService extends IMantenibleService<Reporte> {
 	
 	void eliminarReporte(int idReporte);
 	
+	void detectarPAN(Reporte reporte);
+	
 	Reporte registrarReporteTotal(int idReporte,Reporte Reporte);
 	
 	Page<Map<String, Object>> ejecutarConsulta(String consulta, PageParameter pageParameter);

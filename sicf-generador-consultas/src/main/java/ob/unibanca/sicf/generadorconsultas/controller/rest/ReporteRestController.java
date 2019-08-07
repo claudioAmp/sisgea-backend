@@ -87,6 +87,7 @@ public class ReporteRestController {
 		 PageParameter pageParameter= new  PageParameter();
 		 pageParameter.setPageNum(pageNum);
 		 pageParameter.setPageSize(pageSize);
+		 this.reporteService.detectarPAN(reporte);
 		reporte.setVisualiza(this.visualizacionPANService.puedeVisualizarPAN());
 		reporte.setQueryReporte(this.generarConsultaService.generarConsulta(reporte));
 		System.out.println(reporte.getQueryReporte());

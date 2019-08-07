@@ -355,6 +355,31 @@ public class ReporteService extends MantenibleService<Reporte> implements IRepor
 		result.add(reporte);
 		return result;
 	}
+
+	@Override
+	public void detectarPAN(Reporte reporte) {
+		List<String> denominacionPAN= new ArrayList<>();
+		denominacionPAN.add("PAN");
+		denominacionPAN.add("NUMERO_TARJETA");
+		denominacionPAN.add("ACCOUNT_NUMBER");
+		for(CampoQuery campo : reporte.getCampos()) {
+			if(campo.getTruncable()==0 && this.includeIn(campo.getCampo(), denominacionPAN)){
+				campo.setTruncable(1);
+			}
+		}
+		
+	}
+	public boolean includeIn(String item,List<String> elementos )
+	{
+		boolean result=false;
+		for(String elemento : elementos) {
+			if(item.compareTo(elemento)==0) {
+				result=true;
+				return result;
+			}
+		}
+		return result;
+	}
 	
 	
 	
