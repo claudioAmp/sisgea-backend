@@ -2,7 +2,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoRespuestaSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigorespuestaswitch.ICodigoRespuestaSwitchService;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class CodigoRespuestaSwitchExportacionController {
 		List<CodigoRespuestaSwitch> lista = codigoRespuestaSwitchService.buscarTodosCodigoRespuetaSwitches();
       params.put("mantenimiento", lista);
       params.put("username", UsuarioUtil.obtenerUsername());
-      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+      params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/codigoRespuestaSwitch");
       model.addAttribute("name", "Reporte Código Respuesta Switch");
       model.addAttribute("params", params);

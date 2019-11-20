@@ -5,7 +5,7 @@ import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.error.model.ErrorResponse;
 import ob.commons.error.util.BaseDatosExcepcionUtil;
 import ob.commons.error.util.ErrorResponseUtil;
-import ob.commons.validation.util.ValidationErrorResponseUtil;
+import ob.commons.spring.validation.util.ValidationErrorResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

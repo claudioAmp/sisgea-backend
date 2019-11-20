@@ -6,7 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
-import ob.commons.validation.validation.IdCadena;
+import ob.commons.spring.validation.validation.IdCadena;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -7,7 +7,7 @@ import ob.commons.error.util.BaseDatosExcepcionUtil;
 import ob.commons.error.util.ErrorResponseUtil;
 import ob.commons.excel.exception.ReadingExcelFileException;
 import ob.commons.excel.util.ReadingExcelFileExceptionUtil;
-import ob.commons.validation.util.ValidationErrorResponseUtil;
+import ob.commons.spring.validation.util.ValidationErrorResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
-import ob.commons.validation.validation.IdCadena;
-import ob.commons.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.IdCadena;
+import ob.commons.spring.validation.validation.IdNumerico;
 import ob.unibanca.sicf.mantenimientosgenerales.model.MultitabDet;
 import ob.unibanca.sicf.mantenimientosgenerales.service.multitabdet.IMultitabDetService;
 import org.springframework.http.HttpStatus;

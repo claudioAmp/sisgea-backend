@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.DistribucionFondo;
 import ob.unibanca.sicf.mantenimientosgenerales.service.distribucionfondo.IDistribucionFondoService;
 
@@ -32,7 +32,7 @@ public class DistribucionFondoExportacionController {
 		List<DistribucionFondo> lista = distribucionFondoService.buscarTodosDistFondo();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-	    params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+	    params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 	    model.addAttribute("template", "mantenimientosgenerales/distribucionFondo");
 	    model.addAttribute("name", "Reporte Distribución Fondo");
 	    model.addAttribute("params", params);

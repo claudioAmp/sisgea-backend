@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.tarifarios.controller.rest;
 
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.tarifarios.model.TarifarioSurcharge;
 import ob.unibanca.sicf.tarifarios.service.tarifariosurcharge.ITarifarioSurchargeService;
 import org.springframework.http.HttpStatus;

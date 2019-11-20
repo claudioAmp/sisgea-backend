@@ -2,8 +2,8 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
 import java.util.List;
 import javax.validation.groups.Default;
-import ob.commons.validation.validation.IdCadena;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdCadena;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.MetodoIdThb;
 import ob.unibanca.sicf.mantenimientosgenerales.service.metodoidthb.IMetodoIdThbService;
 import org.springframework.http.HttpStatus;

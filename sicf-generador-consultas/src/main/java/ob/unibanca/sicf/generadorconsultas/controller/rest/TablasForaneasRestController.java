@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.TablasForaneas;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaTablasForaneas;
 import ob.unibanca.sicf.generadorconsultas.service.tablaforanea.ITablasForaneasService;

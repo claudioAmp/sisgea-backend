@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Origen;
 import ob.unibanca.sicf.mantenimientosgenerales.service.origen.IOrigenService;
 
@@ -33,7 +33,7 @@ public class OrigenExportacionController {
 		List<Origen> lista = origenService.buscarTodosOrigenes();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/origen");
 		model.addAttribute("name", "Reporte Origen");
 		model.addAttribute("params", params);

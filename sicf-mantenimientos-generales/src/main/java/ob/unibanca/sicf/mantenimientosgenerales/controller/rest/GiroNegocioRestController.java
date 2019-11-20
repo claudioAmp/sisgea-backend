@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import ob.commons.validation.validation.IdCadena;
+import ob.commons.spring.validation.validation.IdCadena;
 import ob.unibanca.sicf.mantenimientosgenerales.model.GiroNegocio;
 import ob.unibanca.sicf.mantenimientosgenerales.service.gironegocio.IGiroNegocioService;
 

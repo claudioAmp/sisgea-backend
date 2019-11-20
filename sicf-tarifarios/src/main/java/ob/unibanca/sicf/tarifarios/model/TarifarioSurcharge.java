@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.NumeroNoRequerido;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.NumeroNoRequerido;
+import ob.commons.spring.validation.validation.group.IRegistro;
 
 @Data
 @Builder

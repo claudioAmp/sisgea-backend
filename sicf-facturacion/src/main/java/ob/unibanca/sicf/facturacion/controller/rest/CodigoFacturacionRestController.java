@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.facturacion.controller.rest;
 
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.facturacion.model.CodigoFacturacion;
 import ob.unibanca.sicf.facturacion.service.codigofacturacion.ICodigoFacturacionService;
 import org.springframework.http.HttpStatus;

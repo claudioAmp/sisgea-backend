@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ob.commons.truncadorpan.decisor.IVisualizacionPANService;
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.model.UltimoSecuencia;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaReporte;

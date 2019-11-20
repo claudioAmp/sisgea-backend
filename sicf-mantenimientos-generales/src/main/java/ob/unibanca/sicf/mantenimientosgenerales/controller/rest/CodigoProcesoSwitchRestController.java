@@ -1,6 +1,6 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.CodigoProcesoSwitch;
 import ob.unibanca.sicf.mantenimientosgenerales.service.codigoprocesoswitch.ICodigoProcesoSwitchService;
 import org.springframework.http.HttpStatus;

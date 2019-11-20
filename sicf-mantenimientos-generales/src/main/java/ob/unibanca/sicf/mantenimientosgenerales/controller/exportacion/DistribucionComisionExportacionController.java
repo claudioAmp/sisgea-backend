@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.DistribucionComision;
 import ob.unibanca.sicf.mantenimientosgenerales.service.distribucioncomision.IDistribucionComisionService;
 
@@ -31,7 +31,7 @@ public class DistribucionComisionExportacionController {
 		List<DistribucionComision> lista = distribucionComisionService.buscarTodosDistComision();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-	    params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+	    params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 	    model.addAttribute("template", "mantenimientosgenerales/distribucionComision");
 	    model.addAttribute("name", "Reporte Distribución Comisión");
 	    model.addAttribute("params", params);

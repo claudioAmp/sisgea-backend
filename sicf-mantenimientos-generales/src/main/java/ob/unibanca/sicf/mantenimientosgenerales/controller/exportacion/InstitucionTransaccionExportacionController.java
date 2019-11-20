@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.InstitucionTransaccion;
 import ob.unibanca.sicf.mantenimientosgenerales.service.instituciontransaccion.IInstitucionTransaccionService;
 
@@ -33,7 +33,7 @@ public class InstitucionTransaccionExportacionController {
 		List<InstitucionTransaccion> lista = institucionTransaccionService.buscarTodosInstitucionesTransacciones();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/institucionTransaccion");
 		model.addAttribute("name", "Reporte Institución Transacción");
 		model.addAttribute("params", params);

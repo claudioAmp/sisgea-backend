@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ModoEntradaPOS;
 import ob.unibanca.sicf.mantenimientosgenerales.service.modoentradapos.IModoEntradaPOSService;
 
@@ -33,7 +33,7 @@ public class ModoEntradaPOSExportacionController {
 		List<ModoEntradaPOS> lista = modoEntradaPOSService.buscarTodosModosEntradasPOS();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/modoEntradaPOS");
 		model.addAttribute("name", "Reporte ModoEntradaPOS");
 		model.addAttribute("params", params);

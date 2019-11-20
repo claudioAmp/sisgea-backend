@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Canal;
 import ob.unibanca.sicf.mantenimientosgenerales.service.canal.ICanalService;
 
@@ -33,7 +33,7 @@ public class CanalExportacionController {
 		List<Canal> lista = canalService.buscarTodosCanales();
       params.put("mantenimiento", lista);
       params.put("username", UsuarioUtil.obtenerUsername());
-      params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+      params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
       model.addAttribute("template", "mantenimientosgenerales/canal");
       model.addAttribute("name", "Reporte Canal");
       model.addAttribute("params", params);

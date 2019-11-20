@@ -1,4 +1,5 @@
 package ob.unibanca.sicf.generadorconsultas.controller.rest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ob.commons.truncadorpan.decisor.IVisualizacionPANService;
 import ob.unibanca.sicf.generadorconsultas.model.Reporte;
 import ob.unibanca.sicf.generadorconsultas.service.generarconsulta.IGenerarConsultaService;
+
 @Validated
 @RestController
 public class GenerarConsultaRestController {

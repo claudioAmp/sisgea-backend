@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.TransaccionMarcaInt;
 import ob.unibanca.sicf.mantenimientosgenerales.service.transaccionmarcaint.ITransaccionMarcaIntService;
 
@@ -31,7 +31,7 @@ public class TransaccionMarcaIntExportacionController {
 		List<TransaccionMarcaInt> lista = transaccionMarcaIntService.buscarTodasTransaccionesMarcaInt();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "reportecito");
 		model.addAttribute("name", "Reporte ATM");
 		model.addAttribute("params", params);

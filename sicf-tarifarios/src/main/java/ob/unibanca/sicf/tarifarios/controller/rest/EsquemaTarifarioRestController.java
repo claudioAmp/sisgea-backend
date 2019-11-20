@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.tarifarios.model.EsquemaTarifario;
 import ob.unibanca.sicf.tarifarios.service.esquematarifario.IEsquemaTarifarioService;
 

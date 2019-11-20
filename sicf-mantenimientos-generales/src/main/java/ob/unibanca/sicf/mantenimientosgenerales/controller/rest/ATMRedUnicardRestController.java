@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 
-import ob.commons.validation.validation.IdNumerico;
-import ob.commons.validation.validation.group.IRegistro;
+import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ATMRedUnicard;
 import ob.unibanca.sicf.mantenimientosgenerales.service.atmredunicard.IATMRedUnicardService;
 import org.springframework.http.HttpStatus;

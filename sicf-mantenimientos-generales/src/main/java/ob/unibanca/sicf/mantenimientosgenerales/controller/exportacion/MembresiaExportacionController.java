@@ -1,7 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.controller.exportacion;
 
 import ob.commons.autorizacionjwt.util.UsuarioUtil;
-import ob.commons.util.DateUtils;
+import ob.commons.util.DatesUtils;
 import ob.unibanca.sicf.mantenimientosgenerales.model.Membresia;
 import ob.unibanca.sicf.mantenimientosgenerales.service.membresia.IMembresiaService;
 
@@ -32,7 +32,7 @@ public class MembresiaExportacionController {
 		List<Membresia> lista = membresiaService.buscarTodosMembresias();
 		params.put("mantenimiento", lista);
 		params.put("username", UsuarioUtil.obtenerUsername());
-		params.put("fecha", DateUtils.obtenerFechaYHoraActualDelSistema());
+		params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());
 		model.addAttribute("template", "mantenimientosgenerales/membresia");
 		model.addAttribute("name", "Reporte Membresía");
 		model.addAttribute("params", params);
