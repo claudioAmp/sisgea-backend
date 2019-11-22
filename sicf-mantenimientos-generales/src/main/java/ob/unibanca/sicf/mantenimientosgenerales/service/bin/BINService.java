@@ -49,7 +49,7 @@ public class BINService extends MantenibleService<BIN> implements IBINService {
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<BIN> buscarTodosBINs() {
+	public List<BIN> buscarTodosBIN() {
 		return this.buscarTodos();
 	}
 	

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IBINService extends IMantenibleService<BIN> {
 	
-	List<BIN> buscarTodosBINs();
+	List<BIN> buscarTodosBIN();
 	
 	List<BIN> buscarPorInstituciones(CriterioBusquedaInstitucion criterio);
 	

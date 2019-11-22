@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IRangoBinMasterCardMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT 	   effectiveTimestamp ,
+				   activeInactiveCode ,
+				   tableId ,
+				   issuerAccountRangeLow ,
+				   gcmsProductId ,
+				   issuerAccountRangeHigh ,
+				   cardProgramId ,
+				   issuerCardProgramIdPriorityCode ,
+				   memberId ,
+				   productTypeId ,
+				   endpoint ,
+				   countryCodeAlpha ,
+				   countryCodeNumeric ,
+				   region ,
+				   productClass ,
+				   transactionRoutingIndicator ,
+				   firstPresentmentReassignmentSwitch ,
+				   productReassignmentSwitch ,
+				   pwcbOptInSwitch ,
+				   licenseProductId ,
+				   mappingServiceIndicator ,
+				   accountLevelManagementParticipationIndicator ,
+				   accountLevelManagementActivationDate ,
+				   cardholderBillingCurrencyDefault ,
+				   cardholderBillingCurrencyExponentDefault ,
+				   cardholderBillingPrimeryCurrency ,
+				   chipToMagneticConversionServiceIndicator ,
+				   floorExpirationDate ,
+				   coBrandParticipationSwitch ,
+				   spendControlSwitch ,
+				   merchantCleansingServiceParticipation ,
+				   merchantCleansingActivationDate ,
+				   contaclessEnabledIndicator ,
+				   regulatedRateTypeIndicator ,
+				   psnRouteIndicator ,
+				   cashBackWithoutPurchaseIndicator ,
+				   filler1 ,
+				   repowerReloadParticipatingIndicator ,
+				   moneysendIndicator ,
+				   durbinRegulatedRateIndicator ,
+				   cashAccessOnlyParticipatingIndicator ,
+				   authenticationIndicator ,
+				   filler2 ,
+				   issuerTargetMarketParticipationIndicator ,
+				   postDateServiceIndicator ,
+				   mealVoucherIndicator ,
+				   nonReloadablePrepaidSwitch ,
+				   fasterFundsIndicator ,
+				   anonymousPrepaidIndicator ,
+				   filler3 
+            FROM VIE_MAN_RANGO_ACCOUNT_MC
+    </sql>
+    
+
+    <select id="buscarTodos" resultType="RangoBINMasterCard" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+    </select>
+</mapper>

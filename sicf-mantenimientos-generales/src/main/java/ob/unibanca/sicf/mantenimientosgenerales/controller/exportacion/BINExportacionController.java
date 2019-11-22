@@ -30,7 +30,7 @@ public class BINExportacionController {
 	@GetMapping(value = "/bins.xlsx")
 	public ModelAndView exportarBIN(ModelMap model) {
 		Map<String, Object> params = new HashMap<>();
-		List<BIN> lista = binService.buscarTodosBINs();
+		List<BIN> lista = binService.buscarTodosBIN();
       params.put("mantenimiento", lista);
       params.put("username", UsuarioUtil.obtenerUsername());
       params.put("fecha", DatesUtils.obtenerFechaYHoraActualDelSistema());

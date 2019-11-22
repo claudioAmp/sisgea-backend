@@ -34,7 +34,7 @@ public class BINRestController {
 	@PreAuthorize("hasPermission('MANT_BIN', '2')")
 	@GetMapping("/bins")
 	public List<BIN> buscarTodosBINs() {
-		return this.binService.buscarTodosBINs();
+		return this.binService.buscarTodosBIN();
 	}
 	
 	@PreAuthorize("hasPermission('MANT_BIN', '2')")
