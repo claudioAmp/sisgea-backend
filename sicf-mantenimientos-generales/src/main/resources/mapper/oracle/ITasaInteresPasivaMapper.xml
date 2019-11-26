@@ -27,7 +27,7 @@
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PRC_MAN_SERVICIO(
+            CALL PKG_MAN_GENERALES.PCR_MAN_TASA_INTERES_PASIVA(
                 -- TODO(mapper-tipo-dato): que tipo de dato es la fecha?
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.fechaProceso,                 jdbcType=DATE    , mode=INOUT },
