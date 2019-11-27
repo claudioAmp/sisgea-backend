@@ -4,15 +4,15 @@
 
     <sql id="consultaVistaMant">
         SELECT
-            FECHA_PROCESO,
-            FECHA_AFECT_MONEDA_BASE,
-            FECHA_AFECT_MODENA_ALTERNA,
-            TASA_INTERES_MONEDA_BASE,
-            TASA_INTERES_MONEDA ALTERNA,
-            FACTOR_DIARIO_MONEDA_BASE,
-            FACTOR_DIARIO_MONEDA_ALTERNA
+            fecha_proceso,
+            fecha_afect_moneda_base,
+            fecha_afect_moneda_alterna,
+            tasa_interes_moneda_base,
+            tasa_interes_moneda_alterna,
+            factor_diario_moneda_base,
+            factor_diario_moneda_alterna
         FROM
-            VIE_MAN_TASA_INTERES_PASIVA;
+            VIE_MAN_TASA_INTERES_PASIVA
     </sql>
 
     <select id="buscarTodos" resultType="TasaInteresPasiva" statementType="PREPARED">
@@ -21,13 +21,13 @@
 
     <select id="buscarTasaInteresPasiva" resultType="TasaInteresPasiva">
         <include refid="consultaVistaMant"/>
-        WHERE FECHA_PROCESO = #{fechaProceso}
+        WHERE fecha_proceso = #{fechaProceso}
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PCR_MAN_TASA_INTERES_PASIVA(
+            CALL PKG_MAN_GENERALES.PRC_MAN_TASA_INTERES_PASIVA(
                 -- TODO(mapper-tipo-dato): que tipo de dato es la fecha?
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.fechaProceso,                 jdbcType=DATE    , mode=INOUT },

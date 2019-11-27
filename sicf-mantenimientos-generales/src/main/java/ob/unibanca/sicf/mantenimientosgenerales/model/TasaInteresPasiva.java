@@ -25,9 +25,6 @@ public class TasaInteresPasiva {
     private Float tasaInteresMonedaBase;
     private Float tasaInteresMonedaAlterna;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date factorDiarioMonedaBase;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date factorDiarioMonedaAlterna;
+    private Float factorDiarioMonedaBase;
+    private Float factorDiarioMonedaAlterna;
 }
