@@ -3,6 +3,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.controller.rest;
 import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.mantenimientosgenerales.model.TasaInteresPasiva;
 import ob.unibanca.sicf.mantenimientosgenerales.service.tasainterespasiva.ITasaInteresPasivaService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +14,7 @@ import javax.validation.groups.Default;
 import java.util.Date;
 import java.util.List;
 
-@Validated // TODO(validated): que es validated?
+@Validated
 @RestController
 @RequestMapping(value="/tasas-interes-pasivas")
 public class TasaInteresPasivaRestController {
@@ -24,38 +25,34 @@ public class TasaInteresPasivaRestController {
         this.tasaInteresPasivaService = tasaInteresPasivaService;
     }
 
-    // TODO(1. permisos-controller-tasa): que permisos necesita este mantenimiento?
-    @PreAuthorize("hasPermission('MANT_INSTIT', '2')")
+    @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '2')")
     @GetMapping
     public List<TasaInteresPasiva> buscarTodasTasasInteresPasivas() {
         return this.tasaInteresPasivaService.buscarTodasTasasInteresPasivas();
     }
 
-    // TODO(2. permisos-controller-tasa): que permisos necesita este mantenimiento?
-    @PreAuthorize("hasPermission('MANT_INSTIT', '2')")
+    @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '2')")
     @GetMapping(value = "/{fecha-proceso}")
-    public TasaInteresPasiva buscarTasaInteresPasiva(@PathVariable("fecha-proceso") Date fechaProceso) {
+    public TasaInteresPasiva buscarTasaInteresPasiva(@PathVariable("fecha-proceso")
+         @DateTimeFormat(pattern = "yyyy-MM-dd")Date fechaProceso) {
         return this.tasaInteresPasivaService.buscarTasaInteresPasiva(fechaProceso);
     }
 
-    // TODO(3. permisos-controller-tasa): que permisos necesita este mantenimiento?
-    @PreAuthorize("hasPermission('MANT_SERVIC', '1')")
+    @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '1')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public TasaInteresPasiva registrarTasaInteresPasiva(@Validated({IRegistro.class, Default.class}) @RequestBody TasaInteresPasiva tasaInteresPasiva) {
         return this.tasaInteresPasivaService.registrarTasaInteresPasiva(tasaInteresPasiva);
     }
 
-    // TODO(4. permisos-controller-tasa): que permisos necesita este mantenimiento?
-    @PreAuthorize("hasPermission('MANT_SERVIC', '3')")
+    @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '3')")
     @PutMapping(value = "/{fecha-proceso}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public TasaInteresPasiva actualizarTasaInteresPasiva(@PathVariable("fecha-proceso") Date fechaProceso,
         @Validated({IRegistro.class, Default.class}) @RequestBody TasaInteresPasiva tasaInteresPasiva) {
         return this.tasaInteresPasivaService.actualizarTasaInteresPasiva(fechaProceso, tasaInteresPasiva);
     }
 
-    // TODO(5. permisos-controller-tasa): que permisos necesita este mantenimiento?
-    @PreAuthorize("hasPermission('MANT_SERVIC', '4')")
+    @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '4')")
     @DeleteMapping("/{fecha-proceso}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void eliminarTasaInteresPasiva(@PathVariable("fecha-proceso") Date fechaProceso) {
