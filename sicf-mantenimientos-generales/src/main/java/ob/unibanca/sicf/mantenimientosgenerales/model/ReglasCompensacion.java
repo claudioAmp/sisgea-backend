@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.mantenimientosgenerales.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,10 +27,5 @@ public class ReglasCompensacion {
 	private String descripcionCuentaCargoFondo;
 	private Integer idCuentaAbonoFondo;
 	private String descripcionCuentaAbonoFondo;
-	private Integer idTipoComision;
-	private String descripcionTipoComision;
-	private Integer idCuentaCargoComision;
-	private String descripcionCuentaCargoComision;
-	private Integer idCuentaAbonoComision;
-	private String descripcionCuentaAbonoComision;
+	private List<ReglasCompensacionComision> comisiones;
 }
