@@ -20,7 +20,7 @@ public class ObservadaRestController {
 		this.observadaService = observadaService;
 	}
 	
-	//@PreAuthorize("hasPermission('CON_OBSERVADA', '2')")
+	@PreAuthorize("hasPermission('CON_TXN_OBSERVADA', '2')")
 	@GetMapping(value = "/observadas/pagination")
 	public Pagina<CriterioBusquedaObservada, Observada> buscarPorPaginas(
 			Pagina<CriterioBusquedaObservada, Observada> criterioPaginacion, 
@@ -32,7 +32,7 @@ public class ObservadaRestController {
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
 	
-	//@PreAuthorize("hasPermission('CON_OBSERVADA', '2')")
+	@PreAuthorize("hasPermission('CON_TXN_OBSERVADA', '2')")
 	@GetMapping("/observadas/detalle")
 	public ObservadaDetalle buscarDetalle(CriterioBusquedaObservada criterio) {
 		return this.observadaService.buscarDetalle(criterio);
