@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaObservada {
 	
-	String accountNumber;
+	String numeroTarjeta;
 	List<String> idsProceso;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaTransaccionInicio;
@@ -41,8 +41,10 @@ public class CriterioBusquedaObservada {
 	private String filtroNumeroCuenta;
 	private String filtroIdCanal;
 	private String filtroIdProceso;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaTransaccion;
 	private String filtroHoraTransaccion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaSwitch;
 	private String filtroNumeroTrace;
 	private String filtroAutorizacion;
@@ -55,17 +57,17 @@ public class CriterioBusquedaObservada {
 	private String filtroIndMonedaDiferencia;
 	private String filtroOrigenArchivoConciliacion;
 	private String filtroIndConciliacion;
-	private String filtroSecuenciaARchivo;
+	private String filtroSecuenciaArchivo;
 
 	// Orden
-	private Date ordenFechaProceso;
+	private String ordenFechaProceso;
 	private String ordenNumeroTarjeta;
 	private String ordenNumeroCuenta;
 	private String ordenIdCanal;
 	private String ordenIdProceso;
-	private Date ordenFechaTransaccion;
+	private String ordenFechaTransaccion;
 	private String ordenHoraTransaccion;
-	private Date ordenFechaSwitch;
+	private String ordenFechaSwitch;
 	private String ordenNumeroTrace;
 	private String ordenAutorizacion;
 	private String ordenAuthorizationSwitch;
@@ -73,11 +75,14 @@ public class CriterioBusquedaObservada {
 	private String ordenResponseCodeSwitch;
 	private String ordenMonedaTransaccion;
 	private String ordenTxnCurrencySwitch;
+	private String ordenValorTransaccion;
+	private String ordenTxnAmountSwitch;
 	private String ordenIndRespuestaDiferencia;
 	private String ordenIndMonedaDiferencia;
+	private String ordenValorDiferencia;
 	private String ordenOrigenArchivoConciliacion;
 	private String ordenIndConciliacion;
-	private String ordenSecuenciaARchivo;
+	private String ordenSecuenciaArchivo;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoValorTransaccionMin;
