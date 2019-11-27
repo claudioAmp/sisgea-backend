@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ILiberacionMapper">
+	
+	<!-- CONSULTA DE TXNS LIBERADAS PARA LA GRILLA -->
+	
+	<sql id="consultaLiberada" >
+		SELECT *
+		FROM VIE_CON_LIBERADA a
+	</sql>
+	
+	<sql id = "fragmentoWhere">
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			 a.TRANSMISSION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
+		<if  test="estadoTransaccion != null and estadoTransaccion != ''">
+			 AND a.ESTADO_TRANSACCION = #{estadoTransaccion}
+		</if>
+		<if  test="accountNumber != null and accountNumber != ''">
+			 AND a.ACCOUNT_NUMBER = #{accountNumber}
+		</if>
+		<if  test="indConciliacion != null and indConciliacion != ''">
+			 AND a.IND_CONCILIACION = #{indConciliacion}
+		</if>
+		<if  test="transactionCurrency != null and transactionCurrency != ''">
+			 AND a.TRANSACTION_CURRENCY = #{transactionCurrency}
+		</if>
+	</sql>
+	
+	<sql id ="fragmentoWhereMultiples">
+		<if test="idsOrigen !=null and idsOrigen.size()>0">
+			AND a.ID_ORIGEN IN 
+			<foreach item="item" index="index" collection="idsOrigen" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="institucionesEmisoras !=null and institucionesEmisoras.size()>0">
+			AND a.ID_INSTITUCION_EMISORA IN 
+			<foreach item="item" index="index" collection="institucionesEmisoras" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="institucionesReceptoras !=null and institucionesReceptoras.size()>0">
+			AND a.ID_INSTITUCION_RECEPTORA IN 
+			<foreach item="item" index="index" collection="institucionesReceptoras" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="origenesArchivo !=null and origenesArchivo.size()>0">
+			AND a.ORIGEN_ARCHIVO IN 
+			<foreach item="item" index="index" collection="origenesArchivo" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+	
+	<sql id="fragmentoFiltrosOrdenaciones">
+		<if  test="filtroEstadoTransaccion != null" >
+			<bind name="pFiltroEstadoTransaccion" value="'%' + filtroEstadoTransaccion + '%'" />
+			AND CONCAT(UPPER(ESTADO_TRANSACCION),UPPER(DESCRIPCION_ESTADO_TRANSACCION)) LIKE UPPER(#{pFiltroEstadoTransaccion})
+		</if>
+		<if  test="filtroMessageType != null" >
+			<bind name="pFiltroMessageType" value="'%' + filtroMessageType + '%'" />
+			AND MESSAGE_TYPE LIKE #{pFiltroMessageType}
+		</if>
+		<if  test="filtroAccountNumber != null" >
+			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
+			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
+		</if>
+		<if  test="filtroTransactionCurrency != null" >
+			<bind name="pFiltroTransactionCurrency" value="'%' + filtroTransactionCurrency + '%'" />
+			AND CONCAT(TRANSACTION_CURRENCY,UPPER(DESCRIPCION_MONEDA)) LIKE UPPER(#{pFiltroTransactionCurrency})
+		</if>
+		<if  test="filtroTransmissionDate != null" >
+			AND TRANSMISSION_DATE = #{filtroTransmissionDate}
+		</if>
+		<if  test="filtroTransmissionTime != null" >
+			<bind name="pFiltroTransmissionTime" value="'%' + filtroTransmissionTime + '%'" />
+			AND TRANSMISSION_TIME LIKE #{pFiltroTransmissionTime}
+		</if>
+		<if  test="filtroTraceNumber != null" >
+			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
+			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
+		</if>
+		<if  test="filtroPosConditionCode != null" >
+			<bind name="pFiltroPosConditionCode" value="'%' + filtroPosConditionCode + '%'" />
+			AND POS_CONDITION_CODE LIKE #{pFiltroPosConditionCode}
+		</if>
+		<if  test="filtroResponseCode != null" >
+			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+			AND CONCAT(RESPONSE_CODE,UPPER(DESCRIPCION_CODIGO_RPTA_SW)) LIKE UPPER(#{pFiltroResponseCode})
+		</if>
+		<if  test="filtroOrigenArchivo != null" >
+			<bind name="pFiltroOrigenArchivo" value="'%' + filtroOrigenArchivo + '%'" />
+			AND CONCAT(UPPER(ORIGEN_ARCHIVO),UPPER(DESCRIPCION_ORIGEN_ARCHIVO)) LIKE UPPER(#{pFiltroOrigenArchivo})
+		</if>
+		<if  test="filtroIndConciliacion != null" >
+			<bind name="pFiltroIndConciliacion" value="'%' + filtroIndConciliacion + '%'" />
+			AND CONCAT(IND_CONCILIACION,UPPER(DESCRIPCION_CONCILIACION)) LIKE UPPER(#{pFiltroIndConciliacion})
+		</if>
+		<if  test="filtroProcessingCode != null" >
+			<bind name="pFiltroProcessingCode" value="'%' + filtroProcessingCode + '%'" />
+			AND PROCESSING_CODE LIKE #{pFiltroProcessingCode}
+		</if>
+		<if  test="filtroReferenceNumber != null" >
+			<bind name="pFiltroReferenceNumber" value="'%' + filtroReferenceNumber + '%'" />
+			AND REFERENCE_NUMBER LIKE #{pFiltroReferenceNumber}
+		</if>
+		<if  test="filtroAccountIdentification1 != null" >
+			<bind name="pFiltroAccountIdentification1" value="'%' + filtroAccountIdentification1 + '%'" />
+			AND ACCOUNT_IDENTIFICATION_1 LIKE #{pFiltroAccountIdentification1}
+		</if>
+		<if  test="filtroAccountIdentification2 != null" >
+			<bind name="pFiltroAccountIdentification2" value="'%' + filtroAccountIdentification2 + '%'" />
+			AND ACCOUNT_IDENTIFICATION_2 LIKE #{pFiltroAccountIdentification2}
+		</if>
+		<if  test="filtroAuthorizationCode != null" >
+			<bind name="pFiltroAuthorizationCode" value="'%' + filtroAuthorizationCode + '%'" />
+			AND AUTHORIZATION_CODE LIKE #{pFiltroAuthorizationCode}
+		</if>
+		<if  test="filtroIdInstitucionEmisora != null" >
+			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
+			AND CONCAT(ID_INSTITUCION_EMISORA,UPPER(DESCRIPCION_INST_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
+		</if>
+		<if  test="filtroIdInstitucionReceptora != null" >
+			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+			AND CONCAT(ID_INSTITUCION_RECEPTORA,UPPER(DESCRIPCION_INST_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
+		</if>
+		<if  test="filtroCaptureDate != null" >
+			AND CAPTURE_DATE = #{filtroCaptureDate}
+		</if>
+		<if  test="filtroIdMembresia != null" >
+			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+			AND CONCAT(UPPER(ID_MEMBRESIA),UPPER(DESCRIPCION_MEMBRESIA)) LIKE UPPER(#{pFiltroIdMembresia})
+		</if>
+		<if  test="filtroIdOrigen != null" >
+			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+			AND CONCAT(ID_ORIGEN,UPPER(DESCRIPCION_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
+		</if>
+		<if  test="filtroIdProceso != null" >
+			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
+			AND CONCAT(UPPER(ID_PROCESO),UPPER(DESCRIPCION_PROCESO)) LIKE UPPER(#{pFiltroIdProceso})
+		</if>
+		<if  test="filtroIdProducto != null" >
+			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
+			AND CONCAT(ID_PRODUCTO,UPPER(DESCRIPCION_PRODUCTO)) LIKE UPPER(#{pFiltroIdProducto})
+		</if>
+		<if  test="filtroFechaRegistro != null" >
+			AND FECHA_REGISTRO = #{filtroFechaRegistro}
+		</if>
+		<if  test="filtroHoraRegistro != null" >
+			<bind name="pFiltroHoraRegistro" value="'%' + filtroHoraRegistro + '%'" />
+			AND HORA_REGISTRO LIKE #{pFiltroHoraRegistro}
+		</if>
+		<if  test="filtroSecuenciaSwdmplog != null" >
+			<bind name="pFiltroSecuenciaSwdmplog" value="'%' + filtroSecuenciaSwdmplog + '%'" />
+			AND SECUENCIA_SWDMPLOG LIKE #{pFiltroSecuenciaSwdmplog}
+		</if>
+		<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
+			AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
+		</if>
+		<if  test="rangoSettlementAmountMin != null and rangoSettlementAmountMax != null" >
+			AND SETTLEMENT_AMOUNT BETWEEN #{rangoSettlementAmountMin} AND #{rangoSettlementAmountMax}
+		</if>
+		<if  test="ordenEstadoTransaccion != null" >
+			ORDER BY
+				ESTADO_TRANSACCION  ${ordenEstadoTransaccion}
+		</if>
+		<if  test="ordenMessageType != null" >
+			ORDER BY
+				MESSAGE_TYPE  ${ordenMessageType}
+		</if>
+		<if  test="ordenAccountNumber != null" >
+			ORDER BY
+				ACCOUNT_NUMBER  ${ordenAccountNumber}
+		</if>
+		<if  test="ordenTransactionAmount != null" >
+			ORDER BY
+				TRANSACTION_AMOUNT  ${ordenTransactionAmount}
+		</if>
+		<if  test="ordenTransactionCurrency != null" >
+			ORDER BY
+				TRANSACTION_CURRENCY  ${ordenTransactionCurrency}
+		</if>
+		<if  test="ordenSettlementAmount != null" >
+			ORDER BY
+				SETTLEMENT_AMOUNT  ${ordenSettlementAmount}
+		</if>
+		<if  test="ordenTransmissionDate != null" >
+			ORDER BY
+				TRANSMISSION_DATE  ${ordenTransmissionDate}
+		</if>
+		<if  test="ordenTransmissionTime != null" >
+			ORDER BY
+				TRANSMISSION_TIME  ${ordenTransmissionTime}
+		</if>
+		<if  test="ordenTraceNumber != null" >
+			ORDER BY
+				TRACE_NUMBER  ${ordenTraceNumber}
+		</if>
+		<if  test="ordenPosConditionCode != null" >
+			ORDER BY
+				POS_CONDITION_CODE  ${ordenPosConditionCode}
+		</if>
+		<if  test="ordenResponseCode != null" >
+			ORDER BY
+				RESPONSE_CODE  ${ordenResponseCode}
+		</if>
+		<if  test="ordenOrigenArchivo != null" >
+			ORDER BY
+				ORIGEN_ARCHIVO  ${ordenOrigenArchivo}
+		</if>
+		<if  test="ordenIndConciliacion != null" >
+			ORDER BY
+				IND_CONCILIACION  ${ordenIndConciliacion}
+		</if>
+		<if  test="ordenProcessingCode != null" >
+			ORDER BY
+				PROCESSING_CODE  ${ordenProcessingCode}
+		</if>
+		<if  test="ordenReferenceNumber != null" >
+			ORDER BY
+				REFERENCE_NUMBER  ${ordenReferenceNumber}
+		</if>
+		<if  test="ordenAccountIdentification1 != null" >
+			ORDER BY
+				ACCOUNT_IDENTIFICATION_1  ${ordenAccountIdentification1}
+		</if>
+		<if  test="ordenAccountIdentification2 != null" >
+			ORDER BY
+				ACCOUNT_IDENTIFICATION_2  ${ordenAccountIdentification2}
+		</if>
+		<if  test="ordenAuthorizationCode != null" >
+			ORDER BY
+				AUTHORIZATION_CODE  ${ordenAuthorizationCode}
+		</if>
+		<if  test="ordenIdInstitucionEmisora != null" >
+			ORDER BY
+				ID_INSTITUCION_EMISORA  ${ordenIdInstitucionEmisora}
+		</if>
+		<if  test="ordenIdInstitucionReceptora != null" >
+			ORDER BY
+				ID_INSTITUCION_RECEPTORA  ${ordenIdInstitucionReceptora}
+		</if>
+		<if  test="ordenCaptureDate != null" >
+			ORDER BY
+				CAPTURE_DATE  ${ordenCaptureDate}
+		</if>
+		<if  test="ordenIdMembresia != null" >
+			ORDER BY
+				ID_MEMBRESIA  ${ordenIdMembresia}
+		</if>
+		<if  test="ordenIdOrigen != null" >
+			ORDER BY
+				ID_ORIGEN  ${ordenIdOrigen}
+		</if>
+		<if  test="ordenIdProceso != null" >
+			ORDER BY
+				ID_PROCESO  ${ordenIdProceso}
+		</if>
+		<if  test="ordenIdProducto != null" >
+			ORDER BY
+				ID_PRODUCTO  ${ordenIdProducto}
+		</if>
+		<if  test="ordenFechaRegistro != null" >
+			ORDER BY
+				FECHA_REGISTRO  ${ordenFechaRegistro}
+		</if>
+		<if  test="ordenHoraRegistro != null" >
+			ORDER BY
+				HORA_REGISTRO  ${ordenHoraRegistro}
+		</if>
+		<if  test="ordenSecuenciaSwdmplog != null" >
+			ORDER BY
+				ID_PRODUCTO  ${ordenSecuenciaSwdmplog}
+		</if>
+	</sql>
+	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaLiberacion"  resultType="Liberacion" statementType="PREPARED">	
+		<include refid="consultaLiberada" />
+		<where>
+			<include refid="fragmentoWhere"/> 
+			<include refid="fragmentoWhereMultiples"/>
+			<include refid="fragmentoFiltrosOrdenaciones"/>
+		</where>
+   	</select>
+
+</mapper>
