@@ -28,13 +28,14 @@
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_TASA_INTERES_PASIVA(
-                -- TODO(mapper-tipo-dato): que tipo de dato es la fecha?
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.fechaProceso,                 jdbcType=DATE    , mode=INOUT },
                 #{objetoMantenido.fechaAfectMonedaBase,         jdbcType=DATE    , mode=IN    },
                 #{objetoMantenido.fechaAfectMonedaAlterna,      jdbcType=DATE    , mode=IN    },
-                #{objetoMantenido.tasaInteresMonedaBase,        jdbcType=NUMERIC , mode=OUT   },
-                #{objetoMantenido.tasaInteresMonedaAlterna,     jdbcType=NUMERIC , mode=OUT   },
+                #{objetoMantenido.tasaInteresMonedaBase,        jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.tasaInteresMonedaAlterna,     jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.factorDiarioMonedaBase,       jdbcType=NUMERIC , mode=OUT   },
+                #{objetoMantenido.factorDiarioMonedaAlterna,    jdbcType=NUMERIC , mode=OUT   },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
         }

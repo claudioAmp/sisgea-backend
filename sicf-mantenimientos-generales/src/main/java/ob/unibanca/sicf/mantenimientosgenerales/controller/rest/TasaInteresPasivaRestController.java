@@ -41,13 +41,16 @@ public class TasaInteresPasivaRestController {
     @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '1')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
-    public TasaInteresPasiva registrarTasaInteresPasiva(@Validated({IRegistro.class, Default.class}) @RequestBody TasaInteresPasiva tasaInteresPasiva) {
+    public TasaInteresPasiva registrarTasaInteresPasiva(
+        @Validated
+        @RequestBody TasaInteresPasiva tasaInteresPasiva) {
         return this.tasaInteresPasivaService.registrarTasaInteresPasiva(tasaInteresPasiva);
     }
 
     @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '3')")
     @PutMapping(value = "/{fecha-proceso}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public TasaInteresPasiva actualizarTasaInteresPasiva(@PathVariable("fecha-proceso") Date fechaProceso,
+    public TasaInteresPasiva actualizarTasaInteresPasiva(@PathVariable("fecha-proceso")
+        @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaProceso,
         @Validated({IRegistro.class, Default.class}) @RequestBody TasaInteresPasiva tasaInteresPasiva) {
         return this.tasaInteresPasivaService.actualizarTasaInteresPasiva(fechaProceso, tasaInteresPasiva);
     }
@@ -55,7 +58,8 @@ public class TasaInteresPasivaRestController {
     @PreAuthorize("hasPermission('MANT_TASA_INTERES_PASIVA', '4')")
     @DeleteMapping("/{fecha-proceso}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void eliminarTasaInteresPasiva(@PathVariable("fecha-proceso") Date fechaProceso) {
+    public void eliminarTasaInteresPasiva(@PathVariable("fecha-proceso")
+        @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaProceso) {
         this.tasaInteresPasivaService.eliminarTasaInteresPasiva(fechaProceso);
     }
 }

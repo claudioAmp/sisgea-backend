@@ -25,6 +25,6 @@ public class TasaInteresPasiva {
     private Float tasaInteresMonedaBase;
     private Float tasaInteresMonedaAlterna;
 
-    private Float factorDiarioMonedaBase;
-    private Float factorDiarioMonedaAlterna;
+    private Double factorDiarioMonedaBase;
+    private Double factorDiarioMonedaAlterna;
 }

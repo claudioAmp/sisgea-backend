@@ -40,6 +40,7 @@ public class TasaInteresPasivaService extends MantenibleService<TasaInteresPasiv
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public TasaInteresPasiva registrarTasaInteresPasiva(TasaInteresPasiva tasaInteresPasiva) {
+        System.out.println(tasaInteresPasiva);
         this.registrar(tasaInteresPasiva);
         // return tasaInteresPasiva;
         return this.buscarTasaInteresPasiva(tasaInteresPasiva.getFechaProceso());
