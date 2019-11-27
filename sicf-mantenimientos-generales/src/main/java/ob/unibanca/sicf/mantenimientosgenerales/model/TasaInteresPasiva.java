@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -22,9 +23,9 @@ public class TasaInteresPasiva {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaAfectMonedaAlterna;
 
-    private Float tasaInteresMonedaBase;
-    private Float tasaInteresMonedaAlterna;
+    private Double tasaInteresMonedaBase;
+    private Double tasaInteresMonedaAlterna;
 
-    private Double factorDiarioMonedaBase;
-    private Double factorDiarioMonedaAlterna;
+    private BigDecimal factorDiarioMonedaBase;
+    private BigDecimal factorDiarioMonedaAlterna;
 }
