@@ -19,7 +19,7 @@ public class LiberacionRestController {
 		this.liberacionService = liberacionService;
 	}
 	
-	//@PreAuthorize("hasPermission('CON_LIBERACION', '2')")
+	@PreAuthorize("hasPermission('CON_LIBERACION', '2')")
 	@GetMapping(value = "/liberaciones/pagination")
 	public Pagina<CriterioBusquedaLiberacion, Liberacion> buscarPorPaginas(
 			Pagina<CriterioBusquedaLiberacion, Liberacion> criterioPaginacion, 
