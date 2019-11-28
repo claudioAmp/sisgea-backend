@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IOrigenArchivoMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_origen_archivo
+             , descripcion_origen_archivo
+             , concilia
+        FROM VIE_MAN_ORIGEN_ARCHIVO
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_origen_archivo ASC
+    </sql>
+
+    <select id="buscarTodos" resultType="OrigenArchivo" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+       <include refid="orden"/>
+    </select>
+    
+    <select id="buscarOrigenArchivoPorConciliacion" resultType="OrigenArchivo" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+			WHERE concilia = #{concilia}
+    </select>
+
+    <select id="buscarOrigenArchivo" resultType="OrigenArchivo">
+        <include refid="consultaVistaMant" />
+            WHERE id_origen_archivo = #{idOrigenArchivo}
+    </select>
+	
+</mapper>
