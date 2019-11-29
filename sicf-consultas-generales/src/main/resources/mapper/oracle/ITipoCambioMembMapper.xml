@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ITipoCambioMembMapper">
+	
+	<select id="buscarTodos" resultType="TipoCambioMemb" statementType="PREPARED">
+        SELECT A.id_membresia		AS id_membresia
+             , B.descripcion      	AS descripcion_membresia
+             , A.fecha_tipo_cambio  AS fecha_tipo_cambio
+             , A.tipo_cambio		AS tipo_cambio
+        FROM MOV_TIPO_CAMBIO_MEMB A
+        LEFT JOIN MAE_MEMBRESIA B ON B.id_membresia = A.id_membresia
+    </select>
+    
+    
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_CONSULTAS.PRC_CON_TIPO_CAMBIO_MEMBRESIA(
+                #{modo,                                 jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia,          jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoCambio, 			jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.fechaTipoCambio, 		jdbcType=DATE, mode=INOUT},
+                #{usuario,                              jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>
