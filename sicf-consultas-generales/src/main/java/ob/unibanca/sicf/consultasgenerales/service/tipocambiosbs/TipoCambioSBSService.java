@@ -23,19 +23,19 @@ public class TipoCambioSBSService extends MantenibleService<TipoCambioSBS> imple
 	public List<TipoCambioSBS> buscarTodosTipoCambio() {
 		return this.buscarTodos();
 	}
-		
+			
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS registrarTipoCambio(TipoCambioSBS tipoCambio) {
 		this.registrar(tipoCambio);
-		return tipoCambio;
+		return this.buscarUno(tipoCambio).get();
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS actualizarTipoCambio(TipoCambioSBS tipoCambio) {
 		this.actualizar(tipoCambio);
-		return tipoCambio;
+		return this.buscarUno(tipoCambio).get();
 	}
 	
 	@Override

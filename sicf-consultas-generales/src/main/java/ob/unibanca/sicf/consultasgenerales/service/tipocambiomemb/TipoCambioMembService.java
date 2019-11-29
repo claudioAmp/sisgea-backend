@@ -28,14 +28,14 @@ public class TipoCambioMembService extends MantenibleService<TipoCambioMemb> imp
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioMemb registrarTipoCambio(TipoCambioMemb tipoCambio) {
 		this.registrar(tipoCambio);
-		return tipoCambio;
+		return this.buscarUno(tipoCambio).get();
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioMemb actualizarTipoCambio(TipoCambioMemb tipoCambio) {
 		this.actualizar(tipoCambio);
-		return tipoCambio;
+		return this.buscarUno(tipoCambio).get();
 	}
 	
 	@Override
