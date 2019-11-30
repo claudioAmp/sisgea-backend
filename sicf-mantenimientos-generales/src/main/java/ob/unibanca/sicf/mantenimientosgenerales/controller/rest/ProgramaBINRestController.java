@@ -16,7 +16,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping(value="/programa-bin")
+@RequestMapping(value="/programas-bin")
 public class ProgramaBINRestController {
 
     private final IProgramaBINService programaBINService;
