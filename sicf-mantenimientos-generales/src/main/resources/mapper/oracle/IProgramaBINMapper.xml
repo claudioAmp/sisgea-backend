@@ -35,13 +35,13 @@
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_PROGRAMA_BIN(
-                #{modo,                                 jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMembresia,          jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idProducto,           jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idPrograma,           jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcionPrograma   jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idProgramaIntercambio jdbcType=NUMERIC, mode=IN},
-                #{usuario,                              jdbcType=VARCHAR, mode=IN}
+                #{modo,                                     jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia,              jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idProducto,               jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPrograma,               jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.descripcionPrograma,      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idProgramaIntercambio,    jdbcType=NUMERIC, mode=IN},
+                #{usuario,                                  jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

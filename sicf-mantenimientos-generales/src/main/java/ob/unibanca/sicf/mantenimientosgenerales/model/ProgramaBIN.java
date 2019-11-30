@@ -16,19 +16,23 @@ public class ProgramaBIN {
 
     @IdCadena(maxLength = 1, regexpPattern = "[a-zA-Z]")
     private String idMembresia;
+
     private String descripcionMembresia;
 
     @IdNumerico(maxRange = 99999)
     private Integer idProducto;
+
     private String descripcionProducto;
 
     // TODO(model-programa-bin): que indica el atributo
     //  GROUPS=IRegistro.class en @IdCadena y @IdNumerico
     @IdNumerico(maxRange = 99999)
     private Integer idPrograma;
+
     private String descripcionPrograma;
 
     @IdNumerico(maxRange = 99999)
     private Integer idProgramaIntercambio;
+
     private String descripcionProgramaIntercambio;
 }
