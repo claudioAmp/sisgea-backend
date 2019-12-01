@@ -3,7 +3,7 @@
 <mapper namespace="ob.unibanca.sicf.tarifarios.mapper.ITarifarioMiembroMapper">
 
     <sql id="consultaVistaMant">
-        SELECT id_tarifario
+        SELECT id_tarifario                         AS id_tarifario_miembro
              , id_membresia
              , descripcion_membresia
              , id_producto
@@ -15,8 +15,8 @@
              , id_clase_transaccion
              , id_codigo_transaccion
              , descripcion_transaccion
-             , atm_propio
-             , transaccion_aprobada
+             , es_atm_propio
+             , es_transaccion_aprobada
              , tarifa_porcentaje
              , id_moneda
              , descripcion_moneda
@@ -35,16 +35,17 @@
 
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.idTarifarioMiembro,           jdbcType=NUMERIC , mode=INOUT },
-                #{objetoMantenido.membresia,         			jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.producto,      				jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.emisor,        				jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.receptor,     				jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.transaccion, 					jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.atmPropio, 					jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.transaccionAprobada, 			jdbcType=VARCHAR , mode=IN	  },
+                #{objetoMantenido.idMembresia,         			jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.idProducto,      				jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.idInstitucionEmisora,        	jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.idInstitucionReceptora,     	jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.idClaseTransaccion, 			jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.idCodigoTransaccion, 			jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.esAtmPropio, 					jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.esTransaccionAprobada, 	    jdbcType=NUMERIC , mode=IN	  },
                 #{objetoMantenido.tarifaPorcentaje, 			jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.moneda, 						jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  }
+                #{objetoMantenido.idMoneda, 					jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
         }

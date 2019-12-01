@@ -3,15 +3,17 @@
 <mapper namespace="ob.unibanca.sicf.tarifarios.mapper.ITarifarioVISAMapper">
 
     <sql id="consultaVistaMant">
-        SELECT id_tipo_comision
-             , descripcion_tipo_comision
-             , id_programa_comision
-             , descripcion_programa
-             , descripcion_comision
-             , tarifa_porcentaje
-             , id_moneda_tar_flat
-             , descripcion_moneda
-             , tarifa_flat
+
+        SELECT
+               id_tipo_comision             AS id_tipo_comision
+             , descripcion_tipo_comision    AS descripcion_tipo_comision
+             , id_programa_comision         AS id_tarifario_visa
+             , descripcion_programa         AS descripcion_programa_comision
+             , descripcion_comision         AS descripcion_comision
+             , tarifa_porcentaje            AS tarifa_porcentaje
+             , id_moneda_tar_flat           AS id_moneda_tar_flat
+             , descripcion_moneda           AS descripcion_moneda
+             , tarifa_flat                  AS tarifa_flat
         FROM VIE_MAN_TARIFARIO_VISA
     </sql>
 
@@ -26,11 +28,11 @@
 
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.idTipoComision,               jdbcType=NUMERIC , mode=IN    },
-                #{objetoMantenido.idTarifarioVISA,         		jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.idTarifarioVisa,         		jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.descripcionProgramaComision,  jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.descripcionComision,        	jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.tarifaPorcentaje,     		jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.idMonedaTarFlat, 			    jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.tarifaPorcentaje,     		jdbcType=NUMERIC , mode=OUT   },
+                #{objetoMantenido.idMonedaTarFlat, 			    jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
