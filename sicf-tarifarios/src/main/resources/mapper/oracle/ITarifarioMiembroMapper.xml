@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.tarifarios.mapper.ITarifarioMiembroMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_tarifario
+             , id_membresia
+             , descripcion_membresia
+             , id_producto
+             , descripcion_producto
+             , id_institucion_emisora
+             , descripcion_institucion_emisora
+             , id_institucion_receptora
+             , descripcion_institucion_receptora
+             , id_clase_transaccion
+             , id_codigo_transaccion
+             , descripcion_transaccion
+             , atm_propio
+             , transaccion_aprobada
+             , tarifa_porcentaje
+             , id_moneda
+             , descripcion_moneda
+             , tarifa_flat
+        FROM VIE_MAN_TARIFARIO_MIEMBRO
+    </sql>
+
+    <select id="buscarTodos" resultType="TarifarioMiembro" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_MIEMBRO(
+
+                #{modo,                                         jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.idTarifarioMiembro,           jdbcType=NUMERIC , mode=INOUT },
+                #{objetoMantenido.membresia,         			jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.producto,      				jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.emisor,        				jdbcType=VARCHAR , mode=OUT   },
+                #{objetoMantenido.receptor,     				jdbcType=VARCHAR , mode=OUT   },
+                #{objetoMantenido.transaccion, 					jdbcType=VARCHAR , mode=IN	  },
+                #{objetoMantenido.atmPropio, 					jdbcType=VARCHAR , mode=IN	  },
+                #{objetoMantenido.transaccionAprobada, 			jdbcType=VARCHAR , mode=IN	  },
+                #{objetoMantenido.tarifaPorcentaje, 			jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.moneda, 						jdbcType=VARCHAR , mode=IN	  },
+                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  }
+                #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
+            )
+        }
+    </select>
+</mapper>
