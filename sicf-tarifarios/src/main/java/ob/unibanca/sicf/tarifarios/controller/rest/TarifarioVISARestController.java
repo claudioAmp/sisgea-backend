@@ -1,4 +1,4 @@
-/*package ob.unibanca.sicf.tarifarios.controller.rest;
+package ob.unibanca.sicf.tarifarios.controller.rest;
 
 import ob.commons.spring.validation.validation.IdNumerico;
 import ob.commons.spring.validation.validation.group.IRegistro;
@@ -59,4 +59,3 @@ public class TarifarioVISARestController {
     }
 
 }
-*/

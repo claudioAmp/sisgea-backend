@@ -6,11 +6,13 @@ import ob.commons.mantenimiento.service.MantenibleService;
 import ob.unibanca.sicf.tarifarios.mapper.ITarifarioVISAMapper;
 import ob.unibanca.sicf.tarifarios.model.TarifarioVISA;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class TarifarioVISAService extends MantenibleService<TarifarioVISA> implements ITarifarioVISAService {
 
     private static final String TARIFARIO_VISA_NO_ENCONTRADO = "El Tarifario Emisor %s no existe";
