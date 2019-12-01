@@ -30,8 +30,8 @@
                 #{objetoMantenido.idTipoComision,               jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.idTarifarioVisa,         		jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.descripcionProgramaComision,  jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.descripcionComision,        	jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.tarifaPorcentaje,     		jdbcType=NUMERIC , mode=OUT   },
+                #{objetoMantenido.descripcionComision,        	jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.tarifaPorcentaje,     		jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.idMonedaTarFlat, 			    jdbcType=NUMERIC , mode=IN    },
                 #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
