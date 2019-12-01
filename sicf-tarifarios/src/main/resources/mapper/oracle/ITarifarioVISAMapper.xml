@@ -31,7 +31,7 @@
                 #{objetoMantenido.descripcionComision,        	jdbcType=VARCHAR , mode=OUT   },
                 #{objetoMantenido.tarifaPorcentaje,     		jdbcType=VARCHAR , mode=OUT   },
                 #{objetoMantenido.idMonedaTarFlat, 			    jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  }
+                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
         }
