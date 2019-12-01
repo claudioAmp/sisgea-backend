@@ -12,12 +12,11 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RangoBINVisa {
-	  @IdCadena(minLength = 6, maxLength = 15, regexpPattern = "[0-9]+", groups = IRegistro.class)
 	  String idBIN;
 	  String inicioRango;
 	  String finRango;
-	  String digitoValidacionChequeo;
-	  String longitudNumeroCuenta;
+	  Integer digitoValidacionChequeo;
+	  Integer longitudNumeroCuenta;
 	  String tokenIndicador;
 	  String reservado1;
 	  String binProcesador;

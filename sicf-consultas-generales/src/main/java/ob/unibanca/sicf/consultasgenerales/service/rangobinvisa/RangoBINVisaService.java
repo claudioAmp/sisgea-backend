@@ -16,7 +16,7 @@ public class RangoBINVisaService implements IRangoBINVisaService {
 	private final IRangoBINVisaMapper rangoBinVisaMapper; 
 	
 	public RangoBINVisaService(IRangoBINVisaMapper mantenibleMapper) {
-		this.rangoBinVisaMapper = (IRangoBINVisaMapper) mantenibleMapper;
+		this.rangoBinVisaMapper = mantenibleMapper;
 	}
 	
 	@Override
