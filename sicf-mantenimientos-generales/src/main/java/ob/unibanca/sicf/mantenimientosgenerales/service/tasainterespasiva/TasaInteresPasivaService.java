@@ -43,27 +43,19 @@ public class TasaInteresPasivaService extends MantenibleService<TasaInteresPasiv
     public TasaInteresPasiva registrarTasaInteresPasiva(TasaInteresPasiva tasaInteresPasiva) {
         System.out.println(tasaInteresPasiva);
         this.registrar(tasaInteresPasiva);
-        // TODO(registrar-tasa): validar si es que no se esta registrando una tasa
-        //  en una fecha que no corresponde (fechaProceso)
-        // return tasaInteresPasiva;
         return this.buscarTasaInteresPasiva(tasaInteresPasiva.getFechaProceso());
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public TasaInteresPasiva actualizarTasaInteresPasiva(Date fechaProceso, TasaInteresPasiva tasaInteresPasiva) {
-        // TODO(actualizar-tasa): validar si es que no se esta actualizando una tasa
-        //  en una fecha que no corresponde (fechaProceso)
         this.actualizar(tasaInteresPasiva);
-        // return tasaInteresPasiva
         return this.buscarTasaInteresPasiva(fechaProceso);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void eliminarTasaInteresPasiva(Date fechaProceso) {
-        // TODO(eliminar-tasa): validar si es que no se esta eliminando a una tasa
-        //  en una fecha que no corresponde (fechaProceso)
         TasaInteresPasiva tasaInteresPasiva = TasaInteresPasiva.builder().fechaProceso(fechaProceso).build();
         this.eliminar(tasaInteresPasiva);
     }
