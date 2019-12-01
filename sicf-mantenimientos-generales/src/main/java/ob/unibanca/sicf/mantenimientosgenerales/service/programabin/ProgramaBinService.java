@@ -48,7 +48,6 @@ public class ProgramaBinService  extends MantenibleService<ProgramaBIN> implemen
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ProgramaBIN actualizarProgramaBin(String idMembresia, Integer idProducto, Integer idPrograma, ProgramaBIN programaBin) {
-        // TODO(ids): es necesario colocarlos? no es necesaria una validacion?
         programaBin.setIdMembresia(idMembresia);
         programaBin.setIdProducto(idProducto);
         programaBin.setIdPrograma(idPrograma);

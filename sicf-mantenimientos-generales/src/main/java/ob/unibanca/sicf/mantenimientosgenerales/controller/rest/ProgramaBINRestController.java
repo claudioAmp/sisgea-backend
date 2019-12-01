@@ -31,7 +31,6 @@ public class ProgramaBINRestController {
         return this.programaBINService.buscarTodosProgramasBin();
     }
 
-    // TODO(IdNumerico-max): Cuanto es el maximo para @IdNumerico (99'999 o 9'999)?
     @PreAuthorize("hasPermission('MANT_PROGRAMA_BIN', '2')")
     @GetMapping(value ="/{id-membresia}/{id-producto}/{id-programa}")
     public ProgramaBIN buscarProgramaBin(

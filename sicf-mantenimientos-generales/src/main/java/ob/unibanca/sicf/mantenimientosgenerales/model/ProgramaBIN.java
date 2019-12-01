@@ -24,14 +24,11 @@ public class ProgramaBIN {
 
     private String descripcionProducto;
 
-    // TODO(model-programa-bin): que indica el atributo
-    //  GROUPS=IRegistro.class en @IdCadena y @IdNumerico
     @IdNumerico(maxRange = 99999)
     private Integer idPrograma;
 
     private String descripcionPrograma;
 
-    @IdNumerico(maxRange = 99999)
     private Integer idProgramaIntercambio;
 
     private String descripcionProgramaIntercambio;
