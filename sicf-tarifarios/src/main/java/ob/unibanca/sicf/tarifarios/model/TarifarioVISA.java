@@ -18,15 +18,14 @@ public class TarifarioVISA {
 
     @IdCadena(maxLength = 4)
     private String idTarifarioVisa; // el PK en la base de datos es idProgramaComision
-    @IdNumerico(maxRange = 99, groups = IRegistro.class)
+    @IdNumerico(maxRange = 999, groups = IRegistro.class)
     private Integer idTipoComision;
     private String descripcionTipoComision;
     private String descripcionProgramaComision;
     private String descripcionComision;
     private double tarifaPorcentaje;
-    @IdNumerico(maxRange = 99, groups = IRegistro.class)
+    @IdNumerico(maxRange = 999, groups = IRegistro.class)
     private Integer idMonedaTarFlat;
-    @CaracterRequerido(maxLength = 60)
     private String descripcionMoneda;
     private double tarifaFlat;
 
