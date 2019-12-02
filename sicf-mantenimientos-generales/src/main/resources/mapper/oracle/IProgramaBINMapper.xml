@@ -40,7 +40,7 @@
                 #{objetoMantenido.idProducto,               jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idPrograma,               jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcionPrograma,      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idProgramaIntercambio,    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idProgramaIntercambio,    jdbcType=VARCHAR, mode=IN},
                 #{usuario,                                  jdbcType=VARCHAR, mode=IN}
             )
         }
