@@ -55,7 +55,6 @@ public class ProgramaBINRestController {
             @IdNumerico(maxRange = 99999) @PathVariable("id-producto") Integer idProducto,
             @IdNumerico(maxRange = 99999) @PathVariable("id-programa") Integer idPrograma,
             @Validated({IRegistro.class, Default.class}) @RequestBody ProgramaBIN programaBin) {
-        System.out.println(programaBin);
         return this.programaBINService.actualizarProgramaBin(idMembresia, idProducto, idPrograma, programaBin);
     }
 

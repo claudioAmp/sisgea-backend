@@ -51,9 +51,7 @@ public class ProgramaBinService  extends MantenibleService<ProgramaBIN> implemen
         programaBin.setIdMembresia(idMembresia);
         programaBin.setIdProducto(idProducto);
         programaBin.setIdPrograma(idPrograma);
-        System.out.println(programaBin);
         this.actualizar(programaBin);
-        System.out.println(programaBin);
         return this.buscarProgramaBin(idMembresia, idProducto, idPrograma);
     }
 
