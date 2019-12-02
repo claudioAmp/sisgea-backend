@@ -1,5 +1,6 @@
 package ob.unibanca.sicf.tarifarios.controller.rest;
 
+import ob.commons.spring.validation.validation.IdCadena;
 import ob.commons.spring.validation.validation.IdNumerico;
 import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.tarifarios.model.TarifarioVISA;
@@ -45,17 +46,17 @@ public class TarifarioVISARestController {
     }
 
     @PreAuthorize("hasPermission('MANT_TARIFARIO_VISA','3')")
-    @PutMapping(value = "/tarifarios-visa/{idTarifarioVISA}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public TarifarioVISA actualizarTarifarioVISA(@IdNumerico(maxRange = 9999) @PathVariable int idTarifarioVISA,
-                                                     @Validated @RequestBody TarifarioVISA tarifarioVISA) {
-        return this.tarifarioVISAService.actualizarTarifarioVISA(idTarifarioVISA, tarifarioVISA);
+    @PutMapping(value = "/tarifarios-visa/{idTarifarioVisa}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public TarifarioVISA actualizarTarifarioVISA(@IdCadena(maxLength = 4) @PathVariable String idTarifarioVisa,
+                                                     @Validated @RequestBody TarifarioVISA tarifarioVisa) {
+        return this.tarifarioVISAService.actualizarTarifarioVISA(idTarifarioVisa, tarifarioVisa);
     }
 
     @PreAuthorize("hasPermission('MANT_TARIFARIO_VISA','4')")
-    @DeleteMapping("/tarifarios-visa/{idTarifarioVISA}")
+    @DeleteMapping("/tarifarios-visa/{idTarifarioVisa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void eliminarTarifarioVISA(@IdNumerico(maxRange = 9999) @PathVariable int idTarifarioVISA) {
-        this.tarifarioVISAService.eliminarTarifarioVISA(idTarifarioVISA);
+    public void eliminarTarifarioVISA(@IdCadena(maxLength = 4) @PathVariable String idTarifarioVisa) {
+        this.tarifarioVISAService.eliminarTarifarioVISA(idTarifarioVisa);
     }
 
 }
