@@ -19,6 +19,7 @@
 
     <select id="buscarTodos" resultType="TarifarioVISA" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        ORDER BY id_tipo_comision, id_tarifario_visa
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"
