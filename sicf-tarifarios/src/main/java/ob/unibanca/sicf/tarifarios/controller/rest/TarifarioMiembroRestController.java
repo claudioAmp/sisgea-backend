@@ -37,7 +37,7 @@ public class TarifarioMiembroRestController {
 
     @PreAuthorize("hasPermission('MANT_TARIFARIO_MIEMBRO', '3')")
     @PutMapping(value = "/tarifarios-miembros/{idTarifarioMiembro}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public TarifarioMiembro actualizarTarifarioMiembro(@PathVariable("idTarifarioMiembro") int idTarifarioMiembro,
+    public TarifarioMiembro actualizarTarifarioMiembro(@PathVariable("idTarifarioMiembro") Integer idTarifarioMiembro,
         @Validated({IRegistro.class, Default.class}) @RequestBody TarifarioMiembro tarifarioMiembro) {
         return this.tarifarioMiembroService.actualizarTarifarioMiembro(idTarifarioMiembro, tarifarioMiembro);
     }
@@ -45,7 +45,7 @@ public class TarifarioMiembroRestController {
     @PreAuthorize("hasPermission('MANT_TARIFARIO_MIEMBRO', '4')")
     @DeleteMapping("/tarifarios-miembros/{idTarifarioMiembro}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void eliminarTarifarioMiembro(@PathVariable("idTarifarioMiembro") int idTarifarioMiembro) {
+    public void eliminarTarifarioMiembro(@PathVariable("idTarifarioMiembro") Integer idTarifarioMiembro) {
         this.tarifarioMiembroService.eliminarTarifarioMiembro(idTarifarioMiembro);
     }
 

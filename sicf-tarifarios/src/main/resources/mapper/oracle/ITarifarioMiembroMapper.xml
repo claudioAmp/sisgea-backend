@@ -28,24 +28,29 @@
         <include refid="consultaVistaMant"/>
     </select>
 
+    <select id="buscarTarifarioMiembro" resultType="TarifarioMiembro" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        WHERE id_tarifario = #{idTarifarioMiembro}
+    </select>
+
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_MIEMBRO(
 
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.idTarifarioMiembro,           jdbcType=NUMERIC , mode=INOUT },
+                #{objetoMantenido.idTarifarioMiembro,           jdbcType=INTEGER , mode=INOUT },
                 #{objetoMantenido.idMembresia,         			jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.idProducto,      				jdbcType=NUMERIC , mode=IN    },
-                #{objetoMantenido.idInstitucionEmisora,        	jdbcType=NUMERIC , mode=IN    },
-                #{objetoMantenido.idInstitucionReceptora,     	jdbcType=NUMERIC , mode=IN    },
-                #{objetoMantenido.idClaseTransaccion, 			jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.idCodigoTransaccion, 			jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.esAtmPropio, 					jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.esTransaccionAprobada, 	    jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.tarifaPorcentaje, 			jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.idMoneda, 					jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  },
+                #{objetoMantenido.idProducto,      				jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idInstitucionEmisora,        	jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idInstitucionReceptora,     	jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idClaseTransaccion, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.idCodigoTransaccion, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.esAtmPropio, 					jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.esTransaccionAprobada, 	    jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.tarifaPorcentaje, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.idMoneda, 					jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.tarifaFlat, 					jdbcType=INTEGER , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
         }

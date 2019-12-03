@@ -33,7 +33,7 @@ public class TarifarioMiembroService extends MantenibleService<TarifarioMiembro>
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public TarifarioMiembro buscarTarifarioMiembro(int idTarifarioMiembro) {
+	public TarifarioMiembro buscarTarifarioMiembro(Integer idTarifarioMiembro) {
 		return this.tarifarioMiembroMapper.buscarTarifarioMiembro(idTarifarioMiembro).orElseThrow(
 				() -> new RecursoNoEncontradoException(TARIFARIO_MIEMBRO_NO_ENCONTRADO, idTarifarioMiembro));
 	}
@@ -47,7 +47,7 @@ public class TarifarioMiembroService extends MantenibleService<TarifarioMiembro>
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public TarifarioMiembro actualizarTarifarioMiembro(int idTarifarioMiembro, TarifarioMiembro tarifarioMiembro) {
+	public TarifarioMiembro actualizarTarifarioMiembro(Integer idTarifarioMiembro, TarifarioMiembro tarifarioMiembro) {
 		tarifarioMiembro.setIdTarifarioMiembro(idTarifarioMiembro);
 	    this.actualizar(tarifarioMiembro);
 		return this.buscarTarifarioMiembro(tarifarioMiembro.getIdTarifarioMiembro());
@@ -55,7 +55,7 @@ public class TarifarioMiembroService extends MantenibleService<TarifarioMiembro>
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void eliminarTarifarioMiembro(int idTarifarioMiembro) {
+	public void eliminarTarifarioMiembro(Integer idTarifarioMiembro) {
 		TarifarioMiembro tarifarioMiembro = TarifarioMiembro.builder().idTarifarioMiembro(idTarifarioMiembro).build();
 		this.eliminar(tarifarioMiembro);
 	}
