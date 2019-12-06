@@ -18,12 +18,6 @@ public class IrregularService  implements IIrregularService{
 	public IrregularService(IIrregularMapper irregularMapper) {
 		this.irregularMapper = irregularMapper;
 	}
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public Page<Irregular> buscarTodosIrregulares( ) {
-
-		
-		return irregularMapper.buscarTodosIrregulares();
-	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Irregular> buscarPorCriteriosIrregulares(CriterioBusquedaIrregular criterio, int pageNo,
