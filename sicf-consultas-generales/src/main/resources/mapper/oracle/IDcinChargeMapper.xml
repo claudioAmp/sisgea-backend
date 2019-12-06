@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IDcinChargeMapper">
+
+    <sql id="consultaPorCriterios">
+        SELECT DISTINCT *
+            FROM VIE_CON_MOV_DCIN_CHARGE a
+    </sql>
+	
+	<!-- Reutilizables -->	
+	<sql id = "fragmentoWhereGet" >
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="chargeDateInicio != null and chargeDateFin != null ">
+			AND a.CHARGE_DATE BETWEEN #{chargeDateInicio}  AND #{chargeDateFin}
+		</if>
+		<if  test="recapDateInicio != null and recapDateFin != null">
+			AND a.RECAP_DATE BETWEEN #{recapDateInicio}  AND #{recapDateFin}
+		</if>
+		<if  test="idDcin != null  and idDcin != -1">
+			AND a.ID_DCIN = #{idDcin}  
+		</if>
+		<if  test="sendingInstitution != null and sendingInstitution != ''">
+			AND a.SENDING_INSTITUTION = #{sendingInstitution}  
+		</if>
+		<if  test="receivingInstitution != null and receivingInstitution != ''">
+			AND a.RECEIVING_INSTITUTION = #{receivingInstitution}  
+		</if>
+		<if  test="cardNumber != null  and cardNumber != -1">
+			AND a.CARD_NUMBER = #{cardNumber}  
+		</if>
+		<if  test="chargeType != null and chargeType != ''">
+			AND a.CHARGE_TYPE = #{chargeType}  
+		</if>
+		<if  test="establishmentName != null and establishmentName != '' ">
+			<bind name="pMerchantName" value="'%' + establishmentName + '%'" />
+			AND UPPER(a.ESTABLISHMENT_NAME)  LIKE UPPER(#{pMerchantName})  
+		</if>
+		<if  test="establishmentCity != null and establishmentCity != '' ">
+			<bind name="pCity" value="'%' + establishmentCity + '%'" />
+			AND UPPER(a.ESTABLISHMENT_CITY) LIKE  UPPER(#{pCity})  
+		</if>
+		<if  test="authorizationNumber != null and authorizationNumber !=''">
+			AND a.AUTHORIZATION_NUMBER = #{authorizationNumber}  
+		</if>
+		<if  test="merchantClasificationCode != null  and merchantClasificationCode != -1">
+			AND a.MERCHANT_CLASIFICATION_CODE = #{merchantClasificationCode}  
+		</if>
+		<if  test="cardHolderPresentIndicator != null and cardHolderPresentIndicator !=''">
+			AND a.CARD_HOLDER_PRESENT_INDICATOR = #{cardHolderPresentIndicator}  
+		</if>
+		<if  test="cardPresentIndicator != null and cardPresentIndicator !=''">
+			AND a.CARD_PRESENT_INDICATOR = #{cardPresentIndicator}  
+		</if>
+		<if  test="cardInputDataMethod != null and cardInputDataMethod !=''">
+			AND a.CARD_INPUT_DATA_METHOD = #{cardInputDataMethod}  
+		</if>
+		<if  test="electronicCommercePaymentsI != null and electronicCommercePaymentsI !=''">
+			AND a.ELECTRONIC_COMMERCE_PAYMENTS_I = #{electronicCommercePaymentsI}  
+		</if>
+		<if  test="cardDataInputCapability != null and cardDataInputCapability !=''">
+			AND a.CARD_DATA_INPUT_CAPABILITY = #{cardDataInputCapability}  
+		</if>
+		<if  test="cardType != null and cardType !=''">
+			AND a.CARD_TYPE = #{cardType}  
+		</if>
+	</sql>
+	
+	<sql id= "fragmentoFiltrosOrdenaciones" >
+		<if test="filtroFechaProceso != null ">
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if test="filtroIdDcin != null ">
+			<bind name="pFiltroIdSecuenciaIncoming" value="'%' + filtroIdDcin + '%'"/>
+			AND ID_DCIN LIKE #{pFiltroIdSecuenciaIncoming}
+		</if>
+		<if test="filtroSendingInstitution != null ">
+			<bind name="pFiltroSendingInstitution" value="'%' + filtroSendingInstitution + '%'"/>
+			AND SENDING_INSTITUTION LIKE #{pFiltroSendingInstitution}
+		</if>
+		<if test="filtroReceivingInstitution != null ">
+			<bind name="pFiltroReceivingInstitution" value="'%' + filtroReceivingInstitution + '%'"/>
+			AND RECEIVING_INSTITUTION LIKE #{pFiltroReceivingInstitution}
+		</if>
+		<if  test="filtroCardNumber != null " >
+			<bind name="pFiltroAccountNumber" value="'%' + filtroCardNumber + '%'" />
+			AND CARD_NUMBER LIKE #{pFiltroAccountNumber}
+		</if>
+		<if  test="filtroChargeAmount != null " >
+			<bind name="pFiltroChargeAmount" value="'%' + filtroChargeAmount + '%'" />
+			AND CHARGE_AMOUNT LIKE #{pFiltroChargeAmount}
+		</if>
+		<if test="filtroRecapDate != null ">
+			AND RECAP_DATE = #{filtroRecapDate}
+		</if>
+		<if test="filtroChargeDate != null ">
+			AND CHARGE_DATE = #{filtroChargeDate}
+		</if>
+		<if  test="filtroDateType != null " >
+			<bind name="pFiltroDateType" value="'%' + filtroDateType + '%'" />
+			AND DATE_TYPE LIKE #{pFiltroDateType}
+		</if>
+		<if  test="filtroChargeType != null " >
+			<bind name="pFiltroChargeType" value="'%' + filtroChargeType + '%'" />
+			AND CHARGE_TYPE LIKE #{pFiltroChargeType}
+		</if>
+		<if  test="filtroEstablishmentName != null " >
+			<bind name="pFiltroEstablishmentName" value="'%' + filtroEstablishmentName + '%'" />
+			AND ESTABLISHMENT_NAME LIKE #{pFiltroEstablishmentName}
+		</if>
+		<if  test="filtroEstablishmentCity != null " >
+			<bind name="pFiltroEstablishmentCity" value="'%' + filtroEstablishmentCity + '%'" />
+			AND ESTABLISHMENT_CITY LIKE #{pFiltroEstablishmentCity}
+		</if>
+		<if  test="filtroActionCode != null " >
+			<bind name="pFiltroActionCode" value="'%' + filtroActionCode + '%'" />
+			AND ACTION_CODE LIKE #{pFiltroActionCode}
+		</if>
+		<if  test="filtroTypeCharge != null " >
+			<bind name="pFiltroTypeCharge" value="'%' + filtroTypeCharge + '%'" />
+			AND TYPE_CHARGE LIKE #{pFiltroTypeCharge}
+		</if>
+		<if  test="filtroReferenceNumber != null " >
+			<bind name="pFiltroReferenceNumber" value="'%' + filtroReferenceNumber + '%'" />
+			AND REFERENCE_NUMBER LIKE #{pFiltroReferenceNumber}
+		</if>
+		<if  test="filtroAuthorizationNumber != null " >
+			<bind name="pFiltroAuthorizationNumber" value="'%' + filtroAuthorizationNumber + '%'" />
+			AND AUTHORIZATION_NUMBER LIKE #{pFiltroAuthorizationNumber}
+		</if>
+		<if  test="filtroIssuerDiners != null " >
+			<bind name="pFiltroIssuerDiners" value="'%' + filtroIssuerDiners + '%'" />
+			AND ISSUER_DINERS LIKE #{pFiltroIssuerDiners}
+		</if>
+		<if  test="filtroChargeAmountDiners != null " >
+			<bind name="pFiltroChargeAmountDiners" value="'%' + filtroChargeAmountDiners + '%'" />
+			AND CHARGE_AMOUNT_DINERS LIKE #{pFiltroChargeAmountDiners}
+		</if>
+		<if  test="filtroMerchantClasificationCode != null " >
+			<bind name="pFiltroMerchantClasificationCode" value="'%' + filtroMerchantClasificationCode + '%'" />
+			AND MERCHANT_CLASIFICATION_CODE LIKE #{pFiltroMerchantClasificationCode}
+		</if>
+		<if  test="filtroTax1 != null " >
+			<bind name="pFiltroTax1" value="'%' + filtroTax1 + '%'" />
+			AND TAX_1 LIKE #{pFiltroTax1}
+		</if>
+		<if  test="filtroTax2 != null " >
+			<bind name="pFiltroTax2" value="'%' + filtroTax2 + '%'" />
+			AND TAX_2 LIKE #{pFiltroTax2}
+		</if>
+		<if  test="filtroOriginalTicket != null " >
+			<bind name="pFiltroOriginalTicket" value="'%' + filtroOriginalTicket + '%'" />
+			AND ORIGINAL_TICKET LIKE #{pFiltroOriginalTicket}
+		</if>
+		<if  test="filtroCardHolderPresentIndicator != null " >
+			<bind name="pFiltroCardHolderPresentIndicator" value="'%' + filtroCardHolderPresentIndicator + '%'" />
+			AND CARD_HOLDER_PRESENT_INDICATOR LIKE #{pFiltroCardHolderPresentIndicator}
+		</if>
+		<if  test="filtroCardPresentIndicator != null " >
+			<bind name="pFiltroCardPresentIndicator" value="'%' + filtroCardPresentIndicator + '%'" />
+			AND CARD_PRESENT_INDICATOR LIKE #{pFiltroCardPresentIndicator}
+		</if>
+		<if  test="filtroCardInputDataMethod != null " >
+			<bind name="pFiltroCardInputDataMethod" value="'%' + filtroCardInputDataMethod + '%'" />
+			AND CARD_INPUT_DATA_METHOD LIKE #{pFiltroCardInputDataMethod}
+		</if>
+		<if  test="filtroElectronicCommercePaymentsI != null " >
+			<bind name="pFiltroElectronicCommercePaymentsI" value="'%' + filtroElectronicCommercePaymentsI + '%'" />
+			AND ELECTRONIC_COMMERCE_PAYMENTS_I LIKE #{pFiltroElectronicCommercePaymentsI}
+		</if>
+		<if  test="filtroCavv != null " >
+			<bind name="pFiltroCavv" value="'%' + filtroCavv + '%'" />
+			AND CAVV LIKE #{pFiltroCavv}
+		</if>
+		<if  test="filtroCardDataInputCapability != null " >
+			<bind name="pFiltroCardDataInputCapability" value="'%' + filtroCardDataInputCapability + '%'" />
+			AND CARD_DATA_INPUT_CAPABILITY LIKE #{pFiltroCardDataInputCapability}
+		</if>
+		<if  test="filtroSurchargeFee != null " >
+			<bind name="pFiltroSurchargeFee" value="'%' + filtroSurchargeFee + '%'" />
+			AND SURCHARGE_FEE LIKE #{pFiltroSurchargeFee}
+		</if>
+		<if  test="filtroPosTerminalTypeIndicator != null " >
+			<bind name="pFiltroPosTerminalTypeIndicator" value="'%' + filtroPosTerminalTypeIndicator + '%'" />
+			AND POS_TERMINAL_TYPE_INDICATOR LIKE #{pFiltroPosTerminalTypeIndicator}
+		</if>
+		<if  test="filtroCardType != null " >
+			<bind name="pFiltroCardType" value="'%' + filtroCardType + '%'" />
+			AND CARD_TYPE LIKE #{pFiltroCardType}
+		</if>
+		<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				FECHA_PROCESO ${ordenFechaProceso}
+		</if>
+		<if  test="ordenIdDcin != null " >
+			ORDER BY
+				ID_DCIN ${ordenIdDcin}
+		</if>
+		<if  test="ordenSendingInstitution != null " >
+			ORDER BY
+				SENDING_INSTITUTION ${ordenSendingInstitution}
+		</if>
+		<if  test="ordenReceivingInstitution != null " >
+			ORDER BY
+				RECEIVING_INSTITUTION ${ordenReceivingInstitution}
+		</if>
+		<if  test="ordenCardNumber != null " >
+			ORDER BY
+				 CARD_NUMBER ${ordenCardNumber}
+		</if>
+		<if  test="ordenChargeAmount != null " >
+			ORDER BY
+				 CHARGE_AMOUNT ${ordenChargeAmount}
+		</if>
+		<if  test="ordenChargeDate != null " >
+			ORDER BY
+				 CHARGE_DATE ${ordenChargeDate}
+		</if>
+		<if  test="ordenRecapDate != null " >
+			ORDER BY
+				 RECAP_DATE ${ordenRecapDate}
+		</if>
+		<if  test="ordenDateType != null " >
+			ORDER BY
+				 DATE_TYPE ${ordenDateType}
+		</if>
+		<if  test="ordenChargeType != null " >
+			ORDER BY
+				 CHARGE_TYPE ${ordenChargeType}
+		</if>
+		<if  test="ordenEstablishmentName != null " >
+			ORDER BY
+				 ESTABLISHMENT_NAME ${ordenEstablishmentName}
+		</if>
+		<if  test="ordenEstablishmentCity != null " >
+			ORDER BY
+				 ESTABLISHMENT_CITY ${ordenEstablishmentCity}
+		</if>
+		<if  test="ordenActionCode != null " >
+			ORDER BY
+				 ACTION_CODE ${ordenActionCode}
+		</if>
+		<if  test="ordenTypeCharge != null " >
+			ORDER BY
+				 TYPE_CHARGE ${ordenTypeCharge}
+		</if>
+		<if  test="ordenReferenceNumber != null " >
+			ORDER BY
+				 REFERENCE_NUMBER ${ordenReferenceNumber}
+		</if>
+		<if  test="ordenAuthorizationNumber != null " >
+			ORDER BY
+				 AUTHORIZATION_NUMBER ${ordenAuthorizationNumber}
+		</if>
+		<if  test="ordenIssuerDiners != null " >
+			ORDER BY
+				 ISSUER_DINERS ${ordenIssuerDiners}
+		</if>
+		<if  test="ordenChargeAmountDiners != null " >
+			ORDER BY
+				 CHARGE_AMOUNT_DINERS ${ordenChargeAmountDiners}
+		</if>
+		<if  test="ordenMerchantClasificationCode != null " >
+			ORDER BY
+				 MERCHANT_CLASIFICATION_CODE ${ordenMerchantClasificationCode}
+		</if>
+		<if  test="ordenTax1 != null " >
+			ORDER BY
+				 TAX_1 ${ordenTax1}
+		</if>
+		<if  test="ordenTax2 != null " >
+			ORDER BY
+				 TAX_2 ${ordenTax2}
+		</if>
+		<if  test="ordenOriginalTicket != null " >
+			ORDER BY
+				 ORIGINAL_TICKET ${ordenOriginalTicket}
+		</if>
+		<if  test="ordenCardHolderPresentIndicator != null " >
+			ORDER BY
+				 CARD_HOLDER_PRESENT_INDICATOR ${ordenCardHolderPresentIndicator}
+		</if>
+		<if  test="ordenCardPresentIndicator != null " >
+			ORDER BY
+				 CARD_PRESENT_INDICATOR ${ordenCardPresentIndicator}
+		</if>
+		<if  test="ordenCardInputDataMethod != null " >
+			ORDER BY
+				 CARD_INPUT_DATA_METHOD ${ordenCardInputDataMethod}
+		</if>
+		<if  test="ordenElectronicCommercePaymentsI != null " >
+			ORDER BY
+				 ELECTRONIC_COMMERCE_PAYMENTS_I ${ordenElectronicCommercePaymentsI}
+		</if>
+		<if  test="ordenCavv != null " >
+			ORDER BY
+				 CAVV ${ordenCavv}
+		</if>
+		<if  test="ordenCardDataInputCapability != null " >
+			ORDER BY
+				 CARD_DATA_INPUT_CAPABILITY ${ordenCardDataInputCapability}
+		</if>
+		<if  test="ordenSurchargeFee != null " >
+			ORDER BY
+				 SURCHARGE_FEE ${ordenSurchargeFee}
+		</if>
+		<if  test="ordenPosTerminalTypeIndicator != null " >
+			ORDER BY
+				 POS_TERMINAL_TYPE_INDICATOR ${ordenPosTerminalTypeIndicator}
+		</if>
+		<if  test="ordenCardType != null " >
+			ORDER BY
+				 CARD_TYPE ${ordenCardType}
+		</if>
+	</sql>
+	<!-- Fin Reutilizables -->
+
+    <select id="buscarPorCriterios" parameterType="CriterioBusquedaDcinCharge"  resultType="DcinCharge" statementType="PREPARED">	
+		<include refid="consultaPorCriterios" />
+		<where>
+			<include refid="fragmentoWhereGet" /> 
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
+   	</select>
+   	
+</mapper>

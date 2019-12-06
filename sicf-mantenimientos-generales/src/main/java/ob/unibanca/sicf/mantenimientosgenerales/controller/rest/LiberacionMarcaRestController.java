@@ -57,7 +57,7 @@ public class LiberacionMarcaRestController {
 	}
 	
 	@PreAuthorize("hasPermission('MANT_LIBMAR', '3')")
-	@PutMapping(value = "/membresias/{idMembresia}/productos/{idProducto}/procesos/{idProceso}/liberaciones-marcas/{idLiberacionMarca}",
+	@PutMapping(value = "/membresias/{idMembresia}/productos/{idProducto}/procesos/{idProceso}/liberaciones-marcas",
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public LiberacionMarca actualizarLiberacionMarca(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
@@ -68,7 +68,7 @@ public class LiberacionMarcaRestController {
 	}
 	
 	@PreAuthorize("hasPermission('MANT_LIBMAR', '4')")
-	@DeleteMapping(value = "/membresias/{idMembresia}/productos/{idProducto}/procesos/{idProceso}/liberaciones-marcas/{idLiberacionMarca}")
+	@DeleteMapping(value = "/membresias/{idMembresia}/productos/{idProducto}/procesos/{idProceso}/liberaciones-marcas")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarLiberacionMarca(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,

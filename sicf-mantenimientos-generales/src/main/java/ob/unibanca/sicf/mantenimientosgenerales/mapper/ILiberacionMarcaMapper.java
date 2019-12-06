@@ -10,7 +10,7 @@ import java.util.Optional;
 @Mapper
 public interface ILiberacionMarcaMapper extends IMantenibleMapper<LiberacionMarca> {
 
-    Optional<LiberacionMarca> buscarLiberacionMarca(String idMembresia, Integer Producto,String idProceso);
+    Optional<LiberacionMarca> buscarLiberacionMarca(String idMembresia, Integer idProducto, String idProceso);
 
     List<LiberacionMarca> buscarLiberacionMarcasPorMembresia(String idMembresia);
     
