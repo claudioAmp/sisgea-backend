@@ -7,5 +7,11 @@ public interface IReglasCompensacionService{
 	
 	List<ReglasCompensacion> buscarTodos();
 	
+	List<ReglasCompensacion> buscarPorId(Integer idReglasCompensacion);
+	
 	public ReglasCompensacion registrarReglaCompensacion(ReglasCompensacion reglasCompensacion);
+	
+	public ReglasCompensacion actualizarReglaCompensacion(ReglasCompensacion reglasCompensacion);
+	
+	public void eliminarReglaCompensacion(ReglasCompensacion reglasCompensacion);
 }

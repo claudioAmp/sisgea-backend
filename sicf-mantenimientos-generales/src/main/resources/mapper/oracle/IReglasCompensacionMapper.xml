@@ -33,7 +33,7 @@
             FROM VIEW_MAN_REGLA_COMPENSACION
 	</sql>
 	
-    <select id="buscarTodos" resultMap="resultMap" statementType="PREPARED">
+    <select id="buscarTodosReglasCompensacion" resultMap="resultMap" statementType="PREPARED">
         <include refid="consultaMantView"/>
         ORDER BY 
         	id_membresia ASC, 
@@ -44,11 +44,11 @@
         	id_tipo_comision ASC
     </select>
     
-    <select id="buscarUno" resultType="DistribucionFondo" statementType="PREPARED">
+    <select id="buscarPorIdReglasCompensacion" resultType="ReglasCompensacion" statementType="PREPARED">
         <include refid="consultaMantView"/>
         <where>
-        	<if test="objetoMantenido.idDistribucionFondo != null">
-        		AND A.id_distribucion_fondo = #{objetoMantenido.idDistribucionFondo}
+        	<if test="idReglasCompensacion != null">
+        		AND A.id_distribucion_fondo = #{objetoMantenido.idReglasCompensacion}
         	</if>
         </where>
     </select>

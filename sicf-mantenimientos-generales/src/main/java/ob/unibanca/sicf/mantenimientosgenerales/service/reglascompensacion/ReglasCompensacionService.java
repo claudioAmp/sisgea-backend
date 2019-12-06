@@ -32,10 +32,16 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<ReglasCompensacion> buscarTodos(){
-		return this.reglasCompensacionMapper.buscarTodos();
+		return this.reglasCompensacionMapper.buscarTodosReglasCompensacion();
 	}
 	
-		
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ReglasCompensacion> buscarPorId(Integer idReglasCompensacion){
+		return this.reglasCompensacionMapper.buscarPorIdReglasCompensacion(idReglasCompensacion);
+	}
+	
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ReglasCompensacion registrarReglaCompensacion(ReglasCompensacion reglasCompensacion){
 		DistribucionFondo distribucionFondo = DistribucionFondo.builder()
@@ -61,10 +67,11 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 					.build();
 			distribucionComisionService.registrar(distribucionComision);
 		});
-		return this.buscarUno(reglasCompensacion).get();
+		return this.reglasCompensacionMapper.buscarPorIdReglasCompensacion(distribucionFondo.getIdDistribucionFondo()).get(0);
 	}
 	
-	/*@Transactional(propagation = Propagation.REQUIRED)
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public ReglasCompensacion actualizarReglaCompensacion(ReglasCompensacion reglasCompensacion){
 		DistribucionFondo distribucionFondo = DistribucionFondo.builder()
 					.idMembresia(reglasCompensacion.getIdMembresia())
@@ -75,23 +82,32 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 					.idCuentaCargo(reglasCompensacion.getIdCuentaCargoFondo())
 					.idCuentaAbono(reglasCompensacion.getIdCuentaAbonoFondo())
 					.build();
-		distribucionFondoService.registrar(distribucionFondo);
-		if(!reglasCompensacion.getComisiones().isEmpty()) {
-			reglasCompensacion.getComisiones().forEach((comision) ->{
-				DistribucionComision distribucionComision = DistribucionComision.builder()
-						.idMembresia(reglasCompensacion.getIdMembresia())
-						.idServicio(reglasCompensacion.getIdServicio())
-						.idOrigen(reglasCompensacion.getIdOrigen())
-						.idClaseTransaccion(reglasCompensacion.getIdClaseTransaccion())
-						.idCodigoTransaccion(reglasCompensacion.getIdCodigoTransaccion())
-						.idCuentaCargo(comision.getIdCuentaCargoComision())
-						.idCuentaAbono(comision.getIdCuentaAbonoComision())
-						.idTipoComision(comision.getIdTipoComision())
-						.build();
-				distribucionComisionService.registrar(distribucionComision);
-			});
-		}
-		return this.buscarUno(distribucionFondo.get).get();
-	}*/
+		distribucionFondo = distribucionFondoService.actualizarDistribucionFondo(distribucionFondo.getIdDistribucionFondo(),distribucionFondo);
+		reglasCompensacion.getComisiones().forEach((comision) ->{
+			DistribucionComision distribucionComision = DistribucionComision.builder()
+					.idMembresia(reglasCompensacion.getIdMembresia())
+					.idServicio(reglasCompensacion.getIdServicio())
+					.idOrigen(reglasCompensacion.getIdOrigen())
+					.idClaseTransaccion(reglasCompensacion.getIdClaseTransaccion())
+					.idCodigoTransaccion(reglasCompensacion.getIdCodigoTransaccion())
+					.idCuentaCargo(comision.getIdCuentaCargoComision())
+					.idCuentaAbono(comision.getIdCuentaAbonoComision())
+					.idTipoComision(comision.getIdTipoComision())
+					.build();
+			distribucionComisionService.actualizarDistribucionComision(distribucionComision.getIdDistribucionComision(), distribucionComision);
+		});
+		return this.reglasCompensacionMapper.buscarPorIdReglasCompensacion(distribucionFondo.getIdDistribucionFondo()).get(0);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarReglaCompensacion(ReglasCompensacion reglasCompensacion){
+		Integer idDistribucionFondo = reglasCompensacion.getIdDistribucionFondo();
+		this.distribucionFondoService.eliminarDistribucionFondo(idDistribucionFondo);
+		reglasCompensacion.getComisiones().forEach((comision) ->{
+			Integer idDistribucionComision = comision.getIdDistribucionComision();
+			distribucionComisionService.eliminarDistribucionComision(idDistribucionComision);
+		});
+	}
 	
 }
