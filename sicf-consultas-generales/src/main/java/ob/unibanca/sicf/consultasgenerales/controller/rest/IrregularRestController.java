@@ -17,7 +17,7 @@ public class IrregularRestController {
 		this.irregularService = irregularService;
 	}
 	
-	@PreAuthorize("hasPermission('CON_IRREGULAR', '2')")
+	@PreAuthorize("hasPermission('CON_TXN_IRREG', '2')")
 	@GetMapping(value = "/irregular/pagination")
 	public Pagina<CriterioBusquedaIrregular, Irregular> buscarPorPaginas(
 			Pagina<CriterioBusquedaIrregular, Irregular> criterioPaginacion, CriterioBusquedaIrregular criterioBusqueda) {
