@@ -7,7 +7,7 @@ import ob.unibanca.sicf.consultasgenerales.model.irregular.Irregular;
 
 @Mapper
 public interface IIrregularMapper {
-	public Page<Irregular> buscarTodosIrregulares();
+
 
 	public Page<Irregular> buscarPorCriteriosIrregulares(CriterioBusquedaIrregular criterio);
 

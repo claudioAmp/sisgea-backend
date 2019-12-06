@@ -11,7 +11,7 @@
 
 
 	<select id="buscarPorCriteriosIrregulares">
-
+		<include refid="consultaIrregular" />
 	</select>
 
 	

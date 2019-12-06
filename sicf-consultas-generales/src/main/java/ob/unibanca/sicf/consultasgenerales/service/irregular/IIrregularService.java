@@ -9,7 +9,6 @@ import ob.unibanca.sicf.consultasgenerales.model.irregular.Irregular;
 
 public interface IIrregularService {
 
-	public Page<Irregular> buscarTodosIrregulares();
 
 	public Page<Irregular> buscarPorCriteriosIrregulares(CriterioBusquedaIrregular criterio , int pageNo, int pageSize);
 }
