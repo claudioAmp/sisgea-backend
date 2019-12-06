@@ -28,9 +28,13 @@
 	  </collection>
 	</resultMap>
 	
-    <select id="buscarTodos" resultMap="resultMap" statementType="PREPARED">
-        SELECT *
+	<sql id="consultaMantView">
+		SELECT *
             FROM VIEW_MAN_REGLA_COMPENSACION
+	</sql>
+	
+    <select id="buscarTodos" resultMap="resultMap" statementType="PREPARED">
+        <include refid="consultaMantView"/>
         ORDER BY 
         	id_membresia ASC, 
         	id_servicio ASC, 
@@ -39,5 +43,15 @@
         	id_codigo_transaccion ASC,
         	id_tipo_comision ASC
     </select>
+    
+    <select id="buscarUno" resultType="DistribucionFondo" statementType="PREPARED">
+        <include refid="consultaMantView"/>
+        <where>
+        	<if test="objetoMantenido.idDistribucionFondo != null">
+        		AND A.id_distribucion_fondo = #{objetoMantenido.idDistribucionFondo}
+        	</if>
+        </where>
+    </select>
+    
     
 </mapper>
