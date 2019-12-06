@@ -4,5 +4,8 @@ import java.util.List;
 import ob.unibanca.sicf.mantenimientosgenerales.model.ReglasCompensacion;
 
 public interface IReglasCompensacionService{
+	
 	List<ReglasCompensacion> buscarTodos();
+	
+	public ReglasCompensacion registrarReglaCompensacion(ReglasCompensacion reglasCompensacion);
 }
