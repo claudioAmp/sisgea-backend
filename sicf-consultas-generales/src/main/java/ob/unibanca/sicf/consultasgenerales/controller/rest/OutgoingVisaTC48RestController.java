@@ -22,7 +22,7 @@ public class OutgoingVisaTC48RestController {
 	}
 	
 	@PreAuthorize("hasPermission('CON_AVISOSBASEI_OUTGOING_VISA', '2')")
-	@GetMapping(value = "/incomings-visa-tc48s/pagination")
+	@GetMapping(value = "/outgoings-visa-tc48s/pagination")
 	public Pagina<CriterioBusquedaOutgoingVisaTC48, OutgoingVisaTC48> buscarPorPaginas(
 			Pagina<CriterioBusquedaOutgoingVisaTC48, OutgoingVisaTC48> criterioPaginacion,
 			CriterioBusquedaOutgoingVisaTC48 criterioBusqueda) {
@@ -34,7 +34,7 @@ public class OutgoingVisaTC48RestController {
 	}
 	
 	@PreAuthorize("hasPermission('CON_AVISOSBASEI_OUTGOING_VISA', '2')")
-	@GetMapping("/incomings-visa-tc48s-tcr0s")
+	@GetMapping("/outgoings-visa-tc48s-tcr0s")
 	public OutgoingVisaTC48TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaOutgoingVisa criterio) {
 		return outgoingVisaService.buscarPorIdSecuenciaTCR0(criterio);
 	}
