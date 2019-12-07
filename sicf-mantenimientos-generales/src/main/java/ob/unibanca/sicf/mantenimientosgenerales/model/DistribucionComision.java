@@ -39,5 +39,7 @@ public class DistribucionComision {
 	@IdNumerico(maxRange = 99, groups = IRegistro.class)
 	private Integer idCuentaAbono;
 	private String descripcionCuentaAbono;
-
+	
+	//USADO PARA LA ELIMNACION DINAMICA
+	private Integer modoEliminacion;
 }

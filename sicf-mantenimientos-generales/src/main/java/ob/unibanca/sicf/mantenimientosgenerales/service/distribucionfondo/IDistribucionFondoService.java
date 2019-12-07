@@ -11,7 +11,7 @@ public interface IDistribucionFondoService extends IMantenibleService<Distribuci
 	
 	DistribucionFondo buscarDistribucionFondo(int idDistribucionFondo);
 
-	DistribucionFondo registrarDistribucionComision(DistribucionFondo distribucionFondo);
+	DistribucionFondo registrarDistribucionFondo(DistribucionFondo distribucionFondo);
 
 	DistribucionFondo actualizarDistribucionFondo(int idDistribucionFondo, DistribucionFondo distribucionFondo);
 

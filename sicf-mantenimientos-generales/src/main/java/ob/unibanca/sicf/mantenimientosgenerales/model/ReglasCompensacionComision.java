@@ -17,4 +17,6 @@ public class ReglasCompensacionComision {
 	private String descripcionCuentaCargoComision;
 	private Integer idCuentaAbonoComision;
 	private String descripcionCuentaAbonoComision;
+	//usado solo para la elimnacion dinamica
+	private Integer modoEliminacion;
 }

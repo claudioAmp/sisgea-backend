@@ -2,6 +2,7 @@ package ob.unibanca.sicf.mantenimientosgenerales.service.reglascompensacion;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,8 +22,8 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 	
 	private static final String REGLA_COMPENSACION_NO_ENCONTRADO = "La regla de compensación %s no existe";
 	private final IReglasCompensacionMapper reglasCompensacionMapper;
-	private IDistribucionFondoService distribucionFondoService;
-	private IDistribucionComisionService distribucionComisionService;
+	private @Autowired IDistribucionFondoService distribucionFondoService;
+	private @Autowired IDistribucionComisionService distribucionComisionService;
 	
 	public ReglasCompensacionService(@Qualifier("IReglasCompensacionMapper") IMantenibleMapper<ReglasCompensacion> mantenibleMapper) {
 		super(mantenibleMapper);
@@ -53,7 +54,7 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 					.idCuentaCargo(reglasCompensacion.getIdCuentaCargoFondo())
 					.idCuentaAbono(reglasCompensacion.getIdCuentaAbonoFondo())
 					.build();
-		distribucionFondo = distribucionFondoService.registrarDistribucionComision(distribucionFondo);
+		distribucionFondo = distribucionFondoService.registrarDistribucionFondo(distribucionFondo);
 		reglasCompensacion.getComisiones().forEach((comision) ->{
 			DistribucionComision distribucionComision = DistribucionComision.builder()
 					.idMembresia(reglasCompensacion.getIdMembresia())
@@ -65,7 +66,7 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 					.idCuentaAbono(comision.getIdCuentaAbonoComision())
 					.idTipoComision(comision.getIdTipoComision())
 					.build();
-			distribucionComisionService.registrar(distribucionComision);
+			distribucionComisionService.registrarDistribucionComision(distribucionComision);
 		});
 		return this.reglasCompensacionMapper.buscarPorIdReglasCompensacion(distribucionFondo.getIdDistribucionFondo()).get(0);
 	}
@@ -74,6 +75,7 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ReglasCompensacion actualizarReglaCompensacion(ReglasCompensacion reglasCompensacion){
 		DistribucionFondo distribucionFondo = DistribucionFondo.builder()
+					.idDistribucionFondo(reglasCompensacion.getIdDistribucionFondo())
 					.idMembresia(reglasCompensacion.getIdMembresia())
 					.idServicio(reglasCompensacion.getIdServicio())
 					.idOrigen(reglasCompensacion.getIdOrigen())
@@ -85,6 +87,7 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 		distribucionFondo = distribucionFondoService.actualizarDistribucionFondo(distribucionFondo.getIdDistribucionFondo(),distribucionFondo);
 		reglasCompensacion.getComisiones().forEach((comision) ->{
 			DistribucionComision distribucionComision = DistribucionComision.builder()
+					.idDistribucionComision(comision.getIdDistribucionComision())
 					.idMembresia(reglasCompensacion.getIdMembresia())
 					.idServicio(reglasCompensacion.getIdServicio())
 					.idOrigen(reglasCompensacion.getIdOrigen())
@@ -93,8 +96,17 @@ public class ReglasCompensacionService extends MantenibleService<ReglasCompensac
 					.idCuentaCargo(comision.getIdCuentaCargoComision())
 					.idCuentaAbono(comision.getIdCuentaAbonoComision())
 					.idTipoComision(comision.getIdTipoComision())
+					.modoEliminacion(comision.getModoEliminacion() == null ? 0 : comision.getModoEliminacion())
 					.build();
-			distribucionComisionService.actualizarDistribucionComision(distribucionComision.getIdDistribucionComision(), distribucionComision);
+			if(distribucionComision.getIdDistribucionComision()==null) {
+				distribucionComisionService.registrarDistribucionComision(distribucionComision);
+			}else {
+				if(distribucionComision.getModoEliminacion()==1) {
+					distribucionComisionService.eliminarDistribucionComision(distribucionComision.getIdDistribucionComision());
+				}else {
+					distribucionComisionService.actualizarDistribucionComision(distribucionComision.getIdDistribucionComision(), distribucionComision);
+				}
+			}
 		});
 		return this.reglasCompensacionMapper.buscarPorIdReglasCompensacion(distribucionFondo.getIdDistribucionFondo()).get(0);
 	}

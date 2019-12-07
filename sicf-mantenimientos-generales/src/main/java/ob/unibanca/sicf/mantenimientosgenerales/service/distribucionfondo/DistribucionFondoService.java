@@ -39,7 +39,7 @@ public class DistribucionFondoService extends MantenibleService<DistribucionFond
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public DistribucionFondo registrarDistribucionComision(DistribucionFondo distribucionFondo) {
+	public DistribucionFondo registrarDistribucionFondo(DistribucionFondo distribucionFondo) {
 		this.registrar(distribucionFondo);
 		return this.buscarDistribucionFondo(distribucionFondo.getIdDistribucionFondo());
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import ob.unibanca.sicf.mantenimientosgenerales.model.TipoComision;
@@ -21,5 +22,10 @@ public class TipoComisionRestController {
 	@GetMapping("/tipos-comisiones")
 	public List<TipoComision> buscarTodosTiposComision(){
 		return this.tipoComisionService.buscarTodosTiposComision();
+	}
+	
+	@GetMapping("/tipos-comisiones/{idTipoComision}")
+	public TipoComision buscarPorIdTipoComision(@PathVariable Integer idTipoComision){
+		return this.tipoComisionService.buscarPorIdTipoComision(idTipoComision);
 	}
 }
