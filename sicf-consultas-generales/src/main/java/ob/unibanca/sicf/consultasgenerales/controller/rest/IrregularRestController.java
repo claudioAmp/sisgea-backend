@@ -18,7 +18,7 @@ public class IrregularRestController {
 	}
 	
 	@PreAuthorize("hasPermission('CON_TXN_IRREG', '2')")
-	@GetMapping(value = "/irregular/pagination")
+	@GetMapping(value = "/irregulares/pagination")
 	public Pagina<CriterioBusquedaIrregular, Irregular> buscarPorPaginas(
 			Pagina<CriterioBusquedaIrregular, Irregular> criterioPaginacion, CriterioBusquedaIrregular criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
