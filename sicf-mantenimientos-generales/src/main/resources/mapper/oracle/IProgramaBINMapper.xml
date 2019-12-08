@@ -23,6 +23,12 @@
         <include refid="orden"/>
     </select>
 
+    <select id="buscarProgramasBinPorMembresiaYProducto" resultType="ProgramaBIN" statementType="PREPARED">
+        <include refid="consultaVistaMant" />
+        id_programa  = #{idPrograma } AND
+        id_producto  = #{idProducto }
+    </select>
+
     <select id="buscarProgramaBIN" resultType="ProgramaBIN">
         <include refid="consultaVistaMant"/>
         WHERE

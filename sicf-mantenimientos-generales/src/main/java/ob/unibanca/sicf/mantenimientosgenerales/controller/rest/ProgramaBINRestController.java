@@ -40,6 +40,14 @@ public class ProgramaBINRestController {
         return this.programaBINService.buscarProgramaBin(idMembresia, idProducto, idPrograma);
     }
 
+    @PreAuthorize("hasPermission('MANT_PROGRAMA_BIN', '2')")
+    @GetMapping(value ="/{id-membresia}/{id-producto}")
+    public List<ProgramaBIN> buscarProgramasBinPorMembresiaYProducto(
+            @IdCadena(maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable("id-membresia") String idMembresia,
+            @IdNumerico(maxRange = 99999) @PathVariable("id-producto") Integer idProducto) {
+        return this.programaBINService.buscarProgramasBinPorMembresiaYProducto(idMembresia, idProducto);
+    }
+
     @PreAuthorize("hasPermission('MANT_PROGRAMA_BIN', '1')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
