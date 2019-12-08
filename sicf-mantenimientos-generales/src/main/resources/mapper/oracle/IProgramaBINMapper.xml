@@ -25,8 +25,9 @@
 
     <select id="buscarProgramasBinPorMembresiaYProducto" resultType="ProgramaBIN" statementType="PREPARED">
         <include refid="consultaVistaMant" />
-        id_programa  = #{idPrograma } AND
-        id_producto  = #{idProducto }
+        WHERE
+            id_membresia  = #{idMembresia } AND
+            id_producto   = #{idProducto }
     </select>
 
     <select id="buscarProgramaBIN" resultType="ProgramaBIN">
