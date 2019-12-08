@@ -39,6 +39,12 @@ public class ProgramaBinService  extends MantenibleService<ProgramaBIN> implemen
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<ProgramaBIN> buscarProgramasBinPorMembresiaYProducto(String idMembresia, Integer idProducto) {
+        return programaBINMapper.buscarProgramasBinPorMembresiaYProducto(idMembresia, idProducto);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ProgramaBIN registrarProgramaBin(ProgramaBIN programaBin) {
         this.registrar(programaBin);

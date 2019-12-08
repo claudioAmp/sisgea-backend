@@ -25,20 +25,41 @@ public class BIN {
 	private double valorOIF;
 	@NumeroNoRequerido(maxRange = 99)
 	private Integer longitudPAN;
+
 	@IdNumerico(maxRange = 99999)
 	private Integer idInstitucion;
 	private String descripcionInstitucion;
 	private String descripcionCortaInstitucion;
+
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]")
 	private String idMembresia;
 	private String descripcionMembresia;
+
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]")
 	private String idServicio;
 	private String descripcionServicio;
+
 	@IdNumerico(minRange = 0, maxRange = 999)
 	private Integer idMonedaBase;
 	private String descripcionMonedaBase;
+
 	@IdNumerico(minRange = 0, maxRange = 999)
 	private Integer idMonedaAlterna;
 	private String descripcionMonedaAlterna;
+
+	private Integer idProducto;
+	private String descripcionProducto;
+
+	private Integer idPrograma;
+	private String abreviaturaPrograma;
+	private String descripcionPrograma;
+
+	private String sreVisaSoles;
+	private String sreVisaDolares;
+	private Boolean siCompensaOpeBinVisa;
+	private Boolean siCompensaOpeSreSolesVisa;
+	private Boolean siCompensaOpeSreDolaresVisa;
+	private Boolean siFacturaEventoBinVisa;
+	private Boolean siFacturaEventoSreSolesVisa;
+	private Boolean siFacturaEventoSreDolaresVisa;
 }

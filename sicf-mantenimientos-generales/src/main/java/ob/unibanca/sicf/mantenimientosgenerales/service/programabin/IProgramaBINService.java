@@ -16,4 +16,6 @@ public interface IProgramaBINService extends IMantenibleService<ProgramaBIN> {
     ProgramaBIN actualizarProgramaBin(String idMembresia, Integer idProducto, Integer idPrograma, ProgramaBIN programaBin);
 
     void eliminarProgramaBin(String idMembresia, Integer idProducto, Integer idPrograma);
+
+    List<ProgramaBIN> buscarProgramasBinPorMembresiaYProducto(String idMembresia, Integer idProducto);
 }
