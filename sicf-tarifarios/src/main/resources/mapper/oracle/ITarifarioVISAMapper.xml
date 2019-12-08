@@ -34,7 +34,7 @@
 
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.idTipoComision,               jdbcType=NUMERIC , mode=IN    },
-                #{objetoMantenido.idTarifarioVisa,         		jdbcType=NUMERIC , mode=IN    },
+                #{objetoMantenido.idTarifarioVisa,         		jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.descripcionProgramaComision,  jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.descripcionComision,        	jdbcType=VARCHAR , mode=IN    },
                 #{objetoMantenido.tarifaPorcentaje,     		jdbcType=NUMERIC , mode=IN    },
