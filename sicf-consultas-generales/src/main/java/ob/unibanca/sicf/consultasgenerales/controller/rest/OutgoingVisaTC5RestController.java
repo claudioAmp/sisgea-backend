@@ -23,7 +23,7 @@ public class OutgoingVisaTC5RestController {
 		this.outgoingVisaTC5Service = outgoingVisaTC5Service;
 	}
 	
-	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
+	@PreAuthorize("hasPermission('CON_OUTOMVISA', '2')")
 	@GetMapping("/outgoings-visa-tc5s/pagination")
 	public Pagina<CriterioBusquedaOutgoingVisaTC5, OutgoingVisaTC5> buscarPorPaginas(
 			Pagina<CriterioBusquedaOutgoingVisaTC5, OutgoingVisaTC5> criterioPaginacion,
@@ -35,19 +35,19 @@ public class OutgoingVisaTC5RestController {
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
 	
-	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
+	@PreAuthorize("hasPermission('CON_OUTOMVISA', '2')")
 	@GetMapping("/outgoings-visa-tc5s-tcr0s")
 	public OutgoingVisaTC5TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaOutgoingVisa criterio) {
 		return outgoingVisaTC5Service.buscarPorIdSecuenciaTC5TCR0(criterio);
 	}
 	
-	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
+	@PreAuthorize("hasPermission('CON_OUTOMVISA', '2')")
 	@GetMapping("/outgoings-visa-tc5s-tcr1s")
 	public OutgoingVisaTC5TCR1 buscarPorIdSecuenciaTCR1(CriterioBusquedaOutgoingVisa criterio) {
 		return outgoingVisaTC5Service.buscarPorIdSecuenciaTC5TCR1(criterio);
 	}
 	
-	@PreAuthorize("hasPermission('CON_INCOMVISA', '2')")
+	@PreAuthorize("hasPermission('CON_OUTOMVISA', '2')")
 	@GetMapping("/outgoings-visa-tc5s-tcr5s")
 	public OutgoingVisaTC5TCR5 buscarPorIdSecuenciaTCR5(CriterioBusquedaOutgoingVisa criterio) {
 		return outgoingVisaTC5Service.buscarPorIdSecuenciaTC5TCR5(criterio);

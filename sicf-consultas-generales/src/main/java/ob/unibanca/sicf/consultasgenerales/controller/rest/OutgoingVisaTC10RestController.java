@@ -19,7 +19,7 @@ public class OutgoingVisaTC10RestController {
 		this.outgoingVisaService = outgoingVisaService;
 	}
 	
-	@PreAuthorize("hasPermission('CON_COBRODES_VISA', '2')")
+	@PreAuthorize("hasPermission('CON_COBRODES_OUT_VISA', '2')")
 	@GetMapping("/outgoings-visa-tc10s-tcr0s/pagination")
 	public Pagina<CriterioBusquedaOutgoingVisaTC10, OutgoingVisaTC10TCR0> buscarPorPaginas(
 			Pagina<CriterioBusquedaOutgoingVisaTC10, OutgoingVisaTC10TCR0> criterioPaginacion,
