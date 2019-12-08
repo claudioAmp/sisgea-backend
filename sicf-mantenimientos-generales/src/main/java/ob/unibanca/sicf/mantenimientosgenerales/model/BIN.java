@@ -47,16 +47,15 @@ public class BIN {
 	private Integer idMonedaAlterna;
 	private String descripcionMonedaAlterna;
 
-	// TODO(): idProducto es obligatorio?
 	private Integer idProducto;
 	private String descripcionProducto;
 
-	// TODO(): idPrograma es obligatorio?
 	private Integer idPrograma;
 	private String abreviaturaPrograma;
+	private String descripcionPrograma;
 
-	private Boolean sreVisaSoles;
-	private Boolean sreVisaDolares;
+	private String sreVisaSoles;
+	private String sreVisaDolares;
 	private Boolean siCompensaOpeBinVisa;
 	private Boolean siCompensaOpeSreSolesVisa;
 	private Boolean siCompensaOpeSreDolaresVisa;

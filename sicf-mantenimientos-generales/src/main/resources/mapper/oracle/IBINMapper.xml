@@ -3,14 +3,15 @@
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IBINMapper">
 
     <sql id="consultaVistaMant">
-        SELECT id_bin
+        SELECT
+               id_bin
              , descripcion_bin
              , es_internacional
              , valor_oif
              , longitud_pan
              , id_institucion
              , descripcion_institucion
-             , descripcion_corta_institucion 
+             , descripcion_corta_institucion
              , id_membresia
              , descripcion_membresia
              , id_servicio
@@ -19,7 +20,20 @@
              , descripcion_moneda_base
              , id_moneda_alterna
              , descripcion_moneda_alterna
-            FROM VIE_MAN_BIN
+             , id_producto
+             , descripcion_producto
+             , id_programa
+             , abreviatura_programa
+             , descripcion_programa
+             , sre_visa_soles
+             , sre_visa_dolares
+             , si_compensa_ope_bin_visa
+             , si_compensa_ope_sre_soles_visa
+             , si_compensa_ope_sre_dolares_visa
+             , si_factura_evento_bin_visa
+             , si_factura_evento_sre_soles_visa
+             , si_factura_evento_sre_dolares_visa
+        FROM VIE_MAN_BIN
     </sql>
     
     <sql id="orden">
@@ -50,18 +64,29 @@
             statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_BIN(
-                #{modo,                             jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idBIN,            jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.descripcionBIN,   jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.esInternacional,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.valorOIF,         jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.longitudPAN,      jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idInstitucion,    jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idMembresia,      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idServicio,       jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMonedaBase,     jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idMonedaAlterna,  jdbcType=NUMERIC, mode=IN},
-                #{usuario,                          jdbcType=VARCHAR, mode=IN}
+                #{modo,                                          jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idBIN,                         jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionBIN,                jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.esInternacional,               jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.valorOIF,                      jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.longitudPAN,                   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idInstitucion,                 jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMembresia,                   jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idServicio,                    jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMonedaBase,                  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idMonedaAlterna,               jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idProducto,                    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idPrograma,                    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.abreviaturaPrograma,           jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.sreVisaSoles,                  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.sreVisaDolares,                jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.siCompensaOpeBinVisa,          jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siCompensaOpeSreSolesVisa,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siCompensaOpeSreDolaresVisa,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siFacturaEventoBinVisa,        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siFacturaEventoSreSolesVisa,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siFacturaEventoSreDolaresVisa, jdbcType=NUMERIC, mode=IN},
+                #{usuario,                                       jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>
