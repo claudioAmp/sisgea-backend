@@ -10,10 +10,12 @@
              , descripcion_tarifa
              , nivel
              , id_grupo_bin
-             , descripcion_grupo_bin 
-             , transaccion
+             , descripcion_grupo_bin
              , rango_inicial
              , rango_final
+             , id_clase_transaccion
+             , id_codigo_transaccion
+             , descripcion_transaccion
              , id_moneda
              , descripcion_moneda
              , tarifa_flat
@@ -41,13 +43,14 @@
                 #{objetoMantenido.idTarifa,         	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nivel,				jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idGrupoBIN,			jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.transaccion,			jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.rangoInicial,			jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.rangoFinal,			jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idMoneda,				jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.tarifaFlat,			jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.tarifaPorcentual,		jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.aplicaIGV,			jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idClaseTransaccion,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCodigoTransaccion,  jdbcType=NUMERIC, mode=IN},
                 #{usuario,                          	jdbcType=VARCHAR, mode=IN}
             )
         }

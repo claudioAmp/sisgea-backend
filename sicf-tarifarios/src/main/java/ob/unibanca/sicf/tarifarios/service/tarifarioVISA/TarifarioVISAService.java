@@ -31,9 +31,9 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public TarifarioVISA buscarTarifarioVISA(String idTarifarioVISA) {
-        return this.tarifarioVISAMapper.buscarTarifarioVISA(idTarifarioVISA).orElseThrow(
-                () -> new RecursoNoEncontradoException(TARIFARIO_VISA_NO_ENCONTRADO, idTarifarioVISA));
+    public TarifarioVISA buscarTarifarioVISA(String idTarifarioVisa) {
+        return this.tarifarioVISAMapper.buscarTarifarioVISA(idTarifarioVisa).orElseThrow(
+                () -> new RecursoNoEncontradoException(TARIFARIO_VISA_NO_ENCONTRADO, idTarifarioVisa));
     }
 
     @Override
@@ -45,16 +45,16 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public TarifarioVISA actualizarTarifarioVISA(String idTarifarioVISA, TarifarioVISA tarifarioVISA) {
-        tarifarioVISA.setIdTarifarioVisa(idTarifarioVISA);
+    public TarifarioVISA actualizarTarifarioVISA(String idTarifarioVisa, TarifarioVISA tarifarioVISA) {
+        tarifarioVISA.setIdTarifarioVisa(idTarifarioVisa);
         this.actualizar(tarifarioVISA);
         return this.buscarTarifarioVISA(tarifarioVISA.getIdTarifarioVisa());
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void eliminarTarifarioVISA(String idTarifarioVISA) {
-        TarifarioVISA tarifarioVISA = TarifarioVISA.builder().idTarifarioVisa(idTarifarioVISA).build();
+    public void eliminarTarifarioVISA(String idTarifarioVisa) {
+        TarifarioVISA tarifarioVISA = TarifarioVISA.builder().idTarifarioVisa(idTarifarioVisa).build();
         this.eliminar(tarifarioVISA);
     }
 

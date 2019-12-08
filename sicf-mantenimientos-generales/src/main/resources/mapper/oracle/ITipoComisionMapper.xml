@@ -12,5 +12,14 @@
     <select id="buscarTodos" resultType="TipoComision" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
     </select>
+    
+    <select id="buscarUno" resultType="TipoComision" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <where>
+        	<if test="objetoMantenido.idTipoComision != null">
+        		id_tipo_comision = #{objetoMantenido.idTipoComision}	
+        	</if>
+        </where>
+    </select>
 
 </mapper>

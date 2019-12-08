@@ -41,7 +41,7 @@ public class DistribucionFondoRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public DistribucionFondo registrarDistribucionFondo(
 			@Validated({IRegistro.class, Default.class}) @RequestBody DistribucionFondo distribucionFondo) {
-		return this.distribucionFondoService.registrarDistribucionComision(distribucionFondo);
+		return this.distribucionFondoService.registrarDistribucionFondo(distribucionFondo);
 	}
 	@PreAuthorize("hasPermission('MANT_REGCOMPFOND', '3')")
 	@PutMapping(value = "/distribuciones-fondos/{idDistribucionFondo}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

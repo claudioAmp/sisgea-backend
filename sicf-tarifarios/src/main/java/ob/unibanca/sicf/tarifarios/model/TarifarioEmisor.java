@@ -26,8 +26,6 @@ public class TarifarioEmisor {
 	@IdNumerico(minRange = 0, maxRange = 99, groups = IRegistro.class)
 	private int idGrupoBIN;
 	private String descripcionGrupoBIN;
-	@IdNumerico(maxRange = 999999, groups = IRegistro.class)
-	private int transaccion;
 	@IdNumerico(maxRange = 99999999, groups = IRegistro.class)
 	private int rangoInicial;
 	@IdNumerico(maxRange = 99999999, groups = IRegistro.class)
@@ -38,5 +36,9 @@ public class TarifarioEmisor {
 	private double tarifaFlat;
 	private double tarifaPorcentual;
 	private boolean aplicaIGV;
+	@IdNumerico(maxRange = 99999)
+	private Integer idClaseTransaccion;
+	private Integer idCodigoTransaccion;
+	private String descripcionTransaccion;
 
 }
