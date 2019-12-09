@@ -29,5 +29,7 @@ public class CampoActualizar {
 	private String campoActualizar;
 	@CaracterRequerido(maxLength = 50)
 	private String campoReferencia;
+	@IdNumerico(maxRange = 9)
+	private Integer aplicaExpresion;
 	
 }
