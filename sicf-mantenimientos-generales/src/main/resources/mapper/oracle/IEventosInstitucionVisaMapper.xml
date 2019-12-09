@@ -20,6 +20,15 @@
         </where>
     </select>
     
+    <select id="buscarPorInst" resultMap="resultMap" parameterType="Integer" statementType="PREPARED">
+        <include refid="consultaMantView"/>
+        <where>
+        	<if test="idInstitucion != null">
+        		AND ID_INSTITUCION = #{idInstitucion}
+        	</if>
+        </where>
+    </select>
+    
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_BILLING_LINE_VISA_X_TXN(
