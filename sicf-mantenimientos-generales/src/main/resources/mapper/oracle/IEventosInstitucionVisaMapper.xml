@@ -20,7 +20,7 @@
         </where>
     </select>
     
-    <select id="buscarPorInst" resultMap="resultMap" parameterType="Integer" statementType="PREPARED">
+    <select id="buscarPorInst" resultType="EventosInstitucionVisa" parameterType="Integer" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
         	<if test="idInstitucion != null">
