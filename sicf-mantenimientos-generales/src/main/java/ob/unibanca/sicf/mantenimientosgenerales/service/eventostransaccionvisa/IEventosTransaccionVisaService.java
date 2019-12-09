@@ -7,7 +7,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.EventosTransaccionVisa;
 
 public interface IEventosTransaccionVisaService extends IMantenibleService<EventosTransaccionVisa> {
 	
-	List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisaes();
+	List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisa();
 	
 	EventosTransaccionVisa registrarEventosTransaccionVisa(EventosTransaccionVisa eventosTransaccionVisa);
 	
