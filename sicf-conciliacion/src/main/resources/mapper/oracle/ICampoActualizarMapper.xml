@@ -12,6 +12,7 @@
              , descripcion_tabla_campo_ref
              , campo_actualizar
              , campo_referencia
+             , aplica_expresion
         FROM VIE_MAN_CNC_CAMPO_ACTUALIZAR
     </sql>
     
@@ -47,6 +48,7 @@
                 #{objetoMantenido.idTablaCampoRef,		jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.campoActualizar,		jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.campoReferencia,		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaExpresion,		jdbcType=VARCHAR, mode=IN},
                 #{usuario, 								jdbcType=VARCHAR, mode=IN}
             )
         }

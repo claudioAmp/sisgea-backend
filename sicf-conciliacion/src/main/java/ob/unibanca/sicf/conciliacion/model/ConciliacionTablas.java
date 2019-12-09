@@ -31,5 +31,17 @@ public class ConciliacionTablas {
 	private String tablaConciliarA;
 	@CaracterRequerido(maxLength = 4000)
 	private String tablaConciliarB;
+	@CaracterRequerido(maxLength = 4000)
+	private String filtroActualizacionA;
+	@CaracterRequerido(maxLength = 4000)
+	private String filtroActualizacionB;
+	@IdNumerico(minRange = 0, maxRange = 9)
+	private Integer aplicaExpresionA;
+	@CaracterRequerido(maxLength = 4000)
+	private String tablaExpresionA;
+	@IdNumerico(minRange = 0, maxRange = 9)
+	private Integer aplicaExpresionB;
+	@CaracterRequerido(maxLength = 4000)
+	private String tablaExpresionB;
 	
 }

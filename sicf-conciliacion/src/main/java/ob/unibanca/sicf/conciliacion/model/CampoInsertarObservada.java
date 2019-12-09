@@ -20,7 +20,7 @@ public class CampoInsertarObservada {
 	private String nombreProcedimiento;
 	@CaracterRequerido(maxLength = 50)
 	private String campoTxnObservada;
-	@CaracterRequerido(maxLength = 50)
+	@CaracterRequerido(maxLength = 4000)
 	private String campoInsertar;
 	@CaracterRequerido(minLength = 2, maxLength = 2, regexpPattern = "^[0-9]{2}")
 	private String idOrigenArchivo;

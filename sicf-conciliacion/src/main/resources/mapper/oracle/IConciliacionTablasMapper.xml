@@ -14,6 +14,12 @@
              , descripcion_archivo_conciliar_b
              , tabla_conciliar_a
              , tabla_conciliar_b
+             , filtro_actualizacion_a
+             , filtro_actualizacion_b
+             , aplica_expresion_a
+             , tabla_expresion_a
+             , aplica_expresion_b
+             , tabla_expresion_b
         FROM VIE_MAN_CNC_CONCILIACION_TABLAS
     </sql>
     
@@ -50,6 +56,12 @@
                 #{objetoMantenido.idArchivoConciliarB,	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.tablaConciliarA, 	   	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.tablaConciliarB, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.filtroActualizacionA,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.filtroActualizacionB,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaExpresionA, 	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.tablaExpresionA, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaExpresionB, 	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.tablaExpresionB, 	   	jdbcType=VARCHAR, mode=IN},
                 #{usuario, 								jdbcType=VARCHAR, mode=IN}
             )
         }

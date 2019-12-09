@@ -41,6 +41,7 @@ public class TarifarioEmisorRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TarifarioEmisor registrarTarifarioEmisor(
 			@Validated({IRegistro.class, Default.class}) @RequestBody TarifarioEmisor tarifarioEmisor) {
+		System.out.println(tarifarioEmisor);
 		return this.tarifarioEmisorService.registrarTarifarioEmisor(tarifarioEmisor);
 	}
 	
