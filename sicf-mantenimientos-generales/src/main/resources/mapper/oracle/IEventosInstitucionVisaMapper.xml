@@ -21,7 +21,7 @@
     </select>
     
     <select id="buscarPorInst" resultMap="resultMap" parameterType="Integer" statementType="PREPARED">
-        <include refid="consultaMantView"/>
+        <include refid="consulta"/>
         <where>
         	<if test="idInstitucion != null">
         		AND ID_INSTITUCION = #{idInstitucion}
