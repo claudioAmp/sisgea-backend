@@ -25,9 +25,9 @@ public class CampoActualizar {
 	@IdCadena(minLength = 2, maxLength = 2, regexpPattern = "^[0-9]{2}", groups = IRegistro.class)
 	private String idTablaCampoRef;
 	private String descripcionTablaCampoRef;
-	@CaracterRequerido(maxLength = 50)
+	@CaracterRequerido(maxLength = 200)
 	private String campoActualizar;
-	@CaracterRequerido(maxLength = 50)
+	@CaracterRequerido(maxLength = 4000)
 	private String campoReferencia;
 	@IdNumerico(maxRange = 9)
 	private Integer aplicaExpresion;
