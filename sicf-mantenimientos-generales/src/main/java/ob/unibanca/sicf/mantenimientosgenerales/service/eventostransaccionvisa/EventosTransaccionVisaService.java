@@ -20,7 +20,7 @@ public class EventosTransaccionVisaService extends MantenibleService<EventosTran
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisaes() {
+	public List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisa() {
 		return this.buscarTodos();
 	}
 

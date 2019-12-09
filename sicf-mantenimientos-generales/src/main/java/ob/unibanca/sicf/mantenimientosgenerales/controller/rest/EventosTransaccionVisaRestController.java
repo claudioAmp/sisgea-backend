@@ -32,7 +32,7 @@ public class EventosTransaccionVisaRestController {
 	@PreAuthorize("hasPermission('MANT_BILLING_TXN_VISA', '2')")
 	@GetMapping(value = "/eventos-transaccion-visa")
 	public List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisa() {
-		return this.eventosTransaccionVisaService.buscarTodosEventosTransaccionVisaes();
+		return this.eventosTransaccionVisaService.buscarTodosEventosTransaccionVisa();
 	}
 	
 	@PreAuthorize("hasPermission('MANT_BILLING_TXN_VISA', '1')")
