@@ -53,10 +53,10 @@ public class TarifarioVISARestController {
     }
 
     @PreAuthorize("hasPermission('MANT_TARIFARIO_VISA','4')")
-    @DeleteMapping("/tarifarios-visa/{idTarifarioVisa}")
+    @DeleteMapping("/tarifarios-visa")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void eliminarTarifarioVISA(@IdCadena(maxLength = 4) @PathVariable String idTarifarioVisa) {
-        this.tarifarioVISAService.eliminarTarifarioVISA(idTarifarioVisa);
+    public void eliminarTarifarioVISA(TarifarioVISA tarifario) {
+        this.tarifarioVISAService.eliminarTarifarioVISA(tarifario);
     }
 
 }

@@ -47,13 +47,13 @@ public class EventosInstitucionVisaRestController {
 	@PreAuthorize("hasPermission('MANT_BILLING_INST_VISA', '1')")
 	@PostMapping(value = "/eventos-institucion-visa", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public EventosInstitucionVisa registrarEventosInstitucionVisa(@Validated({IRegistro.class, Default.class}) @RequestBody EventosInstitucionVisa canal) {
+	public List<EventosInstitucionVisa> registrarEventosInstitucionVisa(@Validated({IRegistro.class, Default.class}) @RequestBody EventosInstitucionVisa canal) {
 		return this.eventosInstitucionVisaService.registrarEventosInstitucionVisa(canal);
 	}
 	
 	@PreAuthorize("hasPermission('MANT_BILLING_INST_VISA', '3')")
 	@PutMapping(value = "/eventos-institucion-visa", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public EventosInstitucionVisa actualizarEventosInstitucionVisa(@Validated @RequestBody EventosInstitucionVisa eventosInstitucionVisa) {
+	public List<EventosInstitucionVisa> actualizarEventosInstitucionVisa(@Validated @RequestBody EventosInstitucionVisa eventosInstitucionVisa) {
 		return this.eventosInstitucionVisaService.actualizarEventosInstitucionVisa(eventosInstitucionVisa);
 	}
 	

@@ -13,9 +13,9 @@ public interface IEventosInstitucionVisaService extends IMantenibleService<Event
 	
 	List<EventosInstitucionVisa> buscarPorInstEventosInstitucionVisa(Integer idInstitucion);
 	
-	EventosInstitucionVisa registrarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa);
+	List<EventosInstitucionVisa> registrarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa);
 	
-	EventosInstitucionVisa actualizarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa);
+	List<EventosInstitucionVisa> actualizarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa);
 	
 	void eliminarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa);
 }

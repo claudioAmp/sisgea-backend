@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class TarifarioVISAService extends MantenibleService<TarifarioVISA> implements ITarifarioVISAService {
 
-    private static final String TARIFARIO_VISA_NO_ENCONTRADO = "El Tarifario Emisor %s no existe";
+    private static final String TARIFARIO_VISA_NO_ENCONTRADO = "El Tarifario de VISA %s no existe";
     private final ITarifarioVISAMapper tarifarioVISAMapper;
 
     public TarifarioVISAService(@Qualifier("ITarifarioVISAMapper") IMantenibleMapper<TarifarioVISA> mantenibleMapper) {
@@ -31,8 +31,8 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public TarifarioVISA buscarTarifarioVISA(String idTarifarioVisa) {
-        return this.tarifarioVISAMapper.buscarTarifarioVISA(idTarifarioVisa).orElseThrow(
+    public TarifarioVISA buscarTarifarioVISA(String idTarifarioVisa, Integer idTipoComision) {
+        return this.tarifarioVISAMapper.buscarTarifarioVISA(idTarifarioVisa, idTipoComision).orElseThrow(
                 () -> new RecursoNoEncontradoException(TARIFARIO_VISA_NO_ENCONTRADO, idTarifarioVisa));
     }
 
@@ -40,7 +40,7 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
     @Transactional(propagation = Propagation.REQUIRED)
     public TarifarioVISA registrarTarifarioVISA(TarifarioVISA tarifarioVISA) {
         this.registrar(tarifarioVISA);
-        return this.buscarTarifarioVISA(tarifarioVISA.getIdTarifarioVisa());
+        return this.buscarTarifarioVISA(tarifarioVISA.getIdTarifarioVisa(), tarifarioVISA.getIdTipoComision());
     }
 
     @Override
@@ -48,13 +48,12 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
     public TarifarioVISA actualizarTarifarioVISA(String idTarifarioVisa, TarifarioVISA tarifarioVISA) {
         tarifarioVISA.setIdTarifarioVisa(idTarifarioVisa);
         this.actualizar(tarifarioVISA);
-        return this.buscarTarifarioVISA(tarifarioVISA.getIdTarifarioVisa());
+        return this.buscarTarifarioVISA(tarifarioVISA.getIdTarifarioVisa(), tarifarioVISA.getIdTipoComision());
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void eliminarTarifarioVISA(String idTarifarioVisa) {
-        TarifarioVISA tarifarioVISA = TarifarioVISA.builder().idTarifarioVisa(idTarifarioVisa).build();
+    public void eliminarTarifarioVISA(TarifarioVISA tarifarioVISA) {
         this.eliminar(tarifarioVISA);
     }
 

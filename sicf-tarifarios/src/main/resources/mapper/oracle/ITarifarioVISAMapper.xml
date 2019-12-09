@@ -24,7 +24,14 @@
 
     <select id="buscarTarifarioVISA" resultType="TarifarioVISA" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
-        WHERE id_programa_comision = #{idTarifarioVisa}
+        <where>
+        	<if test="idTarifarioVisa != null">
+        		id_programa_comision = #{idTarifarioVisa}
+        	</if>
+        	<if test="idTipoComision != null">
+        		id_tipo_comision = #{idTipoComision}
+        	</if>
+        </where> 
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"

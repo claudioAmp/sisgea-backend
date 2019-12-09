@@ -16,17 +16,15 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 
 public class TarifarioVISA {
 
-    @IdCadena(maxLength = 4)
+    @IdCadena(maxLength = 3)
     private String idTarifarioVisa; // el PK en la base de datos es idProgramaComision
-    @IdNumerico(maxRange = 999, groups = IRegistro.class)
     private Integer idTipoComision;
     private String descripcionTipoComision;
     private String descripcionProgramaComision;
     private String descripcionComision;
-    private double tarifaPorcentaje;
-    @IdNumerico(maxRange = 999, groups = IRegistro.class)
+    private Double tarifaPorcentaje;
     private Integer idMonedaTarFlat;
     private String descripcionMoneda;
-    private double tarifaFlat;
+    private Double tarifaFlat;
 
 }

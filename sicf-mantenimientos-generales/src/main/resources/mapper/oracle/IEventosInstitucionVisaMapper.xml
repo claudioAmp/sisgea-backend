@@ -31,7 +31,7 @@
     
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PRC_MAN_BILLING_LINE_VISA_X_TXN(
+            CALL PKG_MAN_GENERALES.PRC_MAN_BILLING_LINE_VISA_X_INST(
                 #{modo, 							  			jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idBillingLineVisa,  			jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idInstitucion,  				jdbcType=NUMERIC, mode=IN},

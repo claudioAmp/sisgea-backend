@@ -38,16 +38,18 @@ public class EventosInstitucionVisaService extends MantenibleService<EventosInst
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public EventosInstitucionVisa registrarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa) {
+	public List<EventosInstitucionVisa> registrarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa) {
+		System.out.println(eventosInstitucionVisa);
 		this.registrar(eventosInstitucionVisa);
-		return this.buscarUno(eventosInstitucionVisa).get();
+		return this.eventosInstitucionVisaMapper.buscarPorInst(eventosInstitucionVisa.getIdInstitucion()); 
 	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public EventosInstitucionVisa actualizarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa) {
-		this.actualizar(eventosInstitucionVisa);
-		return this.buscarUno(eventosInstitucionVisa).get();
+	public List<EventosInstitucionVisa> actualizarEventosInstitucionVisa(EventosInstitucionVisa eventosInstitucionVisa) {
+		System.out.println(eventosInstitucionVisa);
+		this.registrar(eventosInstitucionVisa);
+		return this.eventosInstitucionVisaMapper.buscarPorInst(eventosInstitucionVisa.getIdInstitucion());
 	}
 
 	@Override

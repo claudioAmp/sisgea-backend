@@ -9,11 +9,11 @@ public interface ITarifarioVISAService extends IMantenibleService<TarifarioVISA>
 
     List<TarifarioVISA> buscarTodosTarifariosVISA();
 
-    TarifarioVISA buscarTarifarioVISA(String idTarifarioVisa);
+    TarifarioVISA buscarTarifarioVISA(String idTarifarioVisa, Integer idTipoComision);
 
     TarifarioVISA registrarTarifarioVISA(TarifarioVISA tarifarioVisa);
 
     TarifarioVISA actualizarTarifarioVISA(String idTarifarioVisa, TarifarioVISA tarifarioVisa);
 
-    void eliminarTarifarioVISA(String idTarifarioVisa);
+    void eliminarTarifarioVISA(TarifarioVISA tarifarioVisa);
 }
