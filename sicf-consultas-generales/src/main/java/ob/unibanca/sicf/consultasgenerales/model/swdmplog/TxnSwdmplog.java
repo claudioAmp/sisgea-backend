@@ -58,5 +58,12 @@ public class TxnSwdmplog {
 	private String descripcionProceso;
 	private String idBin;
 	private String descripcionBin;
+
+	private Integer idOrigen;
+	private String descripcionOrigen;
+	private Integer idClaseTransaccion;
+	private String descripcionClaseTransaccion;
+	private Integer idCodigoTransaccion;
+	private String descripcionCodigoTransaccion;
 	
 }
