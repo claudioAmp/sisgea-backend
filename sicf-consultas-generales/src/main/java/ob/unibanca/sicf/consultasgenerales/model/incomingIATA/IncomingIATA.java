@@ -2,6 +2,8 @@ package ob.unibanca.sicf.consultasgenerales.model.incomingIATA;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +14,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncomingIATA {
-	
+	String idMembresia;
+	String idServicio;
+	Integer idClaseTransaccion;
+	Integer idCodigoTransaccion;
+	Integer idOrigen;
+	Integer idInstitucionEmisora;
+	Integer idIntitucionReceptora;
+	Integer idProducto;
+	Integer idCanal;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaIncoming;
 	Integer	codigoDebitoCredito;
 	Integer	codigoAerolinea;
-	Integer	numeroBoleto;
+	Long	numeroBoleto;
 	Integer codigoIATAAgencia;
 	Integer fechaEmisionBoleto;
 	Integer periodoBSP;
@@ -26,8 +38,8 @@ public class IncomingIATA {
 	String	identificadorTransaccion;
 	String 	espacioReservado1;
 	String 	referenciaCliente;
-	Double 	montoCreditoDebito;
-	Integer codigoAutorizacion;
+	Long 	montoCreditoDebito;
+	Long codigoAutorizacion;
 	Integer sequenceNumber;
 	Integer invoiceDate;
 	String  espacioReservado2;
@@ -61,7 +73,8 @@ public class IncomingIATA {
 	String  noDefinido;
 	String  fechaPrimerVuelo;
 	String  idOrigenArchivo;
-	Integer idIATA;
+	Long idIATA;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date    fechaProceso;
 	
 }

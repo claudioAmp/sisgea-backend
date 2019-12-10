@@ -2,6 +2,8 @@ package ob.unibanca.sicf.consultasgenerales.model.criterio.incomingIATA;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +15,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIncomingIATA {
 	
+	String idMembresia;
+	String idServicio;
+	Integer idClaseTransaccion;
+	Integer idCodigoTransaccion;
+	Integer idOrigen;
+	Integer idInstitucionEmisora;
+	Integer idIntitucionReceptora;
+	Integer idProducto;
+	Integer idCanal;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaIncomingInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaIncomingFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date    fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date    fechaProcesoFin;
 	//Filtros cabecera grilla
 	String	filtroFacturacionADP;
 	String	filtroNombrePasajero;
@@ -21,7 +40,7 @@ public class CriterioBusquedaIncomingIATA {
 	String	filtroIdentificadorTransaccion;
 	String 	filtroEspacioReservado1;
 	String 	filtroReferenciaCliente;
-	String  filtroFiltroEspacioReservado2;
+	String  filtroEspacioReservado2;
 	String  filtroCityName1;
 	String  filtroFareBasis1;
 	String  filtroCarrier1;
@@ -51,29 +70,30 @@ public class CriterioBusquedaIncomingIATA {
 	String  filtroNoDefinido;
 	String  filtroFechaPrimerVuelo;
 	String  filtroIdOrigenArchivo;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date    filtroFechaProceso;
 	
 	//Ordenamiento
 	Integer	ordenCodigoDebitoCredito;
 	Integer	ordenCodigoAerolinea;
-	Integer	ordenNumeroBoleto;
+	Long	ordenNumeroBoleto;
 	Integer ordenCodigoIATAAgencia;
 	Integer ordenFechaEmisionBoleto;
 	Integer ordenPeriodoBSP;
 	String	ordenFacturacionADP;
-	Double 	ordenMontoCreditoDebito;
-	Integer ordenCodigoAutorizacion;
+	Long 	ordenMontoCreditoDebito;
+	Long ordenCodigoAutorizacion;
 	Integer ordenSequenceNumber;
 	Integer ordenInvoiceDate;
 	String	ordenNombrePasajero;
 	Integer ordenFechaExpiracionTarjeta;
-	Integer ordenIdIATA;
+	Long ordenIdIATA;
 	String 	ordenMembresia;
 	String 	ordenNumeroTarjetaCredito;
 	String	ordenIdentificadorTransaccion;
 	String 	ordenEspacioReservado1;
 	String 	ordenReferenciaCliente;
-	String  ordenFiltroEspacioReservado2;
+	String  ordenEspacioReservado2;
 	String  ordenCityName1;
 	String  ordenFareBasis1;
 	String  ordenCarrier1;

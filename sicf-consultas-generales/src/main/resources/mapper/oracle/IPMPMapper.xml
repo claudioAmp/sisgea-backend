@@ -4,34 +4,33 @@
 
     <sql id="consultaVistaMant">
         SELECT *
-            FROM VIE_CON_PMP a
+            FROM VIE_CON_PMP
     </sql>
         
     <sql id = "fragmentoWhere">
-		<if  test="fechaIncoming != null and fechaIncoming != ''">
-			 a.FECHA_INCOMING = #{fechaIncoming}
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="fechaProceso != null and fechaProceso != ''">
-			 AND a.FECHA_PROCESO = #{fechaProceso}
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			 AND FECHA_TRANSACCION BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
+		<if  test="idCodigoTransaccionPMP != null and idCodigoTransaccionPMP != ''">
+			 AND ID_CODIGO_TRANSACCION_PMP = #{idCodigoTransaccionPMP}
+		</if>
+		<if  test="idCodigoProductoPMP != null and idCodigoProductoPMP != ''">
+			 AND ID_CODIGO_PRODUCTO_PMP = #{idCodigoProductoPMP}
 		</if>
 		<if  test="numeroTarjeta != null and numeroTarjeta != ''">
-			 AND a.NUMERO_TARJETA = #{numberoTarjeta}
-		</if>
-		<if  test="binAdquirente != null and binAdquirente != ''">
-			 AND a.BIN_ADQUIRENTE = #{binAdquirente}
+			 AND a.NUMERO_TARJEATA = #{numeroTarjeta}
 		</if>
 	</sql>
 	
 	<sql id = "filtros">
-		<if  test="filtroBinAdquirente; != null" >
+		<if  test="filtroBinAdquirente != null" >
 			<bind name="pFiltroBinAdquirente" value="'%' + filtroBinAdquirente + '%'" />
 			AND BIN_ADQURENTE LIKE #{pFiltroBinAdquirente}
 		</if>
-		<if  test="filtroIdTrace; != null" >
-			<bind name="pFiltroIdTrace" value="'%' + filtroIdTrace + '%'" />
-			AND ID_TRACE LIKE #{pFiltroIdTrace}
-		</if>
-		<if  test="filtroNumeroTarjeta; != null" >
+		<if  test="filtroNumeroTarjeta != null" >
 			<bind name="pFiltroNumeroTarjeta" value="'%' + filtroNumeroTarjeta + '%'" />
 			AND NUMERO_TARJETA LIKE #{pFiltroNumeroTarjeta}
 		</if>
@@ -67,25 +66,9 @@
 			<bind name="pFiltroIdPais" value="'%' + filtroIdPais + '%'" />
 			AND ID_PAIS LIKE #{pFiltroIdPais}
 		</if>
-		<if  test="filtroIdBancoReceptor != null" >
-			<bind name="pFiltroIdBancoReceptor" value="'%' + filtroIdBancoReceptor + '%'" />
-			AND ID_BANCO_RECEPTOR LIKE #{pFiltroIdBancoReceptor}
-		</if>
-		<if  test="filtroIdAgenciaPagador != null" >
-			<bind name="pFiltroIdAgenciaPagador" value="'%' + filtroIdAgenciaPagador + '%'" />
-			AND ID_AGENCIA_PAGADOR LIKE #{pFiltroIdAgenciaPagador}
-		</if>
 		<if  test="filtroTerminal != null" >
 			<bind name="pFiltroTerminal" value="'%' + filtroTerminal + '%'" />
 			AND TERMINAL LIKE #{pFiltroTerminal}
-		</if>
-		<if  test="filtroLote != null" >
-			<bind name="pFiltroLote" value="'%' + filtroLote + '%'" />
-			AND LOTE LIKE #{pFiltroLote}
-		</if>
-		<if  test="filtroLoteReferencia != null" >
-			<bind name="pFiltroLoteReferencia" value="'%' + filtroLoteReferencia + '%'" />
-			AND LOTE_REFERENCIA LIKE #{pFiltroLoteReferencia}
 		</if>
 		<if  test="filtroUbicacionPos != null" >
 			<bind name="pFiltroUbicacionPos" value="'%' + filtroUbicacionPos + '%'" />
@@ -103,10 +86,7 @@
 			<bind name="pFiltroCodigoAutorizacionDevolucion" value="'%' + filtroCodigoAutorizacionDevolucion + '%'" />
 			AND CODIGO_AUTORIZACION_DEVOLUCION LIKE #{pFiltroCodigoAutorizacionDevolucion}
 		</if>
-		<if  test="filtroPctComisionEstablecimiento != null" >
-			<bind name="pFiltroPctComisionEstablecimiento" value="'%' + filtroPctComisionEstablecimiento + '%'" />
-			AND PCT_COMISION_ESTABLECIMIENTO LIKE #{pFiltroPctComisionEstablecimiento}
-		</if>
+
 		<if  test="filtroCodigoCuota != null" >
 			<bind name="pFiltroCodigoCuota" value="'%' + filtroCodigoCuota + '%'" />
 			AND CODIGO_CUOTA LIKE #{pFiltroCodigoCuota}
@@ -179,13 +159,9 @@
 			ORDER BY
 				BIN_ADQUIRENTE  ${ordenBinAdquirente}
 		</if>
-		<if  test="ordenIdTrace != null" >
-			ORDER BY
-				ID_TRACE  ${ordenIdTrace}
-		</if>
 		<if  test="ordenNumeroTarjeta != null" >
 			ORDER BY
-				NUMBERO_TARJETA  ${ordenNumeroTarjeta}
+				NUMERO_TARJETA  ${ordenNumeroTarjeta}
 		</if>
 		<if  test="ordenNombreEstablecimiento != null" >
 			ORDER BY
@@ -219,25 +195,9 @@
 			ORDER BY
 				ID_PAIS  ${ordenIdPais}
 		</if>
-		<if  test="ordenIdBancoReceptor != null" >
-			ORDER BY
-				ID_BANCO_RECEPTOR  ${ordenIdBancoReceptor}
-		</if>
-		<if  test="ordenIdAgenciaPagador != null" >
-			ORDER BY
-				ID_AGENCIA_PAGADOR  ${ordenIdAgenciaPagador}
-		</if>
 		<if  test="ordenTerminal != null" >
 			ORDER BY
 				TERMINAL  ${ordenTerminal}
-		</if>
-		<if  test="ordenLote != null" >
-			ORDER BY
-				LOTE  ${ordenLote}
-		</if>
-		<if  test="ordenLoteReferencia != null" >
-			ORDER BY
-				LOTE_REFERENCIA  ${ordenLoteReferencia}
 		</if>
 		<if  test="ordenUbicacionPos != null" >
 			ORDER BY
@@ -254,10 +214,6 @@
 		<if  test="ordenCodigoAutorizacionDevolucion != null" >
 			ORDER BY
 				CODIGO_AUTORIZACION_DEVOLUCION  ${ordenCodigoAutorizacionDevolucion}
-		</if>
-		<if  test="ordenPctComisionEstablecimiento != null" >
-			ORDER BY
-				PCT_COMISION_ESTABLECIMIENTO  ${ordenPctComisionEstablecimiento}
 		</if>
 		<if  test="ordenCodigoCuota != null" >
 			ORDER BY
