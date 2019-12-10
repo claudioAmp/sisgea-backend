@@ -17,7 +17,7 @@ public class VisualizacionPANService implements IVisualizacionPANService {
 	}
 	
 	@Override
-	public boolean puedeVisualizarPAN() {
+	public Boolean puedeVisualizarPAN() {
 		String username = UsuarioUtil.obtenerUsername();
 		String codigoAudiencia = UsuarioUtil.obtenerCodigoAudiencia();
 		logger.info("Verificando si el usuario {} puede visualizar el PAN en el sistema {}", username,
