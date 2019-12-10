@@ -5,6 +5,7 @@
     <sql id="consultaVistaMant">
         SELECT id_atm
              , id_institucion
+             , ind_propio
              , nombre
              , direccion
              , descripcion_institucion
@@ -33,6 +34,7 @@
                 #{objetoMantenido.tipo,           jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idATM,          jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idInstitucion,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.indPropio,      jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nombre,         jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.direccion,      jdbcType=VARCHAR, mode=IN},
                 #{usuario,                        jdbcType=VARCHAR, mode=IN}

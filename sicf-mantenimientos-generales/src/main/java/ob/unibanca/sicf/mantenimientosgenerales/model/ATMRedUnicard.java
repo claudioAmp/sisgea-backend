@@ -25,5 +25,7 @@ public class ATMRedUnicard {
 	private String descripcionInstitucion;
 	
 	private Integer tipo;   // 1 RED UNICARD - 2 RED ASOCIADA
+
+	private Boolean indPropio;
 	
 }
