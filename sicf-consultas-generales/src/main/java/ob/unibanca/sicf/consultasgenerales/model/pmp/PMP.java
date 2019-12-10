@@ -15,12 +15,12 @@ import ob.unibanca.sicf.consultasgenerales.model.binvisa.BINVisa.BINVisaBuilder;
 @AllArgsConstructor
 public class PMP {
 	//Campos filtros de consulta
-	Integer idMovIncomingPMP;
-    Integer idCodigoTransaccionPMP;
-    Integer idProductoPMP;
+	Long idMovIncomingPMP;
+	String idCodigoTransaccionPMP;
+    String idProductoPMP;
     Date fechaIncoming;
     String binAdquirente;
-    String idTrace;
+    Integer idTrace;
     String numeroTarjeta;
     String nombreEstablecimiento;
     String nombreCiudad;
@@ -28,7 +28,7 @@ public class PMP {
     Date fechaProceso;
     ////////////////////
     String idOrigenArchivo;
-    Integer origen;
+    String origen;
     Integer idMoneda;
     Double tipoCambio;
     String medioTransaccion;
@@ -38,11 +38,11 @@ public class PMP {
     Double valorTransaccion;
     Double valorComision;
     String idPais;
-    String idBancoReceptor;
-    String idAgenciaPagador;
+    Integer idBancoReceptor;
+    Integer idAgenciaPagador;
     String terminal;
-    String lote;
-    String loteReferencia;
+    Integer lote;
+    Integer loteReferencia;
     String ubicacionPos;
     String icaEmisor;
     Double valorComisionEmisor;
@@ -51,7 +51,7 @@ public class PMP {
     Double valorComisionEmisorDolares;
     String tipoDevolucion;
     String codigoAutorizacionDevolucion;
-    String pctComisionEstablecimiento;
+    Double pctComisionEstablecimiento;
     String codigoCuota;
     String fechaCuota;
     String valorCuota;
@@ -87,6 +87,11 @@ public class PMP {
 	Integer idCodigoTransaccion;
 	Integer idCanal;
 	Integer idProducto;
+	Integer idInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String idBin;
+	String codigoUso;
+	String binReceptor;
 	String idProceso;
 	String transmissionTime;
 	String traceNumber;

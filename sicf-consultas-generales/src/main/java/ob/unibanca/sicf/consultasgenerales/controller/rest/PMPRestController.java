@@ -24,13 +24,13 @@ public class PMPRestController {
 		this.pmpService = pmpService;
 	}
 	
-	//@PreAuthorize("hasPermission('CON_PMP', '2')")
+	@PreAuthorize("hasPermission('CON_INCOMDINERS', '2')")
 	@GetMapping("/pmp")
 	public List<PMP> buscarTodos() {
 		return this.pmpService.buscarTodosPMP();
 	}
 	
-	//@PreAuthorize("hasPermission('CON_PMP', '2')")
+	@PreAuthorize("hasPermission('CON_INCOMDINERS', '2')")
 	@GetMapping("/pmp/pagination")
 	public Pagina<CriterioBusquedaPMP, PMP> buscarPorPaginas(
 			Pagina<CriterioBusquedaPMP, PMP> criterioPaginacion,

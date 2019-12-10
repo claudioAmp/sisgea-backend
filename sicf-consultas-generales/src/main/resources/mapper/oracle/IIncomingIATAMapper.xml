@@ -8,6 +8,39 @@
     </sql>
         
     <sql id = "fragmentoWhere">
+    	<if  test="idMembresia != null and idMembresia != ''">
+			 a.ID_BIN = #{idMembresia}
+		</if>
+		<if  test="idServicio != null and idServicio != ''">
+			 AND a.BIN_PROCESADOR = #{idServicio}
+		</if>
+		<if  test="idClaseTransaccion != null and idClaseTransaccion != ''">
+			 AND a.REGION = #{idClaseTransaccion}
+		</if>
+		<if  test="idCodigoTransaccion != null and idCodigoTransaccion != ''">
+			 AND a.PAIS = #{idCodigoTransaccion}
+		</if>
+		<if  test="idOrigen != null and idOrigen != ''">
+			 AND a.PAIS = #{idOrigen}
+		</if>
+		<if  test="idInstitucionEmisora != null and idInstitucionEmisora != ''">
+			 AND a.PAIS = #{idInstitucionEmisora}
+		</if>
+		<if  test="idIntitucionReceptora != null and idIntitucionReceptora != ''">
+			 AND a.PAIS = #{idIntitucionReceptora}
+		</if>
+		<if  test="idProducto != null and idProducto != ''">
+			 AND a.PAIS = #{idProducto}
+		</if>
+		<if  test="idCanal != null and idCanal != ''">
+			 AND a.PAIS = #{idCanal}
+		</if>
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 FECHA_PROCESO BETWEEN #{fechaIncomingInicio}  AND #{fechaIncomingFin}
+		</if>
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 FECHA_PROCESO BETWEEN #{fechaIncoming}  AND #{fechaIncoming}
+		</if>
 	</sql>
 	
 	<sql id = "filtros">
@@ -35,22 +68,22 @@
 			<bind name="pFiltroEspacioReservado1" value="'%' + filtroEspacioReservado1 + '%'" />
 			AND ESPACIO_RESERVADO_1 LIKE #{pFiltroEspacioReservado1}
 		</if>
-		<if  test="filtroReferenciaCliente != null" >
+		<if  test="filtroReferenciaCliente != null" > 	
 			<bind name="pFiltroReferenciaCliente" value="'%' + filtroReferenciaCliente + '%'" />
 			AND REFERENCIA_CLIENTE LIKE #{pFiltroReferenciaCliente}
 		</if>
-		<if  test="filtropFiltroEspacioReservado2 != null" >
-			<bind name="pFiltroEspacioReservado2" value="'%' + filtropFiltroEspacioReservado2 + '%'" />
+		<if  test="filtroEspacioReservado2 != null" >
+			<bind name="pFiltroEspacioReservado2" value="'%' + filtroEspacioReservado2 + '%'" />
 			AND ESPACIO_RESERVADO_2 LIKE #{pFiltroEspacioReservado2}
 		</if>
 		<if  test="filtroCityName1 != null" >
 			<bind name="pFiltroCityName1" value="'%' + filtroCityName1 + '%'" />
 			AND CITY_NAME_1 LIKE #{pFiltroCityName1}
 		</if>
-		<!--  <if  test="filtroFareBasis1 != null" >
+		<if  test="filtroFareBasis1 != null" >
 			<bind name="pFiltroFareBasis1" value="'%' + filtroFareBasis1 + '%'" />
 			AND FARE_BASIS_1 LIKE #{pFiltroFareBasis1}
-		</if>-->
+		</if>
 		<if  test="filtroCarrier1 != null" >
 			<bind name="pFiltroCarrier1" value="'%' + filtroCarrier1 + '%'" />
 			AND CARRIER_1 LIKE #{pFiltroCarrier1}
@@ -59,10 +92,6 @@
 			<bind name="pFiltroClassService1" value="'%' + filtroClassService1 + '%'" />
 			AND CLASS_SERVICE_1 LIKE #{pFiltroClassService1}
 		</if>
-		<!--<if  test="filtroTestIndicator != null" >
-			<bind name="pFiltroTestIndicator" value="'%' + filtroTestIndicator + '%'" />
-			AND TEST_INDICATOR LIKE #{pFiltroTestIndicator}
-		</if>-->
 		<if  test="filtroCityName2 != null" >
 			<bind name="pFiltroCityName2" value="'%' + filtroCityName2 + '%'" />
 			AND CITY_NAME_2 LIKE #{pFiltroCityName2}
@@ -135,12 +164,12 @@
 			<bind name="pFiltroSubEntidad" value="'%' + filtroSubEntidad + '%'" />
 			AND SUB_ENTIDAD LIKE #{pFiltroSubEntidad}
 		</if>
-		<if  test="filtronumeroFactura != null" >
-			<bind name="pFiltroNumeroFactura" value="'%' + filtronumeroFactura + '%'" />
+		<if  test="filtroNumeroFactura != null" >
+			<bind name="pFiltroNumeroFactura" value="'%' + filtroNumeroFactura + '%'" />
 			AND NUMERO_FACTURA LIKE #{pFiltroNumeroFactura}
 		</if>
-		<if  test="filtronumeroComerciante != null" >
-			<bind name="pFiltroNumeroComerciante" value="'%' + filtronumeroComerciante + '%'" />
+		<if  test="filtroNumeroComerciante != null" >
+			<bind name="pFiltroNumeroComerciante" value="'%' + filtroNumeroComerciante + '%'" />
 			AND NUMERO_COMERCIANTE LIKE #{pFiltroNumeroComerciante}
 		</if>
 		<if  test="filtroFormaExpeditoPagos != null" >

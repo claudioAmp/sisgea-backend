@@ -1,6 +1,10 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.pmp;
 
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +17,20 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaPMP {
 	
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaTransaccionInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaTransaccionFin;
+	private String idCodigoTransaccionPMP;
+	private String idCodigoProductoPMP;
+	private String numeroTarjeta;
 	
 	//filtros de cabecera de grilla
     private String filtroBinAdquirente;
-    private String filtroIdTrace;
     private String filtroNumeroTarjeta;
     private String filtroNombreEstablecimiento;
     private String filtroNombreCiudad;
@@ -26,16 +40,11 @@ public class CriterioBusquedaPMP {
 	private String filtroCodigoEstablecimiento;
     private String filtroCodigoAutorizacion;
     private String filtroIdPais;
-    private String filtroIdBancoReceptor;
-    private String filtroIdAgenciaPagador;
     private String filtroTerminal;
-    private String filtroLote;
-    private String filtroLoteReferencia;
     private String filtroUbicacionPos;
     private String filtroIcaEmisor;
     private String filtroTipoDevolucion;
     private String filtroCodigoAutorizacionDevolucion;
-    private String filtroPctComisionEstablecimiento;
     private String filtroCodigoCuota;
     private String filtroFechaCuota;
     private String filtroValorCuota;
@@ -54,8 +63,7 @@ public class CriterioBusquedaPMP {
 	private String filtroOrigenConciliacion;
 	
 	//Ordenamiento
-    private String ordenBinAdquirente;
-    private String ordenIdTrace;
+	private String ordenBinAdquirente;
     private String ordenNumeroTarjeta;
     private String ordenNombreEstablecimiento;
     private String ordenNombreCiudad;
@@ -65,16 +73,11 @@ public class CriterioBusquedaPMP {
 	private String ordenCodigoEstablecimiento;
     private String ordenCodigoAutorizacion;
     private String ordenIdPais;
-    private String ordenIdBancoReceptor;
-    private String ordenIdAgenciaPagador;
     private String ordenTerminal;
-    private String ordenLote;
-    private String ordenLoteReferencia;
     private String ordenUbicacionPos;
     private String ordenIcaEmisor;
     private String ordenTipoDevolucion;
     private String ordenCodigoAutorizacionDevolucion;
-    private String ordenPctComisionEstablecimiento;
     private String ordenCodigoCuota;
     private String ordenFechaCuota;
     private String ordenValorCuota;
@@ -91,4 +94,6 @@ public class CriterioBusquedaPMP {
 	private String ordenTraceNumber;
 	private String ordenAccountIdentification;
 	private String ordenOrigenConciliacion;
+
+	
 }

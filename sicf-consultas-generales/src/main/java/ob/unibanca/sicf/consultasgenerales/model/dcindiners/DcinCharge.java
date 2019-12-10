@@ -63,4 +63,19 @@ public class DcinCharge {
 	Date fechaProceso;
 	String idOrigenArchivo;
 	Date recapDate;
+
+	String idMembresia;
+	String descMembresia;
+	String idServicio;
+	String descServicio;
+	Integer idOrigen;
+	String descOrigen;
+	Integer idClaseTransaccion;
+	String desClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descCodigoTransaccion;
+	Integer idInstitucionEmisora;
+	String descInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String descInstitucionReceptora;
 }

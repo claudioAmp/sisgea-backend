@@ -49,4 +49,19 @@ public class RangoBINVisa {
 	  String reservado2;
 	  String testIndicator;
 	  String reservado3;
+
+	  String idMembresia;
+	  String descripcionMembresia;
+	  String idServicio;
+	  String descripcionServicio;
+	  Integer idOrigen;
+	  String descripcionOrigen;
+	  Integer idClaseTransaccion;
+	  String descripcionClaseTransaccion;
+	  Integer idCodigoTransaccion;
+	  String descripcionCodigoTransaccion;
+	  Integer idInstitucionEmisora;
+	  String descripcionInstitucionEmisora;
+	  Integer idInstitucionReceptora;
+	  String descripcionInstitucionReceptora;
 }

@@ -21,4 +21,19 @@ public class Irregular {
 	private Date fechaProceso;
 	private String idOrigenArchivo;
 	private Integer idTipoIrregular;
+
+	private String idMembresia;
+	private String descMembresia;
+	private String idServicio;
+	private String descServicio;
+	private Integer idOrigen;
+	private String descOrigen;
+	private Integer idClaseTransaccion;
+	private String descClaseTransaccion;
+	private Integer idCodigoTransaccion;
+	private String descCodigoTransaccion;
+	private Integer idInstitucionEmisora;
+	private String descInstitucionEmisora;
+	private Integer idInstitucionReceptora;
+	private String descInstitucionReceptora;
 }

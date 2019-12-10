@@ -63,5 +63,12 @@ public class Liberacion {
 	Long secuenciaOrigen;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
+
+	String idServicio;
+	String descripcionServicio;
+	Integer idClaseTransaccion;
+	String descripcionClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descripcionCodigoTransaccion;
 	
 }

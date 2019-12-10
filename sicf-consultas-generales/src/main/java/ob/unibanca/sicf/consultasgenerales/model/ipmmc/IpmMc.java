@@ -63,4 +63,11 @@ public class IpmMc {
 	private String descProceso;
 	private String idBin;
 	private String descBin;
+
+	private String idMembresia;
+	private String descMembresia;
+	private String idServicio;
+	private String descServicio;
+	private Integer idOrigen;
+	private String descOrigen;
 }
