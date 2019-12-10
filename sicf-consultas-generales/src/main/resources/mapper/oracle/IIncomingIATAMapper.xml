@@ -80,10 +80,10 @@
 			<bind name="pFiltroCityName1" value="'%' + filtroCityName1 + '%'" />
 			AND CITY_NAME_1 LIKE #{pFiltroCityName1}
 		</if>
-		<!--  <if  test="filtroFareBasis1 != null" >
+		<if  test="filtroFareBasis1 != null" >
 			<bind name="pFiltroFareBasis1" value="'%' + filtroFareBasis1 + '%'" />
 			AND FARE_BASIS_1 LIKE #{pFiltroFareBasis1}
-		</if>-->
+		</if>
 		<if  test="filtroCarrier1 != null" >
 			<bind name="pFiltroCarrier1" value="'%' + filtroCarrier1 + '%'" />
 			AND CARRIER_1 LIKE #{pFiltroCarrier1}
@@ -92,10 +92,6 @@
 			<bind name="pFiltroClassService1" value="'%' + filtroClassService1 + '%'" />
 			AND CLASS_SERVICE_1 LIKE #{pFiltroClassService1}
 		</if>
-		<!--<if  test="filtroTestIndicator != null" >
-			<bind name="pFiltroTestIndicator" value="'%' + filtroTestIndicator + '%'" />
-			AND TEST_INDICATOR LIKE #{pFiltroTestIndicator}
-		</if>-->
 		<if  test="filtroCityName2 != null" >
 			<bind name="pFiltroCityName2" value="'%' + filtroCityName2 + '%'" />
 			AND CITY_NAME_2 LIKE #{pFiltroCityName2}
