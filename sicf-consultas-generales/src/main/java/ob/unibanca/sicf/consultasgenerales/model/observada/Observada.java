@@ -52,5 +52,20 @@ public class Observada {
 	Integer indRespuestaDiferencia;
 	Integer indMonedaDiferencia;
 	Double valorDiferencia;
+
+	String idMembresia;
+	String descripcionMembresia;
+	String idServicio;
+	String descripcionServicio;
+	Integer idOrigen;
+	String descripcionOrigen;
+	Integer idClaseTransaccion;
+	String descripcionClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descripcionCodigoTransaccion;
+	Integer idInstitucionEmisora;
+	String descripcionInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String descripcionInstitucionReceptora;
 	
 }

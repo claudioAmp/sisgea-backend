@@ -29,7 +29,7 @@ public class ProgramaBIN {
 
     private String descripcionPrograma;
 
-    private Integer idProgramaIntercambio;
+    private String idProgramaIntercambio;
 
     private String descripcionProgramaIntercambio;
 }

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface ITarifarioVISAMapper extends IMantenibleMapper<TarifarioVISA> {
 
-    Optional<TarifarioVISA> buscarTarifarioVISA (int idTarifarioVISA);
+    Optional<TarifarioVISA> buscarTarifarioVISA (String idTarifarioVisa, Integer idTipoComision);
 }

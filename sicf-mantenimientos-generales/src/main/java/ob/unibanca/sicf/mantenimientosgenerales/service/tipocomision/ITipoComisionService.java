@@ -8,4 +8,6 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.TipoComision;
 public interface ITipoComisionService extends IMantenibleService<TipoComision> {
 	
 	List<TipoComision> buscarTodosTiposComision();
+	
+	TipoComision  buscarPorIdTipoComision(Integer idTipoComision);
 }

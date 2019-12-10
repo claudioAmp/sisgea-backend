@@ -16,30 +16,35 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 public class TarifarioMiembro {
 	
 	private Integer idTarifarioMiembro;
-	@IdCadena(minLength = 1, maxLength = 999, regexpPattern = "[a-zA-Z]")
+
+	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[a-zA-Z]")
 	private String idMembresia;
 	private String descripcionMembresia;
+
 	@IdNumerico(minRange = 0, maxRange = 999)
 	private Integer idProducto;
 	private String descripcionProducto;
+
 	@IdNumerico(maxRange = 99999)
 	private Integer idInstitucionEmisora;
 	private String descripcionInstitucionEmisora;
+
 	@IdNumerico(maxRange = 99999)
 	private Integer idInstitucionReceptora;
 	private String descripcionInstitucionReceptora;
+
 	@IdNumerico(maxRange = 99999)
 	private Integer idClaseTransaccion;
 	private Integer idCodigoTransaccion;
 	private String descripcionTransaccion;
-	@IdNumerico(minRange = 0, maxRange = 999)
+
+	@IdNumerico(maxRange = 999)
 	private Integer idMoneda;
 	private String descripcionMoneda;
-	@CaracterRequerido(maxLength = 20)
-	private boolean atmPropio;
-	private boolean transaccionAprobada;
-	private Integer tarifaPorcentaje;
-	private Integer tarifaFlat;
-	
 
+	private Boolean esAtmPropio;
+	private Boolean esTransaccionAprobada;
+
+	private Double tarifaPorcentaje;
+	private Double tarifaFlat;
 }

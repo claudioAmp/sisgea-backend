@@ -23,6 +23,13 @@
         <include refid="orden"/>
     </select>
 
+    <select id="buscarProgramasBinPorMembresiaYProducto" resultType="ProgramaBIN" statementType="PREPARED">
+        <include refid="consultaVistaMant" />
+        WHERE
+            id_membresia  = #{idMembresia } AND
+            id_producto   = #{idProducto }
+    </select>
+
     <select id="buscarProgramaBIN" resultType="ProgramaBIN">
         <include refid="consultaVistaMant"/>
         WHERE
@@ -40,7 +47,7 @@
                 #{objetoMantenido.idProducto,               jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idPrograma,               jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcionPrograma,      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idProgramaIntercambio,    jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idProgramaIntercambio,    jdbcType=VARCHAR, mode=IN},
                 #{usuario,                                  jdbcType=VARCHAR, mode=IN}
             )
         }

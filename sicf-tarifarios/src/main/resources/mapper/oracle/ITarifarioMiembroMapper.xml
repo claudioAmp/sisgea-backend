@@ -3,7 +3,7 @@
 <mapper namespace="ob.unibanca.sicf.tarifarios.mapper.ITarifarioMiembroMapper">
 
     <sql id="consultaVistaMant">
-        SELECT id_tarifario
+        SELECT id_tarifario                         AS id_tarifario_miembro
              , id_membresia
              , descripcion_membresia
              , id_producto
@@ -15,8 +15,8 @@
              , id_clase_transaccion
              , id_codigo_transaccion
              , descripcion_transaccion
-             , atm_propio
-             , transaccion_aprobada
+             , es_atm_propio
+             , es_transaccion_aprobada
              , tarifa_porcentaje
              , id_moneda
              , descripcion_moneda
@@ -28,23 +28,29 @@
         <include refid="consultaVistaMant"/>
     </select>
 
+    <select id="buscarTarifarioMiembro" resultType="TarifarioMiembro" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        WHERE id_tarifario = #{idTarifarioMiembro}
+    </select>
+
     <select id="mantener" parameterType="ParametroMantenimiento"
             statementType="CALLABLE">
         {
             CALL PKG_MAN_TARIFARIO.PRC_MAN_TARIFARIO_MIEMBRO(
 
                 #{modo,                                         jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.idTarifarioMiembro,           jdbcType=NUMERIC , mode=INOUT },
-                #{objetoMantenido.membresia,         			jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.producto,      				jdbcType=VARCHAR , mode=IN    },
-                #{objetoMantenido.emisor,        				jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.receptor,     				jdbcType=VARCHAR , mode=OUT   },
-                #{objetoMantenido.transaccion, 					jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.atmPropio, 					jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.transaccionAprobada, 			jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.tarifaPorcentaje, 			jdbcType=NUMERIC , mode=IN	  },
-                #{objetoMantenido.moneda, 						jdbcType=VARCHAR , mode=IN	  },
-                #{objetoMantenido.tarifaFlat, 					jdbcType=NUMERIC , mode=IN	  }
+                #{objetoMantenido.idTarifarioMiembro,           jdbcType=INTEGER , mode=INOUT },
+                #{objetoMantenido.idMembresia,         			jdbcType=VARCHAR , mode=IN    },
+                #{objetoMantenido.idProducto,      				jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idInstitucionEmisora,        	jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idInstitucionReceptora,     	jdbcType=INTEGER , mode=IN    },
+                #{objetoMantenido.idClaseTransaccion, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.idCodigoTransaccion, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.esAtmPropio, 					jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.esTransaccionAprobada, 	    jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.tarifaPorcentaje, 			jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.idMoneda, 					jdbcType=INTEGER , mode=IN	  },
+                #{objetoMantenido.tarifaFlat, 					jdbcType=INTEGER , mode=IN	  },
                 #{usuario,                                      jdbcType=VARCHAR , mode=IN    }
             )
         }

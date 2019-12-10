@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.conciliacion.mapper.IGenerarConciliacionMapper">
+	
+	<resultMap id="resultMap" type="GenerarConciliacion">
+	  <result property="idConcTabla" column="id_conc_tabla"/>
+	  <result property="idArchivoConciliarA" column="id_archivo_conciliar_a"/>
+	  <result property="idArchivoConciliarB" column="id_archivo_conciliar_b"/>
+	  <result property="tablaConciliarA" column="tabla_conciliar_a"/>
+	  <result property="tablaConciliarB" column="tabla_conciliar_b"/>
+	  <result property="filtroActualizacionA" column="filtro_actualizacion_a"/>
+	  <result property="filtroActualizacionB" column="filtro_actualizacion_b"/>
+	  <result property="aplicaExpresionA" column="aplica_expresion_a"/>
+	  <result property="tablaExpresionA" column="tabla_expresion_a"/>
+	  <result property="aplicaExpresionB" column="aplica_expresion_b"/>
+	  <result property="tablaExpresionB" column="tabla_expresion_b"/>
+	  <collection javaType="List" ofType="CampoMatching" property="camposMatching">
+			<result property="idCampoMatching" column="id_campo_matching"/>
+			<result property="campoArchivoConcA" column="campo_archivo_conc_a"/>
+			<result property="campoArchivoConcB" column="campo_archivo_conc_b"/>
+			<result property="tipoRango" column="tipo_rango"/>
+			<result property="rangoLimInferior" column="rango_lim_inferior"/>
+			<result property="rangoLimSuperior" column="rango_lim_superior"/>
+	  </collection>
+	  <collection javaType="List" ofType="CampoDiferencia" property="camposDiferencia">
+			<result property="idCampoDiferencia" column="id_campo_diferencia"/>
+			<result property="campoObservadoConc" column="campo_observado_conc"/>
+			<result property="campoObservadoDes" column="campo_observado_des"/>
+			<result property="respCodeConc" column="resp_code_conc"/>
+	  </collection>
+	  <collection javaType="List" ofType="CampoActualizar" property="camposActualizar">
+			<result property="idCampoActualizar" column="id_campo_actualizar"/>
+			<result property="idTablaCampoAct" column="id_tabla_campo_act"/>
+			<result property="idTablaCampoRef" column="id_tabla_campo_ref"/>
+			<result property="campoActualizar" column="campo_actualizar"/>
+			<result property="campoReferencia" column="campo_referencia"/>
+			<result property="aplicaExpresion" column="aplica_expresion"/>
+	  </collection>
+	  <collection javaType="List" ofType="CampoInsertarObservada" property="camposInsertarObservada">
+			<result property="idCmpInsObservada" column="id_cmp_ins_observada"/>
+			<result property="campoTxnObservada" column="campo_txn_observada"/>
+			<result property="campoInsertar" column="campo_insertar"/>
+			<result property="idOrigenArchivo" column="id_origen_archivo"/>
+	  </collection>
+	</resultMap>
+	
+	
+	<sql id="consultaConciliacion">
+		SELECT *
+		FROM VIE_CNC_GENERAR_CONCILIACION
+	</sql>
+	
+    <sql id="consultaVistaObservada">
+        SELECT 
+              campo
+             , tipo_dato
+    	FROM VIE_CNC_CAMPOS_MOV_OBSERVADA
+    </sql>
+    
+    <select id="buscarTodos" resultType="GenerarConciliacion" statementType="PREPARED">
+        <include refid="consultaVistaObservada"/>
+    </select>
+
+    <select id="buscarCamposTablaObservada" resultType="GenerarConciliacion" statementType="PREPARED">
+        <include refid="consultaVistaObservada"/>
+    </select>
+    
+    
+    <select id="buscarPorIdConcTabla" resultMap="resultMap" statementType="PREPARED">
+        <include refid="consultaConciliacion"/>
+        WHERE
+            id_conc_tabla = #{idConcTabla}
+    </select>
+
+</mapper>

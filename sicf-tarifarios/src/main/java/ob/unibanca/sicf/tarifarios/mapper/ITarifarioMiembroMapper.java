@@ -9,5 +9,5 @@ import java.util.Optional;
 @Mapper
 public interface ITarifarioMiembroMapper extends IMantenibleMapper<TarifarioMiembro> {
 	
-	Optional<TarifarioMiembro> buscarTarifarioMiembro(int idTarifarioMiembro);
+	Optional<TarifarioMiembro> buscarTarifarioMiembro(Integer idTarifarioMiembro);
 }

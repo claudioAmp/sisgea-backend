@@ -9,12 +9,12 @@ public interface ITarifarioMiembroService extends IMantenibleService<TarifarioMi
 	
 	List<TarifarioMiembro> buscarTodosTarifariosMiembros();
 
-    TarifarioMiembro buscarTarifarioMiembro(int idTarifarioMiembro);
+    TarifarioMiembro buscarTarifarioMiembro(Integer idTarifarioMiembro);
 	
 	TarifarioMiembro registrarTarifarioMiembro(TarifarioMiembro tarifarioMiembro);
 	
-	TarifarioMiembro actualizarTarifarioMiembro(int idTarifarioMiembro, TarifarioMiembro tarifarioMiembro);
+	TarifarioMiembro actualizarTarifarioMiembro(Integer idTarifarioMiembro, TarifarioMiembro tarifarioMiembro);
 	
-	void eliminarTarifarioMiembro(int idTarifarioMiembro);
+	void eliminarTarifarioMiembro(Integer idTarifarioMiembro);
 
 }

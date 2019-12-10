@@ -22,4 +22,10 @@ public class TipoComisionService extends MantenibleService<TipoComision> impleme
 	public List<TipoComision> buscarTodosTiposComision(){
 		return this.buscarTodos();
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public TipoComision  buscarPorIdTipoComision(Integer idTipoComision){
+		TipoComision tipoComision = TipoComision.builder().idTipoComision(idTipoComision).build(); 
+		return this.buscarUno(tipoComision).get();
+	}
 }

@@ -21,7 +21,7 @@
 
     <select id="buscarTasaInteresPasiva" resultType="TasaInteresPasiva">
         <include refid="consultaVistaMant"/>
-        WHERE fecha_proceso = #{fechaProceso}
+        WHERE TRUNC(fecha_proceso) = TRUNC(#{fechaProceso})
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"

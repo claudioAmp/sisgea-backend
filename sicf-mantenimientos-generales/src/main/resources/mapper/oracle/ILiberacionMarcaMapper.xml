@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.ILiberacionMarcaMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_membresia
+        	 , descripcion_membresia
+        	 , id_producto
+        	 , descripcion_producto
+        	 , id_proceso
+        	 , descripcion_proceso
+        	 , dias_liberacion
+        FROM VIE_MAN_LIBERACION_MARCA
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_membresia, id_producto, id_proceso
+    </sql>
+
+    <select id="buscarTodos" resultType="LiberacionMarca"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+
+    <select id="buscarLiberacionMarca" resultType="LiberacionMarca">
+        <include refid="consultaVistaMant"/>
+        WHERE
+                id_membresia  = #{idMembresia}
+            AND id_producto = #{idProducto}
+            AND id_proceso = #{idProceso}
+    </select>
+
+    <select id="buscarLiberacionMarcasPorMembresia" resultType="LiberacionMarca">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_membresia = #{idMembresia}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_LIBERACION_MARCA(
+                #{modo, 							jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMembresia, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idProducto, 	   	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.idProceso, 	  	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.diasLiberacion,	jdbcType=INTEGER, mode=IN},
+                #{usuario, 							jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>

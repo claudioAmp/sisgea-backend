@@ -19,13 +19,13 @@ public class OrigenArchivoRestController {
 		this.origenArchivoService = origenArchivoService;
 	}
 	
-	@PreAuthorize("hasPermission('MANT_ORIARC', '2')")
+//	@PreAuthorize("hasPermission('MANT_ORIARC', '2')")
 	@GetMapping("/origenes-archivos")
 	public List<OrigenArchivo> buscarTodosOrigenArchivos() {
 		return this.origenArchivoService.buscarTodosOrigenArchivo();
 	}
 	
-	@PreAuthorize("hasPermission('MANT_ORIARC', '2')")
+//	@PreAuthorize("hasPermission('MANT_ORIARC', '2')")
 	@GetMapping("/origenes-archivos/buscar")
 	public List<OrigenArchivo> buscarOrigenArchivoPorConciliacion(boolean concilia) {
 		return this.origenArchivoService.buscarOrigenArchivoPorConciliacion(concilia);

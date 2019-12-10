@@ -56,4 +56,19 @@ public class Bulkfile {
 	String interchangeFeeInd;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
+
+	String idMembresia;
+	String descripcionMembresia;
+	String idServicio;
+	String descripcionServicio;
+	Integer idOrigen;
+	String descripcionOrigen;
+	Integer idClaseTransaccion;
+	String descripcionClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descripcionCodigoTransaccion;
+	Integer idInstitucionEmisora;
+	String descripcionInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String descripcionInstitucionReceptora;
 }

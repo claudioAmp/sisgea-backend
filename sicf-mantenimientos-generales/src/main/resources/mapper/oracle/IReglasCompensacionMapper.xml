@@ -19,6 +19,7 @@
 	  <result property="idCuentaAbonoFondo" column="id_cuenta_abono_fondo"/>
 	  <result property="descripcionCuentaAbonoFondo" column="descripcion_cuenta_abono_fondo"/>
 	  <collection javaType="List" ofType="ReglasCompensacionComision" property="comisiones">
+			<result property="idDistribucionComision" column="id_distribucion_comision"/>
 			<result property="idTipoComision" column="id_tipo_comision"/>
 			<result property="descripcionTipoComision" column="descripcion_tipo_comision"/>
 			<result property="idCuentaCargoComision" column="id_cuenta_cargo_comision"/>
@@ -28,9 +29,13 @@
 	  </collection>
 	</resultMap>
 	
-    <select id="buscarTodos" resultMap="resultMap" statementType="PREPARED">
-        SELECT *
+	<sql id="consultaMantView">
+		SELECT *
             FROM VIEW_MAN_REGLA_COMPENSACION
+	</sql>
+	
+    <select id="buscarTodosReglasCompensacion" resultMap="resultMap" statementType="PREPARED">
+        <include refid="consultaMantView"/>
         ORDER BY 
         	id_membresia ASC, 
         	id_servicio ASC, 
@@ -39,5 +44,15 @@
         	id_codigo_transaccion ASC,
         	id_tipo_comision ASC
     </select>
+    
+    <select id="buscarPorIdReglasCompensacion" resultMap="resultMap" parameterType="Integer" statementType="PREPARED">
+        <include refid="consultaMantView"/>
+        <where>
+        	<if test="idReglasCompensacion != null">
+        		AND id_distribucion_fondo = #{idReglasCompensacion}
+        	</if>
+        </where>
+    </select>
+    
     
 </mapper>

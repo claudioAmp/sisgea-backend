@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ob.commons.spring.validation.validation.CaracterRequerido;
+import ob.commons.spring.validation.validation.IdCadena;
 import ob.commons.spring.validation.validation.IdNumerico;
 import ob.commons.spring.validation.validation.group.IRegistro;
 
@@ -15,18 +16,15 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 
 public class TarifarioVISA {
 
-    @IdNumerico(maxRange = 999999, groups = IRegistro.class)
-    private Integer idTarifarioVISA; // el PK en la base de datos es idProgramaComision
-    @IdNumerico(maxRange = 99, groups = IRegistro.class)
+    @IdCadena(maxLength = 3)
+    private String idTarifarioVisa; // el PK en la base de datos es idProgramaComision
     private Integer idTipoComision;
     private String descripcionTipoComision;
     private String descripcionProgramaComision;
     private String descripcionComision;
-    private double tarifaPorcentaje;
-    @IdNumerico(maxRange = 99, groups = IRegistro.class)
+    private Double tarifaPorcentaje;
     private Integer idMonedaTarFlat;
-    @CaracterRequerido(maxLength = 60)
     private String descripcionMoneda;
-    private double tarifaFlat;
+    private Double tarifaFlat;
 
 }

@@ -18,7 +18,25 @@
              , id_institucion_operador
              , descripcion_institucion_ope
              , tipo_adquirente
-             , cta_compensacion
+             , cuenta_compensacion
+             , es_adquirente_atm
+             , es_adquirente_ventanilla
+             , activo
+             , es_miembro_principal_visa
+             , es_miembro_principal_mc
+             , bid_visa
+             , ica_mc_emisor
+             , ica_mc_adquirente
+             , pcr_credito_visa
+             , pcr_debito_visa
+             , es_log_antiguo_contable
+             , si_aplica_banco_administrador
+             , id_institucion_bid_no_propio
+             , descripcion_institucion_bid_no_propio
+             , si_compensa_ope_soles
+             , si_compensa_ope_dolares
+             , si_aplica_bid_visa_propio
+             , si_compensa_ope_bid_visa
             FROM vie_man_institucion
     </sql>
 
@@ -34,7 +52,7 @@
        		WHERE
        		<if  test="operador=='LIKE'">
        			id_institucion_operador = #{idInstitucionOperador}
-       			AND cta_compensacion = 0
+       			AND cuenta_compensacion = 0
        		</if>
        		<if  test="operador=='NOT LIKE'">
        			id_institucion_operador != #{idInstitucionOperador}
@@ -43,8 +61,7 @@
        	</if>
     </select>
 
-    <select id="buscarInstitucion" resultType="Institucion"
-            statementType="PREPARED">
+    <select id="buscarInstitucion" resultType="Institucion" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         WHERE id_institucion = #{idInstitucion}
     </select>
@@ -55,7 +72,7 @@
             CALL pkg_man_generales.PRC_MAN_INSTITUCION(
                 #{modo,                                         jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idInstitucion,                jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcionInstitucion,       jdbcType=VARCHAR, mode=IN },
+                #{objetoMantenido.descripcionInstitucion,       jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.descripcionCorta,             jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.razonSocial,                  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.ruc,                          jdbcType=VARCHAR, mode=IN},
@@ -66,7 +83,26 @@
                 #{objetoMantenido.cuentaContableMonedaBase,     jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.cuentaContableMonedaAlterna,  jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idInstitucionOperador,        jdbcType=NUMERIC, mode=IN},
-                #{usuario,                                      jdbcType=VARCHAR, mode=IN}
+                #{usuario,                                      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoAdquirente,               jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.cuentaCompensacion,           jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.esAdquirenteAtm,              jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.esAdquirenteVentanilla,       jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.activo,                       jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.esMiembroPrincipalVisa,       jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.esMiembroPrincipalMc,         jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.bidVisa,                      jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.icaMcEmisor,                  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.icaMcAdquirente,              jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.pcrCreditoVisa,               jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.pcrDebitoVisa,                jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.esLogAntiguoContable,         jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siAplicaBancoAdministrador,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idInstitucionBidNoPropio,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siCompensaOpeSoles,           jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siCompensaOpeDolares,         jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siAplicaBidVisaPropio,        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.siCompensaOpeBidVisa,         jdbcType=NUMERIC, mode=IN}
             )
         }
     </select>

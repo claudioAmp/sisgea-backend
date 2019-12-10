@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IOutgoingVisaTC48Mapper">
+			
+	<sql id="consultaPorCriteriosTCR0" >
+		SELECT *
+		FROM VIE_CON_MOV_OUT_TC48 a
+	</sql>
+	
+	<sql id = "fragmentoWhereGet" >
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			 AND a.TRANSACTION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
+		<if  test="transactionCurrencyCode != null">
+			 AND a.TRANSACTION_CURRENCY_CODE = #{transactionCurrencyCode}
+		</if>
+		<if  test="accountNumber != null and accountNumber != ''">
+			 AND a.ACCOUNT_NUMBER = #{accountNumber}
+		</if>
+	</sql>
+	
+	<sql id ="fragmentoWhereGetMultiples" >
+		<if  test="responsesCodes != null and responsesCodes.size()>0" >
+			AND a.RESPONSE_CODE IN 
+				<foreach item="item" index="index" collection="responsesCodes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="merchantTypes != null and merchantTypes.size()>0" >
+			AND a.MERCHANT_TYPE IN 
+				<foreach item="item" index="index" collection="merchantTypes" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+	</sql>
+	
+	<sql id = "fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null " >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroDestinationBin != null " >
+			<bind name="pFiltroDestinationBin" value="'%' + filtroDestinationBin + '%'" />
+			AND CONCAT(DESTINATION_BIN, UPPER(DESC_DESTINATION_BIN)) LIKE UPPER(#{pFiltroDestinationBin})
+		</if>
+		<if  test="filtroSourceBin != null " >
+			<bind name="pFiltroSourceBin" value="'%' + filtroSourceBin + '%'" />
+			AND CONCAT(SOURCE_BIN, UPPER(DESC_SOURCE_BIN)) LIKE UPPER(#{pFiltroSourceBin})
+		</if>
+		<if  test="filtroAccountNumber != null " >
+			<bind name="pFiltroAccountNumber" value="'%' + filtroAccountNumber + '%'" />
+			AND ACCOUNT_NUMBER LIKE #{pFiltroAccountNumber}
+		</if>
+		<if  test="filtroResponseCode != null " >
+			<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+			AND CONCAT(RESPONSE_CODE, UPPER(DESC_RESPONSE_CODE)) LIKE UPPER(#{pFiltroResponseCode})
+		</if>
+		<if  test="filtroStandInResponseCode != null " >
+			<bind name="pFiltroStandInResponseCode" value="'%' + filtroStandInResponseCode + '%'" />
+			AND CONCAT(STAND_IN_RESPONSE_CODE, UPPER(DESC_STAND_IN_RESPONSE_CODE)) LIKE UPPER(#{pFiltroStandInResponseCode})
+		</if>
+		<if  test="filtroTransactionCurrencyCode != null " >
+			<bind name="pFiltroTransactionCurrencyCode" value="'%' + filtroTransactionCurrencyCode + '%'" />
+			AND CONCAT(TRANSACTION_CURRENCY_CODE, UPPER(DESC_TRANSACTION_CURRENCY_CODE)) LIKE UPPER(#{pFiltroTransactionCurrencyCode})
+		</if>
+		<if  test="filtroTransactionAmount != null " >
+			<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
+			AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
+		</if>
+		<if  test="filtroTransactionDate != null " >
+			AND TRANSACTION_DATE = #{filtroTransactionDate}
+		</if>
+		<if  test="filtroTransactionTime != null " >
+			<bind name="pFiltroTransactionTime" value="'%' + filtroTransactionTime + '%'" />
+			AND TRANSACTION_TIME LIKE #{pFiltroTransactionTime}
+		</if>
+		<if  test="filtroMerchantType != null " >
+			<bind name="pFiltroMerchantType" value="'%' + filtroMerchantType + '%'" />
+			AND CONCAT(MERCHANT_TYPE, UPPER(DESC_MERCHANT_TYPE)) LIKE UPPER(#{pFiltroMerchantType})
+		</if>
+		<if  test="filtroSecuenciaOutgoing != null " >
+			<bind name="pFiltroSecuenciaOutgoing" value="'%' + filtroSecuenciaOutgoing + '%'" />
+			AND SECUENCIA_OUTGOING LIKE #{pFiltroSecuenciaOutgoing}
+		</if>
+		
+		<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
+			AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
+		</if>
+		
+		<if  test="ordenFechaProceso != null " >
+		ORDER BY
+			FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
+		<if  test="ordenDestinationBin != null " >
+		ORDER BY
+			DESTINATION_BIN  ${ordenDestinationBin}
+		</if>
+		<if  test="ordenSourceBin != null " >
+		ORDER BY
+			SOURCE_BIN  ${ordenSourceBin}
+		</if>
+		<if  test="ordenAccountNumber != null " >
+		ORDER BY
+			ACCOUNT_NUMBER  ${ordenAccountNumber}
+		</if>
+		<if  test="ordenResponseCode != null " >
+		ORDER BY
+			RESPONSE_CODE  ${ordenResponseCode}
+		</if>
+		<if  test="ordenStandInResponseCode != null " >
+		ORDER BY
+			STAND_IN_RESPONSE_CODE  ${ordenStandInResponseCode}
+		</if>
+		<if  test="ordenTransactionCurrencyCode != null " >
+		ORDER BY
+			TRANSACTION_CURRENCY_CODE  ${ordenTransactionCurrencyCode}
+		</if>
+		<if  test="ordenTransactionAmount != null " >
+		ORDER BY
+			TRANSACTION_AMOUNT  ${ordenTransactionAmount}
+		</if>
+		<if  test="ordenTransactionDate != null " >
+		ORDER BY
+			TRANSACTION_DATE  ${ordenTransactionDate}
+		</if>
+		<if  test="ordenTransactionTime != null " >
+		ORDER BY
+			TRANSACTION_TIME  ${ordenTransactionTime}
+		</if>
+		<if  test="ordenMerchantType != null " >
+		ORDER BY
+			MERCHANT_TYPE  ${ordenMerchantType}
+		</if>
+		<if  test="ordenSecuenciaOutgoing != null " >
+		ORDER BY
+			SECUENCIA_OUTGOING  ${ordenSecuenciaOutgoing}
+		</if>
+	</sql>
+	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaOutgoingVisaTC48"  resultType="OutgoingVisaTC48" statementType="PREPARED">	
+		<include refid="consultaPorCriteriosTCR0" />
+		<where>
+			<include refid="fragmentoWhereGet" /> 
+			<include refid="fragmentoWhereGetMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>	
+   	</select>
+     
+	 
+	<select id="buscarPorIdSecuenciaTCR0" parameterType="CriterioBusquedaOutgoingVisa" resultType="OutgoingVisaTC48TCR0" statementType="PREPARED">		
+		SELECT 
+			*
+		FROM VIE_CON_MOV_OUT_TC48_TCR0 a
+  		<where>
+	  		<if  test="idSecuenciaOutgoing != null and fechaProceso != null " >
+				SECUENCIA_OUTGOING = #{idSecuenciaOutgoing} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>	
+   	</select>
+	
+   	 <select id="buscarPorIdSecuenciaTCR1" parameterType="CriterioBusquedaOutgoingVisa" resultType="OutgoingVisaTC48TCR1" statementType="PREPARED">		
+		SELECT 
+			*
+		FROM VIE_CON_MOV_OUT_TC48_TCR1 a
+  		<where>
+	  		<if  test="idSecuenciaOutgoing != null and fechaProceso != null " >
+				SECUENCIA_OUTGOING = #{idSecuenciaOutgoing} AND FECHA_PROCESO = #{fechaProceso}
+			</if>
+  		</where>
+   	</select>
+	
+</mapper>
