@@ -92,4 +92,34 @@ public class BulkfileDetalle {
 	String reqAmountTransLoc;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
+	
+	String idMembresia;
+	String descripcionMembresia;
+	String idServicio;
+	String descripcionServicio;
+	Integer idOrigen;
+	String descripcionOrigen;
+	Integer idClaseTransaccion;
+	String descripcionClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descripcionCodigoTransaccion;
+	Integer idInstitucionEmisora;
+	String descripcionInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String descripcionInstitucionReceptora;
+	
+	String messageType;
+	String acquiringInstitution;
+	String descripcionBinInstAdq;
+	String merchantName;
+	String authorizationCode;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date captureDate;
+	String idOrigenArchivoConc;
+	String descripcionOrigenArchivoConc;
+	Long secuenciaOrigenConc;
+	Integer indConciliacion;
+	String descripcionConciliacion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaConciliacion;
 }

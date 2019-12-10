@@ -5,5 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IVisualizacionPANMapper {
 	
-	boolean puedeVisualizarPAN(String username, String codigoAudiencia);
+	Boolean puedeVisualizarPAN(String username, String codigoAudiencia);
+	
 }
