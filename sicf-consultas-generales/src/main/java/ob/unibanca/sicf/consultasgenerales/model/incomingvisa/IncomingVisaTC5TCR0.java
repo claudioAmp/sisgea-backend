@@ -86,4 +86,22 @@ public class IncomingVisaTC5TCR0 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaIncoming;
 	private String descProducto;
+	
+	private String posConditionCode;
+	private Double surchargeAmountSwdmplog;
+	private String traceNumber;
+	private String transmissionTime;
+	private String accountIdentification;
+	private String processingCode;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date captureDate;
+	private String idProceso;
+	private String descripcionProceso;
+	private String idOrigenArchivoConc;
+	private String descripcionOrigenArchivoConc;
+	private Long secuenciaOrigenConc;
+	private Integer indConciliacion;
+	private String descripcionConciliacion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaConciliacion;
 }

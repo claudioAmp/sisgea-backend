@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisaTC5 {
 	
-	private Integer idSecuenciaIncoming; 
+	private Long idSecuenciaIncoming; 
 	private String acquirerRefNumber;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProcesoInicio;
@@ -47,6 +47,10 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private List<Integer> destinationCurrencyCode;
 	private List<String> cardholdersIdMethod;
 	
+	//detalle
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
+	
 	//filtros
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaProceso;
@@ -66,6 +70,11 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroMerchantCity;
 	private String filtroMerchantCountryCode;
 	private String filtroMerchantCategoryCode;
+	private String filtroIdMembresia;
+	private String filtroIdServicio;
+	private String filtroIdOrigen;
+	private String filtroIdClaseTransaccion;
+	private String filtroIdCodigoTransaccion;
 	private String filtroInstitucionEmisora;
 	private String filtroInstitucionReceptora;
 	private String filtroIdCanal;
@@ -92,6 +101,11 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenMerchantCity;
 	private String ordenMerchantCountryCode;
 	private String ordenMerchantCategoryCode;
+	private String ordenIdMembresia;
+	private String ordenIdServicio;
+	private String ordenIdOrigen;
+	private String ordenIdClaseTransaccion;
+	private String ordenIdCodigoTransaccion;
 	private String ordenInstitucionEmisora;
 	private String ordenInstitucionReceptora;
 	private String ordenIdCanal;
@@ -100,6 +114,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String ordenPosTerminalCapability;
 	private String ordenIdBin;
 	private String ordenAuthorizationCode;
+	
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoDestinationAmountMin;

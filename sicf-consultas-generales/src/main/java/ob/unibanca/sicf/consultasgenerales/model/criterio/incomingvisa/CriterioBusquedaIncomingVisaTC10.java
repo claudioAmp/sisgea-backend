@@ -26,6 +26,10 @@ public class CriterioBusquedaIncomingVisaTC10 {
 	private List<String> reasonsCodes;
 	private List<Integer> destCurrenciesCodes;
 	
+	//detalle
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
+	
 	//Filtros cabecera de grilla
 	private String filtroSecuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

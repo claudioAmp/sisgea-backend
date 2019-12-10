@@ -28,6 +28,10 @@ public class CriterioBusquedaIncomingVisaTC48 {
 	private List<String> responsesCodes;
 	private List<String> merchantTypes;
 	
+	//detalle
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
+	
 	//filtros
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroFechaProceso;
