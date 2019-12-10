@@ -54,6 +54,7 @@ public class TarifarioVISAService extends MantenibleService<TarifarioVISA> imple
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void eliminarTarifarioVISA(TarifarioVISA tarifarioVISA) {
+    	System.out.println(tarifarioVISA);
         this.eliminar(tarifarioVISA);
     }
 

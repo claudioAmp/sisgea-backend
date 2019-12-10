@@ -54,8 +54,7 @@ public class TarifarioVISARestController {
 
     @PreAuthorize("hasPermission('MANT_TARIFARIO_VISA','4')")
     @DeleteMapping("/tarifarios-visa")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void eliminarTarifarioVISA(TarifarioVISA tarifario) {
+    public void eliminarTarifarioVISA(@RequestBody TarifarioVISA tarifario) {
         this.tarifarioVISAService.eliminarTarifarioVISA(tarifario);
     }
 
