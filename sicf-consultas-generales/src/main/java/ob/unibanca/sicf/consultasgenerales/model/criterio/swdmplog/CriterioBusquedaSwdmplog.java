@@ -77,6 +77,10 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date filtroCaptureDate;
 	private String filtroIdMovTxnSwdmplog;
+	private String filtroIdOrigen;
+	private String filtroIdClaseTransaccion;
+	private String filtroIdCodigoTransaccion;
+	private String filtroEstadoTransaccion;
 	
 	//Ordenamiento
 	private String ordenFechaProceso;
@@ -102,6 +106,10 @@ public class CriterioBusquedaSwdmplog extends CriterioPaginacion2 {
 	private String ordenPosEntryMode;
 	private String ordenCaptureDate;
 	private String ordenIdMovTxnSwdmplog;
+	private String ordenIdOrigen;
+	private String ordenIdClaseTransaccion;
+	private String ordenIdCodigoTransaccion;
+	private String ordenEstadoTransaccion;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoTransactionAmountMin;

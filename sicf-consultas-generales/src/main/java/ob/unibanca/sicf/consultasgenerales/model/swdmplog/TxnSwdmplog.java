@@ -65,5 +65,6 @@ public class TxnSwdmplog {
 	private String descripcionClaseTransaccion;
 	private Integer idCodigoTransaccion;
 	private String descripcionCodigoTransaccion;
-	
+	private String estadoTransaccion;
+	private String descripcionEstadoTransaccion;
 }

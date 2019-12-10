@@ -88,4 +88,12 @@ public class TxnSwdmplogDetalle {
 	private String descripcionProceso;
 	private String idBin;
 	private String descripcionBin;
+	
+	private String idOrigenArchivoConc;
+	private String descripcionOrigenArchivoConc;
+	private Long secuenciaOrigenConc;
+	private Integer indConciliacion;
+	private String descripcionConciliacion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaConciliacion;
 }

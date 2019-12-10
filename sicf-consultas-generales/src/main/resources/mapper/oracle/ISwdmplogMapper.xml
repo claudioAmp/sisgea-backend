@@ -170,6 +170,19 @@
 					AND ID_MOV_TXN_SWDMPLOG LIKE #{pFiltroIdMovTxnSwdmplog}
 				</if>
 				
+				<if  test="filtroIdOrigen != null " >
+					<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+					AND CONCAT(ID_ORIGEN, UPPER(DESCRIPCION_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
+				</if>
+				<if  test="filtroIdClaseTransaccion != null " >
+					<bind name="pFiltroIdClaseTransaccion" value="'%' + filtroIdClaseTransaccion + '%'" />
+					AND CONCAT(ID_CLASE_TRANSACCION, UPPER(DESCRIPCION_CLASE_TRANSACCION)) LIKE UPPER(#{pFiltroIdClaseTransaccion})
+				</if>
+				<if  test="filtroIdCodigoTransaccion != null " >
+					<bind name="pFiltroIdCodigoTransaccion" value="'%' + filtroIdCodigoTransaccion + '%'" />
+					AND CONCAT(ID_CODIGO_TRANSACCION, UPPER(DESCRIPCION_CODIGO_TRANSACCION)) LIKE UPPER(#{pFiltroIdCodigoTransaccion})
+				</if>
+				
 				<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
 					AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
 				</if>
@@ -265,6 +278,18 @@
 				<if  test="ordenIdMovTxnSwdmplog != null " >
 				ORDER BY
 					ID_MOV_TXN_SWDMPLOG  ${ordenIdMovTxnSwdmplog}
+				</if>
+				<if  test="ordenIdOrigen != null" >
+					ORDER BY
+						ID_ORIGEN        ${ordenIdOrigen}
+				</if>
+				<if  test="ordenIdClaseTransaccion != null" >
+					ORDER BY
+						ID_CLASE_TRANSACCION        ${ordenIdClaseTransaccion}
+				</if>
+				<if  test="ordenIdCodigoTransaccion != null" >
+					ORDER BY
+						ID_CODIGO_TRANSACCION        ${ordenIdCodigoTransaccion}
 				</if>
 	</sql>
 	<!-- Fin Reutilizables -->
