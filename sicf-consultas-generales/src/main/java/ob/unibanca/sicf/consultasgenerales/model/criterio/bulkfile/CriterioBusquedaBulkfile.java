@@ -59,7 +59,7 @@ public class CriterioBusquedaBulkfile {
 	private String filtroInterchangeFeeInd;
 	private String filtroInterchangeFee;
 	private String filtroIdBulkFileMc;
-	private String filtroIdMenbresia;
+	private String filtroIdMembresia;
 	private String filtroIdServicio;
 	private String filtroIdOrigen;
 	private String filtroIdClaseTransaccion;
