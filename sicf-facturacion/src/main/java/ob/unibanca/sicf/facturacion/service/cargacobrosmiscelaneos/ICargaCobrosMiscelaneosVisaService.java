@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface ICargaCobrosMiscelaneosVisaService extends ICargaService {
 	
-	List<ErrorResponse> cargarArchivos(MultipartFile file);
+	List<ErrorResponse> cargarArchivos(List<MultipartFile> multipartfiles);
 	
 	void cargarRegistro(Map<String, Object> registro);
 }

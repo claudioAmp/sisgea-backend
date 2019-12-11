@@ -54,9 +54,9 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<ErrorResponse> cargarArchivos(MultipartFile multipartfile) {
+	public List<ErrorResponse> cargarArchivos(List<MultipartFile> multipartfiles) {
 		List<ErrorResponse> listaExcepciones = new ArrayList<>();
-		//for (MultipartFile multipartfile : multipartfiles) {
+		for (MultipartFile multipartfile : multipartfiles) {
 			List<ErrorResponse> aux;
 			String filename = multipartfile.getOriginalFilename();
 			boolean esReproceso = procesoProcedureMapper.isReproceso(filename);
@@ -75,7 +75,7 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 			} catch (IOException e) {
 				throw new RecursoNoEncontradoException(e.getMessage());
 			}
-		//}
+		}
 		return listaExcepciones;
 	}
 	
