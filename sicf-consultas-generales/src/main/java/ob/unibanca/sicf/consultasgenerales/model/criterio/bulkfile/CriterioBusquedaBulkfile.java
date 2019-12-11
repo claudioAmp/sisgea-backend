@@ -90,7 +90,7 @@ public class CriterioBusquedaBulkfile {
 	private String ordenInterchangeFee;
 	private String ordenIdBulkFileMc;
 	private String ordenMessageTypeInd;
-	private String ordenIdMenbresia;
+	private String ordenIdMembresia;
 	private String ordenIdServicio;
 	private String ordenIdOrigen;
 	private String ordenIdClaseTransaccion;
