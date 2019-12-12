@@ -65,17 +65,17 @@ public class DcinCharge {
 	Date recapDate;
 
 	String idMembresia;
-	String descMembresia;
+	String descripcionMembresia;
 	String idServicio;
-	String descServicio;
+	String descripcionServicio;
 	Integer idOrigen;
-	String descOrigen;
+	String descripcionOrigen;
 	Integer idClaseTransaccion;
-	String desClaseTransaccion;
+	String descripcionClaseTransaccion;
 	Integer idCodigoTransaccion;
-	String descCodigoTransaccion;
+	String descripcionCodigoTransaccion;
 	Integer idInstitucionEmisora;
-	String descInstitucionEmisora;
+	String descripcionInstitucionEmisora;
 	Integer idInstitucionReceptora;
-	String descInstitucionReceptora;
+	String descripcionInstitucionReceptora;
 }
