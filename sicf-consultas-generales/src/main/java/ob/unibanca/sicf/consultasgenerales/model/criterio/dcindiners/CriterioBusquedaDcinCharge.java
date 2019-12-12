@@ -25,7 +25,7 @@ public class CriterioBusquedaDcinCharge {
 	private Date recapDateInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date recapDateFin;
-	private Long idDcin;
+	private String idDcin;
 	private String sendingInstitution;
 	private String receivingInstitution;
 	private Long cardNumber;

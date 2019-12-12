@@ -30,7 +30,7 @@ public class CriterioBusquedaObservada {
 	List<Integer> indsConciliacion;
 	List<String> idsMembresia;
 
-	Long secuenciaArchivo;
+	String secuenciaArchivo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 	

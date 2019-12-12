@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaOutgoingVisaTC5 {
 	
-	private Integer idSecuenciaOutgoing; 
+	private String idSecuenciaOutgoing; 
 	private String acquirerRefNumber;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProcesoInicio;
@@ -29,7 +29,7 @@ public class CriterioBusquedaOutgoingVisaTC5 {
 	private Date fechaOutgoingInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaOutgoingFin;
-	private double destinationAmount;
+	private Double destinationAmount;
 	private String merchantName;
 	private String authorizationCode;
 	private String posTerminalCapability;

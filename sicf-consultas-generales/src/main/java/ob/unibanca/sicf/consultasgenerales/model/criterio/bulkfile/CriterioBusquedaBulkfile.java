@@ -31,7 +31,7 @@ public class CriterioBusquedaBulkfile {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProcesoFin;
 	List<Integer> currencysCodeTran;
-	Long idBulkfileMC;
+	String idBulkfileMC;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 	// Filtros

@@ -23,10 +23,10 @@ public class CriterioBusquedaCompensacion {
 	Date fechaTransaccionInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaTransaccionFin;
-	Long idSecuencia;
+	String idSecuencia;
 	String numeroTarjeta;
 	List<Integer> monedasCompensacion;
-	double valorCompensacion;
+	Double valorCompensacion;
 	String numeroTrace;
 	List<String> membresias;
 	List<String> servicios;
