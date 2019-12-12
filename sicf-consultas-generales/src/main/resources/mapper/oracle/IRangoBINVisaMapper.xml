@@ -17,8 +17,11 @@
 		<if  test="region != null and region != ''">
 			 AND a.REGION = #{region}
 		</if>
-		<if  test="pais != null and pais != ''">
-			 AND a.PAIS = #{pais}
+		<if  test="pais != null and pais.size()>0" >
+			AND a.PAIS IN 
+				<foreach item="item" index="index" collection="pais" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
 		</if>
 	</sql>
 	
