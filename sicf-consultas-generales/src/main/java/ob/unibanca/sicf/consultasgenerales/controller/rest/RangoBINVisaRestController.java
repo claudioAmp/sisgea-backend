@@ -2,7 +2,6 @@ package ob.unibanca.sicf.consultasgenerales.controller.rest;
 
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +22,14 @@ public class RangoBINVisaRestController {
 		this.rangoBinVisaService = rangoBinVisaService;
 	}
 	
-	@PreAuthorize("hasPermission('CON_BIN_VISA', '2')")
+	
+	//@PreAuthorize("hasPermission('MANT_BIN_VISA', '2')")
 	@GetMapping(value = "/rangoBinesVISA")
 	public List<RangoBINVisa> buscarTodosBINs() {
 		return this.rangoBinVisaService.buscarTodosRangoBINVisa();
 	}
 
-	@PreAuthorize("hasPermission('CON_BIN_VISA', '2')")
+	//@PreAuthorize("hasPermission('CON_BULKFILEMC', '2')")
 	@GetMapping(value = "/rangoBinesVISA/pagination")
 	public Pagina<CriterioBusquedaRangoBinVisa, RangoBINVisa> buscarPorPaginas(
 			Pagina<CriterioBusquedaRangoBinVisa, RangoBINVisa> criterioPaginacion, CriterioBusquedaRangoBinVisa criterioBusqueda) {
