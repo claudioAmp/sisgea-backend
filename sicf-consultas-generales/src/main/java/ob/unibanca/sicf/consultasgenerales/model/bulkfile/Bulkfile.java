@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class Bulkfile {
 	
-	Long idBulkFileMc;
+	String idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -40,8 +40,8 @@ public class Bulkfile {
 	String descripcionReceptor;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
-	double amountTransactionLoc;
-	double accessFeeLoc;
+	Double amountTransactionLoc;
+	Double accessFeeLoc;
 	String accessFeeLocInd;
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
@@ -50,13 +50,13 @@ public class Bulkfile {
 	String descripcionModEntradaPos;
 	String capacidadEntradaPin;//
 	String descripcionCapacidadEntradaPin;//
-	double amountSettlement;
+	Double amountSettlement;
 	String amountSettlementInd;
-	double interchangeFee;
+	Double interchangeFee;
 	String interchangeFeeInd;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
-
+	
 	String idMembresia;
 	String descripcionMembresia;
 	String idServicio;

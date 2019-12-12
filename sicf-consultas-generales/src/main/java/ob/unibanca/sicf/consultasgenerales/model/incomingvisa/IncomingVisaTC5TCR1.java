@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR1 {
 	
-	private Long idSecuenciaIncoming;
+	private String idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;
@@ -45,7 +45,7 @@ public class IncomingVisaTC5TCR1 {
 	private String accountSelection;
 	private String installmentPaymentCount;
 	private String purchaseIdentifier;
-	private Integer cashback;
+	private Double cashback;
 	private String chipConditionCode;
 	private String posEnvironment;
 	private String descPosEnvironment;

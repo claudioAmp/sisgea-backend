@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TxnSwdmplogDetalle {
 	
-	private Long idMovTxnSwdmplog;
+	private String idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	private String descripcionStfwd;
@@ -37,8 +37,8 @@ public class TxnSwdmplogDetalle {
 	private String descripcionGiroNegocio;
 	private String posEntryMode;
 	private String posConditionCode;
-	private double settAmountTxnFee;
-	private double settAmountProcFee;
+	private Double settAmountTxnFee;
+	private Double settAmountProcFee;
 	private String acquiringInstitution;
 	private String descripcionBinInstAdq;
 	private String forwardingInstitution;
@@ -65,7 +65,7 @@ public class TxnSwdmplogDetalle {
 	private String cardcategory;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
-	private double transactionAmount;
+	private Double transactionAmount;
 	private String idMembresia;
 	private String descripcionMembresia;
 	private String idServicio;
@@ -91,7 +91,7 @@ public class TxnSwdmplogDetalle {
 	
 	private String idOrigenArchivoConc;
 	private String descripcionOrigenArchivoConc;
-	private Long secuenciaOrigenConc;
+	private String secuenciaOrigenConc;
 	private Integer indConciliacion;
 	private String descripcionConciliacion;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

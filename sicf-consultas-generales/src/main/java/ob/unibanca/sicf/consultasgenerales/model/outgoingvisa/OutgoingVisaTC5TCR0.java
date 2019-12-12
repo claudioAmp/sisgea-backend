@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class OutgoingVisaTC5TCR0 {
 	
-	private Long idSecuenciaOutgoing;
+	private String idSecuenciaOutgoing;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;

@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComisCompensacion {
-	Long idSecuencia;
+	String idSecuencia;
 	Date fechaProceso;
 	Integer idComision;
 	String descripcionComision;
 	Integer idCuentaCompensacion;
 	String registroContable;
-	double valorComision;
+	Double valorComision;
 	Integer nivelTarifario;
 	Integer tarifaFlat;
 	Integer tarifaPorcentual;

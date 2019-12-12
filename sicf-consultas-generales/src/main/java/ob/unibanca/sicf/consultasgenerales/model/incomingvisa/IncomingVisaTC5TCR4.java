@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR4 {
 	
-	private Long idSecuenciaIncoming;
+	private String idSecuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String transactionCode;
@@ -26,8 +26,8 @@ public class IncomingVisaTC5TCR4 {
 	private String contactInformation;
 	private String adjustmentProcessingInd;
 	private String messageReasonCode;
-	private Integer surchargeAmount;
+	private Double surchargeAmount;
 	private String surchargeCreDebInd;
-	private Integer surchargeAmountCbc;
-	private Integer moneyTransferForeingFee;
+	private Double surchargeAmountCbc;
+	private Double moneyTransferForeingFee;
 }

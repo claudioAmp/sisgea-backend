@@ -14,14 +14,14 @@ import java.util.Date;
 @AllArgsConstructor
 public class IncomingVisaTC5TCR5 {
 	
-	private Long idSecuenciaIncoming;
+	private String idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;
 	private String descTransCodeQualifier;
 	private String transactionIdentifier;
-	private Integer authorizedAmount;
-	private Integer authorizCurrencyCode;
+	private Double authorizedAmount;
+	private String authorizCurrencyCode;
 	private String descAuthorizCurrencyCode;
 	private String authorizResponseCode;
 	private String validationCode;
@@ -38,11 +38,11 @@ public class IncomingVisaTC5TCR5 {
 	private String merchantVolumeInd;
 	private String electronicCommerceGoods;
 	private String merchantVerificationValue;
-	private Integer interchangeFeeAmount;
+	private Double interchangeFeeAmount;
 	private String interchangeFeeSign;
-	private Integer sourceCurrencyRate;
-	private Integer baseCurrencyRate;
-	private Integer optionalIssuerIsaAmount;
+	private Double sourceCurrencyRate;
+	private Double baseCurrencyRate;
+	private Double optionalIssuerIsaAmount;
 	private String productId;
 	private String programId;
 	private String dccIndicator;

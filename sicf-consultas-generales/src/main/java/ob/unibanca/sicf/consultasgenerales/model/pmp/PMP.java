@@ -15,7 +15,7 @@ import ob.unibanca.sicf.consultasgenerales.model.binvisa.BINVisa.BINVisaBuilder;
 @AllArgsConstructor
 public class PMP {
 	//Campos filtros de consulta
-	Long idMovIncomingPMP;
+	String idMovIncomingPMP;
 	String idCodigoTransaccionPMP;
     String idProductoPMP;
     Date fechaIncoming;

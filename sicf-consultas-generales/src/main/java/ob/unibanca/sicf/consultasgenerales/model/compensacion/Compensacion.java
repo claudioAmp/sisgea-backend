@@ -16,7 +16,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class Compensacion {
 	
-	long idSecuencia;
+	String idSecuencia;
 	String idMembresia;
 	String descMembresia;
 	String idServicio;
@@ -37,7 +37,7 @@ public class Compensacion {
 	String descBin;
 	Integer idMonedaCompensacion;
 	String descMonedaCompensacion;
-	double valorCompensacion;
+	Double valorCompensacion;
 	Date fechaTransaccion;
 	Date fechaProceso;
 	Date fechaSwitch;

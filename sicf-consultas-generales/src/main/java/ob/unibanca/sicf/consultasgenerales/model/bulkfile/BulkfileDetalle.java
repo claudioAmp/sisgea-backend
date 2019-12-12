@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class BulkfileDetalle {
 	
-	Long idBulkFileMc;
+	String idBulkFileMc;
 	String messageTypeInd;
 	String descripcionMessageTypeInd;
 	Integer switchSerialNumber;
@@ -57,23 +57,23 @@ public class BulkfileDetalle {
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	Integer impliedDecimalTran;
-	double amountTransactionLoc;
+	Double amountTransactionLoc;
 	String amountTransactionLocInd;
 	String descripcionAmountTransactionLocInd; //
 	Integer cashbackAmountLoc;
 	String cashbackAmountLocInd;
 	String descripcionCashbackAmountLocInd; //
-	double accessFeeLoc;
+	Double accessFeeLoc;
 	String accessFeeLocInd;
 	String descripcionAccessFeeLocInd; //
 	Integer currencyCodeSett;
 	String descripcionCurrencyCodeSett;
 	Integer impliedDecimalSett;
-	double conversionRateSett;
-	double amountSettlement;
+	Double conversionRateSett;
+	Double amountSettlement;
 	String amountSettlementInd;
 	String descripcionAmountSettlementInd;//
-	double interchangeFee;
+	Double interchangeFee;
 	String interchangeFeeInd;
 	String descripcionInterchangeFeeInd; //
 	String serviceLevelInd;

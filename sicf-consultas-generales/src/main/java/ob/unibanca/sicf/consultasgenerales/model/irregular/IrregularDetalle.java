@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class IrregularDetalle {
-	private Long secuencia;
+	private String secuencia;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso ;
 	private String idOrigenArchivo;
