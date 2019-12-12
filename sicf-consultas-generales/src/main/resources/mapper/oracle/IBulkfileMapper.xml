@@ -234,9 +234,9 @@
 			ORDER BY
 				ID_BULK_FILE_MC        ${ordenIdBulkFileMc}
 		</if>
-		<if  test="ordenIdMenbresia != null" >
+		<if  test="ordenIdMembresia != null" >
 			ORDER BY
-				ID_MEMBRESIA        ${ordenIdMenbresia}
+				ID_MEMBRESIA        ${ordenIdMembresia}
 		</if>
 		<if  test="ordenIdServicio != null" >
 			ORDER BY
