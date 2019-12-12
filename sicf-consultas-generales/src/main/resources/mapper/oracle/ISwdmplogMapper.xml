@@ -307,7 +307,7 @@
 		SELECT *
 		FROM VIE_CON_MOV_SWDMPLOG_DET A
 		<where>
-			<if test="idMovTxnSwdmplog != -1 and idMovTxnSwdmplog != null">
+			<if test="idMovTxnSwdmplog != null and idMovTxnSwdmplog != ''">
 				A.ID_MOV_TXN_SWDMPLOG = #{idMovTxnSwdmplog}
 			</if>
 			<if test="fechaProceso != null">

@@ -117,7 +117,7 @@ public class BulkfileDetalle {
 	Date captureDate;
 	String idOrigenArchivoConc;
 	String descripcionOrigenArchivoConc;
-	Long secuenciaOrigenConc;
+	String secuenciaOrigenConc;
 	Integer indConciliacion;
 	String descripcionConciliacion;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

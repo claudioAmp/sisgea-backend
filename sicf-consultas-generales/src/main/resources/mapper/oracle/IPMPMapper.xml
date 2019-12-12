@@ -21,7 +21,7 @@
 			 AND ID_CODIGO_PRODUCTO_PMP = #{idCodigoProductoPMP}
 		</if>
 		<if  test="numeroTarjeta != null and numeroTarjeta != ''">
-			 AND a.NUMERO_TARJEATA = #{numeroTarjeta}
+			 AND NUMERO_TARJETA = #{numeroTarjeta}
 		</if>
 	</sql>
 	
