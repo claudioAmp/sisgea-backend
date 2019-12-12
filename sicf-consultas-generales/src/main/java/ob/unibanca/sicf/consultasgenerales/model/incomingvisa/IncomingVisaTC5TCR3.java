@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class IncomingVisaTC5TCR3 {
 	
-	private Long idSecuenciaIncoming;
+	private String idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;

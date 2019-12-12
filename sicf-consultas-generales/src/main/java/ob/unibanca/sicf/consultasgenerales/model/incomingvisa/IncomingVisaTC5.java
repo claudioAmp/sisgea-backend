@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC5 {
 	
-	private Long idSecuenciaIncoming;
+	private String idSecuenciaIncoming;
 	private String transactionCode;
 	private String descTransactionCode;
 	@TruncarPAN
@@ -25,10 +25,10 @@ public class IncomingVisaTC5 {
 	private String acquirerRefNumber;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date purchaseDate;
-	private Integer destinationAmount;
+	private Double destinationAmount;
 	private Integer destCurrencyCode;
 	private String descDestCurrencyCode;
-	private Integer sourceAmount;
+	private Double sourceAmount;
 	private Integer sourceCurrencyCode;
 	private String descSourceCurrencyCode;
 	private String merchantName;

@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class IncomingVisaTC48 {
 	
-	private Long secuenciaIncoming;
+	private String secuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String destinationBin;

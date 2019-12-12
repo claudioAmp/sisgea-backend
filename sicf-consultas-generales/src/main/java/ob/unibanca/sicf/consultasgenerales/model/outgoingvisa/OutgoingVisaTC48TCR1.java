@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class OutgoingVisaTC48TCR1 {
 	
-	private Long secuenciaOutgoing;
+	private String secuenciaOutgoing;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String cvv2Authorization;

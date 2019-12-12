@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC48TCR0 {
 	
-	private Long secuenciaIncoming;
+	private String secuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String transactionCode;

@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class IncomingVisaTC10TCR0 {
 	
-	Long secuenciaIncoming;
+	String secuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 	String transactionCode;
@@ -33,16 +33,17 @@ public class IncomingVisaTC10TCR0 {
 	@TruncarPAN
 	String accountNumber;
 	String accountNumberExt;
-	double destinationAmount;
+	Double destinationAmount;
 	Integer destCurrencyCode;
 	String descDestCurrencyCode;
-	double sourceAmount;
+	Double sourceAmount;
 	Integer sourceCurrencyCode;
 	String descSourceCurrencyCode;
 	String messageText;
 	String settlementFlag;
 	String descSettlementFlag;
 	String transactionIdentifier;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date centralProcessingDate;
 	String reimbursementAttribute;
 	String descReimbursementAttribute;

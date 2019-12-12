@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DcinCharge {
-	Long idDcin;
+	String idDcin;
 	String sendingInstitution;
     String receivingInstitution;
 	Long cardNumber;
-	double chargeAmount;
+	Double chargeAmount;
 	Date chargeDate;
 	String dateType;
 	String chargeType;
@@ -29,7 +29,7 @@ public class DcinCharge {
 	String authorizationNumber;
 	String establishmentId;
 	String issuerDiners;
-	double chargeAmountDiners;
+	Double chargeAmountDiners;
 	Integer internationalEstablishmentCo;
 	String establishmentStreetAddress;
 	String establishmentStateCountryPr;
@@ -37,8 +37,8 @@ public class DcinCharge {
 	String establishmentPhoneNumber;
 	String merchantSpecificCode;
 	Integer merchantClasificationCode;
-	double tax1;
-	double tax2;
+	Double tax1;
+	Double tax2;
 	String originalTicket;
 	String customerReferenceNumber1;
 	String customerReferenceNumber2;
@@ -53,7 +53,7 @@ public class DcinCharge {
 	String cavv;
 	String networkReferenceId;
 	String cardDataInputCapability;
-	double surchargeFee;
+	Double surchargeFee;
 	String posTerminalTypeIndicator;
 	String acquirerGeographicAreaCode;
 	String cardType;

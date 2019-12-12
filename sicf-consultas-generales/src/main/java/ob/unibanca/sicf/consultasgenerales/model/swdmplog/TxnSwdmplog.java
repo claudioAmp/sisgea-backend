@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TxnSwdmplog {
 	
-	private Long idMovTxnSwdmplog;
+	private String idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
 	@TruncarPAN
@@ -43,7 +43,7 @@ public class TxnSwdmplog {
 	private String descripcionMoneda;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
-	private double transactionAmount;
+	private Double transactionAmount;
 	private String idMembresia;
 	private String descripcionMembresia;
 	private String idServicio;

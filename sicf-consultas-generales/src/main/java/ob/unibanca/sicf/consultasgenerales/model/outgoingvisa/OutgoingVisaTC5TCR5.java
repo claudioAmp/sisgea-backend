@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class OutgoingVisaTC5TCR5 {
 	
-	private Long idSecuenciaOutgoing;
+	private String idSecuenciaOutgoing;
 	private String transactionCode;
 	private String descTransactionCode;
 	private String transCodeQualifier;

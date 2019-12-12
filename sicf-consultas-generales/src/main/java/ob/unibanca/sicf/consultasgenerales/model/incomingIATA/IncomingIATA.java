@@ -39,7 +39,7 @@ public class IncomingIATA {
 	String 	espacioReservado1;
 	String 	referenciaCliente;
 	Long 	montoCreditoDebito;
-	Long codigoAutorizacion;
+	String codigoAutorizacion;
 	Integer sequenceNumber;
 	Integer invoiceDate;
 	String  espacioReservado2;
@@ -73,7 +73,7 @@ public class IncomingIATA {
 	String  noDefinido;
 	String  fechaPrimerVuelo;
 	String  idOrigenArchivo;
-	Long idIATA;
+	String idIATA;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date    fechaProceso;
 	

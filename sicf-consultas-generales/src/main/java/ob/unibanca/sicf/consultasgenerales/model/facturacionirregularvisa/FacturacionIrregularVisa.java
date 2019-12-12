@@ -24,9 +24,9 @@ public class FacturacionIrregularVisa {
     private String binMap;
     private String rateType;
     private String rateCur;
-    private double rate;
+    private Double rate;
     private Integer units;
-    private double total;
+    private Double total;
     private Integer registroIrregular;
     private String descripcionIrregularidad;
 }

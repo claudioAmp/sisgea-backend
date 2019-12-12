@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class ObservadaDetalle {
 	
-	Long secuenciaArchivo;
+	String secuenciaArchivo;
 	@TruncarPAN
 	String numeroTarjeta;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

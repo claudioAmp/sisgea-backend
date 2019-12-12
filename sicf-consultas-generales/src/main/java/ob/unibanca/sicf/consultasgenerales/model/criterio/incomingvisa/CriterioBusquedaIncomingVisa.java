@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaIncomingVisa {
-	Integer idSecuenciaIncoming;
+	String idSecuenciaIncoming;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 }

@@ -55,12 +55,12 @@ public class Liberacion {
 	String descripcionInstEmisora;
 	Integer idInstitucionReceptora;
 	String descripcionInstReceptora;
-	Long secuenciaSwdmplog;
+	String secuenciaSwdmplog;
 	String origenArchivo;
 	String descripcionOrigenArchivo;
 	Integer indConciliacion;
 	String descripcionConciliacion;
-	Long secuenciaOrigen;
+	String secuenciaOrigen;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 
