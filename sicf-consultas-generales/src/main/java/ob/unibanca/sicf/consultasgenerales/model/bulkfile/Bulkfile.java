@@ -34,10 +34,6 @@ public class Bulkfile {
 	Integer responseCode;
 	String descripcionResponseCode;
 	String authorizationId;
-	Integer idEmisor;
-	String descripcionEmisor;
-	Integer idReceptor;
-	String descripcionReceptor;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	Double amountTransactionLoc;

@@ -88,14 +88,6 @@
 			<bind name="pFiltroAuthorizationId" value="'%' + filtroAuthorizationId + '%'" />
 			AND AUTHORIZATION_ID LIKE #{pFiltroAuthorizationId}
 		</if>
-		<if  test="filtroIdEmisor != null" >
-			<bind name="pFiltroIdEmisor" value="'%' + filtroIdEmisor + '%'" />
-			AND CONCAT(ID_EMISOR, UPPER(DESCRIPCION_EMISOR)) LIKE UPPER(#{pFiltroIdEmisor})
-		</if>
-		<if  test="filtroIdReceptor != null" >
-			<bind name="pFiltroIdReceptor" value="'%' + filtroIdReceptor + '%'" />
-			AND CONCAT(ID_RECEPTOR, UPPER(DESCRIPCION_RECEPTOR)) LIKE UPPER(#{pFiltroIdReceptor})
-		</if>
 		<if  test="filtroAccessFeeLocInd != null" >
 			<bind name="pFiltroAccessFeeLocInd" value="'%' + filtroAccessFeeLocInd + '%'" />
 			AND ACCESS_FEE_LOC_IND LIKE #{pFiltroAccessFeeLocInd}
@@ -197,14 +189,6 @@
 		<if  test="ordenAuthorizationId != null" >
 			ORDER BY
 				AUTHORIZATION_ID   ${ordenAuthorizationId}
-		</if>
-		<if  test="ordenIdEmisor != null" >
-			ORDER BY
-				ID_EMISOR   ${ordenIdEmisor}
-		</if>
-		<if  test="ordenIdReceptor != null" >
-			ORDER BY
-				ID_RECEPTOR   ${ordenIdReceptor}
 		</if>
 		<if  test="ordenAccessFeeLocInd != null" >
 			ORDER BY

@@ -50,10 +50,6 @@ public class BulkfileDetalle {
 	String adviceReasonCode;
 	String intracurrencyAgreeCode;
 	String authorizationId;
-	Integer idEmisor;
-	String descripcionEmisor;
-	Integer idReceptor;
-	String descripcionReceptor;
 	Integer currencyCodeTran;
 	String descripcionCurrencyCodeTran;
 	Integer impliedDecimalTran;

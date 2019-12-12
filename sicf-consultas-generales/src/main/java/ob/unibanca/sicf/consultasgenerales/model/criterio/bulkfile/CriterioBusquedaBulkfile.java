@@ -49,8 +49,6 @@ public class CriterioBusquedaBulkfile {
 	private String filtroTerminalId;
 	private String filtroResponseCode;
 	private String filtroAuthorizationId;
-	private String filtroIdEmisor;
-	private String filtroIdReceptor;
 	private String filtroAccessFeeLocInd;
 	private String filtroAccessFeeLoc;
 	//private String filtroAmountSettlementInd;
@@ -78,8 +76,6 @@ public class CriterioBusquedaBulkfile {
 	private String ordenIdProceso;
 	private String ordenResponseCode;
 	private String ordenAuthorizationId;
-	private String ordenIdEmisor;
-	private String ordenIdReceptor;
 	private String ordenTerminalId;
 	private String ordenAccessFeeLocInd;
 	private String ordenAccessFeeLoc;
