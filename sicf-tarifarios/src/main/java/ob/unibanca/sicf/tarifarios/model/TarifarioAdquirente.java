@@ -28,7 +28,7 @@ public class TarifarioAdquirente {
 	@IdNumerico(maxRange = 99999999, groups = IRegistro.class)
 	private int rangoFinal;
 	@NumeroNoRequerido(minRange = 0, maxRange = 999)
-	private int idMoneda;
+	private Integer idMoneda;
 	private String descripcionMoneda;
 	private double tarifaFlat;
 	private double tarifaPorcentual;

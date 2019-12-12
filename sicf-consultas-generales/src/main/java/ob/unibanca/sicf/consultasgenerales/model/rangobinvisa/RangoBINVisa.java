@@ -50,7 +50,7 @@ public class RangoBINVisa {
 	  String testIndicator;
 	  String reservado3;
 
-	  String idMembresia;
+	  /*String idMembresia;
 	  String descripcionMembresia;
 	  String idServicio;
 	  String descripcionServicio;
@@ -63,5 +63,5 @@ public class RangoBINVisa {
 	  Integer idInstitucionEmisora;
 	  String descripcionInstitucionEmisora;
 	  Integer idInstitucionReceptora;
-	  String descripcionInstitucionReceptora;
+	  String descripcionInstitucionReceptora;*/
 }
