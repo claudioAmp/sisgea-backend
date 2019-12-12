@@ -1,5 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.binvisa;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +15,7 @@ public class CriterioBusquedaBinVisa {
 	private String idBIN;
 	private String binProcesador;
 	private String region;
-	private String pais;
+	private List<String> pais;
 	//Filtros de cabeceras
 	private String filtroIdBIN;
 	private String filtroBinProcesador;
