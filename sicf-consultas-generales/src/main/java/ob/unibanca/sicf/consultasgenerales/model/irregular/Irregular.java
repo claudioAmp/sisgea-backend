@@ -22,7 +22,7 @@ public class Irregular {
 	private String idOrigenArchivo;
 	private Integer idTipoIrregular;
 
-	private String idMembresia;
+	/*private String idMembresia;
 	private String descMembresia;
 	private String idServicio;
 	private String descServicio;
@@ -35,5 +35,5 @@ public class Irregular {
 	private Integer idInstitucionEmisora;
 	private String descInstitucionEmisora;
 	private Integer idInstitucionReceptora;
-	private String descInstitucionReceptora;
+	private String descInstitucionReceptora;*/
 }

@@ -64,11 +64,11 @@ public class Liberacion {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;
 
-	String idServicio;
+	/*String idServicio;
 	String descripcionServicio;
 	Integer idClaseTransaccion;
 	String descripcionClaseTransaccion;
 	Integer idCodigoTransaccion;
-	String descripcionCodigoTransaccion;
+	String descripcionCodigoTransaccion;*/
 	
 }
