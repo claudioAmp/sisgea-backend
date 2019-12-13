@@ -31,5 +31,8 @@ public class ComisCompensacion {
 	Integer aplicaGrupoBin;
 	Integer idGrupoBin;
 	Integer infTarifaEmisor;
+	String descMonedaTarifario;
+	String indicadorCompensacion;
+	Integer compensaComisiones;
 	
 }
