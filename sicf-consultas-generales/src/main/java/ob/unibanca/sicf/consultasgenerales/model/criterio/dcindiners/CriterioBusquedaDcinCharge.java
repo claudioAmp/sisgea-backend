@@ -1,6 +1,7 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.dcindiners;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaDcinCharge {
+	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date chargeDateInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -21,61 +23,56 @@ public class CriterioBusquedaDcinCharge {
 	private Date fechaProcesoInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProcesoFin;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date recapDateInicio;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date recapDateFin;
-	private String idDcin;
-	private String sendingInstitution;
-	private String receivingInstitution;
-	private Long cardNumber;
-	private String chargeType;
-	private String establishmentName;
-	private String establishmentCity;
-	private String authorizationNumber;
-	private Integer merchantClasificationCode;
-	private String cardHolderPresentIndicator;
+	private String cardNumber;
 	private String cardPresentIndicator;
-	private String cardInputDataMethod;
-	private String electronicCommercePaymentsI;
-	private String cardDataInputCapability;
 	private String cardType;
+	private String authorizationNumber;
+	private List<String> merchantClasificationCode;
+	
+	//Detalle
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
+	private String idDcin;
+	
 	//Filtros de cabeceras
 	private String filtroIdDcin;
 	private String filtroSendingInstitution;
     private String filtroReceivingInstitution;
 	private String filtroCardNumber;
-	private String filtroChargeAmount;
-	private String filtroChargeDate;
+	//private String filtroChargeAmount;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroChargeDate;
 	private String filtroDateType;
 	private String filtroChargeType;
 	private String filtroEstablishmentName;
 	private String filtroEstablishmentCity;
+	private String filtroGeographicAreaCode;
 	private String filtroActionCode;
 	private String filtroTypeCharge;
 	private String filtroReferenceNumber;
 	private String filtroAuthorizationNumber;
-	private String filtroIssuerDiners;
-	private String filtroChargeAmountDiners;
 	private String filtroMerchantClasificationCode;
-	private String filtroTax1;
-	private String filtroTax2;
-	private String filtroOriginalTicket;
 	private String filtroCardHolderPresentIndicator;
 	private String filtroCardPresentIndicator;
 	private String filtroCardInputDataMethod;
-	private String filtroElectronicCommercePaymentsI;
-	private String filtroCavv;
 	private String filtroCardDataInputCapability;
-	private String filtroSurchargeFee;
-	private String filtroPosTerminalTypeIndicator;
+	private String filtroAcquirerGeographicAreaCode;
 	private String filtroCardType;
-	private String filtroFechaProceso;
-	private String filtroRecapDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
+	private String filtroIdOrigenArchivo;
+	private String filtroIdMembresia;
+	private String filtroIdServicio;
+	private String filtroIdOrigen;
+	private String filtroIdClaseTransaccion;
+	private String filtroIdCodigoTransaccion;
+	private String filtroIdInstitucionEmisora;
+	private String filtroIdInstitucionReceptora;
+	
 	//orden de cabeceras
 	private String ordenIdDcin;
 	private String ordenSendingInstitution;
-	private String ordenReceivingInstitution;
+    private String ordenReceivingInstitution;
 	private String ordenCardNumber;
 	private String ordenChargeAmount;
 	private String ordenChargeDate;
@@ -83,25 +80,29 @@ public class CriterioBusquedaDcinCharge {
 	private String ordenChargeType;
 	private String ordenEstablishmentName;
 	private String ordenEstablishmentCity;
+	private String ordenGeographicAreaCode;
 	private String ordenActionCode;
 	private String ordenTypeCharge;
 	private String ordenReferenceNumber;
 	private String ordenAuthorizationNumber;
-	private String ordenIssuerDiners;
-	private String ordenChargeAmountDiners;
 	private String ordenMerchantClasificationCode;
-	private String ordenTax1;
-	private String ordenTax2;
-	private String ordenOriginalTicket;
 	private String ordenCardHolderPresentIndicator;
 	private String ordenCardPresentIndicator;
 	private String ordenCardInputDataMethod;
-	private String ordenElectronicCommercePaymentsI;
-	private String ordenCavv;
 	private String ordenCardDataInputCapability;
-	private String ordenSurchargeFee;
-	private String ordenPosTerminalTypeIndicator;
+	private String ordenAcquirerGeographicAreaCode;
 	private String ordenCardType;
 	private String ordenFechaProceso;
-	private String ordenRecapDate;
+	private String ordenIdOrigenArchivo;
+	private String ordenIdMembresia;
+	private String ordenIdServicio;
+	private String ordenIdOrigen;
+	private String ordenIdClaseTransaccion;
+	private String ordenIdCodigoTransaccion;
+	private String ordenIdInstitucionEmisora;
+	private String ordenIdInstitucionReceptora;
+	
+	//Criterios de filtros de encabezado aggrid tipo RANGO
+	private Double rangoChargeAmountMin;
+	private Double rangoChargeAmountMax;
 }

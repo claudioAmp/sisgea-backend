@@ -7,6 +7,8 @@ import ob.commons.truncadorpan.annotation.TruncablePAN;
 import ob.unibanca.sicf.consultasgenerales.mapper.IDcinChargeMapper;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.dcindiners.CriterioBusquedaDcinCharge;
 import ob.unibanca.sicf.consultasgenerales.model.dcindiners.DcinCharge;
+import ob.unibanca.sicf.consultasgenerales.model.dcindiners.DcinChargeDetalle;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +30,11 @@ public class DcinChargeService implements IDcinChargeService {
 		return dcinChargeMapper.buscarPorCriterios(criterioPaginacion);
 	}
 	
-	/*@TruncablePAN
+	@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public BulkfileDetalle buscarDetalle(CriterioBusquedaBulkfile criterio) {
+	public DcinChargeDetalle buscarDetalle(CriterioBusquedaDcinCharge criterio) {
 		return this.dcinChargeMapper.buscarDetalle(criterio).orElseThrow(
-				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getTraceNumber()));
-	}*/
+				() -> new RecursoNoEncontradoException(TXN_NO_ENCONTRADA, criterio.getIdDcin()));
+	}
 	
 }
