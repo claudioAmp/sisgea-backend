@@ -24,4 +24,12 @@ public class ComisCompensacion {
 	Integer tarifaPorcentual;
 	Integer aplicaTarifaFlat;
 	Integer aplicaTarifaPorcentual;
+	Integer idMonedaTarifario;
+	Long contadorTxn;
+	Integer aplicaIgv;
+	Double igvAplicacionTarifa;
+	Integer aplicaGrupoBin;
+	Integer idGrupoBin;
+	Integer infTarifaEmisor;
+	
 }
