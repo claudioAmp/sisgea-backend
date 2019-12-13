@@ -20,8 +20,8 @@
 		<if  test="cardPresentIndicator != null and cardPresentIndicator !=''">
 			AND a.CARD_PRESENT_INDICATOR = #{cardPresentIndicator}  
 		</if>
-		<if  test="chargeType != null and chargeType != ''">
-			AND a.CHARGE_TYPE = #{chargeType}  
+		<if  test="cardType != null and cardType != ''">
+			AND a.CARD_TYPE = #{cardType}  
 		</if>
 		<if  test="authorizationNumber != null and authorizationNumber !='' ">
 			AND a.AUTHORIZATION_NUMBER = #{authorizationNumber}  

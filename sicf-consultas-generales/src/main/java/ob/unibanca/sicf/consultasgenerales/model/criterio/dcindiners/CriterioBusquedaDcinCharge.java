@@ -31,6 +31,8 @@ public class CriterioBusquedaDcinCharge {
 	
 	//Detalle
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date chargeDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String idDcin;
 	

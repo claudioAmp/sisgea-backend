@@ -23,10 +23,10 @@ public class DcinChargeDetalle {
 	private String sendingInstitution;
 	private String recivingInstitution;
 	@TruncarPAN
-	private String cardNumber; //PAN
-	private Double chargeAmount; // Monto de txn
+	private String cardNumber;
+	private Double chargeAmount;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date chargeDate; // fecha txn
+	private Date chargeDate;
 	private String dateType;
 	private String chargeType;
 	private String establishmentName;
@@ -57,24 +57,25 @@ public class DcinChargeDetalle {
 	private String customerReferenceNumber5;
 	private String customerReferenceNumber6;
 	private String cardHolderPresentIndicator;
-	private String descCardHolderPresentIndicator; //MULTITABLA
+	private String descCardHolderPresentIndicator;
 	private String cardPresentIndicator;
-	private String descCardPresentIndicator; //MULTITABLA
+	private String descCardPresentIndicator;
 	private String cardInputDataMethod;
-	private String descCardInputDataMethod; //MULTITABLA
+	private String descCardInputDataMethod;
 	private String electronicCommercePaymentsI;
-	private String descElectronicCommercePayments;//MULTITABLA
+	private String descElectronicCommercePayments;
 	private String cavv;
 	private String networkReferenceId;
 	private String cardDataInputCapability;
-	private String descCardDataInputCapability;//MULTITABLA
+	private String descCardDataInputCapability;
 	private Double surchargeFee;
 	private String posTerminalTypeIndicator;
 	private String acquirerGeographicAreaCode;
 	private String cardType;
-	private String descCardType;//MULTITABLA
+	private String descCardType;
 	private Integer paymentToken;
 	private String tokenRequestorId;
 	private String tokenAssuranceLevel;
-	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
 }
