@@ -1,0 +1,17 @@
+package ob.unibanca.sicf.mantenimientosgenerales.service.eventostransaccionmastercard;
+
+import java.util.List;
+
+import ob.commons.mantenimiento.service.IMantenibleService;
+import ob.unibanca.sicf.mantenimientosgenerales.model.EventosTransaccionMastercard;
+
+public interface IEventosTransaccionMastercardService extends IMantenibleService<EventosTransaccionMastercard> {
+	
+	List<EventosTransaccionMastercard> buscarTodosEventosTransaccionMastercard();
+	
+	EventosTransaccionMastercard registrarEventosTransaccionMastercard(EventosTransaccionMastercard eventosTransaccionMastercard);
+	
+	EventosTransaccionMastercard actualizarEventosTransaccionMastercard(EventosTransaccionMastercard eventosTransaccionMastercard);
+	
+	void eliminarEventosTransaccionMastercard(EventosTransaccionMastercard eventosTransaccionMastercard);
+}

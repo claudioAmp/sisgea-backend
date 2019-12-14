@@ -27,6 +27,7 @@ public class TipoCambioSBSService extends MantenibleService<TipoCambioSBS> imple
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS registrarTipoCambio(TipoCambioSBS tipoCambio) {
+		System.out.println(tipoCambio);
 		this.registrar(tipoCambio);
 		return this.buscarUno(tipoCambio).get();
 	}
@@ -34,6 +35,7 @@ public class TipoCambioSBSService extends MantenibleService<TipoCambioSBS> imple
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS actualizarTipoCambio(TipoCambioSBS tipoCambio) {
+		System.out.println(tipoCambio);
 		this.actualizar(tipoCambio);
 		return this.buscarUno(tipoCambio).get();
 	}
