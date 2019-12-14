@@ -13,6 +13,9 @@
 		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
 			 a.TRANSMISSION_DATE BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
 		</if>
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
 		<if  test="estadoTransaccion != null and estadoTransaccion != ''">
 			 AND a.ESTADO_TRANSACCION = #{estadoTransaccion}
 		</if>

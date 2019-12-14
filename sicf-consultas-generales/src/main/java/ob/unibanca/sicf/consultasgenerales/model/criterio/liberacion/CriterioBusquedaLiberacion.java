@@ -22,6 +22,10 @@ public class CriterioBusquedaLiberacion {
 	Date fechaTransaccionInicio; // transmissionDate
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaTransaccionFin; // transmissionDate
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoInicio; // transmissionDate
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoFin; // transmissionDate
 	List<Integer> idsOrigen;
 	List<Integer> institucionesEmisoras;
 	List<Integer> institucionesReceptoras;
