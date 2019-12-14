@@ -21,7 +21,7 @@ public class DcinChargeDetalle {
 	private Integer batchNumber;
 	private Integer sequenceWithinBatch;
 	private String sendingInstitution;
-	private String recivingInstitution;
+	private String receivingInstitution;
 	@TruncarPAN
 	private String cardNumber;
 	private Double chargeAmount;
