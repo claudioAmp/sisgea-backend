@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -210,8 +214,8 @@ public class XlsReporteView extends AbstractView {
     public CellStyle getEstiloCentrado(Workbook wb) {
         CellStyle wrapStyle = wb.createCellStyle();
         wrapStyle.setWrapText(true);
-        wrapStyle.setAlignment(CellStyle.ALIGN_CENTER);
-        wrapStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        wrapStyle.setAlignment(HorizontalAlignment.CENTER);
+        wrapStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         return wrapStyle;
     }
 
@@ -232,40 +236,39 @@ public class XlsReporteView extends AbstractView {
     }
 
     private void setBorderACeldaTitulo(Sheet sheet, CellRangeAddress mergedRegions) {
-        RegionUtil.setBorderTop(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
-        RegionUtil.setBorderLeft(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
-        RegionUtil.setBorderRight(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
+        RegionUtil.setBorderTop(BorderStyle.THIN, mergedRegions, sheet);
+        RegionUtil.setBorderLeft(BorderStyle.THIN, mergedRegions, sheet);
+        RegionUtil.setBorderRight(BorderStyle.THIN, mergedRegions, sheet);
     }
 
     private void setBorderACeldaSubtitulo(Sheet sheet, CellRangeAddress mergedRegions) {
-        RegionUtil.setBorderLeft(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
-        RegionUtil.setBorderRight(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
-        RegionUtil.setBorderBottom(CellStyle.BORDER_THIN, mergedRegions, sheet, sheet.getWorkbook());
+        RegionUtil.setBorderLeft(BorderStyle.THIN, mergedRegions, sheet);
+        RegionUtil.setBorderRight(BorderStyle.THIN, mergedRegions, sheet);
+        RegionUtil.setBorderBottom(BorderStyle.THIN, mergedRegions, sheet);
     }
 
     public XSSFCellStyle getBordeCompleto(Workbook wb) {
         XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
-        style.setBorderTop(XSSFCellStyle.BORDER_THIN);
-        style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-        style.setBorderRight(XSSFCellStyle.BORDER_THIN);
-        style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderLeft(BorderStyle.THIN);
         return style;
     }
 
     public CellStyle getEstiloCabeceras(Workbook wb) {
         byte[] rgbByte = new byte[] { (byte) -1, (byte) 33, (byte) 89, (byte) 103 };
         byte[] rgbFont = new byte[] { (byte) -1, (byte) 255, (byte) 255, (byte) 255 };
-        XSSFColor color_font = new XSSFColor();
-        color_font.setRgb(rgbFont);
+        
+        XSSFColor color_font = new XSSFColor(rgbFont, new DefaultIndexedColorMap());
         Font font = wb.createFont();
         ((XSSFFont) font).setColor(color_font);
-        XSSFColor color = new XSSFColor();
-        color.setRgb(rgbByte);
+        XSSFColor color = new XSSFColor(rgbByte, new DefaultIndexedColorMap());
         CellStyle estiloCabeceras = wb.createCellStyle();
         ((XSSFCellStyle) estiloCabeceras).setFillPattern(FillPatternType.SOLID_FOREGROUND);
         ((XSSFCellStyle) estiloCabeceras).setFillForegroundColor(color);
         estiloCabeceras.setFont(font);
-        estiloCabeceras.setAlignment(CellStyle.ALIGN_CENTER);
+        estiloCabeceras.setAlignment(HorizontalAlignment.CENTER);
         return estiloCabeceras;
     }
 }

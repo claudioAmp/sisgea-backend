@@ -26,10 +26,10 @@ public class CargaCobrosMiscelaneosRestController {
 	
 	@PostMapping(value = "/visa/cobros-miscelaneos")
 	public ResponseEntity cargarArchivoVisa(@RequestParam("file[]") List<MultipartFile> file) {
-		System.out.println(file);
 		try {
 			this.cargaCobrosMiscelaneosVisaService.cargarArchivos(file);
         } catch (Exception e) {
+			e.printStackTrace();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida");
         }
 		return ResponseEntity.status(HttpStatus.OK).body("Registro exitoso");
@@ -37,9 +37,8 @@ public class CargaCobrosMiscelaneosRestController {
 	
 	@PostMapping(value = "/mc/cobros-miscelaneos")
 	public ResponseEntity cargarArchivoMC(@RequestParam("file[]") List<MultipartFile> file) {
-		System.out.println(file);
 		try {
-			this.cargaCobrosMiscelaneosVisaService.cargarArchivos(file);
+			this.cargaCobrosMiscelaneosMCService.cargarArchivos(file);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida");
         }

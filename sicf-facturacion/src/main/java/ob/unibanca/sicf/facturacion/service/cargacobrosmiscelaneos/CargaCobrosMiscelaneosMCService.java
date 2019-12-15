@@ -67,7 +67,7 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 			
 			try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
 				aux = CargaArchivoExcel.readExcelFile(filename, bis, this.procedure.getParametrosProcedure(), this,
-				                                      true, 0, this.procedure.getPatronFechaArchivo(), esReproceso,
+				                                      true, 0, this.procedure.getPatronFechaArchivo(), false,
 				                                      parametrosAdicionales);
 				if (aux != null) {
 					aux.stream().filter(Objects::nonNull).forEachOrdered(listaExcepciones::add);
