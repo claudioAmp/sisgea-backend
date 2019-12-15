@@ -22,14 +22,14 @@ public class IpmMcService implements IIpmMcService {
 		this.ipmMcMapper = ipmMcMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IpmMc> buscarPorCriterios(CriterioBusquedaIpmMc criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		return ipmMcMapper.buscarPorCriterios(criterioPaginacion);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IpmMcDetalle buscarDetalle(CriterioBusquedaIpmMc criterio) {
 		return this.ipmMcMapper.buscarDetalle(criterio).orElseThrow(

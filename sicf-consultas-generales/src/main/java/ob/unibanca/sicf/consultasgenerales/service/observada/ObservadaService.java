@@ -22,14 +22,14 @@ public class ObservadaService implements IObservadaService {
 		this.observadaMapper = observadaMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Observada> buscarPorCriterios(CriterioBusquedaObservada criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		return observadaMapper.buscarPorCriterios(criterioPaginacion);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public ObservadaDetalle buscarDetalle(CriterioBusquedaObservada criterio) {
 		return this.observadaMapper.buscarDetalle(criterio).orElseThrow(

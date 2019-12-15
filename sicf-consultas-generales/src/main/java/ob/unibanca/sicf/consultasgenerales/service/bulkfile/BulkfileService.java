@@ -22,14 +22,14 @@ public class BulkfileService implements IBulkfileService {
 		this.bulkfileMapper = bulkfileMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePA
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Bulkfile> buscarPorCriterios(CriterioBusquedaBulkfile criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		return bulkfileMapper.buscarPorCriterios(criterioPaginacion);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public BulkfileDetalle buscarDetalle(CriterioBusquedaBulkfile criterio) {
 		return this.bulkfileMapper.buscarDetalle(criterio).orElseThrow(
