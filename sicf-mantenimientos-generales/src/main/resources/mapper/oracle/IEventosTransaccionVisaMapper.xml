@@ -28,7 +28,7 @@
                 #{objetoMantenido.serviceDescription,  	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idClaseTransaccion,   jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idCodigoTransaccion,  jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.indAlicouta,   		jdbcType=NUMERIC, mode=IN}
+                #{objetoMantenido.indAlicuota,   		jdbcType=NUMERIC, mode=IN}
             )
         }
     </select>

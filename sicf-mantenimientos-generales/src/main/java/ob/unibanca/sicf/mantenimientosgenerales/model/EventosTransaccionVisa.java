@@ -21,5 +21,5 @@ public class EventosTransaccionVisa {
 	String descripcionClaseTransaccion;
 	Integer idCodigoTransaccion;
 	String descripcionCodigoTransaccion;
-	Integer indAlicuota;
+	Boolean indAlicuota;
 }
