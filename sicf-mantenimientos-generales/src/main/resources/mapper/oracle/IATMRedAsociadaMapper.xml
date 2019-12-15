@@ -33,6 +33,8 @@
             id_institucion  = #{idInstitucion}
     </select>
 
+    <!--  NO TOMAR EN CUENTA LA SEGUNDA LLAMADA AL ATRIBUTO TIPO, ES PARA FINES DE REUTILIZAR
+      EL SP COMPARTIDO CON EL MANTENIMIENTO DE ATM RED UNICARD -->
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_ATM(
@@ -40,6 +42,7 @@
                 #{objetoMantenido.tipo,           jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idATM,          jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idInstitucion,  jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.tipo,           jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nombre,         jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.direccion,      jdbcType=VARCHAR, mode=IN},
                 #{usuario,                        jdbcType=VARCHAR, mode=IN}
