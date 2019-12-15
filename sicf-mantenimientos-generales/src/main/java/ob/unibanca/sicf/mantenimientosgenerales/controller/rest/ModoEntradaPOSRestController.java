@@ -57,7 +57,7 @@ public class ModoEntradaPOSRestController {
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ModoEntradaPOS actualizarModoEntradaPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idModoEntradaPOS,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[A-Z0-9]*") @PathVariable String idModoEntradaPOS,
 			@Validated @RequestBody ModoEntradaPOS modoEntradaPOS) {
 		return this.modoEntradaPOSService.actualizarModoEntradaPOS(idMembresia, idModoEntradaPOS, modoEntradaPOS);
 	}
@@ -67,7 +67,7 @@ public class ModoEntradaPOSRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarModoEntradaPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idModoEntradaPOS) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[A-Z0-9]*") @PathVariable String idModoEntradaPOS) {
 		this.modoEntradaPOSService.eliminarModoEntradaPOS(idMembresia, idModoEntradaPOS);
 	}
 }

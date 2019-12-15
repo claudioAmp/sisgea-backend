@@ -53,7 +53,7 @@ public class CapacidadTerminalPOSRestController {
 	            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public CapacidadTerminalPOS actualizarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idTerminalPOS,
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[A-Z0-9]*") @PathVariable String idTerminalPOS,
 			@Validated @RequestBody CapacidadTerminalPOS capacidadTerminalPOS) {
 		return this.capacidadTerminalPOSService.actualizarCapacidadTerminalPOS(idMembresia, idTerminalPOS, capacidadTerminalPOS);
 	}
@@ -62,7 +62,7 @@ public class CapacidadTerminalPOSRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarCapacidadTerminalPOS(
 			@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z]") @PathVariable String idMembresia,
-			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]*") @PathVariable String idTerminalPOS) {
+			@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[A-Z0-9]*") @PathVariable String idTerminalPOS) {
 		this.capacidadTerminalPOSService.eliminarCapacidadTerminalPOS(idMembresia, idTerminalPOS);
 	}
 	

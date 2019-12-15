@@ -16,7 +16,7 @@ public class CapacidadTerminalPOS{
 	
 	private String idMembresia;
 	private String descripcionMembresia;
-	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[0-9]+", groups = IRegistro.class)
+	@IdCadena(minLength = 1, maxLength = 2, regexpPattern = "[A-Z0-9]+", groups = IRegistro.class)
 	private String idTerminalPOS;
 	@CaracterRequerido(maxLength = 60)
 	private String descripcionTerminalPOS;
