@@ -10,6 +10,12 @@
 		<if  test="fechaAfectacionInicio != null and fechaAfectacionFin != null">
 			 a.FECHA_AFECTACION_VISA BETWEEN #{fechaAfectacionInicio}  AND #{fechaAfectacionFin}
 		</if>
+		<if  test="invoiceDateInicio != null and invoiceDateFin != null">
+			 a.INVOICE_DATE BETWEEN #{invoiceDateInicio}  AND #{invoiceDateFin}
+		</if>
+		<if  test="billingLine != null">
+			 a.BILLING_LINE = #{billingLine}
+		</if>
 	</sql>
 
  	<sql id ="fragmentoWhereMultiples">
@@ -29,8 +35,6 @@
 		</if>
  	 </sql>
  	 
- 	
- 	
  	 <sql id = "fragmentoFiltrosOrdenaciones">
  	 	<if  test="filtroFechaAfectacionVisa != null " >
 			AND FECHA_AFECTACION_VISA = #{filtroFechaAfectacionVisa}

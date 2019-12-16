@@ -20,9 +20,16 @@ public class CriterioBusquedaFacturaVisa {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaAfectacionFin;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date invoiceDateInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date invoiceDateFin;
+    
 	private List<String>  entitiesType;
 	
-	private List<Integer> instituciones;
+    private List<Integer> instituciones;
+    
+    private String billingLine;
 	
 	//filtros
 	String filtroIdRegistroVisa;
