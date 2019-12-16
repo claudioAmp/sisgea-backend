@@ -16,5 +16,10 @@ public class DistribucionVisaEventosDetalle {
 
     private int instUnits;
     private double valorTransaccionInst;
+
+    // Solo para actualización, no son propios de la entidades, heredados de DistribucionVisaEventos
+    
+    private String secuenciaAgrupada;
+    private boolean indUnits;
     
 }

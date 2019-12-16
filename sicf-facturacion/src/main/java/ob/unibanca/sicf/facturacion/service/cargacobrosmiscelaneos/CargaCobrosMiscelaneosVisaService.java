@@ -280,6 +280,12 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 						stmt.executeBatch();
 						conn.commit();
 					}
+					
+					PreparedStatement stmtUpdate = conn.prepareStatement("{CALL PKG_CARGA.PRC_ACTUALIZAR_REGISTROS_VISA (?)}");
+					TypesUtil.validarBDFecha(stmtUpdate,  1, aux.getInvoiceDate());
+					stmtUpdate.addBatch();
+					stmtUpdate.executeBatch();
+					conn.commit();
 				}catch(SQLException e){
 					if (conn != null) {
 						try {

@@ -21,7 +21,7 @@
 		</collection>
 	</resultMap>
 
-	<select id="buscarRegistrosDistribucionEventosVisa" resultMap="mapDistribucionVisaEventos">
+    <sql id="consultaVistaDistribucion">
         SELECT 
             SECUENCIA_AGRUPADA,
             EVENT_ID, 
@@ -38,6 +38,25 @@
             ID_INSTITUCION,
             DESCRIPCION_INSTITUCION
         FROM VIE_DIST_VISA_EVENTOS_PORCENTUAL
+    </sql>
+
+	<select id="buscarRegistrosDistribucionEventosVisa" resultMap="mapDistribucionVisaEventos">
+       <include refid="consultaVistaDistribucion" />
 	</select>
     
+	<select id="buscarRegistroDistribucionEventosVisa" resultMap="mapDistribucionVisaEventos">
+       <include refid="consultaVistaDistribucion" />
+		WHERE SECUENCIA_AGRUPADA = #{secuenciaAgrupada}
+	</select>
+
+	<update id="actualizarDistribucionVisaEventos">
+		UPDATE MOV_FACTURACION_VISA_EVENTOS_DIST_PORCENTUAL
+		SET IND_UNITS 				= #{indUnits},
+			INST_UNITS 				= #{instUnits},
+			VALOR_TRANSACCION_INST 	= #{valorTransaccionInst}
+		WHERE
+				SECUENCIA_AGRUPADA = #{secuenciaAgrupada} 
+			AND	ID_INSTITUCION_EMISORA = #{idInstitucion}
+	</update>
+
 </mapper>
