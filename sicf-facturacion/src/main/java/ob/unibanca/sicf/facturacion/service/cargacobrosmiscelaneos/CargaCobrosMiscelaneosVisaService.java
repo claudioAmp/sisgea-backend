@@ -32,7 +32,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import ob.unibanca.sicf.facturacion.model.FacturaVisa;
 
 import javax.sql.DataSource;
 @Service
