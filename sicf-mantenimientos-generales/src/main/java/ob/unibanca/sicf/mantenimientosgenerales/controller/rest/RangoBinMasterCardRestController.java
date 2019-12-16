@@ -22,7 +22,7 @@ public class RangoBinMasterCardRestController {
 	
 	
 	//@PreAuthorize("hasPermission('MANT_BIN_VISA', '2')")
-	@GetMapping(value = "/rangoBinesMC")
+	//@GetMapping(value = "/rangoBinesMC")
 	public List<RangoBINMasterCard> buscarTodosBINs() {
 		return this.rangoBinMasterCard.buscarTodosBinesMasterCard();
 	}
