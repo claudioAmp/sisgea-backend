@@ -1,5 +1,5 @@
 package ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos;
-
+import ob.unibanca.sicf.consultasgenerales.model.facturavisa.FacturaVisa;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.error.model.ErrorResponse;
 import ob.unibanca.sicf.facturacion.mapper.ICargaCobrosMiscelaneosMapper;
