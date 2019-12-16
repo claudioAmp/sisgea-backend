@@ -25,7 +25,7 @@ public class CompensacionService implements  ICompensacionService{
 		this.compensacionMapper = compensacionMapper;
 	}
 
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Compensacion> buscarPorCriterios(CriterioBusquedaCompensacion criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);

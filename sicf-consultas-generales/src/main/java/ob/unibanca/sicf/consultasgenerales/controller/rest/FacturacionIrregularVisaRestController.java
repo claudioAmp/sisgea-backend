@@ -24,7 +24,7 @@ public class FacturacionIrregularVisaRestController {
 
     @PreAuthorize("hasPermission('CON_FACTURA_VISA_IRR', '2')")
     @GetMapping(value = "/facturaciones-irregular-visa")
-    public List<FacturacionIrregularVisa> buscarTodosBINs() {
+    public List<FacturacionIrregularVisa> buscarTodasFacturacionesIrregularVisa() {
         return this.facturacionIrregularVisaService.buscarTodosFacturacionIrregularVisa();
     }
 }

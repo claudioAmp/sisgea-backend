@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.facturacion.model;
+package ob.unibanca.sicf.consultasgenerales.model.facturavisa;
 
 import java.util.Date;
 
@@ -6,15 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.spring.validation.validation.CaracterRequerido;
-import ob.commons.spring.validation.validation.IdNumerico;
-import ob.commons.spring.validation.validation.group.IRegistro;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FacturaVisa {
+	String idRegistroVisa;
 	String billingPeriod; //BILLING_PERIOD	(null)
     Date invoiceDate;        //INVOICE_DATE	D
     String invoiceAccount;        //INVOICE_ACCOUNT	(null)
@@ -29,10 +27,11 @@ public class FacturaVisa {
     String billingLine;        //BILLING_LINE	(null)
     String type;        //TYPE	(null)
     String rateType;        //RATE_TYPE	(null)
-    int units;        //UNITS	N
+    Integer units;        //UNITS	N
     String rateCur;        //RATE_CUR	(null)
-    double rate;        //RATE	N
-    double foreignExchange;        //FOREIGN_EXCHANGE_RATE	N
+    Double rate;        //RATE	N
+    Double foreignExchange;        //FOREIGN_EXCHANGE_RATE	N
     String billingCurrency;        //BILLING_CURRENCY	(null)
-    double total;        //TOTAL	N
+    Double total; 
+    Date fechaAfectacionVisa;//TOTAL	N
 }

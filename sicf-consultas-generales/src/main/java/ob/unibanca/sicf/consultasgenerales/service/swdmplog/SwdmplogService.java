@@ -24,20 +24,20 @@ public class SwdmplogService implements ISwdmplogService {
 		this.swdmplogMapper = swdmplogMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<TxnSwdmplog> buscarPorCriterios(CriterioBusquedaSwdmplog criterioBusqueda) {
 		return this.swdmplogMapper.buscarPorCriterios(criterioBusqueda);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<TxnSwdmplog> buscarPaginada(CriterioBusquedaSwdmplog criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		return swdmplogMapper.buscarPaginada(criterioPaginacion);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public TxnSwdmplogDetalle buscarDetalle(CriterioBusquedaSwdmplog criterio) {
 		return this.swdmplogMapper.buscarDetalle(criterio).orElseThrow(

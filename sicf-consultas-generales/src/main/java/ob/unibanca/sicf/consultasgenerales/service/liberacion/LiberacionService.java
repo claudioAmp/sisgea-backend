@@ -19,7 +19,7 @@ public class LiberacionService implements ILiberacionService {
 		this.liberacionMapper = liberacionMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<Liberacion> buscarPorCriterios(CriterioBusquedaLiberacion criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);

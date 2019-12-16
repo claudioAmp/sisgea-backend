@@ -19,7 +19,7 @@ public class IncomingVisaTC10Service implements IIncomingVisaTC10Service {
 		this.incomingVisaTC10Mapper = incomingVisaTC10Mapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IncomingVisaTC10TCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaIncomingVisaTC10 criterioBusqueda,
 	                                                                 int pageNo, int pageSize) {

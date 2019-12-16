@@ -22,7 +22,7 @@ public class IncomingVisaTC48Service implements IIncomingVisaTC48Service {
 		this.incomingVisaTC48Mapper = incomingVisaTC48Mapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IncomingVisaTC48> buscaPorCriteriosPaginado(CriterioBusquedaIncomingVisaTC48 criterioBusqueda,
 	                                                        int pageNo, int pageSize) {
@@ -30,7 +30,7 @@ public class IncomingVisaTC48Service implements IIncomingVisaTC48Service {
 		return incomingVisaTC48Mapper.buscarPorCriterios(criterioBusqueda);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTC48TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR0(criterio);
