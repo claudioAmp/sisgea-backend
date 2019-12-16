@@ -30,6 +30,7 @@ public class CriterioBusquedaPMP {
 	private String numeroTarjeta;
 	
 	//filtros de cabecera de grilla
+	private String filtroFechaProceso;
     private String filtroBinAdquirente;
     private String filtroNumeroTarjeta;
     private String filtroNombreEstablecimiento;
@@ -63,6 +64,7 @@ public class CriterioBusquedaPMP {
 	private String filtroOrigenConciliacion;
 	
 	//Ordenamiento
+	private String ordenFechaProceso;
 	private String ordenBinAdquirente;
     private String ordenNumeroTarjeta;
     private String ordenNombreEstablecimiento;
@@ -94,6 +96,5 @@ public class CriterioBusquedaPMP {
 	private String ordenTraceNumber;
 	private String ordenAccountIdentification;
 	private String ordenOrigenConciliacion;
-
 	
 }

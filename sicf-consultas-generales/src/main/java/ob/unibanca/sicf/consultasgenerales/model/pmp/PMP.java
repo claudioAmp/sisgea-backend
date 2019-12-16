@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.consultasgenerales.model.binvisa.BINVisa;
-import ob.unibanca.sicf.consultasgenerales.model.binvisa.BINVisa.BINVisaBuilder;
 
 @Data
 @Builder
@@ -17,6 +15,7 @@ public class PMP {
 	//Campos filtros de consulta
 	String idMovIncomingPMP;
 	String idCodigoTransaccionPMP;
+	String descripcionCodigoTransaccionPMP;
     String idProductoPMP;
     Date fechaIncoming;
     String binAdquirente;
@@ -30,6 +29,7 @@ public class PMP {
     String idOrigenArchivo;
     String origen;
     Integer idMoneda;
+    String descripcionMoneda;
     Double tipoCambio;
     String medioTransaccion;
     Date fechaTransaccion;
