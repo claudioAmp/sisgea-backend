@@ -6,16 +6,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ob.unibanca.sicf.consultasgenerales.mapper.IFacturacionVisaMapper;
+import ob.unibanca.sicf.consultasgenerales.mapper.IFacturaVisaMapper;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.facturavisa.CriterioBusquedaFacturaVisa;
 import ob.unibanca.sicf.consultasgenerales.model.facturavisa.FacturaVisa;
 
 @Service
 public class FacturaVisaService implements  IFacturaVisaService{
 
-	private final IFacturacionVisaMapper facturaMapper;
+	private final IFacturaVisaMapper facturaMapper;
 
-	public FacturaVisaService(IFacturacionVisaMapper facturaMapper) {
+	public FacturaVisaService(IFacturaVisaMapper facturaMapper) {
 		this.facturaMapper = facturaMapper;
 	}
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)

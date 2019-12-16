@@ -197,13 +197,16 @@
 		</if>
 		
 		
-		
-		
-		
-		
-		
-		
-		
  	 </sql>
+ 	 
+ 	 
+ 	 	<select id="buscarPorCriterios" parameterType="CriterioBusquedaFacturaVisa"  resultType="FacturaVisa" statementType="PREPARED">	
+		<include refid="consultaFactura" />
+		<where>
+			<include refid="fragmentoWhere"/> 
+			<include refid="fragmentoWhereMultiples"/>
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
+   	</select>
  
 </mapper>
