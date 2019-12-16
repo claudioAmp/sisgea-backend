@@ -25,7 +25,7 @@ public class IncomingVisaTC5Service implements IIncomingVisaTC5Service {
 		this.incomingVisaTC5Mapper = incomingVisaTC5Mapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IncomingVisaTC5> buscaPorCriteriosTC5PorPagina(CriterioBusquedaIncomingVisaTC5 criterioBusqueda,
 	                                                           int pageNo, int pageSize) {
@@ -33,7 +33,7 @@ public class IncomingVisaTC5Service implements IIncomingVisaTC5Service {
 		return incomingVisaTC5Mapper.buscarPorCriteriosTC5(criterioBusqueda);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTC5TCR0 buscarPorIdSecuenciaTC5TCR0(CriterioBusquedaIncomingVisa criterio) {
 		return this.incomingVisaTC5Mapper.buscarPorIdSecuenciaTC5TCR0(criterio);

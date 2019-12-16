@@ -23,14 +23,14 @@ public class DcinChargeService implements IDcinChargeService {
 		this.dcinChargeMapper = dcinChargeMapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<DcinCharge> buscarPorCriterios(CriterioBusquedaDcinCharge criterioPaginacion, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		return dcinChargeMapper.buscarPorCriterios(criterioPaginacion);
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public DcinChargeDetalle buscarDetalle(CriterioBusquedaDcinCharge criterio) {
 		return this.dcinChargeMapper.buscarDetalle(criterio).orElseThrow(

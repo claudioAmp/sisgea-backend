@@ -20,7 +20,7 @@ public class OutgoingVisaTC10Service implements IOutgoingVisaTC10Service {
 		this.outgoingVisaTC10Mapper = outgoingVisaTC10Mapper;
 	}
 	
-	@TruncablePAN
+	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<OutgoingVisaTC10TCR0> buscaPorCriteriosTCR0PorPagina(CriterioBusquedaOutgoingVisaTC10 criterioBusqueda,
 	                                                                 int pageNo, int pageSize) {
