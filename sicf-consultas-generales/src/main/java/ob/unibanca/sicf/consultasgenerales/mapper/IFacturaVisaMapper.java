@@ -6,7 +6,7 @@ import ob.unibanca.sicf.consultasgenerales.model.criterio.facturavisa.CriterioBu
 import ob.unibanca.sicf.consultasgenerales.model.facturavisa.FacturaVisa;
 
 @Mapper
-public interface IFacturacionVisaMapper {
+public interface IFacturaVisaMapper {
 	
 	public Page<FacturaVisa> buscarPorCriterios(CriterioBusquedaFacturaVisa criterioPaginacion);
 
