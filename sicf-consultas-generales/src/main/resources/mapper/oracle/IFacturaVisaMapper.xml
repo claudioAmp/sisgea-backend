@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IFacturaVisaMapper">
+    <sql id="consultaFactura">
+        SELECT *
+            FROM VIE_CON_MOV_FACTURA_VISA a
+    </sql>
+    
+    <sql id = "fragmentoWhere">
+		<if  test="fechaAfectacionInicio != null and fechaAfectacionFin != null">
+			 a.FECHA_AFECTACION_VISA BETWEEN #{fechaAfectacionInicio}  AND #{fechaAfectacionFin}
+		</if>
+	</sql>
+
+ 	<sql id ="fragmentoWhereMultiples">
+ 	
+ 		<if test="instituciones !=null and instituciones.size()>0">
+			AND a.ID_INSTITUCION IN 
+			<foreach item="item" index="index" collection="instituciones" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		
+		<if test="entitiesType !=null and entitiesType.size()>0">
+			AND a.ENTITY_TYPE IN 
+			<foreach item="item" index="index" collection="entitiesType" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+ 	 </sql>
+ 	 
+ 	
+ 	
+ 	 <sql id = "fragmentoFiltrosOrdenaciones">
+ 	 	<if  test="filtroFechaAfectacionVisa != null " >
+			AND FECHA_AFECTACION_VISA = #{filtroFechaAfectacionVisa}
+		</if>
+		<if  test="filtroIdRegistroVisa != null " >
+			AND ID_REGISTRO_VISA LIKE #{filtroIdRegistroVisa}
+		</if>
+		<if  test="filtroBillingPeriod != null " >
+			AND BILLING_PERIOD LIKE #{filtroBillingPeriod}
+		</if>
+		<if  test="filtroInvoiceDate != null " >
+			AND INVOICE_DATE = #{filtroInvoiceDate}
+		</if>
+		<if  test="filtroInvoiceAccount != null " >
+			AND INVOICE_ACCOUNT LIKE #{filtroInvoiceAccount}
+		</if>
+		<if  test="filtroName != null " >
+			AND NAME LIKE #{filtroName}
+		</if>
+		<if  test="filtroInvoiceId != null " >
+			AND INVOICE_ID LIKE #{filtroInvoiceId}
+		</if>
+		<if  test="filtroSubInvoice != null " >
+			AND SUB_INVOICE LIKE #{filtroSubInvoice}
+		</if>
+		<if  test="filtroEntityType != null " >
+			AND ENTITY_TYPE LIKE #{filtroEntityType}
+		</if>
+		<if  test="filtroEntityId != null " >
+			AND ENTITY_ID LIKE #{filtroEntityId}
+		</if>
+		<if  test="filtroBinMap != null " >
+			AND BIN_MAP LIKE #{filtroBinMap}
+		</if>
+		<if  test="filtroSettlementId != null " >
+			AND SETTLEMENT_ID LIKE #{filtroSettlementId}
+		</if>
+		<if  test="filtroDescription != null " >
+			AND DESCRIPTION LIKE #{filtroDescription}
+		</if>
+		<if  test="filtroBillingLine != null " >
+			AND BILLING_LINE LIKE #{filtroBillingLine}
+		</if>
+		<if  test="filtroType != null " >
+			AND TYPE LIKE #{filtroType}
+		</if>
+		<if  test="filtroRateType != null " >
+			AND RATE_TYPE LIKE #{filtroRateType}
+		</if>
+		<if  test="filtroUnits != null " >
+			AND UNITS LIKE #{filtroUnits}
+		</if>
+		<if  test="filtroRateCur != null " >
+			AND RATE_CUR LIKE #{filtroRateCur}
+		</if>
+		<if  test="filtroRate != null " >
+			AND RATE LIKE #{filtroRate}
+		</if>
+		<if  test="filtroForeignExchange != null " >
+			AND FOREIGN_EXCHANGE_RATE LIKE #{filtroForeignExchange}
+		</if>
+		<if  test="filtroBillingCurrency != null " >
+			AND BILLING_CURRENCY LIKE #{filtroBillingCurrency}
+		</if>
+		<if  test="filtroTotal != null " >
+			AND TOTAL LIKE #{filtroTotal}
+		</if>
+		<if  test="filtroInstitucion != null " >
+			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
+			AND CONCAT(ID_INSTITUCION, UPPER(DESC_ID_INSTITUCION)) LIKE UPPER(#{pFiltroIdTransaccion})
+		</if>
+		
+		<if  test="ordenInstitucion != null " >
+		ORDER BY
+			FECHA_AFECTACION_VISA  ${ordenInstitucion}
+		</if>
+		<if  test="ordenIdRegistroVisa != null " >
+		ORDER BY
+			ID_REGISTRO_VISA  ${ordenIdRegistroVisa}
+		</if>
+		<if  test="ordenBillingPeriod != null " >
+		ORDER BY
+			BILLING_PERIOD  ${ordenBillingPeriod}
+		</if>
+		<if  test="ordenInvoiceDate != null " >
+		ORDER BY
+			INVOICE_DATE  ${ordenInvoiceDate}
+		</if>
+		<if  test="ordenInvoiceAccount != null " >
+		ORDER BY
+			INVOICE_ACCOUNT  ${ordenInvoiceAccount}
+		</if>
+		<if  test="ordenName != null " >
+		ORDER BY
+			NAME  ${ordenName}
+		</if>
+		<if  test="ordenInvoiceId != null " >
+		ORDER BY
+			INVOICE_ID  ${ordenInvoiceId}
+		</if>
+		<if  test="ordenSubInvoice != null " >
+		ORDER BY
+			SUB_INVOICE  ${ordenSubInvoice}
+		</if>
+		<if  test="ordenEntityType != null " >
+		ORDER BY
+			ENTITY_TYPE  ${ordenEntityType}
+		</if>
+		<if  test="ordenEntityId != null " >
+		ORDER BY
+			ENTITY_ID  ${ordenEntityId}
+		</if>
+		<if  test="ordenBinMap != null " >
+		ORDER BY
+			BIN_MAP  ${ordenBinMap}
+		</if>
+		<if  test="ordenSettlementId != null " >
+		ORDER BY
+			SETTLEMENT_ID  ${ordenSettlementId}
+		</if>
+		<if  test="ordenDescription != null " >
+		ORDER BY
+			DESCRIPTION  ${ordenDescription}
+		</if>
+		<if  test="ordenBillingLine != null " >
+		ORDER BY
+			BILLING_LINE  ${ordenBillingLine}
+		</if>
+		<if  test="ordenType != null " >
+		ORDER BY
+			TYPE  ${ordenType}
+		</if>
+		<if  test="ordenRateType != null " >
+		ORDER BY
+			RATE_TYPE  ${ordenRateType}
+		</if>
+		<if  test="ordenUnits != null " >
+		ORDER BY
+			UNITS  ${ordenUnits}
+		</if>
+		<if  test="ordenRateCur != null " >
+		ORDER BY
+			RATE_CUR  ${ordenRateCur}
+		</if>
+		<if  test="ordenRate != null " >
+		ORDER BY
+			RATE  ${ordenRate}
+		</if>
+		<if  test="ordenForeignExchange != null " >
+		ORDER BY
+			FOREIGN_EXCHANGE_RATE  ${ordenForeignExchange}
+		</if>
+		<if  test="ordenBillingCurrency != null " >
+		ORDER BY
+			BILLING_CURRENCY  ${ordenBillingCurrency}
+		</if>
+		<if  test="ordenTotal != null " >
+		ORDER BY
+			TOTAL  ${ordenTotal}
+		</if>
+		<if  test="ordenInstitucion != null " >
+		ORDER BY
+			ID_INSTITUCION  ${ordenInstitucion}
+		</if>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+ 	 </sql>
+ 
+</mapper>
