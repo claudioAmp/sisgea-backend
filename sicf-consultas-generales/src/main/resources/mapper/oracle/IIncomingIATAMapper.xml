@@ -8,6 +8,7 @@
     </sql>
         
     <sql id = "fragmentoWhere">
+    <!--  
     	<if  test="idMembresia != null and idMembresia != ''">
 			 a.ID_BIN = #{idMembresia}
 		</if>
@@ -34,16 +35,15 @@
 		</if>
 		<if  test="idCanal != null and idCanal != ''">
 			 AND a.PAIS = #{idCanal}
-		</if>
+		</if>-->
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 FECHA_PROCESO BETWEEN #{fechaIncomingInicio}  AND #{fechaIncomingFin}
+			 FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 FECHA_PROCESO BETWEEN #{fechaIncoming}  AND #{fechaIncoming}
-		</if>
+		
 	</sql>
 	
 	<sql id = "filtros">
+	<!--  
 		<if  test="filtroFacturacionADP != null" >
 			<bind name="pFiltroFacturacionADP" value="'%' + filtroFacturacionADP + '%'" />
 			AND FACTURACION_ADP LIKE #{pFiltroFacturacionADP}
@@ -194,10 +194,11 @@
 		</if>
 		<if  test="filtroFechaProceso != null" >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
-		</if>
+		</if>-->
 	</sql>
 	
     <sql id="orden">
+    <!--  
 		<if  test="ordenCodigoDebitoCredito != null" >
 			ORDER BY
 				CODIGO_DEBITO_CREDITO  ${ordenCodigoDebitoCredito}
@@ -397,7 +398,7 @@
 		<if  test="ordenFechaProceso != null" >
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
-		</if>
+		</if>-->
     </sql>
 
     <select id="buscarTodos" resultType="IncomingIATA" statementType="PREPARED">

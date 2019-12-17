@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IncomingIATA {
+	Long idIata;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date    fechaProceso;
 	Integer	codigoDebitoCredito;

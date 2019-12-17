@@ -26,14 +26,14 @@ public class IncomingIATARestController {
 	
 	
 	@PreAuthorize("hasPermission('CON_INCOMDINERS', '2')")
-	@GetMapping(value = "/incomingIATA")
+	@GetMapping(value = "/iata")
 	public List<IncomingIATA> buscarTodosBINs() {
 		return this.IncomingIATAService.buscarTodosIncomingIATA();
 	}
 	 
 
 	@PreAuthorize("hasPermission('CON_INCOMDINERS', '2')")
-	@GetMapping(value = "/incomingIATA/pagination")
+	@GetMapping(value = "/iata/pagination")
 	public Pagina<CriterioBusquedaIncomingIATA, IncomingIATA> buscarPorPaginas(
 			Pagina<CriterioBusquedaIncomingIATA, IncomingIATA> criterioPaginacion, CriterioBusquedaIncomingIATA criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
