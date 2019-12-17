@@ -12,18 +12,11 @@
 	<select id="buscarPorCriteriosIrregulares" resultType="Irregular">
 		<include refid="consultaIrregular" />
 		<where>
-			<include refid="fragmentoWhere" />
 			<include refid="fragmentoWhereMultiples" />
 			<include refid="fragmentoFiltrosOrdenaciones" />
 		</where>
 	</select>
 	
-	
-	<sql id = "fragmentoWhere">
-		<!--  <if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
-			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
-		</if> -->
-	</sql>
 	
 	<sql id = "fragmentoWhereMultiples">
 		<if  test="idOrigenArchivo != null and idOrigenArchivo.size()>0"  >
@@ -72,7 +65,7 @@
 			AND CONCAT(ID_INSTITUCION_EMISORA, UPPER(DESC_INSTITUCION_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
 		</if>
 		<if  test="filtroIdInstitucionReceptora != null " >
-			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
 			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		
