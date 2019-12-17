@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import ob.commons.spring.validation.validation.CaracterNoRequerido;
 import ob.commons.spring.validation.validation.CaracterRequerido;
 import ob.commons.spring.validation.validation.IdNumerico;
+import ob.commons.spring.validation.validation.NumeroNoRequerido;
 import ob.commons.spring.validation.validation.group.IRegistro;
 
 @Data
@@ -46,7 +47,7 @@ public class Institucion {
 	@CaracterNoRequerido(minLength = 1, maxLength = 15)
 	private String cuentaContableMonedaAlterna;
 
-	@IdNumerico(maxRange = 99999)
+	@NumeroNoRequerido(maxRange = 99999)
 	private Integer idInstitucionOperador;
 	private String descripcionInstitucionOpe;
 
