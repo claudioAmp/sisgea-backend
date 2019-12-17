@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper
-	namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIrregularMapper">
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IIrregularMapper">
 
 	<!-- CONSULTA DEL IRREGULAR PARA LA GRILLA -->
 	<sql id="consultaIrregular">
@@ -10,12 +9,32 @@
 	</sql>
 
 
-	<select id="buscarPorCriteriosIrregulares">
+	<select id="buscarPorCriteriosIrregulares" resultType="Irregular">
 		<include refid="consultaIrregular" />
+		<where>
+			<include refid="fragmentoWhere" />
+			<include refid="fragmentoWhereMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
 	</select>
 	
-	<sql id = "filtroSecuencia">
-		
+	
+	<sql id = "fragmentoWhere">
+		<!--  <if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if> -->
+	</sql>
+	
+	<sql id = "fragmentoWhereMultiples">
+		<if  test="idOrigenArchivo != null and idOrigenArchivo.size()>0"  >
+			AND a.ORIGEN_ARCHIVO IN 
+				<foreach item="item" index="index" collection="idOrigenArchivo" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+	</sql>
+	
+	<sql id = "fragmentoFiltrosOrdenaciones">
 		<if  test="filtroSecuencia != null " >
 			<bind name="pFiltroSecuencia" value="'%' + filtroSecuencia + '%'" />
 			AND SECUENCIA LIKE #{pFiltroSecuencia}
@@ -57,8 +76,46 @@
 			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		
-		
-		
+		<if  test="ordenSecuencia != null " >
+			ORDER BY
+				 SECUENCIA ${ordenSecuencia}
+		</if>
+		<if  test="ordenIdTipoIrregular != null " >
+			ORDER BY
+				 ID_TIPO_IRREGULAR ${ordenIdTipoIrregular}
+		</if>
+		<if  test="ordenIdMembresia != null " >
+			ORDER BY
+				 ID_MEMBRESIA ${ordenIdMembresia}
+		</if>
+		<if  test="ordenIdOrigen != null " >
+			ORDER BY
+				 ID_ORIGEN ${ordenIdOrigen}
+		</if>
+		<if  test="ordenIdServicio != null " >
+			ORDER BY
+				 ID_SERVICIO ${ordenIdServicio}
+		</if>
+		<if  test="ordenTransaccion != null " >
+			ORDER BY
+				 TRANSACCION ${ordenTransaccion}
+		</if>
+		<if  test="ordenIdCanal != null " >
+			ORDER BY
+				 ID_CANAL ${ordenIdCanal}
+		</if>
+		<if  test="ordenBin != null " >
+			ORDER BY
+				 BIN ${ordenBin}
+		</if>
+		<if  test="ordenIdInstitucionEmisora != null " >
+			ORDER BY
+				 ID_INSTITUCION_EMISORA ${ordenIdInstitucionEmisora}
+		</if>
+		<if  test="ordenIdInstitucionReceptora != null " >
+			ORDER BY
+				 ID_INSTITUCION_RECEPTORA ${ordenIdInstitucionReceptora}
+		</if>
 	</sql>
 
 	
