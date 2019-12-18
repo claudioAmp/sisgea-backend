@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.irregular;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +19,34 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaIrregular {
 	//Criterios
 	Date fechaProceso;
-	Integer idOrigenArchivo;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProcesoFin;
+	List<String> idOrigenArchivo;
 	Integer idTipoIrregular;
 	
-	
 	//Filtros
+	String filtroSecuencia;
+	String filtroIdTipoIrregular;
+	String filtroIdMembresia;
+	String filtroIdOrigen;
+	String filtroIdServicio;
+	String filtroTransaccion;
+	String filtroIdCanal;
+	String filtroBin;
+	String filtroIdInstitucionEmisora;
+	String filtroIdInstitucionReceptora;
+	
+	// Orden
+	String ordenSecuencia;
+	String ordenIdTipoIrregular;
+	String ordenIdMembresia;
+	String ordenIdOrigen;
+	String ordenIdServicio;
+	String ordenTransaccion;
+	String ordenIdCanal;
+	String ordenBin;
+	String ordenIdInstitucionEmisora;
+	String ordenIdInstitucionReceptora;
 }

@@ -20,20 +20,57 @@ public class Irregular {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String idOrigenArchivo;
+	
+	private String desOrigenArchivo;
+	
 	private Integer idTipoIrregular;
-
-	/*private String idMembresia;
+	private String descTipoIrregular;
+	
+	private String idMembresia;
 	private String descMembresia;
+	private Integer idOrigen;
+	private String descOrigen;	
 	private String idServicio;
 	private String descServicio;
-	private Integer idOrigen;
-	private String descOrigen;
-	private Integer idClaseTransaccion;
-	private String descClaseTransaccion;
-	private Integer idCodigoTransaccion;
-	private String descCodigoTransaccion;
+	
+	private String transaccion;
+	private String descripcionCorta;
+	
+	private String idCanal;
+	private String descCanal;
+	private String bin;
+	private String descBin;
 	private Integer idInstitucionEmisora;
 	private String descInstitucionEmisora;
 	private Integer idInstitucionReceptora;
-	private String descInstitucionReceptora;*/
+	private String descInstitucionReceptora;
+	
+	//filtro
+	
+	private String filtroSecuencia;
+	private String filtroIdOrigenArchivo;
+	private String filtroIdTipoIrregular;
+	private String filtroIdMembresia;
+	private String filtroIdOrigen;	
+	private String filtroIdServicio;
+	private String filtroTransaccion;
+	private String filtroIdCanal;
+	private String filtroBin;
+	private String filtroIdInstitucionEmisora;
+	private String filtroIdInstitucionReceptora;
+	//orden
+	private String ordenSecuencia;
+	private String ordenIdOrigenArchivo;
+	private String ordenIdTipoIrregular;
+	private String ordenIdMembresia;
+	private String ordenIdOrigen;	
+	private String ordenIdServicio;
+	private String ordenTransaccion;
+	private String ordenIdCanal;
+	private String ordenBin;
+	private String ordenIdInstitucionEmisora;
+	private String ordenIdInstitucionReceptora;
+
+	
+
 }
