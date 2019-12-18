@@ -34,7 +34,7 @@ public class Institucion {
 	@CaracterNoRequerido(minLength = 1, maxLength = 120)
 	private String direccion;
 
-	private boolean esBancoAdministrador;
+	private Boolean esBancoAdministrador;
 
 	private String tipoInstitucion;
 	private String descripcionTipoInstitucion;
