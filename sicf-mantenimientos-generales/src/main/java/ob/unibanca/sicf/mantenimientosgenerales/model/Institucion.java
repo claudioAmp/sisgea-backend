@@ -39,7 +39,7 @@ public class Institucion {
 	private String tipoInstitucion;
 	private String descripcionTipoInstitucion;
 
-	private boolean esProcesador;
+	private Boolean esProcesador;
 
 	@CaracterNoRequerido(minLength = 1, maxLength = 15)
 	private String cuentaContableMonedaBase;
