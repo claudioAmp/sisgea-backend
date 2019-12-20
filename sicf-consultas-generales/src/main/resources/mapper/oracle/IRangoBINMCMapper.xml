@@ -8,21 +8,15 @@
     </sql>
     
     <sql id = "fragmentoWhere">
-		<!--  <if  test="idBIN != null and idBIN != ''">
-			 a.ID_BIN = #{idBIN}
+		<if  test="issuerAccountRangeLow != null and issuerAccountRangeLow != ''">
+			 a.ISSUER_ACCOUNT_RANGE_LOW = #{issuerAccountRangeLow}
 		</if>
-		<if  test="binProcesador != null and binProcesador != ''">
-			 AND a.BIN_PROCESADOR = #{binProcesador}
+		<if  test="gcmsProductId != null and gcmsProductId != ''">
+			 AND a.GCMS_PRODUCT_ID = #{gcmsProductId}
 		</if>
-		<if  test="region != null and region != ''">
-			 AND a.REGION = #{region}
+		<if  test="issuerAccountRangeHigh != null and issuerAccountRangeHigh != ''">
+			 AND a.ISSUER_ACCOUNT_RANGE_HIGH = #{issuerAccountRangeHigh}
 		</if>
-		<if  test="pais != null and pais.size()>0" >
-			AND a.PAIS IN 
-				<foreach item="item" index="index" collection="pais" open ="(" separator=","  close=")">
-					#{item}
-				</foreach>
-		</if>-->
 	</sql>
 	
 	<sql id = "fragmentoFiltros">
@@ -431,12 +425,12 @@
 		</if>
     </sql>
 
-    <select id="buscarTodos" resultType="RangoBINVisa" statementType="PREPARED">
+    <select id="buscarTodos" resultType="RangoBinMC" statementType="PREPARED">
        <include refid="consultaVistaMant" />
        <include refid="fragmentoOrden"/>
     </select>
     
-	<select id="buscarPorCriterios" parameterType="CriterioBusquedaRangoBinVisa"  resultType="RangoBINVisa" statementType="PREPARED">	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaRangoBinMC"  resultType="RangoBinMC" statementType="PREPARED">	
 		<include refid="consultaVistaMant" />
 		<where>
 			<include refid="fragmentoWhere"/>

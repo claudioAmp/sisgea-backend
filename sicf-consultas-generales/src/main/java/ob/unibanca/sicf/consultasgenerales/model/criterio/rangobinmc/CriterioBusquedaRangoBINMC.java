@@ -16,6 +16,9 @@ import ob.unibanca.sicf.consultasgenerales.model.rangobinvisa.RangoBINVisa.Rango
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriterioBusquedaRangoBINMC {
+	String issuerAccountRangeLow;
+	String issuerAccountRangeHigh;
+	String gcmsProductId;
 	//orden de cabeceras
 	String filtroTransactionRoutingIndicator;
 	String filtroTableId;

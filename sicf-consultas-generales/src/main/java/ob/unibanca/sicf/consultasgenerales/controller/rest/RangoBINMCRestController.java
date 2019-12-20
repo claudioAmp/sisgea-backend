@@ -25,7 +25,7 @@ private final IRangoBINMCService rangoBINMCService;
 	}
 	
 	
-	@PreAuthorize("hasPermission('CON_BIN_mc', '2')")
+	@PreAuthorize("hasPermission('CON_BIN_MC', '2')")
 	@GetMapping(value = "/rangoBinesMC")
 	public List<RangoBINMC> buscarTodosBINs() {
 		return this.rangoBINMCService.buscarTodosRangoBINMC();
@@ -38,7 +38,7 @@ private final IRangoBINMCService rangoBINMCService;
 		
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<RangoBINMC> lista = this.rangoBINMCService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(),
-				criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
+				/*criterioPaginacion.getPageNum()*/100,/* criterioPaginacion.getPageSize()*/50);
 		
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
