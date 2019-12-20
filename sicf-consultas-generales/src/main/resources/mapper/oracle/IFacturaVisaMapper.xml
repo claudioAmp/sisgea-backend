@@ -7,8 +7,8 @@
     </sql>
     
     <sql id = "fragmentoWhere">
-		<if  test="fechaAfectacionInicio != null and fechaAfectacionFin != null">
-			 a.FECHA_AFECTACION_VISA BETWEEN #{fechaAfectacionInicio}  AND #{fechaAfectacionFin}
+		<if  test="fechaAfectacionVisaInicio != null and fechaAfectacionVisaFin != null">
+			 a.FECHA_AFECTACION_VISA BETWEEN #{fechaAfectacionVisaInicio}  AND #{fechaAfectacionVisaFin}
 		</if>
 		<if  test="invoiceDateInicio != null and invoiceDateFin != null">
 			 a.INVOICE_DATE BETWEEN #{invoiceDateInicio}  AND #{invoiceDateFin}

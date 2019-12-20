@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaFacturaVisa {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaAfectacionInicio;
+	private Date fechaAfectacionVisaInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date fechaAfectacionFin;
+	private Date fechaAfectacionVisaFin;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date invoiceDateInicio;

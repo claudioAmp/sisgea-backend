@@ -7,4 +7,6 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.EventosVisa;
 public interface IEventosVisaService {
 	
 	public List<EventosVisa> buscarTodosEventosVisa();
+	public List<EventosVisa> buscaridDescripcionEventosVisa();
+
 }

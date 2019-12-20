@@ -11,4 +11,9 @@
         <include refid="consulta"/>
     </select>
     
+    <select id="buscarIdDescripcion" resultType="EventosVisa" statementType="PREPARED">
+        SELECT    ID_BILLING_LINE_VISA
+                , SERVICE_DESCRIPTION
+        FROM VIE_MAN_BILLING_LINE_VISA
+    </select>
 </mapper>

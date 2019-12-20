@@ -9,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.unibanca.sicf.mantenimientosgenerales.mapper.IEventosVisaMapper;
 import ob.unibanca.sicf.mantenimientosgenerales.model.EventosVisa;
 
 @Service
 public class EventosVisaService extends MantenibleService<EventosVisa> implements IEventosVisaService {
+
+	IEventosVisaMapper eventosVisaMapper;
 	
 	public EventosVisaService(@Qualifier("IEventosVisaMapper") IMantenibleMapper<EventosVisa> mantenibleMapper) {
 		super(mantenibleMapper);
+		eventosVisaMapper = (IEventosVisaMapper) mantenibleMapper;
 	}
 
 	@Override
@@ -24,5 +28,11 @@ public class EventosVisaService extends MantenibleService<EventosVisa> implement
 		return this.buscarTodos();
 	}
 	
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<EventosVisa> buscaridDescripcionEventosVisa() {
+		return this.eventosVisaMapper.buscaridDescripcion();
+	}
 	
 }
