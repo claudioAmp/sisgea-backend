@@ -8,7 +8,7 @@
     
     <sql id = "fragmentoWhere">
 		<if  test="billingCycleDateInicio != null and billingCycleDateFin != null">
-			 a.BILLING_CYCLE_DATE BETWEEN #{billingCycleDateInicio}  AND #{billingCycleDateFin}
+			AND  a.BILLING_CYCLE_DATE BETWEEN #{billingCycleDateInicio}  AND #{billingCycleDateFin}
 		</if>
 		
 		<if  test="eventId != null">
