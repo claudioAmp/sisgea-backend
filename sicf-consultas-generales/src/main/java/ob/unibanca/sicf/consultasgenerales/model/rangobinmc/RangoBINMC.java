@@ -2,18 +2,20 @@ package ob.unibanca.sicf.consultasgenerales.model.rangobinmc;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.unibanca.sicf.consultasgenerales.model.rangobinvisa.RangoBINVisa;
-import ob.unibanca.sicf.consultasgenerales.model.rangobinvisa.RangoBINVisa.RangoBINVisaBuilder;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class RangoBINMC {
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProceso;
 	String transactionRoutingIndicator;
 	String tableId;
 	String spendControlSwitch;
@@ -29,6 +31,7 @@ public class RangoBINMC {
 	String nonReloadablePrepaidSwitch;
 	String moneysendIndicator;
 	String merchantCleansingServiceParticipation;
+	@DateTimeFormat(pattern = "yy/MM/dd")
 	Date merchantCleansingActivationDate;
 	String memberId;
 	String mealVoucherIndicator;
@@ -39,7 +42,8 @@ public class RangoBINMC {
 	String issuerAccountRangeLow;
 	String issuerAccountRangeHigh;
 	String gcmsProductId;
-	String floorExpirationDate;
+	@DateTimeFormat(pattern = "yy/MM/dd")
+	Date floorExpirationDate;
 	String firstPresentmentReassignmentSwitch;
 	String filler1;
 	String filler2;
@@ -63,7 +67,6 @@ public class RangoBINMC {
 	String anonymousPrepaidIndicator;
 	String activeInactiveCode;
 	String accountLevelManagementParticipationIndicator;
-	String accountLevelManagementActivationDate;
-	
-	
+	@DateTimeFormat(pattern = "yy/MM/dd")
+	Date accountLevelManagementActivationDate;
 }	

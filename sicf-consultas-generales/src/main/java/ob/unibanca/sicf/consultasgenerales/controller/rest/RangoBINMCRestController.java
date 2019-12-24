@@ -38,7 +38,7 @@ private final IRangoBINMCService rangoBINMCService;
 		
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
 		Page<RangoBINMC> lista = this.rangoBINMCService.buscarPorCriterios(criterioPaginacion.getCriterioBusqueda(),
-				/*criterioPaginacion.getPageNum()*/100,/* criterioPaginacion.getPageSize()*/50);
+				criterioPaginacion.getPageNum(),criterioPaginacion.getPageSize());
 		
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}

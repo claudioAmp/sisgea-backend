@@ -8,8 +8,11 @@
     </sql>
     
     <sql id = "fragmentoWhere">
+    	<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
 		<if  test="issuerAccountRangeLow != null and issuerAccountRangeLow != ''">
-			 a.ISSUER_ACCOUNT_RANGE_LOW = #{issuerAccountRangeLow}
+			 AND a.ISSUER_ACCOUNT_RANGE_LOW = #{issuerAccountRangeLow}
 		</if>
 		<if  test="gcmsProductId != null and gcmsProductId != ''">
 			 AND a.GCMS_PRODUCT_ID = #{gcmsProductId}
@@ -20,6 +23,9 @@
 	</sql>
 	
 	<sql id = "fragmentoFiltros">
+		<if  test="filtroFechaProceso != null" >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
 		<if  test="filtroTransactionRoutingIndicator != null" >
 			<bind name="pFiltroTransactionRoutingIndicator" value="'%' + filtroTransactionRoutingIndicator + '%'" />
 			AND TRANSACTION_ROUTING_INDICATOR LIKE #{pFiltroTransactionRoutingIndicator}
@@ -81,8 +87,7 @@
 			AND MERCHANT_CLEANSING_SERVICE_PARTICIPATION LIKE #{pFiltroMerchantCleansingServiceParticipation}
 		</if>
 		<if  test="filtroMerchantCleansingActivationDate != null" >
-			<bind name="pFiltroMerchantCleansingActivationDate" value="'%' + filtroMerchantCleansingActivationDate + '%'" />
-			AND MERCHANT_CLEANSING_ACTIVATION_DATE LIKE #{pFiltroMerchantCleansingActivationDate}
+			AND MERCHANT_CLEANSING_ACTIVATION_DATE = #{filtroMerchantCleansingActivationDate}
 		</if>
 		<if  test="filtroMemberId != null" >
 			<bind name="pFiltroMemberId" value="'%' + filtroMemberId + '%'" />
@@ -121,8 +126,7 @@
 			AND GCMS_PRODUCT_ID LIKE #{pFiltroGcmsProductId}
 		</if>
 		<if  test="filtroFloorExpirationDate != null" >
-			<bind name="pFiltroFloorExpirationDate" value="'%' + filtroFloorExpirationDate + '%'" />
-			AND FLOOR_EXPIRATION_DATE LIKE #{pFiltroFloorExpirationDate}
+			AND FLOOR_EXPIRATION_DATE = #{filtroFloorExpirationDate}
 		</if>
 		<if  test="filtroFirstPresentmentReassignmentSwitch != null" >
 			<bind name="pFiltroFirstPresentmentReassignmentSwitch" value="'%' + filtroFirstPresentmentReassignmentSwitch + '%'" />
@@ -217,12 +221,15 @@
 			AND ACCOUNT_LEVEL_MANAGEMENT_PARTICIPATION_INDICATOR LIKE #{pFiltroAccountLevelManagementParticipationIndicator}
 		</if>
 		<if  test="filtroAccountLevelManagementActivationDate != null" >
-			<bind name="pFiltroAccountLevelManagementActivationDate" value="'%' + filtroAccountLevelManagementActivationDate + '%'" />
-			AND ACCOUNT_LEVEL_MANAGEMENT_ACTIVATION_DATE LIKE #{pFiltroAccountLevelManagementActivationDate}
+			AND ACCOUNT_LEVEL_MANAGEMENT_ACTIVATION_DATE = #{filtroAccountLevelManagementActivationDate}
 		</if>
 	</sql>
     
     <sql id="fragmentoOrden">
+    	<if  test="ordenFechaProceso != null" >
+			ORDER BY
+				FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
 		<if  test="ordenTransactionRoutingIndicator != null" >
 			ORDER BY
 				TRANSACTION_ROUTING_INDICATOR  ${ordenTransactionRoutingIndicator}
