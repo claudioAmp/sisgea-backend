@@ -3,31 +3,31 @@
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ITipoCambioMembMapper">
 	
 	<sql id="consulta">
-		SELECT A.id_membresia		AS id_membresia
-             , B.descripcion      	AS descripcion_membresia
-             , A.fecha_tipo_cambio  AS fecha_tipo_cambio
-             , A.tipo_cambio		AS tipo_cambio
-        FROM MOV_TIPO_CAMBIO_MEMB A
-        LEFT JOIN MAE_MEMBRESIA B ON B.id_membresia = A.id_membresia
-        
+		SELECT *
+		FROM VIE_CON_MOV_TIPO_CAMBIO_MEMB
+	</sql>
+	
+	<sql id="orden">
+		ORDER BY 
+        	fecha_tipo_cambio DESC, 
+        	id_membresia ASC
 	</sql>
 	
 	<select id="buscarTodos" resultType="TipoCambioMemb" statementType="PREPARED">
         <include refid="consulta"/>
-        ORDER BY A.fecha_tipo_cambio DESC, A.id_membresia ASC
+        <include refid="orden"/>
     </select>
     
-    <select id="buscarUno" resultType="TipoCambioMemb" statementType="PREPARED">
+    <select id="buscarPorIdTipoCambio" resultType="TipoCambioMemb" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	<if test="objetoMantenido.fechaTipoCambio != null">
-        		A.fecha_tipo_cambio = #{objetoMantenido.fechaTipoCambio}
+        	<if test="fechaTipoCambio != null">
+        		fecha_tipo_cambio = #{fechaTipoCambio}
         	</if>
-        	<if test="objetoMantenido.idMembresia != null">
-        		AND A.id_membresia = #{objetoMantenido.idMembresia}
+        	<if test="idMembresia != null">
+        		AND id_membresia = #{idMembresia}
         	</if>
-        </where>
-        ORDER BY A.fecha_tipo_cambio DESC, A.id_membresia ASC
+        </where>        
     </select>
     
     

@@ -3,25 +3,26 @@
 <mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.ITipoCambioSBSMapper">
 		
 	<sql id="consulta">
-		SELECT 
-               A.fecha_tipo_cambio  AS fecha_tipo_cambio
-             , A.tipo_cambio		AS tipo_cambio
-        FROM MOV_TIPO_CAMBIO_SBS A
+		SELECT *
+        FROM MOV_TIPO_CAMBIO_SBS
+	</sql>
+	
+	<sql id="orden">
+		ORDER BY fecha_tipo_cambio DESC
 	</sql>
 	
 	<select id="buscarTodos" resultType="TipoCambioSBS" statementType="PREPARED">
         <include refid="consulta"/>
-        ORDER BY fecha_tipo_cambio DESC
+        <include refid="orden"/>
     </select>
     
-    <select id="buscarUno" resultType="TipoCambioSBS" statementType="PREPARED">
+    <select id="buscarIdTipoCambio" resultType="TipoCambioSBS" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	<if test="objetoMantenido.fechaTipoCambio != null">
-        		A.fecha_tipo_cambio = #{objetoMantenido.fechaTipoCambio}
+        	<if test="fechaTipoCambio != null">
+        		fecha_tipo_cambio = #{fechaTipoCambio}
         	</if>
-        </where>        
-        ORDER BY fecha_tipo_cambio DESC
+        </where>
     </select>
     
     <select id="mantener" parameterType="ParametroMantenimiento"

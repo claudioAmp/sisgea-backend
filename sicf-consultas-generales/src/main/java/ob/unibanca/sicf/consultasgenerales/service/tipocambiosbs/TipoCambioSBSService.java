@@ -9,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
+import ob.unibanca.sicf.consultasgenerales.mapper.ITipoCambioSBSMapper;
 import ob.unibanca.sicf.consultasgenerales.model.tipocambiosbs.TipoCambioSBS;;
 
 @Service
 public class TipoCambioSBSService extends MantenibleService<TipoCambioSBS> implements ITipoCambioSBSService{
 	
+	private final ITipoCambioSBSMapper tipoCambioSBSMapper;
+	
 	public TipoCambioSBSService(@Qualifier("ITipoCambioSBSMapper") IMantenibleMapper<TipoCambioSBS> mantenibleMapper) {
 		super(mantenibleMapper);
+		this.tipoCambioSBSMapper = (ITipoCambioSBSMapper) mantenibleMapper;
 	}
 	
 	@Override
@@ -23,21 +27,25 @@ public class TipoCambioSBSService extends MantenibleService<TipoCambioSBS> imple
 	public List<TipoCambioSBS> buscarTodosTipoCambio() {
 		return this.buscarTodos();
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<TipoCambioSBS> buscarIdTipoCambio(TipoCambioSBS tipoCambioSBS){
+		return this.tipoCambioSBSMapper.buscarIdTipoCambio(tipoCambioSBS);
+	}
 			
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS registrarTipoCambio(TipoCambioSBS tipoCambio) {
-		System.out.println(tipoCambio);
 		this.registrar(tipoCambio);
-		return this.buscarUno(tipoCambio).get();
+		return this.tipoCambioSBSMapper.buscarIdTipoCambio(tipoCambio).get(0);
 	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public TipoCambioSBS actualizarTipoCambio(TipoCambioSBS tipoCambio) {
-		System.out.println(tipoCambio);
 		this.actualizar(tipoCambio);
-		return this.buscarUno(tipoCambio).get();
+		return this.tipoCambioSBSMapper.buscarIdTipoCambio(tipoCambio).get(0);
 	}
 	
 	@Override
