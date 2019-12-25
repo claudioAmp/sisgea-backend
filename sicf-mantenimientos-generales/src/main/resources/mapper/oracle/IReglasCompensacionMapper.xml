@@ -31,7 +31,7 @@
 	
 	<sql id="consultaMantView">
 		SELECT *
-            FROM VIEW_MAN_REGLA_COMPENSACION
+            FROM VIE_MAN_REGLA_COMPENSACION
 	</sql>
 	
     <select id="buscarTodosReglasCompensacion" resultMap="resultMap" statementType="PREPARED">
