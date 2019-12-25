@@ -18,7 +18,5 @@ public class CriterioBusquedaFacturaMasterCard {
 	private Date billingCycleDateFin;
 	
 	private String  eventId;
-
-	
     
 }

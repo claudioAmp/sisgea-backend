@@ -13,7 +13,7 @@
 		<if  test="invoiceDateInicio != null and invoiceDateFin != null">
 			AND  a.INVOICE_DATE BETWEEN #{invoiceDateInicio}  AND #{invoiceDateFin}
 		</if>
-		<if  test="billingLine != null">
+		<if  test="billingLine != null and billingLine != ''" >
 			AND  a.BILLING_LINE = #{billingLine}
 		</if>
 	</sql>
@@ -43,64 +43,82 @@
 			AND ID_REGISTRO_VISA LIKE #{filtroIdRegistroVisa}
 		</if>
 		<if  test="filtroBillingPeriod != null " >
-			AND BILLING_PERIOD LIKE #{filtroBillingPeriod}
+			<bind name="pFiltroBillingPeriod" value="'%' + filtroBillingPeriod + '%'"/>
+			AND BILLING_PERIOD LIKE #{pFiltroBillingPeriod}
 		</if>
 		<if  test="filtroInvoiceDate != null " >
 			AND INVOICE_DATE = #{filtroInvoiceDate}
 		</if>
 		<if  test="filtroInvoiceAccount != null " >
-			AND INVOICE_ACCOUNT LIKE #{filtroInvoiceAccount}
+			<bind name="pFiltroInvoiceAccount" value="'%' + filtroInvoiceAccount + '%'"/>
+			AND INVOICE_ACCOUNT LIKE #{pFiltroInvoiceAccount}
 		</if>
 		<if  test="filtroName != null " >
 			AND NAME LIKE #{filtroName}
 		</if>
 		<if  test="filtroInvoiceId != null " >
-			AND INVOICE_ID LIKE #{filtroInvoiceId}
+			<bind name="pFiltroInvoiceId" value="'%' + filtroInvoiceId + '%'"/>
+			AND INVOICE_ID LIKE #{pFiltroInvoiceId}
 		</if>
 		<if  test="filtroSubInvoice != null " >
-			AND SUB_INVOICE LIKE #{filtroSubInvoice}
+			<bind name="pFiltroSubInvoice" value="'%' + filtroSubInvoice + '%'"/>
+			AND SUB_INVOICE LIKE #{pFiltroSubInvoice}
 		</if>
 		<if  test="filtroEntityType != null " >
-			AND ENTITY_TYPE LIKE #{filtroEntityType}
+			<bind name="pFiltroEntityType" value="'%' + filtroEntityType + '%'"/>
+			AND ENTITY_TYPE LIKE #{pFiltroEntityType}
 		</if>
 		<if  test="filtroEntityId != null " >
-			AND ENTITY_ID LIKE #{filtroEntityId}
+			<bind name="pFiltroEntityId" value="'%' + filtroEntityId + '%'"/>
+			AND ENTITY_ID LIKE #{pFiltroEntityId}
 		</if>
 		<if  test="filtroBinMap != null " >
-			AND BIN_MAP LIKE #{filtroBinMap}
+			<bind name="pFiltroBinMap" value="'%' + filtroBinMap + '%'"/>
+			AND BIN_MAP LIKE #{pFiltroBinMap}
 		</if>
 		<if  test="filtroSettlementId != null " >
-			AND SETTLEMENT_ID LIKE #{filtroSettlementId}
+			<bind name="pFiltroSettlementId" value="'%' + filtroSettlementId + '%'"/>
+			AND SETTLEMENT_ID LIKE #{pFiltroSettlementId}
 		</if>
 		<if  test="filtroDescription != null " >
-			AND DESCRIPTION LIKE #{filtroDescription}
+			<bind name="pFiltroDescription" value="'%' + filtroDescription + '%'"/>
+			AND DESCRIPTION LIKE #{pFiltroDescription}
 		</if>
 		<if  test="filtroBillingLine != null " >
-			AND BILLING_LINE LIKE #{filtroBillingLine}
+			<bind name="pFiltroBillingLine" value="'%' + filtroBillingLine + '%'"/>
+			AND BILLING_LINE LIKE #{pFiltroBillingLine}
 		</if>
 		<if  test="filtroType != null " >
-			AND TYPE LIKE #{filtroType}
+			<bind name="pFiltroType" value="'%' + filtroType + '%'"/>
+			AND TYPE LIKE #{pFiltroType}
 		</if>
 		<if  test="filtroRateType != null " >
-			AND RATE_TYPE LIKE #{filtroRateType}
+			<bind name="pFiltroRateType" value="'%' + filtroRateType + '%'"/>
+			AND RATE_TYPE LIKE #{pFiltroRateType}
 		</if>
 		<if  test="filtroUnits != null " >
-			AND UNITS LIKE #{filtroUnits}
+			<bind name="pFiltroUnits" value="'%' + filtroUnits + '%'"/>
+			AND UNITS LIKE #{pFiltroUnits}
 		</if>
 		<if  test="filtroRateCur != null " >
-			AND RATE_CUR LIKE #{filtroRateCur}
+			<bind name="pFiltroRateCur" value="'%' + filtroRateCur + '%'"/>
+			AND RATE_CUR LIKE #{pFiltroRateCur}
 		</if>
 		<if  test="filtroRate != null " >
-			AND RATE LIKE #{filtroRate}
+			<bind name="pFiltroRate" value="'%' + filtroRate + '%'"/>
+			AND RATE LIKE #{pFiltroRate}
 		</if>
 		<if  test="filtroForeignExchange != null " >
-			AND FOREIGN_EXCHANGE_RATE LIKE #{filtroForeignExchange}
+			<bind name="pFiltroForeignExchange" value="'%' + filtroForeignExchange + '%'"/>
+			AND FOREIGN_EXCHANGE_RATE LIKE #{pFiltroForeignExchange}
 		</if>
 		<if  test="filtroBillingCurrency != null " >
-			AND BILLING_CURRENCY LIKE #{filtroBillingCurrency}
+			<bind name="pFiltroBillingCurrency" value="'%' + filtroBillingCurrency + '%'"/>
+			AND BILLING_CURRENCY LIKE #{pFiltroBillingCurrency}
 		</if>
 		<if  test="filtroTotal != null " >
-			AND TOTAL LIKE #{filtroTotal}
+			<bind name="pFiltroTotal" value="'%' + filtroTotal + '%'"/>
+			AND TOTAL LIKE #{pFiltroTotal}
 		</if>
 		<if  test="filtroInstitucion != null " >
 			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
