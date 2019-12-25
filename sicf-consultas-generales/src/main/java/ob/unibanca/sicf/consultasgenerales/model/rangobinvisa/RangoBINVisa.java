@@ -1,5 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.rangobinvisa;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +16,8 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RangoBINVisa {
+	  @DateTimeFormat(pattern = "dd/MM/yyyy")
+	  Date fechaProceso;
 	  String idBIN;
 	  String inicioRango;
 	  String finRango;

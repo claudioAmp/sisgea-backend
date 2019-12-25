@@ -1,6 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.criterio.rangobinvisa;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +19,15 @@ public class CriterioBusquedaRangoBinVisa {
 	private String binProcesador;
 	private String region;
 	private List<String> pais;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoInicio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProcesoFin;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaProceso;
 	//filtro de cabeceras
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	private String filtroIdBIN;
 	private String filtroInicioRango;
 	private String filtroFinRango;
@@ -55,6 +66,7 @@ public class CriterioBusquedaRangoBinVisa {
 	private String filtroTestIndicator;
 	private String filtroReservado3;
 	//orden de cabeceras
+	private String ordenFechaProceso;
 	private String ordenIdBIN;
 	private String ordenInicioRango;
 	private String ordenFinRango;

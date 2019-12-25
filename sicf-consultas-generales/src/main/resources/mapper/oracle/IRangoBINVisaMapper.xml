@@ -8,8 +8,11 @@
     </sql>
     
     <sql id = "fragmentoWhere">
+    	<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
 		<if  test="idBIN != null and idBIN != ''">
-			 a.ID_BIN = #{idBIN}
+			 AND a.ID_BIN = #{idBIN}
 		</if>
 		<if  test="binProcesador != null and binProcesador != ''">
 			 AND a.BIN_PROCESADOR = #{binProcesador}
@@ -26,6 +29,9 @@
 	</sql>
 	
 	<sql id = "fragmentoFiltros">
+		<if  test="filtroFechaProceso != null" >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
 		<if  test="filtroIdBIN != null" >
 			<bind name="pFiltroIdBIN" value="'%' + filtroIdBIN + '%'" />
 			AND ID_BIN LIKE #{pFiltroIdBIN}
@@ -177,6 +183,10 @@
 	</sql>
     
     <sql id="fragmentoOrden">
+    	<if  test="ordenFechaProceso != null" >
+			ORDER BY
+				FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
 		<if  test="ordenIdBIN != null" >
 			ORDER BY
 				ID_BIN  ${ordenIdBIN}

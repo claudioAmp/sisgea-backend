@@ -1,5 +1,9 @@
 package ob.unibanca.sicf.consultasgenerales.model.binvisa;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,4 +31,6 @@ public class BINVisa {
 	String octGeoBlocking;
 	String testIndicator;
 	String oboIndicator;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaProceso;
 }
