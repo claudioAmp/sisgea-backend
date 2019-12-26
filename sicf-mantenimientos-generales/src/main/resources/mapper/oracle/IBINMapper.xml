@@ -3,36 +3,7 @@
 <mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.IBINMapper">
 
     <sql id="consultaVistaMant">
-        SELECT
-               id_bin
-             , descripcion_bin
-             , es_internacional
-             , valor_oif
-             , longitud_pan
-             , id_institucion
-             , descripcion_institucion
-             , descripcion_corta_institucion
-             , id_membresia
-             , descripcion_membresia
-             , id_servicio
-             , descripcion_servicio
-             , id_moneda_base
-             , descripcion_moneda_base
-             , id_moneda_alterna
-             , descripcion_moneda_alterna
-             , id_producto
-             , descripcion_producto
-             , id_programa
-             , abreviatura_programa
-             , descripcion_programa
-             , sre_visa_soles
-             , sre_visa_dolares
-             , si_compensa_ope_bin_visa
-             , si_compensa_ope_sre_soles_visa
-             , si_compensa_ope_sre_dolares_visa
-             , si_factura_evento_bin_visa
-             , si_factura_evento_sre_soles_visa
-             , si_factura_evento_sre_dolares_visa
+        SELECT *
         FROM VIE_MAN_BIN
     </sql>
     
