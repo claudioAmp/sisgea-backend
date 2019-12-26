@@ -57,6 +57,7 @@ public class IncomingVisaTC5 {
 	private String descPosTerminalCapability;
 	private String posEntryMode;
 	private String descPosEntryMode;
+	private String authorizationCode;
 	
 	private String idMembresia;
 	private String descripcionMembresia;

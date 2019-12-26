@@ -82,7 +82,7 @@ public class CriterioBusquedaIncomingVisaTC5 {
 	private String filtroPosEntryMode;
 	private String filtroPosTerminalCapability;
 	private String filtroIdBin;
-	private String filtroAuthorization;
+	private String filtroAuthorizationCode;
 	
 	//Orden
 	private String ordenFechaProceso;
