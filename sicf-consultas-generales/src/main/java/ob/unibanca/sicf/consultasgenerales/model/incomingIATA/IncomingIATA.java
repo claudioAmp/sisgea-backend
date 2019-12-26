@@ -34,7 +34,7 @@ public class IncomingIATA {
 	String  numeroFactura;
 	String	nombrePasajero;
 	String codigoAutorizacion;
-	Long 	montoCreditoDebito;
+	Double 	montoCreditoDebito;
 	String  codigoMonedaIso;	
 
 	

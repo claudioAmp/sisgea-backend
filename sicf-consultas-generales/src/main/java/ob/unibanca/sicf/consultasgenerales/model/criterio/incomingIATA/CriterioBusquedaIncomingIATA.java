@@ -81,7 +81,7 @@ public class CriterioBusquedaIncomingIATA {
 	Integer ordenFechaEmisionBoleto;
 	Integer ordenPeriodoBSP;
 	String	ordenFacturacionADP;
-	Long 	ordenMontoCreditoDebito;
+	Double 	ordenMontoCreditoDebito;
 	Long ordenCodigoAutorizacion;
 	Integer ordenSequenceNumber;
 	Integer ordenInvoiceDate;
