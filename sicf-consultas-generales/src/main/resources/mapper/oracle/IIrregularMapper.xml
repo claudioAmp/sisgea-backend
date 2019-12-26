@@ -42,9 +42,9 @@
 		<if  test="filtroFechaProceso != null " >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
 		</if>
-		<if  test="filtroOrigenArchivo != null " >
-			<bind name="pFiltroOrigenArchivo" value="'%' + filtroOrigenArchivo + '%'" />
-			AND CONCAT(ID_ORIGEN_ARCHIVO, UPPER(DES_ORIGEN_ARCHIVO)) LIKE #{pFiltroOrigenArchivo}
+		<if  test="filtroIdOrigenArchivo != null " >
+			<bind name="pFiltroIdOrigenArchivo" value="'%' + filtroIdOrigenArchivo + '%'" />
+			AND CONCAT(ID_ORIGEN_ARCHIVO, UPPER(DES_ORIGEN_ARCHIVO)) LIKE #{pFiltroIdOrigenArchivo}
 		</if>
 		<if  test="filtroDetalleIrregular != null " >
 			<bind name="pFiltroDetalleIrregular" value="'%' + filtroDetalleIrregular + '%'" />
