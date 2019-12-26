@@ -28,7 +28,7 @@ public class FacturaMasterCard {
 	private Double quantityAmount;
 	private Double rate;
 	private Double charge;
-	private Integer taxCharge;
+	private Double taxCharge;
 	private Double totalCharge;
 	private String sbfExplanatorytext;
 }

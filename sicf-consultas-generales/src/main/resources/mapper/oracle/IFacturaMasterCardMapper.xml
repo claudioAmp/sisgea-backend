@@ -11,14 +11,12 @@
 			AND  a.BILLING_CYCLE_DATE BETWEEN #{billingCycleDateInicio}  AND #{billingCycleDateFin}
 		</if>
 		
-		<if  test="eventId != null">
-			 AND a.EVENT_ID = #{eventId}
+		<if  test="eventId != null and eventId != ''">
+			AND  a.EVENT_ID = #{eventId}
 		</if>
 	</sql>
 
- 	
- 	 
- 	 	<select id="buscarPorCriterios" parameterType="CriterioBusquedaFacturaVisa"  resultType="FacturaVisa" statementType="PREPARED">	
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaFacturaMasterCard"  resultType="FacturaMasterCard" statementType="PREPARED">	
 		<include refid="consultaFactura" />
 		<where>
 			<include refid="fragmentoWhere"/> 

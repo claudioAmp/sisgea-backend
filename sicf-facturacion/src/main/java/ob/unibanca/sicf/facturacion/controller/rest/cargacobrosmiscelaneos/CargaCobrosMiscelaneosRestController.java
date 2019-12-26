@@ -40,7 +40,8 @@ public class CargaCobrosMiscelaneosRestController {
 		try {
 			this.cargaCobrosMiscelaneosMCService.cargarArchivos(file);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida");
+			e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida pz");
         }
 		return ResponseEntity.status(HttpStatus.OK).body("Registro exitoso");
 	}

@@ -131,11 +131,11 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 				String 	eventDescription       = row.getCell(14).getStringCellValue(); 	
 				String 	affiliate              = row.getCell(15).getStringCellValue(); 	
 				String 	uom                    = row.getCell(16).getStringCellValue(); 	
-				Double 	quantityAmount         = (Double) TypesUtil.getNumericValue(row.getCell(17)); 	
-				Double 	rate                   = (Double) TypesUtil.getNumericValue(row.getCell(18)); 	
-				Double 	charge                 = (Double) TypesUtil.getNumericValue(row.getCell(19)); 	
-				Integer taxCharge              = TypesUtil.getNumericValue(row.getCell(20)).intValue(); 
-				Double 	totalCharge            = (Double) TypesUtil.getNumericValue(row.getCell(21)); 	
+				Double 	quantityAmount         = TypesUtil.getNumericValue(row.getCell(17)).doubleValue(); 	
+				Double 	rate                   = TypesUtil.getNumericValue(row.getCell(18)).doubleValue(); 	
+				Double 	charge                 = TypesUtil.getNumericValue(row.getCell(19)).doubleValue(); 	
+				Double taxCharge               = TypesUtil.getNumericValue(row.getCell(20)).doubleValue(); 
+				Double 	totalCharge            = TypesUtil.getNumericValue(row.getCell(21)).doubleValue(); 	
 				String 	sbfExplanatorytext     = row.getCell(26).getStringCellValue(); 	
 
 				FacturaMasterCard fila = FacturaMasterCard.builder()
@@ -176,15 +176,18 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 		try(Connection conn = dataSource.getConnection()){
 			conn.setAutoCommit(false);
 			try{
-				PreparedStatement stmtDelete = conn.prepareStatement("DELETE FROM MOV_FACTURACION_MASTERCARD WHERE billing_Cycle_Date = ? ");
+				PreparedStatement stmtDelete = conn.prepareStatement("DELETE FROM MOV_FACTURACION_MC " + 
+				"WHERE BILLING_CYCLE_DATE = ? " +
+				"AND INVOICE_ICA = ?");
 				FacturaMasterCard aux = listaFilas.get(0);
 				TypesUtil.validarBDFecha(stmtDelete,  1, aux.getBillingCycleDate());
+				TypesUtil.validarBDString(stmtDelete,  2, aux.getInvoiceIca());
 				stmtDelete.addBatch();
 				stmtDelete.executeBatch();
 				conn.commit();
 				try{
 					PreparedStatement stmt = conn.prepareStatement(
-						"INSERT INTO MOV_FACTURACION_MASTERCARD("+
+						"INSERT INTO MOV_FACTURACION_MC("+
 							"DOCUMENT_TYPE	            ," + 
 							"INVOICE_NUMBER	            ," + 
 							"CURRENCY	                ," + 
@@ -202,7 +205,7 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 							"CHARGE	                    ," + 
 							"TAX_CHARGE	                ," + 
 							"TOTAL_CHARGE	            ," + 
-							"SBF_EXPLANATORY_TEXT	    ," +
+							"SBF_EXPLANATORY_TEXT	    " +
 						") VALUES ("+
 							"?,"+
 							"?,"+
@@ -221,7 +224,7 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 							"?,"+
 							"?,"+
 							"?,"+
-							"?,"+
+							"?"+
 						")") ;
 					int[] idx = { 0 };
 					Iterator<FacturaMasterCard> itFacturaMasterCard = listaFilas.iterator();
@@ -230,23 +233,23 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 						facturaMC = itFacturaMasterCard.next();
 						try{
 							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getDocumentType          ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getInvoiceNumber         ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getCurrency              ());
-							TypesUtil.validarBDFecha  (stmt,  2, 	facturaMC.getBillingCycleDate      ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getInvoiceIca            ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getActiviteIca           ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getServiceCode           ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getServiceCodeDescription());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getEventId               ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getEventDescription      ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getAffiliate             ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getUom                   ());
-							TypesUtil.validarBDDouble (stmt, 18,  	facturaMC.getQuantityAmount        ());
-							TypesUtil.validarBDDouble (stmt, 18,  	facturaMC.getRate                  ());
-							TypesUtil.validarBDDouble (stmt, 18,  	facturaMC.getCharge                ());
-							TypesUtil.validarBDInteger(stmt, 15,  	facturaMC.getTaxCharge             ());
-							TypesUtil.validarBDDouble (stmt, 18,  	facturaMC.getTotalCharge           ());
-							TypesUtil.validarBDString (stmt,  1,  	facturaMC.getSbfExplanatorytext    ());
+							TypesUtil.validarBDString (stmt,  2,  	facturaMC.getInvoiceNumber         ());
+							TypesUtil.validarBDString (stmt,  3,  	facturaMC.getCurrency              ());
+							TypesUtil.validarBDFecha  (stmt,  4, 	facturaMC.getBillingCycleDate      ());
+							TypesUtil.validarBDString (stmt,  5,  	facturaMC.getInvoiceIca            ());
+							TypesUtil.validarBDString (stmt,  6,  	facturaMC.getActiviteIca           ());
+							TypesUtil.validarBDString (stmt,  7,  	facturaMC.getServiceCode           ());
+							TypesUtil.validarBDString (stmt,  8,  	facturaMC.getServiceCodeDescription());
+							TypesUtil.validarBDString (stmt,  9,  	facturaMC.getEventId               ());
+							TypesUtil.validarBDString (stmt, 10,  	facturaMC.getEventDescription      ());
+							TypesUtil.validarBDString (stmt, 11,  	facturaMC.getAffiliate             ());
+							TypesUtil.validarBDString (stmt, 12,  	facturaMC.getUom                   ());
+							TypesUtil.validarBDDouble (stmt, 13,  	facturaMC.getQuantityAmount        ());
+							TypesUtil.validarBDDouble (stmt, 14,  	facturaMC.getRate                  ());
+							TypesUtil.validarBDDouble (stmt, 15,  	facturaMC.getCharge                ());
+							TypesUtil.validarBDDouble (stmt, 16,  	facturaMC.getTaxCharge             ());
+							TypesUtil.validarBDDouble (stmt, 17,  	facturaMC.getTotalCharge           ());
+							TypesUtil.validarBDString (stmt, 18,  	facturaMC.getSbfExplanatorytext    ());
 							stmt.addBatch();
 							idx[0]++;
 							if (idx[0] % batchSize == 0 ) {
@@ -271,11 +274,7 @@ public class CargaCobrosMiscelaneosMCService implements ICargaCobrosMiscelaneosM
 						conn.commit();
 					}
 					
-					PreparedStatement stmtUpdate = conn.prepareStatement(
-						"UPDATE MOV_FACTURACION_MASTERCARD"+
-						"SET ID_REGISTRO_MC = TO_DATE('YYYYMMDD', BILLING_CYCLE_DATE) || LPAD(ROW_NUMBER(), 18, '0')"+
-						"WHERE BILLING_CYCLE_DATE = ? "
-					);
+					PreparedStatement stmtUpdate = conn.prepareStatement("{CALL PKG_CARGA.PRC_ACTUALIZAR_REGISTROS_MC (?)}");
 					TypesUtil.validarBDFecha(stmtUpdate,  1, aux.getBillingCycleDate());
 					stmtUpdate.addBatch();
 					stmtUpdate.executeBatch();
