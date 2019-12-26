@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Irregular {
-	private Integer secuencia;
+	private String secuencia;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
 	private String idOrigenArchivo;
@@ -44,6 +44,9 @@ public class Irregular {
 	private String descInstitucionEmisora;
 	private Integer idInstitucionReceptora;
 	private String descInstitucionReceptora;
+	private Integer idProducto;
+	private String descProducto;
+	private String detalleIrregular;
 	
 	//filtro
 	

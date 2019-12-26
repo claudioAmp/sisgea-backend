@@ -23,10 +23,13 @@ public class CriterioBusquedaIrregular {
 	Date fechaProcesoInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProcesoFin;
-	List<String> idOrigenArchivo;
-	Integer idTipoIrregular;
+	
+	List<String> origenesArchivo;
+	List<Integer> tiposIrregular;
 	
 	//Filtros
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date filtroFechaProceso;
 	String filtroSecuencia;
 	String filtroIdTipoIrregular;
 	String filtroIdMembresia;
@@ -37,8 +40,15 @@ public class CriterioBusquedaIrregular {
 	String filtroBin;
 	String filtroIdInstitucionEmisora;
 	String filtroIdInstitucionReceptora;
+	String filtroDescripcionIrregular;
+	String filtroDetalleIrregular;
+	String filtroOrigenArchivo;
+	
 	
 	// Orden
+	String ordenFechaProceso;
+	String ordenOrigenArchivo;
+	String ordenDetalleIrregular;
 	String ordenSecuencia;
 	String ordenIdTipoIrregular;
 	String ordenIdMembresia;

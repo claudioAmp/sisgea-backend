@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.mantenimientosgenerales.mapper.ITipoIrregularMapper">
+
+    <sql id="consultaVistaMant">
+       SELECT  
+       	 id_tipo_irregular,
+       	 descripcion
+       FROM vie_man_tipo_irregular
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_tipo_irregular ASC
+    </sql>
+
+   	<select id="buscarTodos" resultType="TipoIrregular"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+    
+</mapper>

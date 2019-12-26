@@ -23,7 +23,7 @@ public class IrregularService  implements IIrregularService{
 	public Page<Irregular> buscarPorCriteriosIrregulares(CriterioBusquedaIrregular criterio, int pageNo,
 			int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
-		
+		System.out.println("service");
 		return irregularMapper.buscarPorCriteriosIrregulares(criterio);
 	}
 

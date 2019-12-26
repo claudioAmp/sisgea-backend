@@ -12,22 +12,44 @@
 	<select id="buscarPorCriteriosIrregulares" resultType="Irregular">
 		<include refid="consultaIrregular" />
 		<where>
+			<include refid="fragmentoWhere" />
 			<include refid="fragmentoWhereMultiples" />
 			<include refid="fragmentoFiltrosOrdenaciones" />
 		</where>
 	</select>
 	
-	
+	<sql id="fragmentoWhere">
+		<if test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			a.FECHA_PROCESO BETWEEN  #{fechaProcesoInicio} AND #{fechaProcesoFin}
+		</if>
+	</sql>
 	<sql id = "fragmentoWhereMultiples">
-		<if  test="idOrigenArchivo != null and idOrigenArchivo.size()>0"  >
-			AND a.ORIGEN_ARCHIVO IN 
-				<foreach item="item" index="index" collection="idOrigenArchivo" open ="(" separator=","  close=")">
+		<if  test="origenesArchivo != null and origenesArchivo.size()>0"  >
+			AND a.ID_ORIGEN_ARCHIVO IN 
+				<foreach item="item" index="index" collection="origenesArchivo" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="tiposIrregular != null and tiposIrregular.size()>0"  >
+			AND a.ID_TIPO_IRREGULAR IN 
+				<foreach item="item" index="index" collection="tiposIrregular" open ="(" separator=","  close=")">
 					#{item}
 				</foreach>
 		</if>
 	</sql>
 	
 	<sql id = "fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null " >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroOrigenArchivo != null " >
+			<bind name="pFiltroOrigenArchivo" value="'%' + filtroOrigenArchivo + '%'" />
+			AND CONCAT(ID_ORIGEN_ARCHIVO, UPPER(DES_ORIGEN_ARCHIVO)) LIKE #{pFiltroOrigenArchivo}
+		</if>
+		<if  test="filtroDetalleIrregular != null " >
+			<bind name="pFiltroDetalleIrregular" value="'%' + filtroDetalleIrregular + '%'" />
+			AND  UPPER(DETALLE_IRREGULAR) LIKE #{pFiltroDetalleIrregular}
+		</if>
 		<if  test="filtroSecuencia != null " >
 			<bind name="pFiltroSecuencia" value="'%' + filtroSecuencia + '%'" />
 			AND SECUENCIA LIKE #{pFiltroSecuencia}

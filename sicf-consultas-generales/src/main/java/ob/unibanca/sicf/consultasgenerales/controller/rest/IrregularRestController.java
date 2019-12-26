@@ -22,8 +22,10 @@ public class IrregularRestController {
 	public Pagina<CriterioBusquedaIrregular, Irregular> buscarPorPaginas(
 			Pagina<CriterioBusquedaIrregular, Irregular> criterioPaginacion, CriterioBusquedaIrregular criterioBusqueda) {
 		criterioPaginacion.setCriterioBusqueda(criterioBusqueda);
+		System.out.println(criterioBusqueda);
 		Page<Irregular> lista = irregularService.buscarPorCriteriosIrregulares(criterioPaginacion.getCriterioBusqueda(),
 				criterioPaginacion.getPageNum(), criterioPaginacion.getPageSize());
+		
 		return new Pagina<>(criterioPaginacion.getCriterioBusqueda(), lista);
 	}
 }
