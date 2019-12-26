@@ -42,12 +42,12 @@ public class CriterioBusquedaIrregular {
 	String filtroIdInstitucionReceptora;
 	String filtroDescripcionIrregular;
 	String filtroDetalleIrregular;
-	String filtroOrigenArchivo;
+	String filtroIdOrigenArchivo;
 	
 	
 	// Orden
 	String ordenFechaProceso;
-	String ordenOrigenArchivo;
+	String ordenIdOrigenArchivo;
 	String ordenDetalleIrregular;
 	String ordenSecuencia;
 	String ordenIdTipoIrregular;
