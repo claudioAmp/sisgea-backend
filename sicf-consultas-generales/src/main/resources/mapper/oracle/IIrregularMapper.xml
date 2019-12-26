@@ -91,6 +91,14 @@
 			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		
+		<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				 FECHA_PROCESO ${ordenFechaProceso}
+		</if>
+		<if  test="ordenIdOrigenArchivo != null " >
+			ORDER BY
+				 ID_ORIGEN_ARCHIVO ${ordenIdOrigenArchivo}
+		</if>
 		<if  test="ordenSecuencia != null " >
 			ORDER BY
 				 SECUENCIA ${ordenSecuencia}
@@ -98,6 +106,10 @@
 		<if  test="ordenIdTipoIrregular != null " >
 			ORDER BY
 				 ID_TIPO_IRREGULAR ${ordenIdTipoIrregular}
+		</if>
+		<if  test="ordenDetalleIrregular != null " >
+			ORDER BY
+				 DETALLE_IRREGULAR ${ordenDetalleIrregular}
 		</if>
 		<if  test="ordenIdMembresia != null " >
 			ORDER BY
