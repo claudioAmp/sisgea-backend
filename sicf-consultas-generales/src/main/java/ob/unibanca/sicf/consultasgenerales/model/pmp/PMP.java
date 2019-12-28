@@ -32,6 +32,7 @@ public class PMP {
     String descripcionMoneda;
     Double tipoCambio;
     String medioTransaccion;
+    String descripcionMedioTransaccion;
     Date fechaTransaccion;
     String codigoEstablecimiento;
     String codigoAutorizacion;
@@ -53,8 +54,8 @@ public class PMP {
     String codigoAutorizacionDevolucion;
     Double pctComisionEstablecimiento;
     String codigoCuota;
-    String fechaCuota;
-    String valorCuota;
+    Date fechaCuota;
+    Double valorCuota;
     String idItem;
     String idArn; 
     Double tipoCambioDolares;

@@ -47,7 +47,8 @@ public class CriterioBusquedaPMP {
     private String filtroTipoDevolucion;
     private String filtroCodigoAutorizacionDevolucion;
     private String filtroCodigoCuota;
-    private String filtroFechaCuota;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date filtroFechaCuota;
     private String filtroValorCuota;
     private String filtroIdItem;
     private String filtroIdArn; 

@@ -27,7 +27,10 @@
 	
 	<sql id = "filtros">
 		<if  test="filtroFechaProceso != null" >
-			AND FECHA_CUOTA = #{filtroFechaProceso}
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroFechaCuota != null" >
+			AND FECHA_CUOTA = #{filtroFechaCuota}
 		</if>
 		<if  test="filtroBinAdquirente != null" >
 			<bind name="pFiltroBinAdquirente" value="'%' + filtroBinAdquirente + '%'" />
@@ -93,10 +96,6 @@
 		<if  test="filtroCodigoCuota != null" >
 			<bind name="pFiltroCodigoCuota" value="'%' + filtroCodigoCuota + '%'" />
 			AND CODIGO_CUOTA LIKE #{pFiltroCodigoCuota}
-		</if>
-		<if  test="filtroFechaCuota != null" >
-			<bind name="pFiltroFechaCuota" value="'%' + filtroFechaCuota + '%'" />
-			AND FECHA_CUOTA LIKE #{pFiltroFechaCuota}
 		</if>
 		<if  test="filtroValorCuota != null" >
 			<bind name="pFiltroValorCuota" value="'%' + filtroValorCuota + '%'" />
