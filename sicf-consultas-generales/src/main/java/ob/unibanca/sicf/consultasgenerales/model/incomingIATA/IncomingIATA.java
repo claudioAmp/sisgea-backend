@@ -36,6 +36,11 @@ public class IncomingIATA {
 	String codigoAutorizacion;
 	Double 	montoCreditoDebito;
 	String  codigoMonedaIso;	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date fechaEmisionBoleto;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date invoiceDate;
+	String fechaExpiracionTarjeta;
 
 	
 }

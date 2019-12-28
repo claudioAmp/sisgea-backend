@@ -42,11 +42,20 @@
 		
 	</sql>
 	
-	<sql id = "filtros">
-	<!--  
+	<sql id = "filtros">  
 		<if  test="filtroFacturacionADP != null" >
 			<bind name="pFiltroFacturacionADP" value="'%' + filtroFacturacionADP + '%'" />
 			AND FACTURACION_ADP LIKE #{pFiltroFacturacionADP}
+		</if>
+		<if test="filtroFechaEmisionBoleto != null">
+			AND FECHA_EMISION_BOLETO = #{filtroFechaEmisionBoleto}
+		</if> 
+		<if test="filtroInvoiceDate != null">
+			AND INVOICE_DATE = #{filtroInvoiceDate}
+		</if>
+		<if test="filtroFechaExpiracionTarjeta != null">
+			<bind name="pFiltroFechaExpiracionTarjeta" value="'%' + filtroFechaExpiracionTarjeta + '%'"/>
+			AND FECHA_EXPIRACION_TARJETA LIKE #{pFiltroFechaExpiracionTarjeta}
 		</if>
 		<if  test="filtroNombrePasajero != null" >
 			<bind name="pFiltroNombrePasajero" value="'%' + filtroNombrePasajero + '%'" />
@@ -194,11 +203,11 @@
 		</if>
 		<if  test="filtroFechaProceso != null" >
 			AND FECHA_PROCESO = #{filtroFechaProceso}
-		</if>-->
+		</if>
 	</sql>
 	
     <sql id="orden">
-    <!--  
+     
 		<if  test="ordenCodigoDebitoCredito != null" >
 			ORDER BY
 				CODIGO_DEBITO_CREDITO  ${ordenCodigoDebitoCredito}
@@ -398,7 +407,7 @@
 		<if  test="ordenFechaProceso != null" >
 			ORDER BY
 				FECHA_PROCESO  ${ordenFechaProceso}
-		</if>-->
+		</if>
     </sql>
 
     <select id="buscarTodos" resultType="IncomingIATA" statementType="PREPARED">

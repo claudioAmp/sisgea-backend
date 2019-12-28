@@ -71,6 +71,11 @@ public class CriterioBusquedaIncomingIATA {
 	String  filtroFechaPrimerVuelo;
 	String  filtroIdOrigenArchivo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date  filtroFechaEmisionBoleto;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	Date  filtroInvoiceDate;
+	String filtroFechaExpiracionTarjeta;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date    filtroFechaProceso;
 	
 	//Ordenamiento
@@ -78,7 +83,7 @@ public class CriterioBusquedaIncomingIATA {
 	Integer	ordenCodigoAerolinea;
 	Long	ordenNumeroBoleto;
 	Integer ordenCodigoIATAAgencia;
-	Integer ordenFechaEmisionBoleto;
+	String ordenFechaEmisionBoleto;
 	Integer ordenPeriodoBSP;
 	String	ordenFacturacionADP;
 	Double 	ordenMontoCreditoDebito;
