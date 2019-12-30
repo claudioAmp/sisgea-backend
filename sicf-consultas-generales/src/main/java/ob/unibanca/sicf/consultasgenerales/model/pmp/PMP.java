@@ -59,7 +59,7 @@ public class PMP {
     String idItem;
     String idArn; 
     Double tipoCambioDolares;
-    String tasaIntercambio;
+    Double tasaIntercambio;
     Double servProcesamiento;
     Double igvServProcesamiento;
     Double servProcesamientoDolares;
