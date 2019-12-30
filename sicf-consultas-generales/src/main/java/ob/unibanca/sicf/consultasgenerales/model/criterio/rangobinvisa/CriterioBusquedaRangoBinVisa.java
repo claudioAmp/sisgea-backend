@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class CriterioBusquedaRangoBinVisa {
 	private String idBIN;
 	private String binProcesador;
-	private String region;
 	private List<String> pais;
+	private List<String> region;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProcesoInicio;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

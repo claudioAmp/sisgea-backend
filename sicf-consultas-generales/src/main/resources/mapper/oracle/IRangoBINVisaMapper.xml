@@ -17,8 +17,11 @@
 		<if  test="binProcesador != null and binProcesador != ''">
 			 AND a.BIN_PROCESADOR = #{binProcesador}
 		</if>
-		<if  test="region != null and region != ''">
-			 AND a.REGION = #{region}
+		<if  test="region != null and region.size()>0" >
+			AND a.REGION IN 
+				<foreach item="item" index="index" collection="region" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
 		</if>
 		<if  test="pais != null and pais.size()>0" >
 			AND a.PAIS IN 
@@ -70,11 +73,11 @@
 		</if>
 		<if  test="filtroRegion != null" >
 			<bind name="pFiltroRegion" value="'%' + filtroRegion + '%'" />
-			AND REGION LIKE #{pFiltroRegion}
+			AND CONCAT(UPPER(REGION),UPPPER(DESC_REGION)) LIKE #{pFiltroRegion}
 		</if>
 		<if  test="filtroPais != null" >
 			<bind name="pFiltroPais" value="'%' + filtroPais + '%'" />
-			AND PAIS LIKE #{pFiltroPais}
+			AND CONCAT(UPPER(PAIS),UPPER(DESC_PAIS)) LIKE #{pFiltroPais}
 		</if>
 		<if  test="filtroLargeTicket != null" >
 			<bind name="pFiltroLargeTicket" value="'%' + filtroLargeTicket + '%'" />

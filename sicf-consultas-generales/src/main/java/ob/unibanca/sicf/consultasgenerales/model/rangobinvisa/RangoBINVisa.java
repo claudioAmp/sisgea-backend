@@ -28,7 +28,9 @@ public class RangoBINVisa {
 	  String binProcesador;
 	  String dominio;
 	  String region;
+	  String descRegion;
 	  String pais;
+	  String descPais;
 	  String largeTicket;
 	  String technologyIndicator;
 	  String ardefRegion;
