@@ -99,6 +99,12 @@
 				#{item}
 			</foreach>
 		</if>
+		<if test="origenesArchivo !=null and origenesArchivo.size()>0">
+			AND a.ID_ORIGEN_ARCHIVO IN 
+			<foreach item="item" index="index" collection="origenesArchivo" open ="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
 	</sql>
 
 	<sql id = "fragmentoFiltrosOrdenaciones">
@@ -124,8 +130,7 @@
 		<if  test="filtroIdTransaccion != null " >
 			<bind name="pFiltroIdTransaccion" value="'%' + filtroIdTransaccion + '%'" />
 			AND CONCAT(ID_TRANSACCION, UPPER(DESC_CODIGO_TRANSACCION)) LIKE UPPER(#{pFiltroIdTransaccion})
-		</if>
-	
+		</if>	
 		<if  test="filtroIdCanal != null " >
 			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
 			AND CONCAT(ID_CANAL, UPPER(DESC_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
@@ -185,15 +190,18 @@
 			<bind name="pFiltroNombreAdquirente" value="'%' + filtroNombreAdquirente + '%'" />
 			AND NOMBRE_ADQUIRENTE LIKE #{pFiltroNombreAdquirente}
 		</if>
-		
 		<if  test="filtroPaisAdquirente != null " >
 			<bind name="pFiltroPaisAdquirente" value="'%' + filtroPaisAdquirente + '%'" />
 			AND CONCAT(PAIS_ADQUIRENTE, UPPER(DESC_PAIS_ADQUIRENTE)) LIKE UPPER(#{pFiltroPaisAdquirente})
 		</if>
-		
 		<if  test="rangoValorCompensacionMin != null and rangoValorCompensacionMax != null" >
 			AND VALOR_COMPENSACION BETWEEN #{rangoValorCompensacionMin} AND #{rangoValorCompensacionMax}
 		</if>
+		<if  test="filtroIdOrigenArchivo != null " >
+			<bind name="pFiltroIdOrigenArchivo" value="'%' + filtroIdOrigenArchivo + '%'" />
+			AND CONCAT(ID_ORIGEN_ARCHIVO, UPPER(DESC_ORIGEN_ARCHIVO)) LIKE #{pFiltroIdOrigenArchivo}
+		</if>
+		
 		
 		<if  test="ordenFechaProceso != null " >
 		ORDER BY
@@ -285,6 +293,10 @@
 		<if  test="ordenPaisAdquirente != null " >
 		ORDER BY
 			PAIS_ADQUIRENTE  ${ordenPaisAdquirente}
+		</if>
+		<if  test="ordenIdOrigenArchivo != null " >
+		ORDER BY
+			ID_ORIGEN_ARCHIVO  ${ordenIdOrigenArchivo}
 		</if>
 	</sql>
 	

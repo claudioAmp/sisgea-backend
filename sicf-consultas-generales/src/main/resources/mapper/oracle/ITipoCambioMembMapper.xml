@@ -21,10 +21,8 @@
     <select id="buscarPorIdTipoCambio" resultType="TipoCambioMemb" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	<if test="fechaTipoCambio != null">
-        		fecha_tipo_cambio = #{fechaTipoCambio}
-        	</if>
         	<if test="idMembresia != null">
+        		fecha_tipo_cambio = (SELECT FECHA_PROCESO FROM MAE_PARAMETRO_SISTEMA)
         		AND id_membresia = #{idMembresia}
         	</if>
         </where>        

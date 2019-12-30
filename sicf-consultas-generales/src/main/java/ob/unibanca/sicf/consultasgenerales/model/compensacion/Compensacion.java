@@ -52,4 +52,6 @@ public class Compensacion {
 	String descPaisAdquirente;
 	String horaTransaccion;
 	String codigoAutorizacion;
+	String idOrigenArchivo;
+	String descOrigenArchivo;
 }

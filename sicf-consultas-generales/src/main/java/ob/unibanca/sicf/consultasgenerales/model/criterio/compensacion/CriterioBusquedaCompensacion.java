@@ -38,6 +38,7 @@ public class CriterioBusquedaCompensacion {
 	List<Integer> institucionesReceptoras;
 	List<String> bines;
 	List<String> codigosRespuesta;
+	List<String> origenesArchivo;
 	
 	//filtros
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -65,6 +66,7 @@ public class CriterioBusquedaCompensacion {
 	private String filtroNombreAdquirente;
 	private String filtroCiudadAdquirente;
 	private String filtroPaisAdquirente;
+	private String filtroIdOrigenArchivo;
 
 	private String ordenFechaProceso;
 	private String ordenIdSecuencia;
@@ -88,6 +90,7 @@ public class CriterioBusquedaCompensacion {
 	private String ordenGiroNegocio;
 	private String ordenNombreAdquirente;
 	private String ordenPaisAdquirente;
+	private String ordenIdOrigenArchivo;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoValorCompensacionMin;
