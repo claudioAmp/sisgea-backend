@@ -91,6 +91,16 @@
 			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
 		</if>
 		
+		<if  test="filtroIdProducto != null " >
+			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
+			AND CONCAT(ID_PRODUCTO, UPPER(DESC_PRODUCTO)) LIKE UPPER(#{pFiltroIdProducto})
+		</if>
+		
+		<if  test="filtroIdTransaccionOriginal != null " >
+			<bind name="pFiltroIdTransaccionOriginal" value="'%' + filtroIdTransaccionOriginal + '%'" />
+			AND CONCAT(ID_TRANSACCION_ORIGINAL, UPPER(DESC_TRANSACCION_ORIGINAL)) LIKE UPPER(#{pFiltroIdTransaccionOriginal})
+		</if>
+		
 		<if  test="ordenFechaProceso != null " >
 			ORDER BY
 				 FECHA_PROCESO ${ordenFechaProceso}
@@ -142,6 +152,14 @@
 		<if  test="ordenIdInstitucionReceptora != null " >
 			ORDER BY
 				 ID_INSTITUCION_RECEPTORA ${ordenIdInstitucionReceptora}
+		</if>
+		<if  test="ordenIdProducto != null " >
+			ORDER BY
+				 ID_PRODUCTO ${ordenIdProducto}
+		</if>
+		<if  test="ordenIdTransaccionOriginal != null " >
+			ORDER BY
+				 ID_TRANSACCION_ORIGINAL ${ordenIdTransaccionOriginal}
 		</if>
 	</sql>
 

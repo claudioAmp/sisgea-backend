@@ -47,6 +47,8 @@ public class Irregular {
 	private Integer idProducto;
 	private String descProducto;
 	private String detalleIrregular;
+	private String idTransaccionOriginal;
+	private String descTransaccionOriginal;
 	
 	//filtro
 	
@@ -61,6 +63,8 @@ public class Irregular {
 	private String filtroBin;
 	private String filtroIdInstitucionEmisora;
 	private String filtroIdInstitucionReceptora;
+	private String filtroIdProducto;
+	private String filtroIdTransaccionOriginal;
 	//orden
 	private String ordenSecuencia;
 	private String ordenIdOrigenArchivo;
@@ -73,6 +77,8 @@ public class Irregular {
 	private String ordenBin;
 	private String ordenIdInstitucionEmisora;
 	private String ordenIdInstitucionReceptora;
+	private String ordenIdProducto;
+	private String ordenIdTransaccionOriginal;
 
 	
 
