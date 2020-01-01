@@ -43,6 +43,8 @@ public class CriterioBusquedaIrregular {
 	String filtroDescripcionIrregular;
 	String filtroDetalleIrregular;
 	String filtroIdOrigenArchivo;
+    String filtroIdProducto;
+	String filtroIdTransaccionOriginal;
 	
 	
 	// Orden
@@ -59,4 +61,6 @@ public class CriterioBusquedaIrregular {
 	String ordenBin;
 	String ordenIdInstitucionEmisora;
 	String ordenIdInstitucionReceptora;
+	String ordenIdProducto;
+	String ordenIdTransaccionOriginal;
 }
