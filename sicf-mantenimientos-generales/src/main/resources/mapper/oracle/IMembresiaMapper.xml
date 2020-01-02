@@ -6,6 +6,7 @@
         SELECT id_membresia
              , descripcion AS descripcion_membresia
             FROM MAE_MEMBRESIA
+            ORDER BY 1 ASC
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento"

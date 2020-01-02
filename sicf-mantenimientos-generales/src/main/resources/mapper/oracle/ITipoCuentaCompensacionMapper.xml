@@ -8,11 +8,16 @@
         	,	cuenta_intercambio
         	, 	id_cuenta_comp
         	,	descripcion_cuenta_comp 
-        FROM VIE_MAN_TIPO_CUENTA_COMP 
+        FROM VIE_MAN_TIPO_CUENTA_COMP
     </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_tipo_cuenta_comp
+	</sql>
 
     <select id="buscarTodos" resultType="TipoCuentaCompensacion" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
 
 </mapper>

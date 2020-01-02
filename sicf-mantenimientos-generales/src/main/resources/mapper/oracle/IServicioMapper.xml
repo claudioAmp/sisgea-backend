@@ -11,7 +11,7 @@
     </sql>
     
     <sql id="orden">
-    	ORDER BY id_membresia,id_servicio
+    	ORDER BY id_membresia ASC,id_servicio ASC
     </sql>
 
     <select id="buscarTodos" resultType="Servicio" statementType="PREPARED">

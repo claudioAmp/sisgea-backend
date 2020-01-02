@@ -16,4 +16,16 @@
                 , SERVICE_DESCRIPTION
         FROM VIE_MAN_BILLING_LINE_VISA
     </select>
+    
+    
+    <select id="buscarTodosEventosTransaccionVisaSinTxn" resultType="EventosVisa" statementType="PREPARED">
+		SELECT 
+		  A.ID_BILLING_LINE_VISA, 
+		  A.SERVICE_DESCRIPTION 
+		FROM MAE_BILLING_LINE_VISA A
+		LEFT JOIN VIE_MAN_BILLING_LINE_VISA_X_TXN B 
+		  ON B.ID_BILLING_LINE_VISA = A.ID_BILLING_LINE_VISA
+		WHERE B.ID_BILLING_LINE_VISA IS NULL
+    </select>
+    
 </mapper>

@@ -11,5 +11,7 @@ import ob.unibanca.sicf.mantenimientosgenerales.model.EventosVisa;
 public interface IEventosVisaMapper extends IMantenibleMapper<EventosVisa> {
 
     public List<EventosVisa> buscaridDescripcion();
+    
+    public List<EventosVisa> buscarTodosEventosTransaccionVisaSinTxn();
 
 }

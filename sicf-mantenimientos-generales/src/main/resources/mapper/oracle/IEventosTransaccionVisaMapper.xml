@@ -20,6 +20,13 @@
         </where>
     </select>
     
+    <select id="buscarTodosEventosTransaccionVisaSinTxn" resultType="EventosTransaccionVisa" statementType="PREPARED">
+        SELECT * FROM MAE_BILLING_LINE_VISA A
+		LEFT JOIN VIE_MAN_BILLING_LINE_VISA_X_TXN B 
+			ON B.ID_BILLING_LINE_VISA = A.ID_BILLING_LINE_VISA
+		WHERE B.ID_BILLING_LINE_VISA IS NULL
+    </select>
+    
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
             CALL PKG_MAN_GENERALES.PRC_MAN_BILLING_LINE_VISA_X_TXN(

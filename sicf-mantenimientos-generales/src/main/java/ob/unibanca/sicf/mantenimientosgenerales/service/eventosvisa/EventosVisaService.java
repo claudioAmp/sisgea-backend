@@ -28,6 +28,11 @@ public class EventosVisaService extends MantenibleService<EventosVisa> implement
 		return this.buscarTodos();
 	}
 	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<EventosVisa> buscarTodosEventosTransaccionVisaSinTxn() {
+		return this.eventosVisaMapper.buscarTodosEventosTransaccionVisaSinTxn();
+	}
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)

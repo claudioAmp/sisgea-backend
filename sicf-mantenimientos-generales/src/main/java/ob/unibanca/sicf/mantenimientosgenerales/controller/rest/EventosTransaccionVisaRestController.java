@@ -35,13 +35,19 @@ public class EventosTransaccionVisaRestController {
 		return this.eventosTransaccionVisaService.buscarTodosEventosTransaccionVisa();
 	}
 	
+	@PreAuthorize("hasPermission('MANT_BILLING_TXN_VISA', '2')")
+	@GetMapping(value = "/eventos-transaccion-visa/sinTxn")
+	public List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisaSinTxn() {
+		return this.eventosTransaccionVisaService.buscarTodosEventosTransaccionVisaSinTxn();
+	}
+	
 	@PreAuthorize("hasPermission('MANT_BILLING_TXN_VISA', '1')")
 	@PostMapping(value = "/eventos-transaccion-visa", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public EventosTransaccionVisa registrarEventosTransaccionVisa(@Validated({IRegistro.class, Default.class}) @RequestBody EventosTransaccionVisa canal) {
 		return this.eventosTransaccionVisaService.registrarEventosTransaccionVisa(canal);
 	}
-	
+
 	@PreAuthorize("hasPermission('MANT_BILLING_TXN_VISA', '3')")
 	@PutMapping(value = "/eventos-transaccion-visa", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public EventosTransaccionVisa actualizarEventosTransaccionVisa(@Validated @RequestBody EventosTransaccionVisa eventosTransaccionVisa) {

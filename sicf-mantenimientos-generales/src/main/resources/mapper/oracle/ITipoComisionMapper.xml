@@ -6,11 +6,16 @@
         SELECT	id_tipo_comision
         	,	descripcion			AS descripcion_tipo_comision
         	,	abreviatura  
-        FROM MAE_TIPO_COMISION 
+        FROM MAE_TIPO_COMISION
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_tipo_comision
     </sql>
 
     <select id="buscarTodos" resultType="TipoComision" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
     </select>
     
     <select id="buscarUno" resultType="TipoComision" statementType="PREPARED">
@@ -20,6 +25,7 @@
         		id_tipo_comision = #{objetoMantenido.idTipoComision}	
         	</if>
         </where>
+        <include refid="orden"/>
     </select>
 
 </mapper>

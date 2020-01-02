@@ -8,5 +8,7 @@ public interface IEventosVisaService {
 	
 	public List<EventosVisa> buscarTodosEventosVisa();
 	public List<EventosVisa> buscaridDescripcionEventosVisa();
+	
+	public List<EventosVisa> buscarTodosEventosTransaccionVisaSinTxn();
 
 }

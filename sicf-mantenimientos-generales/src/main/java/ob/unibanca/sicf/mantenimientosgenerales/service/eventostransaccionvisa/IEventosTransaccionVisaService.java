@@ -14,4 +14,6 @@ public interface IEventosTransaccionVisaService extends IMantenibleService<Event
 	EventosTransaccionVisa actualizarEventosTransaccionVisa(EventosTransaccionVisa eventosTransaccionVisa);
 	
 	void eliminarEventosTransaccionVisa(EventosTransaccionVisa eventosTransaccionVisa);
+	
+	public List<EventosTransaccionVisa> buscarTodosEventosTransaccionVisaSinTxn();
 }
