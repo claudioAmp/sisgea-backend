@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ob.unibanca.sicf.consultasgenerales.mapper.IEstablecimientoDcpMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT *
+            FROM VIE_CON_ESTABLECIMIENTO_DCP a
+    </sql>
+
+    <sql id = "fragmentoWhere">
+        <if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+            a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+        </if>
+        <if  test="idEstablecimiento != null and idEstablecimiento != ''">
+            AND a.ID_ESTABLECIMIENTO = #{idEstablecimiento}
+        </if>
+        <if  test="direccion != null and direccion != ''">
+            AND a.DIRECCION = #{direccion}
+        </if>
+        <if  test="ciudad != null and ciudad != ''">
+            AND a.CIUDAD = #{ciudad}
+        </if>
+        <if  test="codigoPostal != null and codigoPostal != ''" >
+            AND a.CODIGO_POSTAL = #{codigoPostal}
+        </if>
+        <if  test="grupo != null and grupo != ''" >
+            AND a.GRUPO = #{grupo}
+        </if>
+    </sql>
+
+    <sql id="filtros">
+        <if test="filtroFechaProceso != null">
+            AND FECHA_PROCESO = #{filtroFechaProceso}
+        </if>
+        <if test="filtroIdEstablecimiento != null">
+            AND ID_ESTABLECIMIENTO = #{filtroIdEstablecimiento}
+        </if>
+        <if test="filtroDireccion != null">
+            AND DIRECCION = #{filtroDireccion}
+        </if>
+        <if test="filtroCiudad != null">
+            AND CIUDAD = #{filtroCiudad}
+        </if>
+        <if test="filtroCodigoPostal != null">
+            AND CODIGO_POSTAL = #{filtroCodigoPostal}
+        </if>
+        <if test="filtroGrupo != null">
+            AND GRUPO = #{filtroGrupo}
+        </if>
+    </sql>
+
+    <sql id="orden">
+        <if test="ordenFechaProceso != null">
+            ORDER BY
+                FECHA_PROCESO ${ordenFechaProceso}
+        </if>
+        <if test="ordenIdEstablecimiento != null">
+            ORDER BY
+                ID_ESTABLECIMIENTO ${ordenIdEstablecimiento}
+        </if>
+        <if test="ordenDireccion != null">
+            ORDER BY
+                DIRECCION ${ordenDireccion}
+        </if>
+        <if test="ordenCiudad">
+            ORDER BY
+                CIUDAD ${ordenCiudad}
+        </if>
+        <if test="ordenCodigoPostal != null">
+            ORDER BY
+                CODIGO_POSTAL ${ordenCodigoPostal}
+        </if>
+        <if test="ordenGrupo != null">
+            ORDER BY
+                GRUPO ${ordenGrupo}
+        </if>
+
+    </sql>
+
+    <select id="buscarPorCriterios" parameterType="CriterioBusquedaEstablecimientoDcp"  resultType="EstablecimientoDcp" statementType="PREPARED">
+        <include refid="consultaVistaMant" />
+        <where>
+            <include refid="fragmentoWhere"/>
+            <include refid="filtros"/>
+        </where>
+        <include refid="orden"/>
+    </select>
+</mapper>
