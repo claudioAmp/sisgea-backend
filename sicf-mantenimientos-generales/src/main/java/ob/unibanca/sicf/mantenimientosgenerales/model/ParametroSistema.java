@@ -30,4 +30,6 @@ public class ParametroSistema {
 	private double limiteDetraccion;
 	@CaracterRequerido(maxLength = 20, regexpPattern = "[0-9]+")
 	private String cuentaDetraccion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaAfectacion;
 }
