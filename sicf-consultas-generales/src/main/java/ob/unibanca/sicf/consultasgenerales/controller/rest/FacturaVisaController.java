@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.Page;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.facturavisa.CriterioBusquedaFacturaVisa;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
-import ob.unibanca.sicf.consultasgenerales.model.facturavisa.FacturaVisa;
 import ob.unibanca.sicf.consultasgenerales.service.facturacionvisa.IFacturaVisaService;
+import ob.unibanca.sicf.facturacion.model.FacturaVisa;
 
 @RestController
 public class FacturaVisaController {

@@ -40,6 +40,11 @@
 			<artifactId>sicf-visualizacion-pan</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>ob.unibanca.sicf</groupId>
+			<artifactId>sicf-facturacion</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 

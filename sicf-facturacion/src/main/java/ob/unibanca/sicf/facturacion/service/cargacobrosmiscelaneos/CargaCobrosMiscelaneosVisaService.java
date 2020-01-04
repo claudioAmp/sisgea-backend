@@ -1,9 +1,9 @@
 package ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos;
-import ob.unibanca.sicf.consultasgenerales.model.facturavisa.FacturaVisa;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.error.model.ErrorResponse;
 import ob.unibanca.sicf.facturacion.mapper.ICargaCobrosMiscelaneosMapper;
 import ob.unibanca.sicf.facturacion.mapper.IProcesoProcedureMapper;
+import ob.unibanca.sicf.facturacion.model.FacturaVisa;
 import ob.unibanca.sicf.facturacion.model.MetadataProcedure;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
