@@ -31,21 +31,31 @@ public class CampoService extends MantenibleService<Campo> implements ICampoServ
 	public List<Campo> buscarTodosCampos() {
 		return this.campoMapper.buscarTodos();
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Campo buscarPorId(int idCampo) {
 		return this.campoMapper.buscarPorId(idCampo);
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Campo> buscarIdTabla(int idTabla) {
+		return this.campoMapper.buscarIdTabla(idTabla);
+	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Campo> buscarPorCriteriosCampo(CriterioBusquedaCampo criterio) {
 		return this.campoMapper.buscarPorCriterios(criterio);
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio) {
 		return this.campoMapper.buscarConjuntoCampos(criterio);
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Campo registrarCampo(Campo Campo) {

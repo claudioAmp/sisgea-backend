@@ -14,6 +14,7 @@ import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaConjun
 public interface ICampoMapper extends IMantenibleMapper<Campo>{
 	List<Campo> buscarTodos();
 	Campo buscarPorId(int idCampo);
+	List<Campo> buscarIdTabla(int idTabla);
 	List<Campo> buscarPorCriterios(CriterioBusquedaCampo criterio);
 	List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio);
 }

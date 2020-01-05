@@ -26,7 +26,16 @@
     <select id="buscarPorId" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
-        	ID_CAMPO = #{idCampo} AND ASIGNABLE!=0
+        	ID_CAMPO = #{idCampo} 
+        	AND ASIGNABLE!=0
+        </where>
+    </select>
+    
+    <select id="buscarPorIdTabla" resultType="Campo" statementType="PREPARED">
+        <include refid="consulta"/>
+        <where>
+        	ID_TABLA = #{idTabla} 
+        	AND ASIGNABLE!=0
         </where>
     </select>
     

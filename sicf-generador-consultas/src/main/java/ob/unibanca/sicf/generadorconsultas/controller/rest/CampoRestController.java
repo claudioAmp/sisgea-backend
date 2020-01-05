@@ -32,26 +32,37 @@ public class CampoRestController {
 	public CampoRestController(ICampoService CampoService) {
 		this.campoService = CampoService;
 	}
+	
 	@GetMapping(value = "/campos")
 	public List<Campo> buscarTodosCampos() {
 		return this.campoService.buscarTodosCampos();
 	}
+	
 	@GetMapping(value = "/campos/{idCampo}")
 	public Campo buscarPorId(@PathVariable int idCampo) {
 		return this.campoService.buscarPorId(idCampo);
 	}
+	
+	@GetMapping(value = "/campos/tabla/{idTabla}")
+	public List<Campo> buscarIdTabla(@PathVariable int idTabla) {
+		return this.campoService.buscarIdTabla(idTabla);
+	}
+	
 	@GetMapping(value = "/campos/buscar")
 	public List<Campo> buscarTodosCampos(CriterioBusquedaCampo criterio) {
 		return this.campoService.buscarPorCriteriosCampo(criterio);
 	}
+	
 	@GetMapping(value = "/campos/buscar/conjunto")
 	public List<Campo> buscarConjuntoCampos(CriterioBusquedaConjuntoCampo criterio) {
 		return this.campoService.buscarConjuntoCampos(criterio);
 	}
+	
 	@GetMapping(value = "/campos/permitidos")
 	public List<Campo> buscarCamposPorUsuarioActivo() {
 		return this.campoService.buscarCamposPorUsuarioActivo();
 	}
+	
 	@PostMapping(value = "/campos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Campo registrarCampo(@Validated({IRegistro.class, Default.class}) @RequestBody Campo Campo) {
