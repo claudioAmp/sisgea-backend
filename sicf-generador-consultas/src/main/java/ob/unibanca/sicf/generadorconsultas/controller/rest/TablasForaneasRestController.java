@@ -41,12 +41,14 @@ public class TablasForaneasRestController {
 	
 	@GetMapping(value = "/tablas-foraneas/buscar")
 	public List<TablasForaneas> buscarTodosTablasForaneases(CriterioBusquedaTablasForaneas criterio) {
+		System.out.println("BUSCANDO TABLAS FORANEAS...");
 		System.out.println(criterio);
 		return this.tablasForaneasService.buscarPorCriteriosTablasForaneas(criterio);
 	}
 	
 	@GetMapping(value="/tablas-foraneas/buscar/{idRelacionTablaFk}")
 	public TablasForaneas buscarPorIdTablaForanea(@PathVariable int idRelacionTablaFk){
+		System.out.println("BUSCANDO TABLAS FORANEAS POR ID...");
 		return this.tablasForaneasService.buscarTablaForaneaPorId(idRelacionTablaFk);
 	}
 	
