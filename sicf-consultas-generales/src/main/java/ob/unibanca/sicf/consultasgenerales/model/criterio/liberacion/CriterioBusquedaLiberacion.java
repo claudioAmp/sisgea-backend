@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CriterioBusquedaLiberacion {
 	
-	String estadoTransaccion;
+	List<String> estadosTransaccion;
 	String accountNumber;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaTransaccionInicio; // transmissionDate
@@ -30,7 +30,7 @@ public class CriterioBusquedaLiberacion {
 	List<Integer> institucionesEmisoras;
 	List<Integer> institucionesReceptoras;
 	List<String> origenesArchivo;
-	Integer indConciliacion;
+	List<Integer> indsConciliacion;
 	Integer transactionCurrency;
 	
 	//filtros

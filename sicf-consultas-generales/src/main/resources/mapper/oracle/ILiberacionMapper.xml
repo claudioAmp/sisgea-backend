@@ -16,14 +16,8 @@
 		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
 			 AND a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
 		</if>
-		<if  test="estadoTransaccion != null and estadoTransaccion != ''">
-			 AND a.ESTADO_TRANSACCION = #{estadoTransaccion}
-		</if>
 		<if  test="accountNumber != null and accountNumber != ''">
 			 AND a.ACCOUNT_NUMBER = #{accountNumber}
-		</if>
-		<if  test="indConciliacion != null and indConciliacion != ''">
-			 AND a.IND_CONCILIACION = #{indConciliacion}
 		</if>
 		<if  test="transactionCurrency != null and transactionCurrency != ''">
 			 AND a.TRANSACTION_CURRENCY = #{transactionCurrency}
@@ -31,6 +25,18 @@
 	</sql>
 	
 	<sql id ="fragmentoWhereMultiples">
+		<if  test="estadosTransaccion != null and estadosTransaccion.size()>0" >
+			AND a.ESTADO_TRANSACCION IN 
+				<foreach item="item" index="index" collection="estadosTransaccion" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="indsConciliacion != null and indsConciliacion.size()>0" >
+			AND a.IND_CONCILIACION IN 
+				<foreach item="item" index="index" collection="indsConciliacion" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
 		<if test="idsOrigen !=null and idsOrigen.size()>0">
 			AND a.ID_ORIGEN IN 
 			<foreach item="item" index="index" collection="idsOrigen" open ="(" separator="," close=")">
