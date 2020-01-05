@@ -20,8 +20,8 @@ public class ComisCompensacion {
 	String registroContable;
 	Double valorComision;
 	Integer nivelTarifario;
-	Integer tarifaFlat;
-	Integer tarifaPorcentual;
+	Double tarifaFlat;
+	Double tarifaPorcentual;
 	Integer aplicaTarifaFlat;
 	Integer aplicaTarifaPorcentual;
 	Integer idMonedaTarifario;

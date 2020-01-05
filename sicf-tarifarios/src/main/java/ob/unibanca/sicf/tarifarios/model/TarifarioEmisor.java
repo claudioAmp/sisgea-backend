@@ -36,7 +36,6 @@ public class TarifarioEmisor {
 	private double tarifaFlat;
 	private double tarifaPorcentual;
 	private boolean aplicaIGV;
-	@IdNumerico(maxRange = 99999)
 	private Integer idClaseTransaccion;
 	private Integer idCodigoTransaccion;
 	private String descripcionTransaccion;
