@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.model.facturamastercard;
+package ob.unibanca.sicf.facturacion.model;
 
 import java.util.Date;
 

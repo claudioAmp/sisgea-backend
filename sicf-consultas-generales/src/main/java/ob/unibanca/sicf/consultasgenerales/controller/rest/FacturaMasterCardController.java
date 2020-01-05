@@ -7,8 +7,8 @@ import com.github.pagehelper.Page;
 
 import ob.unibanca.sicf.consultasgenerales.model.criterio.facturamastercard.CriterioBusquedaFacturaMasterCard;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.paginacion.Pagina;
-import ob.unibanca.sicf.consultasgenerales.model.facturamastercard.FacturaMasterCard;
 import ob.unibanca.sicf.consultasgenerales.service.facturacionmastercard.IFacturaMasterCardService;
+import ob.unibanca.sicf.facturacion.model.FacturaMasterCard;
 
 @RestController
 public class FacturaMasterCardController {

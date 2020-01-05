@@ -1,4 +1,4 @@
-package ob.unibanca.sicf.consultasgenerales.model.facturavisa;
+package ob.unibanca.sicf.facturacion.model;
 
 import java.util.Date;
 

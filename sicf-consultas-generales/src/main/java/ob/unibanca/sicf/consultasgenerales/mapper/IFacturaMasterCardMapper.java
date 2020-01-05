@@ -4,7 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.github.pagehelper.Page;
 import ob.unibanca.sicf.consultasgenerales.model.criterio.facturamastercard.CriterioBusquedaFacturaMasterCard;
-import ob.unibanca.sicf.consultasgenerales.model.facturamastercard.FacturaMasterCard;
+import ob.unibanca.sicf.facturacion.model.FacturaMasterCard;
+
 
 @Mapper
 public interface IFacturaMasterCardMapper {
