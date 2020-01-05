@@ -20,7 +20,9 @@ public class BINVisa {
 	String idBIN;
 	String binProcesador;
 	String region;
+	String descRegion;
 	String pais;
+	String descPais;
 	String tipoBIN;
 	String participacionFlag;
 	String visaDirect;
