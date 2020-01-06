@@ -132,5 +132,7 @@ public class CompensacionDetalle {
 	String codigoPlanCredito;
 	String codigoArticulo;
 	String indicadorPcas;
+	String descIndicadorPcas;
 	String origenArchivo;
+	String descOrigenArchivo;
 }
