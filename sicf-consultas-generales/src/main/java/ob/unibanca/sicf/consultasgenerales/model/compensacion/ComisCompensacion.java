@@ -17,7 +17,9 @@ public class ComisCompensacion {
 	Integer idComision;
 	String descripcionComision;
 	Integer idCuentaCompensacion;
+	String descIdCuentaCompensacion;
 	String registroContable;
+	String descRegistroContable;
 	Double valorComision;
 	Integer nivelTarifario;
 	Double tarifaFlat;
@@ -33,6 +35,10 @@ public class ComisCompensacion {
 	Integer infTarifaEmisor;
 	String descMonedaTarifario;
 	String indicadorCompensacion;
+	String descIndicadorCompensacion;
 	Integer compensaComisiones;
+	Long tipoCambioAplicado;
+	Integer idMonedaCompensacion;
+	String descMonedaCompensacion;
 	
 }
