@@ -12,8 +12,6 @@ import ob.unibanca.sicf.generadorconsultas.mapper.ICampoPerfilMapper;
 import ob.unibanca.sicf.generadorconsultas.model.CampoPerfil;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoPerfil;
 
-
-
 @Service
 public class CampoPerfilService extends MantenibleService<CampoPerfil> implements ICampoPerfilService {
 	
@@ -36,6 +34,11 @@ public class CampoPerfilService extends MantenibleService<CampoPerfil> implement
 		return this.campoPerfilMapper.buscarPorCriterios(criterio);
 	}
 	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<CampoPerfil> buscarCamposAsignables(CriterioBusquedaCampoPerfil criterio) {
+		return this.campoPerfilMapper.buscarCamposAsignables(criterio);
+	}	
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

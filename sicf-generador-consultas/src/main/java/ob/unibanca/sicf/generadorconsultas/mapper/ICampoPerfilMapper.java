@@ -16,5 +16,7 @@ public interface ICampoPerfilMapper extends IMantenibleMapper<CampoPerfil>{
 	
 	List<CampoPerfil> buscarPorCriterios(CriterioBusquedaCampoPerfil criterio);
 	
+	List<CampoPerfil> buscarCamposAsignables(CriterioBusquedaCampoPerfil criterio);
+	
 	void actualizarCamposDePerfil(int idPerfil,String listaModificacion,String usuario);
 }

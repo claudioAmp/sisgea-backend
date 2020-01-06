@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CampoPerfil{
 	Integer idPerfilRepCampo;
-	int idPerfil;
+	Integer idPerfil;
 	String perfil;
-	int idTabla;
+	Integer idTabla;
 	String tabla;
-	int idCampo;
+	Integer idCampo;
 	String campo;
+	Boolean existePermiso;
 }

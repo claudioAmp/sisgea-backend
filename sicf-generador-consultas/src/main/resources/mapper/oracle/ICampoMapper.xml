@@ -31,7 +31,7 @@
         </where>
     </select>
     
-    <select id="buscarPorIdTabla" resultType="Campo" statementType="PREPARED">
+    <select id="buscarIdTabla" resultType="Campo" statementType="PREPARED">
         <include refid="consulta"/>
         <where>
         	ID_TABLA = #{idTabla} 

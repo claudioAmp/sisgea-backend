@@ -71,7 +71,11 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Tabla> buscarTablasPermitidasUsuario() {
-		return this.permisoUsuarioMapper.buscarTablasPermitidasUsuario(UsuarioUtil.obtenerUsername().toUpperCase());
+		System.out.println("=== Debug - Reporteador === ");
+		System.out.println(UsuarioUtil.obtenerUsername());
+		System.out.println("=== Debug - Reporteador === ");
+		String usuario = UsuarioUtil.obtenerUsername() != null ? UsuarioUtil.obtenerUsername().toUpperCase() : "";
+		return this.permisoUsuarioMapper.buscarTablasPermitidasUsuario(usuario);
 	}
 }
 

@@ -22,8 +22,6 @@ import ob.unibanca.sicf.generadorconsultas.model.CampoPerfil;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoPerfil;
 import ob.unibanca.sicf.generadorconsultas.service.campoperfil.ICampoPerfilService;
 
-
-
 @Validated
 @RestController
 public class CampoPerfilRestController {
@@ -44,6 +42,10 @@ public class CampoPerfilRestController {
 		return this.campoPerfilService.buscarPorCriteriosCampoPerfil(criterio);
 	}
 	
+	@GetMapping(value = "/campos-perfil/campos-asignables")
+	public List<CampoPerfil> buscarCamposAsignables(CriterioBusquedaCampoPerfil criterio) {
+		return this.campoPerfilService.buscarCamposAsignables(criterio);
+	}
 
 	@PostMapping(value = "/campos-perfil", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)

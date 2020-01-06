@@ -19,6 +19,23 @@
         <include refid="consultaVistaMant"/>
     </select>
     
+    <select id="buscarCamposAsignables" resultType="CampoPerfil">
+    	SELECT 
+		  A.ID_PERFIL_REP_CAMPO, 
+		  A.ID_PERFIL, 
+		  A.DESCRIPCION_PERFIL, 
+		  B.ID_TABLA,
+		  B.TABLA AS TABLA,
+		  B.ID_CAMPO, 
+		  B.CAMPO AS CAMPO,
+		  CASE WHEN A.ID_PERFIL_REP_CAMPO IS NOT NULL THEN 1 ELSE 0 END AS EXISTE_PERMISO
+		FROM VIE_MAN_REP_PERFIL_CAMPO A
+		RIGHT JOIN VIE_MAN_REP_CAMPO B 
+		  ON B.ID_CAMPO = A.ID_CAMPO
+		WHERE B.ASIGNABLE = 1
+		AND (A.ID_PERFIL = #{idPerfil} OR A.ID_PERFIL IS NULL)
+    </select>
+    
     <select id="buscarPorCriterios" resultType="CampoPerfil" parameterType="CriterioBusquedaCampoPerfil"
             statementType="PREPARED">
         <include refid="consultaVistaMant"/>
