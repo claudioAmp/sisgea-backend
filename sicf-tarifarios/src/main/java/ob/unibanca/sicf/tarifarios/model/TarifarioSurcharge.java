@@ -26,7 +26,7 @@ public class TarifarioSurcharge {
 	private int rangoInicial;
 	@IdNumerico(maxRange = 99999999, groups = IRegistro.class)
 	private int rangoFinal;
-	@NumeroNoRequerido(minRange = 0, maxRange = 999)
+
 	private int idMoneda;
 	private String descripcionMoneda;
 	private double tarifaFlat;

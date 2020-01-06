@@ -33,12 +33,10 @@ public class TarifarioMiembro {
 	private Integer idInstitucionReceptora;
 	private String descripcionInstitucionReceptora;
 
-	@IdNumerico(maxRange = 99999)
 	private Integer idClaseTransaccion;
 	private Integer idCodigoTransaccion;
 	private String descripcionTransaccion;
 
-	@IdNumerico(maxRange = 999)
 	private Integer idMoneda;
 	private String descripcionMoneda;
 
