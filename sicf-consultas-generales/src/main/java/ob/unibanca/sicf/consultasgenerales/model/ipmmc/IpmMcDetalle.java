@@ -121,5 +121,19 @@ public class IpmMcDetalle {
 	private String descProceso;
 	private String idBin;
 	private String descBin;
+	
+	private String traceNumber;
+	private String transmissionTime;
+	private String accountIdentification;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date captureDate;
+	
+	private String idOrigenArchivoConc;
+	private String descripcionOrigenArchivoConc;
+	private Long secuenciaOrigenConc;
+	private Integer indConciliacion;
+	private String descripcionConciliacion;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaConciliacion;
 
 }

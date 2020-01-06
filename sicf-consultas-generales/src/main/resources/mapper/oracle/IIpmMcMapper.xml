@@ -175,6 +175,18 @@
 			<bind name="pFiltroIdBin" value="'%' + filtroIdBin + '%'" />
 			AND CONCAT(ID_BIN, UPPER(DESC_BIN)) LIKE UPPER(#{pFiltroIdBin})
 		</if>
+		<if  test="filtroIdMembresia != null " >
+			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+			AND CONCAT(UPPER(ID_MEMBRESIA), UPPER(DESC_MEMBRESIA)) LIKE UPPER(#{pFiltroIdMembresia})
+		</if>
+		<if  test="filtroIdServicio != null " >
+			<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+			AND CONCAT(UPPER(ID_SERVICIO), UPPER(DESC_SERVICIO)) LIKE UPPER(#{pFiltroIdServicio})
+		</if>
+		<if  test="filtroIdOrigen != null " >
+			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+			AND CONCAT(ID_ORIGEN, UPPER(DESC_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
+		</if>
 		
 		<if test="ordenTramsKey != null">
 			ORDER BY
@@ -279,6 +291,18 @@
 		<if test="ordenIdBin != null">
 			ORDER BY
 			ID_BIN ${ordenIdBin}
+		</if>
+		<if  test="ordenIdMembresia != null" >
+			ORDER BY
+			ID_MEMBRESIA ${ordenIdMenbresia}
+		</if>
+		<if  test="ordenIdServicio != null" >
+			ORDER BY
+			ID_SERVICIO ${ordenIdServicio}
+		</if>
+		<if  test="ordenIdOrigen != null" >
+			ORDER BY
+			ID_ORIGEN ${ordenIdOrigen}
 		</if>
 	</sql>
 

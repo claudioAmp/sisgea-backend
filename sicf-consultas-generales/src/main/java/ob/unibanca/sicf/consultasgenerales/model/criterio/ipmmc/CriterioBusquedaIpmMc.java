@@ -68,6 +68,9 @@ public class CriterioBusquedaIpmMc {
 	private String filtroIdInstitucionReceptora;
 	private String filtroIdProceso;
 	private String filtroIdBin;
+	private String filtroIdMembresia;
+	private String filtroIdServicio;
+	private String filtroIdOrigen;
 	
 	//orden Grilla
 	private String ordenTramsKey;
@@ -96,6 +99,9 @@ public class CriterioBusquedaIpmMc {
 	private String ordenIdInstitucionReceptora;
 	private String ordenIdProceso;
 	private String ordenIdBin;
+	private String ordenIdMembresia;
+	private String ordenIdServicio;
+	private String ordenIdOrigen;
 	
 	//Criterios de filtros de encabezado aggrid tipo RANGO
 	private Double rangoAmountTxnMin;
