@@ -100,9 +100,9 @@ public class CompensacionDetalle {
 	String seleccionCuentaAtm;
 	Integer compensadoFondos;
 	Integer compensadoComisiones;
-	double comisionTarjetahabiente;
-	double comisionEstablecimiento;
-	double comisionIntercambio;
+	Double comisionTarjetahabiente;
+	Double comisionEstablecimiento;
+	Double comisionIntercambio;
 	Integer fondosCargo;
 	String instFondosCargo;
 	Integer fondosAbono;
@@ -112,7 +112,7 @@ public class CompensacionDetalle {
 	Integer transaccionTipoC;
 	String horaTransaccion;
 	String glosaRegularizacion;
-	double porcentajeEstabLocal;
+	Double porcentajeEstabLocal;
 	String indMonedaInter;
 	String posConditionCode;
 	String binAdquirenteSwitch;
