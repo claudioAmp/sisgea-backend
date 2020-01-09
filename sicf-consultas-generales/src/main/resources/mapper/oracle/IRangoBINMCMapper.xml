@@ -58,9 +58,9 @@
 			<bind name="pFiltroPsnRouteIndicator" value="'%' + filtroPsnRouteIndicator + '%'" />
 			AND PSN_ROUTE_INDICATOR LIKE #{pFiltroPsnRouteIndicator}
 		</if>
-		<if  test="filtroProdcutTypeId != null" >
-			<bind name="pFiltroProdcutTypeId" value="'%' + filtroProdcutTypeId + '%'" />
-			AND PRODUCT_TYPE_ID LIKE #{pFiltroProdcutTypeId}
+		<if  test="filtroProductTypeId != null" >
+			<bind name="pFiltroProductTypeId" value="'%' + filtroProductTypeId + '%'" />
+			AND PRODUCT_TYPE_ID LIKE #{pFiltroProductTypeId}
 		</if>
 		<if  test="filtroProductReassigmentSwitch != null" >
 			<bind name="pFiltroProductReassigmentSwitch" value="'%' + filtroProductReassigmentSwitch + '%'" />
@@ -262,9 +262,9 @@
 			ORDER BY
 				PSN_ROUTE_INDICATOR  ${ordenPsnRouteIndicator}
 		</if>
-		<if  test="ordenProdcutTypeId != null" >
+		<if  test="ordenProductTypeId != null" >
 			ORDER BY
-				PRODUCT_TYPE_ID  ${ordenProdcutTypeId}
+				PRODUCT_TYPE_ID  ${ordenProductTypeId}
 		</if>
 		<if  test="ordenProductReassigmentSwitch != null" >
 			ORDER BY

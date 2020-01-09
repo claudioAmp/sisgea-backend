@@ -36,7 +36,7 @@ public class CriterioBusquedaRangoBINMC {
 	String filtroRegion;
 	String filtroPwcbOptInSwitch;
 	String filtroPsnRouteIndicator;
-	String filtroProdcutTypeId;
+	String filtroProductTypeId;
 	String filtroProductReassigmentSwitch;
 	String filtroProductClass;
 	String filtroPostDateServiceIndicator;
@@ -91,7 +91,7 @@ public class CriterioBusquedaRangoBINMC {
 	private String ordenRegion;
 	private String ordenPwcbOptInSwitch;
 	private String ordenPsnRouteIndicator;
-	private String ordenProdcutTypeId;
+	private String ordenProductTypeId;
 	private String ordenProductReassigmentSwitch;
 	private String ordenProductClass;
 	private String ordenPostDateServiceIndicator;

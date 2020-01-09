@@ -24,7 +24,7 @@ public class RangoBINMC {
 	String region;
 	String pwcbOptInSwitch;
 	String psnRouteIndicator;
-	Integer prodcutTypeId;
+	Integer productTypeId;
 	String productReassigmentSwitch;
 	String productClass;
 	String postDateServiceIndicator;
@@ -33,7 +33,7 @@ public class RangoBINMC {
 	String merchantCleansingServiceParticipation;
 	@DateTimeFormat(pattern = "yy/MM/dd")
 	Date merchantCleansingActivationDate;
-	String memberId;
+	Long memberId;
 	String mealVoucherIndicator;
 	String mappingServiceIndicator;
 	String licenseProductId;
@@ -49,7 +49,7 @@ public class RangoBINMC {
 	String filler2;
 	String filler3;
 	String fasterFundsIndicator;
-	Integer endpoint;
+	Long endpoint;
 	String effectiveTimestamp;
 	String durbinRegulatedRateIndicator;
 	Integer countryCodeNumeric;
@@ -60,7 +60,7 @@ public class RangoBINMC {
 	String cashBackWithoutPurchaseIndicator;
 	String cashAccessOnlyParticipatingIndicator;
 	String cardProgramId;
-	Integer cardholderBillingPrimaryCurrency;
+	String cardholderBillingPrimaryCurrency;
 	Integer cardholderBillingCurrencyExponentDefault;
 	Integer cardholderBillingCurrencyDefault;
 	Integer authenticationIndicator;
