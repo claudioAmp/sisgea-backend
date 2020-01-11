@@ -18,6 +18,6 @@ public class OrigenArchivo {
 	private String idOrigenArchivo;
 	@CaracterRequerido(maxLength = 30)
 	private String descripcionOrigenArchivo;
-	private boolean concilia;
+	private Boolean concilia;
 	
 }

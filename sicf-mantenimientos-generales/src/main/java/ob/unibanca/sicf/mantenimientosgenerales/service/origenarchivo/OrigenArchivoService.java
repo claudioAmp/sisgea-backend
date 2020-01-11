@@ -42,4 +42,27 @@ public class OrigenArchivoService extends MantenibleService<OrigenArchivo> imple
 	public List<OrigenArchivo> buscarOrigenArchivoPorConciliacion(boolean concilia) {
 		return this.origenArchivoMapper.buscarOrigenArchivoPorConciliacion(concilia);
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public OrigenArchivo registrarOrigenArchivo(OrigenArchivo origenArchivo) {
+		this.registrar(origenArchivo);
+		return origenArchivo;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public OrigenArchivo actualizarOrigenArchivo(String idOrigenArchivo, OrigenArchivo origenArchivo) {
+		origenArchivo.setIdOrigenArchivo(idOrigenArchivo);
+		this.actualizar(origenArchivo);
+		return origenArchivo;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void eliminarOrigenArchivo(String idOrigenArchivo) {
+		OrigenArchivo origenArchivo = OrigenArchivo.builder().idOrigenArchivo(idOrigenArchivo).build();
+		this.eliminar(origenArchivo);
+	}
+	
 }
