@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import ob.unibanca.sicf.facturacion.model.resultado.ResultadoCargaFactura;
 import ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos.ICargaCobrosMiscelaneosMCService;
 import ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos.ICargaCobrosMiscelaneosVisaService;
 
@@ -25,14 +27,8 @@ public class CargaCobrosMiscelaneosRestController {
 	}
 	
 	@PostMapping(value = "/visa/cobros-miscelaneos")
-	public ResponseEntity cargarArchivoVisa(@RequestParam("file[]") List<MultipartFile> file) {
-		try {
-			this.cargaCobrosMiscelaneosVisaService.cargarArchivos(file);
-        } catch (Exception e) {
-			e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida");
-        }
-		return ResponseEntity.status(HttpStatus.OK).body("Registro exitoso");
+	public List<ResultadoCargaFactura> cargarArchivoVisa(@RequestParam("file[]") List<MultipartFile> file){
+		return this.cargaCobrosMiscelaneosVisaService.cargarArchivos(file);
 	}
 	
 	@PostMapping(value = "/mc/cobros-miscelaneos")

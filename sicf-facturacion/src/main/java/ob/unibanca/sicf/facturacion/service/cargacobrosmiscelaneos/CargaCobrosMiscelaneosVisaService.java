@@ -1,10 +1,11 @@
 package ob.unibanca.sicf.facturacion.service.cargacobrosmiscelaneos;
 import ob.commons.error.exception.RecursoNoEncontradoException;
-import ob.commons.error.model.ErrorResponse;
 import ob.unibanca.sicf.facturacion.mapper.ICargaCobrosMiscelaneosMapper;
 import ob.unibanca.sicf.facturacion.mapper.IProcesoProcedureMapper;
 import ob.unibanca.sicf.facturacion.model.FacturaVisa;
 import ob.unibanca.sicf.facturacion.model.MetadataProcedure;
+import ob.unibanca.sicf.facturacion.model.resultado.ResultadoCargaFactura;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,7 +41,6 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 	private static final String PROCESO_NO_ENCONTRADO = "El proceso de carga %s no fue encontrado";
 	private static final String PROCESO_NAME = "CARG_MIS_V";
 	private final ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper;
-	//private final IProcesoProcedureMapper procesoProcedureMapper;
 	private final MetadataProcedure procedure;
 	
 	private @Autowired
@@ -50,7 +50,6 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 			@Qualifier("ICargaCobrosMiscelaneosMapper") ICargaCobrosMiscelaneosMapper cargaCobrosMiscMapper,
 			@Qualifier("IProcesoProcedureMapper") IProcesoProcedureMapper procesoProcedureMapper) {
 		this.cargaCobrosMiscMapper = (ICargaCobrosMiscelaneosMapper) cargaCobrosMiscMapper;
-		//this.procesoProcedureMapper = (IProcesoProcedureMapper) procesoProcedureMapper;
 		this.procedure = procesoProcedureMapper.getMetadataProcedureProceso(PROCESO_NAME).orElseThrow(
 				() -> new RecursoNoEncontradoException(PROCESO_NO_ENCONTRADO, PROCESO_NAME));
 		this.procedure.setParametrosProcedure(
@@ -71,45 +70,22 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<ErrorResponse> cargarArchivos(List<MultipartFile> multipartfiles) {
-		List<ErrorResponse> listaExcepciones = new ArrayList<>();
-		/*
-		for (MultipartFile multipartfile : multipartfiles) {
-			List<ErrorResponse> aux;
-			String filename = multipartfile.getOriginalFilename();
-			boolean esReproceso = procesoProcedureMapper.isReproceso(filename);
-			HashMap<String, Object> parametrosAdicionales = new HashMap<>();
-			parametrosAdicionales.put("filename", filename);
-			parametrosAdicionales.put("reproceso", esReproceso);
-			
-			try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
-				aux = CargaArchivoExcel.readExcelFile(filename, bis, this.procedure.getParametrosProcedure(), this,
-				                                      true, 0, this.procedure.getPatronFechaArchivo(), false,
-				                                      parametrosAdicionales);
-				
-				if (aux != null) {
-					aux.stream().filter(Objects::nonNull).forEachOrdered(listaExcepciones::add);
-				}
-			} catch (IOException e) {
-				throw new RecursoNoEncontradoException(e.getMessage());
-			}
-		}*/
-		
+	public List<ResultadoCargaFactura> cargarArchivos(List<MultipartFile> multipartfiles) {
+		List<ResultadoCargaFactura> listaResultados = new ArrayList<>();
 		for (MultipartFile multipartfile : multipartfiles) {
 			String filename = multipartfile.getOriginalFilename();
-			
 			try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
-				leerExcel(filename, bis);
+				ResultadoCargaFactura resultadoCarga = leerExcel(filename, bis);
+				listaResultados.add(resultadoCarga);
 			} catch (IOException e) {
 				throw new RecursoNoEncontradoException(e.getMessage());
 			}
 		}
-		return listaExcepciones;
+		return listaResultados;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void leerExcel(String filename, InputStream inputStream){
-		
+	public ResultadoCargaFactura leerExcel(String filename, InputStream inputStream){
 		try (Workbook workbook = WorkbookFactory.create(inputStream)) {
 			Sheet sheet = workbook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
@@ -118,7 +94,6 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 			List<FacturaVisa> listaFilas = new ArrayList<>();
 			while (rowIterator.hasNext()) {
 				row = rowIterator.next();
-				// row.getCell(columnAux)
 				String billingPeriod 	= row.getCell(0).getStringCellValue(); 	
 				Date invoiceDate 		= TypesUtil.getDateValue(row.getCell(1), "dd-MMM-yyyy");       
 				String invoiceAccount 	= row.getCell(2).getStringCellValue();  
@@ -164,9 +139,24 @@ public class CargaCobrosMiscelaneosVisaService implements ICargaCobrosMiscelaneo
 				listaFilas.add(fila);
 			}
 			cargarExcel(listaFilas);
+			ResultadoCargaFactura resultadoCarga = ResultadoCargaFactura.builder()
+					.nombreArchivo(filename)
+					.numeroRegistros(listaFilas.size())
+					.fechaFactura(listaFilas.get(0).getInvoiceDate())
+					.exito(true)
+					.build();
+			return resultadoCarga;
 		} catch (IOException ex) {
 			throw new ReadingExcelFileException(
 							"Asegúrese de que se trata de un archivo Excel. Nombre de archivo: " + filename);
+		} catch (Exception ex) {
+			ResultadoCargaFactura resultadoCargaFallida = ResultadoCargaFactura.builder()
+					.nombreArchivo(filename)
+					.numeroRegistros(0)
+					.fechaFactura(null)
+					.exito(false)
+					.build();
+			return resultadoCargaFallida;
 		}
 	}
 
