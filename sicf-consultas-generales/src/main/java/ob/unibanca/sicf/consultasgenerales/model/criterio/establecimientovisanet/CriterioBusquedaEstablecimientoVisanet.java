@@ -21,7 +21,7 @@ public class CriterioBusquedaEstablecimientoVisanet {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProcesoFin;
 	String ruc;
-	List<Integer> idsGiro;
+	List<String> idsGiro;
 	String ubigeo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date fechaProceso;

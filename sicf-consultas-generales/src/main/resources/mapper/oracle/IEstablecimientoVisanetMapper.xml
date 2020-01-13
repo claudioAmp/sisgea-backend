@@ -52,11 +52,11 @@
 		</if>
 		<if  test="filtroRazonSocial != null " >
 			<bind name="pFiltroRazonSocial" value="'%' + filtroRazonSocial + '%'" />
-			AND RAZON_SOCIAL LIKE #{pFiltroRazonSocial}
+			AND UPPER(RAZON_SOCIAL) LIKE UPPER(#{pFiltroRazonSocial})
 		</if>
 		<if  test="filtroNombreComercial != null " >
 			<bind name="pFiltroNombreComercial" value="'%' + filtroNombreComercial + '%'" />
-			AND NOMBRE_COMERCIAL LIKE #{pFiltroNombreComercial}
+			AND UPPER(NOMBRE_COMERCIAL) LIKE UPPER(#{pFiltroNombreComercial})
 		</if>
 		<if  test="filtroIdGiro != null " >
 			<bind name="pFiltroIdGiro" value="'%' + filtroIdGiro + '%'" />
@@ -64,7 +64,7 @@
 		</if>
 		<if  test="filtroDireccion != null " >
 			<bind name="pFiltroDireccion" value="'%' + filtroDireccion + '%'" />
-			AND DIRECCION LIKE #{pFiltroDireccion}
+			AND UPPER(DIRECCION) LIKE UPPER(#{pFiltroDireccion})
 		</if>
 		<if  test="filtroUbigeo != null " >
 			<bind name="pFiltroUbigeo" value="'%' + filtroUbigeo + '%'" />
@@ -72,7 +72,7 @@
 		</if>
 		<if  test="filtroRecurrente != null " >
 			<bind name="pFiltroRecurrente" value="'%' + filtroRecurrente + '%'" />
-			AND RECURRENTE LIKE #{pFiltroRecurrente}
+			AND UPPER(RECURRENTE) LIKE UPPER(#{pFiltroRecurrente})
 		</if>
 		<if  test="filtroTipoFacturacion != null " >
 			<bind name="pFiltroTipoFacturacion" value="'%' + filtroTipoFacturacion + '%'" />
@@ -135,23 +135,18 @@
 		</where>
    	</select>
   	
-  	
-   	<sql id="consultaEstablecimientoVisanetComis" >
+	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaEstablecimientoVisanet"  resultType="EstablecimientoVisanetComis" statementType="PREPARED">	
 		SELECT *
 		FROM VIE_CON_ESTABLEC_VISANET_COMIS a
-	</sql>
-	
-	<select id="buscarComisionesPorSecuencia" parameterType="CriterioBusquedaEstablecimientoVisanet"  resultType="EstablecimientoVisanetComis" statementType="PREPARED">	
-		<include refid="consultaEstablecimientoVisanetComis" />
 		<where>
 			<if  test="idAdquirente != null">
-				a.ID_ADQUIRENTE = #{idAdquirente}
+				AND a.ID_ADQUIRENTE = #{idAdquirente}
 			</if>
 			<if  test="idEstablecimiento != null">
-				a.ID_ESTABLECIMIENTO = #{idEstablecimiento}
+				AND a.ID_ESTABLECIMIENTO = #{idEstablecimiento}
 			</if>
 			<if  test="fechaProceso != null">
-				a.FECHA_PROCESO =  #{fechaProceso}
+				AND a.FECHA_PROCESO =  #{fechaProceso}
 			</if>
 		</where>
    	</select>

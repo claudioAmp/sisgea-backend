@@ -3,6 +3,7 @@ package ob.unibanca.sicf.consultasgenerales.model.establecimientovisanet;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class EstablecimientoVisanet {
 	
 	String idAdquirente;
