@@ -2,8 +2,6 @@ package ob.unibanca.sicf.facturacion.controller.rest.cargacobrosmiscelaneos;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +30,8 @@ public class CargaCobrosMiscelaneosRestController {
 	}
 	
 	@PostMapping(value = "/mc/cobros-miscelaneos")
-	public ResponseEntity cargarArchivoMC(@RequestParam("file[]") List<MultipartFile> file) {
-		try {
-			this.cargaCobrosMiscelaneosMCService.cargarArchivos(file);
-        } catch (Exception e) {
-			e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Carga fallida pz");
-        }
-		return ResponseEntity.status(HttpStatus.OK).body("Registro exitoso");
+	public List<ResultadoCargaFactura> cargarArchivoMC(@RequestParam("file[]") List<MultipartFile> file) {
+		return this.cargaCobrosMiscelaneosMCService.cargarArchivos(file);
 	}
+	
 }
