@@ -83,5 +83,23 @@
                 )
         }
     </select>
+    
+    <delete id="eliminarCamposDePerfilMasivo">
+	  DELETE FROM MAE_PERFIL_REP_CAMPO
+      WHERE ID_PERFIL_REP = #{idPerfil}
+	</delete>
+    
+    <select  id="registrarCamposDePerfilMasivo" statementType="CALLABLE">
+         INSERT INTO MAE_PERFIL_REP_CAMPO (ID_TABLA, ID_CAMPO, ID_PERFIL_REP) 
+         <foreach item="item" index="index" collection="lista">			
+			 <if test="index != 0">
+			 	UNION
+			 </if>
+			 SELECT #{item.idTabla},
+			 		#{item.idCampo},
+			 		#{item.idPerfil} 
+			 FROM DUAL
+		 </foreach>
+    </select>
 
 </mapper>

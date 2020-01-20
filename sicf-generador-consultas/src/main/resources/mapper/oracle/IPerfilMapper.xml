@@ -9,6 +9,7 @@
 		  DESCRIPCION   	AS DESCRIPCION,
 		  ACTIVO  		 	AS ACTIVO
 		FROM MAE_PERFIL_REP
+		ORDER BY ID_PERFIL_REP ASC
     </select>
     
      <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
