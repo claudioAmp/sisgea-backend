@@ -13,4 +13,10 @@ public interface IOrigenArchivoService extends IMantenibleService<OrigenArchivo>
 	
 	OrigenArchivo buscarOrigenArchivo(String idOrigenArchivo);
 	
+	OrigenArchivo registrarOrigenArchivo(OrigenArchivo origenArchivo);
+	
+	OrigenArchivo actualizarOrigenArchivo(String idOrigenArchivo, OrigenArchivo origenARchivo);
+	
+	void eliminarOrigenArchivo(String idOrigenArchivo);
+	
 }

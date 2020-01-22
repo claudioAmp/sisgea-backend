@@ -20,12 +20,13 @@ public class RangoBINMC {
 	String tableId;
 	String spendControlSwitch;
 	String repowerReloadParticipationIndicator;
+	String descRepowerReloadParticipationIndicator;
 	String regulatedRateTypeIndicator;
 	String region;
 	String pwcbOptInSwitch;
 	String psnRouteIndicator;
-	Integer prodcutTypeId;
-	String productReassigmentSwitch;
+	Integer productTypeId;
+	String productReassignmentSwitch;
 	String productClass;
 	String postDateServiceIndicator;
 	String nonReloadablePrepaidSwitch;
@@ -33,7 +34,7 @@ public class RangoBINMC {
 	String merchantCleansingServiceParticipation;
 	@DateTimeFormat(pattern = "yy/MM/dd")
 	Date merchantCleansingActivationDate;
-	String memberId;
+	Long memberId;
 	String mealVoucherIndicator;
 	String mappingServiceIndicator;
 	String licenseProductId;
@@ -49,7 +50,7 @@ public class RangoBINMC {
 	String filler2;
 	String filler3;
 	String fasterFundsIndicator;
-	Integer endpoint;
+	Long endpoint;
 	String effectiveTimestamp;
 	String durbinRegulatedRateIndicator;
 	Integer countryCodeNumeric;
@@ -60,7 +61,7 @@ public class RangoBINMC {
 	String cashBackWithoutPurchaseIndicator;
 	String cashAccessOnlyParticipatingIndicator;
 	String cardProgramId;
-	Integer cardholderBillingPrimaryCurrency;
+	String cardholderBillingPrimaryCurrency;
 	Integer cardholderBillingCurrencyExponentDefault;
 	Integer cardholderBillingCurrencyDefault;
 	Integer authenticationIndicator;
@@ -69,4 +70,30 @@ public class RangoBINMC {
 	String accountLevelManagementParticipationIndicator;
 	@DateTimeFormat(pattern = "yy/MM/dd")
 	Date accountLevelManagementActivationDate;
+	String descTransactionRoutingIndicator;
+	String descSpendControlSwitch;
+	String descRegulatedRateTypeIndicator;
+	String descRegion;
+	String descPsnRouteIndicator;
+	String descProductTypeId;
+	String descProductReassignmentSwitch;
+	String descPostDateServiceIndicator;
+	String descNonReloadablePrepaidSwitch;
+	String descMoneysendIndicator;
+	String descMerchantCleansingServiceParticipation;
+	String descMealVoucherIndicator;
+	String descMappingServiceIndicator;
+	String descIssuerTargetMarketParticipationIndicator;
+	String descFirstPresentmentReassignmentSwitch;
+	String descFasterFundsIndicator;
+	String descDurbinRegulatedRateIndicator;
+	String descContactlessEnabledIndicator;
+	String descCoBrandParticipationSwitch;
+	String descChipToMagneticConversionServiceIndicator;
+	String descCashBackWithoutPurchaseIndicator;
+	String descCashAccessOnlyParticipatingIndicator;
+	String descAuthenticationIndicator;
+	String descAnonymousPrepaidIndicator;
+	String descActiveInactiveCode;
+	String descAccountLevelManagementParticipationIndicator;
 }	

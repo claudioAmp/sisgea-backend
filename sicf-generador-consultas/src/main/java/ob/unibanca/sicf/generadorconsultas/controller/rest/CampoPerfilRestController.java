@@ -6,6 +6,7 @@ import javax.validation.groups.Default;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import ob.commons.spring.validation.validation.IdNumerico;
 import ob.commons.spring.validation.validation.group.IRegistro;
 import ob.unibanca.sicf.generadorconsultas.model.CampoPerfil;
 import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaCampoPerfil;
+import ob.unibanca.sicf.generadorconsultas.model.criterio.CriterioBusquedaPerfilCampoActualizarMasivo;
 import ob.unibanca.sicf.generadorconsultas.service.campoperfil.ICampoPerfilService;
 
 @Validated
@@ -71,5 +73,11 @@ public class CampoPerfilRestController {
 		System.out.println(idPerfil);
 		System.out.println(listaModificacion);
 		this.campoPerfilService.actualizarCamposDePerfil(idPerfil, listaModificacion, usuario);
+	}
+	
+	@PostMapping(value = "/campos-perfil/registrar-masivo")
+	public ResponseEntity<?> registrarCamposDePerfilMasivo(@RequestBody CriterioBusquedaPerfilCampoActualizarMasivo criterio) {
+		this.campoPerfilService.actualizarCamposDePerfilMasivo(criterio);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

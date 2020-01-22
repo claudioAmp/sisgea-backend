@@ -12,19 +12,23 @@
             a.FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
         </if>
         <if  test="idEstablecimiento != null and idEstablecimiento != ''">
-            AND a.ID_ESTABLECIMIENTO = #{idEstablecimiento}
+            AND a.ID_ESTABLECIMIENTO LIKE #{idEstablecimiento}
         </if>
         <if  test="direccion != null and direccion != ''">
-            AND a.DIRECCION = #{direccion}
+        	<bind name="pDireccion" value="'%' + direccion + '%'" />
+            AND UPPER(a.DIRECCION) LIKE UPPER(#{pDireccion})
         </if>
         <if  test="ciudad != null and ciudad != ''">
-            AND a.CIUDAD = #{ciudad}
+        	<bind name="pCiudad" value="'%' + ciudad + '%'" />
+            AND UPPER(a.CIUDAD) LIKE UPPER(#{pCiudad})
         </if>
         <if  test="codigoPostal != null and codigoPostal != ''" >
-            AND a.CODIGO_POSTAL = #{codigoPostal}
+        	<bind name="pCodigoPostal" value="'%' + codigoPostal + '%'" />
+            AND UPPER(a.CODIGO_POSTAL) LIKE UPPER(#{pCodigoPostal})
         </if>
         <if  test="grupo != null and grupo != ''" >
-            AND a.GRUPO = #{grupo}
+        	<bind name="pGrupo" value="'%' + grupo + '%'" />
+            AND UPPER(a.GRUPO) LIKE UPPER(#{pGrupo})
         </if>
     </sql>
 
@@ -33,19 +37,24 @@
             AND FECHA_PROCESO = #{filtroFechaProceso}
         </if>
         <if test="filtroIdEstablecimiento != null">
-            AND ID_ESTABLECIMIENTO = #{filtroIdEstablecimiento}
+        <bind name="pFiltroIdEstablecimiento" value="'%' + filtroIdEstablecimiento + '%'" />
+            AND ID_ESTABLECIMIENTO LIKE #{pFiltroIdEstablecimiento}
         </if>
         <if test="filtroDireccion != null">
-            AND DIRECCION = #{filtroDireccion}
+        	<bind name="pFiltroDireccion" value="'%' + filtroDireccion + '%'" />
+            AND UPPER(DIRECCION) LIKE UPPER(#{pFiltroDireccion})
         </if>
         <if test="filtroCiudad != null">
-            AND CIUDAD = #{filtroCiudad}
+        	<bind name="pFiltroCiudad" value="'%' + filtroCiudad + '%'" />
+            AND UPPER(CIUDAD) LIKE UPPER(#{pFiltroCiudad})
         </if>
         <if test="filtroCodigoPostal != null">
-            AND CODIGO_POSTAL = #{filtroCodigoPostal}
+        	<bind name="pFiltroCodigoPostal" value="'%' + filtroCodigoPostal + '%'" />
+            AND UPPER(CODIGO_POSTAL) LIKE UPPER(#{pFiltroCodigoPostal})
         </if>
         <if test="filtroGrupo != null">
-            AND GRUPO = #{filtroGrupo}
+        	<bind name="pFiltroGrupo" value="'%' + filtroGrupo + '%'" />
+            AND UPPER(GRUPO) LIKE UPPER(#{pFiltroGrupo})
         </if>
     </sql>
 

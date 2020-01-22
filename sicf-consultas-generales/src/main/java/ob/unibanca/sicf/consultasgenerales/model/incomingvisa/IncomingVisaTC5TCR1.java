@@ -29,7 +29,7 @@ public class IncomingVisaTC5TCR1 {
 	private String descIssuerCharge;
 	private String cardAcceptorId;
 	private String terminalId;
-	private Integer nationalReimbursementFee;
+	private Double nationalReimbursementFee;
 	private String mailPhoneEcommerceInd;
 	private String specialChargebackInd;
 	private String interfaceTraceNumber;

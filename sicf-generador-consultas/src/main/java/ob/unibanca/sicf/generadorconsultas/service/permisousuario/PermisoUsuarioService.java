@@ -31,14 +31,17 @@ public class PermisoUsuarioService extends MantenibleService<PermisoUsuario> imp
 	public List<PermisoUsuario> buscarTodosPermisosUsuario() {
 		return this.buscarTodos();
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<PermisoUsuario> buscarPorCriteriosPermisoUsuario(CriterioBusquedaPermisoUsuario criterio) {
 		if(criterio.getPermited()==1) {
-			criterio.setUsername(UsuarioUtil.obtenerUsername().toUpperCase());
+			String usuario = UsuarioUtil.obtenerUsername() != null ? UsuarioUtil.obtenerUsername().toUpperCase() : "";
+			criterio.setUsername(usuario);
 		}
 		return this.permisoUsuarioMapper.buscarPorCriterios(criterio);
 	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public PermisoUsuario registrarPermisoUsuario(PermisoUsuario permisoUsuario) {
