@@ -31,7 +31,8 @@
 		  CASE WHEN A.ID_PERFIL_REP_CAMPO IS NOT NULL THEN 1 ELSE 0 END AS EXISTE_PERMISO
 		FROM VIE_MAN_REP_PERFIL_CAMPO A
 		RIGHT JOIN VIE_MAN_REP_CAMPO B 
-		  ON B.ID_CAMPO = A.ID_CAMPO
+		  	ON B.ID_CAMPO = A.ID_CAMPO
+      		AND B.ID_TABLA = A.ID_TABLA
 		WHERE B.ASIGNABLE = 1
 		AND (A.ID_PERFIL = #{idPerfil} OR A.ID_PERFIL IS NULL)
     </select>
@@ -81,6 +82,24 @@
                 #{usuario, 				jdbcType=VARCHAR, mode=IN}               
                 )
         }
+    </select>
+    
+    <delete id="eliminarCamposDePerfilMasivo">
+	  DELETE FROM MAE_PERFIL_REP_CAMPO
+      WHERE ID_PERFIL_REP = #{idPerfil}
+	</delete>
+    
+    <select  id="registrarCamposDePerfilMasivo" statementType="CALLABLE">
+         INSERT INTO MAE_PERFIL_REP_CAMPO (ID_TABLA, ID_CAMPO, ID_PERFIL_REP) 
+         <foreach item="item" index="index" collection="lista">			
+			 <if test="index != 0">
+			 	UNION
+			 </if>
+			 SELECT #{item.idTabla},
+			 		#{item.idCampo},
+			 		#{item.idPerfil} 
+			 FROM DUAL
+		 </foreach>
     </select>
 
 </mapper>

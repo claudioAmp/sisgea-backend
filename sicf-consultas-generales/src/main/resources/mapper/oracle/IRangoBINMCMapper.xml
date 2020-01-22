@@ -58,13 +58,13 @@
 			<bind name="pFiltroPsnRouteIndicator" value="'%' + filtroPsnRouteIndicator + '%'" />
 			AND PSN_ROUTE_INDICATOR LIKE #{pFiltroPsnRouteIndicator}
 		</if>
-		<if  test="filtroProdcutTypeId != null" >
-			<bind name="pFiltroProdcutTypeId" value="'%' + filtroProdcutTypeId + '%'" />
-			AND PRODUCT_TYPE_ID LIKE #{pFiltroProdcutTypeId}
+		<if  test="filtroProductTypeId != null" >
+			<bind name="pFiltroProductTypeId" value="'%' + filtroProductTypeId + '%'" />
+			AND PRODUCT_TYPE_ID LIKE #{pFiltroProductTypeId}
 		</if>
-		<if  test="filtroProductReassigmentSwitch != null" >
-			<bind name="pFiltroProductReassigmentSwitch" value="'%' + filtroProductReassigmentSwitch + '%'" />
-			AND PRODUCT_REASSIGNMENT_SWITCH LIKE #{pFiltroProductReassigmentSwitch}
+		<if  test="filtroProductReassignmentSwitch != null" >
+			<bind name="pFiltroProductReassignmentSwitch" value="'%' + filtroProductReassignmentSwitch + '%'" />
+			AND PRODUCT_REASSIGNMENT_SWITCH LIKE #{pFiltroProductReassignmentSwitch}
 		</if>
 		<if  test="filtroProductClass != null" >
 			<bind name="pFiltroProductClass" value="'%' + filtroProductClass + '%'" />
@@ -170,7 +170,7 @@
 		</if>
 		<if  test="filtroContactlessEnabledIndicator != null" >
 			<bind name="pFiltroContactlessEnabledIndicator" value="'%' + filtroContactlessEnabledIndicator + '%'" />
-			AND CONTACLESS_ENABLED_INDICATOR LIKE #{pFiltroContactlessEnabledIndicator}
+			AND CONTACTLESS_ENABLED_INDICATOR LIKE #{pFiltroContactlessEnabledIndicator}
 		</if>
 		<if  test="filtroCoBrandParticipationSwitch != null" >
 			<bind name="pFiltroCoBrandParticipationSwitch" value="'%' + filtroCoBrandParticipationSwitch + '%'" />
@@ -262,13 +262,13 @@
 			ORDER BY
 				PSN_ROUTE_INDICATOR  ${ordenPsnRouteIndicator}
 		</if>
-		<if  test="ordenProdcutTypeId != null" >
+		<if  test="ordenProductTypeId != null" >
 			ORDER BY
-				PRODUCT_TYPE_ID  ${ordenProdcutTypeId}
+				PRODUCT_TYPE_ID  ${ordenProductTypeId}
 		</if>
-		<if  test="ordenProductReassigmentSwitch != null" >
+		<if  test="ordenProductReassignmentSwitch != null" >
 			ORDER BY
-				PRODUCT_REASSIGNMENT_SWITCH  ${ordenProductReassigmentSwitch}
+				PRODUCT_REASSIGNMENT_SWITCH  ${ordenProductReassignmentSwitch}
 		</if>
 		<if  test="ordenProductClass != null" >
 			ORDER BY
@@ -376,7 +376,7 @@
 		</if>
 		<if  test="ordenContactlessEnabledIndicator != null" >
 			ORDER BY
-				CONTACLESS_ENABLED_INDICATOR  ${ordenContactlessEnabledIndicator}
+				CONTACTLESS_ENABLED_INDICATOR  ${ordenContactlessEnabledIndicator}
 		</if>
 		<if  test="ordenCoBrandParticipationSwitch != null" >
 			ORDER BY
