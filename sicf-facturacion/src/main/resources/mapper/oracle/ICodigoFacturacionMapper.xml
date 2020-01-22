@@ -3,9 +3,8 @@
 <mapper namespace="ob.unibanca.sicf.facturacion.mapper.ICodigoFacturacionMapper">
 
     <select id="buscarTodos" resultType="CodigoFacturacion" statementType="PREPARED">
-        SELECT id_codigo_facturacion
-             , descripcion   AS descripcion_codigo_facturacion
-        FROM MAE_CODIGO_FACTURACION
+        SELECT *
+        FROM VIE_MAN_CODIGO_FACTURACION
     </select>
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
@@ -13,7 +12,9 @@
             CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_FACTURACION(
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idCodigoFacturacion, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcionCodigoFacturacion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descIdCodigoFacturacion, jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.indTipoFacturacion, jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idDetraccion, jdbcType= NUMERIC, mode=IN}
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
         }

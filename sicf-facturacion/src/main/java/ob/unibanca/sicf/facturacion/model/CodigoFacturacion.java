@@ -13,9 +13,25 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CodigoFacturacion {
-	
+
+	/*Missmatch Error*/
+
+	private Integer idDetraccion;
+
+	private String descIdDetraccion;
+
+	private Integer indTipoFacturacion;
+
+	private String descIndTipoFacturacion;
+
+	private String idOrigenFacturacion;
+
+	private String descIdOrigenFacturacion;
+
 	@IdNumerico(maxRange = 99999, groups = IRegistro.class)
-	private int idCodigoFacturacion;
+	private Integer idCodigoFacturacion;
+
 	@CaracterRequerido(maxLength = 100)
-	private String descripcionCodigoFacturacion;
+	private String descIdCodigoFacturacion;
+
 }
