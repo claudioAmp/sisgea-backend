@@ -20,4 +20,6 @@ public class Servicio {
 	private String idServicio;
 	@CaracterRequerido(maxLength = 20)
 	private String descripcionServicio;
+	@CaracterRequerido(maxLength = 150)
+	private String descripcionGlosa;
 }

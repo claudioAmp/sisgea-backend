@@ -13,8 +13,7 @@
                 #{modo, jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idCodigoFacturacion, jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descIdCodigoFacturacion, jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.indTipoFacturacion, jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.idDetraccion, jdbcType= NUMERIC, mode=IN}
+                #{objetoMantenido.idDetraccion, jdbcType= NUMERIC, mode=IN},
                 #{usuario, jdbcType=VARCHAR, mode=IN}
             )
         }
