@@ -15,7 +15,7 @@
                 #{modo									,jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idOrigenNota			,jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.idNota				,jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.descripcionDetraccion ,jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionTipoNota   ,jdbcType=VARCHAR, mode=IN},
                 #{usuario 								,jdbcType=VARCHAR, mode=IN}
             )
         }
