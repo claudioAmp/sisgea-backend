@@ -24,4 +24,7 @@ public class DistribucionVisaTC10Detalle {
 
     // Solo para inserción, no son propios de la entidades, heredados de DistribucionVisaTC10
     private String secuenciaAgrupada;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date fechaProceso;
 }
