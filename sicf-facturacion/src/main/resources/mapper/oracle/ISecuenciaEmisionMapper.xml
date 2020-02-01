@@ -22,4 +22,18 @@
         FROM MAE_SECUENCIA_EMISION
         WHERE id_secuencia_emision = #{idSecuenciaEmision}
     </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_SECUENCIA_EMISION(
+                #{modo,                                  jdbcType=VARCHAR, mode=IN       },
+                #{objetoMantenido.idSecuenciaEmision,    jdbcType=INTEGER, mode=INOUT    },
+                #{objetoMantenido.origenSolicitud,       jdbcType=INTEGER, mode=IN       },
+                #{objetoMantenido.tipoDocumento,         jdbcType=VARCHAR, mode=IN       },
+                #{objetoMantenido.descripcionDocumento,  jdbcType=VARCHAR, mode=IN       },
+                #{objetoMantenido.numeroSerie,           jdbcType=VARCHAR, mode=IN       },
+                #{objetoMantenido.secuencia,             jdbcType=INTEGER, mode=IN       }
+            )
+        }
+    </select>
 </mapper>
