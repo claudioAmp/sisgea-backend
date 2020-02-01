@@ -42,20 +42,21 @@ public class TipoNotaRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TipoNota registarTipoNota(@Validated({ IRegistro.class, Default.class }) @RequestBody TipoNota tipoNota) {
 		return this.tipoNotaService.registrarTipoNota(tipoNota);
+		
 	}
 	@PreAuthorize("hasPermission('MANT_TIPO_NOTA', '3')")
 	@PutMapping(value = "/tipoNota/origenNota/{idOrigenNota}/nota/{idNota}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public TipoNota actualizarTipoNota(@IdNumerico(maxRange = 9) @PathVariable int idOrigenNota,
-			@IdNumerico(maxRange = 99) @PathVariable int idNota,
-			@Validated @RequestBody TipoNota tipoNota) {
-			return this.actualizarTipoNota(idOrigenNota, idNota, tipoNota);
+									   @IdNumerico(maxRange = 99) @PathVariable int idNota,
+									   @Validated({ IRegistro.class, Default.class }) @RequestBody TipoNota tipoNota) {
+			return this.tipoNotaService.actualizarTipoNota(idOrigenNota, idNota, tipoNota);
 	}
 	
 	@PreAuthorize("hasPermission('MANT_TIPO_NOTA', '4')")
 	@DeleteMapping("/tipoNota/origenNota/{idOrigenNota}/nota/{idNota}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarTipoNota(@IdNumerico(maxRange = 9) @PathVariable int idOrigenNota,
-			@IdNumerico(maxRange = 99) @PathVariable int idNota) {
+								 @IdNumerico(maxRange = 99) @PathVariable int idNota) {
 		this.tipoNotaService.eliminarTipoNota(idOrigenNota, idNota);
 	}
 }
