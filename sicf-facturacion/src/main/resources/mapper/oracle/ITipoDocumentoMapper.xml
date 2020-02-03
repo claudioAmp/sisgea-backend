@@ -5,6 +5,8 @@
     <select id="buscarTodos" resultType="TipoDocumento" statementType="PREPARED">
         SELECT id_documento
              , descripcion AS descripcionTipoDocumento
+             ,abreviatura
+             ,codigo_sunat
         FROM MAE_TIPO_DOCUMENTO
     </select>
 
@@ -14,6 +16,8 @@
                 #{modo										 ,jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idDocumento				 ,jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.descripcionTipoDocumento   ,jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.abreviatura			     ,jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.codigoSunat			     ,jdbcType=VARCHAR, mode=IN},
                 #{usuario 									 ,jdbcType=VARCHAR, mode=IN}
             )
         }

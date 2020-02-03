@@ -17,4 +17,6 @@ public class TipoDocumento {
 	Integer idDocumento;
 	@CaracterRequerido(maxLength = 100)
 	String descripcionTipoDocumento;
+	String abreviatura;
+	String codigoSunat;
 }
