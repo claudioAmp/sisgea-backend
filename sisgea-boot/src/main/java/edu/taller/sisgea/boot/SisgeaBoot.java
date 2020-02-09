@@ -2,11 +2,8 @@ package edu.taller.sisgea.boot;
 
 import ob.commons.jwt.JWTUtil;
 import edu.taller.sisgea.consultasgenerales.ConsultasGeneralesBoot;
-import edu.taller.sisgea.generadorconsultas.GeneradorConsultasBoot;
 import edu.taller.sisgea.mantenimientosgenerales.MantenimientosGeneralesBoot;
 import edu.taller.sisgea.reportes.ReportesBoot;
-import edu.taller.sisgea.tarifarios.TarifariosBoot;
-import edu.taller.sisgea.conciliacion.ConciliacionBoot;
 import edu.taller.sisgea.visualizacionpan.VisualizacionPANBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,9 +33,9 @@ import java.util.List;
  * @author Hanz Llanto
  */
 @SpringBootApplication(
-		scanBasePackageClasses = {MantenimientosGeneralesBoot.class, TarifariosBoot.class,
-		                          ConsultasGeneralesBoot.class, ReportesBoot.class, GeneradorConsultasBoot.class,
-		                          ConciliacionBoot.class,VisualizacionPANBoot.class})
+		scanBasePackageClasses = {MantenimientosGeneralesBoot.class,
+		                          ConsultasGeneralesBoot.class, ReportesBoot.class,
+		                          VisualizacionPANBoot.class})
 public class SisgeaBoot {
 	
 	public static void main(String[] args) {

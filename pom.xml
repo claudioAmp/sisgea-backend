@@ -7,12 +7,10 @@
 	<modules>
 		<module>sisgea-mantenimientos-generales</module>
 		<module>sisgea-boot</module>
-		<module>sisgea-tarifarios</module>
 		<module>sisgea-consultas-generales</module>
-		<module>sisgea-reportes</module>
 		<module>sisgea-generador-consultas</module>
+		<module>sisgea-reportes</module>
 		<module>sisgea-visualizacion-pan</module>
-		<module>sisgea-conciliacion</module>
 	</modules>
 	
 	<!-- Modulo padre Spring Boot -->
