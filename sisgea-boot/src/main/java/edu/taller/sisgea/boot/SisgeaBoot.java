@@ -3,7 +3,6 @@ package edu.taller.sisgea.boot;
 import ob.commons.jwt.JWTUtil;
 import edu.taller.sisgea.consultasgenerales.ConsultasGeneralesBoot;
 import edu.taller.sisgea.mantenimientosgenerales.MantenimientosGeneralesBoot;
-import edu.taller.sisgea.reportes.ReportesBoot;
 import edu.taller.sisgea.visualizacionpan.VisualizacionPANBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +33,7 @@ import java.util.List;
  */
 @SpringBootApplication(
 		scanBasePackageClasses = {MantenimientosGeneralesBoot.class,
-		                          ConsultasGeneralesBoot.class, ReportesBoot.class,
+		                          ConsultasGeneralesBoot.class,
 		                          VisualizacionPANBoot.class})
 public class SisgeaBoot {
 	

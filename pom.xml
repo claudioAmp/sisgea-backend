@@ -8,7 +8,6 @@
 		<module>sisgea-mantenimientos-generales</module>
 		<module>sisgea-boot</module>
 		<module>sisgea-consultas-generales</module>
-		<module>sisgea-generador-consultas</module>
 		<module>sisgea-reportes</module>
 		<module>sisgea-visualizacion-pan</module>
 	</modules>
