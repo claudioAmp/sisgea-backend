@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 
 import java.util.Date;
 
@@ -31,7 +30,6 @@ public class Compensacion {
 	String descInstitucionEmisora;
 	Integer idInstitucionReceptora;
 	String descInstitucionReceptora;
-	@TruncarPAN
 	String numeroTarjeta;
 	String bin;
 	String descBin;

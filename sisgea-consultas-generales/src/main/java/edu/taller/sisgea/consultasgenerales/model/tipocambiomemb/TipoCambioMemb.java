@@ -1,8 +1,6 @@
 package edu.taller.sisgea.consultasgenerales.model.tipocambiomemb;
 
 import java.util.Date;
-import java.util.List;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;

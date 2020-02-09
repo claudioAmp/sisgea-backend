@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.spring.validation.validation.IdCadena;
-import ob.commons.spring.validation.validation.group.IRegistro;
 
 @Data
 @Builder

@@ -34,12 +34,6 @@
 			<artifactId>jxls-poi</artifactId>
 			<version>1.0.15</version>
 		</dependency>
-		<!--Librería ODYBANK-->
-		<dependency>
-			<groupId>edu.taller.sisgea</groupId>
-			<artifactId>sisgea-visualizacion-pan</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -27,7 +26,6 @@ public class OutgoingVisaTC48TCR0 {
 	private String sourceBin;
 	private String descSourceBin;
 	private String formatCode;
-	@TruncarPAN
 	private String accountNumber;
 	private String responseCode;
 	private String descResponseCode;

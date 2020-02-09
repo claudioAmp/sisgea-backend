@@ -3,7 +3,6 @@ package edu.taller.sisgea.boot;
 import ob.commons.jwt.JWTUtil;
 import edu.taller.sisgea.consultasgenerales.ConsultasGeneralesBoot;
 import edu.taller.sisgea.mantenimientosgenerales.MantenimientosGeneralesBoot;
-import edu.taller.sisgea.visualizacionpan.VisualizacionPANBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -33,8 +32,7 @@ import java.util.List;
  */
 @SpringBootApplication(
 		scanBasePackageClasses = {MantenimientosGeneralesBoot.class,
-		                          ConsultasGeneralesBoot.class,
-		                          VisualizacionPANBoot.class})
+		                          ConsultasGeneralesBoot.class})
 public class SisgeaBoot {
 	
 	public static void main(String[] args) {

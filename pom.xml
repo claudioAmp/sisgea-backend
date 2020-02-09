@@ -9,7 +9,6 @@
 		<module>sisgea-boot</module>
 		<module>sisgea-consultas-generales</module>
 		<module>sisgea-reportes</module>
-		<module>sisgea-visualizacion-pan</module>
 	</modules>
 	
 	<!-- Modulo padre Spring Boot -->
@@ -171,11 +170,6 @@
 			<groupId>ob.commons</groupId>
 			<artifactId>commons-autorizacion-jwt</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>ob.commons</groupId>
-			<artifactId>commons-truncador-pan</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	

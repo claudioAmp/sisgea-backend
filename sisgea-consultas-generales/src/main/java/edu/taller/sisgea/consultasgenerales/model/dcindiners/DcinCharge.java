@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 
 @Data
 @Builder
@@ -19,7 +18,6 @@ public class DcinCharge {
 	private String idDcin;
 	private String sendingInstitution;
 	private String receivingInstitution;
-	@TruncarPAN
 	private String cardNumber;
 	private Double chargeAmount;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

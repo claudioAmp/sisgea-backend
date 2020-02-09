@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 
 @Data
 @Builder
@@ -21,7 +20,6 @@ public class IpmMc {
 	private String tramsKey;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date fechaProceso;
-	@TruncarPAN
 	private String pan;
 	private String typeRecord;
 	private String descTypeRecord;

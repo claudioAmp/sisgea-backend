@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -22,7 +21,6 @@ public class OutgoingVisaTC5TCR0 {
 	private String descTransactionCode;
 	private String transCodeQualifier;
 	private String descTransCodeQualifier;
-	@TruncarPAN
 	private String accountNumber;
 	private String accountNumberExt;
 	private String floorLimitIndicator;

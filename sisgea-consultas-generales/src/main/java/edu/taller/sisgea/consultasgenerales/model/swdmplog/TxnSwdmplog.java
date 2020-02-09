@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -18,7 +17,6 @@ public class TxnSwdmplog {
 	private String idMovTxnSwdmplog;
 	private String messageType;
 	private String stfwdIndicator;
-	@TruncarPAN
 	private String pan;
 	private String processingCode;
 	private String descripcionCodProcSw;

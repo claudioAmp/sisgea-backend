@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -23,14 +22,12 @@ public class Bulkfile {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date transactionDate;
 	String transactionTime;
-	@TruncarPAN
 	String accountNumber;
 	String processingCode;
 	String idProceso;
 	String descripcionProceso;
 	String traceNumber;
 	String terminalId;
-	@TruncarPAN
 	Integer responseCode;
 	String descripcionResponseCode;
 	String authorizationId;

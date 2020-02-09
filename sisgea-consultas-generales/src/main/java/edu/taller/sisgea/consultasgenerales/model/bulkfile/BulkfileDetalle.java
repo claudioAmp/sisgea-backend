@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ob.commons.truncadorpan.annotation.TruncarPAN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -28,7 +27,6 @@ public class BulkfileDetalle {
 	Date transactionDate;
 	String transactionTime;
 	Integer panLength;
-	@TruncarPAN
 	String accountNumber;
 	String processingCode;
 	Integer idProceso;
