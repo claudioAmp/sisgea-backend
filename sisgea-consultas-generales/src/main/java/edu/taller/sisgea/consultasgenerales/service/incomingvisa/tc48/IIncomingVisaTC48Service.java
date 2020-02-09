@@ -7,12 +7,6 @@ import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.Criterio
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR1;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR1;
 
 public interface IIncomingVisaTC48Service {
 	

@@ -1,19 +1,14 @@
 package edu.taller.sisgea.consultasgenerales.service.pmp;
 
 import java.util.List;
-
 import edu.taller.sisgea.consultasgenerales.mapper.IPMPMapper;
 import edu.taller.sisgea.consultasgenerales.model.pmp.PMP;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-
-import edu.taller.sisgea.consultasgenerales.mapper.IPMPMapper;
 import edu.taller.sisgea.consultasgenerales.model.criterio.pmp.CriterioBusquedaPMP;
-import edu.taller.sisgea.consultasgenerales.model.pmp.PMP;
 
 @Service
 public class PMPService implements IPMPService{

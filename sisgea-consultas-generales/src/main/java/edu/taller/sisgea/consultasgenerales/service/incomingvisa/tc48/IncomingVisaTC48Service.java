@@ -2,7 +2,6 @@ package edu.taller.sisgea.consultasgenerales.service.incomingvisa.tc48;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ob.commons.truncadorpan.annotation.TruncablePAN;
 import edu.taller.sisgea.consultasgenerales.mapper.IIncomingVisaTC48Mapper;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
@@ -22,7 +21,6 @@ public class IncomingVisaTC48Service implements IIncomingVisaTC48Service {
 		this.incomingVisaTC48Mapper = incomingVisaTC48Mapper;
 	}
 	
-	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IncomingVisaTC48> buscaPorCriteriosPaginado(CriterioBusquedaIncomingVisaTC48 criterioBusqueda,
 	                                                        int pageNo, int pageSize) {
@@ -30,7 +28,6 @@ public class IncomingVisaTC48Service implements IIncomingVisaTC48Service {
 		return incomingVisaTC48Mapper.buscarPorCriterios(criterioBusqueda);
 	}
 	
-	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTC48TCR0 buscarPorIdSecuenciaTCR0(CriterioBusquedaIncomingVisa criterio) {
 		return this.incomingVisaTC48Mapper.buscarPorIdSecuenciaTCR0(criterio);

@@ -3,8 +3,6 @@ package edu.taller.sisgea.consultasgenerales.controller.rest;
 import com.github.pagehelper.Page;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC48;
 import edu.taller.sisgea.consultasgenerales.model.criterio.paginacion.Pagina;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC48TCR0;

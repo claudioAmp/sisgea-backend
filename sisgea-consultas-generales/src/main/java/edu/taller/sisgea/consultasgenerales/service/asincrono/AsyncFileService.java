@@ -18,7 +18,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import ob.commons.util.StringsUtils;
-import edu.taller.sisgea.consultasgenerales.service.subreporttmp.SubReportTmp;
 
 @Service
 public class AsyncFileService implements IAsyncFileService{

@@ -9,10 +9,6 @@ import edu.taller.sisgea.consultasgenerales.model.compensacion.ComisCompensacion
 import edu.taller.sisgea.consultasgenerales.model.compensacion.Compensacion;
 import edu.taller.sisgea.consultasgenerales.model.compensacion.CompensacionDetalle;
 import edu.taller.sisgea.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
-import edu.taller.sisgea.consultasgenerales.model.compensacion.ComisCompensacion;
-import edu.taller.sisgea.consultasgenerales.model.compensacion.Compensacion;
-import edu.taller.sisgea.consultasgenerales.model.compensacion.CompensacionDetalle;
-import edu.taller.sisgea.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
 
 public interface ICompensacionService {
 	

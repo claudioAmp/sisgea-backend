@@ -2,7 +2,6 @@ package edu.taller.sisgea.consultasgenerales.controller.rest;
 
 import com.github.pagehelper.Page;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC10;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC10;
 import edu.taller.sisgea.consultasgenerales.model.criterio.paginacion.Pagina;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC10TCR0;
 import edu.taller.sisgea.consultasgenerales.service.incomingvisa.tc10.IIncomingVisaTC10Service;

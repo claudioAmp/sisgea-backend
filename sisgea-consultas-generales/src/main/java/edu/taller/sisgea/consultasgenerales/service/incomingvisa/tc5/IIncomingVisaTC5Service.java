@@ -5,9 +5,6 @@ import com.github.pagehelper.Page;
 
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.*;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;

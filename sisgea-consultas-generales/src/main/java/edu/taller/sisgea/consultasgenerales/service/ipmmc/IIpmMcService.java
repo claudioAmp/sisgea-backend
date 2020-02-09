@@ -4,8 +4,6 @@ import com.github.pagehelper.Page;
 
 import edu.taller.sisgea.consultasgenerales.model.ipmmc.IpmMc;
 import edu.taller.sisgea.consultasgenerales.model.ipmmc.IpmMcDetalle;
-import edu.taller.sisgea.consultasgenerales.model.ipmmc.IpmMc;
-import edu.taller.sisgea.consultasgenerales.model.ipmmc.IpmMcDetalle;
 import edu.taller.sisgea.consultasgenerales.model.criterio.ipmmc.CriterioBusquedaIpmMc;
 
 public interface IIpmMcService {

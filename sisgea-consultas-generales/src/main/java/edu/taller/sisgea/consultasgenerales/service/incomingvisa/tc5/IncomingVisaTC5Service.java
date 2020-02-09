@@ -5,11 +5,6 @@ import com.github.pagehelper.PageHelper;
 import edu.taller.sisgea.consultasgenerales.mapper.IIncomingVisaTC5Mapper;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.*;
-import ob.commons.truncadorpan.annotation.TruncablePAN;
-import edu.taller.sisgea.consultasgenerales.mapper.IIncomingVisaTC5Mapper;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;
@@ -29,7 +24,6 @@ public class IncomingVisaTC5Service implements IIncomingVisaTC5Service {
 		this.incomingVisaTC5Mapper = incomingVisaTC5Mapper;
 	}
 	
-	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Page<IncomingVisaTC5> buscaPorCriteriosTC5PorPagina(CriterioBusquedaIncomingVisaTC5 criterioBusqueda,
                                                                int pageNo, int pageSize) {
@@ -37,7 +31,6 @@ public class IncomingVisaTC5Service implements IIncomingVisaTC5Service {
 		return incomingVisaTC5Mapper.buscarPorCriteriosTC5(criterioBusqueda);
 	}
 	
-	//@TruncablePAN
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public IncomingVisaTC5TCR0 buscarPorIdSecuenciaTC5TCR0(CriterioBusquedaIncomingVisa criterio) {
 		return this.incomingVisaTC5Mapper.buscarPorIdSecuenciaTC5TCR0(criterio);

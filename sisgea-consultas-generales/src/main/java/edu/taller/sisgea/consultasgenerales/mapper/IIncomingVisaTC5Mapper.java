@@ -1,15 +1,9 @@
 package edu.taller.sisgea.consultasgenerales.mapper;
 
-import java.util.Optional;
-
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
 import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
-import edu.taller.sisgea.consultasgenerales.model.incomingvisa.*;
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
-
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisa;
-import edu.taller.sisgea.consultasgenerales.model.criterio.incomingvisa.CriterioBusquedaIncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR0;
 import edu.taller.sisgea.consultasgenerales.model.incomingvisa.IncomingVisaTC5TCR1;

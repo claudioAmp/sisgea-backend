@@ -1,14 +1,10 @@
 package edu.taller.sisgea.consultasgenerales.service.swdmplog;
 
 import java.util.List;
-
 import com.github.pagehelper.Page;
-
 import edu.taller.sisgea.consultasgenerales.model.swdmplog.TxnSwdmplog;
 import edu.taller.sisgea.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 import edu.taller.sisgea.consultasgenerales.model.criterio.swdmplog.CriterioBusquedaSwdmplog;
-import edu.taller.sisgea.consultasgenerales.model.swdmplog.TxnSwdmplog;
-import edu.taller.sisgea.consultasgenerales.model.swdmplog.TxnSwdmplogDetalle;
 
 public interface ISwdmplogService {
 

@@ -10,11 +10,6 @@ import edu.taller.sisgea.consultasgenerales.model.criterio.compensacion.Criterio
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 
-import edu.taller.sisgea.consultasgenerales.model.compensacion.ComisCompensacion;
-import edu.taller.sisgea.consultasgenerales.model.compensacion.Compensacion;
-import edu.taller.sisgea.consultasgenerales.model.compensacion.CompensacionDetalle;
-import edu.taller.sisgea.consultasgenerales.model.criterio.compensacion.CriterioBusquedaCompensacion;
-
 @Mapper
 public interface ICompensacionMapper {
 		
