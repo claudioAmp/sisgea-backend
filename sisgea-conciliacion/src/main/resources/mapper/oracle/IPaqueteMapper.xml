@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.conciliacion.mapper.IPaqueteMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_paquete
+             , descripcion_paquete
+             , nombre_paquete
+    	FROM VIE_MAN_CNC_PAQUETE
+    </sql>
+
+    <select id="buscarTodos" resultType="Paquete" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+
+    <select id="buscarPaquete" resultType="Paquete" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        WHERE 
+        	id_paquete = #{idPaquete}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_CONCILIACION.PRC_MAN_PAQUETE(
+                #{modo,                               	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idPaquete,           	jdbcType=INTEGER, mode=INOUT},
+                #{objetoMantenido.descripcionPaquete,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.nombrePaquete,      	jdbcType=VARCHAR, mode=IN},
+                #{usuario,                             	jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+</mapper>

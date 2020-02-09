@@ -1,0 +1,18 @@
+package edu.taller.sisgea.mantenimientosgenerales.service.eventosinstitucionmastercard;
+
+import java.util.List;
+import ob.commons.mantenimiento.service.IMantenibleService;
+import edu.taller.sisgea.mantenimientosgenerales.model.EventosInstitucionMastercard;
+
+public interface IEventosInstitucionMastercardService extends IMantenibleService<EventosInstitucionMastercard>{
+	
+	List<EventosInstitucionMastercard> buscarTodosEventosInstitucionMastercard();
+	
+	List<EventosInstitucionMastercard> buscarPorInstEventosInstitucionMastercard(Integer idInstitucion);
+	
+	List<EventosInstitucionMastercard> registrarEventosInstitucionMastercard(EventosInstitucionMastercard eventosInstitucionMastercard);
+	
+	List<EventosInstitucionMastercard> actualizarEventosInstitucionMastercard(EventosInstitucionMastercard eventosInstitucionMastercard);
+	
+	void eliminarEventosInstitucionMastercard(EventosInstitucionMastercard eventosInstitucionMastercard);
+}

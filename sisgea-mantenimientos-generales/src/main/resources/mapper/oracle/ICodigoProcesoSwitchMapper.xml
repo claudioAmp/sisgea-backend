@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.ICodigoProcesoSwitchMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_codigo_proceso_switch
+             , descripcion_cod_proceso_switch
+             , abreviatura
+             , id_clase_transaccion
+             , id_codigo_transaccion
+             , transaccion_monetaria
+             , aplica_interes
+             , descripcion_codigo_transaccion
+             , descripcion_clase_transaccion
+        FROM VIE_MAN_CODIGO_PROCESO_SWITCH
+    </sql>
+    
+    <sql id="orden">
+        ORDER BY id_codigo_proceso_switch ASC
+    </sql>
+
+    <select id="buscarTodos" resultType="CodigoProcesoSwitch"
+            statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+
+    <select id="buscarCodigoProcesoSwitch" resultType="CodigoProcesoSwitch">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_codigo_proceso_switch  = #{idCodigoProcesoSwitch}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento"
+            statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_CODIGO_PROCESO_SWITCH(
+                #{modo, 								            jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCodigoProcesoSwitch, 	        jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcionCodProcesoSwitch, 		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.abreviatura, 			        	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion,  	        	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCodigoTransaccion,  	        jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.transaccionMonetaria,  	        jdbcType=BOOLEAN, mode=IN},
+                #{objetoMantenido.aplicaInteres,  	                jdbcType=BOOLEAN, mode=IN},
+                #{usuario, 								            jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>

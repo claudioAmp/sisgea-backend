@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.generadorconsultas.mapper.IReporteMapper">
+
+	<sql id="consultaVistaMant">
+       SELECT 
+		  ID_REPORTE    AS ID_REPORTE,
+		  NOMBRE  		AS NOMBRE,
+		  DESCRIPCION 	AS DESCRIPCION,
+          DESC_CORTA    AS DESC_CORTA,
+          FRECUENCIA	AS FRECUENCIA,
+          PUBLICO 		AS PUBLICO,
+          FRECUENCIA_MAXIMA AS FRECUENCIA_MAXIMA
+		FROM VIE_MAN_REP_QUERY 
+    </sql>
+
+     <select id="buscarTodos" resultType="Reporte" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+	<select id="buscarPorCriterios" resultType="Reporte" parameterType="CriterioBusquedaReporte" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+       <where>
+       	<if  test=" idReporte!=null and idReporte!=''">
+       	  AND ID_REPORTE =#{idReporte}
+        </if>
+        <if  test=" permited!=null and permited==1">
+       	  AND FUN_REPORTE_AUTORIZADO(ID_REPORTE,#{usuario}) > 0
+        </if>
+       </where>
+       ORDER BY  ID_REPORTE ASC
+        	 
+    </select>
+   
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_query(
+                #{modo, 						  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idReporte,      jdbcType=INTEGER, mode=INOUT},
+                #{objetoMantenido.nombre,  		  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descripcion, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.descCorta, 	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.frecuencia, 	  jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.publico, 	  	  jdbcType=NUMERIC, mode=IN},
+                #{usuario, 						  jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+    
+    <select id="ejecutarConsulta" parameterType="java.util.Map"  resultType="java.util.Map" statementType="PREPARED">
+        ${consulta}
+    </select>
+
+    <select id="ejecutarConsultaSinPaginar" parameterType="java.util.Map"  resultType="java.util.Map" statementType="CALLABLE">
+        ${consulta}
+    </select>
+    
+</mapper>

@@ -5,15 +5,14 @@
 	
 	<!-- Modulos hijos -->
 	<modules>
-		<module>sicf-mantenimientos-generales</module>
-		<module>sicf-facturacion</module>
-		<module>sicf-boot</module>
-		<module>sicf-tarifarios</module>
-		<module>sicf-consultas-generales</module>
-		<module>sicf-reportes</module>
-		<module>sicf-generador-consultas</module>
-		<module>sicf-visualizacion-pan</module>
-		<module>sicf-conciliacion</module>
+		<module>sisgea-mantenimientos-generales</module>
+		<module>sisgea-boot</module>
+		<module>sisgea-tarifarios</module>
+		<module>sisgea-consultas-generales</module>
+		<module>sisgea-reportes</module>
+		<module>sisgea-generador-consultas</module>
+		<module>sisgea-visualizacion-pan</module>
+		<module>sisgea-conciliacion</module>
 	</modules>
 	
 	<!-- Modulo padre Spring Boot -->
@@ -25,12 +24,12 @@
 	</parent>
 	
 	<!-- Modulo sicf-backend -->
-	<groupId>ob.unibanca.sicf</groupId>
-	<artifactId>sicf-backend</artifactId>
+	<groupId>edu.taller.sisgea</groupId>
+	<artifactId>sisgea-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>sicf-backend</name>
-	<description>Subsistema sicf-backend del sistema SICF para UNIBANCA</description>
+	<name>sisgea-backend</name>
+	<description>Subsistema sisgea-backend del sistema SISGEA para la FISI</description>
 	
 	<properties>
 		<java.version>11</java.version>
@@ -111,6 +110,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.19</version>
 		</dependency>
 		
 		<!-- Jxls -->

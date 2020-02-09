@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.ITransaccionMarcaIntMapper">
+
+    <select id="buscarTodos" resultType="TransaccionMarcaInt" statementType="PREPARED">
+        SELECT id_membresia
+             , id_transaccion     
+             , descripcion          AS descripcion_transaccion
+        FROM MAE_TRANSACCION_MARCA_INT
+        <include refid="orderBy"/>
+    </select>
+ <sql id="orderBy">
+        ORDER BY id_membresia,id_transaccion
+   	 </sql>
+</mapper>

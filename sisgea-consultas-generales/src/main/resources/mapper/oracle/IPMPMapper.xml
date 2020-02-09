@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.IPMPMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT *
+            FROM VIE_CON_PMP
+    </sql>
+        
+    <sql id = "fragmentoWhere">
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		<if  test="fechaTransaccionInicio != null and fechaTransaccionFin != null">
+			 AND FECHA_TRANSACCION BETWEEN #{fechaTransaccionInicio}  AND #{fechaTransaccionFin}
+		</if>
+		<if  test="idCodigoTransaccionPMP != null and idCodigoTransaccionPMP != ''">
+			 AND ID_CODIGO_TRANSACCION_PMP = #{idCodigoTransaccionPMP}
+		</if>
+		<if  test="idCodigoProductoPMP != null and idCodigoProductoPMP != ''">
+			 AND ID_CODIGO_PRODUCTO_PMP = #{idCodigoProductoPMP}
+		</if>
+		<if  test="numeroTarjeta != null and numeroTarjeta != ''">
+			 AND NUMERO_TARJETA = #{numeroTarjeta}
+		</if>
+	</sql>
+	
+	<sql id = "filtros">
+		<if  test="filtroFechaProceso != null" >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroFechaCuota != null" >
+			AND FECHA_CUOTA = #{filtroFechaCuota}
+		</if>
+		<if  test="filtroBinAdquirente != null" >
+			<bind name="pFiltroBinAdquirente" value="'%' + filtroBinAdquirente + '%'" />
+			AND BIN_ADQURENTE LIKE #{pFiltroBinAdquirente}
+		</if>
+		<if  test="filtroNumeroTarjeta != null" >
+			<bind name="pFiltroNumeroTarjeta" value="'%' + filtroNumeroTarjeta + '%'" />
+			AND NUMERO_TARJETA LIKE #{pFiltroNumeroTarjeta}
+		</if>
+		<if  test="filtroNombreEstablecimiento != null" >
+			<bind name="pFiltroNombreEstablecimiento" value="'%' + filtroNombreEstablecimiento + '%'" />
+			AND NOMBRE_ESTABLECIMIENTO LIKE #{pFiltroNombreEstablecimiento}
+		</if>
+		<if  test="filtroNombreCiudad != null" >
+			<bind name="pFiltroNombreCiudad" value="'%' + filtroNombreCiudad + '%'" />
+			AND NOMBRE_CIUDAD LIKE #{pFiltroNombreCiudad}
+		</if>
+		<if  test="filtroIdCategoriaNegocio != null" >
+			<bind name="pFiltroIdCategoriaNegocio" value="'%' + filtroIdCategoriaNegocio + '%'" />
+			AND ID_CATEGORIA_NEGOCIO LIKE #{pFiltroIdCategoriaNegocio}
+		</if>
+		<if  test="filtroIdOrigenArchivo != null" >
+			<bind name="pFiltroIdOrigenArchivo" value="'%' + filtroIdOrigenArchivo + '%'" />
+			AND ID_ORIGEN_ARCHIVO LIKE #{pFiltroIdOrigenArchivo}
+		</if>
+		<if  test="filtroMedioTransaccion != null" >
+			<bind name="pFiltroMedioTransaccion" value="'%' + filtroMedioTransaccion + '%'" />
+			AND MEDIO_TRANSACCION LIKE #{pFiltroMedioTransaccion}
+		</if>
+		<if  test="filtroCodigoEstablecimiento != null" >
+			<bind name="pFiltroCodigoEstablecimiento" value="'%' + filtroCodigoEstablecimiento + '%'" />
+			AND CODIGO_ESTABLECIMIENTO LIKE #{pFiltroCodigoEstablecimiento}
+		</if>
+		<if  test="filtroCodigoAutorizacion != null" >
+			<bind name="pFiltroCodigoAutorizacion" value="'%' + filtroCodigoAutorizacion + '%'" />
+			AND CODIGO_AUTORIZACION LIKE #{pFiltroCodigoAutorizacion}
+		</if>
+		<if  test="filtroIdPais != null" >
+			<bind name="pFiltroIdPais" value="'%' + filtroIdPais + '%'" />
+			AND ID_PAIS LIKE #{pFiltroIdPais}
+		</if>
+		<if  test="filtroTerminal != null" >
+			<bind name="pFiltroTerminal" value="'%' + filtroTerminal + '%'" />
+			AND TERMINAL LIKE #{pFiltroTerminal}
+		</if>
+		<if  test="filtroUbicacionPos != null" >
+			<bind name="pFiltroUbicacionPos" value="'%' + filtroUbicacionPos + '%'" />
+			AND FILTRO_UBICACIONES_POS LIKE #{pFiltroUbicacionPos}
+		</if>
+		<if  test="filtroIcaEmisor != null" >
+			<bind name="pFiltroIcaEmisor" value="'%' + filtroIcaEmisor + '%'" />
+			AND ICA_EMISOR LIKE #{pFiltroIcaEmisor}
+		</if>
+		<if  test="filtroTipoDevolucion != null" >
+			<bind name="pFiltroTipoDevolucion" value="'%' + filtroTipoDevolucion + '%'" />
+			AND TIPO_DEVOLUCION LIKE #{pFiltroTipoDevolucion}
+		</if>
+		<if  test="filtroCodigoAutorizacionDevolucion != null" >
+			<bind name="pFiltroCodigoAutorizacionDevolucion" value="'%' + filtroCodigoAutorizacionDevolucion + '%'" />
+			AND CODIGO_AUTORIZACION_DEVOLUCION LIKE #{pFiltroCodigoAutorizacionDevolucion}
+		</if>
+
+		<if  test="filtroCodigoCuota != null" >
+			<bind name="pFiltroCodigoCuota" value="'%' + filtroCodigoCuota + '%'" />
+			AND CODIGO_CUOTA LIKE #{pFiltroCodigoCuota}
+		</if>
+		<if  test="filtroValorCuota != null" >
+			<bind name="pFiltroValorCuota" value="'%' + filtroValorCuota + '%'" />
+			AND VALOR_CUOTA LIKE #{pFiltroValorCuota}
+		</if>
+		<if  test="filtroIdItem != null" >
+			<bind name="pFiltroIdItem" value="'%' + filtroIdItem + '%'" />
+			AND ID_ITEM LIKE #{pFiltroIdItem}
+		</if>
+		<if  test="filtroIdArn != null" >
+			<bind name="pFiltroIdArn" value="'%' + filtroIdArn + '%'" />
+			AND ID_ARN LIKE #{pFiltroIdArn}
+		</if>
+		<if  test="filtroTasaIntercambio != null" >
+			<bind name="pFiltroTasaIntercambio" value="'%' + filtroTasaIntercambio + '%'" />
+			AND TASA_INTERCAMBIO LIKE #{pFiltroTasaIntercambio}
+		</if>
+		<if  test="filtroHoraTransaccion != null" >
+			<bind name="pFiltroHoraTransaccion" value="'%' + filtroHoraTransaccion + '%'" />
+			AND HORA_TRANSACCION LIKE #{pFiltroHoraTransaccion}
+		</if>
+		<if  test="filtroBanknetReference != null" >
+			<bind name="pFiltroBanknetReference" value="'%' + filtroBanknetReference + '%'" />
+			AND BANKNET_REFERENCE LIKE #{pFiltroBanknetReference}
+		</if>
+		<if  test="filtroIrd != null" >
+			<bind name="pFiltroIrd" value="'%' + filtroIrd + '%'" />
+			AND IRD LIKE #{pFiltroIrd}
+		</if>
+		<if  test="filtroIdMembresia != null" >
+			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+			AND ID_MEMBRESIA LIKE #{pFiltroIdMembresia}
+		</if>
+		<if  test="filtroIdServicio != null" >
+			<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+			AND ID_SERVICIO LIKE #{pFiltroIdServicio}
+		</if>
+		<if  test="filtroIdProceso != null" >
+			<bind name="pFiltroIdProceso" value="'%' + filtroIdProceso + '%'" />
+			AND ID_PROCESO LIKE #{pFiltroIdProceso}
+		</if>
+		<if  test="filtroTransmissionTime != null" >
+			<bind name="pFiltroTransmissionTime" value="'%' + filtroTransmissionTime + '%'" />
+			AND TRANSMISSION_TIME LIKE #{pFiltroTransmissionTime}
+		</if>
+		<if  test="filtroTraceNumber != null" >
+			<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
+			AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
+		</if>
+		<if  test="filtroAccountIdentification != null" >
+			<bind name="pFiltroAccountIdentification" value="'%' + filtroAccountIdentification + '%'" />
+			AND ACCOUNT_IDENTIFICATION LIKE #{pFiltroAccountIdentification}
+		</if>
+		<if  test="filtroOrigenConciliacion != null" >
+			<bind name="pFiltroOrigenConciliacion" value="'%' + filtroOrigenConciliacion + '%'" />
+			AND ORIGEN_CONCILIACION LIKE #{pFiltroOrigenConciliacion}
+		</if>
+		
+	</sql>
+	
+    <sql id="orden">
+    	<if  test="ordenFechaProceso != null" >
+			ORDER BY
+				FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
+		<if  test="ordenBinAdquirente != null" >
+			ORDER BY
+				BIN_ADQUIRENTE  ${ordenBinAdquirente}
+		</if>
+		<if  test="ordenNumeroTarjeta != null" >
+			ORDER BY
+				NUMERO_TARJETA  ${ordenNumeroTarjeta}
+		</if>
+		<if  test="ordenNombreEstablecimiento != null" >
+			ORDER BY
+				NOMBRE_ESTABLECIMIENTO  ${ordenNombreEstablecimiento}
+		</if>
+		<if  test="ordenNombreCiudad != null" >
+			ORDER BY
+				NOMBRE_CIUDAD  ${ordenNombreCiudad}
+		</if>
+		<if  test="ordenIdCategoriaNegocio != null" >
+			ORDER BY
+				ID_CATEGORIA_NEGOCIO  ${ordenIdCategoriaNegocio}
+		</if>
+		<if  test="ordenIdOrigenArchivo != null" >
+			ORDER BY
+				ID_ORIGEN_ARCHIVO  ${ordenIdOrigenArchivo}
+		</if>
+		<if  test="ordenMedioTransaccion != null" >
+			ORDER BY
+				MEDIO_TRANSACCION  ${ordenMedioTransaccion}
+		</if>
+		<if  test="ordenCodigoEstablecimiento != null" >
+			ORDER BY
+				CODIGO_ESTABLECIMIENTO  ${ordenCodigoEstablecimiento}
+		</if>
+		<if  test="ordenCodigoAutorizacion != null" >
+			ORDER BY
+				CODIGO_AUTORIZACION  ${ordenCodigoAutorizacion}
+		</if>
+		<if  test="ordenIdPais != null" >
+			ORDER BY
+				ID_PAIS  ${ordenIdPais}
+		</if>
+		<if  test="ordenTerminal != null" >
+			ORDER BY
+				TERMINAL  ${ordenTerminal}
+		</if>
+		<if  test="ordenUbicacionPos != null" >
+			ORDER BY
+				UBICACION_POS  ${ordenUbicacionPos}
+		</if>
+		<if  test="ordenIcaEmisor != null" >
+			ORDER BY
+				ICA_EMISOR  ${ordenIcaEmisor}
+		</if>
+		<if  test="ordenTipoDevolucion != null" >
+			ORDER BY
+				TIPO_DEVOLUCION  ${ordenTipoDevolucion}
+		</if>
+		<if  test="ordenCodigoAutorizacionDevolucion != null" >
+			ORDER BY
+				CODIGO_AUTORIZACION_DEVOLUCION  ${ordenCodigoAutorizacionDevolucion}
+		</if>
+		<if  test="ordenCodigoCuota != null" >
+			ORDER BY
+				CODIGO_CUOTA  ${ordenCodigoCuota}
+		</if>
+		<if  test="ordenFechaCuota != null" >
+			ORDER BY
+				FECHA_CUOTA  ${ordenFechaCuota}
+		</if>
+		<if  test="ordenValorCuota != null" >
+			ORDER BY
+				VALOR_CUOTA  ${ordenValorCuota}
+		</if>
+		<if  test="ordenIdItem != null" >
+			ORDER BY
+				ID_ITEM  ${ordenIdItem}
+		</if>
+		<if  test="ordenIdArn != null" >
+			ORDER BY
+				ID_ARN  ${ordenIdArn}
+		</if>
+		<if  test="ordenTasaIntercambio != null" >
+			ORDER BY
+				TASA_INTERCAMBIO  ${ordenTasaIntercambio}
+		</if>
+		<if  test="ordenHoraTransaccion != null" >
+			ORDER BY
+				HORA_TRANSACCION  ${ordenHoraTransaccion}
+		</if>
+		<if  test="ordenBanknetReference != null" >
+			ORDER BY
+				BANKNET_REFERENCE  ${ordenBanknetReference}
+		</if>
+		<if  test="ordenIrd != null" >
+			ORDER BY
+				IRD  ${ordenIrd}
+		</if>
+		<if  test="ordenIdMembresia != null" >
+			ORDER BY
+				ID_MEMBRESIA  ${ordenIdMembresia}
+		</if>
+		<if  test="ordenIdServicio != null" >
+			ORDER BY
+				ID_SERVICIO  ${ordenIdServicio}
+		</if>
+		<if  test="ordenIdProceso != null" >
+			ORDER BY
+				ID_PROCESO  ${ordenIdProceso}
+		</if>
+		<if  test="ordenTransmissionTime != null" >
+			ORDER BY
+				TRANSMISSION_TIME  ${ordenTransmissionTime}
+		</if>
+		<if  test="ordenTraceNumber != null" >
+			ORDER BY
+				TRACE_NUMBER  ${ordenTraceNumber}
+		</if>
+		<if  test="ordenAccountIdentification != null" >
+			ORDER BY
+				ACCOUNT_IDENTIFICACION  ${ordenAccountIdentification}
+		</if>
+		<if  test="ordenOrigenConciliacion != null" >
+			ORDER BY
+				ORIGEN_CONCILIACION  ${ordenOrigenConciliacion}
+		</if>
+    </sql>
+
+    <select id="buscarTodos" resultType="PMP" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+       <include refid="orden"/>
+    </select>
+    
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaPMP"  resultType="PMP" statementType="PREPARED">	
+		<include refid="consultaVistaMant" />
+		<where>
+			<include refid="fragmentoWhere"/>
+      	 	<include refid="filtros"/>
+		</where>
+      	 	<include refid="orden"/>
+   	</select>
+</mapper>

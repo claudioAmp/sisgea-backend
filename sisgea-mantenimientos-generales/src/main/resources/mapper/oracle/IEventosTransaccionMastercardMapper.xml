@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.IEventosTransaccionMastercardMapper">
+	
+	<sql id="consulta">
+        SELECT * 
+        FROM VIE_MAN_EVENTO_MC_X_TXN
+    </sql>
+        
+    <select id="buscarTodos" resultType="EventosTransaccionMastercard" statementType="PREPARED">
+        <include refid="consulta"/>
+    </select>
+    
+     <select id="buscarUno" resultType="EventosTransaccionMastercard" statementType="PREPARED">
+        <include refid="consulta"/>
+        <where>
+        	<if test="objetoMantenido.idBillingLineMastercard">
+        		id_evento_mc = #{objetoMantenido.idEventoMc}
+        	</if>
+        </where>
+    </select>
+    
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_GENERALES.PRC_MAN_EVENTO_MC_X_TXN(
+                #{modo, 							  	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idEventoMc,  			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.description,  		jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idClaseTransaccion,	jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idCodigoTransaccion,	jdbcType=NUMERIC, mode=IN}
+            )
+        }
+    </select>
+    
+</mapper>

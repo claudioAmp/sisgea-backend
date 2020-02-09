@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.IEventosVisaMapper">
+	
+	<sql id="consulta">
+        SELECT * 
+        FROM VIE_MAN_BILLING_LINE_VISA
+    </sql>
+        
+    <select id="buscarTodos" resultType="EventosVisa" statementType="PREPARED">
+        <include refid="consulta"/>
+    </select>
+    
+    <select id="buscarIdDescripcion" resultType="EventosVisa" statementType="PREPARED">
+        SELECT    ID_BILLING_LINE_VISA
+                , SERVICE_DESCRIPTION
+        FROM VIE_MAN_BILLING_LINE_VISA
+    </select>
+    
+    
+    <select id="buscarTodosEventosTransaccionVisaSinTxn" resultType="EventosVisa" statementType="PREPARED">
+		SELECT 
+		  A.ID_BILLING_LINE_VISA, 
+		  A.SERVICE_DESCRIPTION 
+		FROM MAE_BILLING_LINE_VISA A
+		LEFT JOIN VIE_MAN_BILLING_LINE_VISA_X_TXN B 
+		  ON B.ID_BILLING_LINE_VISA = A.ID_BILLING_LINE_VISA
+		WHERE B.ID_BILLING_LINE_VISA IS NULL
+    </select>
+    
+</mapper>

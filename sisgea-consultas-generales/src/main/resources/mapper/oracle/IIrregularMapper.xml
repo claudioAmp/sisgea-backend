@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.IIrregularMapper">
+
+	<!-- CONSULTA DEL IRREGULAR PARA LA GRILLA -->
+	<sql id="consultaIrregular">
+		SELECT *
+		FROM VIE_CON_MOV_IRREGULAR a
+	</sql>
+
+
+	<select id="buscarPorCriteriosIrregulares" resultType="Irregular">
+		<include refid="consultaIrregular" />
+		<where>
+			<include refid="fragmentoWhere" />
+			<include refid="fragmentoWhereMultiples" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
+	</select>
+	
+	<sql id="fragmentoWhere">
+		<if test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			a.FECHA_PROCESO BETWEEN  #{fechaProcesoInicio} AND #{fechaProcesoFin}
+		</if>
+	</sql>
+	<sql id = "fragmentoWhereMultiples">
+		<if  test="origenesArchivo != null and origenesArchivo.size()>0"  >
+			AND a.ID_ORIGEN_ARCHIVO IN 
+				<foreach item="item" index="index" collection="origenesArchivo" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+		<if  test="tiposIrregular != null and tiposIrregular.size()>0"  >
+			AND a.ID_TIPO_IRREGULAR IN 
+				<foreach item="item" index="index" collection="tiposIrregular" open ="(" separator=","  close=")">
+					#{item}
+				</foreach>
+		</if>
+	</sql>
+	
+	<sql id = "fragmentoFiltrosOrdenaciones">
+		<if  test="filtroFechaProceso != null " >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+		<if  test="filtroIdOrigenArchivo != null " >
+			<bind name="pFiltroIdOrigenArchivo" value="'%' + filtroIdOrigenArchivo + '%'" />
+			AND CONCAT(ID_ORIGEN_ARCHIVO, UPPER(DES_ORIGEN_ARCHIVO)) LIKE #{pFiltroIdOrigenArchivo}
+		</if>
+		<if  test="filtroDetalleIrregular != null " >
+			<bind name="pFiltroDetalleIrregular" value="'%' + filtroDetalleIrregular + '%'" />
+			AND  UPPER(DETALLE_IRREGULAR) LIKE #{pFiltroDetalleIrregular}
+		</if>
+		<if  test="filtroSecuencia != null " >
+			<bind name="pFiltroSecuencia" value="'%' + filtroSecuencia + '%'" />
+			AND SECUENCIA LIKE #{pFiltroSecuencia}
+		</if>
+		<if  test="filtroIdTipoIrregular != null " >
+			<bind name="pFiltroIdTipoIrregular" value="'%' + filtroIdTipoIrregular + '%'" />
+			AND CONCAT(ID_TIPO_IRREGULAR, UPPER(DESC_TIPO_IRREGULAR)) LIKE UPPER(#{pFiltroIdTipoIrregular})
+		</if>
+		<if  test="filtroIdMembresia != null " >
+			<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+			AND CONCAT(ID_MEMBRESIA, UPPER(DESC_MEMBRESIA)) LIKE UPPER(#{pFiltroIdMembresia})
+		</if>
+		<if  test="filtroIdOrigen != null " >
+			<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+			AND CONCAT(ID_ORIGEN, UPPER(DESC_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
+		</if>
+		<if  test="filtroIdServicio != null " >
+			<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+			AND CONCAT(ID_SERVICIO, UPPER(DESC_SERVICIO)) LIKE UPPER(#{pFiltroIdServicio})
+		</if>
+		<if  test="filtroTransaccion != null " >
+			<bind name="pFiltroTransaccion" value="'%' + filtroTransaccion + '%'" />
+			AND CONCAT(TRANSACCION , UPPER(DESCRIPCION_CORTA)) LIKE UPPER(#{pFiltroTransaccion})
+		</if>
+		<if  test="filtroIdCanal != null " >
+			<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
+			AND CONCAT(ID_CANAL, UPPER(DESC_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
+		</if>
+		<if  test="filtroBin != null " >
+			<bind name="pFiltroBin" value="'%' + filtroBin + '%'" />
+			AND CONCAT(BIN, UPPER(DESC_BIN)) LIKE UPPER(#{pFiltroBin})
+		</if>
+		<if  test="filtroIdInstitucionEmisora != null " >
+			<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
+			AND CONCAT(ID_INSTITUCION_EMISORA, UPPER(DESC_INSTITUCION_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
+		</if>
+		<if  test="filtroIdInstitucionReceptora != null " >
+			<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+			AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESC_INSTITUCION_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
+		</if>
+		
+		<if  test="filtroIdProducto != null " >
+			<bind name="pFiltroIdProducto" value="'%' + filtroIdProducto + '%'" />
+			AND CONCAT(ID_PRODUCTO, UPPER(DESC_PRODUCTO)) LIKE UPPER(#{pFiltroIdProducto})
+		</if>
+		
+		<if  test="filtroIdTransaccionOriginal != null " >
+			<bind name="pFiltroIdTransaccionOriginal" value="'%' + filtroIdTransaccionOriginal + '%'" />
+			AND CONCAT(ID_TRANSACCION_ORIGINAL, UPPER(DESC_TRANSACCION_ORIGINAL)) LIKE UPPER(#{pFiltroIdTransaccionOriginal})
+		</if>
+		
+		<if  test="ordenFechaProceso != null " >
+			ORDER BY
+				 FECHA_PROCESO ${ordenFechaProceso}
+		</if>
+		<if  test="ordenIdOrigenArchivo != null " >
+			ORDER BY
+				 ID_ORIGEN_ARCHIVO ${ordenIdOrigenArchivo}
+		</if>
+		<if  test="ordenSecuencia != null " >
+			ORDER BY
+				 SECUENCIA ${ordenSecuencia}
+		</if>
+		<if  test="ordenIdTipoIrregular != null " >
+			ORDER BY
+				 ID_TIPO_IRREGULAR ${ordenIdTipoIrregular}
+		</if>
+		<if  test="ordenDetalleIrregular != null " >
+			ORDER BY
+				 DETALLE_IRREGULAR ${ordenDetalleIrregular}
+		</if>
+		<if  test="ordenIdMembresia != null " >
+			ORDER BY
+				 ID_MEMBRESIA ${ordenIdMembresia}
+		</if>
+		<if  test="ordenIdOrigen != null " >
+			ORDER BY
+				 ID_ORIGEN ${ordenIdOrigen}
+		</if>
+		<if  test="ordenIdServicio != null " >
+			ORDER BY
+				 ID_SERVICIO ${ordenIdServicio}
+		</if>
+		<if  test="ordenTransaccion != null " >
+			ORDER BY
+				 TRANSACCION ${ordenTransaccion}
+		</if>
+		<if  test="ordenIdCanal != null " >
+			ORDER BY
+				 ID_CANAL ${ordenIdCanal}
+		</if>
+		<if  test="ordenBin != null " >
+			ORDER BY
+				 BIN ${ordenBin}
+		</if>
+		<if  test="ordenIdInstitucionEmisora != null " >
+			ORDER BY
+				 ID_INSTITUCION_EMISORA ${ordenIdInstitucionEmisora}
+		</if>
+		<if  test="ordenIdInstitucionReceptora != null " >
+			ORDER BY
+				 ID_INSTITUCION_RECEPTORA ${ordenIdInstitucionReceptora}
+		</if>
+		<if  test="ordenIdProducto != null " >
+			ORDER BY
+				 ID_PRODUCTO ${ordenIdProducto}
+		</if>
+		<if  test="ordenIdTransaccionOriginal != null " >
+			ORDER BY
+				 ID_TRANSACCION_ORIGINAL ${ordenIdTransaccionOriginal}
+		</if>
+	</sql>
+
+	
+
+</mapper>

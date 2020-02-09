@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.IIncomingIATAMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT *
+            FROM VIE_CON_INCOMING_IATA
+    </sql>
+        
+    <sql id = "fragmentoWhere">
+    <!--  
+    	<if  test="idMembresia != null and idMembresia != ''">
+			 a.ID_BIN = #{idMembresia}
+		</if>
+		<if  test="idServicio != null and idServicio != ''">
+			 AND a.BIN_PROCESADOR = #{idServicio}
+		</if>
+		<if  test="idClaseTransaccion != null and idClaseTransaccion != ''">
+			 AND a.REGION = #{idClaseTransaccion}
+		</if>
+		<if  test="idCodigoTransaccion != null and idCodigoTransaccion != ''">
+			 AND a.PAIS = #{idCodigoTransaccion}
+		</if>
+		<if  test="idOrigen != null and idOrigen != ''">
+			 AND a.PAIS = #{idOrigen}
+		</if>
+		<if  test="idInstitucionEmisora != null and idInstitucionEmisora != ''">
+			 AND a.PAIS = #{idInstitucionEmisora}
+		</if>
+		<if  test="idIntitucionReceptora != null and idIntitucionReceptora != ''">
+			 AND a.PAIS = #{idIntitucionReceptora}
+		</if>
+		<if  test="idProducto != null and idProducto != ''">
+			 AND a.PAIS = #{idProducto}
+		</if>
+		<if  test="idCanal != null and idCanal != ''">
+			 AND a.PAIS = #{idCanal}
+		</if>-->
+		<if  test="fechaProcesoInicio != null and fechaProcesoFin != null">
+			 FECHA_PROCESO BETWEEN #{fechaProcesoInicio}  AND #{fechaProcesoFin}
+		</if>
+		
+	</sql>
+	
+	<sql id = "filtros">  
+		<if  test="filtroFacturacionADP != null" >
+			<bind name="pFiltroFacturacionADP" value="'%' + filtroFacturacionADP + '%'" />
+			AND FACTURACION_ADP LIKE #{pFiltroFacturacionADP}
+		</if>
+		<if test="filtroFechaEmisionBoleto != null">
+			AND FECHA_EMISION_BOLETO = #{filtroFechaEmisionBoleto}
+		</if> 
+		<if test="filtroInvoiceDate != null">
+			AND INVOICE_DATE = #{filtroInvoiceDate}
+		</if>
+		<if test="filtroFechaExpiracionTarjeta != null">
+			<bind name="pFiltroFechaExpiracionTarjeta" value="'%' + filtroFechaExpiracionTarjeta + '%'"/>
+			AND FECHA_EXPIRACION_TARJETA LIKE #{pFiltroFechaExpiracionTarjeta}
+		</if>
+		<if  test="filtroNombrePasajero != null" >
+			<bind name="pFiltroNombrePasajero" value="'%' + filtroNombrePasajero + '%'" />
+			AND NOMBRE_PASAJERO LIKE #{pFiltroNombrePasajero}
+		</if>
+		<if  test="filtroMembresia != null" >
+			<bind name="pFiltroMembresia" value="'%' + filtroMembresia + '%'" />
+			AND MEMBRESIA LIKE #{pFiltroMembresia}
+		</if>
+		<if  test="filtroNumeroTarjetaCredito != null" >
+			<bind name="pFiltroNumeroTarjetaCredito" value="'%' + filtroNumeroTarjetaCredito + '%'" />
+			AND NUMERO_TARJETA_CREDITO LIKE #{pFiltroNumeroTarjetaCredito}
+		</if>
+		<if  test="filtroIdentificadorTransaccion != null" >
+			<bind name="pFiltroIdentificadorTransaccion" value="'%' + filtroIdentificadorTransaccion + '%'" />
+			AND IDENTIFICADOR_TRANSACCION LIKE #{pFiltroIdentificadorTransaccion}
+		</if>
+		<if  test="filtroEspacioReservado1 != null" >
+			<bind name="pFiltroEspacioReservado1" value="'%' + filtroEspacioReservado1 + '%'" />
+			AND ESPACIO_RESERVADO_1 LIKE #{pFiltroEspacioReservado1}
+		</if>
+		<if  test="filtroReferenciaCliente != null" > 	
+			<bind name="pFiltroReferenciaCliente" value="'%' + filtroReferenciaCliente + '%'" />
+			AND REFERENCIA_CLIENTE LIKE #{pFiltroReferenciaCliente}
+		</if>
+		<if  test="filtroEspacioReservado2 != null" >
+			<bind name="pFiltroEspacioReservado2" value="'%' + filtroEspacioReservado2 + '%'" />
+			AND ESPACIO_RESERVADO_2 LIKE #{pFiltroEspacioReservado2}
+		</if>
+		<if  test="filtroCityName1 != null" >
+			<bind name="pFiltroCityName1" value="'%' + filtroCityName1 + '%'" />
+			AND CITY_NAME_1 LIKE #{pFiltroCityName1}
+		</if>
+		<if  test="filtroFareBasis1 != null" >
+			<bind name="pFiltroFareBasis1" value="'%' + filtroFareBasis1 + '%'" />
+			AND FARE_BASIS_1 LIKE #{pFiltroFareBasis1}
+		</if>
+		<if  test="filtroCarrier1 != null" >
+			<bind name="pFiltroCarrier1" value="'%' + filtroCarrier1 + '%'" />
+			AND CARRIER_1 LIKE #{pFiltroCarrier1}
+		</if>
+		<if  test="filtroClassService1 != null" >
+			<bind name="pFiltroClassService1" value="'%' + filtroClassService1 + '%'" />
+			AND CLASS_SERVICE_1 LIKE #{pFiltroClassService1}
+		</if>
+		<if  test="filtroCityName2 != null" >
+			<bind name="pFiltroCityName2" value="'%' + filtroCityName2 + '%'" />
+			AND CITY_NAME_2 LIKE #{pFiltroCityName2}
+		</if>
+		<if  test="filtroFareBasis2 != null" >
+			<bind name="pFiltroFareBasis2" value="'%' + filtroFareBasis2 + '%'" />
+			AND FARE_BASIS_2 LIKE #{pFiltroFareBasis2}
+		</if>
+		<if  test="filtroCarrier2 != null" >
+			<bind name="pFiltroCarrier2" value="'%' + filtroCarrier2 + '%'" />
+			AND CARRIER_2 LIKE #{pFiltroCarrier2}
+		</if>
+		<if  test="filtroClassService2 != null" >
+			<bind name="pFiltroClassService2" value="'%' + filtroClassService2 + '%'" />
+			AND CLASS_SERVICE_2 LIKE #{pFiltroClassService2}
+		</if>
+		<if  test="filtroCityName3 != null" >
+			<bind name="pFiltroCityName3" value="'%' + filtroCityName3 + '%'" />
+			AND CITY_NAME_3 LIKE #{pFiltroCityName3}
+		</if>
+		<if  test="filtroFareBasis3 != null" >
+			<bind name="pFiltroFareBasis3" value="'%' + filtroFareBasis3 + '%'" />
+			AND FARE_BASIS_3 LIKE #{pFiltroFareBasis3}
+		</if>
+		<if  test="filtroCarrier3 != null" >
+			<bind name="pFiltroCarrier3" value="'%' + filtroCarrier3 + '%'" />
+			AND CARRIER_3 LIKE #{pFiltroCarrier3}
+		</if>
+		<if  test="filtroClassService3 != null" >
+			<bind name="pFiltroClassService3" value="'%' + filtroClassService3 + '%'" />
+			AND CLASS_SERVICE_3 LIKE #{pFiltroClassService3}
+		</if>
+		<if  test="filtroCityName4 != null" >
+			<bind name="pFiltroCityName4" value="'%' + filtroCityName4 + '%'" />
+			AND CITY_NAME_4 LIKE #{pFiltroCityName4}
+		</if>
+		<if  test="filtroFareBasis4 != null" >
+			<bind name="pFiltroFareBasis4" value="'%' + filtroFareBasis4 + '%'" />
+			AND FARE_BASIS_4 LIKE #{pFiltroFareBasis4}
+		</if>
+		<if  test="filtroCarrier4 != null" >
+			<bind name="pFiltroCarrier4" value="'%' + filtroCarrier4 + '%'" />
+			AND CARRIER_4 LIKE #{pFiltroCarrier4}
+		</if>
+		<if  test="filtroClassService4 != null" >
+			<bind name="pFiltroClassService4" value="'%' + filtroClassService4 + '%'" />
+			AND CLASS_SERVICE_4 LIKE #{pFiltroClassService4}
+		</if>
+		<if  test="filtroCityName5 != null" >
+			<bind name="pFiltroCityName5" value="'%' + filtroCityName5 + '%'" />
+			AND CITY_NAME_5 LIKE #{pFiltroCityName5}
+		</if>
+		<if  test="filtroCodigoMonedaISO != null" >
+			<bind name="pFiltroCodigoMonedaISO" value="'%' + filtroCodigoMonedaISO + '%'" />
+			AND CODIGO_MONEDA_ISO LIKE #{pFiltroCodigoMonedaISO}
+		</if>
+		<if  test="filtroEspacioReservado != null" >
+			<bind name="pFiltroEspacioReservado" value="'%' + filtroEspacioReservado + '%'" />
+			AND ESPACIO_RESERVADO LIKE #{pFiltroEspacioReservado}
+		</if>
+		<if  test="filtroDestinationCity != null" >
+			<bind name="pFiltroDestinationCity" value="'%' + filtroDestinationCity + '%'" />
+			AND DESTINATION_CITY LIKE #{pFiltroDestinationCity}
+		</if>
+		<if  test="filtroEspacioReservado3 != null" >
+			<bind name="pFiltroEspacioReservado3" value="'%' + filtroEspacioReservado3 + '%'" />
+			AND ESPACIO_RESERVADO_3 LIKE #{pFiltroEspacioReservado3}
+		</if>
+		<if  test="filtroSubEntidad != null" >
+			<bind name="pFiltroSubEntidad" value="'%' + filtroSubEntidad + '%'" />
+			AND SUB_ENTIDAD LIKE #{pFiltroSubEntidad}
+		</if>
+		<if  test="filtroNumeroFactura != null" >
+			<bind name="pFiltroNumeroFactura" value="'%' + filtroNumeroFactura + '%'" />
+			AND NUMERO_FACTURA LIKE #{pFiltroNumeroFactura}
+		</if>
+		<if  test="filtroNumeroComerciante != null" >
+			<bind name="pFiltroNumeroComerciante" value="'%' + filtroNumeroComerciante + '%'" />
+			AND NUMERO_COMERCIANTE LIKE #{pFiltroNumeroComerciante}
+		</if>
+		<if  test="filtroFormaExpeditoPagos != null" >
+			<bind name="pFiltroFormaExpeditoPagos" value="'%' + filtroFormaExpeditoPagos + '%'" />
+			AND EXPEDITO_PAGOS LIKE #{pFiltroFormaExpeditoPagos}
+		</if>
+		<if  test="filtroFechaExpiracionPagos != null" >
+			<bind name="pFiltroFechaExpiracionPagos" value="'%' + filtroFechaExpiracionPagos + '%'" />
+			AND FECHA_EXPIRACION_PAGOS LIKE #{pFiltroFechaExpiracionPagos}
+		</if>
+		<if  test="filtroNoDefinido != null" >
+			<bind name="pFiltroNoDefinido" value="'%' + filtroNoDefinido + '%'" />
+			AND NO_DEFINIDO LIKE #{pFiltroNoDefinido}
+		</if>
+		<if  test="filtroFechaPrimerVuelo != null" >
+			<bind name="pFiltroFechaPrimerVuelo" value="'%' + filtroFechaPrimerVuelo + '%'" />
+			AND FECHA_PRIMER_VUELO LIKE #{pFiltroFechaPrimerVuelo}
+		</if>
+		<if  test="filtroIdOrigenArchivo != null" >
+			<bind name="pFiltroIdOrigenArchivo" value="'%' + filtroIdOrigenArchivo + '%'" />
+			AND ID_ORIGEN_ARCHIVO LIKE #{pFiltroIdOrigenArchivo}
+		</if>
+		<if  test="filtroFechaProceso != null" >
+			AND FECHA_PROCESO = #{filtroFechaProceso}
+		</if>
+	</sql>
+	
+    <sql id="orden">
+     
+		<if  test="ordenCodigoDebitoCredito != null" >
+			ORDER BY
+				CODIGO_DEBITO_CREDITO  ${ordenCodigoDebitoCredito}
+		</if>
+		<if  test="ordenCodigoAerolinea != null" >
+			ORDER BY
+				CODIGO_AEROLINEA  ${ordenCodigoAerolinea}
+		</if>
+		<if  test="ordenNumeroBoleto != null" >
+			ORDER BY
+				NUMERO_BOLETO  ${ordenNumeroBoleto}
+		</if>
+		<if  test="ordenCodigoIATAAgencia != null" >
+			ORDER BY
+				CODIGO_IATA_AGENCIA  ${ordenCodigoIATAAgencia}
+		</if>
+		<if  test="ordenFechaEmisionBoleto != null" >
+			ORDER BY
+				FECHA_EMISION_BOLETO  ${ordenFechaEmisionBoleto}
+		</if>
+		<if  test="ordenPeriodoBSP != null" >
+			ORDER BY
+				PERIODO_BSP  ${ordenPeriodoBSP}
+		</if>
+		<if  test="ordenFacturacionADP != null" >
+			ORDER BY
+				FACTURACION_ADP  ${ordenFacturacionADP}
+		</if>
+		<if  test="ordenMontoCreditoDebito != null" >
+			ORDER BY
+				MONTO_CREDITO_DEBITO  ${ordenMontoCreditoDebito}
+		</if>
+		<if  test="ordenCodigoAutorizacion != null" >
+			ORDER BY
+				CODIGO_AUTORIZACION  ${ordenCodigoAutorizacion}
+		</if>
+		<if  test="ordenSequenceNumber != null" >
+			ORDER BY
+				SEQUENCE_NUMBER  ${ordenSequenceNumber}
+		</if>
+		<if  test="ordenInvoiceDate != null" >
+			ORDER BY
+				INVOICE_DATE  ${ordenInvoiceDate}
+		</if>
+		<if  test="ordenNombrePasajero != null" >
+			ORDER BY
+				NOMBRE_PASAJERO  ${ordenNombrePasajero}
+		</if>
+		<if  test="ordenFechaExpiracionTarjeta != null" >
+			ORDER BY
+				FECHA_EXPIRACION_TARJETA  ${ordenFechaExpiracionTarjeta}
+		</if>
+		<if  test="ordenIdIATA != null" >
+			ORDER BY
+				ID_IATA  ${ordenIdIATA}
+		</if>
+		<if  test="ordenMembresia != null" >
+			ORDER BY
+				MEMBRESIA  ${ordenMembresia}
+		</if>
+		<if  test="ordenNumeroTarjetaCredito != null" >
+			ORDER BY
+				NUMERO_TARJETA_CREDITO  ${ordenNumeroTarjetaCredito}
+		</if>
+		<if  test="ordenIdentificadorTransaccion != null" >
+			ORDER BY
+				IDENTIFICADOR_TRANSACCION  ${ordenIdentificadorTransaccion}
+		</if>
+		<if  test="ordenEspacioReservado1 != null" >
+			ORDER BY
+				ESPACIO_RESERVADO_1  ${ordenEspacioReservado1}
+		</if>
+		<if  test="ordenReferenciaCliente != null" >
+			ORDER BY
+				REFERENCIA_CLIENTE  ${ordenReferenciaCliente}
+		</if>
+		<if  test="ordenEspacioReservado2 != null" >
+			ORDER BY
+				ESPACIO_RESERVADO_2  ${ordenFiltroEspacioReservado2}
+		</if>
+		<if  test="ordenCityName1 != null" >
+			ORDER BY
+				CITY_NAME_1  ${ordenCityName1}
+		</if>
+		<if  test="ordenFareBasis1 != null" >
+			ORDER BY
+				FARE_BASIS_1  ${ordenFareBasis1}
+		</if>
+		<if  test="ordenCarrier1 != null" >
+			ORDER BY
+				CARRIER_1  ${ordenCarrier1}
+		</if>
+		<if  test="ordenClassService1 != null" >
+			ORDER BY
+				CLASS_SERVICE_1  ${ordenClassService1}
+		</if>
+		<if  test="ordenCityName2 != null" >
+			ORDER BY
+				CITY_NAME_2  ${ordenCityName2}
+		</if>
+		<if  test="ordenFareBasis2 != null" >
+			ORDER BY
+				FARE_BASIS_2  ${ordenFareBasis2}
+		</if>
+		<if  test="ordenCarrier2 != null" >
+			ORDER BY
+				CARRIER_2  ${ordenCarrier2}
+		</if>
+		<if  test="ordenClassService2 != null" >
+			ORDER BY
+				CLASS_SERVICE_2  ${ordenClassService2}
+		</if>
+		<if  test="ordenCityName3 != null" >
+			ORDER BY
+				CITY_NAME_3  ${ordenCityName3}
+		</if>
+		<if  test="ordenFareBasis3 != null" >
+			ORDER BY
+				FARE_BASIS_3  ${ordenFareBasis3}
+		</if>
+		<if  test="ordenCarrier3 != null" >
+			ORDER BY
+				CARRIER_3  ${ordenCarrier3}
+		</if>
+		<if  test="ordenClassService3 != null" >
+			ORDER BY
+				CLASS_SERVICE_3  ${ordenClassService3}
+		</if>
+		<if  test="ordenCityName4 != null" >
+			ORDER BY
+				CITY_NAME_4  ${ordenCityName4}
+		</if>
+		<if  test="ordenFareBasis4 != null" >
+			ORDER BY
+				FARE_BASIS_4  ${ordenFareBasis4}
+		</if>
+		<if  test="ordenCarrier4 != null" >
+			ORDER BY
+				CARRIER_4  ${ordenCarrier4}
+		</if>
+		<if  test="ordenClassService4 != null" >
+			ORDER BY
+				CLASS_SERVICE_4  ${ordenClassService4}
+		</if>
+		<if  test="ordenCityName5 != null" >
+			ORDER BY
+				CITY_NAME_5  ${ordenCityName5}
+		</if>
+		<if  test="ordenCodigoMonedaISO != null" >
+			ORDER BY
+				CODIGO_MONEDA_ISO  ${ordenCodigoMonedaISO}
+		</if>
+		<if  test="ordenEspacioReservado != null" >
+			ORDER BY
+				ESPACIO_RESERVADO  ${ordenEspacioReservado}
+		</if>
+		<if  test="ordenDestinationCity != null" >
+			ORDER BY
+				DESTINATION_CITY  ${ordenDestinationCity}
+		</if>
+		<if  test="ordenEspacioReservado3 != null" >
+			ORDER BY
+				ESPACIO_RESERVADO_3  ${ordenEspacioReservado3}
+		</if>
+		<if  test="ordenSubEntidad != null" >
+			ORDER BY
+				ORDEN_SUB_ENTIDAD  ${ordenSubEntidad}
+		</if>
+		<if  test="ordenNumeroFactura != null" >
+			ORDER BY
+				ORDEN_NUMERO_FACTURA  ${ordenNumeroFactura}
+		</if>
+		<if  test="ordenNumeroComerciante != null" >
+			ORDER BY
+				NUMERO_COMERCIANTE  ${ordenNumeroComerciante}
+		</if>
+		<if  test="ordenFormaExpeditoPagos != null" >
+			ORDER BY
+				FORMA_EXPEDIENTE_PAGOS  ${ordenFormaExpeditoPagos}
+		</if>
+		<if  test="ordenFechaExpiracionPagos != null" >
+			ORDER BY
+				FECHA_EXPIRACION_PAGOS  ${ordenFechaExpiracionPagos}
+		</if>
+		<if  test="ordenNoDefinido != null" >
+			ORDER BY
+				NO_DEFINIDO  ${ordenNoDefinido}
+		</if>
+		<if  test="ordenFechaPrimerVuelo != null" >
+			ORDER BY
+				FECHA_PRIMER_VUELO  ${ordenFechaPrimerVuelo}
+		</if>
+		<if  test="ordenIdOrigenArchivo != null" >
+			ORDER BY
+				ID_ORIGEN_ARCHIVO  ${ordenIdOrigenArchivo}
+		</if>
+		<if  test="ordenFechaProceso != null" >
+			ORDER BY
+				FECHA_PROCESO  ${ordenFechaProceso}
+		</if>
+    </sql>
+
+    <select id="buscarTodos" resultType="IncomingIATA" statementType="PREPARED">
+       <include refid="consultaVistaMant" />
+       <include refid="orden"/>
+    </select>
+    
+	<select id="buscarPorCriterios" parameterType="CriterioBusquedaIncomingIATA"  resultType="IncomingIATA" statementType="PREPARED">	
+		<include refid="consultaVistaMant" />
+		<where>
+			<include refid="fragmentoWhere"/>
+      	 	<include refid="filtros"/>
+		</where>
+      	 	<include refid="orden"/>
+   	</select>
+</mapper>

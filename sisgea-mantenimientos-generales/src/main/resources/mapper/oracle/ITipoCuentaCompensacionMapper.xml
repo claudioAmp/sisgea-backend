@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.ITipoCuentaCompensacionMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT	id_tipo_cuenta_comp
+        	,	descripcion_tipo_cuenta_comp
+        	,	cuenta_intercambio
+        	, 	id_cuenta_comp
+        	,	descripcion_cuenta_comp 
+        FROM VIE_MAN_TIPO_CUENTA_COMP
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_tipo_cuenta_comp
+	</sql>
+
+    <select id="buscarTodos" resultType="TipoCuentaCompensacion" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+
+</mapper>

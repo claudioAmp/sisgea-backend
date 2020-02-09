@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.ISwdmplogMapper">
+	
+	<!-- Reutilizables -->
+	<sql id="fragmentoSelect" >
+		SELECT *
+		FROM VIE_CON_MOV_SWDMPLOG consulta
+	</sql>
+	
+	<sql id="fragmentoWhere" >
+		<if test="fechaInicioProceso != null and fechaFinProceso != null">
+			consulta.fecha_proceso BETWEEN #{fechaInicioProceso} AND #{fechaFinProceso} 
+		</if>
+		<if test="fechaInicioTransaccion != null and fechaFinTransaccion != null">
+			AND consulta.transmission_date BETWEEN #{fechaInicioTransaccion} AND #{fechaFinTransaccion}
+		</if>
+		<if test="fechaInicioSwitch != null and fechaFinSwitch != null">
+			AND consulta.CAPTURE_DATE BETWEEN #{fechaInicioSwitch} AND #{fechaFinSwitch}
+		</if>
+		<if test="tipoMensaje != null and tipoMensaje != ''">
+			AND consulta.MESSAGE_TYPE = #{tipoMensaje}
+		</if>
+		<if test="trace != null and trace != ''">
+			AND consulta.trace_number = #{trace}
+		</if>
+		<if test="numeroTarjeta != null and numeroTarjeta != ''">
+			AND consulta.pan = #{numeroTarjeta}
+		</if>
+	</sql>
+	
+	<sql id="fragmentoWhereMultiple" >
+		<if test="idsProcesoSwitch != null and idsProcesoSwitch.size()>0">
+			AND consulta.id_proceso IN 
+				<foreach collection="idsProcesoSwitch" item="idProceso" index="index" open="(" separator="," close=")">
+					#{idProceso}
+				</foreach>
+		</if>
+		<if test="idsMembresia != null and idsMembresia.size()>0">
+			AND consulta.ID_MEMBRESIA IN
+			<foreach collection="idsMembresia" item="idMembresia" index="index" open="(" separator="," close=")">
+					#{idMembresia}
+			</foreach>
+		</if>
+		<if test="idsServicio != null and idsServicio.size()>0">
+			AND consulta.ID_SERVICIO IN
+			<foreach collection="idsServicio" item="idServicio" index="index" open="(" separator="," close=")">
+					#{idServicio}
+			</foreach>
+		</if>
+		<if test="idsCanal != null and idsCanal.size()>0">
+			AND consulta.ID_CANAL IN
+			<foreach collection="idsCanal" item="idCanal" index="index" open="(" separator="," close=")">
+				#{idCanal}
+			</foreach>
+		</if>
+		<if test="institucionesEmisoras != null and institucionesEmisoras.size()>0">
+				AND consulta.id_institucion_emisora IN
+				<foreach collection="institucionesEmisoras" item="idInstitucion" index="index" open="(" separator="," close=")">
+					#{idInstitucion}	
+				</foreach>
+		</if>
+		<if test="idsBines != null and idsBines.size()>0">
+				AND consulta.id_bin IN
+				<foreach collection="idsBines" item="idBin" index="index" open="(" separator="," close=")">
+					#{idBin}	
+				</foreach>
+		</if>
+		<if test="institucionesReceptoras != null and institucionesReceptoras.size()>0">
+			AND consulta.id_institucion_receptora IN
+				<foreach collection="institucionesReceptoras" item="idInstitucion" index="index" open="(" separator="," close=")">
+					#{idInstitucion}
+				</foreach>
+		</if>
+		<if test="idsRespuestaSwitch != null and idsRespuestaSwitch.size()>0">
+			AND consulta.response_code IN 
+				<foreach collection="idsRespuestaSwitch" item="idRespuesta" index="index" open="(" separator="," close=")">
+					#{idRespuesta}
+				</foreach>
+		</if>
+	</sql>
+	
+	<sql id="fragmentoFiltrosOrdenaciones">
+				<if  test="filtroFechaProceso != null " >
+					AND FECHA_PROCESO = #{filtroFechaProceso}
+				</if>
+				<if  test="filtroIdBin != null " >
+					<bind name="pFiltroIdBin" value="'%' + filtroIdBin + '%'" />
+					AND CONCAT(ID_BIN, UPPER(DESCRIPCION_BIN)) LIKE UPPER(#{pFiltroIdBin})
+				</if>
+				<if  test="filtroPan != null " >
+					<bind name="pFiltroPan" value="'%' + filtroPan + '%'" />
+					AND PAN LIKE #{pFiltroPan}
+				</if>
+				<if  test="filtroMessageType != null " >
+					<bind name="pFiltroMessageType" value="'%' + filtroMessageType + '%'" />
+					AND MESSAGE_TYPE LIKE #{pFiltroMessageType}
+				</if>
+				<if  test="filtroIdProceso != null " >
+					<bind name="pFiltroIdProceso" value="'%'+ filtroIdProceso +'%'" />
+					AND CONCAT(ID_PROCESO, UPPER(DESCRIPCION_PROCESO)) LIKE UPPER(#{pFiltroIdProceso})
+				</if>
+				<if  test="filtroIdCanal != null " >
+					<bind name="pFiltroIdCanal" value="'%' + filtroIdCanal + '%'" />
+					AND CONCAT(ID_CANAL, UPPER(DESCRIPCION_CANAL)) LIKE UPPER(#{pFiltroIdCanal})
+				</if>
+				<if  test="filtroCardAcceptorLocation != null " >
+					<bind name="pFiltroCardAcceptorLocation" value="'%' + filtroCardAcceptorLocation + '%'" />
+					AND CARD_ACCEPTOR_LOCATION LIKE #{pFiltroCardAcceptorLocation}
+				</if>
+				<if  test="filtroTransmissionDate != null " >
+					AND TRANSMISSION_DATE = #{filtroTransmissionDate}
+				</if>
+				<if  test="filtroTransmissionTime != null " >
+					<bind name="pFiltroTransmissionTime" value="'%' + filtroTransmissionTime + '%'" />
+					AND TRANSMISSION_TIME LIKE #{pFiltroTransmissionTime}
+				</if>
+				<if  test="filtroTransactionCurrency != null " >
+					<bind name="pFiltroTransactionCurrency" value="'%' + filtroTransactionCurrency + '%'" />
+					AND CONCAT(TRANSACTION_CURRENCY, UPPER(DESCRIPCION_MONEDA)) LIKE UPPER(#{pFiltroTransactionCurrency})
+				</if>
+				<if  test="filtroTransactionAmount != null " >
+					<bind name="pFiltroTransactionAmount" value="'%' + filtroTransactionAmount + '%'" />
+					AND TRANSACTION_AMOUNT LIKE #{pFiltroTransactionAmount}
+				</if>
+				<if  test="filtroTraceNumber != null " >
+					<bind name="pFiltroTraceNumber" value="'%' + filtroTraceNumber + '%'" />
+					AND TRACE_NUMBER LIKE #{pFiltroTraceNumber}
+				</if>
+				<if  test="filtroAuthorizationCode != null " >
+					<bind name="pFiltroAuthorizationCode" value="'%' + filtroAuthorizationCode + '%'" />
+					AND AUTHORIZATION_CODE LIKE #{pFiltroAuthorizationCode}
+				</if>
+				<if  test="filtroResponseCode != null " >
+					<bind name="pFiltroResponseCode" value="'%' + filtroResponseCode + '%'" />
+					AND CONCAT(RESPONSE_CODE, UPPER(DESCRIPCION_CODIGO_RPTA_SW)) LIKE UPPER(#{pFiltroResponseCode})
+				</if>
+				<if  test="filtroLocalTransactionDate != null " >
+					AND LOCAL_TRANSACTION_DATE = #{filtroLocalTransactionDate}
+				</if>
+				<if  test="filtroLocalTransactionTime != null " >
+					<bind name="pFiltroLocalTransactionTime" value="'%' + filtroLocalTransactionTime + '%'" />
+					AND LOCAL_TRANSACTION_TIME LIKE #{pFiltroLocalTransactionTime}
+				</if>
+				<if  test="filtroIdMembresia != null " >
+					<bind name="pFiltroIdMembresia" value="'%' + filtroIdMembresia + '%'" />
+					AND CONCAT(ID_MEMBRESIA, UPPER(DESCRIPCION_MEMBRESIA)) LIKE UPPER(#{pFiltroIdMembresia})
+				</if>
+				<if  test="filtroIdServicio != null " >
+					<bind name="pFiltroIdServicio" value="'%' + filtroIdServicio + '%'" />
+					AND CONCAT(ID_SERVICIO, UPPER(DESCRIPCION_SERVICIO)) LIKE UPPER(#{pFiltroIdServicio})
+				</if>
+				<if  test="filtroIdInstitucionEmisora != null " >
+					<bind name="pFiltroIdInstitucionEmisora" value="'%' + filtroIdInstitucionEmisora + '%'" />
+					AND CONCAT(ID_INSTITUCION_EMISORA, UPPER(DESCRIPCION_INST_EMISORA)) LIKE UPPER(#{pFiltroIdInstitucionEmisora})
+				</if>
+				<if  test="filtroIdInstitucionReceptora != null " >
+					<bind name="pFiltroIdInstitucionReceptora" value="'%' + filtroIdInstitucionReceptora + '%'" />
+					AND CONCAT(ID_INSTITUCION_RECEPTORA, UPPER(DESCRIPCION_INST_RECEPTORA)) LIKE UPPER(#{pFiltroIdInstitucionReceptora})
+				</if>
+				<if  test="filtroPosEntryMode != null " >
+					<bind name="pFiltroPosEntryMode" value="'%' + filtroPosEntryMode + '%'" />
+					AND POS_ENTRY_MODE LIKE #{pFiltroPosEntryMode}
+				</if>
+				<if  test="filtroCaptureDate != null " >
+					AND CAPTURE_DATE = #{filtroCaptureDate}
+				</if>
+				<if  test="filtroIdMovTxnSwdmplog != null " >
+					<bind name="pFiltroIdMovTxnSwdmplog" value="'%' + filtroIdMovTxnSwdmplog + '%'" />
+					AND ID_MOV_TXN_SWDMPLOG LIKE #{pFiltroIdMovTxnSwdmplog}
+				</if>
+				
+				<if  test="filtroIdOrigen != null " >
+					<bind name="pFiltroIdOrigen" value="'%' + filtroIdOrigen + '%'" />
+					AND CONCAT(ID_ORIGEN, UPPER(DESCRIPCION_ORIGEN)) LIKE UPPER(#{pFiltroIdOrigen})
+				</if>
+				<if  test="filtroIdClaseTransaccion != null " >
+					<bind name="pFiltroIdClaseTransaccion" value="'%' + filtroIdClaseTransaccion + '%'" />
+					AND CONCAT(ID_CLASE_TRANSACCION, UPPER(DESCRIPCION_CLASE_TRANSACCION)) LIKE UPPER(#{pFiltroIdClaseTransaccion})
+				</if>
+				<if  test="filtroIdCodigoTransaccion != null " >
+					<bind name="pFiltroIdCodigoTransaccion" value="'%' + filtroIdCodigoTransaccion + '%'" />
+					AND CONCAT(ID_CODIGO_TRANSACCION, UPPER(DESCRIPCION_CODIGO_TRANSACCION)) LIKE UPPER(#{pFiltroIdCodigoTransaccion})
+				</if>
+				
+				<if  test="rangoTransactionAmountMin != null and rangoTransactionAmountMax != null" >
+					AND TRANSACTION_AMOUNT BETWEEN #{rangoTransactionAmountMin} AND #{rangoTransactionAmountMax}
+				</if>
+				
+				<if  test="ordenFechaProceso != null " >
+				ORDER BY
+					FECHA_PROCESO  ${ordenFechaProceso}
+				</if>
+				<if  test="ordenIdBin != null " >
+				ORDER BY
+					 ID_BIN  ${ordenIdBin}
+				</if>
+				<if  test="ordenPan != null " >
+				ORDER BY
+					 PAN  ${ordenPan}
+				</if>
+				<if  test="ordenMessageType != null " >
+				ORDER BY
+					 MESSAGE_TYPE  ${ordenMessageType}
+				</if>
+				<if  test="ordenIdProceso != null " >
+				ORDER BY	
+					 ID_PROCESO  ${ordenIdProceso}
+				</if>
+				<if  test="ordenIdCanal != null " >
+				ORDER BY	
+					ID_CANAL  ${ordenIdCanal}
+				</if>
+				<if  test="ordenCardAcceptorLocation != null " >
+				ORDER BY	
+				 	CARD_ACCEPTOR_LOCATION  ${ordenCardAcceptorLocation}
+				</if>
+				<if  test="ordenTransmissionDate != null " >
+				ORDER BY	
+					 TRANSMISSION_DATE  ${ordenTransmissionDate}
+				</if>
+				<if  test="ordenTransmissionTime != null " >
+				ORDER BY	
+				 	TRANSMISSION_TIME  ${ordenTransmissionTime}
+				</if>
+				<if  test="ordenTransactionCurrency != null " >
+				ORDER BY	
+				 	TRANSACTION_CURRENCY  ${ordenTransactionCurrency}
+				</if>
+				<if  test="ordenTransactionAmount != null " >
+				ORDER BY	
+				 	TRANSACTION_AMOUNT  ${ordenTransactionAmount}
+				</if>
+				<if  test="ordenTraceNumber != null " >
+				ORDER BY	
+				 	TRACE_NUMBER  ${ordenTraceNumber}
+				</if>
+				<if  test="ordenAuthorizationCode != null " >
+				ORDER BY	
+				 	AUTHORIZATION_CODE  ${ordenAuthorizationCode}
+				</if>
+				<if  test="ordenResponseCode != null " >
+				ORDER BY	
+				 	RESPONSE_CODE  ${ordenResponseCode}
+				</if>
+				<if  test="ordenLocalTransactionDate != null " >
+				ORDER BY	
+				 	LOCAL_TRANSACTION_DATE  ${ordenLocalTransactionDate}
+				</if>
+				<if  test="ordenLocalTransactionTime != null " >
+				ORDER BY	
+				 	LOCAL_TRANSACTION_TIME ${ordenLocalTransactionTime}
+				</if>
+				<if  test="ordenIdMembresia != null " >
+				ORDER BY	
+				 	ID_MEMBRESIA  ${ordenIdMembresia}
+				</if>
+				<if  test="ordenIdServicio != null " >
+				ORDER BY	
+				 	ID_SERVICIO  ${ordenIdServicio}
+				</if>
+				<if  test="ordenIdInstitucionEmisora != null " >
+				ORDER BY	
+				 	ID_INSTITUCION_EMISORA  ${ordenIdInstitucionEmisora}
+				</if>
+				<if  test="ordenIdInstitucionReceptora != null " >
+				ORDER BY	
+				 	ID_INSTITUCION_RECEPTORA  ${ordenIdInstitucionReceptora}
+				</if>
+				<if  test="ordenPosEntryMode != null " >
+				ORDER BY	
+				 	POS_ENTRY_MODE ${ordenPosEntryMode}
+				</if>
+				<if  test="ordenCaptureDate != null " >
+				ORDER BY	
+				 	CAPTURE_DATE  ${ordenCaptureDate}
+				</if>
+				<if  test="ordenIdMovTxnSwdmplog != null " >
+				ORDER BY
+					ID_MOV_TXN_SWDMPLOG  ${ordenIdMovTxnSwdmplog}
+				</if>
+				<if  test="ordenIdOrigen != null" >
+					ORDER BY
+						ID_ORIGEN        ${ordenIdOrigen}
+				</if>
+				<if  test="ordenIdClaseTransaccion != null" >
+					ORDER BY
+						ID_CLASE_TRANSACCION        ${ordenIdClaseTransaccion}
+				</if>
+				<if  test="ordenIdCodigoTransaccion != null" >
+					ORDER BY
+						ID_CODIGO_TRANSACCION        ${ordenIdCodigoTransaccion}
+				</if>
+	</sql>
+	<!-- Fin Reutilizables -->
+	
+	<select id="buscarPaginada" resultType="TxnSwdmplog" parameterType="CriterioBusquedaSwdmplog" statementType="PREPARED">
+		<include refid="fragmentoSelect" />
+		<where>
+			<include refid="fragmentoWhere" />
+			<include refid="fragmentoWhereMultiple" />
+			<include refid="fragmentoFiltrosOrdenaciones" />
+		</where>
+	</select>
+	
+	<select id="buscarDetalle" resultType="TxnSwdmplogDetalle" >
+		SELECT *
+		FROM VIE_CON_MOV_SWDMPLOG_DET A
+		<where>
+			<if test="idMovTxnSwdmplog != null and idMovTxnSwdmplog != ''">
+				A.ID_MOV_TXN_SWDMPLOG = #{idMovTxnSwdmplog}
+			</if>
+			<if test="fechaProceso != null">
+				AND A.FECHA_PROCESO = #{fechaProceso}
+			</if>
+		</where>
+	</select>
+   
+</mapper>

@@ -1,0 +1,138 @@
+package edu.taller.sisgea.consultasgenerales.model.compensacion;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import ob.commons.truncadorpan.annotation.TruncarPAN;
+
+import java.util.Date;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+public class CompensacionDetalle {
+	
+	Long idSecuencia;
+	String idMembresia;
+	String descMembresia;
+	String idServicio;
+	String descServicio;
+	Integer idOrigen;
+	String descOrigen;
+	Integer idClaseTransaccion;
+	String descClaseTransaccion;
+	Integer idCodigoTransaccion;
+	String descCodigoTransaccion;
+	Integer idRol;
+	String descRol;
+	Integer idCanal;
+	String descCanal;
+	Integer idInstitucionEmisora;
+	String descInstitucionEmisora;
+	Integer idInstitucionReceptora;
+	String descInstitucionReceptora;
+	Integer idFacturacion;
+	String descFacturacion;
+	@TruncarPAN
+	String numeroTarjeta;
+	String bin;
+	String descBin;
+	String numeroCuenta;
+	Integer idMonedaTransaccion;
+	String descMonedaTransaccion;
+	double valorTransaccion;
+	Integer idMonedaCompensacion;
+	String descMonedaCompensacion;
+	double valorCompensacion;
+	Date fechaTransaccion;
+	Date fechaProceso;
+	Date fechaInterface;
+	Date fechaIncoming;
+	Date fechaSwitch;
+	Date fechaAfectacion;
+	String codigoRespuesta;
+	String descCodigoRespuesta;
+	String numeroTrace;
+	String codigoAutorizacion;
+	String codigoProcesamiento;
+	String desCodigoProcesamiento;
+	String idTerminal;
+	String binReceptor;
+	String descBinReceptor;
+	Integer idEstablecimientoLocal;
+	String referenciaIntercambio;
+	String referenciaTc;
+	String codigoUso;
+	String descCodigoUso;
+	String idPaisEmisor;
+	String descPaisEmisor;
+	String idRegionEmisor;
+	String descRegionEmisor;
+	String idPaisReceptor;
+	String descPaisReceptor;
+	String idRegionReceptor;
+	String descRegionReceptor;
+	String idTransaccionOriginal;
+	String descTransaccionOriginal;
+	String giroNegocio;
+	String descGiroNegocio;
+	String nombreAdquirente;
+	String ciudadAdquirente;
+	String paisAdquirente;
+	String descPaisAdquirente;
+	String estadoAdquirente;
+	String terminalPos;
+	String descTerminalPos;
+	String modoEntradaPos;
+	String descModoEntradaPos;
+	String atributoReembolso;
+	String indCondicionEspecial;
+	String indAutorizacion;
+	String metodoIdThb;
+	String descMetodoIdThb;
+	String indCorreoTelefono;
+	String descIndCorreoTelefono;
+	String flagCompensacion;
+	String seleccionCuentaAtm;
+	Integer compensadoFondos;
+	Integer compensadoComisiones;
+	Double comisionTarjetahabiente;
+	Double comisionEstablecimiento;
+	Double comisionIntercambio;
+	Integer fondosCargo;
+	String instFondosCargo;
+	Integer fondosAbono;
+	String instFondosAbono;
+	String indicadorCompensacion;
+	String descIndicadorCompensacion;
+	Integer transaccionTipoC;
+	String horaTransaccion;
+	String glosaRegularizacion;
+	Double porcentajeEstabLocal;
+	String indMonedaInter;
+	String posConditionCode;
+	String binAdquirenteSwitch;
+	String descBinAdquirenteSwitch;
+	String binRespuestaSwitch;
+	String descBinRespuestaSwitch;
+	String binEmisorSwitch;
+	String descBinEmisorSwitch;
+	Integer cargoSwitch;
+	Integer abonoSwitch;
+	String cuentaId1Switch;
+	String cuentaId2Switch;
+	Integer numeroCuotas;
+	String codigoRelacionador;
+	double cuotaAccesoAtm;
+	String codigoPct;
+	String codigoPlanCredito;
+	String codigoArticulo;
+	String indicadorPcas;
+	String descIndicadorPcas;
+	String origenArchivo;
+	String descOrigenArchivo;
+}

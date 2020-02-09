@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.generadorconsultas.mapper.IFiltroMapper">
+
+	<sql id="consultaVistaMant">
+       SELECT ID_FILTRO_CAMPO
+			, ID_CAMPO_QUERY
+			, ID_REPORTE
+			, ID_TABLA
+			, TABLA
+			, ALIAS_TABLA
+			, ID_CAMPO
+			, CAMPO
+			, ALIAS_CAMPO
+			, ID_INSTANCIA
+			, ID_OPERADOR
+			, SIMBOLO_OPERADOR
+			, ID_CONDICION_PADRE
+			, VALOR
+			, TIPO_DATO_VALOR
+			<if  test=" permited!= null and permited!= 0 ">
+       			, fun_campo_permitido(ID_CAMPO,#{usuario}) AS "PERMITIDO"
+            </if>
+		FROM VIE_MAN_REP_FILTRO_CAMPO
+	</sql>
+     <select id="buscarTodos" resultType="Filtro" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+    </select>
+    <select id="buscarPorCriterios" resultType="Filtro" parameterType="CriterioBusquedaFiltro" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <where>
+         <if  test=" idFiltroCampo!= null and idFiltroCampo != 0">
+       			AND ID_FILTRO_CAMPO =#{idFiltroCampo}
+        </if>
+        <if  test=" idCampoQuery!= null and idCampoQuery != 0 ">
+       			AND ID_CAMPO_QUERY =#{idCampoQuery}
+        </if>
+        <if  test=" idReporte!= null and idReporte != 0 ">
+       			AND ID_REPORTE =#{idReporte}
+        </if>
+        <if  test=" idTabla!= null and idTabla != 0 ">
+       			AND ID_TABLA =#{idTabla}
+        </if>
+        <if  test=" permited!= null and permited!= 0  ">
+       			AND fun_campo_permitido(ID_CAMPO,#{usuario})  > 0
+        </if> 
+        </where>
+       
+
+    </select>
+   
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_filtro_campo_query(
+                #{modo, 						  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idFiltroCampo,  jdbcType=INTEGER, mode=INOUT},
+                #{objetoMantenido.idCampoQuery,   jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.idOperador,     jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.valor,     	  jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idCondicionPadre, jdbcType=NUMERIC, mode=IN},
+                #{usuario, 						  jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.conciliacion.mapper.IConciliacionTablasMapper">
+
+    <sql id="consultaVistaMant">
+        SELECT id_conc_tabla
+        	 , id_conciliacion
+        	 , nombre_procedimiento
+             , id_paquete
+             , nombre_paquete
+             , id_archivo_conciliar_a
+             , descripcion_archivo_conciliar_a
+             , id_archivo_conciliar_b
+             , descripcion_archivo_conciliar_b
+             , tabla_conciliar_a
+             , tabla_conciliar_b
+             , filtro_actualizacion_a
+             , filtro_actualizacion_b
+             , aplica_expresion_a
+             , tabla_expresion_a
+             , aplica_expresion_b
+             , tabla_expresion_b
+        FROM VIE_MAN_CNC_CONCILIACION_TABLAS
+    </sql>
+    
+    <sql id="orden">
+    	ORDER BY id_paquete, id_conciliacion, id_conc_tabla
+    </sql>
+
+    <select id="buscarTodos" resultType="ConciliacionTablas" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+
+    <select id="buscarConciliacionTablas" resultType="ConciliacionTablas">
+        <include refid="consultaVistaMant"/>
+        WHERE
+                id_conciliacion  = #{idConciliacionTablas}
+            AND id_conc_tabla = #{idConcTabla}
+    </select>
+
+    <select id="buscarConciliacionTablasPorConciliacion" resultType="ConciliacionTablas">
+        <include refid="consultaVistaMant"/>
+        WHERE
+            id_conciliacion = #{idConciliacion}
+    </select>
+
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_CONCILIACION.PRC_MAN_CONCILIACION_TABLAS(
+                #{modo, 								jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idConcTabla, 	       	jdbcType=INTEGER, mode=INOUT},
+                #{objetoMantenido.idConciliacion, 	  	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.idPaquete, 	       	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.idArchivoConciliarA,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idArchivoConciliarB,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tablaConciliarA, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tablaConciliarB, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.filtroActualizacionA,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.filtroActualizacionB,	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaExpresionA, 	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.tablaExpresionA, 	   	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.aplicaExpresionB, 	jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.tablaExpresionB, 	   	jdbcType=VARCHAR, mode=IN},
+                #{usuario, 								jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+</mapper>

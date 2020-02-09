@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.IDistribucionMcEventosMapper">
+
+    <resultMap id="mapDistribucionMcEventos" type="DistribucionMcEventos">
+        <id column="secuencia_Agrupada" property="secuenciaAgrupada"></id>
+        <id column="event_Id" property="eventId"></id>
+        <id column="event_Description" property="eventDescription"></id>
+        <id column="rate" property="rate"></id>
+        <id column="valor_transaccion_Total" property="valorTransaccionTotal"></id>
+        <id column="total_Units" property="totalUnits"></id>
+        <id column="id_Moneda" property="idMoneda"></id>
+        <id column="descripcion_Moneda" property="descripcionMoneda"></id>
+        <id column="abreviatura_Moneda" property="abreviaturaMoneda"></id>
+        <id column="ind_Units" property="indUnits"></id>
+        <collection property="listaDistribucion" javaType="List" ofType="DistribucionMcEventosDetalle">
+            <id column="id_Institucion" property="idInstitucion"></id>
+            <id column="descripcion_Institucion" property="descripcionInstitucion"></id>
+            <result column="inst_Units" property="instUnits"></result>
+            <result column="valor_transaccion_Inst" property="valorTransaccionInst"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="consultaVistaDistribucion">
+        SELECT 
+            SECUENCIA_AGRUPADA,
+            EVENT_ID,
+            EVENT_DESCRIPTION,
+            RATE,
+            ID_MONEDA,
+            DESCRIPCION_MONEDA,
+            ABREVIATURA_MONEDA,
+            IND_UNITS,
+            TOTAL_UNITS,
+            INST_UNITS,
+            VALOR_TRANSACCION_TOTAL,
+            VALOR_TRANSACCION_INST,
+            ID_INSTITUCION,
+            DESCRIPCION_INSTITUCION
+        FROM VIE_DIST_MC_EVENTOS_PORC
+    </sql>
+
+    <select id="buscarRegistrosDistribucionEventosMc" resultMap="mapDistribucionMcEventos">
+        <include refid="consultaVistaDistribucion" />
+    </select>
+
+    <select id="buscarRegistroDistribucionEventosMc" resultMap="mapDistribucionMcEventos">
+        <include refid="consultaVistaDistribucion" />
+        WHERE SECUENCIA_AGRUPADA = #{secuenciaAgrupada}
+    </select>
+
+    <update id="actualizarDistribucionMcEventos">
+		UPDATE MOV_FACTURACION_MC_DIST_PORC
+		SET IND_UNITS 				= #{indUnits},
+			INST_UNITS 				= #{instUnits},
+			VALOR_TRANSACCION_INST 	= #{valorTransaccionInst}
+		WHERE
+				SECUENCIA_AGRUPADA = #{secuenciaAgrupada} 
+			AND	ID_INSTITUCION_EMISORA = #{idInstitucion}
+	</update>
+
+</mapper>

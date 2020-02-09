@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.generadorconsultas.mapper.ICondicionQueryMapper">
+
+    <sql id="consulta">
+       SELECT 
+            A.ID_QUERY AS "ID_REPORTE"
+          , A.ID_CONDICION_PADRE
+          , A.ID_CONDICION_QUERY
+          , OPERADOR_LOGICO
+          , TIPO_CONDICION
+          , A.ID_CONDICION_QUERY AS "ID_CONDICION_QUERY_AUX"
+		FROM VIE_MAN_REP_CONDICION_QUERY A
+    </sql>
+
+    <select id="buscarTodos" resultType="CondicionQuery" statementType="PREPARED">
+        <include refid="consulta"/>
+    </select>
+    
+    <select id="buscarPorId" resultType="CondicionQuery" statementType="PREPARED">
+        <include refid="consulta"/>
+        <where>
+        	ID_CAMPO = #{idCondicionQuery}
+        </where>
+    </select>
+    
+    <select id="buscarPorCriterios" resultType="CondicionQuery" parameterType="CriterioBusquedaCondicionQuery" statementType="PREPARED">
+        <include refid="consulta"/>
+        <where>
+        <if  test="idReporte != null and idReporte != 0">
+			 AND A.ID_QUERY=#{idReporte}
+		</if>
+		<if  test="idCondicionPadre != null and idCondicionPadre != 0">
+			 AND A.ID_CONDICION_PADRE=#{idCondicionPadre}
+		</if>
+        </where>
+        
+        
+    </select>
+    
+     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PKG_MAN_REP.prc_man_rep_condicion_query(
+            #{modo, 							     jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.idCondicionQuery,      jdbcType=INTEGER, mode=INOUT},
+    		#{objetoMantenido.idCondicionPadre,      jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.idReporte,             jdbcType=NUMERIC, mode=IN},
+    		#{objetoMantenido.operadorLogico ,     	 jdbcType=VARCHAR, mode=IN},
+    		#{objetoMantenido.tipoCondicion ,        jdbcType=NUMERIC, mode=IN},	
+    		#{usuario,				                 jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+    
+</mapper>
