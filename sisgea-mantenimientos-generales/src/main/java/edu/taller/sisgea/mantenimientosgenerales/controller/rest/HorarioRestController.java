@@ -3,13 +3,18 @@ package edu.taller.sisgea.mantenimientosgenerales.controller.rest;
 import edu.taller.sisgea.mantenimientosgenerales.model.Horario;
 import edu.taller.sisgea.mantenimientosgenerales.model.resultadocarga.ResultadoCarga;
 import edu.taller.sisgea.mantenimientosgenerales.service.horario.IHorarioService;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Validated
+@RestController
 public class HorarioRestController {
 
     private final IHorarioService horarioService;

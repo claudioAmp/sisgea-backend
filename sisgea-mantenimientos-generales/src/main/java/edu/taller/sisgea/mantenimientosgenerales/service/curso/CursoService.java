@@ -82,14 +82,26 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
             List<Curso> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
+                System.out.println("ingresa");
                 String idPlan           = String.valueOf(row.getCell(0));
+                System.out.println("0");
                 String idCurso          = String.valueOf(row.getCell(1));
-                Integer ciclo           = Integer.parseInt(String.valueOf(row.getCell(2)));
+                System.out.println("1");
+                System.out.println(row.getCell(2).toString());
+                System.out.println();
+                Integer ciclo           = (int) Double.parseDouble(String.valueOf(row.getCell(2)));
+                
+                System.out.println("2");
                 String especialidad     = String.valueOf(row.getCell(3));
+                System.out.println("3");
                 String descripcion      = String.valueOf(row.getCell(4));
+                System.out.println("4");
                 Double creditaje        = Double.parseDouble(String.valueOf(row.getCell(5)));
+                System.out.println("5");
                 String tipo             = String.valueOf(row.getCell(6));
-                String grupo           = String.valueOf(row.getCell(7));
+                System.out.println("6");
+                String grupo            = String.valueOf(row.getCell(7));
+                System.out.println("termino");
                 Curso fila = Curso.builder()
                         .idPlan(idPlan)
                         .idCurso(idCurso)
@@ -101,6 +113,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
                         .grupo(grupo)
                         .build();
                 listaFilas.add(fila);
+                System.out.println("end");
             }
             cargarExcel(listaFilas);
             ResultadoCarga resultadoCarga = ResultadoCarga.builder()
@@ -140,7 +153,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
                                 "DESCRIPCION	," +
                                 "CREDITAJE			," +
                                 "TIPO			," +
-                                "GRUPO      ," +
+                                "GRUPO      " +
                                 ") VALUES ("+
                                 "?,"+
                                 "?,"+
@@ -159,7 +172,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
                     try{
                         TypesUtil.validarBDString(stmt,  1, curso.getIdPlan());
                         TypesUtil.validarBDString(stmt,  2, curso.getIdCurso());
-                        TypesUtil.validarBDInteger(stmt,  3, curso.getCiclo());
+                        TypesUtil.validarBDInteger(stmt, 3, curso.getCiclo()); 
                         TypesUtil.validarBDString(stmt,  4, curso.getEspecialidad());
                         TypesUtil.validarBDString(stmt,  5, curso.getDescripcion());
                         TypesUtil.validarBDDouble(stmt,  6, curso.getCreditaje());
