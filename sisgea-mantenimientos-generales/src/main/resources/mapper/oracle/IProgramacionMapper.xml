@@ -9,13 +9,15 @@
         	 , id_docente
         	 , nombres_docente
         	 , tope
+        	 , matriculados
         	 , turno
         	 , descripcion_turno
+        	 , aula
         FROM VIE_MAN_PROGRAMACION_ACADEMICA
     </sql>
     
     <sql id="orden">
-    	ORDER BY id_curso
+    	ORDER BY id_curso, seccion
     </sql>
 	
     <select id="buscarTodos" resultType="Programacion" statementType="PREPARED">
