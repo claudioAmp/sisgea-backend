@@ -18,6 +18,6 @@ public class Curso {
     private String descripcion;
     private Double creditaje;
     private String tipo;
-    private Integer grupo;
+    private String grupo;
 
 }

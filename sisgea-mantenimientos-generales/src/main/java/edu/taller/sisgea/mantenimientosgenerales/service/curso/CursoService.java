@@ -89,7 +89,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
                 String descripcion      = String.valueOf(row.getCell(4));
                 Double creditaje        = Double.parseDouble(String.valueOf(row.getCell(5)));
                 String tipo             = String.valueOf(row.getCell(6));
-                Integer grupo           = Integer.parseInt(String.valueOf(row.getCell(7)));
+                String grupo           = String.valueOf(row.getCell(7));
                 Curso fila = Curso.builder()
                         .idPlan(idPlan)
                         .idCurso(idCurso)
@@ -164,7 +164,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
                         TypesUtil.validarBDString(stmt,  5, curso.getDescripcion());
                         TypesUtil.validarBDDouble(stmt,  6, curso.getCreditaje());
                         TypesUtil.validarBDString(stmt,  7, curso.getTipo());
-                        TypesUtil.validarBDInteger(stmt,  8, curso.getGrupo());
+                        TypesUtil.validarBDString(stmt,  8, curso.getGrupo());
                         stmt.addBatch();
                         idx[0]++;
                         if (idx[0] % batchSize == 0 ) {
