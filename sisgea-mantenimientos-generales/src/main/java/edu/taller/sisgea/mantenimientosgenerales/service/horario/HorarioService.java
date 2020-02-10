@@ -85,12 +85,12 @@ public class HorarioService extends MantenibleService<Horario> implements IHorar
             List<Horario> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                Integer idHorario           = Integer.parseInt(String.valueOf(row.getCell(0)));
+                Integer idHorario           = (int) Double.parseDouble(String.valueOf(row.getCell(0)));
                 String idCurso              = String.valueOf(row.getCell(1));
-                Integer seccion             = Integer.parseInt(String.valueOf(row.getCell(2)));
+                Integer seccion             = (int) Double.parseDouble(String.valueOf(row.getCell(1)));
                 String dia                  = String.valueOf(row.getCell(3));
-                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(4),"dd/MM/yyyy HH:mm:ss");
-                Date horarioFin             = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy HH:mm:ss");
+                String horarioInicio        = String.valueOf(row.getCell(4));
+                String horarioFin           = String.valueOf(row.getCell(5));
                 Horario fila = Horario.builder()
                         .idHorario(idHorario)
                         .idCurso(idCurso)
@@ -156,8 +156,8 @@ public class HorarioService extends MantenibleService<Horario> implements IHorar
                         TypesUtil.validarBDString(stmt,2,horario.getIdCurso());
                         TypesUtil.validarBDInteger(stmt,3,horario.getSeccion());
                         TypesUtil.validarBDString(stmt,4,horario.getDia());
-                        TypesUtil.validarBDFecha(stmt,5,horario.getHorarioInicio());
-                        TypesUtil.validarBDFecha(stmt,6,horario.getHorarioFin());
+                        TypesUtil.validarBDString(stmt,5,horario.getHorarioInicio());
+                        TypesUtil.validarBDString(stmt,6,horario.getHorarioFin());
                         stmt.addBatch();
                         idx[0]++;
                         if (idx[0] % batchSize == 0 ) {

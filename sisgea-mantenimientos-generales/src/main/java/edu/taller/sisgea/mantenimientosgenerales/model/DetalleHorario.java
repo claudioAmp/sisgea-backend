@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Data
 @Builder
@@ -18,7 +17,7 @@ public class DetalleHorario {
     private Integer seccion;
     private Integer idHorario;
     private String tipoHorario;
-    private Date horarioInicio;
-    private Date horarioFin;
+    private String horarioInicio;
+    private String horarioFin;
 
 }

@@ -83,13 +83,13 @@ public class DetalleHorarioService extends MantenibleService<DetalleHorario> imp
             List<DetalleHorario> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                Integer idHorarioDetalle    = Integer.parseInt(String.valueOf(row.getCell(0)));
+                Integer idHorarioDetalle    = (int) Double.parseDouble(String.valueOf(row.getCell(0)));
                 String idCurso              = String.valueOf(row.getCell(1));
-                Integer seccion             = Integer.parseInt(String.valueOf(row.getCell(2)));
-                Integer idHorario           = Integer.parseInt(String.valueOf(row.getCell(3)));
+                Integer seccion             = (int) Double.parseDouble(String.valueOf(row.getCell(2)));
+                Integer idHorario           = (int) Double.parseDouble(String.valueOf(row.getCell(3)));
                 String tipoHorario          = String.valueOf(row.getCell(4));
-                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy HH:mm:ss");
-                Date horarioFin             = TypesUtil.getDateValue(row.getCell(6),"dd/MM/yyyy HH:mm:ss");
+                String horarioInicio          = String.valueOf(row.getCell(5));
+                String horarioFin             = String.valueOf(row.getCell(6));
                 DetalleHorario fila = DetalleHorario.builder()
                         .idHorarioDetalle(idHorarioDetalle)
                         .idCurso(idCurso)
@@ -159,8 +159,8 @@ public class DetalleHorarioService extends MantenibleService<DetalleHorario> imp
                         TypesUtil.validarBDInteger(stmt,3,detalleHorario.getSeccion());
                         TypesUtil.validarBDInteger(stmt,4,detalleHorario.getIdHorario());
                         TypesUtil.validarBDString(stmt,5,detalleHorario.getTipoHorario());
-                        TypesUtil.validarBDFecha(stmt,6,detalleHorario.getHorarioInicio());
-                        TypesUtil.validarBDFecha(stmt,7,detalleHorario.getHorarioFin());
+                        TypesUtil.validarBDString(stmt,6,detalleHorario.getHorarioInicio());
+                        TypesUtil.validarBDString(stmt,7,detalleHorario.getHorarioFin());
                         stmt.addBatch();
                         idx[0]++;
                         if (idx[0] % batchSize == 0 ) {

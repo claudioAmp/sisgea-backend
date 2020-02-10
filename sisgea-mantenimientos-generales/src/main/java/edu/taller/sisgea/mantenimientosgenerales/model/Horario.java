@@ -17,7 +17,7 @@ public class Horario {
     private String idCurso;
     private Integer seccion;
     private String dia;
-    private Date horarioInicio;
-    private Date horarioFin;
+    private String horarioInicio;
+    private String horarioFin;
 
 }
