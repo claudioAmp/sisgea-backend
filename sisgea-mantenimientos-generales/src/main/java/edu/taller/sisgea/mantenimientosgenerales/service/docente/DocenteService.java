@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,7 +38,7 @@ public class DocenteService extends MantenibleService<Docente> implements IDocen
 	private static final String PLAN_NO_ENCONTRADO = "El Docente %s no existe";
 	private final IDocenteMapper docenteMapper;
 	
-	DataSource dataSource;
+	private @Autowired DataSource dataSource;
 	
 	public DocenteService(@Qualifier("IDocenteMapper") IMantenibleMapper<Docente> mantenibleMapper) {
 		super(mantenibleMapper);
@@ -83,10 +84,10 @@ public class DocenteService extends MantenibleService<Docente> implements IDocen
 			List<Docente> listaFilas = new ArrayList<>();
 			while (rowIterator.hasNext()) {
 				row = rowIterator.next();
-				String idDocente		= row.getCell(0).getStringCellValue();
-				String nombres			= row.getCell(1).getStringCellValue();
-				String apellidos		= row.getCell(2).getStringCellValue();
-				String tipo		= row.getCell(3).getStringCellValue();
+				String idDocente		= String.valueOf(row.getCell(0));
+				String nombres			= String.valueOf(row.getCell(1));
+				String apellidos		= String.valueOf(row.getCell(2));
+				String tipo		= String.valueOf(row.getCell(3));
 				Docente fila = Docente.builder()
 						.idDocente(idDocente)
 						.nombres(nombres)

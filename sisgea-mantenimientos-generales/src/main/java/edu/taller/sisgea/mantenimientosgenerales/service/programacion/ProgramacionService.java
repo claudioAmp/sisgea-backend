@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,7 +38,7 @@ public class ProgramacionService extends MantenibleService<Programacion> impleme
 	private static final String PROGRAMACION_NO_ENCONTRADO = "La programación del Curso %s , Sección %d no existe";
 	private final IProgramacionMapper programacionMapper;
 	
-	DataSource dataSource;
+	private @Autowired DataSource dataSource;
 	
 	public ProgramacionService(@Qualifier("IProgramacionMapper") IMantenibleMapper<Programacion> mantenibleMapper) {
 		super(mantenibleMapper);
@@ -83,13 +84,13 @@ public class ProgramacionService extends MantenibleService<Programacion> impleme
 			List<Programacion> listaFilas = new ArrayList<>();
 			while (rowIterator.hasNext()) {
 				row = rowIterator.next();
-				String idCurso			= row.getCell(0).getStringCellValue();
-				Integer seccion			= TypesUtil.getNumericValue(row.getCell(1)).intValue();
-				String idDocente		= row.getCell(2).getStringCellValue();
-				Integer tope			= TypesUtil.getNumericValue(row.getCell(3)).intValue();
-				Integer matriculados	= TypesUtil.getNumericValue(row.getCell(4)).intValue();
-				String turno			= row.getCell(5).getStringCellValue();
-				String aula				= row.getCell(6).getStringCellValue();
+				String idCurso			= String.valueOf(row.getCell(0));
+				Integer seccion			= Integer.parseInt(String.valueOf(row.getCell(1)));
+				String idDocente		= String.valueOf(row.getCell(2));
+				Integer tope			= Integer.parseInt(String.valueOf(row.getCell(3)));
+				Integer matriculados	= Integer.parseInt(String.valueOf(row.getCell(4)));
+				String turno			= String.valueOf(row.getCell(5));
+				String aula				= String.valueOf(row.getCell(6));
 				Programacion fila = Programacion.builder()
 						.idCurso(idCurso)
 						.seccion(seccion)

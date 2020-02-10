@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,7 +36,7 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
     private static final String CURSO_NO_ENCONTRADO = "La programación del Curso %s no existe";
     private final ICursoMapper cursoMapper;
 
-    DataSource dataSource;
+    private @Autowired DataSource dataSource;
 
     public CursoService(@Qualifier("ICursoMapper") IMantenibleMapper<Curso> mantenibleMapper) {
         super(mantenibleMapper);
@@ -81,14 +82,14 @@ public class CursoService extends MantenibleService<Curso> implements ICursoServ
             List<Curso> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                String idPlan           = row.getCell(0).getStringCellValue();
-                String idCurso          = row.getCell(1).getStringCellValue();
-                Integer ciclo           = TypesUtil.getNumericValue(row.getCell(2)).intValue();
-                String especialidad     = row.getCell(3).getStringCellValue();
-                String descripcion      = row.getCell(4).getStringCellValue();
-                Double creditaje        = (double) TypesUtil.getNumericValue(row.getCell(5)).intValue();
-                String tipo             = row.getCell(6).getStringCellValue();
-                Integer grupo           = TypesUtil.getNumericValue(row.getCell(7)).intValue();
+                String idPlan           = String.valueOf(row.getCell(0));
+                String idCurso          = String.valueOf(row.getCell(1));
+                Integer ciclo           = Integer.parseInt(String.valueOf(row.getCell(2)));
+                String especialidad     = String.valueOf(row.getCell(3));
+                String descripcion      = String.valueOf(row.getCell(4));
+                Double creditaje        = Double.parseDouble(String.valueOf(row.getCell(5)));
+                String tipo             = String.valueOf(row.getCell(6));
+                Integer grupo           = Integer.parseInt(String.valueOf(row.getCell(7)));
                 Curso fila = Curso.builder()
                         .idPlan(idPlan)
                         .idCurso(idCurso)

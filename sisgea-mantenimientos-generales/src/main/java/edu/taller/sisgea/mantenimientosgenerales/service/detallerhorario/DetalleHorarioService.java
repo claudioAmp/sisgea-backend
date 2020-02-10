@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -36,7 +37,7 @@ public class DetalleHorarioService extends MantenibleService<DetalleHorario> imp
     private static final String DETALLE_HORARIO_NO_ENCONTRADO = "El Detalle del Horario de id de horario detalle %d, id curso %s, seccion %d, id horario %s no existe";
     private final IDetalleHorarioMapper detalleHorarioMapper;
 
-    DataSource dataSource;
+    private @Autowired DataSource dataSource;
 
     public DetalleHorarioService(@Qualifier("IDetalleHorarioMapper") IMantenibleMapper<DetalleHorario> mantenibleMapper) {
         super(mantenibleMapper);
@@ -82,13 +83,13 @@ public class DetalleHorarioService extends MantenibleService<DetalleHorario> imp
             List<DetalleHorario> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                Integer idHorarioDetalle    = TypesUtil.getNumericValue(row.getCell(0)).intValue();
-                String idCurso              = row.getCell(1).getStringCellValue();
-                Integer seccion             = TypesUtil.getNumericValue(row.getCell(2)).intValue();
-                Integer idHorario           = TypesUtil.getNumericValue(row.getCell(3)).intValue();
-                String tipoHorario         = row.getCell(4).getStringCellValue();
-                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy");
-                Date horarioFin             = TypesUtil.getDateValue(row.getCell(6),"dd/MM/yyyy");
+                Integer idHorarioDetalle    = Integer.parseInt(String.valueOf(row.getCell(0)));
+                String idCurso              = String.valueOf(row.getCell(1));
+                Integer seccion             = Integer.parseInt(String.valueOf(row.getCell(2)));
+                Integer idHorario           = Integer.parseInt(String.valueOf(row.getCell(3)));
+                String tipoHorario          = String.valueOf(row.getCell(4));
+                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy HH:mm:ss");
+                Date horarioFin             = TypesUtil.getDateValue(row.getCell(6),"dd/MM/yyyy HH:mm:ss");
                 DetalleHorario fila = DetalleHorario.builder()
                         .idHorarioDetalle(idHorarioDetalle)
                         .idCurso(idCurso)

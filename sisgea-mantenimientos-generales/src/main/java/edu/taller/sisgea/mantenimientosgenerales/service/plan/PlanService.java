@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,7 +38,7 @@ public class PlanService extends MantenibleService<Plan> implements IPlanService
 	private static final String PLAN_NO_ENCONTRADO = "El Plan %s no existe";
 	private final IPlanMapper planMapper;
 	
-	DataSource dataSource;
+	private @Autowired DataSource dataSource;
 	
 	public PlanService(@Qualifier("IPlanMapper") IMantenibleMapper<Plan> mantenibleMapper) {
 		super(mantenibleMapper);
@@ -83,11 +84,11 @@ public class PlanService extends MantenibleService<Plan> implements IPlanService
 			List<Plan> listaFilas = new ArrayList<>();
 			while (rowIterator.hasNext()) {
 				row = rowIterator.next();
-				String idPlan			= row.getCell(0).getStringCellValue();
-				String facultad			= row.getCell(1).getStringCellValue();
-				String escuela			= row.getCell(2).getStringCellValue();
-				String especialidad		= row.getCell(3).getStringCellValue();
-				String descripcionPlan	= row.getCell(4).getStringCellValue();
+				String idPlan			= String.valueOf(row.getCell(0));
+				String facultad			= String.valueOf(row.getCell(1));
+				String escuela			= String.valueOf(row.getCell(2));
+				String especialidad		= String.valueOf(row.getCell(3));
+				String descripcionPlan	= String.valueOf(row.getCell(4));
 				Plan fila = Plan.builder()
 						.idPlan(idPlan)
 						.facultad(facultad)
@@ -118,12 +119,13 @@ public class PlanService extends MantenibleService<Plan> implements IPlanService
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void cargarExcel(List<Plan> listaFilas){
+	public void cargarExcel(List<Plan> listaFilas) throws SQLException{
 		int batchSize = 1000;
 		if(listaFilas.size()<=0){
 			return;
 		}
-		try(Connection conn = dataSource.getConnection()){
+		Connection conn = dataSource.getConnection();
+		try{
 			conn.setAutoCommit(false);
 			try{
 				PreparedStatement stmt = conn.prepareStatement(

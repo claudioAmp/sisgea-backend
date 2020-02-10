@@ -1,8 +1,6 @@
 package edu.taller.sisgea.mantenimientosgenerales.service.horario;
 
-import edu.taller.sisgea.mantenimientosgenerales.mapper.IDetalleHorarioMapper;
 import edu.taller.sisgea.mantenimientosgenerales.mapper.IHorarioMapper;
-import edu.taller.sisgea.mantenimientosgenerales.model.DetalleHorario;
 import edu.taller.sisgea.mantenimientosgenerales.model.Horario;
 import edu.taller.sisgea.mantenimientosgenerales.model.resultadocarga.ResultadoCarga;
 import ob.commons.error.exception.RecursoNoEncontradoException;
@@ -14,6 +12,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +39,7 @@ public class HorarioService extends MantenibleService<Horario> implements IHorar
     private static final String HORARIO_NO_ENCONTRADO = "El Horario de id de id curso %s, seccion %d, id horario %s no existe";
     private final IHorarioMapper horarioMapper;
 
-    DataSource dataSource;
+    private @Autowired DataSource dataSource;
 
     public HorarioService(@Qualifier("IHorarioMapper") IMantenibleMapper<Horario> mantenibleMapper) {
         super(mantenibleMapper);
@@ -86,12 +85,12 @@ public class HorarioService extends MantenibleService<Horario> implements IHorar
             List<Horario> listaFilas = new ArrayList<>();
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                Integer idHorario           = TypesUtil.getNumericValue(row.getCell(0)).intValue();
-                String idCurso              = row.getCell(1).getStringCellValue();
-                Integer seccion             = TypesUtil.getNumericValue(row.getCell(2)).intValue();
-                String dia                  = row.getCell(3).getStringCellValue();
-                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(4),"dd/MM/yyyy");
-                Date horarioFin             = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy");
+                Integer idHorario           = Integer.parseInt(String.valueOf(row.getCell(0)));
+                String idCurso              = String.valueOf(row.getCell(1));
+                Integer seccion             = Integer.parseInt(String.valueOf(row.getCell(2)));
+                String dia                  = String.valueOf(row.getCell(3));
+                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(4),"dd/MM/yyyy HH:mm:ss");
+                Date horarioFin             = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy HH:mm:ss");
                 Horario fila = Horario.builder()
                         .idHorario(idHorario)
                         .idCurso(idCurso)
