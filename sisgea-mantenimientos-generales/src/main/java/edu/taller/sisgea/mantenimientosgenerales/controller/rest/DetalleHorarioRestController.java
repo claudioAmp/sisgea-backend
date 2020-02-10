@@ -18,12 +18,12 @@ public class DetalleHorarioRestController {
         this.detalleHorarioService = detalleHorarioService;
     }
 
-    @GetMapping(value = "/detalleHorario")
+    @GetMapping(value = "/detalle-horario")
     public List<DetalleHorario> buscarTodosDetalleHorario() {
         return this.detalleHorarioService.buscarTodosDetalleHorario();
     }
 
-    @PostMapping(value = "/detalleHorario/cargar")
+    @PostMapping(value = "/detalle-horario/cargar")
     public List<ResultadoCarga> cargarArchivo(@RequestParam("file[]") List<MultipartFile> file){
         return this.detalleHorarioService.cargarArchivos(file);
     }
