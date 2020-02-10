@@ -23,12 +23,13 @@ public class ResultadoAsignacionEspaciosAcademicos {
     private Integer tope;
     private Integer matriculados;
     private String turno;
+    private String descripcionTurno;
     private String tipoHorario;
+    private String descripcionTipoHorario;
     private String dia;
-    private Date horaInicio;
-    private Date horaFin;
+    private String descripcionDia;
+    private Date horarioInicio;
+    private Date horarioFin;
     private String espacio;
-
-
 
 }

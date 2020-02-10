@@ -18,13 +18,17 @@
                 , CURSO
                 , SECCION
                 , ID_DOCENTE
+                , NOMBRES_DOCENTE
                 , TOPE
                 , MATRICULADOS
                 , TURNO
+                , DESCRIPCION_TURNO
                 , TIPO_HORARIO
+                , DESCRIPCION_TIPO_HORARIO
                 , DIA
-                , HORA_INICIO
-                , HORA_FIN
+                , DESCRIPCION_DIA
+                , HORARIO_INICIO
+                , HORARIO_FIN
                 , ESPACIO
         FROM VIE_RESULTADO_ASIGNACION_ESPACIOS_ACADEMICOS
     </sql>
