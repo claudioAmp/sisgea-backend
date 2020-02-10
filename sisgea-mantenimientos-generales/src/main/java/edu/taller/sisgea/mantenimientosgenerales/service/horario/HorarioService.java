@@ -1,0 +1,200 @@
+package edu.taller.sisgea.mantenimientosgenerales.service.horario;
+
+import edu.taller.sisgea.mantenimientosgenerales.mapper.IDetalleHorarioMapper;
+import edu.taller.sisgea.mantenimientosgenerales.mapper.IHorarioMapper;
+import edu.taller.sisgea.mantenimientosgenerales.model.DetalleHorario;
+import edu.taller.sisgea.mantenimientosgenerales.model.Horario;
+import edu.taller.sisgea.mantenimientosgenerales.model.resultadocarga.ResultadoCarga;
+import ob.commons.error.exception.RecursoNoEncontradoException;
+import ob.commons.excel.exception.ReadingExcelFileException;
+import ob.commons.excel.util.TypesUtil;
+import ob.commons.mantenimiento.mapper.IMantenibleMapper;
+import ob.commons.mantenimiento.service.MantenibleService;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.sql.DataSource;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+@Validated
+@RestController
+public class HorarioService extends MantenibleService<Horario> implements IHorarioService {
+
+    private static final String HORARIO_NO_ENCONTRADO = "El Horario de id de id curso %s, seccion %d, id horario %s no existe";
+    private final IHorarioMapper horarioMapper;
+
+    DataSource dataSource;
+
+    public HorarioService(@Qualifier("IHorarioMapper") IMantenibleMapper<Horario> mantenibleMapper) {
+        super(mantenibleMapper);
+        this.horarioMapper = (IHorarioMapper) mantenibleMapper;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<Horario> buscarTodosHorario() {
+        return this.buscarTodos();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public Horario buscarHorario(Integer idHorario, String idCurso,Integer seccion) {
+        return this.horarioMapper.buscarHorario(idHorario,idCurso,seccion).orElseThrow(
+                () -> new RecursoNoEncontradoException(HORARIO_NO_ENCONTRADO,idHorario,idCurso,seccion));
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public List<ResultadoCarga> cargarArchivos(List<MultipartFile> multipartfiles) {
+        List<ResultadoCarga> listaResultados = new ArrayList<>();
+        for (MultipartFile multipartfile : multipartfiles) {
+            String filename = multipartfile.getOriginalFilename();
+            try (BufferedInputStream bis = new BufferedInputStream(multipartfile.getInputStream())) {
+                ResultadoCarga resultadoCarga = leerExcel(filename, bis);
+                listaResultados.add(resultadoCarga);
+            } catch (IOException e) {
+                throw new RecursoNoEncontradoException(e.getMessage());
+            }
+        }
+        return listaResultados;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public ResultadoCarga leerExcel(String filename, InputStream inputStream){
+        try (Workbook workbook = WorkbookFactory.create(inputStream)) {
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
+            Row row;
+            rowIterator.next();
+            List<Horario> listaFilas = new ArrayList<>();
+            while (rowIterator.hasNext()) {
+                row = rowIterator.next();
+                Integer idHorario           = TypesUtil.getNumericValue(row.getCell(0)).intValue();
+                String idCurso              = row.getCell(1).getStringCellValue();
+                Integer seccion             = TypesUtil.getNumericValue(row.getCell(2)).intValue();
+                String dia                  = row.getCell(3).getStringCellValue();
+                Date horarioInicio          = TypesUtil.getDateValue(row.getCell(4),"dd/MM/yyyy");
+                Date horarioFin             = TypesUtil.getDateValue(row.getCell(5),"dd/MM/yyyy");
+                Horario fila = Horario.builder()
+                        .idHorario(idHorario)
+                        .idCurso(idCurso)
+                        .seccion(seccion)
+                        .dia(dia)
+                        .horarioInicio(horarioInicio)
+                        .horarioFin(horarioFin)
+                        .build();
+                listaFilas.add(fila);
+            }
+            cargarExcel(listaFilas);
+            ResultadoCarga resultadoCarga = ResultadoCarga.builder()
+                    .nombreArchivo(filename)
+                    .numeroRegistros(listaFilas.size())
+                    .exito(true)
+                    .build();
+            return resultadoCarga;
+        } catch (IOException ex) {
+            throw new ReadingExcelFileException(
+                    "Asegúrese de que se trata de un archivo Excel. Nombre de archivo: " + filename);
+        } catch (Exception ex) {
+            ResultadoCarga resultadoCargaFallida = ResultadoCarga.builder()
+                    .nombreArchivo(filename)
+                    .numeroRegistros(0)
+                    .exito(false)
+                    .build();
+            return resultadoCargaFallida;
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void cargarExcel(List<Horario> listaFilas){
+        int batchSize = 1000;
+        if(listaFilas.size()<=0){
+            return;
+        }
+        try(Connection conn = dataSource.getConnection()){
+            conn.setAutoCommit(false);
+            try{
+                PreparedStatement stmt = conn.prepareStatement(
+                        "INSERT INTO MAE_HORARIO("+
+                                "ID_HORARIO	      	," +
+                                "ID_CURSO	      	," +
+                                "SECCION	  		," +
+                                "DIA				 ," +
+                                "HORARIO_INICIO				 ," +
+                                "HORARIO_FIN				 " +
+                                ") VALUES ("+
+                                "?,"+
+                                "?,"+
+                                "?,"+
+                                "?,"+
+                                "?,"+
+                                "? "+
+                                ")") ;
+                int[] idx = { 0 };
+                Iterator<Horario> itHorario = listaFilas.iterator();
+                Horario horario;
+                while(itHorario.hasNext()){
+                    horario = itHorario.next();
+                    try{
+                        TypesUtil.validarBDInteger(stmt,1,horario.getIdHorario());
+                        TypesUtil.validarBDString(stmt,2,horario.getIdCurso());
+                        TypesUtil.validarBDInteger(stmt,3,horario.getSeccion());
+                        TypesUtil.validarBDString(stmt,4,horario.getDia());
+                        TypesUtil.validarBDFecha(stmt,5,horario.getHorarioInicio());
+                        TypesUtil.validarBDFecha(stmt,6,horario.getHorarioFin());
+                        stmt.addBatch();
+                        idx[0]++;
+                        if (idx[0] % batchSize == 0 ) {
+                            stmt.executeBatch();
+                            conn.commit();
+                            stmt.clearBatch();
+                            stmt.clearParameters();
+                            idx[0] = 0;
+                        }
+                    }catch(SQLException e){
+                        if (conn != null) {
+                            try {
+                                conn.rollback();
+                            } catch (Exception ex) {
+                            }
+                        }
+                    }
+                }
+
+                if(idx[0]>0){
+                    stmt.executeBatch();
+                    conn.commit();
+                }
+
+            }catch(SQLException e){
+                if (conn != null) {
+                    try {
+                        conn.rollback();
+                    } catch (Exception ex) {
+                    }
+                }
+                e.printStackTrace();
+            }
+        }catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+}
