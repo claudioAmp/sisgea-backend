@@ -12,6 +12,22 @@
              , asignable
         FROM VIE_MAN_ESPACIO_ACADEMICO
     </sql>
+
+    <sql id = "consultaVistaResultadoAsignacionEspaciosAcademicos">
+        SELECT    CICLO
+                , CURSO
+                , SECCION
+                , ID_DOCENTE
+                , TOPE
+                , MATRICULADOS
+                , TURNO
+                , TIPO_HORARIO
+                , DIA
+                , HORA_INICIO
+                , HORA_FIN
+                , ESPACIO
+        FROM VIE_RESULTADO_ASIGNACION_ESPACIOS_ACADEMICOS
+    </sql>
     
     <sql id="orden">
     	ORDER BY id_espacio_academico
@@ -40,6 +56,16 @@
                 #{objetoMantenido.asignable, 	      			jdbcType=NUMERIC, mode=IN},
             )
         }
+    </select>
+
+    <select id="ejecutarProcedimientoAsignacionEspacioAcademico" statementType="PREPARED">
+        {
+            CALL PRC_ASIGNACION_ESPACIO_RECURSO()
+        }
+    </select>
+
+    <select id="buscarTodosResultados" resultType="edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos">
+        <include refid="consultaVistaResultadoAsignacionEspaciosAcademicos"/>
     </select>
 
 </mapper>
