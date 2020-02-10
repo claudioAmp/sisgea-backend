@@ -23,6 +23,7 @@ public class Programacion {
 	private Integer matriculados;
 	private String turno;
 	private String descripcionTurno;
+
 	private String aula;
 
 }
