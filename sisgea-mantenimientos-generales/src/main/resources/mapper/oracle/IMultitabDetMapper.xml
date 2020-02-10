@@ -4,10 +4,10 @@
 
     <sql id="consultaVistaMant">
         SELECT id_multitab_cab
+             , descripcion_multitab_cab
              , id_multitab_det
              , descripcion_item
              , abreviatura
-             , descripcion_multitab_cab
         FROM VIE_MAN_MULTITAB_DET
     </sql>
     
@@ -35,13 +35,12 @@
 
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
         {
-            CALL PKG_MAN_GENERALES.PRC_MAN_MULTITAB_DET(
+            CALL PRC_MANT_MAE_MULTITAB_DET(
                 #{modo, 								jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idMultitabCab, 	    jdbcType=INTEGER, mode=IN},
                 #{objetoMantenido.idMultitabDet,        jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idMultitabCab, 	    jdbcType=INTEGER, mode=IN},
                 #{objetoMantenido.descripcionItem,      jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.abreviatura,          jdbcType=VARCHAR, mode=IN},
-                #{usuario, 								jdbcType=VARCHAR, mode=IN}
+                #{objetoMantenido.abreviatura,          jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>

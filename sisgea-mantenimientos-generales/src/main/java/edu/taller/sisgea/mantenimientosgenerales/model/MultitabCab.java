@@ -14,7 +14,7 @@ import ob.commons.spring.validation.validation.group.IRegistro;
 @AllArgsConstructor
 public class MultitabCab {
 	
-	@IdNumerico(maxRange = 999, groups = IRegistro.class)
+	@IdNumerico(maxRange = 65535, groups = IRegistro.class)
 	private Integer idMultitabCab;
 	@CaracterRequerido(maxLength = 100)
 	private String descripcionMultitabCab;
