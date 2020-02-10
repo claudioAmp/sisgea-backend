@@ -8,7 +8,7 @@
 		<module>sisgea-mantenimientos-generales</module>
 		<module>sisgea-boot</module>
 		<module>sisgea-consultas-generales</module>
-		<module>sisgea-reportes</module>
+		<!--<module>sisgea-reportes</module>-->
 	</modules>
 	
 	<!-- Modulo padre Spring Boot -->

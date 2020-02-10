@@ -1,14 +1,14 @@
 package edu.taller.sisgea.mantenimientosgenerales.mapper;
 
-import edu.taller.sisgea.mantenimientosgenerales.model.Docente;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
-import org.apache.ibatis.annotations.Mapper;
+import edu.taller.sisgea.mantenimientosgenerales.model.Docente;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import java.util.Optional;
 
 @Mapper
 public interface IDocenteMapper extends IMantenibleMapper<Docente> {
-
-    List<Docente> buscarTodos();
-
+	
+	Optional<Docente> buscarDocente(String idDocente);
+	
 }
