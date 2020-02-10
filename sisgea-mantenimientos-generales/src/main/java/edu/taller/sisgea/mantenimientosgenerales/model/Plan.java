@@ -16,6 +16,8 @@ public class Plan {
 	
 	@IdCadena(minLength = 1, maxLength = 1, regexpPattern = "[a-zA-Z0-9]+", groups = IRegistro.class)
 	private String idPlan;
+	@CaracterRequerido(maxLength = 40)
+	private String descripcionPlan;
 	@CaracterRequerido(maxLength = 4)
 	private String facultad;
 	private String escuela;
