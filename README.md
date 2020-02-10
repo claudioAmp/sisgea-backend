@@ -1,5 +1,5 @@
-# uba-sicf-backend
-Subsistema sicf-backend del sistema SICF para UNIBANCA.
+# sisgea-backend
+Subsistema sisgea-backend del sistema SISGEA para FISI UNMSM.
 
 **Tecnologías principales**
 * JAVA 11 de OPENJDK
