@@ -1,12 +1,10 @@
 package edu.taller.sisgea.mantenimientosgenerales.service.parametrosgenerales;
 
 import edu.taller.sisgea.mantenimientosgenerales.mapper.IParametrosGeneralesMapper;
-import edu.taller.sisgea.mantenimientosgenerales.model.ParametroSistema;
 import edu.taller.sisgea.mantenimientosgenerales.model.ParametrosGenerales;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
