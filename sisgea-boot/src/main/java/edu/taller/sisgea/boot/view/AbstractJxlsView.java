@@ -22,8 +22,6 @@ import net.sf.jxls.transformer.XLSTransformer;
  * <p>
  * Esta clase extiende de {@link AbstractView} para poder ser extendido por otra
  * clase que defina una vista aceptable por <b>Spring MVC</b>.
- * 
- * @author Hanz Llanto
  */
 public abstract class AbstractJxlsView extends AbstractView
 {
