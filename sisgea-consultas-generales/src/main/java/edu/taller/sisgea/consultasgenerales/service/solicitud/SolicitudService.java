@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.taller.sisgea.consultasgenerales.mapper.solicitud.ISolicitudMapper;
 import edu.taller.sisgea.consultasgenerales.model.solicitud.Solicitud;
-import edu.taller.sisgea.mantenimientosgenerales.model.EspacioAcademico;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
