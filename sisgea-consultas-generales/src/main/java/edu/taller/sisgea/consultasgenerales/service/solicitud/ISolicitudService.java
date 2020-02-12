@@ -7,11 +7,11 @@ import edu.taller.sisgea.consultasgenerales.model.solicitud.Solicitud;
 public interface ISolicitudService {
 	List<Solicitud> buscarTodosSolictud();
 	
-	Solicitud buscarEspacioAcademico(Integer idEspacioAcademico);
+	Solicitud buscarSolicitud(Integer idSolicitud);
 	
-	Solicitud registrarEspacioAcademico(Integer idEspacioAcademico,Integer idSolicitante);
+	Solicitud registrarSolicitud(Solicitud solicitud);
 	
-	Solicitud actualizarEspacioAcademico(Integer idSolicitud);
+	Solicitud actualizarSolicitud(Integer idSolicitud,Solicitud solicitud);
 	
-	void eliminarEspacioAcademico(Integer idSolicitud);
+	void eliminarSolicitud(Integer idSolicitud);
 }
