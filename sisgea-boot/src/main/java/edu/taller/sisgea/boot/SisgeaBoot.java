@@ -1,35 +1,19 @@
 package edu.taller.sisgea.boot;
 
-import ob.commons.jwt.JWTUtil;
 import edu.taller.sisgea.consultasgenerales.ConsultasGeneralesBoot;
 import edu.taller.sisgea.mantenimientosgenerales.MantenimientosGeneralesBoot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.accept.ContentNegotiationManager;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-/**
- * Esta clase se encarga de arrancar los módulos declarados en el pom.xml.
- * <p>
- * Para realizar el arranque de los módulos, es necesario que en la anotación
- * {@code @SpringBootApplication} se declaren las clases Main de dichos módulos.
- * </p>
- *
- * @author Hanz Llanto
- */
 @SpringBootApplication(
 		scanBasePackageClasses = {MantenimientosGeneralesBoot.class,
 		                          ConsultasGeneralesBoot.class})
@@ -37,29 +21,6 @@ public class SisgeaBoot {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SisgeaBoot.class, args);
-	}
-	
-	/**
-	 * En este método se configuran la integración con distintos origenes de petición.
-	 * Las configuraciones se aplican si la propiedad ob.sicf.cors.activo es true.
-	 * <p>
-	 * <b>Nota:</b> Esta método será reubicada
-	 * </p>
-	 *
-	 * @return CorsFilter con los origenes configurados
-	 */
-	@ConditionalOnProperty(value = "ob.sicf.cors.activo", havingValue = "true")
-	@Bean
-	public CorsFilter corsFilter() {
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		final CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.setAllowedOrigins(Collections.singletonList("*"));
-		config.setAllowedHeaders(
-				Arrays.asList("Access-Control-Allow-Origin", "Content-Type", "Accept", JWTUtil.JWT_ENCABEZADO));
-		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
-		source.registerCorsConfiguration("/**", config);
-		return new CorsFilter(source);
 	}
 	
 	/**
