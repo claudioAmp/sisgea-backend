@@ -1,6 +1,5 @@
 package edu.taller.sisgea.mantenimientosgenerales.service.espacioacademico;
 
-import edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos;
 import ob.commons.mantenimiento.service.IMantenibleService;
 import edu.taller.sisgea.mantenimientosgenerales.model.EspacioAcademico;
 
@@ -17,10 +16,5 @@ public interface IEspacioAcademicoService extends IMantenibleService<EspacioAcad
 	EspacioAcademico actualizarEspacioAcademico(Integer idEspacioAcademico, EspacioAcademico espacioAcademico);
 	
 	void eliminarEspacioAcademico(Integer idEspacioAcademico);
-
-	void ejecutarProcedimientoAsignacionEspacioAcademico ();
-
-	public List<ResultadoAsignacionEspaciosAcademicos> buscarTodosResultados ();
-
 	
 }

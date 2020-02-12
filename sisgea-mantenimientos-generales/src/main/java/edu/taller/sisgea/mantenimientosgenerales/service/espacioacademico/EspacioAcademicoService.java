@@ -1,7 +1,6 @@
 package edu.taller.sisgea.mantenimientosgenerales.service.espacioacademico;
 
 import edu.taller.sisgea.mantenimientosgenerales.mapper.IEspacioAcademicoMapper;
-import edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos;
 import ob.commons.error.exception.RecursoNoEncontradoException;
 import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 import ob.commons.mantenimiento.service.MantenibleService;
@@ -58,19 +57,6 @@ public class EspacioAcademicoService extends MantenibleService<EspacioAcademico>
 	public void eliminarEspacioAcademico(Integer idEspacioAcademico) {
 		EspacioAcademico espacioAcademico = EspacioAcademico.builder().idEspacioAcademico(idEspacioAcademico).build();
 		this.eliminar(espacioAcademico);
-	}
-
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void ejecutarProcedimientoAsignacionEspacioAcademico(){
-		this.espacioAcademicoMapper.ejecutarProcedimientoAsignacionEspacioAcademico();
-
-	}
-
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<ResultadoAsignacionEspaciosAcademicos> buscarTodosResultados(){
-		return this.espacioAcademicoMapper.buscarTodosResultados();
 	}
 	
 }
