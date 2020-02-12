@@ -23,6 +23,6 @@ public class EspacioAcademico {
 	private String descripcionPabellon;
 	private String tipoEspacio;
 	private String descripcionTipoEspacio;
-	private Integer asignable;
+	private Boolean asignable;
 
 }
