@@ -18,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
  * <b>NOTA: </b>Para poder acceder a esta vista es necesario que el método
  * retorne un {@link ModelAndView} estableciendo la vista <b>jxlsView</b> en su
  * constructor.
- * 
- * @author Hanz Llanto
  */
 public class JxlsView extends AbstractJxlsView
 {
