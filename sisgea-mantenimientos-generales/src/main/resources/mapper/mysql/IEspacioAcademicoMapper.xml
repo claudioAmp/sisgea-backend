@@ -57,7 +57,7 @@
                 #{objetoMantenido.aforo, 	      				jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.pabellon,						jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.tipoEspacio,					jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.asignable, 	      			jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.asignable, 	      			jdbcType=NUMERIC, mode=IN}
             )
         }
     </select>

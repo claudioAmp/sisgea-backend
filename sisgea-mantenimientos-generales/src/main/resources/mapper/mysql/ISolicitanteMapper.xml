@@ -37,7 +37,7 @@
         {
             CALL PRC_MANT_MAE_SOLICITANTE(
                 #{modo, 							jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idSolicitante, 	jdbcType=NUMERIC, mode=INOUT},
+                #{objetoMantenido.idSolicitante, 	jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.dni,				jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.nombres, 	      	jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.apellidoPaterno,	jdbcType=VARCHAR, mode=IN},
@@ -46,7 +46,7 @@
                 #{objetoMantenido.email, 	     	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.tipoSolicitante,	jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.base, 	      	jdbcType=NUMERIC, mode=IN},
-                #{objetoMantenido.escuela, 	      	jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.escuela, 	      	jdbcType=VARCHAR, mode=IN}
             )
         }
     </select>
