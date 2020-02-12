@@ -1,14 +1,20 @@
 package edu.taller.sisgea.mantenimientosgenerales.controller.rest;
 
 import edu.taller.sisgea.mantenimientosgenerales.model.EspacioAcademico;
-import edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos;
 import ob.commons.spring.validation.validation.IdNumerico;
 import ob.commons.spring.validation.validation.group.IRegistro;
 import edu.taller.sisgea.mantenimientosgenerales.service.espacioacademico.IEspacioAcademicoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.groups.Default;
 import java.util.List;
@@ -45,11 +51,5 @@ public class EspacioAcademicoRestController {
 	public void eliminarEspacioAcademico(@IdNumerico(maxRange = 65535) @PathVariable Integer idEspacioAcademico) {
 		this.espacioAcademicoService.eliminarEspacioAcademico(idEspacioAcademico);
 	}
-
-	@GetMapping(value = "/asignacion-espacios/procesar")
-	public List<ResultadoAsignacionEspaciosAcademicos> asignacionEspaciosAcademicos(){
-		this.espacioAcademicoService.ejecutarProcedimientoAsignacionEspacioAcademico();
-		return this.espacioAcademicoService.buscarTodosResultados();
-	}
-
+	
 }
