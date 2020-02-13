@@ -86,7 +86,7 @@ public class HorarioService extends MantenibleService<Horario> implements IHorar
                 row = rowIterator.next();
                 Integer idHorario           = (int) Double.parseDouble(String.valueOf(row.getCell(0)));
                 String idCurso              = String.valueOf(row.getCell(1));
-                Integer seccion             = (int) Double.parseDouble(String.valueOf(row.getCell(1)));
+                Integer seccion             = (int) Double.parseDouble(String.valueOf(row.getCell(2)));
                 String dia                  = String.valueOf(row.getCell(3));
                 String horarioInicio        = String.valueOf(row.getCell(4));
                 String horarioFin           = String.valueOf(row.getCell(5));
