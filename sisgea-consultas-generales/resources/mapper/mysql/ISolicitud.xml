@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.IEspacioAcademicoMapper">
+
+	<sql id="consultaVistaMant">
+       
+    </sql>
+
+    <sql id = "consultaVistaResultadoAsignacionEspaciosAcademicos">
+       
+    </sql>
+    
+    <sql id="orden">
+    	
+    </sql>
+	
+    <select id="buscarTodos" resultType="EspacioAcademico" statementType="PREPARED">
+        <include refid="consultaVistaMant"/>
+        <include refid="orden"/>
+    </select>
+    
+    <select id="buscarEspacioAcademico" resultType="EspacioAcademico">
+        <include refid="consultaVistaMant"/>
+        
+    </select>
+    
+    <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
+        {
+            CALL PRC_ASIGNACION_ESPACIO_SOLICITANTE(
+                #{modo, 							  			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idSolicitud, 	      			jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.idEspacioAcademico,			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.idSolicitante, 	      		jdbcType=NUMERIC, mode=IN},
+                #{objetoMantenido.estadoSolicitud,				jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.tipoSolicitud,				jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.motivo, 	      				jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.fechaRegistro, 	      		jdbcType=DATE, mode=IN},
+                #{objetoMantenido.fechaReserva, 	      		jdbcType=DATE, mode=IN},
+                #{objetoMantenido.horaInicio, 	      			jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.horaFin, 	      				jdbcType=VARCHAR, mode=IN},
+                #{objetoMantenido.estadoAsistencia, 	      	jdbcType=VARCHAR, mode=IN}
+            )
+        }
+    </select>
+
+    <select id="ejecutarProcedimientoAsignacionEspacioAcademico" statementType="PREPARED">
+        {
+            CALL PRC_ASIGNACION_ESPACIO_RECURSO()
+        }
+    </select>
+
+    <select id="buscarTodosResultados" resultType="edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos">
+        <include refid="consultaVistaResultadoAsignacionEspaciosAcademicos"/>
+    </select>
+
+</mapper>
