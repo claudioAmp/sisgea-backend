@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AsignacionEspacioAcademico {
-
+	private String id;
     private String periodo;
     private Integer ciclo;
     private String curso;

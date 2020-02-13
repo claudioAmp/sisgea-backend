@@ -37,18 +37,23 @@ public class EspacioAcademicoRestController {
 	@PostMapping(value = "/espacios-academicos", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public EspacioAcademico registrarEspacioAcademico(@Validated({IRegistro.class, Default.class}) @RequestBody EspacioAcademico espacioAcademico) {
-		return this.espacioAcademicoService.registrarEspacioAcademico(espacioAcademico);
+		System.out.println(espacioAcademico);
+		this.espacioAcademicoService.registrarEspacioAcademico(espacioAcademico);
+		return this.espacioAcademicoService.buscarEspacioAcademico(espacioAcademico.getIdEspacioAcademico());
 	}
 	
 	@PutMapping(value = "/espacios-academicos/{idEspacioAcademico}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public EspacioAcademico actualizarEspacioAcademico(@IdNumerico(maxRange = 65535) @PathVariable Integer idEspacioAcademico,
 	                             @Validated @RequestBody EspacioAcademico espacioAcademico) {
-		return this.espacioAcademicoService.actualizarEspacioAcademico(idEspacioAcademico, espacioAcademico);
+		System.out.println(espacioAcademico);
+		this.espacioAcademicoService.actualizarEspacioAcademico(idEspacioAcademico, espacioAcademico);
+		return this.espacioAcademicoService.buscarEspacioAcademico(espacioAcademico.getIdEspacioAcademico());
 	}
 	
 	@DeleteMapping(value = "/espacios-academicos/{idEspacioAcademico}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarEspacioAcademico(@IdNumerico(maxRange = 65535) @PathVariable Integer idEspacioAcademico) {
+		System.out.println(idEspacioAcademico);
 		this.espacioAcademicoService.eliminarEspacioAcademico(idEspacioAcademico);
 	}
 	

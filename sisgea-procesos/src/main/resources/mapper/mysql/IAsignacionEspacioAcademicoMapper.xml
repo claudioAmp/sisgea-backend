@@ -3,7 +3,8 @@
 <mapper namespace="edu.taller.sisgea.procesos.mapper.IAsignacionEspacioAcademicoMapper">
 
 	<sql id="consultaVistaMant">
-        SELECT    CICLO
+        SELECT  ID
+        		,  CICLO
                 , CURSO
                 , SECCION
                 , ID_DOCENTE

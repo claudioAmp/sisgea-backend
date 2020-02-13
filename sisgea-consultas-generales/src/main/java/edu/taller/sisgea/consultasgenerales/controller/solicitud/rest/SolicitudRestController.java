@@ -24,33 +24,33 @@ import java.util.List;
 @RestController
 public class SolicitudRestController {
 	
-	private final ISolicitudService SolicitudService;
+	private final ISolicitudService solicitudService;
 	
 	public SolicitudRestController(ISolicitudService SolicitudService) {
-		this.SolicitudService = SolicitudService;
+		this.solicitudService = SolicitudService;
 	}
 	
 	@GetMapping(value = "/solicitud-espacios")
 	public List<Solicitud> buscarTodosSolicitudes() {
-		return this.SolicitudService.buscarTodosSolictud();
+		return this.solicitudService.buscarTodosSolictud();
 	}
 	
 	@PostMapping(value = "/solicitud-espacios", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Solicitud registrarSolicitud(@Validated({IRegistro.class, Default.class}) @RequestBody Solicitud Solicitud) {
-		return this.SolicitudService.registrarSolicitud(Solicitud);
+		return this.solicitudService.registrarSolicitud(Solicitud);
 	}
 	
 	@PutMapping(value = "/solicitud-espacios/{idSolicitud}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Solicitud actualizarSolicitud(@IdNumerico(maxRange = 65535) @PathVariable Integer idSolicitud,
 	                             @Validated @RequestBody Solicitud Solicitud) {
-		return this.SolicitudService.actualizarSolicitud(idSolicitud, Solicitud);
+		return this.solicitudService.actualizarSolicitud(idSolicitud, Solicitud);
 	}
 	
 	@DeleteMapping(value = "/solicitud-espacios/{idSolicitud}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void eliminarSolicitud(@IdNumerico(maxRange = 65535) @PathVariable Integer idSolicitud) {
-		this.SolicitudService.eliminarSolicitud(idSolicitud);
+		this.solicitudService.eliminarSolicitud(idSolicitud);
 	}
 	
 }
