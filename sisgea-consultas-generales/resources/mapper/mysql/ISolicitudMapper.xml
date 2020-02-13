@@ -3,15 +3,28 @@
 <mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.ISolicitudMapper">
 
 	<sql id="consultaVistaMant">
-       
+
+		SELECT 
+				    ID_SOLICITUD
+				  , ID_ESPACIO_ACADEMICO
+		          , ID_SOLICITANTE
+		          , DNI
+		          , NOMBRES
+		          , APELLIDO_PATERNO
+		          , APELLIDO_MATERNO
+		          , ESTADO_SOLICITUD
+		          , TIPO_SOLICITUD
+		          , ACTIVO
+		          , FECHA_REGISTRO	
+		          , FECHA_RESERVA
+		          , HORA_INICIO
+		          , HORA_FIN
+		          , ESTADO_ASISTENCIA
+				FROM VIE_SOLICITUD 
     </sql>
 
-    <sql id = "consultaVistaSolicitud">
-       
-    </sql>
-    
     <sql id="orden">
-    	
+    	ORDER BY ID_SOLICITUD
     </sql>
 	
     <select id="buscarTodosSolictud" resultType="Solicitud" statementType="PREPARED">
@@ -21,7 +34,8 @@
     
     <select id="buscarSolicitud" resultType="Solicitud">
         <include refid="consultaVistaMant"/>
-        
+         WHERE
+                ID_SOLICITUD = #{idSolicitud}
     </select>
     
     <select id="mantener" parameterType="ParametroMantenimiento" statementType="CALLABLE">
