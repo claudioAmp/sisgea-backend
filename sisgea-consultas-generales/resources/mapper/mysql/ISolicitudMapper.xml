@@ -7,13 +7,16 @@
 		SELECT 
 				    ID_SOLICITUD
 				  , ID_ESPACIO_ACADEMICO
+				  ,DESCRIPCION_ESPACIO_ACADEMICO
 		          , ID_SOLICITANTE
 		          , DNI
 		          , NOMBRES
 		          , APELLIDO_PATERNO
 		          , APELLIDO_MATERNO
 		          , ESTADO_SOLICITUD
+		          , DESCRIPCION_ESTADO_SOLICITUD
 		          , TIPO_SOLICITUD
+		          , DESCRIPCION_TIPO_SOLICITUD
 		          , ACTIVO
 		          , FECHA_REGISTRO	
 		          , FECHA_RESERVA

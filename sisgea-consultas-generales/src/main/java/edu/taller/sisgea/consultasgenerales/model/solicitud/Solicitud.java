@@ -15,9 +15,12 @@ import lombok.NoArgsConstructor;
 public class Solicitud {
 	Integer idSolicitud;
 	Integer idEspacioAcademico;
+	String descripcionEspacioAcademico;
 	Integer idSolicitante;
 	String estadoSolicitud;
+	String descripcionEstadoSolicitud;
 	String tipoSolicitud;
+	String descripcionTipoSolicitud;
 	String motivo;
 	Date fechaRegistro;
 	Date fechaReserva;
