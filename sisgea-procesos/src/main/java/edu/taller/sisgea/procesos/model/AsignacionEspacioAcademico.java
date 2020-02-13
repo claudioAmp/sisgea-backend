@@ -15,7 +15,7 @@ public class AsignacionEspacioAcademico {
     private Integer ciclo;
     private String curso;
     private Integer seccion;
-    private Integer idDocente;
+    private String idDocente;
     private String nombresDocente;
     private Integer tope;
     private Integer matriculados;
