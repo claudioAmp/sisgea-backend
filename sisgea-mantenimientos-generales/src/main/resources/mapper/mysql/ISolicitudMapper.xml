@@ -5,24 +5,7 @@
 	<sql id="consultaVistaMant">
 
 		SELECT 
-				    ID_SOLICITUD
-				  , ID_ESPACIO_ACADEMICO
-				  ,DESCRIPCION_ESPACIO_ACADEMICO
-		          , ID_SOLICITANTE
-		          , DNI
-		          , NOMBRES
-		          , APELLIDO_PATERNO
-		          , APELLIDO_MATERNO
-		          , ESTADO_SOLICITUD
-		          , DESCRIPCION_ESTADO_SOLICITUD
-		          , TIPO_SOLICITUD
-		          , DESCRIPCION_TIPO_SOLICITUD
-		          , ACTIVO
-		          , FECHA_REGISTRO	
-		          , FECHA_RESERVA
-		          , HORA_INICIO
-		          , HORA_FIN
-		          , ESTADO_ASISTENCIA
+				*
 				FROM VIE_SOLICITUD 
     </sql>
 
@@ -45,7 +28,7 @@
         {
             CALL PRC_ASIGNACION_ESPACIO_SOLICITANTE(
                 #{modo, 							  			jdbcType=VARCHAR, mode=IN},
-                #{objetoMantenido.idSolicitud, 	      			jdbcType=INTEGER, mode=IN},
+                #{objetoMantenido.idSolicitud, 	      			jdbcType=INTEGER, mode=INOUT},
                 #{objetoMantenido.idEspacioAcademico,			jdbcType=VARCHAR, mode=IN},
                 #{objetoMantenido.idSolicitante, 	      		jdbcType=NUMERIC, mode=IN},
                 #{objetoMantenido.estadoSolicitud,				jdbcType=VARCHAR, mode=IN},
