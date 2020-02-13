@@ -5,17 +5,13 @@ import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import edu.taller.sisgea.consultasgenerales.model.solicitud.Solicitud;
+import ob.commons.mantenimiento.mapper.IMantenibleMapper;
 
 @Mapper
-public interface ISolicitudMapper {
+public interface ISolicitudMapper extends IMantenibleMapper<Solicitud> {
 	
 	List<Solicitud> buscarTodosSolictud();
 	
 	Optional<Solicitud> buscarSolicitud(Integer idSolicitud);
 	
-	Solicitud registrarSolicitud(Solicitud solicitud);
-	
-	Solicitud actualizarSolicitud(Integer idSolicitud);
-	
-	void eliminarSolicitud(Integer idSolicitud);
 }

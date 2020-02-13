@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.taller.sisgea.mantenimientosgenerales.mapper.IEspacioAcademicoMapper">
+<mapper namespace="edu.taller.sisgea.consultasgenerales.mapper.ISolicitudMapper">
 
 	<sql id="consultaVistaMant">
        
     </sql>
 
-    <sql id = "consultaVistaResultadoAsignacionEspaciosAcademicos">
+    <sql id = "consultaVistaSolicitud">
        
     </sql>
     
@@ -14,12 +14,12 @@
     	
     </sql>
 	
-    <select id="buscarTodos" resultType="EspacioAcademico" statementType="PREPARED">
+    <select id="buscarTodosSolictud" resultType="Solicitud" statementType="PREPARED">
         <include refid="consultaVistaMant"/>
         <include refid="orden"/>
     </select>
     
-    <select id="buscarEspacioAcademico" resultType="EspacioAcademico">
+    <select id="buscarSolicitud" resultType="Solicitud">
         <include refid="consultaVistaMant"/>
         
     </select>
@@ -41,16 +41,6 @@
                 #{objetoMantenido.estadoAsistencia, 	      	jdbcType=VARCHAR, mode=IN}
             )
         }
-    </select>
-
-    <select id="ejecutarProcedimientoAsignacionEspacioAcademico" statementType="PREPARED">
-        {
-            CALL PRC_ASIGNACION_ESPACIO_RECURSO()
-        }
-    </select>
-
-    <select id="buscarTodosResultados" resultType="edu.taller.sisgea.mantenimientosgenerales.model.resultadoasignacionespaciosacademicos.ResultadoAsignacionEspaciosAcademicos">
-        <include refid="consultaVistaResultadoAsignacionEspaciosAcademicos"/>
     </select>
 
 </mapper>
