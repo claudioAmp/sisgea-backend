@@ -5,6 +5,7 @@
     <sql id="consultaVistaMant">
         SELECT id_horario
              , id_curso
+             , desc_curso
         	 , seccion
         	 , dia
         	 , horario_inicio

@@ -13,6 +13,7 @@ public class Horario {
 
     private Integer idHorario;
     private String idCurso;
+    private String descCurso;
     private Integer seccion;
     private String dia;
     private String horarioInicio;
