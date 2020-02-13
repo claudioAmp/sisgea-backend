@@ -14,6 +14,7 @@ public class DetalleHorario {
 
     private Integer idHorarioDetalle;
     private String idCurso;
+    private String descCurso;
     private Integer seccion;
     private Integer idHorario;
     private String tipoHorario;
