@@ -28,7 +28,7 @@ public class SolicitudService extends MantenibleService<Solicitud> implements IS
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<Solicitud> buscarTodosSolictud(){
-		return this.buscarTodos();
+		return this.solicitudMapper.buscarTodosSolictud();
 		
 	}
 	@Override
